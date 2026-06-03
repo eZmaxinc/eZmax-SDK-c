@@ -6,32 +6,47 @@
 
 
 static variableexpense_get_list_v1_response_m_payload_t *variableexpense_get_list_v1_response_m_payload_create_internal(
-    int i_row_returned,
-    int i_row_filtered,
+    int *i_row_returned,
+    int *i_row_filtered,
     list_t *a_obj_variableexpense
     ) {
     variableexpense_get_list_v1_response_m_payload_t *variableexpense_get_list_v1_response_m_payload_local_var = malloc(sizeof(variableexpense_get_list_v1_response_m_payload_t));
     if (!variableexpense_get_list_v1_response_m_payload_local_var) {
         return NULL;
     }
+    memset(variableexpense_get_list_v1_response_m_payload_local_var, 0, sizeof(variableexpense_get_list_v1_response_m_payload_t));
+    variableexpense_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     variableexpense_get_list_v1_response_m_payload_local_var->i_row_returned = i_row_returned;
     variableexpense_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
     variableexpense_get_list_v1_response_m_payload_local_var->a_obj_variableexpense = a_obj_variableexpense;
-
-    variableexpense_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     return variableexpense_get_list_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) variableexpense_get_list_v1_response_m_payload_t *variableexpense_get_list_v1_response_m_payload_create(
-    int i_row_returned,
-    int i_row_filtered,
+    int *i_row_returned,
+    int *i_row_filtered,
     list_t *a_obj_variableexpense
     ) {
-    return variableexpense_get_list_v1_response_m_payload_create_internal (
-        i_row_returned,
-        i_row_filtered,
+    int *i_row_returned_copy = NULL;
+    if (i_row_returned) {
+        i_row_returned_copy = malloc(sizeof(int));
+        if (i_row_returned_copy) *i_row_returned_copy = *i_row_returned;
+    }
+    int *i_row_filtered_copy = NULL;
+    if (i_row_filtered) {
+        i_row_filtered_copy = malloc(sizeof(int));
+        if (i_row_filtered_copy) *i_row_filtered_copy = *i_row_filtered;
+    }
+    variableexpense_get_list_v1_response_m_payload_t *result = variableexpense_get_list_v1_response_m_payload_create_internal (
+        i_row_returned_copy,
+        i_row_filtered_copy,
         a_obj_variableexpense
         );
+    if (!result) {
+        free(i_row_returned_copy);
+        free(i_row_filtered_copy);
+    }
+    return result;
 }
 
 void variableexpense_get_list_v1_response_m_payload_free(variableexpense_get_list_v1_response_m_payload_t *variableexpense_get_list_v1_response_m_payload) {
@@ -43,6 +58,14 @@ void variableexpense_get_list_v1_response_m_payload_free(variableexpense_get_lis
         return ;
     }
     listEntry_t *listEntry;
+    if (variableexpense_get_list_v1_response_m_payload->i_row_returned) {
+        free(variableexpense_get_list_v1_response_m_payload->i_row_returned);
+        variableexpense_get_list_v1_response_m_payload->i_row_returned = NULL;
+    }
+    if (variableexpense_get_list_v1_response_m_payload->i_row_filtered) {
+        free(variableexpense_get_list_v1_response_m_payload->i_row_filtered);
+        variableexpense_get_list_v1_response_m_payload->i_row_filtered = NULL;
+    }
     if (variableexpense_get_list_v1_response_m_payload->a_obj_variableexpense) {
         list_ForEach(listEntry, variableexpense_get_list_v1_response_m_payload->a_obj_variableexpense) {
             variableexpense_list_element_free(listEntry->data);
@@ -60,7 +83,7 @@ cJSON *variableexpense_get_list_v1_response_m_payload_convertToJSON(variableexpe
     if (!variableexpense_get_list_v1_response_m_payload->i_row_returned) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iRowReturned", variableexpense_get_list_v1_response_m_payload->i_row_returned) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iRowReturned", *variableexpense_get_list_v1_response_m_payload->i_row_returned) == NULL) {
     goto fail; //Numeric
     }
 
@@ -69,7 +92,7 @@ cJSON *variableexpense_get_list_v1_response_m_payload_convertToJSON(variableexpe
     if (!variableexpense_get_list_v1_response_m_payload->i_row_filtered) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iRowFiltered", variableexpense_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iRowFiltered", *variableexpense_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
     goto fail; //Numeric
     }
 
@@ -106,6 +129,12 @@ variableexpense_get_list_v1_response_m_payload_t *variableexpense_get_list_v1_re
 
     variableexpense_get_list_v1_response_m_payload_t *variableexpense_get_list_v1_response_m_payload_local_var = NULL;
 
+    // define the local variable for variableexpense_get_list_v1_response_m_payload->i_row_returned
+    int *i_row_returned_local_var = NULL;
+
+    // define the local variable for variableexpense_get_list_v1_response_m_payload->i_row_filtered
+    int *i_row_filtered_local_var = NULL;
+
     // define the local list for variableexpense_get_list_v1_response_m_payload->a_obj_variableexpense
     list_t *a_obj_variableexpenseList = NULL;
 
@@ -123,6 +152,12 @@ variableexpense_get_list_v1_response_m_payload_t *variableexpense_get_list_v1_re
     {
     goto end; //Numeric
     }
+    i_row_returned_local_var = malloc(sizeof(int));
+    if(!i_row_returned_local_var)
+    {
+        goto end;
+    }
+    *i_row_returned_local_var = i_row_returned->valuedouble;
 
     // variableexpense_get_list_v1_response_m_payload->i_row_filtered
     cJSON *i_row_filtered = cJSON_GetObjectItemCaseSensitive(variableexpense_get_list_v1_response_m_payloadJSON, "iRowFiltered");
@@ -138,6 +173,12 @@ variableexpense_get_list_v1_response_m_payload_t *variableexpense_get_list_v1_re
     {
     goto end; //Numeric
     }
+    i_row_filtered_local_var = malloc(sizeof(int));
+    if(!i_row_filtered_local_var)
+    {
+        goto end;
+    }
+    *i_row_filtered_local_var = i_row_filtered->valuedouble;
 
     // variableexpense_get_list_v1_response_m_payload->a_obj_variableexpense
     cJSON *a_obj_variableexpense = cJSON_GetObjectItemCaseSensitive(variableexpense_get_list_v1_response_m_payloadJSON, "a_objVariableexpense");
@@ -167,14 +208,27 @@ variableexpense_get_list_v1_response_m_payload_t *variableexpense_get_list_v1_re
     }
 
 
+
     variableexpense_get_list_v1_response_m_payload_local_var = variableexpense_get_list_v1_response_m_payload_create_internal (
-        i_row_returned->valuedouble,
-        i_row_filtered->valuedouble,
+        i_row_returned_local_var,
+        i_row_filtered_local_var,
         a_obj_variableexpenseList
         );
 
+    if (!variableexpense_get_list_v1_response_m_payload_local_var) {
+        goto end;
+    }
+
     return variableexpense_get_list_v1_response_m_payload_local_var;
 end:
+    if (i_row_returned_local_var) {
+        free(i_row_returned_local_var);
+        i_row_returned_local_var = NULL;
+    }
+    if (i_row_filtered_local_var) {
+        free(i_row_filtered_local_var);
+        i_row_filtered_local_var = NULL;
+    }
     if (a_obj_variableexpenseList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_variableexpenseList) {

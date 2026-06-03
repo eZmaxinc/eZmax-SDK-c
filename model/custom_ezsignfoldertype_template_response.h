@@ -19,15 +19,15 @@ typedef struct custom_ezsignfoldertype_template_response_t custom_ezsignfolderty
 
 
 typedef struct custom_ezsignfoldertype_template_response_t {
-    int pki_ezsignfoldertype_id; //numeric
-    int b_ezsignfoldertype_allowdownloadproofezsignsigner; //boolean
+    int *pki_ezsignfoldertype_id; //numeric
+    int *b_ezsignfoldertype_allowdownloadproofezsignsigner; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } custom_ezsignfoldertype_template_response_t;
 
 __attribute__((deprecated)) custom_ezsignfoldertype_template_response_t *custom_ezsignfoldertype_template_response_create(
-    int pki_ezsignfoldertype_id,
-    int b_ezsignfoldertype_allowdownloadproofezsignsigner
+    int *pki_ezsignfoldertype_id,
+    int *b_ezsignfoldertype_allowdownloadproofezsignsigner
 );
 
 void custom_ezsignfoldertype_template_response_free(custom_ezsignfoldertype_template_response_t *custom_ezsignfoldertype_template_response);

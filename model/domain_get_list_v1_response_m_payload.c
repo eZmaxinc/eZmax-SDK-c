@@ -6,32 +6,47 @@
 
 
 static domain_get_list_v1_response_m_payload_t *domain_get_list_v1_response_m_payload_create_internal(
-    int i_row_returned,
-    int i_row_filtered,
+    int *i_row_returned,
+    int *i_row_filtered,
     list_t *a_obj_domain
     ) {
     domain_get_list_v1_response_m_payload_t *domain_get_list_v1_response_m_payload_local_var = malloc(sizeof(domain_get_list_v1_response_m_payload_t));
     if (!domain_get_list_v1_response_m_payload_local_var) {
         return NULL;
     }
+    memset(domain_get_list_v1_response_m_payload_local_var, 0, sizeof(domain_get_list_v1_response_m_payload_t));
+    domain_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     domain_get_list_v1_response_m_payload_local_var->i_row_returned = i_row_returned;
     domain_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
     domain_get_list_v1_response_m_payload_local_var->a_obj_domain = a_obj_domain;
-
-    domain_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     return domain_get_list_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) domain_get_list_v1_response_m_payload_t *domain_get_list_v1_response_m_payload_create(
-    int i_row_returned,
-    int i_row_filtered,
+    int *i_row_returned,
+    int *i_row_filtered,
     list_t *a_obj_domain
     ) {
-    return domain_get_list_v1_response_m_payload_create_internal (
-        i_row_returned,
-        i_row_filtered,
+    int *i_row_returned_copy = NULL;
+    if (i_row_returned) {
+        i_row_returned_copy = malloc(sizeof(int));
+        if (i_row_returned_copy) *i_row_returned_copy = *i_row_returned;
+    }
+    int *i_row_filtered_copy = NULL;
+    if (i_row_filtered) {
+        i_row_filtered_copy = malloc(sizeof(int));
+        if (i_row_filtered_copy) *i_row_filtered_copy = *i_row_filtered;
+    }
+    domain_get_list_v1_response_m_payload_t *result = domain_get_list_v1_response_m_payload_create_internal (
+        i_row_returned_copy,
+        i_row_filtered_copy,
         a_obj_domain
         );
+    if (!result) {
+        free(i_row_returned_copy);
+        free(i_row_filtered_copy);
+    }
+    return result;
 }
 
 void domain_get_list_v1_response_m_payload_free(domain_get_list_v1_response_m_payload_t *domain_get_list_v1_response_m_payload) {
@@ -43,6 +58,14 @@ void domain_get_list_v1_response_m_payload_free(domain_get_list_v1_response_m_pa
         return ;
     }
     listEntry_t *listEntry;
+    if (domain_get_list_v1_response_m_payload->i_row_returned) {
+        free(domain_get_list_v1_response_m_payload->i_row_returned);
+        domain_get_list_v1_response_m_payload->i_row_returned = NULL;
+    }
+    if (domain_get_list_v1_response_m_payload->i_row_filtered) {
+        free(domain_get_list_v1_response_m_payload->i_row_filtered);
+        domain_get_list_v1_response_m_payload->i_row_filtered = NULL;
+    }
     if (domain_get_list_v1_response_m_payload->a_obj_domain) {
         list_ForEach(listEntry, domain_get_list_v1_response_m_payload->a_obj_domain) {
             domain_list_element_free(listEntry->data);
@@ -60,7 +83,7 @@ cJSON *domain_get_list_v1_response_m_payload_convertToJSON(domain_get_list_v1_re
     if (!domain_get_list_v1_response_m_payload->i_row_returned) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iRowReturned", domain_get_list_v1_response_m_payload->i_row_returned) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iRowReturned", *domain_get_list_v1_response_m_payload->i_row_returned) == NULL) {
     goto fail; //Numeric
     }
 
@@ -69,7 +92,7 @@ cJSON *domain_get_list_v1_response_m_payload_convertToJSON(domain_get_list_v1_re
     if (!domain_get_list_v1_response_m_payload->i_row_filtered) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iRowFiltered", domain_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iRowFiltered", *domain_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
     goto fail; //Numeric
     }
 
@@ -106,6 +129,12 @@ domain_get_list_v1_response_m_payload_t *domain_get_list_v1_response_m_payload_p
 
     domain_get_list_v1_response_m_payload_t *domain_get_list_v1_response_m_payload_local_var = NULL;
 
+    // define the local variable for domain_get_list_v1_response_m_payload->i_row_returned
+    int *i_row_returned_local_var = NULL;
+
+    // define the local variable for domain_get_list_v1_response_m_payload->i_row_filtered
+    int *i_row_filtered_local_var = NULL;
+
     // define the local list for domain_get_list_v1_response_m_payload->a_obj_domain
     list_t *a_obj_domainList = NULL;
 
@@ -123,6 +152,12 @@ domain_get_list_v1_response_m_payload_t *domain_get_list_v1_response_m_payload_p
     {
     goto end; //Numeric
     }
+    i_row_returned_local_var = malloc(sizeof(int));
+    if(!i_row_returned_local_var)
+    {
+        goto end;
+    }
+    *i_row_returned_local_var = i_row_returned->valuedouble;
 
     // domain_get_list_v1_response_m_payload->i_row_filtered
     cJSON *i_row_filtered = cJSON_GetObjectItemCaseSensitive(domain_get_list_v1_response_m_payloadJSON, "iRowFiltered");
@@ -138,6 +173,12 @@ domain_get_list_v1_response_m_payload_t *domain_get_list_v1_response_m_payload_p
     {
     goto end; //Numeric
     }
+    i_row_filtered_local_var = malloc(sizeof(int));
+    if(!i_row_filtered_local_var)
+    {
+        goto end;
+    }
+    *i_row_filtered_local_var = i_row_filtered->valuedouble;
 
     // domain_get_list_v1_response_m_payload->a_obj_domain
     cJSON *a_obj_domain = cJSON_GetObjectItemCaseSensitive(domain_get_list_v1_response_m_payloadJSON, "a_objDomain");
@@ -167,14 +208,27 @@ domain_get_list_v1_response_m_payload_t *domain_get_list_v1_response_m_payload_p
     }
 
 
+
     domain_get_list_v1_response_m_payload_local_var = domain_get_list_v1_response_m_payload_create_internal (
-        i_row_returned->valuedouble,
-        i_row_filtered->valuedouble,
+        i_row_returned_local_var,
+        i_row_filtered_local_var,
         a_obj_domainList
         );
 
+    if (!domain_get_list_v1_response_m_payload_local_var) {
+        goto end;
+    }
+
     return domain_get_list_v1_response_m_payload_local_var;
 end:
+    if (i_row_returned_local_var) {
+        free(i_row_returned_local_var);
+        i_row_returned_local_var = NULL;
+    }
+    if (i_row_filtered_local_var) {
+        free(i_row_filtered_local_var);
+        i_row_filtered_local_var = NULL;
+    }
     if (a_obj_domainList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_domainList) {

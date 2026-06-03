@@ -12,18 +12,21 @@ static ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_paylo
     if (!ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_local_var->s_login_url = s_login_url;
-
+    memset(ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_local_var, 0, sizeof(ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_t));
     ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_local_var->s_login_url = s_login_url;
     return ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_t *ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_create(
     char *s_login_url
     ) {
-    return ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_create_internal (
+    ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_t *result = ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_create_internal (
         s_login_url
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_free(ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_t *ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload) {
@@ -65,6 +68,8 @@ ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_t *e
 
     ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_t *ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_local_var = NULL;
 
+    char *s_login_url_local_str = NULL;
+
     // ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload->s_login_url
     cJSON *s_login_url = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payloadJSON, "sLoginUrl");
     if (cJSON_IsNull(s_login_url)) {
@@ -81,12 +86,22 @@ ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_t *e
     }
 
 
+    if (s_login_url && !cJSON_IsNull(s_login_url)) s_login_url_local_str = strdup(s_login_url->valuestring);
+
     ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_local_var = ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_create_internal (
-        strdup(s_login_url->valuestring)
+        s_login_url_local_str
         );
+
+    if (!ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_local_var;
 end:
+    if (s_login_url_local_str) {
+        free(s_login_url_local_str);
+        s_login_url_local_str = NULL;
+    }
     return NULL;
 
 }

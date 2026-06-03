@@ -12,18 +12,21 @@ static ezsigntemplatepackagesigner_edit_object_v1_request_t *ezsigntemplatepacka
     if (!ezsigntemplatepackagesigner_edit_object_v1_request_local_var) {
         return NULL;
     }
-    ezsigntemplatepackagesigner_edit_object_v1_request_local_var->obj_ezsigntemplatepackagesigner = obj_ezsigntemplatepackagesigner;
-
+    memset(ezsigntemplatepackagesigner_edit_object_v1_request_local_var, 0, sizeof(ezsigntemplatepackagesigner_edit_object_v1_request_t));
     ezsigntemplatepackagesigner_edit_object_v1_request_local_var->_library_owned = 1;
+    ezsigntemplatepackagesigner_edit_object_v1_request_local_var->obj_ezsigntemplatepackagesigner = obj_ezsigntemplatepackagesigner;
     return ezsigntemplatepackagesigner_edit_object_v1_request_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplatepackagesigner_edit_object_v1_request_t *ezsigntemplatepackagesigner_edit_object_v1_request_create(
     ezsigntemplatepackagesigner_request_compound_t *obj_ezsigntemplatepackagesigner
     ) {
-    return ezsigntemplatepackagesigner_edit_object_v1_request_create_internal (
+    ezsigntemplatepackagesigner_edit_object_v1_request_t *result = ezsigntemplatepackagesigner_edit_object_v1_request_create_internal (
         obj_ezsigntemplatepackagesigner
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatepackagesigner_edit_object_v1_request_free(ezsigntemplatepackagesigner_edit_object_v1_request_t *ezsigntemplatepackagesigner_edit_object_v1_request) {
@@ -86,9 +89,14 @@ ezsigntemplatepackagesigner_edit_object_v1_request_t *ezsigntemplatepackagesigne
     obj_ezsigntemplatepackagesigner_local_nonprim = ezsigntemplatepackagesigner_request_compound_parseFromJSON(obj_ezsigntemplatepackagesigner); //nonprimitive
 
 
+
     ezsigntemplatepackagesigner_edit_object_v1_request_local_var = ezsigntemplatepackagesigner_edit_object_v1_request_create_internal (
         obj_ezsigntemplatepackagesigner_local_nonprim
         );
+
+    if (!ezsigntemplatepackagesigner_edit_object_v1_request_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatepackagesigner_edit_object_v1_request_local_var;
 end:

@@ -20,7 +20,7 @@ typedef struct userlogintype_response_t userlogintype_response_t;
 
 
 typedef struct userlogintype_response_t {
-    int pki_userlogintype_id; //numeric
+    int *pki_userlogintype_id; //numeric
     struct multilingual_userlogintype_description_t *obj_userlogintype_description; //model
     char *s_userlogintype_description_x; // string
 
@@ -28,7 +28,7 @@ typedef struct userlogintype_response_t {
 } userlogintype_response_t;
 
 __attribute__((deprecated)) userlogintype_response_t *userlogintype_response_create(
-    int pki_userlogintype_id,
+    int *pki_userlogintype_id,
     multilingual_userlogintype_description_t *obj_userlogintype_description,
     char *s_userlogintype_description_x
 );

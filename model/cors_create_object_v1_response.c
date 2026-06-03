@@ -14,11 +14,11 @@ static cors_create_object_v1_response_t *cors_create_object_v1_response_create_i
     if (!cors_create_object_v1_response_local_var) {
         return NULL;
     }
+    memset(cors_create_object_v1_response_local_var, 0, sizeof(cors_create_object_v1_response_t));
+    cors_create_object_v1_response_local_var->_library_owned = 1;
     cors_create_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     cors_create_object_v1_response_local_var->obj_debug = obj_debug;
     cors_create_object_v1_response_local_var->m_payload = m_payload;
-
-    cors_create_object_v1_response_local_var->_library_owned = 1;
     return cors_create_object_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) cors_create_object_v1_response_t *cors_create_object
     common_response_obj_debug_t *obj_debug,
     cors_create_object_v1_response_m_payload_t *m_payload
     ) {
-    return cors_create_object_v1_response_create_internal (
+    cors_create_object_v1_response_t *result = cors_create_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void cors_create_object_v1_response_free(cors_create_object_v1_response_t *cors_create_object_v1_response) {
@@ -156,11 +159,16 @@ cors_create_object_v1_response_t *cors_create_object_v1_response_parseFromJSON(c
     m_payload_local_nonprim = cors_create_object_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     cors_create_object_v1_response_local_var = cors_create_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!cors_create_object_v1_response_local_var) {
+        goto end;
+    }
 
     return cors_create_object_v1_response_local_var;
 end:

@@ -6,14 +6,14 @@
 
 
 static address_request_compound_t *address_request_compound_create_internal(
-    int pki_address_id,
-    int fki_addresstype_id,
+    int *pki_address_id,
+    int *fki_addresstype_id,
     char *s_address_civic,
     char *s_address_street,
     char *s_address_suite,
     char *s_address_city,
-    int fki_province_id,
-    int fki_country_id,
+    int *fki_province_id,
+    int *fki_country_id,
     char *s_address_zip,
     char *f_address_longitude,
     char *f_address_latitude
@@ -22,6 +22,8 @@ static address_request_compound_t *address_request_compound_create_internal(
     if (!address_request_compound_local_var) {
         return NULL;
     }
+    memset(address_request_compound_local_var, 0, sizeof(address_request_compound_t));
+    address_request_compound_local_var->_library_owned = 1;
     address_request_compound_local_var->pki_address_id = pki_address_id;
     address_request_compound_local_var->fki_addresstype_id = fki_addresstype_id;
     address_request_compound_local_var->s_address_civic = s_address_civic;
@@ -33,37 +35,62 @@ static address_request_compound_t *address_request_compound_create_internal(
     address_request_compound_local_var->s_address_zip = s_address_zip;
     address_request_compound_local_var->f_address_longitude = f_address_longitude;
     address_request_compound_local_var->f_address_latitude = f_address_latitude;
-
-    address_request_compound_local_var->_library_owned = 1;
     return address_request_compound_local_var;
 }
 
 __attribute__((deprecated)) address_request_compound_t *address_request_compound_create(
-    int pki_address_id,
-    int fki_addresstype_id,
+    int *pki_address_id,
+    int *fki_addresstype_id,
     char *s_address_civic,
     char *s_address_street,
     char *s_address_suite,
     char *s_address_city,
-    int fki_province_id,
-    int fki_country_id,
+    int *fki_province_id,
+    int *fki_country_id,
     char *s_address_zip,
     char *f_address_longitude,
     char *f_address_latitude
     ) {
-    return address_request_compound_create_internal (
-        pki_address_id,
-        fki_addresstype_id,
+    int *pki_address_id_copy = NULL;
+    if (pki_address_id) {
+        pki_address_id_copy = malloc(sizeof(int));
+        if (pki_address_id_copy) *pki_address_id_copy = *pki_address_id;
+    }
+    int *fki_addresstype_id_copy = NULL;
+    if (fki_addresstype_id) {
+        fki_addresstype_id_copy = malloc(sizeof(int));
+        if (fki_addresstype_id_copy) *fki_addresstype_id_copy = *fki_addresstype_id;
+    }
+    int *fki_province_id_copy = NULL;
+    if (fki_province_id) {
+        fki_province_id_copy = malloc(sizeof(int));
+        if (fki_province_id_copy) *fki_province_id_copy = *fki_province_id;
+    }
+    int *fki_country_id_copy = NULL;
+    if (fki_country_id) {
+        fki_country_id_copy = malloc(sizeof(int));
+        if (fki_country_id_copy) *fki_country_id_copy = *fki_country_id;
+    }
+    address_request_compound_t *result = address_request_compound_create_internal (
+        pki_address_id_copy,
+        fki_addresstype_id_copy,
         s_address_civic,
         s_address_street,
         s_address_suite,
         s_address_city,
-        fki_province_id,
-        fki_country_id,
+        fki_province_id_copy,
+        fki_country_id_copy,
         s_address_zip,
         f_address_longitude,
         f_address_latitude
         );
+    if (!result) {
+        free(pki_address_id_copy);
+        free(fki_addresstype_id_copy);
+        free(fki_province_id_copy);
+        free(fki_country_id_copy);
+    }
+    return result;
 }
 
 void address_request_compound_free(address_request_compound_t *address_request_compound) {
@@ -75,6 +102,14 @@ void address_request_compound_free(address_request_compound_t *address_request_c
         return ;
     }
     listEntry_t *listEntry;
+    if (address_request_compound->pki_address_id) {
+        free(address_request_compound->pki_address_id);
+        address_request_compound->pki_address_id = NULL;
+    }
+    if (address_request_compound->fki_addresstype_id) {
+        free(address_request_compound->fki_addresstype_id);
+        address_request_compound->fki_addresstype_id = NULL;
+    }
     if (address_request_compound->s_address_civic) {
         free(address_request_compound->s_address_civic);
         address_request_compound->s_address_civic = NULL;
@@ -90,6 +125,14 @@ void address_request_compound_free(address_request_compound_t *address_request_c
     if (address_request_compound->s_address_city) {
         free(address_request_compound->s_address_city);
         address_request_compound->s_address_city = NULL;
+    }
+    if (address_request_compound->fki_province_id) {
+        free(address_request_compound->fki_province_id);
+        address_request_compound->fki_province_id = NULL;
+    }
+    if (address_request_compound->fki_country_id) {
+        free(address_request_compound->fki_country_id);
+        address_request_compound->fki_country_id = NULL;
     }
     if (address_request_compound->s_address_zip) {
         free(address_request_compound->s_address_zip);
@@ -111,7 +154,7 @@ cJSON *address_request_compound_convertToJSON(address_request_compound_t *addres
 
     // address_request_compound->pki_address_id
     if(address_request_compound->pki_address_id) {
-    if(cJSON_AddNumberToObject(item, "pkiAddressID", address_request_compound->pki_address_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiAddressID", *address_request_compound->pki_address_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -121,7 +164,7 @@ cJSON *address_request_compound_convertToJSON(address_request_compound_t *addres
     if (!address_request_compound->fki_addresstype_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiAddresstypeID", address_request_compound->fki_addresstype_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiAddresstypeID", *address_request_compound->fki_addresstype_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -165,7 +208,7 @@ cJSON *address_request_compound_convertToJSON(address_request_compound_t *addres
     if (!address_request_compound->fki_province_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiProvinceID", address_request_compound->fki_province_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiProvinceID", *address_request_compound->fki_province_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -174,7 +217,7 @@ cJSON *address_request_compound_convertToJSON(address_request_compound_t *addres
     if (!address_request_compound->fki_country_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiCountryID", address_request_compound->fki_country_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiCountryID", *address_request_compound->fki_country_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -215,6 +258,32 @@ address_request_compound_t *address_request_compound_parseFromJSON(cJSON *addres
 
     address_request_compound_t *address_request_compound_local_var = NULL;
 
+    // define the local variable for address_request_compound->pki_address_id
+    int *pki_address_id_local_var = NULL;
+
+    // define the local variable for address_request_compound->fki_addresstype_id
+    int *fki_addresstype_id_local_var = NULL;
+
+    char *s_address_civic_local_str = NULL;
+
+    char *s_address_street_local_str = NULL;
+
+    char *s_address_suite_local_str = NULL;
+
+    char *s_address_city_local_str = NULL;
+
+    // define the local variable for address_request_compound->fki_province_id
+    int *fki_province_id_local_var = NULL;
+
+    // define the local variable for address_request_compound->fki_country_id
+    int *fki_country_id_local_var = NULL;
+
+    char *s_address_zip_local_str = NULL;
+
+    char *f_address_longitude_local_str = NULL;
+
+    char *f_address_latitude_local_str = NULL;
+
     // address_request_compound->pki_address_id
     cJSON *pki_address_id = cJSON_GetObjectItemCaseSensitive(address_request_compoundJSON, "pkiAddressID");
     if (cJSON_IsNull(pki_address_id)) {
@@ -225,6 +294,12 @@ address_request_compound_t *address_request_compound_parseFromJSON(cJSON *addres
     {
     goto end; //Numeric
     }
+    pki_address_id_local_var = malloc(sizeof(int));
+    if(!pki_address_id_local_var)
+    {
+        goto end;
+    }
+    *pki_address_id_local_var = pki_address_id->valuedouble;
     }
 
     // address_request_compound->fki_addresstype_id
@@ -241,6 +316,12 @@ address_request_compound_t *address_request_compound_parseFromJSON(cJSON *addres
     {
     goto end; //Numeric
     }
+    fki_addresstype_id_local_var = malloc(sizeof(int));
+    if(!fki_addresstype_id_local_var)
+    {
+        goto end;
+    }
+    *fki_addresstype_id_local_var = fki_addresstype_id->valuedouble;
 
     // address_request_compound->s_address_civic
     cJSON *s_address_civic = cJSON_GetObjectItemCaseSensitive(address_request_compoundJSON, "sAddressCivic");
@@ -313,6 +394,12 @@ address_request_compound_t *address_request_compound_parseFromJSON(cJSON *addres
     {
     goto end; //Numeric
     }
+    fki_province_id_local_var = malloc(sizeof(int));
+    if(!fki_province_id_local_var)
+    {
+        goto end;
+    }
+    *fki_province_id_local_var = fki_province_id->valuedouble;
 
     // address_request_compound->fki_country_id
     cJSON *fki_country_id = cJSON_GetObjectItemCaseSensitive(address_request_compoundJSON, "fkiCountryID");
@@ -328,6 +415,12 @@ address_request_compound_t *address_request_compound_parseFromJSON(cJSON *addres
     {
     goto end; //Numeric
     }
+    fki_country_id_local_var = malloc(sizeof(int));
+    if(!fki_country_id_local_var)
+    {
+        goto end;
+    }
+    *fki_country_id_local_var = fki_country_id->valuedouble;
 
     // address_request_compound->s_address_zip
     cJSON *s_address_zip = cJSON_GetObjectItemCaseSensitive(address_request_compoundJSON, "sAddressZip");
@@ -369,22 +462,78 @@ address_request_compound_t *address_request_compound_parseFromJSON(cJSON *addres
     }
 
 
+    if (s_address_civic && !cJSON_IsNull(s_address_civic)) s_address_civic_local_str = strdup(s_address_civic->valuestring);
+    if (s_address_street && !cJSON_IsNull(s_address_street)) s_address_street_local_str = strdup(s_address_street->valuestring);
+    if (s_address_suite && !cJSON_IsNull(s_address_suite)) s_address_suite_local_str = strdup(s_address_suite->valuestring);
+    if (s_address_city && !cJSON_IsNull(s_address_city)) s_address_city_local_str = strdup(s_address_city->valuestring);
+    if (s_address_zip && !cJSON_IsNull(s_address_zip)) s_address_zip_local_str = strdup(s_address_zip->valuestring);
+    if (f_address_longitude && !cJSON_IsNull(f_address_longitude)) f_address_longitude_local_str = strdup(f_address_longitude->valuestring);
+    if (f_address_latitude && !cJSON_IsNull(f_address_latitude)) f_address_latitude_local_str = strdup(f_address_latitude->valuestring);
+
     address_request_compound_local_var = address_request_compound_create_internal (
-        pki_address_id ? pki_address_id->valuedouble : 0,
-        fki_addresstype_id->valuedouble,
-        strdup(s_address_civic->valuestring),
-        strdup(s_address_street->valuestring),
-        s_address_suite && !cJSON_IsNull(s_address_suite) ? strdup(s_address_suite->valuestring) : NULL,
-        strdup(s_address_city->valuestring),
-        fki_province_id->valuedouble,
-        fki_country_id->valuedouble,
-        strdup(s_address_zip->valuestring),
-        f_address_longitude && !cJSON_IsNull(f_address_longitude) ? strdup(f_address_longitude->valuestring) : NULL,
-        f_address_latitude && !cJSON_IsNull(f_address_latitude) ? strdup(f_address_latitude->valuestring) : NULL
+        pki_address_id_local_var,
+        fki_addresstype_id_local_var,
+        s_address_civic_local_str,
+        s_address_street_local_str,
+        s_address_suite_local_str,
+        s_address_city_local_str,
+        fki_province_id_local_var,
+        fki_country_id_local_var,
+        s_address_zip_local_str,
+        f_address_longitude_local_str,
+        f_address_latitude_local_str
         );
+
+    if (!address_request_compound_local_var) {
+        goto end;
+    }
 
     return address_request_compound_local_var;
 end:
+    if (pki_address_id_local_var) {
+        free(pki_address_id_local_var);
+        pki_address_id_local_var = NULL;
+    }
+    if (fki_addresstype_id_local_var) {
+        free(fki_addresstype_id_local_var);
+        fki_addresstype_id_local_var = NULL;
+    }
+    if (s_address_civic_local_str) {
+        free(s_address_civic_local_str);
+        s_address_civic_local_str = NULL;
+    }
+    if (s_address_street_local_str) {
+        free(s_address_street_local_str);
+        s_address_street_local_str = NULL;
+    }
+    if (s_address_suite_local_str) {
+        free(s_address_suite_local_str);
+        s_address_suite_local_str = NULL;
+    }
+    if (s_address_city_local_str) {
+        free(s_address_city_local_str);
+        s_address_city_local_str = NULL;
+    }
+    if (fki_province_id_local_var) {
+        free(fki_province_id_local_var);
+        fki_province_id_local_var = NULL;
+    }
+    if (fki_country_id_local_var) {
+        free(fki_country_id_local_var);
+        fki_country_id_local_var = NULL;
+    }
+    if (s_address_zip_local_str) {
+        free(s_address_zip_local_str);
+        s_address_zip_local_str = NULL;
+    }
+    if (f_address_longitude_local_str) {
+        free(f_address_longitude_local_str);
+        f_address_longitude_local_str = NULL;
+    }
+    if (f_address_latitude_local_str) {
+        free(f_address_latitude_local_str);
+        f_address_latitude_local_str = NULL;
+    }
     return NULL;
 
 }

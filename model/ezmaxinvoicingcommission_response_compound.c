@@ -6,13 +6,13 @@
 
 
 static ezmaxinvoicingcommission_response_compound_t *ezmaxinvoicingcommission_response_compound_create_internal(
-    int pki_ezmaxinvoicingcommission_id,
-    int fki_ezmaxinvoicingsummaryglobal_id,
-    int fki_ezmaxpartner_id,
-    int fki_ezmaxrepresentative_id,
+    int *pki_ezmaxinvoicingcommission_id,
+    int *fki_ezmaxinvoicingsummaryglobal_id,
+    int *fki_ezmaxpartner_id,
+    int *fki_ezmaxrepresentative_id,
     char *dt_ezmaxinvoicingcommission_start,
     char *dt_ezmaxinvoicingcommission_end,
-    int i_ezmaxinvoicingcommission_days,
+    int *i_ezmaxinvoicingcommission_days,
     char *d_ezmaxinvoicingcommission_amount,
     custom_contact_name_response_t *obj_contact_name
     ) {
@@ -20,6 +20,8 @@ static ezmaxinvoicingcommission_response_compound_t *ezmaxinvoicingcommission_re
     if (!ezmaxinvoicingcommission_response_compound_local_var) {
         return NULL;
     }
+    memset(ezmaxinvoicingcommission_response_compound_local_var, 0, sizeof(ezmaxinvoicingcommission_response_compound_t));
+    ezmaxinvoicingcommission_response_compound_local_var->_library_owned = 1;
     ezmaxinvoicingcommission_response_compound_local_var->pki_ezmaxinvoicingcommission_id = pki_ezmaxinvoicingcommission_id;
     ezmaxinvoicingcommission_response_compound_local_var->fki_ezmaxinvoicingsummaryglobal_id = fki_ezmaxinvoicingsummaryglobal_id;
     ezmaxinvoicingcommission_response_compound_local_var->fki_ezmaxpartner_id = fki_ezmaxpartner_id;
@@ -29,33 +31,64 @@ static ezmaxinvoicingcommission_response_compound_t *ezmaxinvoicingcommission_re
     ezmaxinvoicingcommission_response_compound_local_var->i_ezmaxinvoicingcommission_days = i_ezmaxinvoicingcommission_days;
     ezmaxinvoicingcommission_response_compound_local_var->d_ezmaxinvoicingcommission_amount = d_ezmaxinvoicingcommission_amount;
     ezmaxinvoicingcommission_response_compound_local_var->obj_contact_name = obj_contact_name;
-
-    ezmaxinvoicingcommission_response_compound_local_var->_library_owned = 1;
     return ezmaxinvoicingcommission_response_compound_local_var;
 }
 
 __attribute__((deprecated)) ezmaxinvoicingcommission_response_compound_t *ezmaxinvoicingcommission_response_compound_create(
-    int pki_ezmaxinvoicingcommission_id,
-    int fki_ezmaxinvoicingsummaryglobal_id,
-    int fki_ezmaxpartner_id,
-    int fki_ezmaxrepresentative_id,
+    int *pki_ezmaxinvoicingcommission_id,
+    int *fki_ezmaxinvoicingsummaryglobal_id,
+    int *fki_ezmaxpartner_id,
+    int *fki_ezmaxrepresentative_id,
     char *dt_ezmaxinvoicingcommission_start,
     char *dt_ezmaxinvoicingcommission_end,
-    int i_ezmaxinvoicingcommission_days,
+    int *i_ezmaxinvoicingcommission_days,
     char *d_ezmaxinvoicingcommission_amount,
     custom_contact_name_response_t *obj_contact_name
     ) {
-    return ezmaxinvoicingcommission_response_compound_create_internal (
-        pki_ezmaxinvoicingcommission_id,
-        fki_ezmaxinvoicingsummaryglobal_id,
-        fki_ezmaxpartner_id,
-        fki_ezmaxrepresentative_id,
+    int *pki_ezmaxinvoicingcommission_id_copy = NULL;
+    if (pki_ezmaxinvoicingcommission_id) {
+        pki_ezmaxinvoicingcommission_id_copy = malloc(sizeof(int));
+        if (pki_ezmaxinvoicingcommission_id_copy) *pki_ezmaxinvoicingcommission_id_copy = *pki_ezmaxinvoicingcommission_id;
+    }
+    int *fki_ezmaxinvoicingsummaryglobal_id_copy = NULL;
+    if (fki_ezmaxinvoicingsummaryglobal_id) {
+        fki_ezmaxinvoicingsummaryglobal_id_copy = malloc(sizeof(int));
+        if (fki_ezmaxinvoicingsummaryglobal_id_copy) *fki_ezmaxinvoicingsummaryglobal_id_copy = *fki_ezmaxinvoicingsummaryglobal_id;
+    }
+    int *fki_ezmaxpartner_id_copy = NULL;
+    if (fki_ezmaxpartner_id) {
+        fki_ezmaxpartner_id_copy = malloc(sizeof(int));
+        if (fki_ezmaxpartner_id_copy) *fki_ezmaxpartner_id_copy = *fki_ezmaxpartner_id;
+    }
+    int *fki_ezmaxrepresentative_id_copy = NULL;
+    if (fki_ezmaxrepresentative_id) {
+        fki_ezmaxrepresentative_id_copy = malloc(sizeof(int));
+        if (fki_ezmaxrepresentative_id_copy) *fki_ezmaxrepresentative_id_copy = *fki_ezmaxrepresentative_id;
+    }
+    int *i_ezmaxinvoicingcommission_days_copy = NULL;
+    if (i_ezmaxinvoicingcommission_days) {
+        i_ezmaxinvoicingcommission_days_copy = malloc(sizeof(int));
+        if (i_ezmaxinvoicingcommission_days_copy) *i_ezmaxinvoicingcommission_days_copy = *i_ezmaxinvoicingcommission_days;
+    }
+    ezmaxinvoicingcommission_response_compound_t *result = ezmaxinvoicingcommission_response_compound_create_internal (
+        pki_ezmaxinvoicingcommission_id_copy,
+        fki_ezmaxinvoicingsummaryglobal_id_copy,
+        fki_ezmaxpartner_id_copy,
+        fki_ezmaxrepresentative_id_copy,
         dt_ezmaxinvoicingcommission_start,
         dt_ezmaxinvoicingcommission_end,
-        i_ezmaxinvoicingcommission_days,
+        i_ezmaxinvoicingcommission_days_copy,
         d_ezmaxinvoicingcommission_amount,
         obj_contact_name
         );
+    if (!result) {
+        free(pki_ezmaxinvoicingcommission_id_copy);
+        free(fki_ezmaxinvoicingsummaryglobal_id_copy);
+        free(fki_ezmaxpartner_id_copy);
+        free(fki_ezmaxrepresentative_id_copy);
+        free(i_ezmaxinvoicingcommission_days_copy);
+    }
+    return result;
 }
 
 void ezmaxinvoicingcommission_response_compound_free(ezmaxinvoicingcommission_response_compound_t *ezmaxinvoicingcommission_response_compound) {
@@ -67,6 +100,22 @@ void ezmaxinvoicingcommission_response_compound_free(ezmaxinvoicingcommission_re
         return ;
     }
     listEntry_t *listEntry;
+    if (ezmaxinvoicingcommission_response_compound->pki_ezmaxinvoicingcommission_id) {
+        free(ezmaxinvoicingcommission_response_compound->pki_ezmaxinvoicingcommission_id);
+        ezmaxinvoicingcommission_response_compound->pki_ezmaxinvoicingcommission_id = NULL;
+    }
+    if (ezmaxinvoicingcommission_response_compound->fki_ezmaxinvoicingsummaryglobal_id) {
+        free(ezmaxinvoicingcommission_response_compound->fki_ezmaxinvoicingsummaryglobal_id);
+        ezmaxinvoicingcommission_response_compound->fki_ezmaxinvoicingsummaryglobal_id = NULL;
+    }
+    if (ezmaxinvoicingcommission_response_compound->fki_ezmaxpartner_id) {
+        free(ezmaxinvoicingcommission_response_compound->fki_ezmaxpartner_id);
+        ezmaxinvoicingcommission_response_compound->fki_ezmaxpartner_id = NULL;
+    }
+    if (ezmaxinvoicingcommission_response_compound->fki_ezmaxrepresentative_id) {
+        free(ezmaxinvoicingcommission_response_compound->fki_ezmaxrepresentative_id);
+        ezmaxinvoicingcommission_response_compound->fki_ezmaxrepresentative_id = NULL;
+    }
     if (ezmaxinvoicingcommission_response_compound->dt_ezmaxinvoicingcommission_start) {
         free(ezmaxinvoicingcommission_response_compound->dt_ezmaxinvoicingcommission_start);
         ezmaxinvoicingcommission_response_compound->dt_ezmaxinvoicingcommission_start = NULL;
@@ -74,6 +123,10 @@ void ezmaxinvoicingcommission_response_compound_free(ezmaxinvoicingcommission_re
     if (ezmaxinvoicingcommission_response_compound->dt_ezmaxinvoicingcommission_end) {
         free(ezmaxinvoicingcommission_response_compound->dt_ezmaxinvoicingcommission_end);
         ezmaxinvoicingcommission_response_compound->dt_ezmaxinvoicingcommission_end = NULL;
+    }
+    if (ezmaxinvoicingcommission_response_compound->i_ezmaxinvoicingcommission_days) {
+        free(ezmaxinvoicingcommission_response_compound->i_ezmaxinvoicingcommission_days);
+        ezmaxinvoicingcommission_response_compound->i_ezmaxinvoicingcommission_days = NULL;
     }
     if (ezmaxinvoicingcommission_response_compound->d_ezmaxinvoicingcommission_amount) {
         free(ezmaxinvoicingcommission_response_compound->d_ezmaxinvoicingcommission_amount);
@@ -91,7 +144,7 @@ cJSON *ezmaxinvoicingcommission_response_compound_convertToJSON(ezmaxinvoicingco
 
     // ezmaxinvoicingcommission_response_compound->pki_ezmaxinvoicingcommission_id
     if(ezmaxinvoicingcommission_response_compound->pki_ezmaxinvoicingcommission_id) {
-    if(cJSON_AddNumberToObject(item, "pkiEzmaxinvoicingcommissionID", ezmaxinvoicingcommission_response_compound->pki_ezmaxinvoicingcommission_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzmaxinvoicingcommissionID", *ezmaxinvoicingcommission_response_compound->pki_ezmaxinvoicingcommission_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -99,7 +152,7 @@ cJSON *ezmaxinvoicingcommission_response_compound_convertToJSON(ezmaxinvoicingco
 
     // ezmaxinvoicingcommission_response_compound->fki_ezmaxinvoicingsummaryglobal_id
     if(ezmaxinvoicingcommission_response_compound->fki_ezmaxinvoicingsummaryglobal_id) {
-    if(cJSON_AddNumberToObject(item, "fkiEzmaxinvoicingsummaryglobalID", ezmaxinvoicingcommission_response_compound->fki_ezmaxinvoicingsummaryglobal_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiEzmaxinvoicingsummaryglobalID", *ezmaxinvoicingcommission_response_compound->fki_ezmaxinvoicingsummaryglobal_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -107,7 +160,7 @@ cJSON *ezmaxinvoicingcommission_response_compound_convertToJSON(ezmaxinvoicingco
 
     // ezmaxinvoicingcommission_response_compound->fki_ezmaxpartner_id
     if(ezmaxinvoicingcommission_response_compound->fki_ezmaxpartner_id) {
-    if(cJSON_AddNumberToObject(item, "fkiEzmaxpartnerID", ezmaxinvoicingcommission_response_compound->fki_ezmaxpartner_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiEzmaxpartnerID", *ezmaxinvoicingcommission_response_compound->fki_ezmaxpartner_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -115,7 +168,7 @@ cJSON *ezmaxinvoicingcommission_response_compound_convertToJSON(ezmaxinvoicingco
 
     // ezmaxinvoicingcommission_response_compound->fki_ezmaxrepresentative_id
     if(ezmaxinvoicingcommission_response_compound->fki_ezmaxrepresentative_id) {
-    if(cJSON_AddNumberToObject(item, "fkiEzmaxrepresentativeID", ezmaxinvoicingcommission_response_compound->fki_ezmaxrepresentative_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiEzmaxrepresentativeID", *ezmaxinvoicingcommission_response_compound->fki_ezmaxrepresentative_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -143,7 +196,7 @@ cJSON *ezmaxinvoicingcommission_response_compound_convertToJSON(ezmaxinvoicingco
     if (!ezmaxinvoicingcommission_response_compound->i_ezmaxinvoicingcommission_days) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iEzmaxinvoicingcommissionDays", ezmaxinvoicingcommission_response_compound->i_ezmaxinvoicingcommission_days) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iEzmaxinvoicingcommissionDays", *ezmaxinvoicingcommission_response_compound->i_ezmaxinvoicingcommission_days) == NULL) {
     goto fail; //Numeric
     }
 
@@ -181,6 +234,27 @@ ezmaxinvoicingcommission_response_compound_t *ezmaxinvoicingcommission_response_
 
     ezmaxinvoicingcommission_response_compound_t *ezmaxinvoicingcommission_response_compound_local_var = NULL;
 
+    // define the local variable for ezmaxinvoicingcommission_response_compound->pki_ezmaxinvoicingcommission_id
+    int *pki_ezmaxinvoicingcommission_id_local_var = NULL;
+
+    // define the local variable for ezmaxinvoicingcommission_response_compound->fki_ezmaxinvoicingsummaryglobal_id
+    int *fki_ezmaxinvoicingsummaryglobal_id_local_var = NULL;
+
+    // define the local variable for ezmaxinvoicingcommission_response_compound->fki_ezmaxpartner_id
+    int *fki_ezmaxpartner_id_local_var = NULL;
+
+    // define the local variable for ezmaxinvoicingcommission_response_compound->fki_ezmaxrepresentative_id
+    int *fki_ezmaxrepresentative_id_local_var = NULL;
+
+    char *dt_ezmaxinvoicingcommission_start_local_str = NULL;
+
+    char *dt_ezmaxinvoicingcommission_end_local_str = NULL;
+
+    // define the local variable for ezmaxinvoicingcommission_response_compound->i_ezmaxinvoicingcommission_days
+    int *i_ezmaxinvoicingcommission_days_local_var = NULL;
+
+    char *d_ezmaxinvoicingcommission_amount_local_str = NULL;
+
     // define the local variable for ezmaxinvoicingcommission_response_compound->obj_contact_name
     custom_contact_name_response_t *obj_contact_name_local_nonprim = NULL;
 
@@ -194,6 +268,12 @@ ezmaxinvoicingcommission_response_compound_t *ezmaxinvoicingcommission_response_
     {
     goto end; //Numeric
     }
+    pki_ezmaxinvoicingcommission_id_local_var = malloc(sizeof(int));
+    if(!pki_ezmaxinvoicingcommission_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezmaxinvoicingcommission_id_local_var = pki_ezmaxinvoicingcommission_id->valuedouble;
     }
 
     // ezmaxinvoicingcommission_response_compound->fki_ezmaxinvoicingsummaryglobal_id
@@ -206,6 +286,12 @@ ezmaxinvoicingcommission_response_compound_t *ezmaxinvoicingcommission_response_
     {
     goto end; //Numeric
     }
+    fki_ezmaxinvoicingsummaryglobal_id_local_var = malloc(sizeof(int));
+    if(!fki_ezmaxinvoicingsummaryglobal_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezmaxinvoicingsummaryglobal_id_local_var = fki_ezmaxinvoicingsummaryglobal_id->valuedouble;
     }
 
     // ezmaxinvoicingcommission_response_compound->fki_ezmaxpartner_id
@@ -218,6 +304,12 @@ ezmaxinvoicingcommission_response_compound_t *ezmaxinvoicingcommission_response_
     {
     goto end; //Numeric
     }
+    fki_ezmaxpartner_id_local_var = malloc(sizeof(int));
+    if(!fki_ezmaxpartner_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezmaxpartner_id_local_var = fki_ezmaxpartner_id->valuedouble;
     }
 
     // ezmaxinvoicingcommission_response_compound->fki_ezmaxrepresentative_id
@@ -230,6 +322,12 @@ ezmaxinvoicingcommission_response_compound_t *ezmaxinvoicingcommission_response_
     {
     goto end; //Numeric
     }
+    fki_ezmaxrepresentative_id_local_var = malloc(sizeof(int));
+    if(!fki_ezmaxrepresentative_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezmaxrepresentative_id_local_var = fki_ezmaxrepresentative_id->valuedouble;
     }
 
     // ezmaxinvoicingcommission_response_compound->dt_ezmaxinvoicingcommission_start
@@ -276,6 +374,12 @@ ezmaxinvoicingcommission_response_compound_t *ezmaxinvoicingcommission_response_
     {
     goto end; //Numeric
     }
+    i_ezmaxinvoicingcommission_days_local_var = malloc(sizeof(int));
+    if(!i_ezmaxinvoicingcommission_days_local_var)
+    {
+        goto end;
+    }
+    *i_ezmaxinvoicingcommission_days_local_var = i_ezmaxinvoicingcommission_days->valuedouble;
 
     // ezmaxinvoicingcommission_response_compound->d_ezmaxinvoicingcommission_amount
     cJSON *d_ezmaxinvoicingcommission_amount = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingcommission_response_compoundJSON, "dEzmaxinvoicingcommissionAmount");
@@ -302,20 +406,60 @@ ezmaxinvoicingcommission_response_compound_t *ezmaxinvoicingcommission_response_
     }
 
 
+    if (dt_ezmaxinvoicingcommission_start && !cJSON_IsNull(dt_ezmaxinvoicingcommission_start)) dt_ezmaxinvoicingcommission_start_local_str = strdup(dt_ezmaxinvoicingcommission_start->valuestring);
+    if (dt_ezmaxinvoicingcommission_end && !cJSON_IsNull(dt_ezmaxinvoicingcommission_end)) dt_ezmaxinvoicingcommission_end_local_str = strdup(dt_ezmaxinvoicingcommission_end->valuestring);
+    if (d_ezmaxinvoicingcommission_amount && !cJSON_IsNull(d_ezmaxinvoicingcommission_amount)) d_ezmaxinvoicingcommission_amount_local_str = strdup(d_ezmaxinvoicingcommission_amount->valuestring);
+
     ezmaxinvoicingcommission_response_compound_local_var = ezmaxinvoicingcommission_response_compound_create_internal (
-        pki_ezmaxinvoicingcommission_id ? pki_ezmaxinvoicingcommission_id->valuedouble : 0,
-        fki_ezmaxinvoicingsummaryglobal_id ? fki_ezmaxinvoicingsummaryglobal_id->valuedouble : 0,
-        fki_ezmaxpartner_id ? fki_ezmaxpartner_id->valuedouble : 0,
-        fki_ezmaxrepresentative_id ? fki_ezmaxrepresentative_id->valuedouble : 0,
-        strdup(dt_ezmaxinvoicingcommission_start->valuestring),
-        strdup(dt_ezmaxinvoicingcommission_end->valuestring),
-        i_ezmaxinvoicingcommission_days->valuedouble,
-        strdup(d_ezmaxinvoicingcommission_amount->valuestring),
+        pki_ezmaxinvoicingcommission_id_local_var,
+        fki_ezmaxinvoicingsummaryglobal_id_local_var,
+        fki_ezmaxpartner_id_local_var,
+        fki_ezmaxrepresentative_id_local_var,
+        dt_ezmaxinvoicingcommission_start_local_str,
+        dt_ezmaxinvoicingcommission_end_local_str,
+        i_ezmaxinvoicingcommission_days_local_var,
+        d_ezmaxinvoicingcommission_amount_local_str,
         obj_contact_name ? obj_contact_name_local_nonprim : NULL
         );
 
+    if (!ezmaxinvoicingcommission_response_compound_local_var) {
+        goto end;
+    }
+
     return ezmaxinvoicingcommission_response_compound_local_var;
 end:
+    if (pki_ezmaxinvoicingcommission_id_local_var) {
+        free(pki_ezmaxinvoicingcommission_id_local_var);
+        pki_ezmaxinvoicingcommission_id_local_var = NULL;
+    }
+    if (fki_ezmaxinvoicingsummaryglobal_id_local_var) {
+        free(fki_ezmaxinvoicingsummaryglobal_id_local_var);
+        fki_ezmaxinvoicingsummaryglobal_id_local_var = NULL;
+    }
+    if (fki_ezmaxpartner_id_local_var) {
+        free(fki_ezmaxpartner_id_local_var);
+        fki_ezmaxpartner_id_local_var = NULL;
+    }
+    if (fki_ezmaxrepresentative_id_local_var) {
+        free(fki_ezmaxrepresentative_id_local_var);
+        fki_ezmaxrepresentative_id_local_var = NULL;
+    }
+    if (dt_ezmaxinvoicingcommission_start_local_str) {
+        free(dt_ezmaxinvoicingcommission_start_local_str);
+        dt_ezmaxinvoicingcommission_start_local_str = NULL;
+    }
+    if (dt_ezmaxinvoicingcommission_end_local_str) {
+        free(dt_ezmaxinvoicingcommission_end_local_str);
+        dt_ezmaxinvoicingcommission_end_local_str = NULL;
+    }
+    if (i_ezmaxinvoicingcommission_days_local_var) {
+        free(i_ezmaxinvoicingcommission_days_local_var);
+        i_ezmaxinvoicingcommission_days_local_var = NULL;
+    }
+    if (d_ezmaxinvoicingcommission_amount_local_str) {
+        free(d_ezmaxinvoicingcommission_amount_local_str);
+        d_ezmaxinvoicingcommission_amount_local_str = NULL;
+    }
     if (obj_contact_name_local_nonprim) {
         custom_contact_name_response_free(obj_contact_name_local_nonprim);
         obj_contact_name_local_nonprim = NULL;

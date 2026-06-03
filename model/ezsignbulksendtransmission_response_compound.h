@@ -21,10 +21,10 @@ typedef struct ezsignbulksendtransmission_response_compound_t ezsignbulksendtran
 
 
 typedef struct ezsignbulksendtransmission_response_compound_t {
-    int pki_ezsignbulksendtransmission_id; //numeric
-    int fki_ezsignbulksend_id; //numeric
+    int *pki_ezsignbulksendtransmission_id; //numeric
+    int *fki_ezsignbulksend_id; //numeric
     char *s_ezsignbulksendtransmission_description; // string
-    int i_ezsignbulksendtransmission_errors; //numeric
+    int *i_ezsignbulksendtransmission_errors; //numeric
     struct common_audit_t *obj_audit; //model
     list_t *a_obj_ezsignfoldertransmission; //nonprimitive container
 
@@ -32,10 +32,10 @@ typedef struct ezsignbulksendtransmission_response_compound_t {
 } ezsignbulksendtransmission_response_compound_t;
 
 __attribute__((deprecated)) ezsignbulksendtransmission_response_compound_t *ezsignbulksendtransmission_response_compound_create(
-    int pki_ezsignbulksendtransmission_id,
-    int fki_ezsignbulksend_id,
+    int *pki_ezsignbulksendtransmission_id,
+    int *fki_ezsignbulksend_id,
     char *s_ezsignbulksendtransmission_description,
-    int i_ezsignbulksendtransmission_errors,
+    int *i_ezsignbulksendtransmission_errors,
     common_audit_t *obj_audit,
     list_t *a_obj_ezsignfoldertransmission
 );

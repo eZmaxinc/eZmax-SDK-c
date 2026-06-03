@@ -20,17 +20,17 @@ typedef struct custom_ezsignsignature_ezsignsignatures_automatic_response_t cust
 
 
 typedef struct custom_ezsignsignature_ezsignsignatures_automatic_response_t {
-    int pki_ezsignsignature_id; //numeric
+    int *pki_ezsignsignature_id; //numeric
     ezmax_api_definition__full_field_e_ezsignsignature_type__e e_ezsignsignature_type; //referenced enum
-    int i_ezsignpage_pagenumber; //numeric
+    int *i_ezsignpage_pagenumber; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } custom_ezsignsignature_ezsignsignatures_automatic_response_t;
 
 __attribute__((deprecated)) custom_ezsignsignature_ezsignsignatures_automatic_response_t *custom_ezsignsignature_ezsignsignatures_automatic_response_create(
-    int pki_ezsignsignature_id,
+    int *pki_ezsignsignature_id,
     ezmax_api_definition__full_field_e_ezsignsignature_type__e e_ezsignsignature_type,
-    int i_ezsignpage_pagenumber
+    int *i_ezsignpage_pagenumber
 );
 
 void custom_ezsignsignature_ezsignsignatures_automatic_response_free(custom_ezsignsignature_ezsignsignatures_automatic_response_t *custom_ezsignsignature_ezsignsignatures_automatic_response);

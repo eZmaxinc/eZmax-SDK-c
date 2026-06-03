@@ -19,19 +19,19 @@ typedef struct ezsignbulksenddocumentmapping_request_t ezsignbulksenddocumentmap
 
 
 typedef struct ezsignbulksenddocumentmapping_request_t {
-    int pki_ezsignbulksenddocumentmapping_id; //numeric
-    int fki_ezsignbulksend_id; //numeric
-    int fki_ezsigntemplatepackage_id; //numeric
-    int fki_ezsigntemplate_id; //numeric
+    int *pki_ezsignbulksenddocumentmapping_id; //numeric
+    int *fki_ezsignbulksend_id; //numeric
+    int *fki_ezsigntemplatepackage_id; //numeric
+    int *fki_ezsigntemplate_id; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignbulksenddocumentmapping_request_t;
 
 __attribute__((deprecated)) ezsignbulksenddocumentmapping_request_t *ezsignbulksenddocumentmapping_request_create(
-    int pki_ezsignbulksenddocumentmapping_id,
-    int fki_ezsignbulksend_id,
-    int fki_ezsigntemplatepackage_id,
-    int fki_ezsigntemplate_id
+    int *pki_ezsignbulksenddocumentmapping_id,
+    int *fki_ezsignbulksend_id,
+    int *fki_ezsigntemplatepackage_id,
+    int *fki_ezsigntemplate_id
 );
 
 void ezsignbulksenddocumentmapping_request_free(ezsignbulksenddocumentmapping_request_t *ezsignbulksenddocumentmapping_request);

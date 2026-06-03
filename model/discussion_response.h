@@ -20,24 +20,24 @@ typedef struct discussion_response_t discussion_response_t;
 
 
 typedef struct discussion_response_t {
-    int pki_discussion_id; //numeric
+    int *pki_discussion_id; //numeric
     char *s_discussion_description; // string
-    int b_discussion_closed; //boolean
+    int *b_discussion_closed; //boolean
     char *dt_discussion_lastread; // string
-    int i_discussionmessage_count; //numeric
-    int i_discussionmessage_countunread; //numeric
+    int *i_discussionmessage_count; //numeric
+    int *i_discussionmessage_countunread; //numeric
     struct custom_discussionconfiguration_response_t *obj_discussionconfiguration; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
 } discussion_response_t;
 
 __attribute__((deprecated)) discussion_response_t *discussion_response_create(
-    int pki_discussion_id,
+    int *pki_discussion_id,
     char *s_discussion_description,
-    int b_discussion_closed,
+    int *b_discussion_closed,
     char *dt_discussion_lastread,
-    int i_discussionmessage_count,
-    int i_discussionmessage_countunread,
+    int *i_discussionmessage_count,
+    int *i_discussionmessage_countunread,
     custom_discussionconfiguration_response_t *obj_discussionconfiguration
 );
 

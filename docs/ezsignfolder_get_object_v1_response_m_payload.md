@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **t_ezsignfolder_note** | **char \*** | Note about the Ezsignfolder | [optional] 
 **b_ezsignfolder_isdisposable** | **int** | If the Ezsigndocument can be disposed | [optional] 
 **e_ezsignfolder_sendreminderfrequency** | **field_e_ezsignfolder_sendreminderfrequency_t \*** |  | [optional] 
-**i_ezsignfolder_sendreminderfirstdays** | **int** | The number of days before the the first reminder sending | [optional] 
+**i_ezsignfolder_sendreminderfirstdays** | **int** | The number of days before the first reminder sending | [optional] 
 **i_ezsignfolder_sendreminderotherdays** | **int** | The number of days after the first reminder sending | [optional] 
 **dt_ezsignfolder_delayedsenddate** | **char \*** | The date and time at which the Ezsignfolder will be sent in the future. | [optional] 
 **dt_ezsignfolder_duedate** | **char \*** | The maximum date and time at which the Ezsignfolder can be signed. | [optional] 

@@ -7,31 +7,46 @@
 
 static franchisebroker_autocomplete_element_response_t *franchisebroker_autocomplete_element_response_create_internal(
     char *s_franchisebroker_name,
-    int pki_franchisebroker_id,
-    int b_franchisebroker_isactive
+    int *pki_franchisebroker_id,
+    int *b_franchisebroker_isactive
     ) {
     franchisebroker_autocomplete_element_response_t *franchisebroker_autocomplete_element_response_local_var = malloc(sizeof(franchisebroker_autocomplete_element_response_t));
     if (!franchisebroker_autocomplete_element_response_local_var) {
         return NULL;
     }
+    memset(franchisebroker_autocomplete_element_response_local_var, 0, sizeof(franchisebroker_autocomplete_element_response_t));
+    franchisebroker_autocomplete_element_response_local_var->_library_owned = 1;
     franchisebroker_autocomplete_element_response_local_var->s_franchisebroker_name = s_franchisebroker_name;
     franchisebroker_autocomplete_element_response_local_var->pki_franchisebroker_id = pki_franchisebroker_id;
     franchisebroker_autocomplete_element_response_local_var->b_franchisebroker_isactive = b_franchisebroker_isactive;
-
-    franchisebroker_autocomplete_element_response_local_var->_library_owned = 1;
     return franchisebroker_autocomplete_element_response_local_var;
 }
 
 __attribute__((deprecated)) franchisebroker_autocomplete_element_response_t *franchisebroker_autocomplete_element_response_create(
     char *s_franchisebroker_name,
-    int pki_franchisebroker_id,
-    int b_franchisebroker_isactive
+    int *pki_franchisebroker_id,
+    int *b_franchisebroker_isactive
     ) {
-    return franchisebroker_autocomplete_element_response_create_internal (
+    int *pki_franchisebroker_id_copy = NULL;
+    if (pki_franchisebroker_id) {
+        pki_franchisebroker_id_copy = malloc(sizeof(int));
+        if (pki_franchisebroker_id_copy) *pki_franchisebroker_id_copy = *pki_franchisebroker_id;
+    }
+    int *b_franchisebroker_isactive_copy = NULL;
+    if (b_franchisebroker_isactive) {
+        b_franchisebroker_isactive_copy = malloc(sizeof(int));
+        if (b_franchisebroker_isactive_copy) *b_franchisebroker_isactive_copy = *b_franchisebroker_isactive;
+    }
+    franchisebroker_autocomplete_element_response_t *result = franchisebroker_autocomplete_element_response_create_internal (
         s_franchisebroker_name,
-        pki_franchisebroker_id,
-        b_franchisebroker_isactive
+        pki_franchisebroker_id_copy,
+        b_franchisebroker_isactive_copy
         );
+    if (!result) {
+        free(pki_franchisebroker_id_copy);
+        free(b_franchisebroker_isactive_copy);
+    }
+    return result;
 }
 
 void franchisebroker_autocomplete_element_response_free(franchisebroker_autocomplete_element_response_t *franchisebroker_autocomplete_element_response) {
@@ -46,6 +61,14 @@ void franchisebroker_autocomplete_element_response_free(franchisebroker_autocomp
     if (franchisebroker_autocomplete_element_response->s_franchisebroker_name) {
         free(franchisebroker_autocomplete_element_response->s_franchisebroker_name);
         franchisebroker_autocomplete_element_response->s_franchisebroker_name = NULL;
+    }
+    if (franchisebroker_autocomplete_element_response->pki_franchisebroker_id) {
+        free(franchisebroker_autocomplete_element_response->pki_franchisebroker_id);
+        franchisebroker_autocomplete_element_response->pki_franchisebroker_id = NULL;
+    }
+    if (franchisebroker_autocomplete_element_response->b_franchisebroker_isactive) {
+        free(franchisebroker_autocomplete_element_response->b_franchisebroker_isactive);
+        franchisebroker_autocomplete_element_response->b_franchisebroker_isactive = NULL;
     }
     free(franchisebroker_autocomplete_element_response);
 }
@@ -66,7 +89,7 @@ cJSON *franchisebroker_autocomplete_element_response_convertToJSON(franchisebrok
     if (!franchisebroker_autocomplete_element_response->pki_franchisebroker_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiFranchisebrokerID", franchisebroker_autocomplete_element_response->pki_franchisebroker_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiFranchisebrokerID", *franchisebroker_autocomplete_element_response->pki_franchisebroker_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -75,7 +98,7 @@ cJSON *franchisebroker_autocomplete_element_response_convertToJSON(franchisebrok
     if (!franchisebroker_autocomplete_element_response->b_franchisebroker_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bFranchisebrokerIsactive", franchisebroker_autocomplete_element_response->b_franchisebroker_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bFranchisebrokerIsactive", *franchisebroker_autocomplete_element_response->b_franchisebroker_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -90,6 +113,14 @@ fail:
 franchisebroker_autocomplete_element_response_t *franchisebroker_autocomplete_element_response_parseFromJSON(cJSON *franchisebroker_autocomplete_element_responseJSON){
 
     franchisebroker_autocomplete_element_response_t *franchisebroker_autocomplete_element_response_local_var = NULL;
+
+    char *s_franchisebroker_name_local_str = NULL;
+
+    // define the local variable for franchisebroker_autocomplete_element_response->pki_franchisebroker_id
+    int *pki_franchisebroker_id_local_var = NULL;
+
+    // define the local variable for franchisebroker_autocomplete_element_response->b_franchisebroker_isactive
+    int *b_franchisebroker_isactive_local_var = NULL;
 
     // franchisebroker_autocomplete_element_response->s_franchisebroker_name
     cJSON *s_franchisebroker_name = cJSON_GetObjectItemCaseSensitive(franchisebroker_autocomplete_element_responseJSON, "sFranchisebrokerName");
@@ -120,6 +151,12 @@ franchisebroker_autocomplete_element_response_t *franchisebroker_autocomplete_el
     {
     goto end; //Numeric
     }
+    pki_franchisebroker_id_local_var = malloc(sizeof(int));
+    if(!pki_franchisebroker_id_local_var)
+    {
+        goto end;
+    }
+    *pki_franchisebroker_id_local_var = pki_franchisebroker_id->valuedouble;
 
     // franchisebroker_autocomplete_element_response->b_franchisebroker_isactive
     cJSON *b_franchisebroker_isactive = cJSON_GetObjectItemCaseSensitive(franchisebroker_autocomplete_element_responseJSON, "bFranchisebrokerIsactive");
@@ -135,16 +172,40 @@ franchisebroker_autocomplete_element_response_t *franchisebroker_autocomplete_el
     {
     goto end; //Bool
     }
+    b_franchisebroker_isactive_local_var = malloc(sizeof(int));
+    if(!b_franchisebroker_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_franchisebroker_isactive_local_var = b_franchisebroker_isactive->valueint;
 
+
+    if (s_franchisebroker_name && !cJSON_IsNull(s_franchisebroker_name)) s_franchisebroker_name_local_str = strdup(s_franchisebroker_name->valuestring);
 
     franchisebroker_autocomplete_element_response_local_var = franchisebroker_autocomplete_element_response_create_internal (
-        strdup(s_franchisebroker_name->valuestring),
-        pki_franchisebroker_id->valuedouble,
-        b_franchisebroker_isactive->valueint
+        s_franchisebroker_name_local_str,
+        pki_franchisebroker_id_local_var,
+        b_franchisebroker_isactive_local_var
         );
+
+    if (!franchisebroker_autocomplete_element_response_local_var) {
+        goto end;
+    }
 
     return franchisebroker_autocomplete_element_response_local_var;
 end:
+    if (s_franchisebroker_name_local_str) {
+        free(s_franchisebroker_name_local_str);
+        s_franchisebroker_name_local_str = NULL;
+    }
+    if (pki_franchisebroker_id_local_var) {
+        free(pki_franchisebroker_id_local_var);
+        pki_franchisebroker_id_local_var = NULL;
+    }
+    if (b_franchisebroker_isactive_local_var) {
+        free(b_franchisebroker_isactive_local_var);
+        b_franchisebroker_isactive_local_var = NULL;
+    }
     return NULL;
 
 }

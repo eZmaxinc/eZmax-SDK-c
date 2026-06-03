@@ -19,15 +19,15 @@ typedef struct common_get_list_v1_response_m_payload_t common_get_list_v1_respon
 
 
 typedef struct common_get_list_v1_response_m_payload_t {
-    int i_row_returned; //numeric
-    int i_row_filtered; //numeric
+    int *i_row_returned; //numeric
+    int *i_row_filtered; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } common_get_list_v1_response_m_payload_t;
 
 __attribute__((deprecated)) common_get_list_v1_response_m_payload_t *common_get_list_v1_response_m_payload_create(
-    int i_row_returned,
-    int i_row_filtered
+    int *i_row_returned,
+    int *i_row_filtered
 );
 
 void common_get_list_v1_response_m_payload_free(common_get_list_v1_response_m_payload_t *common_get_list_v1_response_m_payload);

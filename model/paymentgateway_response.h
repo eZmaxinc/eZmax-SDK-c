@@ -22,8 +22,8 @@ typedef struct paymentgateway_response_t paymentgateway_response_t;
 
 
 typedef struct paymentgateway_response_t {
-    int pki_paymentgateway_id; //numeric
-    int fki_creditcardmerchant_id; //numeric
+    int *pki_paymentgateway_id; //numeric
+    int *fki_creditcardmerchant_id; //numeric
     char *s_creditcardmerchant_description; // string
     ezmax_api_definition__full_field_e_paymentgateway_processor__e e_paymentgateway_processor; //referenced enum
     struct multilingual_paymentgateway_description_t *obj_paymentgateway_description; //model
@@ -33,8 +33,8 @@ typedef struct paymentgateway_response_t {
 } paymentgateway_response_t;
 
 __attribute__((deprecated)) paymentgateway_response_t *paymentgateway_response_create(
-    int pki_paymentgateway_id,
-    int fki_creditcardmerchant_id,
+    int *pki_paymentgateway_id,
+    int *fki_creditcardmerchant_id,
     char *s_creditcardmerchant_description,
     ezmax_api_definition__full_field_e_paymentgateway_processor__e e_paymentgateway_processor,
     multilingual_paymentgateway_description_t *obj_paymentgateway_description,

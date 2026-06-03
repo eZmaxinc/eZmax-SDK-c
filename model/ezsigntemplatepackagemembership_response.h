@@ -19,19 +19,19 @@ typedef struct ezsigntemplatepackagemembership_response_t ezsigntemplatepackagem
 
 
 typedef struct ezsigntemplatepackagemembership_response_t {
-    int pki_ezsigntemplatepackagemembership_id; //numeric
-    int fki_ezsigntemplatepackage_id; //numeric
-    int fki_ezsigntemplate_id; //numeric
-    int i_ezsigntemplatepackagemembership_order; //numeric
+    int *pki_ezsigntemplatepackagemembership_id; //numeric
+    int *fki_ezsigntemplatepackage_id; //numeric
+    int *fki_ezsigntemplate_id; //numeric
+    int *i_ezsigntemplatepackagemembership_order; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatepackagemembership_response_t;
 
 __attribute__((deprecated)) ezsigntemplatepackagemembership_response_t *ezsigntemplatepackagemembership_response_create(
-    int pki_ezsigntemplatepackagemembership_id,
-    int fki_ezsigntemplatepackage_id,
-    int fki_ezsigntemplate_id,
-    int i_ezsigntemplatepackagemembership_order
+    int *pki_ezsigntemplatepackagemembership_id,
+    int *fki_ezsigntemplatepackage_id,
+    int *fki_ezsigntemplate_id,
+    int *i_ezsigntemplatepackagemembership_order
 );
 
 void ezsigntemplatepackagemembership_response_free(ezsigntemplatepackagemembership_response_t *ezsigntemplatepackagemembership_response);

@@ -13,10 +13,10 @@ static ezsigndocument_submit_ezsignform_v1_response_t *ezsigndocument_submit_ezs
     if (!ezsigndocument_submit_ezsignform_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsigndocument_submit_ezsignform_v1_response_local_var, 0, sizeof(ezsigndocument_submit_ezsignform_v1_response_t));
+    ezsigndocument_submit_ezsignform_v1_response_local_var->_library_owned = 1;
     ezsigndocument_submit_ezsignform_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsigndocument_submit_ezsignform_v1_response_local_var->obj_debug = obj_debug;
-
-    ezsigndocument_submit_ezsignform_v1_response_local_var->_library_owned = 1;
     return ezsigndocument_submit_ezsignform_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) ezsigndocument_submit_ezsignform_v1_response_t *ezsi
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return ezsigndocument_submit_ezsignform_v1_response_create_internal (
+    ezsigndocument_submit_ezsignform_v1_response_t *result = ezsigndocument_submit_ezsignform_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigndocument_submit_ezsignform_v1_response_free(ezsigndocument_submit_ezsignform_v1_response_t *ezsigndocument_submit_ezsignform_v1_response) {
@@ -119,10 +122,15 @@ ezsigndocument_submit_ezsignform_v1_response_t *ezsigndocument_submit_ezsignform
     }
 
 
+
     ezsigndocument_submit_ezsignform_v1_response_local_var = ezsigndocument_submit_ezsignform_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!ezsigndocument_submit_ezsignform_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsigndocument_submit_ezsignform_v1_response_local_var;
 end:

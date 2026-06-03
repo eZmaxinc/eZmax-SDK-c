@@ -19,27 +19,27 @@ typedef struct ezsigntemplatepackage_list_element_t ezsigntemplatepackage_list_e
 
 
 typedef struct ezsigntemplatepackage_list_element_t {
-    int pki_ezsigntemplatepackage_id; //numeric
-    int fki_ezsignfoldertype_id; //numeric
-    int fki_language_id; //numeric
+    int *pki_ezsigntemplatepackage_id; //numeric
+    int *fki_ezsignfoldertype_id; //numeric
+    int *fki_language_id; //numeric
     char *s_ezsigntemplatepackage_description; // string
-    int b_ezsigntemplatepackage_needvalidation; //boolean
-    int i_ezsigntemplatepackagemembership; //numeric
+    int *b_ezsigntemplatepackage_needvalidation; //boolean
+    int *i_ezsigntemplatepackagemembership; //numeric
     char *s_ezsignfoldertype_name_x; // string
-    int b_ezsigntemplatepackage_isactive; //boolean
+    int *b_ezsigntemplatepackage_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatepackage_list_element_t;
 
 __attribute__((deprecated)) ezsigntemplatepackage_list_element_t *ezsigntemplatepackage_list_element_create(
-    int pki_ezsigntemplatepackage_id,
-    int fki_ezsignfoldertype_id,
-    int fki_language_id,
+    int *pki_ezsigntemplatepackage_id,
+    int *fki_ezsignfoldertype_id,
+    int *fki_language_id,
     char *s_ezsigntemplatepackage_description,
-    int b_ezsigntemplatepackage_needvalidation,
-    int i_ezsigntemplatepackagemembership,
+    int *b_ezsigntemplatepackage_needvalidation,
+    int *i_ezsigntemplatepackagemembership,
     char *s_ezsignfoldertype_name_x,
-    int b_ezsigntemplatepackage_isactive
+    int *b_ezsigntemplatepackage_isactive
 );
 
 void ezsigntemplatepackage_list_element_free(ezsigntemplatepackage_list_element_t *ezsigntemplatepackage_list_element);

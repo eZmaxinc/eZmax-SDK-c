@@ -13,10 +13,10 @@ static multilingual_billingentityinternal_description_t *multilingual_billingent
     if (!multilingual_billingentityinternal_description_local_var) {
         return NULL;
     }
+    memset(multilingual_billingentityinternal_description_local_var, 0, sizeof(multilingual_billingentityinternal_description_t));
+    multilingual_billingentityinternal_description_local_var->_library_owned = 1;
     multilingual_billingentityinternal_description_local_var->s_billingentityinternal_description1 = s_billingentityinternal_description1;
     multilingual_billingentityinternal_description_local_var->s_billingentityinternal_description2 = s_billingentityinternal_description2;
-
-    multilingual_billingentityinternal_description_local_var->_library_owned = 1;
     return multilingual_billingentityinternal_description_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) multilingual_billingentityinternal_description_t *mu
     char *s_billingentityinternal_description1,
     char *s_billingentityinternal_description2
     ) {
-    return multilingual_billingentityinternal_description_create_internal (
+    multilingual_billingentityinternal_description_t *result = multilingual_billingentityinternal_description_create_internal (
         s_billingentityinternal_description1,
         s_billingentityinternal_description2
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void multilingual_billingentityinternal_description_free(multilingual_billingentityinternal_description_t *multilingual_billingentityinternal_description) {
@@ -80,6 +83,10 @@ multilingual_billingentityinternal_description_t *multilingual_billingentityinte
 
     multilingual_billingentityinternal_description_t *multilingual_billingentityinternal_description_local_var = NULL;
 
+    char *s_billingentityinternal_description1_local_str = NULL;
+
+    char *s_billingentityinternal_description2_local_str = NULL;
+
     // multilingual_billingentityinternal_description->s_billingentityinternal_description1
     cJSON *s_billingentityinternal_description1 = cJSON_GetObjectItemCaseSensitive(multilingual_billingentityinternal_descriptionJSON, "sBillingentityinternalDescription1");
     if (cJSON_IsNull(s_billingentityinternal_description1)) {
@@ -105,13 +112,28 @@ multilingual_billingentityinternal_description_t *multilingual_billingentityinte
     }
 
 
+    if (s_billingentityinternal_description1 && !cJSON_IsNull(s_billingentityinternal_description1)) s_billingentityinternal_description1_local_str = strdup(s_billingentityinternal_description1->valuestring);
+    if (s_billingentityinternal_description2 && !cJSON_IsNull(s_billingentityinternal_description2)) s_billingentityinternal_description2_local_str = strdup(s_billingentityinternal_description2->valuestring);
+
     multilingual_billingentityinternal_description_local_var = multilingual_billingentityinternal_description_create_internal (
-        s_billingentityinternal_description1 && !cJSON_IsNull(s_billingentityinternal_description1) ? strdup(s_billingentityinternal_description1->valuestring) : NULL,
-        s_billingentityinternal_description2 && !cJSON_IsNull(s_billingentityinternal_description2) ? strdup(s_billingentityinternal_description2->valuestring) : NULL
+        s_billingentityinternal_description1_local_str,
+        s_billingentityinternal_description2_local_str
         );
+
+    if (!multilingual_billingentityinternal_description_local_var) {
+        goto end;
+    }
 
     return multilingual_billingentityinternal_description_local_var;
 end:
+    if (s_billingentityinternal_description1_local_str) {
+        free(s_billingentityinternal_description1_local_str);
+        s_billingentityinternal_description1_local_str = NULL;
+    }
+    if (s_billingentityinternal_description2_local_str) {
+        free(s_billingentityinternal_description2_local_str);
+        s_billingentityinternal_description2_local_str = NULL;
+    }
     return NULL;
 
 }

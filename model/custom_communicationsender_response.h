@@ -30,11 +30,11 @@ ezmax_api_definition__full_custom_communicationsender_response_ECOMMUNICATIONSEN
 
 
 typedef struct custom_communicationsender_response_t {
-    int fki_agent_id; //numeric
-    int fki_broker_id; //numeric
-    int fki_user_id; //numeric
-    int fki_mailboxshared_id; //numeric
-    int fki_phonelineshared_id; //numeric
+    int *fki_agent_id; //numeric
+    int *fki_broker_id; //numeric
+    int *fki_user_id; //numeric
+    int *fki_mailboxshared_id; //numeric
+    int *fki_phonelineshared_id; //numeric
     ezmax_api_definition__full_custom_communicationsender_response_ECOMMUNICATIONSENDEROBJECTTYPE_e e_communicationsender_objecttype; //enum
     struct custom_contact_name_response_t *obj_contact_name; //model
     struct email_response_compound_t *obj_email; //model
@@ -45,11 +45,11 @@ typedef struct custom_communicationsender_response_t {
 } custom_communicationsender_response_t;
 
 __attribute__((deprecated)) custom_communicationsender_response_t *custom_communicationsender_response_create(
-    int fki_agent_id,
-    int fki_broker_id,
-    int fki_user_id,
-    int fki_mailboxshared_id,
-    int fki_phonelineshared_id,
+    int *fki_agent_id,
+    int *fki_broker_id,
+    int *fki_user_id,
+    int *fki_mailboxshared_id,
+    int *fki_phonelineshared_id,
     ezmax_api_definition__full_custom_communicationsender_response_ECOMMUNICATIONSENDEROBJECTTYPE_e e_communicationsender_objecttype,
     custom_contact_name_response_t *obj_contact_name,
     email_response_compound_t *obj_email,

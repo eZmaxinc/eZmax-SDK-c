@@ -19,17 +19,17 @@ typedef struct phonetype_autocomplete_element_response_t phonetype_autocomplete_
 
 
 typedef struct phonetype_autocomplete_element_response_t {
-    int pki_phonetype_id; //numeric
+    int *pki_phonetype_id; //numeric
     char *s_phonetype_name_x; // string
-    int b_phonetype_isactive; //boolean
+    int *b_phonetype_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } phonetype_autocomplete_element_response_t;
 
 __attribute__((deprecated)) phonetype_autocomplete_element_response_t *phonetype_autocomplete_element_response_create(
-    int pki_phonetype_id,
+    int *pki_phonetype_id,
     char *s_phonetype_name_x,
-    int b_phonetype_isactive
+    int *b_phonetype_isactive
 );
 
 void phonetype_autocomplete_element_response_free(phonetype_autocomplete_element_response_t *phonetype_autocomplete_element_response);

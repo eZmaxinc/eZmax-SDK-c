@@ -13,10 +13,10 @@ static ezsignfolder_get_actionable_elements_v2_response_m_payload_t *ezsignfolde
     if (!ezsignfolder_get_actionable_elements_v2_response_m_payload_local_var) {
         return NULL;
     }
+    memset(ezsignfolder_get_actionable_elements_v2_response_m_payload_local_var, 0, sizeof(ezsignfolder_get_actionable_elements_v2_response_m_payload_t));
+    ezsignfolder_get_actionable_elements_v2_response_m_payload_local_var->_library_owned = 1;
     ezsignfolder_get_actionable_elements_v2_response_m_payload_local_var->a_obj_ezsignsignature = a_obj_ezsignsignature;
     ezsignfolder_get_actionable_elements_v2_response_m_payload_local_var->a_obj_ezsignformfieldgroup = a_obj_ezsignformfieldgroup;
-
-    ezsignfolder_get_actionable_elements_v2_response_m_payload_local_var->_library_owned = 1;
     return ezsignfolder_get_actionable_elements_v2_response_m_payload_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) ezsignfolder_get_actionable_elements_v2_response_m_p
     list_t *a_obj_ezsignsignature,
     list_t *a_obj_ezsignformfieldgroup
     ) {
-    return ezsignfolder_get_actionable_elements_v2_response_m_payload_create_internal (
+    ezsignfolder_get_actionable_elements_v2_response_m_payload_t *result = ezsignfolder_get_actionable_elements_v2_response_m_payload_create_internal (
         a_obj_ezsignsignature,
         a_obj_ezsignformfieldgroup
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignfolder_get_actionable_elements_v2_response_m_payload_free(ezsignfolder_get_actionable_elements_v2_response_m_payload_t *ezsignfolder_get_actionable_elements_v2_response_m_payload) {
@@ -173,10 +176,15 @@ ezsignfolder_get_actionable_elements_v2_response_m_payload_t *ezsignfolder_get_a
     }
 
 
+
     ezsignfolder_get_actionable_elements_v2_response_m_payload_local_var = ezsignfolder_get_actionable_elements_v2_response_m_payload_create_internal (
         a_obj_ezsignsignatureList,
         a_obj_ezsignformfieldgroupList
         );
+
+    if (!ezsignfolder_get_actionable_elements_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsignfolder_get_actionable_elements_v2_response_m_payload_local_var;
 end:

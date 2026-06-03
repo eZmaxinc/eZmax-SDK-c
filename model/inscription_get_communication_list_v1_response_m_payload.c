@@ -12,18 +12,21 @@ static inscription_get_communication_list_v1_response_m_payload_t *inscription_g
     if (!inscription_get_communication_list_v1_response_m_payload_local_var) {
         return NULL;
     }
-    inscription_get_communication_list_v1_response_m_payload_local_var->a_obj_communication = a_obj_communication;
-
+    memset(inscription_get_communication_list_v1_response_m_payload_local_var, 0, sizeof(inscription_get_communication_list_v1_response_m_payload_t));
     inscription_get_communication_list_v1_response_m_payload_local_var->_library_owned = 1;
+    inscription_get_communication_list_v1_response_m_payload_local_var->a_obj_communication = a_obj_communication;
     return inscription_get_communication_list_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) inscription_get_communication_list_v1_response_m_payload_t *inscription_get_communication_list_v1_response_m_payload_create(
     list_t *a_obj_communication
     ) {
-    return inscription_get_communication_list_v1_response_m_payload_create_internal (
+    inscription_get_communication_list_v1_response_m_payload_t *result = inscription_get_communication_list_v1_response_m_payload_create_internal (
         a_obj_communication
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void inscription_get_communication_list_v1_response_m_payload_free(inscription_get_communication_list_v1_response_m_payload_t *inscription_get_communication_list_v1_response_m_payload) {
@@ -111,9 +114,14 @@ inscription_get_communication_list_v1_response_m_payload_t *inscription_get_comm
     }
 
 
+
     inscription_get_communication_list_v1_response_m_payload_local_var = inscription_get_communication_list_v1_response_m_payload_create_internal (
         a_obj_communicationList
         );
+
+    if (!inscription_get_communication_list_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return inscription_get_communication_list_v1_response_m_payload_local_var;
 end:

@@ -20,22 +20,22 @@ typedef struct ezsigndiscussion_request_compound_t ezsigndiscussion_request_comp
 
 
 typedef struct ezsigndiscussion_request_compound_t {
-    int pki_ezsigndiscussion_id; //numeric
-    int fki_ezsigndocument_id; //numeric
-    int i_ezsigndiscussion_pagenumber; //numeric
-    int i_ezsigndiscussion_x; //numeric
-    int i_ezsigndiscussion_y; //numeric
+    int *pki_ezsigndiscussion_id; //numeric
+    int *fki_ezsigndocument_id; //numeric
+    int *i_ezsigndiscussion_pagenumber; //numeric
+    int *i_ezsigndiscussion_x; //numeric
+    int *i_ezsigndiscussion_y; //numeric
     struct discussion_request_t *obj_discussion; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndiscussion_request_compound_t;
 
 __attribute__((deprecated)) ezsigndiscussion_request_compound_t *ezsigndiscussion_request_compound_create(
-    int pki_ezsigndiscussion_id,
-    int fki_ezsigndocument_id,
-    int i_ezsigndiscussion_pagenumber,
-    int i_ezsigndiscussion_x,
-    int i_ezsigndiscussion_y,
+    int *pki_ezsigndiscussion_id,
+    int *fki_ezsigndocument_id,
+    int *i_ezsigndiscussion_pagenumber,
+    int *i_ezsigndiscussion_x,
+    int *i_ezsigndiscussion_y,
     discussion_request_t *obj_discussion
 );
 

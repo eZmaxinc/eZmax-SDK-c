@@ -19,25 +19,25 @@ typedef struct textstylestatic_request_t textstylestatic_request_t;
 
 
 typedef struct textstylestatic_request_t {
-    int fki_font_id; //numeric
-    int b_textstylestatic_bold; //boolean
-    int b_textstylestatic_underline; //boolean
-    int b_textstylestatic_italic; //boolean
-    int b_textstylestatic_strikethrough; //boolean
-    int i_textstylestatic_fontcolor; //numeric
-    int i_textstylestatic_size; //numeric
+    int *fki_font_id; //numeric
+    int *b_textstylestatic_bold; //boolean
+    int *b_textstylestatic_underline; //boolean
+    int *b_textstylestatic_italic; //boolean
+    int *b_textstylestatic_strikethrough; //boolean
+    int *i_textstylestatic_fontcolor; //numeric
+    int *i_textstylestatic_size; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } textstylestatic_request_t;
 
 __attribute__((deprecated)) textstylestatic_request_t *textstylestatic_request_create(
-    int fki_font_id,
-    int b_textstylestatic_bold,
-    int b_textstylestatic_underline,
-    int b_textstylestatic_italic,
-    int b_textstylestatic_strikethrough,
-    int i_textstylestatic_fontcolor,
-    int i_textstylestatic_size
+    int *fki_font_id,
+    int *b_textstylestatic_bold,
+    int *b_textstylestatic_underline,
+    int *b_textstylestatic_italic,
+    int *b_textstylestatic_strikethrough,
+    int *i_textstylestatic_fontcolor,
+    int *i_textstylestatic_size
 );
 
 void textstylestatic_request_free(textstylestatic_request_t *textstylestatic_request);

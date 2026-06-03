@@ -30,10 +30,10 @@ static ezsignfolder_batch_download_v1_request_t *ezsignfolder_batch_download_v1_
     if (!ezsignfolder_batch_download_v1_request_local_var) {
         return NULL;
     }
+    memset(ezsignfolder_batch_download_v1_request_local_var, 0, sizeof(ezsignfolder_batch_download_v1_request_t));
+    ezsignfolder_batch_download_v1_request_local_var->_library_owned = 1;
     ezsignfolder_batch_download_v1_request_local_var->a_pki_ezsigndocument_id = a_pki_ezsigndocument_id;
     ezsignfolder_batch_download_v1_request_local_var->a_e_document_type = a_e_document_type;
-
-    ezsignfolder_batch_download_v1_request_local_var->_library_owned = 1;
     return ezsignfolder_batch_download_v1_request_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) ezsignfolder_batch_download_v1_request_t *ezsignfold
     list_t *a_pki_ezsigndocument_id,
     list_t *a_e_document_type
     ) {
-    return ezsignfolder_batch_download_v1_request_create_internal (
+    ezsignfolder_batch_download_v1_request_t *result = ezsignfolder_batch_download_v1_request_create_internal (
         a_pki_ezsigndocument_id,
         a_e_document_type
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignfolder_batch_download_v1_request_free(ezsignfolder_batch_download_v1_request_t *ezsignfolder_batch_download_v1_request) {
@@ -186,10 +189,15 @@ ezsignfolder_batch_download_v1_request_t *ezsignfolder_batch_download_v1_request
     }
 
 
+
     ezsignfolder_batch_download_v1_request_local_var = ezsignfolder_batch_download_v1_request_create_internal (
         a_pki_ezsigndocument_idList,
         a_e_document_typeList
         );
+
+    if (!ezsignfolder_batch_download_v1_request_local_var) {
+        goto end;
+    }
 
     return ezsignfolder_batch_download_v1_request_local_var;
 end:

@@ -23,9 +23,9 @@ typedef struct common_response_error_wrong_franchiseoffice_t {
     char *s_error_message; // string
     ezmax_api_definition__full_field_e_error_code__e e_error_code; //referenced enum
     list_t *a_s_error_messagedetail; //primitive container
-    int fki_franchiseagence_id; //numeric
+    int *fki_franchiseagence_id; //numeric
     char *s_franchiseagence_name; // string
-    int fki_franchiseoffice_id; //numeric
+    int *fki_franchiseoffice_id; //numeric
     char *i_franchiseoffice_code; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -35,9 +35,9 @@ __attribute__((deprecated)) common_response_error_wrong_franchiseoffice_t *commo
     char *s_error_message,
     ezmax_api_definition__full_field_e_error_code__e e_error_code,
     list_t *a_s_error_messagedetail,
-    int fki_franchiseagence_id,
+    int *fki_franchiseagence_id,
     char *s_franchiseagence_name,
-    int fki_franchiseoffice_id,
+    int *fki_franchiseoffice_id,
     char *i_franchiseoffice_code
 );
 

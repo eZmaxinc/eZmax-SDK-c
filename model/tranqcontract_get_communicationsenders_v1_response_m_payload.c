@@ -12,18 +12,21 @@ static tranqcontract_get_communicationsenders_v1_response_m_payload_t *tranqcont
     if (!tranqcontract_get_communicationsenders_v1_response_m_payload_local_var) {
         return NULL;
     }
-    tranqcontract_get_communicationsenders_v1_response_m_payload_local_var->a_obj_communicationsenders = a_obj_communicationsenders;
-
+    memset(tranqcontract_get_communicationsenders_v1_response_m_payload_local_var, 0, sizeof(tranqcontract_get_communicationsenders_v1_response_m_payload_t));
     tranqcontract_get_communicationsenders_v1_response_m_payload_local_var->_library_owned = 1;
+    tranqcontract_get_communicationsenders_v1_response_m_payload_local_var->a_obj_communicationsenders = a_obj_communicationsenders;
     return tranqcontract_get_communicationsenders_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) tranqcontract_get_communicationsenders_v1_response_m_payload_t *tranqcontract_get_communicationsenders_v1_response_m_payload_create(
     list_t *a_obj_communicationsenders
     ) {
-    return tranqcontract_get_communicationsenders_v1_response_m_payload_create_internal (
+    tranqcontract_get_communicationsenders_v1_response_m_payload_t *result = tranqcontract_get_communicationsenders_v1_response_m_payload_create_internal (
         a_obj_communicationsenders
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void tranqcontract_get_communicationsenders_v1_response_m_payload_free(tranqcontract_get_communicationsenders_v1_response_m_payload_t *tranqcontract_get_communicationsenders_v1_response_m_payload) {
@@ -111,9 +114,14 @@ tranqcontract_get_communicationsenders_v1_response_m_payload_t *tranqcontract_ge
     }
 
 
+
     tranqcontract_get_communicationsenders_v1_response_m_payload_local_var = tranqcontract_get_communicationsenders_v1_response_m_payload_create_internal (
         a_obj_communicationsendersList
         );
+
+    if (!tranqcontract_get_communicationsenders_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return tranqcontract_get_communicationsenders_v1_response_m_payload_local_var;
 end:

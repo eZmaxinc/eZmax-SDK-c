@@ -6,44 +6,77 @@
 
 
 static subnet_request_t *subnet_request_create_internal(
-    int pki_subnet_id,
-    int fki_user_id,
-    int fki_apikey_id,
+    int *pki_subnet_id,
+    int *fki_user_id,
+    int *fki_apikey_id,
     multilingual_subnet_description_t *obj_subnet_description,
-    long i_subnet_network,
-    long i_subnet_mask
+    long *i_subnet_network,
+    long *i_subnet_mask
     ) {
     subnet_request_t *subnet_request_local_var = malloc(sizeof(subnet_request_t));
     if (!subnet_request_local_var) {
         return NULL;
     }
+    memset(subnet_request_local_var, 0, sizeof(subnet_request_t));
+    subnet_request_local_var->_library_owned = 1;
     subnet_request_local_var->pki_subnet_id = pki_subnet_id;
     subnet_request_local_var->fki_user_id = fki_user_id;
     subnet_request_local_var->fki_apikey_id = fki_apikey_id;
     subnet_request_local_var->obj_subnet_description = obj_subnet_description;
     subnet_request_local_var->i_subnet_network = i_subnet_network;
     subnet_request_local_var->i_subnet_mask = i_subnet_mask;
-
-    subnet_request_local_var->_library_owned = 1;
     return subnet_request_local_var;
 }
 
 __attribute__((deprecated)) subnet_request_t *subnet_request_create(
-    int pki_subnet_id,
-    int fki_user_id,
-    int fki_apikey_id,
+    int *pki_subnet_id,
+    int *fki_user_id,
+    int *fki_apikey_id,
     multilingual_subnet_description_t *obj_subnet_description,
-    long i_subnet_network,
-    long i_subnet_mask
+    long *i_subnet_network,
+    long *i_subnet_mask
     ) {
-    return subnet_request_create_internal (
-        pki_subnet_id,
-        fki_user_id,
-        fki_apikey_id,
+    int *pki_subnet_id_copy = NULL;
+    if (pki_subnet_id) {
+        pki_subnet_id_copy = malloc(sizeof(int));
+        if (pki_subnet_id_copy) *pki_subnet_id_copy = *pki_subnet_id;
+    }
+    int *fki_user_id_copy = NULL;
+    if (fki_user_id) {
+        fki_user_id_copy = malloc(sizeof(int));
+        if (fki_user_id_copy) *fki_user_id_copy = *fki_user_id;
+    }
+    int *fki_apikey_id_copy = NULL;
+    if (fki_apikey_id) {
+        fki_apikey_id_copy = malloc(sizeof(int));
+        if (fki_apikey_id_copy) *fki_apikey_id_copy = *fki_apikey_id;
+    }
+    long *i_subnet_network_copy = NULL;
+    if (i_subnet_network) {
+        i_subnet_network_copy = malloc(sizeof(long));
+        if (i_subnet_network_copy) *i_subnet_network_copy = *i_subnet_network;
+    }
+    long *i_subnet_mask_copy = NULL;
+    if (i_subnet_mask) {
+        i_subnet_mask_copy = malloc(sizeof(long));
+        if (i_subnet_mask_copy) *i_subnet_mask_copy = *i_subnet_mask;
+    }
+    subnet_request_t *result = subnet_request_create_internal (
+        pki_subnet_id_copy,
+        fki_user_id_copy,
+        fki_apikey_id_copy,
         obj_subnet_description,
-        i_subnet_network,
-        i_subnet_mask
+        i_subnet_network_copy,
+        i_subnet_mask_copy
         );
+    if (!result) {
+        free(pki_subnet_id_copy);
+        free(fki_user_id_copy);
+        free(fki_apikey_id_copy);
+        free(i_subnet_network_copy);
+        free(i_subnet_mask_copy);
+    }
+    return result;
 }
 
 void subnet_request_free(subnet_request_t *subnet_request) {
@@ -55,9 +88,29 @@ void subnet_request_free(subnet_request_t *subnet_request) {
         return ;
     }
     listEntry_t *listEntry;
+    if (subnet_request->pki_subnet_id) {
+        free(subnet_request->pki_subnet_id);
+        subnet_request->pki_subnet_id = NULL;
+    }
+    if (subnet_request->fki_user_id) {
+        free(subnet_request->fki_user_id);
+        subnet_request->fki_user_id = NULL;
+    }
+    if (subnet_request->fki_apikey_id) {
+        free(subnet_request->fki_apikey_id);
+        subnet_request->fki_apikey_id = NULL;
+    }
     if (subnet_request->obj_subnet_description) {
         multilingual_subnet_description_free(subnet_request->obj_subnet_description);
         subnet_request->obj_subnet_description = NULL;
+    }
+    if (subnet_request->i_subnet_network) {
+        free(subnet_request->i_subnet_network);
+        subnet_request->i_subnet_network = NULL;
+    }
+    if (subnet_request->i_subnet_mask) {
+        free(subnet_request->i_subnet_mask);
+        subnet_request->i_subnet_mask = NULL;
     }
     free(subnet_request);
 }
@@ -67,7 +120,7 @@ cJSON *subnet_request_convertToJSON(subnet_request_t *subnet_request) {
 
     // subnet_request->pki_subnet_id
     if(subnet_request->pki_subnet_id) {
-    if(cJSON_AddNumberToObject(item, "pkiSubnetID", subnet_request->pki_subnet_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiSubnetID", *subnet_request->pki_subnet_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -75,7 +128,7 @@ cJSON *subnet_request_convertToJSON(subnet_request_t *subnet_request) {
 
     // subnet_request->fki_user_id
     if(subnet_request->fki_user_id) {
-    if(cJSON_AddNumberToObject(item, "fkiUserID", subnet_request->fki_user_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiUserID", *subnet_request->fki_user_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -83,7 +136,7 @@ cJSON *subnet_request_convertToJSON(subnet_request_t *subnet_request) {
 
     // subnet_request->fki_apikey_id
     if(subnet_request->fki_apikey_id) {
-    if(cJSON_AddNumberToObject(item, "fkiApikeyID", subnet_request->fki_apikey_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiApikeyID", *subnet_request->fki_apikey_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -107,7 +160,7 @@ cJSON *subnet_request_convertToJSON(subnet_request_t *subnet_request) {
     if (!subnet_request->i_subnet_network) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iSubnetNetwork", subnet_request->i_subnet_network) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iSubnetNetwork", *subnet_request->i_subnet_network) == NULL) {
     goto fail; //Numeric
     }
 
@@ -116,7 +169,7 @@ cJSON *subnet_request_convertToJSON(subnet_request_t *subnet_request) {
     if (!subnet_request->i_subnet_mask) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iSubnetMask", subnet_request->i_subnet_mask) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iSubnetMask", *subnet_request->i_subnet_mask) == NULL) {
     goto fail; //Numeric
     }
 
@@ -132,8 +185,23 @@ subnet_request_t *subnet_request_parseFromJSON(cJSON *subnet_requestJSON){
 
     subnet_request_t *subnet_request_local_var = NULL;
 
+    // define the local variable for subnet_request->pki_subnet_id
+    int *pki_subnet_id_local_var = NULL;
+
+    // define the local variable for subnet_request->fki_user_id
+    int *fki_user_id_local_var = NULL;
+
+    // define the local variable for subnet_request->fki_apikey_id
+    int *fki_apikey_id_local_var = NULL;
+
     // define the local variable for subnet_request->obj_subnet_description
     multilingual_subnet_description_t *obj_subnet_description_local_nonprim = NULL;
+
+    // define the local variable for subnet_request->i_subnet_network
+    long *i_subnet_network_local_var = NULL;
+
+    // define the local variable for subnet_request->i_subnet_mask
+    long *i_subnet_mask_local_var = NULL;
 
     // subnet_request->pki_subnet_id
     cJSON *pki_subnet_id = cJSON_GetObjectItemCaseSensitive(subnet_requestJSON, "pkiSubnetID");
@@ -145,6 +213,12 @@ subnet_request_t *subnet_request_parseFromJSON(cJSON *subnet_requestJSON){
     {
     goto end; //Numeric
     }
+    pki_subnet_id_local_var = malloc(sizeof(int));
+    if(!pki_subnet_id_local_var)
+    {
+        goto end;
+    }
+    *pki_subnet_id_local_var = pki_subnet_id->valuedouble;
     }
 
     // subnet_request->fki_user_id
@@ -157,6 +231,12 @@ subnet_request_t *subnet_request_parseFromJSON(cJSON *subnet_requestJSON){
     {
     goto end; //Numeric
     }
+    fki_user_id_local_var = malloc(sizeof(int));
+    if(!fki_user_id_local_var)
+    {
+        goto end;
+    }
+    *fki_user_id_local_var = fki_user_id->valuedouble;
     }
 
     // subnet_request->fki_apikey_id
@@ -169,6 +249,12 @@ subnet_request_t *subnet_request_parseFromJSON(cJSON *subnet_requestJSON){
     {
     goto end; //Numeric
     }
+    fki_apikey_id_local_var = malloc(sizeof(int));
+    if(!fki_apikey_id_local_var)
+    {
+        goto end;
+    }
+    *fki_apikey_id_local_var = fki_apikey_id->valuedouble;
     }
 
     // subnet_request->obj_subnet_description
@@ -197,6 +283,12 @@ subnet_request_t *subnet_request_parseFromJSON(cJSON *subnet_requestJSON){
     {
     goto end; //Numeric
     }
+    i_subnet_network_local_var = malloc(sizeof(long));
+    if(!i_subnet_network_local_var)
+    {
+        goto end;
+    }
+    *i_subnet_network_local_var = i_subnet_network->valuedouble;
 
     // subnet_request->i_subnet_mask
     cJSON *i_subnet_mask = cJSON_GetObjectItemCaseSensitive(subnet_requestJSON, "iSubnetMask");
@@ -212,22 +304,53 @@ subnet_request_t *subnet_request_parseFromJSON(cJSON *subnet_requestJSON){
     {
     goto end; //Numeric
     }
+    i_subnet_mask_local_var = malloc(sizeof(long));
+    if(!i_subnet_mask_local_var)
+    {
+        goto end;
+    }
+    *i_subnet_mask_local_var = i_subnet_mask->valuedouble;
+
 
 
     subnet_request_local_var = subnet_request_create_internal (
-        pki_subnet_id ? pki_subnet_id->valuedouble : 0,
-        fki_user_id ? fki_user_id->valuedouble : 0,
-        fki_apikey_id ? fki_apikey_id->valuedouble : 0,
+        pki_subnet_id_local_var,
+        fki_user_id_local_var,
+        fki_apikey_id_local_var,
         obj_subnet_description_local_nonprim,
-        i_subnet_network->valuedouble,
-        i_subnet_mask->valuedouble
+        i_subnet_network_local_var,
+        i_subnet_mask_local_var
         );
+
+    if (!subnet_request_local_var) {
+        goto end;
+    }
 
     return subnet_request_local_var;
 end:
+    if (pki_subnet_id_local_var) {
+        free(pki_subnet_id_local_var);
+        pki_subnet_id_local_var = NULL;
+    }
+    if (fki_user_id_local_var) {
+        free(fki_user_id_local_var);
+        fki_user_id_local_var = NULL;
+    }
+    if (fki_apikey_id_local_var) {
+        free(fki_apikey_id_local_var);
+        fki_apikey_id_local_var = NULL;
+    }
     if (obj_subnet_description_local_nonprim) {
         multilingual_subnet_description_free(obj_subnet_description_local_nonprim);
         obj_subnet_description_local_nonprim = NULL;
+    }
+    if (i_subnet_network_local_var) {
+        free(i_subnet_network_local_var);
+        i_subnet_network_local_var = NULL;
+    }
+    if (i_subnet_mask_local_var) {
+        free(i_subnet_mask_local_var);
+        i_subnet_mask_local_var = NULL;
     }
     return NULL;
 

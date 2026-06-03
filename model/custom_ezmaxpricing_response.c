@@ -6,7 +6,7 @@
 
 
 static custom_ezmaxpricing_response_t *custom_ezmaxpricing_response_create_internal(
-    int pki_ezmaxpricing_id,
+    int *pki_ezmaxpricing_id,
     char *d_ezmaxpricing_rebateezsignallagents,
     char *dt_ezmaxpricing_start,
     char *dt_ezmaxpricing_end
@@ -15,27 +15,36 @@ static custom_ezmaxpricing_response_t *custom_ezmaxpricing_response_create_inter
     if (!custom_ezmaxpricing_response_local_var) {
         return NULL;
     }
+    memset(custom_ezmaxpricing_response_local_var, 0, sizeof(custom_ezmaxpricing_response_t));
+    custom_ezmaxpricing_response_local_var->_library_owned = 1;
     custom_ezmaxpricing_response_local_var->pki_ezmaxpricing_id = pki_ezmaxpricing_id;
     custom_ezmaxpricing_response_local_var->d_ezmaxpricing_rebateezsignallagents = d_ezmaxpricing_rebateezsignallagents;
     custom_ezmaxpricing_response_local_var->dt_ezmaxpricing_start = dt_ezmaxpricing_start;
     custom_ezmaxpricing_response_local_var->dt_ezmaxpricing_end = dt_ezmaxpricing_end;
-
-    custom_ezmaxpricing_response_local_var->_library_owned = 1;
     return custom_ezmaxpricing_response_local_var;
 }
 
 __attribute__((deprecated)) custom_ezmaxpricing_response_t *custom_ezmaxpricing_response_create(
-    int pki_ezmaxpricing_id,
+    int *pki_ezmaxpricing_id,
     char *d_ezmaxpricing_rebateezsignallagents,
     char *dt_ezmaxpricing_start,
     char *dt_ezmaxpricing_end
     ) {
-    return custom_ezmaxpricing_response_create_internal (
-        pki_ezmaxpricing_id,
+    int *pki_ezmaxpricing_id_copy = NULL;
+    if (pki_ezmaxpricing_id) {
+        pki_ezmaxpricing_id_copy = malloc(sizeof(int));
+        if (pki_ezmaxpricing_id_copy) *pki_ezmaxpricing_id_copy = *pki_ezmaxpricing_id;
+    }
+    custom_ezmaxpricing_response_t *result = custom_ezmaxpricing_response_create_internal (
+        pki_ezmaxpricing_id_copy,
         d_ezmaxpricing_rebateezsignallagents,
         dt_ezmaxpricing_start,
         dt_ezmaxpricing_end
         );
+    if (!result) {
+        free(pki_ezmaxpricing_id_copy);
+    }
+    return result;
 }
 
 void custom_ezmaxpricing_response_free(custom_ezmaxpricing_response_t *custom_ezmaxpricing_response) {
@@ -47,6 +56,10 @@ void custom_ezmaxpricing_response_free(custom_ezmaxpricing_response_t *custom_ez
         return ;
     }
     listEntry_t *listEntry;
+    if (custom_ezmaxpricing_response->pki_ezmaxpricing_id) {
+        free(custom_ezmaxpricing_response->pki_ezmaxpricing_id);
+        custom_ezmaxpricing_response->pki_ezmaxpricing_id = NULL;
+    }
     if (custom_ezmaxpricing_response->d_ezmaxpricing_rebateezsignallagents) {
         free(custom_ezmaxpricing_response->d_ezmaxpricing_rebateezsignallagents);
         custom_ezmaxpricing_response->d_ezmaxpricing_rebateezsignallagents = NULL;
@@ -69,7 +82,7 @@ cJSON *custom_ezmaxpricing_response_convertToJSON(custom_ezmaxpricing_response_t
     if (!custom_ezmaxpricing_response->pki_ezmaxpricing_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiEzmaxpricingID", custom_ezmaxpricing_response->pki_ezmaxpricing_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzmaxpricingID", *custom_ezmaxpricing_response->pki_ezmaxpricing_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -111,6 +124,15 @@ custom_ezmaxpricing_response_t *custom_ezmaxpricing_response_parseFromJSON(cJSON
 
     custom_ezmaxpricing_response_t *custom_ezmaxpricing_response_local_var = NULL;
 
+    // define the local variable for custom_ezmaxpricing_response->pki_ezmaxpricing_id
+    int *pki_ezmaxpricing_id_local_var = NULL;
+
+    char *d_ezmaxpricing_rebateezsignallagents_local_str = NULL;
+
+    char *dt_ezmaxpricing_start_local_str = NULL;
+
+    char *dt_ezmaxpricing_end_local_str = NULL;
+
     // custom_ezmaxpricing_response->pki_ezmaxpricing_id
     cJSON *pki_ezmaxpricing_id = cJSON_GetObjectItemCaseSensitive(custom_ezmaxpricing_responseJSON, "pkiEzmaxpricingID");
     if (cJSON_IsNull(pki_ezmaxpricing_id)) {
@@ -125,6 +147,12 @@ custom_ezmaxpricing_response_t *custom_ezmaxpricing_response_parseFromJSON(cJSON
     {
     goto end; //Numeric
     }
+    pki_ezmaxpricing_id_local_var = malloc(sizeof(int));
+    if(!pki_ezmaxpricing_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezmaxpricing_id_local_var = pki_ezmaxpricing_id->valuedouble;
 
     // custom_ezmaxpricing_response->d_ezmaxpricing_rebateezsignallagents
     cJSON *d_ezmaxpricing_rebateezsignallagents = cJSON_GetObjectItemCaseSensitive(custom_ezmaxpricing_responseJSON, "dEzmaxpricingRebateezsignallagents");
@@ -169,15 +197,39 @@ custom_ezmaxpricing_response_t *custom_ezmaxpricing_response_parseFromJSON(cJSON
     }
 
 
+    if (d_ezmaxpricing_rebateezsignallagents && !cJSON_IsNull(d_ezmaxpricing_rebateezsignallagents)) d_ezmaxpricing_rebateezsignallagents_local_str = strdup(d_ezmaxpricing_rebateezsignallagents->valuestring);
+    if (dt_ezmaxpricing_start && !cJSON_IsNull(dt_ezmaxpricing_start)) dt_ezmaxpricing_start_local_str = strdup(dt_ezmaxpricing_start->valuestring);
+    if (dt_ezmaxpricing_end && !cJSON_IsNull(dt_ezmaxpricing_end)) dt_ezmaxpricing_end_local_str = strdup(dt_ezmaxpricing_end->valuestring);
+
     custom_ezmaxpricing_response_local_var = custom_ezmaxpricing_response_create_internal (
-        pki_ezmaxpricing_id->valuedouble,
-        strdup(d_ezmaxpricing_rebateezsignallagents->valuestring),
-        strdup(dt_ezmaxpricing_start->valuestring),
-        dt_ezmaxpricing_end && !cJSON_IsNull(dt_ezmaxpricing_end) ? strdup(dt_ezmaxpricing_end->valuestring) : NULL
+        pki_ezmaxpricing_id_local_var,
+        d_ezmaxpricing_rebateezsignallagents_local_str,
+        dt_ezmaxpricing_start_local_str,
+        dt_ezmaxpricing_end_local_str
         );
+
+    if (!custom_ezmaxpricing_response_local_var) {
+        goto end;
+    }
 
     return custom_ezmaxpricing_response_local_var;
 end:
+    if (pki_ezmaxpricing_id_local_var) {
+        free(pki_ezmaxpricing_id_local_var);
+        pki_ezmaxpricing_id_local_var = NULL;
+    }
+    if (d_ezmaxpricing_rebateezsignallagents_local_str) {
+        free(d_ezmaxpricing_rebateezsignallagents_local_str);
+        d_ezmaxpricing_rebateezsignallagents_local_str = NULL;
+    }
+    if (dt_ezmaxpricing_start_local_str) {
+        free(dt_ezmaxpricing_start_local_str);
+        dt_ezmaxpricing_start_local_str = NULL;
+    }
+    if (dt_ezmaxpricing_end_local_str) {
+        free(dt_ezmaxpricing_end_local_str);
+        dt_ezmaxpricing_end_local_str = NULL;
+    }
     return NULL;
 
 }

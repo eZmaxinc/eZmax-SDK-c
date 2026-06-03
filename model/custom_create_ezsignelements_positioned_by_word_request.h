@@ -28,8 +28,8 @@ ezmax_api_definition__full_custom_create_ezsignelements_positioned_by_word_reque
 
 typedef struct custom_create_ezsignelements_positioned_by_word_request_t {
     char *s_createezsignelementspositionedbyword_pattern; // string
-    int i_createezsignelementspositionedbyword_offsetx; //numeric
-    int i_createezsignelementspositionedbyword_offsety; //numeric
+    int *i_createezsignelementspositionedbyword_offsetx; //numeric
+    int *i_createezsignelementspositionedbyword_offsety; //numeric
     ezmax_api_definition__full_custom_create_ezsignelements_positioned_by_word_request_ECREATEEZSIGNELEMENTSPOSITIONEDBYWORDOCCURANCE_e e_createezsignelementspositionedbyword_occurance; //enum
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -37,8 +37,8 @@ typedef struct custom_create_ezsignelements_positioned_by_word_request_t {
 
 __attribute__((deprecated)) custom_create_ezsignelements_positioned_by_word_request_t *custom_create_ezsignelements_positioned_by_word_request_create(
     char *s_createezsignelementspositionedbyword_pattern,
-    int i_createezsignelementspositionedbyword_offsetx,
-    int i_createezsignelementspositionedbyword_offsety,
+    int *i_createezsignelementspositionedbyword_offsetx,
+    int *i_createezsignelementspositionedbyword_offsety,
     ezmax_api_definition__full_custom_create_ezsignelements_positioned_by_word_request_ECREATEEZSIGNELEMENTSPOSITIONEDBYWORDOCCURANCE_e e_createezsignelementspositionedbyword_occurance
 );
 

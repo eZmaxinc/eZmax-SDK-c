@@ -12,18 +12,21 @@ static ezsigntemplateglobalannotation_get_object_v2_response_m_payload_t *ezsign
     if (!ezsigntemplateglobalannotation_get_object_v2_response_m_payload_local_var) {
         return NULL;
     }
-    ezsigntemplateglobalannotation_get_object_v2_response_m_payload_local_var->obj_ezsigntemplateglobalannotation = obj_ezsigntemplateglobalannotation;
-
+    memset(ezsigntemplateglobalannotation_get_object_v2_response_m_payload_local_var, 0, sizeof(ezsigntemplateglobalannotation_get_object_v2_response_m_payload_t));
     ezsigntemplateglobalannotation_get_object_v2_response_m_payload_local_var->_library_owned = 1;
+    ezsigntemplateglobalannotation_get_object_v2_response_m_payload_local_var->obj_ezsigntemplateglobalannotation = obj_ezsigntemplateglobalannotation;
     return ezsigntemplateglobalannotation_get_object_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplateglobalannotation_get_object_v2_response_m_payload_t *ezsigntemplateglobalannotation_get_object_v2_response_m_payload_create(
     ezsigntemplateglobalannotation_response_compound_t *obj_ezsigntemplateglobalannotation
     ) {
-    return ezsigntemplateglobalannotation_get_object_v2_response_m_payload_create_internal (
+    ezsigntemplateglobalannotation_get_object_v2_response_m_payload_t *result = ezsigntemplateglobalannotation_get_object_v2_response_m_payload_create_internal (
         obj_ezsigntemplateglobalannotation
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplateglobalannotation_get_object_v2_response_m_payload_free(ezsigntemplateglobalannotation_get_object_v2_response_m_payload_t *ezsigntemplateglobalannotation_get_object_v2_response_m_payload) {
@@ -86,9 +89,14 @@ ezsigntemplateglobalannotation_get_object_v2_response_m_payload_t *ezsigntemplat
     obj_ezsigntemplateglobalannotation_local_nonprim = ezsigntemplateglobalannotation_response_compound_parseFromJSON(obj_ezsigntemplateglobalannotation); //nonprimitive
 
 
+
     ezsigntemplateglobalannotation_get_object_v2_response_m_payload_local_var = ezsigntemplateglobalannotation_get_object_v2_response_m_payload_create_internal (
         obj_ezsigntemplateglobalannotation_local_nonprim
         );
+
+    if (!ezsigntemplateglobalannotation_get_object_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsigntemplateglobalannotation_get_object_v2_response_m_payload_local_var;
 end:

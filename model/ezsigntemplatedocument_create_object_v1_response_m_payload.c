@@ -12,18 +12,21 @@ static ezsigntemplatedocument_create_object_v1_response_m_payload_t *ezsigntempl
     if (!ezsigntemplatedocument_create_object_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsigntemplatedocument_create_object_v1_response_m_payload_local_var->a_pki_ezsigntemplatedocument_id = a_pki_ezsigntemplatedocument_id;
-
+    memset(ezsigntemplatedocument_create_object_v1_response_m_payload_local_var, 0, sizeof(ezsigntemplatedocument_create_object_v1_response_m_payload_t));
     ezsigntemplatedocument_create_object_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsigntemplatedocument_create_object_v1_response_m_payload_local_var->a_pki_ezsigntemplatedocument_id = a_pki_ezsigntemplatedocument_id;
     return ezsigntemplatedocument_create_object_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplatedocument_create_object_v1_response_m_payload_t *ezsigntemplatedocument_create_object_v1_response_m_payload_create(
     list_t *a_pki_ezsigntemplatedocument_id
     ) {
-    return ezsigntemplatedocument_create_object_v1_response_m_payload_create_internal (
+    ezsigntemplatedocument_create_object_v1_response_m_payload_t *result = ezsigntemplatedocument_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsigntemplatedocument_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatedocument_create_object_v1_response_m_payload_free(ezsigntemplatedocument_create_object_v1_response_m_payload_t *ezsigntemplatedocument_create_object_v1_response_m_payload) {
@@ -112,9 +115,14 @@ ezsigntemplatedocument_create_object_v1_response_m_payload_t *ezsigntemplatedocu
     }
 
 
+
     ezsigntemplatedocument_create_object_v1_response_m_payload_local_var = ezsigntemplatedocument_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsigntemplatedocument_idList
         );
+
+    if (!ezsigntemplatedocument_create_object_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatedocument_create_object_v1_response_m_payload_local_var;
 end:

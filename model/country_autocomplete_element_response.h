@@ -19,19 +19,19 @@ typedef struct country_autocomplete_element_response_t country_autocomplete_elem
 
 
 typedef struct country_autocomplete_element_response_t {
-    int pki_country_id; //numeric
+    int *pki_country_id; //numeric
     char *s_country_name_x; // string
     char *s_country_shortname; // string
-    int b_country_isactive; //boolean
+    int *b_country_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } country_autocomplete_element_response_t;
 
 __attribute__((deprecated)) country_autocomplete_element_response_t *country_autocomplete_element_response_create(
-    int pki_country_id,
+    int *pki_country_id,
     char *s_country_name_x,
     char *s_country_shortname,
-    int b_country_isactive
+    int *b_country_isactive
 );
 
 void country_autocomplete_element_response_free(country_autocomplete_element_response_t *country_autocomplete_element_response);

@@ -13,10 +13,10 @@ static ezsignfolder_end_prematurely_v1_response_t *ezsignfolder_end_prematurely_
     if (!ezsignfolder_end_prematurely_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsignfolder_end_prematurely_v1_response_local_var, 0, sizeof(ezsignfolder_end_prematurely_v1_response_t));
+    ezsignfolder_end_prematurely_v1_response_local_var->_library_owned = 1;
     ezsignfolder_end_prematurely_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsignfolder_end_prematurely_v1_response_local_var->obj_debug = obj_debug;
-
-    ezsignfolder_end_prematurely_v1_response_local_var->_library_owned = 1;
     return ezsignfolder_end_prematurely_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) ezsignfolder_end_prematurely_v1_response_t *ezsignfo
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return ezsignfolder_end_prematurely_v1_response_create_internal (
+    ezsignfolder_end_prematurely_v1_response_t *result = ezsignfolder_end_prematurely_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignfolder_end_prematurely_v1_response_free(ezsignfolder_end_prematurely_v1_response_t *ezsignfolder_end_prematurely_v1_response) {
@@ -119,10 +122,15 @@ ezsignfolder_end_prematurely_v1_response_t *ezsignfolder_end_prematurely_v1_resp
     }
 
 
+
     ezsignfolder_end_prematurely_v1_response_local_var = ezsignfolder_end_prematurely_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!ezsignfolder_end_prematurely_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsignfolder_end_prematurely_v1_response_local_var;
 end:

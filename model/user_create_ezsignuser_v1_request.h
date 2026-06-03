@@ -19,7 +19,7 @@ typedef struct user_create_ezsignuser_v1_request_t user_create_ezsignuser_v1_req
 
 
 typedef struct user_create_ezsignuser_v1_request_t {
-    int fki_language_id; //numeric
+    int *fki_language_id; //numeric
     char *s_user_firstname; // string
     char *s_user_lastname; // string
     char *s_email_address; // string
@@ -32,7 +32,7 @@ typedef struct user_create_ezsignuser_v1_request_t {
 } user_create_ezsignuser_v1_request_t;
 
 __attribute__((deprecated)) user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_create(
-    int fki_language_id,
+    int *fki_language_id,
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_email_address,

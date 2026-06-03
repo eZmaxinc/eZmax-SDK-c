@@ -1,0 +1,41 @@
+/*
+ * inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_request.h
+ *
+ * Request for POST /1/object/inscriptionnotauthenticated/{pkiInscriptionnotauthenticatedID}/fillInscriptionnotauthenticatedcondition
+ */
+
+#ifndef _inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_request_H_
+#define _inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_request_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_request_t inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_request_t;
+
+#include "custom_inscriptionnotauthenticatedcondition_request.h"
+
+
+
+typedef struct inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_request_t {
+    list_t *a_obj_inscriptionnotauthenticatedcondition; //nonprimitive container
+    char *dt_inscriptionnotauthenticated_transactiondate_real; // string
+
+    int _library_owned; // Is the library responsible for freeing this object?
+} inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_request_t;
+
+__attribute__((deprecated)) inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_request_t *inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_request_create(
+    list_t *a_obj_inscriptionnotauthenticatedcondition,
+    char *dt_inscriptionnotauthenticated_transactiondate_real
+);
+
+void inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_request_free(inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_request_t *inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_request);
+
+inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_request_t *inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_request_parseFromJSON(cJSON *inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_requestJSON);
+
+cJSON *inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_request_convertToJSON(inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_request_t *inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_request);
+
+#endif /* _inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_request_H_ */
+

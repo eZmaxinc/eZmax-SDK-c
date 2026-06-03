@@ -19,21 +19,21 @@ typedef struct agent_autocomplete_element_response_t agent_autocomplete_element_
 
 
 typedef struct agent_autocomplete_element_response_t {
-    int pki_agent_id; //numeric
-    int fki_department_id; //numeric
+    int *pki_agent_id; //numeric
+    int *fki_department_id; //numeric
     char *s_contact_firstname; // string
     char *s_contact_lastname; // string
-    int b_agent_isactive; //boolean
+    int *b_agent_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } agent_autocomplete_element_response_t;
 
 __attribute__((deprecated)) agent_autocomplete_element_response_t *agent_autocomplete_element_response_create(
-    int pki_agent_id,
-    int fki_department_id,
+    int *pki_agent_id,
+    int *fki_department_id,
     char *s_contact_firstname,
     char *s_contact_lastname,
-    int b_agent_isactive
+    int *b_agent_isactive
 );
 
 void agent_autocomplete_element_response_free(agent_autocomplete_element_response_t *agent_autocomplete_element_response);

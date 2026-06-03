@@ -19,21 +19,21 @@ typedef struct ezsigntemplatepackagesignermembership_response_t ezsigntemplatepa
 
 
 typedef struct ezsigntemplatepackagesignermembership_response_t {
-    int pki_ezsigntemplatepackagesignermembership_id; //numeric
-    int fki_ezsigntemplatepackagemembership_id; //numeric
-    int fki_ezsigntemplatepackagesigner_id; //numeric
-    int fki_ezsigntemplatesigner_id; //numeric
-    int i_ezsigntemplatepackagesignermembership_copy; //numeric
+    int *pki_ezsigntemplatepackagesignermembership_id; //numeric
+    int *fki_ezsigntemplatepackagemembership_id; //numeric
+    int *fki_ezsigntemplatepackagesigner_id; //numeric
+    int *fki_ezsigntemplatesigner_id; //numeric
+    int *i_ezsigntemplatepackagesignermembership_copy; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatepackagesignermembership_response_t;
 
 __attribute__((deprecated)) ezsigntemplatepackagesignermembership_response_t *ezsigntemplatepackagesignermembership_response_create(
-    int pki_ezsigntemplatepackagesignermembership_id,
-    int fki_ezsigntemplatepackagemembership_id,
-    int fki_ezsigntemplatepackagesigner_id,
-    int fki_ezsigntemplatesigner_id,
-    int i_ezsigntemplatepackagesignermembership_copy
+    int *pki_ezsigntemplatepackagesignermembership_id,
+    int *fki_ezsigntemplatepackagemembership_id,
+    int *fki_ezsigntemplatepackagesigner_id,
+    int *fki_ezsigntemplatesigner_id,
+    int *i_ezsigntemplatepackagesignermembership_copy
 );
 
 void ezsigntemplatepackagesignermembership_response_free(ezsigntemplatepackagesignermembership_response_t *ezsigntemplatepackagesignermembership_response);

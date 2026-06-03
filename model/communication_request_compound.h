@@ -34,16 +34,16 @@ ezmax_api_definition__full_communication_request_compound_ECOMMUNICATIONATTACHME
 
 
 typedef struct communication_request_compound_t {
-    int pki_communication_id; //numeric
+    int *pki_communication_id; //numeric
     ezmax_api_definition__full_field_e_communication_importance__e e_communication_importance; //referenced enum
     ezmax_api_definition__full_field_e_communication_type__e e_communication_type; //referenced enum
     struct custom_communicationsender_request_t *obj_communicationsender; //model
     char *s_communication_subject; // string
     char *t_communication_body; // string
-    int b_communication_private; //boolean
+    int *b_communication_private; //boolean
     ezmax_api_definition__full_communication_request_compound_ECOMMUNICATIONATTACHMENTTYPE_e e_communication_attachmenttype; //enum
-    int i_communication_attachmentlinkexpiration; //numeric
-    int b_communication_readreceipt; //boolean
+    int *i_communication_attachmentlinkexpiration; //numeric
+    int *b_communication_readreceipt; //boolean
     list_t *a_obj_communicationattachment; //nonprimitive container
     list_t *a_obj_communicationrecipient; //nonprimitive container
     list_t *a_obj_communicationreference; //nonprimitive container
@@ -53,16 +53,16 @@ typedef struct communication_request_compound_t {
 } communication_request_compound_t;
 
 __attribute__((deprecated)) communication_request_compound_t *communication_request_compound_create(
-    int pki_communication_id,
+    int *pki_communication_id,
     ezmax_api_definition__full_field_e_communication_importance__e e_communication_importance,
     ezmax_api_definition__full_field_e_communication_type__e e_communication_type,
     custom_communicationsender_request_t *obj_communicationsender,
     char *s_communication_subject,
     char *t_communication_body,
-    int b_communication_private,
+    int *b_communication_private,
     ezmax_api_definition__full_communication_request_compound_ECOMMUNICATIONATTACHMENTTYPE_e e_communication_attachmenttype,
-    int i_communication_attachmentlinkexpiration,
-    int b_communication_readreceipt,
+    int *i_communication_attachmentlinkexpiration,
+    int *b_communication_readreceipt,
     list_t *a_obj_communicationattachment,
     list_t *a_obj_communicationrecipient,
     list_t *a_obj_communicationreference,

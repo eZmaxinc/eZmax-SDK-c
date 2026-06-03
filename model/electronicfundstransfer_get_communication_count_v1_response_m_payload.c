@@ -6,24 +6,33 @@
 
 
 static electronicfundstransfer_get_communication_count_v1_response_m_payload_t *electronicfundstransfer_get_communication_count_v1_response_m_payload_create_internal(
-    int i_communication_count
+    int *i_communication_count
     ) {
     electronicfundstransfer_get_communication_count_v1_response_m_payload_t *electronicfundstransfer_get_communication_count_v1_response_m_payload_local_var = malloc(sizeof(electronicfundstransfer_get_communication_count_v1_response_m_payload_t));
     if (!electronicfundstransfer_get_communication_count_v1_response_m_payload_local_var) {
         return NULL;
     }
-    electronicfundstransfer_get_communication_count_v1_response_m_payload_local_var->i_communication_count = i_communication_count;
-
+    memset(electronicfundstransfer_get_communication_count_v1_response_m_payload_local_var, 0, sizeof(electronicfundstransfer_get_communication_count_v1_response_m_payload_t));
     electronicfundstransfer_get_communication_count_v1_response_m_payload_local_var->_library_owned = 1;
+    electronicfundstransfer_get_communication_count_v1_response_m_payload_local_var->i_communication_count = i_communication_count;
     return electronicfundstransfer_get_communication_count_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) electronicfundstransfer_get_communication_count_v1_response_m_payload_t *electronicfundstransfer_get_communication_count_v1_response_m_payload_create(
-    int i_communication_count
+    int *i_communication_count
     ) {
-    return electronicfundstransfer_get_communication_count_v1_response_m_payload_create_internal (
-        i_communication_count
+    int *i_communication_count_copy = NULL;
+    if (i_communication_count) {
+        i_communication_count_copy = malloc(sizeof(int));
+        if (i_communication_count_copy) *i_communication_count_copy = *i_communication_count;
+    }
+    electronicfundstransfer_get_communication_count_v1_response_m_payload_t *result = electronicfundstransfer_get_communication_count_v1_response_m_payload_create_internal (
+        i_communication_count_copy
         );
+    if (!result) {
+        free(i_communication_count_copy);
+    }
+    return result;
 }
 
 void electronicfundstransfer_get_communication_count_v1_response_m_payload_free(electronicfundstransfer_get_communication_count_v1_response_m_payload_t *electronicfundstransfer_get_communication_count_v1_response_m_payload) {
@@ -35,6 +44,10 @@ void electronicfundstransfer_get_communication_count_v1_response_m_payload_free(
         return ;
     }
     listEntry_t *listEntry;
+    if (electronicfundstransfer_get_communication_count_v1_response_m_payload->i_communication_count) {
+        free(electronicfundstransfer_get_communication_count_v1_response_m_payload->i_communication_count);
+        electronicfundstransfer_get_communication_count_v1_response_m_payload->i_communication_count = NULL;
+    }
     free(electronicfundstransfer_get_communication_count_v1_response_m_payload);
 }
 
@@ -45,7 +58,7 @@ cJSON *electronicfundstransfer_get_communication_count_v1_response_m_payload_con
     if (!electronicfundstransfer_get_communication_count_v1_response_m_payload->i_communication_count) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iCommunicationCount", electronicfundstransfer_get_communication_count_v1_response_m_payload->i_communication_count) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iCommunicationCount", *electronicfundstransfer_get_communication_count_v1_response_m_payload->i_communication_count) == NULL) {
     goto fail; //Numeric
     }
 
@@ -61,6 +74,9 @@ electronicfundstransfer_get_communication_count_v1_response_m_payload_t *electro
 
     electronicfundstransfer_get_communication_count_v1_response_m_payload_t *electronicfundstransfer_get_communication_count_v1_response_m_payload_local_var = NULL;
 
+    // define the local variable for electronicfundstransfer_get_communication_count_v1_response_m_payload->i_communication_count
+    int *i_communication_count_local_var = NULL;
+
     // electronicfundstransfer_get_communication_count_v1_response_m_payload->i_communication_count
     cJSON *i_communication_count = cJSON_GetObjectItemCaseSensitive(electronicfundstransfer_get_communication_count_v1_response_m_payloadJSON, "iCommunicationCount");
     if (cJSON_IsNull(i_communication_count)) {
@@ -75,14 +91,29 @@ electronicfundstransfer_get_communication_count_v1_response_m_payload_t *electro
     {
     goto end; //Numeric
     }
+    i_communication_count_local_var = malloc(sizeof(int));
+    if(!i_communication_count_local_var)
+    {
+        goto end;
+    }
+    *i_communication_count_local_var = i_communication_count->valuedouble;
+
 
 
     electronicfundstransfer_get_communication_count_v1_response_m_payload_local_var = electronicfundstransfer_get_communication_count_v1_response_m_payload_create_internal (
-        i_communication_count->valuedouble
+        i_communication_count_local_var
         );
+
+    if (!electronicfundstransfer_get_communication_count_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return electronicfundstransfer_get_communication_count_v1_response_m_payload_local_var;
 end:
+    if (i_communication_count_local_var) {
+        free(i_communication_count_local_var);
+        i_communication_count_local_var = NULL;
+    }
     return NULL;
 
 }

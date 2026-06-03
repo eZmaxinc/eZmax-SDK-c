@@ -12,18 +12,21 @@ static userlogintype_get_autocomplete_v2_response_m_payload_t *userlogintype_get
     if (!userlogintype_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    userlogintype_get_autocomplete_v2_response_m_payload_local_var->a_obj_userlogintype = a_obj_userlogintype;
-
+    memset(userlogintype_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(userlogintype_get_autocomplete_v2_response_m_payload_t));
     userlogintype_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    userlogintype_get_autocomplete_v2_response_m_payload_local_var->a_obj_userlogintype = a_obj_userlogintype;
     return userlogintype_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) userlogintype_get_autocomplete_v2_response_m_payload_t *userlogintype_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_userlogintype
     ) {
-    return userlogintype_get_autocomplete_v2_response_m_payload_create_internal (
+    userlogintype_get_autocomplete_v2_response_m_payload_t *result = userlogintype_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_userlogintype
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void userlogintype_get_autocomplete_v2_response_m_payload_free(userlogintype_get_autocomplete_v2_response_m_payload_t *userlogintype_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ userlogintype_get_autocomplete_v2_response_m_payload_t *userlogintype_get_autoco
     }
 
 
+
     userlogintype_get_autocomplete_v2_response_m_payload_local_var = userlogintype_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_userlogintypeList
         );
+
+    if (!userlogintype_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return userlogintype_get_autocomplete_v2_response_m_payload_local_var;
 end:

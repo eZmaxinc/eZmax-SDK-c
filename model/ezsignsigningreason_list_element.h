@@ -19,17 +19,17 @@ typedef struct ezsignsigningreason_list_element_t ezsignsigningreason_list_eleme
 
 
 typedef struct ezsignsigningreason_list_element_t {
-    int pki_ezsignsigningreason_id; //numeric
+    int *pki_ezsignsigningreason_id; //numeric
     char *s_ezsignsigningreason_description_x; // string
-    int b_ezsignsigningreason_isactive; //boolean
+    int *b_ezsignsigningreason_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsigningreason_list_element_t;
 
 __attribute__((deprecated)) ezsignsigningreason_list_element_t *ezsignsigningreason_list_element_create(
-    int pki_ezsignsigningreason_id,
+    int *pki_ezsignsigningreason_id,
     char *s_ezsignsigningreason_description_x,
-    int b_ezsignsigningreason_isactive
+    int *b_ezsignsigningreason_isactive
 );
 
 void ezsignsigningreason_list_element_free(ezsignsigningreason_list_element_t *ezsignsigningreason_list_element);

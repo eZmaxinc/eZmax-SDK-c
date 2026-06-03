@@ -14,11 +14,11 @@ static realestateboard_get_autocomplete_v2_response_t *realestateboard_get_autoc
     if (!realestateboard_get_autocomplete_v2_response_local_var) {
         return NULL;
     }
+    memset(realestateboard_get_autocomplete_v2_response_local_var, 0, sizeof(realestateboard_get_autocomplete_v2_response_t));
+    realestateboard_get_autocomplete_v2_response_local_var->_library_owned = 1;
     realestateboard_get_autocomplete_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     realestateboard_get_autocomplete_v2_response_local_var->obj_debug = obj_debug;
     realestateboard_get_autocomplete_v2_response_local_var->m_payload = m_payload;
-
-    realestateboard_get_autocomplete_v2_response_local_var->_library_owned = 1;
     return realestateboard_get_autocomplete_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) realestateboard_get_autocomplete_v2_response_t *real
     common_response_obj_debug_t *obj_debug,
     realestateboard_get_autocomplete_v2_response_m_payload_t *m_payload
     ) {
-    return realestateboard_get_autocomplete_v2_response_create_internal (
+    realestateboard_get_autocomplete_v2_response_t *result = realestateboard_get_autocomplete_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realestateboard_get_autocomplete_v2_response_free(realestateboard_get_autocomplete_v2_response_t *realestateboard_get_autocomplete_v2_response) {
@@ -156,11 +159,16 @@ realestateboard_get_autocomplete_v2_response_t *realestateboard_get_autocomplete
     m_payload_local_nonprim = realestateboard_get_autocomplete_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     realestateboard_get_autocomplete_v2_response_local_var = realestateboard_get_autocomplete_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!realestateboard_get_autocomplete_v2_response_local_var) {
+        goto end;
+    }
 
     return realestateboard_get_autocomplete_v2_response_local_var;
 end:

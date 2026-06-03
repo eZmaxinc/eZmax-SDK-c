@@ -13,10 +13,10 @@ static ezsignsignergroupmembership_delete_object_v1_response_t *ezsignsignergrou
     if (!ezsignsignergroupmembership_delete_object_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsignsignergroupmembership_delete_object_v1_response_local_var, 0, sizeof(ezsignsignergroupmembership_delete_object_v1_response_t));
+    ezsignsignergroupmembership_delete_object_v1_response_local_var->_library_owned = 1;
     ezsignsignergroupmembership_delete_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsignsignergroupmembership_delete_object_v1_response_local_var->obj_debug = obj_debug;
-
-    ezsignsignergroupmembership_delete_object_v1_response_local_var->_library_owned = 1;
     return ezsignsignergroupmembership_delete_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) ezsignsignergroupmembership_delete_object_v1_respons
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return ezsignsignergroupmembership_delete_object_v1_response_create_internal (
+    ezsignsignergroupmembership_delete_object_v1_response_t *result = ezsignsignergroupmembership_delete_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignsignergroupmembership_delete_object_v1_response_free(ezsignsignergroupmembership_delete_object_v1_response_t *ezsignsignergroupmembership_delete_object_v1_response) {
@@ -119,10 +122,15 @@ ezsignsignergroupmembership_delete_object_v1_response_t *ezsignsignergroupmember
     }
 
 
+
     ezsignsignergroupmembership_delete_object_v1_response_local_var = ezsignsignergroupmembership_delete_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!ezsignsignergroupmembership_delete_object_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsignsignergroupmembership_delete_object_v1_response_local_var;
 end:

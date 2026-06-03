@@ -6,7 +6,7 @@
 
 
 static usergroup_request_t *usergroup_request_create_internal(
-    int pki_usergroup_id,
+    int *pki_usergroup_id,
     email_request_t *obj_email,
     multilingual_usergroup_name_t *obj_usergroup_name
     ) {
@@ -14,24 +14,33 @@ static usergroup_request_t *usergroup_request_create_internal(
     if (!usergroup_request_local_var) {
         return NULL;
     }
+    memset(usergroup_request_local_var, 0, sizeof(usergroup_request_t));
+    usergroup_request_local_var->_library_owned = 1;
     usergroup_request_local_var->pki_usergroup_id = pki_usergroup_id;
     usergroup_request_local_var->obj_email = obj_email;
     usergroup_request_local_var->obj_usergroup_name = obj_usergroup_name;
-
-    usergroup_request_local_var->_library_owned = 1;
     return usergroup_request_local_var;
 }
 
 __attribute__((deprecated)) usergroup_request_t *usergroup_request_create(
-    int pki_usergroup_id,
+    int *pki_usergroup_id,
     email_request_t *obj_email,
     multilingual_usergroup_name_t *obj_usergroup_name
     ) {
-    return usergroup_request_create_internal (
-        pki_usergroup_id,
+    int *pki_usergroup_id_copy = NULL;
+    if (pki_usergroup_id) {
+        pki_usergroup_id_copy = malloc(sizeof(int));
+        if (pki_usergroup_id_copy) *pki_usergroup_id_copy = *pki_usergroup_id;
+    }
+    usergroup_request_t *result = usergroup_request_create_internal (
+        pki_usergroup_id_copy,
         obj_email,
         obj_usergroup_name
         );
+    if (!result) {
+        free(pki_usergroup_id_copy);
+    }
+    return result;
 }
 
 void usergroup_request_free(usergroup_request_t *usergroup_request) {
@@ -43,6 +52,10 @@ void usergroup_request_free(usergroup_request_t *usergroup_request) {
         return ;
     }
     listEntry_t *listEntry;
+    if (usergroup_request->pki_usergroup_id) {
+        free(usergroup_request->pki_usergroup_id);
+        usergroup_request->pki_usergroup_id = NULL;
+    }
     if (usergroup_request->obj_email) {
         email_request_free(usergroup_request->obj_email);
         usergroup_request->obj_email = NULL;
@@ -59,7 +72,7 @@ cJSON *usergroup_request_convertToJSON(usergroup_request_t *usergroup_request) {
 
     // usergroup_request->pki_usergroup_id
     if(usergroup_request->pki_usergroup_id) {
-    if(cJSON_AddNumberToObject(item, "pkiUsergroupID", usergroup_request->pki_usergroup_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiUsergroupID", *usergroup_request->pki_usergroup_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -103,6 +116,9 @@ usergroup_request_t *usergroup_request_parseFromJSON(cJSON *usergroup_requestJSO
 
     usergroup_request_t *usergroup_request_local_var = NULL;
 
+    // define the local variable for usergroup_request->pki_usergroup_id
+    int *pki_usergroup_id_local_var = NULL;
+
     // define the local variable for usergroup_request->obj_email
     email_request_t *obj_email_local_nonprim = NULL;
 
@@ -119,6 +135,12 @@ usergroup_request_t *usergroup_request_parseFromJSON(cJSON *usergroup_requestJSO
     {
     goto end; //Numeric
     }
+    pki_usergroup_id_local_var = malloc(sizeof(int));
+    if(!pki_usergroup_id_local_var)
+    {
+        goto end;
+    }
+    *pki_usergroup_id_local_var = pki_usergroup_id->valuedouble;
     }
 
     // usergroup_request->obj_email
@@ -143,14 +165,23 @@ usergroup_request_t *usergroup_request_parseFromJSON(cJSON *usergroup_requestJSO
     obj_usergroup_name_local_nonprim = multilingual_usergroup_name_parseFromJSON(obj_usergroup_name); //nonprimitive
 
 
+
     usergroup_request_local_var = usergroup_request_create_internal (
-        pki_usergroup_id ? pki_usergroup_id->valuedouble : 0,
+        pki_usergroup_id_local_var,
         obj_email ? obj_email_local_nonprim : NULL,
         obj_usergroup_name_local_nonprim
         );
 
+    if (!usergroup_request_local_var) {
+        goto end;
+    }
+
     return usergroup_request_local_var;
 end:
+    if (pki_usergroup_id_local_var) {
+        free(pki_usergroup_id_local_var);
+        pki_usergroup_id_local_var = NULL;
+    }
     if (obj_email_local_nonprim) {
         email_request_free(obj_email_local_nonprim);
         obj_email_local_nonprim = NULL;

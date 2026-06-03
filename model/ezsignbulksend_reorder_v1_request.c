@@ -12,18 +12,21 @@ static ezsignbulksend_reorder_v1_request_t *ezsignbulksend_reorder_v1_request_cr
     if (!ezsignbulksend_reorder_v1_request_local_var) {
         return NULL;
     }
-    ezsignbulksend_reorder_v1_request_local_var->a_pki_ezsignbulksenddocumentmapping_id = a_pki_ezsignbulksenddocumentmapping_id;
-
+    memset(ezsignbulksend_reorder_v1_request_local_var, 0, sizeof(ezsignbulksend_reorder_v1_request_t));
     ezsignbulksend_reorder_v1_request_local_var->_library_owned = 1;
+    ezsignbulksend_reorder_v1_request_local_var->a_pki_ezsignbulksenddocumentmapping_id = a_pki_ezsignbulksenddocumentmapping_id;
     return ezsignbulksend_reorder_v1_request_local_var;
 }
 
 __attribute__((deprecated)) ezsignbulksend_reorder_v1_request_t *ezsignbulksend_reorder_v1_request_create(
     list_t *a_pki_ezsignbulksenddocumentmapping_id
     ) {
-    return ezsignbulksend_reorder_v1_request_create_internal (
+    ezsignbulksend_reorder_v1_request_t *result = ezsignbulksend_reorder_v1_request_create_internal (
         a_pki_ezsignbulksenddocumentmapping_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignbulksend_reorder_v1_request_free(ezsignbulksend_reorder_v1_request_t *ezsignbulksend_reorder_v1_request) {
@@ -112,9 +115,14 @@ ezsignbulksend_reorder_v1_request_t *ezsignbulksend_reorder_v1_request_parseFrom
     }
 
 
+
     ezsignbulksend_reorder_v1_request_local_var = ezsignbulksend_reorder_v1_request_create_internal (
         a_pki_ezsignbulksenddocumentmapping_idList
         );
+
+    if (!ezsignbulksend_reorder_v1_request_local_var) {
+        goto end;
+    }
 
     return ezsignbulksend_reorder_v1_request_local_var;
 end:

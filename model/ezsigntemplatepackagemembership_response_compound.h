@@ -21,10 +21,10 @@ typedef struct ezsigntemplatepackagemembership_response_compound_t ezsigntemplat
 
 
 typedef struct ezsigntemplatepackagemembership_response_compound_t {
-    int pki_ezsigntemplatepackagemembership_id; //numeric
-    int fki_ezsigntemplatepackage_id; //numeric
-    int fki_ezsigntemplate_id; //numeric
-    int i_ezsigntemplatepackagemembership_order; //numeric
+    int *pki_ezsigntemplatepackagemembership_id; //numeric
+    int *fki_ezsigntemplatepackage_id; //numeric
+    int *fki_ezsigntemplate_id; //numeric
+    int *i_ezsigntemplatepackagemembership_order; //numeric
     struct ezsigntemplate_response_compound_t *obj_ezsigntemplate; //model
     list_t *a_obj_ezsigntemplatepackagesignermembership; //nonprimitive container
 
@@ -32,10 +32,10 @@ typedef struct ezsigntemplatepackagemembership_response_compound_t {
 } ezsigntemplatepackagemembership_response_compound_t;
 
 __attribute__((deprecated)) ezsigntemplatepackagemembership_response_compound_t *ezsigntemplatepackagemembership_response_compound_create(
-    int pki_ezsigntemplatepackagemembership_id,
-    int fki_ezsigntemplatepackage_id,
-    int fki_ezsigntemplate_id,
-    int i_ezsigntemplatepackagemembership_order,
+    int *pki_ezsigntemplatepackagemembership_id,
+    int *fki_ezsigntemplatepackage_id,
+    int *fki_ezsigntemplate_id,
+    int *i_ezsigntemplatepackagemembership_order,
     ezsigntemplate_response_compound_t *obj_ezsigntemplate,
     list_t *a_obj_ezsigntemplatepackagesignermembership
 );

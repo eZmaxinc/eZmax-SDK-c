@@ -6,10 +6,10 @@
 
 
 static discussionmessage_response_compound_t *discussionmessage_response_compound_create_internal(
-    int pki_discussionmessage_id,
-    int fki_discussion_id,
-    int fki_discussionmembership_id,
-    int fki_discussionmembership_id_actionrequired,
+    int *pki_discussionmessage_id,
+    int *fki_discussion_id,
+    int *fki_discussionmembership_id,
+    int *fki_discussionmembership_id_actionrequired,
     ezmax_api_definition__full_field_e_discussionmessage_status__e e_discussionmessage_status,
     char *t_discussionmessage_content,
     char *s_discussionmessage_creatorname,
@@ -20,6 +20,8 @@ static discussionmessage_response_compound_t *discussionmessage_response_compoun
     if (!discussionmessage_response_compound_local_var) {
         return NULL;
     }
+    memset(discussionmessage_response_compound_local_var, 0, sizeof(discussionmessage_response_compound_t));
+    discussionmessage_response_compound_local_var->_library_owned = 1;
     discussionmessage_response_compound_local_var->pki_discussionmessage_id = pki_discussionmessage_id;
     discussionmessage_response_compound_local_var->fki_discussion_id = fki_discussion_id;
     discussionmessage_response_compound_local_var->fki_discussionmembership_id = fki_discussionmembership_id;
@@ -29,33 +31,58 @@ static discussionmessage_response_compound_t *discussionmessage_response_compoun
     discussionmessage_response_compound_local_var->s_discussionmessage_creatorname = s_discussionmessage_creatorname;
     discussionmessage_response_compound_local_var->s_discussionmessage_actionrequiredname = s_discussionmessage_actionrequiredname;
     discussionmessage_response_compound_local_var->obj_audit = obj_audit;
-
-    discussionmessage_response_compound_local_var->_library_owned = 1;
     return discussionmessage_response_compound_local_var;
 }
 
 __attribute__((deprecated)) discussionmessage_response_compound_t *discussionmessage_response_compound_create(
-    int pki_discussionmessage_id,
-    int fki_discussion_id,
-    int fki_discussionmembership_id,
-    int fki_discussionmembership_id_actionrequired,
+    int *pki_discussionmessage_id,
+    int *fki_discussion_id,
+    int *fki_discussionmembership_id,
+    int *fki_discussionmembership_id_actionrequired,
     ezmax_api_definition__full_field_e_discussionmessage_status__e e_discussionmessage_status,
     char *t_discussionmessage_content,
     char *s_discussionmessage_creatorname,
     char *s_discussionmessage_actionrequiredname,
     common_audit_t *obj_audit
     ) {
-    return discussionmessage_response_compound_create_internal (
-        pki_discussionmessage_id,
-        fki_discussion_id,
-        fki_discussionmembership_id,
-        fki_discussionmembership_id_actionrequired,
+    int *pki_discussionmessage_id_copy = NULL;
+    if (pki_discussionmessage_id) {
+        pki_discussionmessage_id_copy = malloc(sizeof(int));
+        if (pki_discussionmessage_id_copy) *pki_discussionmessage_id_copy = *pki_discussionmessage_id;
+    }
+    int *fki_discussion_id_copy = NULL;
+    if (fki_discussion_id) {
+        fki_discussion_id_copy = malloc(sizeof(int));
+        if (fki_discussion_id_copy) *fki_discussion_id_copy = *fki_discussion_id;
+    }
+    int *fki_discussionmembership_id_copy = NULL;
+    if (fki_discussionmembership_id) {
+        fki_discussionmembership_id_copy = malloc(sizeof(int));
+        if (fki_discussionmembership_id_copy) *fki_discussionmembership_id_copy = *fki_discussionmembership_id;
+    }
+    int *fki_discussionmembership_id_actionrequired_copy = NULL;
+    if (fki_discussionmembership_id_actionrequired) {
+        fki_discussionmembership_id_actionrequired_copy = malloc(sizeof(int));
+        if (fki_discussionmembership_id_actionrequired_copy) *fki_discussionmembership_id_actionrequired_copy = *fki_discussionmembership_id_actionrequired;
+    }
+    discussionmessage_response_compound_t *result = discussionmessage_response_compound_create_internal (
+        pki_discussionmessage_id_copy,
+        fki_discussion_id_copy,
+        fki_discussionmembership_id_copy,
+        fki_discussionmembership_id_actionrequired_copy,
         e_discussionmessage_status,
         t_discussionmessage_content,
         s_discussionmessage_creatorname,
         s_discussionmessage_actionrequiredname,
         obj_audit
         );
+    if (!result) {
+        free(pki_discussionmessage_id_copy);
+        free(fki_discussion_id_copy);
+        free(fki_discussionmembership_id_copy);
+        free(fki_discussionmembership_id_actionrequired_copy);
+    }
+    return result;
 }
 
 void discussionmessage_response_compound_free(discussionmessage_response_compound_t *discussionmessage_response_compound) {
@@ -67,6 +94,22 @@ void discussionmessage_response_compound_free(discussionmessage_response_compoun
         return ;
     }
     listEntry_t *listEntry;
+    if (discussionmessage_response_compound->pki_discussionmessage_id) {
+        free(discussionmessage_response_compound->pki_discussionmessage_id);
+        discussionmessage_response_compound->pki_discussionmessage_id = NULL;
+    }
+    if (discussionmessage_response_compound->fki_discussion_id) {
+        free(discussionmessage_response_compound->fki_discussion_id);
+        discussionmessage_response_compound->fki_discussion_id = NULL;
+    }
+    if (discussionmessage_response_compound->fki_discussionmembership_id) {
+        free(discussionmessage_response_compound->fki_discussionmembership_id);
+        discussionmessage_response_compound->fki_discussionmembership_id = NULL;
+    }
+    if (discussionmessage_response_compound->fki_discussionmembership_id_actionrequired) {
+        free(discussionmessage_response_compound->fki_discussionmembership_id_actionrequired);
+        discussionmessage_response_compound->fki_discussionmembership_id_actionrequired = NULL;
+    }
     if (discussionmessage_response_compound->t_discussionmessage_content) {
         free(discussionmessage_response_compound->t_discussionmessage_content);
         discussionmessage_response_compound->t_discussionmessage_content = NULL;
@@ -93,7 +136,7 @@ cJSON *discussionmessage_response_compound_convertToJSON(discussionmessage_respo
     if (!discussionmessage_response_compound->pki_discussionmessage_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiDiscussionmessageID", discussionmessage_response_compound->pki_discussionmessage_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiDiscussionmessageID", *discussionmessage_response_compound->pki_discussionmessage_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -102,14 +145,14 @@ cJSON *discussionmessage_response_compound_convertToJSON(discussionmessage_respo
     if (!discussionmessage_response_compound->fki_discussion_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiDiscussionID", discussionmessage_response_compound->fki_discussion_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiDiscussionID", *discussionmessage_response_compound->fki_discussion_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // discussionmessage_response_compound->fki_discussionmembership_id
     if(discussionmessage_response_compound->fki_discussionmembership_id) {
-    if(cJSON_AddNumberToObject(item, "fkiDiscussionmembershipID", discussionmessage_response_compound->fki_discussionmembership_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiDiscussionmembershipID", *discussionmessage_response_compound->fki_discussionmembership_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -117,7 +160,7 @@ cJSON *discussionmessage_response_compound_convertToJSON(discussionmessage_respo
 
     // discussionmessage_response_compound->fki_discussionmembership_id_actionrequired
     if(discussionmessage_response_compound->fki_discussionmembership_id_actionrequired) {
-    if(cJSON_AddNumberToObject(item, "fkiDiscussionmembershipIDActionrequired", discussionmessage_response_compound->fki_discussionmembership_id_actionrequired) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiDiscussionmembershipIDActionrequired", *discussionmessage_response_compound->fki_discussionmembership_id_actionrequired) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -188,8 +231,26 @@ discussionmessage_response_compound_t *discussionmessage_response_compound_parse
 
     discussionmessage_response_compound_t *discussionmessage_response_compound_local_var = NULL;
 
+    // define the local variable for discussionmessage_response_compound->pki_discussionmessage_id
+    int *pki_discussionmessage_id_local_var = NULL;
+
+    // define the local variable for discussionmessage_response_compound->fki_discussion_id
+    int *fki_discussion_id_local_var = NULL;
+
+    // define the local variable for discussionmessage_response_compound->fki_discussionmembership_id
+    int *fki_discussionmembership_id_local_var = NULL;
+
+    // define the local variable for discussionmessage_response_compound->fki_discussionmembership_id_actionrequired
+    int *fki_discussionmembership_id_actionrequired_local_var = NULL;
+
     // define the local variable for discussionmessage_response_compound->e_discussionmessage_status
     ezmax_api_definition__full_field_e_discussionmessage_status__e e_discussionmessage_status_local_nonprim = 0;
+
+    char *t_discussionmessage_content_local_str = NULL;
+
+    char *s_discussionmessage_creatorname_local_str = NULL;
+
+    char *s_discussionmessage_actionrequiredname_local_str = NULL;
 
     // define the local variable for discussionmessage_response_compound->obj_audit
     common_audit_t *obj_audit_local_nonprim = NULL;
@@ -208,6 +269,12 @@ discussionmessage_response_compound_t *discussionmessage_response_compound_parse
     {
     goto end; //Numeric
     }
+    pki_discussionmessage_id_local_var = malloc(sizeof(int));
+    if(!pki_discussionmessage_id_local_var)
+    {
+        goto end;
+    }
+    *pki_discussionmessage_id_local_var = pki_discussionmessage_id->valuedouble;
 
     // discussionmessage_response_compound->fki_discussion_id
     cJSON *fki_discussion_id = cJSON_GetObjectItemCaseSensitive(discussionmessage_response_compoundJSON, "fkiDiscussionID");
@@ -223,6 +290,12 @@ discussionmessage_response_compound_t *discussionmessage_response_compound_parse
     {
     goto end; //Numeric
     }
+    fki_discussion_id_local_var = malloc(sizeof(int));
+    if(!fki_discussion_id_local_var)
+    {
+        goto end;
+    }
+    *fki_discussion_id_local_var = fki_discussion_id->valuedouble;
 
     // discussionmessage_response_compound->fki_discussionmembership_id
     cJSON *fki_discussionmembership_id = cJSON_GetObjectItemCaseSensitive(discussionmessage_response_compoundJSON, "fkiDiscussionmembershipID");
@@ -234,6 +307,12 @@ discussionmessage_response_compound_t *discussionmessage_response_compound_parse
     {
     goto end; //Numeric
     }
+    fki_discussionmembership_id_local_var = malloc(sizeof(int));
+    if(!fki_discussionmembership_id_local_var)
+    {
+        goto end;
+    }
+    *fki_discussionmembership_id_local_var = fki_discussionmembership_id->valuedouble;
     }
 
     // discussionmessage_response_compound->fki_discussionmembership_id_actionrequired
@@ -246,6 +325,12 @@ discussionmessage_response_compound_t *discussionmessage_response_compound_parse
     {
     goto end; //Numeric
     }
+    fki_discussionmembership_id_actionrequired_local_var = malloc(sizeof(int));
+    if(!fki_discussionmembership_id_actionrequired_local_var)
+    {
+        goto end;
+    }
+    *fki_discussionmembership_id_actionrequired_local_var = fki_discussionmembership_id_actionrequired->valuedouble;
     }
 
     // discussionmessage_response_compound->e_discussionmessage_status
@@ -315,22 +400,58 @@ discussionmessage_response_compound_t *discussionmessage_response_compound_parse
     obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
 
 
+    if (t_discussionmessage_content && !cJSON_IsNull(t_discussionmessage_content)) t_discussionmessage_content_local_str = strdup(t_discussionmessage_content->valuestring);
+    if (s_discussionmessage_creatorname && !cJSON_IsNull(s_discussionmessage_creatorname)) s_discussionmessage_creatorname_local_str = strdup(s_discussionmessage_creatorname->valuestring);
+    if (s_discussionmessage_actionrequiredname && !cJSON_IsNull(s_discussionmessage_actionrequiredname)) s_discussionmessage_actionrequiredname_local_str = strdup(s_discussionmessage_actionrequiredname->valuestring);
+
     discussionmessage_response_compound_local_var = discussionmessage_response_compound_create_internal (
-        pki_discussionmessage_id->valuedouble,
-        fki_discussion_id->valuedouble,
-        fki_discussionmembership_id ? fki_discussionmembership_id->valuedouble : 0,
-        fki_discussionmembership_id_actionrequired ? fki_discussionmembership_id_actionrequired->valuedouble : 0,
+        pki_discussionmessage_id_local_var,
+        fki_discussion_id_local_var,
+        fki_discussionmembership_id_local_var,
+        fki_discussionmembership_id_actionrequired_local_var,
         e_discussionmessage_status_local_nonprim,
-        strdup(t_discussionmessage_content->valuestring),
-        strdup(s_discussionmessage_creatorname->valuestring),
-        s_discussionmessage_actionrequiredname && !cJSON_IsNull(s_discussionmessage_actionrequiredname) ? strdup(s_discussionmessage_actionrequiredname->valuestring) : NULL,
+        t_discussionmessage_content_local_str,
+        s_discussionmessage_creatorname_local_str,
+        s_discussionmessage_actionrequiredname_local_str,
         obj_audit_local_nonprim
         );
 
+    if (!discussionmessage_response_compound_local_var) {
+        goto end;
+    }
+
     return discussionmessage_response_compound_local_var;
 end:
+    if (pki_discussionmessage_id_local_var) {
+        free(pki_discussionmessage_id_local_var);
+        pki_discussionmessage_id_local_var = NULL;
+    }
+    if (fki_discussion_id_local_var) {
+        free(fki_discussion_id_local_var);
+        fki_discussion_id_local_var = NULL;
+    }
+    if (fki_discussionmembership_id_local_var) {
+        free(fki_discussionmembership_id_local_var);
+        fki_discussionmembership_id_local_var = NULL;
+    }
+    if (fki_discussionmembership_id_actionrequired_local_var) {
+        free(fki_discussionmembership_id_actionrequired_local_var);
+        fki_discussionmembership_id_actionrequired_local_var = NULL;
+    }
     if (e_discussionmessage_status_local_nonprim) {
         e_discussionmessage_status_local_nonprim = 0;
+    }
+    if (t_discussionmessage_content_local_str) {
+        free(t_discussionmessage_content_local_str);
+        t_discussionmessage_content_local_str = NULL;
+    }
+    if (s_discussionmessage_creatorname_local_str) {
+        free(s_discussionmessage_creatorname_local_str);
+        s_discussionmessage_creatorname_local_str = NULL;
+    }
+    if (s_discussionmessage_actionrequiredname_local_str) {
+        free(s_discussionmessage_actionrequiredname_local_str);
+        s_discussionmessage_actionrequiredname_local_str = NULL;
     }
     if (obj_audit_local_nonprim) {
         common_audit_free(obj_audit_local_nonprim);

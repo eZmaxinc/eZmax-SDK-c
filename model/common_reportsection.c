@@ -15,12 +15,12 @@ static common_reportsection_t *common_reportsection_create_internal(
     if (!common_reportsection_local_var) {
         return NULL;
     }
+    memset(common_reportsection_local_var, 0, sizeof(common_reportsection_t));
+    common_reportsection_local_var->_library_owned = 1;
     common_reportsection_local_var->a_obj_reportsubsection = a_obj_reportsubsection;
     common_reportsection_local_var->e_reportsection_horizontalalignment = e_reportsection_horizontalalignment;
     common_reportsection_local_var->s_reportsection_title = s_reportsection_title;
     common_reportsection_local_var->s_reportsection_tabname = s_reportsection_tabname;
-
-    common_reportsection_local_var->_library_owned = 1;
     return common_reportsection_local_var;
 }
 
@@ -30,12 +30,15 @@ __attribute__((deprecated)) common_reportsection_t *common_reportsection_create(
     char *s_reportsection_title,
     char *s_reportsection_tabname
     ) {
-    return common_reportsection_create_internal (
+    common_reportsection_t *result = common_reportsection_create_internal (
         a_obj_reportsubsection,
         e_reportsection_horizontalalignment,
         s_reportsection_title,
         s_reportsection_tabname
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void common_reportsection_free(common_reportsection_t *common_reportsection) {
@@ -136,6 +139,10 @@ common_reportsection_t *common_reportsection_parseFromJSON(cJSON *common_reports
     // define the local variable for common_reportsection->e_reportsection_horizontalalignment
     ezmax_api_definition__full_enum_horizontalalignment__e e_reportsection_horizontalalignment_local_nonprim = 0;
 
+    char *s_reportsection_title_local_str = NULL;
+
+    char *s_reportsection_tabname_local_str = NULL;
+
     // common_reportsection->a_obj_reportsubsection
     cJSON *a_obj_reportsubsection = cJSON_GetObjectItemCaseSensitive(common_reportsectionJSON, "a_objReportsubsection");
     if (cJSON_IsNull(a_obj_reportsubsection)) {
@@ -200,12 +207,19 @@ common_reportsection_t *common_reportsection_parseFromJSON(cJSON *common_reports
     }
 
 
+    if (s_reportsection_title && !cJSON_IsNull(s_reportsection_title)) s_reportsection_title_local_str = strdup(s_reportsection_title->valuestring);
+    if (s_reportsection_tabname && !cJSON_IsNull(s_reportsection_tabname)) s_reportsection_tabname_local_str = strdup(s_reportsection_tabname->valuestring);
+
     common_reportsection_local_var = common_reportsection_create_internal (
         a_obj_reportsubsectionList,
         e_reportsection_horizontalalignment_local_nonprim,
-        s_reportsection_title && !cJSON_IsNull(s_reportsection_title) ? strdup(s_reportsection_title->valuestring) : NULL,
-        s_reportsection_tabname && !cJSON_IsNull(s_reportsection_tabname) ? strdup(s_reportsection_tabname->valuestring) : NULL
+        s_reportsection_title_local_str,
+        s_reportsection_tabname_local_str
         );
+
+    if (!common_reportsection_local_var) {
+        goto end;
+    }
 
     return common_reportsection_local_var;
 end:
@@ -220,6 +234,14 @@ end:
     }
     if (e_reportsection_horizontalalignment_local_nonprim) {
         e_reportsection_horizontalalignment_local_nonprim = 0;
+    }
+    if (s_reportsection_title_local_str) {
+        free(s_reportsection_title_local_str);
+        s_reportsection_title_local_str = NULL;
+    }
+    if (s_reportsection_tabname_local_str) {
+        free(s_reportsection_tabname_local_str);
+        s_reportsection_tabname_local_str = NULL;
     }
     return NULL;
 

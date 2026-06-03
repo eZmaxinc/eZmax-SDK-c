@@ -13,10 +13,10 @@ static paymentterm_edit_object_v1_response_t *paymentterm_edit_object_v1_respons
     if (!paymentterm_edit_object_v1_response_local_var) {
         return NULL;
     }
+    memset(paymentterm_edit_object_v1_response_local_var, 0, sizeof(paymentterm_edit_object_v1_response_t));
+    paymentterm_edit_object_v1_response_local_var->_library_owned = 1;
     paymentterm_edit_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     paymentterm_edit_object_v1_response_local_var->obj_debug = obj_debug;
-
-    paymentterm_edit_object_v1_response_local_var->_library_owned = 1;
     return paymentterm_edit_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) paymentterm_edit_object_v1_response_t *paymentterm_e
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return paymentterm_edit_object_v1_response_create_internal (
+    paymentterm_edit_object_v1_response_t *result = paymentterm_edit_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void paymentterm_edit_object_v1_response_free(paymentterm_edit_object_v1_response_t *paymentterm_edit_object_v1_response) {
@@ -119,10 +122,15 @@ paymentterm_edit_object_v1_response_t *paymentterm_edit_object_v1_response_parse
     }
 
 
+
     paymentterm_edit_object_v1_response_local_var = paymentterm_edit_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!paymentterm_edit_object_v1_response_local_var) {
+        goto end;
+    }
 
     return paymentterm_edit_object_v1_response_local_var;
 end:

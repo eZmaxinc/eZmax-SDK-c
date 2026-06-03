@@ -14,11 +14,11 @@ static webhook_user_user_created_t *webhook_user_user_created_create_internal(
     if (!webhook_user_user_created_local_var) {
         return NULL;
     }
+    memset(webhook_user_user_created_local_var, 0, sizeof(webhook_user_user_created_t));
+    webhook_user_user_created_local_var->_library_owned = 1;
     webhook_user_user_created_local_var->obj_webhook = obj_webhook;
     webhook_user_user_created_local_var->a_obj_attempt = a_obj_attempt;
     webhook_user_user_created_local_var->obj_user = obj_user;
-
-    webhook_user_user_created_local_var->_library_owned = 1;
     return webhook_user_user_created_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) webhook_user_user_created_t *webhook_user_user_creat
     list_t *a_obj_attempt,
     user_response_compound_t *obj_user
     ) {
-    return webhook_user_user_created_create_internal (
+    webhook_user_user_created_t *result = webhook_user_user_created_create_internal (
         obj_webhook,
         a_obj_attempt,
         obj_user
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void webhook_user_user_created_free(webhook_user_user_created_t *webhook_user_user_created) {
@@ -185,11 +188,16 @@ webhook_user_user_created_t *webhook_user_user_created_parseFromJSON(cJSON *webh
     obj_user_local_nonprim = user_response_compound_parseFromJSON(obj_user); //nonprimitive
 
 
+
     webhook_user_user_created_local_var = webhook_user_user_created_create_internal (
         obj_webhook_local_nonprim,
         a_obj_attemptList,
         obj_user_local_nonprim
         );
+
+    if (!webhook_user_user_created_local_var) {
+        goto end;
+    }
 
     return webhook_user_user_created_local_var;
 end:

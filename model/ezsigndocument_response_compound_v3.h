@@ -23,33 +23,33 @@ typedef struct ezsigndocument_response_compound_v3_t ezsigndocument_response_com
 
 
 typedef struct ezsigndocument_response_compound_v3_t {
-    int pki_ezsigndocument_id; //numeric
-    int fki_ezsignfolder_id; //numeric
-    int fki_ezsignfoldersignerassociation_id_declinedtosign; //numeric
+    int *pki_ezsigndocument_id; //numeric
+    int *fki_ezsignfolder_id; //numeric
+    int *fki_ezsignfoldersignerassociation_id_declinedtosign; //numeric
     char *dt_ezsigndocument_duedate; // string
     char *dt_ezsignform_completed; // string
-    int fki_language_id; //numeric
+    int *fki_language_id; //numeric
     char *s_ezsigndocument_name; // string
     ezmax_api_definition__full_field_e_ezsigndocument_step__e e_ezsigndocument_step; //referenced enum
     char *dt_ezsigndocument_firstsend; // string
     char *dt_ezsigndocument_lastsend; // string
-    int i_ezsigndocument_order; //numeric
-    int i_ezsigndocument_pagetotal; //numeric
-    int i_ezsigndocument_signaturesigned; //numeric
-    int i_ezsigndocument_signaturetotal; //numeric
-    int i_ezsigndocument_formfieldtotal; //numeric
+    int *i_ezsigndocument_order; //numeric
+    int *i_ezsigndocument_pagetotal; //numeric
+    int *i_ezsigndocument_signaturesigned; //numeric
+    int *i_ezsigndocument_signaturetotal; //numeric
+    int *i_ezsigndocument_formfieldtotal; //numeric
     char *s_ezsigndocument_md5initial; // string
     char *t_ezsigndocument_declinedtosignreason; // string
     char *s_ezsigndocument_md5signed; // string
-    int b_ezsigndocument_ezsignform; //boolean
-    int b_ezsigndocument_hassignedsignatures; //boolean
-    int b_ezsigndocument_sendtoged; //boolean
+    int *b_ezsigndocument_ezsignform; //boolean
+    int *b_ezsigndocument_hassignedsignatures; //boolean
+    int *b_ezsigndocument_sendtoged; //boolean
     struct common_audit_t *obj_audit; //model
     char *s_ezsigndocument_externalid; // string
-    int i_ezsigndocument_ezsignsignatureattachmenttotal; //numeric
-    int i_ezsigndocument_ezsigndiscussiontotal; //numeric
-    int i_ezsigndocument_steptotal; //numeric
-    int i_ezsigndocument_stepcurrent; //numeric
+    int *i_ezsigndocument_ezsignsignatureattachmenttotal; //numeric
+    int *i_ezsigndocument_ezsigndiscussiontotal; //numeric
+    int *i_ezsigndocument_steptotal; //numeric
+    int *i_ezsigndocument_stepcurrent; //numeric
     list_t *a_obj_ezsignfoldersignerassociationstatus; //nonprimitive container
     list_t *a_obj_ezsigndocumentdependency; //nonprimitive container
 
@@ -57,33 +57,33 @@ typedef struct ezsigndocument_response_compound_v3_t {
 } ezsigndocument_response_compound_v3_t;
 
 __attribute__((deprecated)) ezsigndocument_response_compound_v3_t *ezsigndocument_response_compound_v3_create(
-    int pki_ezsigndocument_id,
-    int fki_ezsignfolder_id,
-    int fki_ezsignfoldersignerassociation_id_declinedtosign,
+    int *pki_ezsigndocument_id,
+    int *fki_ezsignfolder_id,
+    int *fki_ezsignfoldersignerassociation_id_declinedtosign,
     char *dt_ezsigndocument_duedate,
     char *dt_ezsignform_completed,
-    int fki_language_id,
+    int *fki_language_id,
     char *s_ezsigndocument_name,
     ezmax_api_definition__full_field_e_ezsigndocument_step__e e_ezsigndocument_step,
     char *dt_ezsigndocument_firstsend,
     char *dt_ezsigndocument_lastsend,
-    int i_ezsigndocument_order,
-    int i_ezsigndocument_pagetotal,
-    int i_ezsigndocument_signaturesigned,
-    int i_ezsigndocument_signaturetotal,
-    int i_ezsigndocument_formfieldtotal,
+    int *i_ezsigndocument_order,
+    int *i_ezsigndocument_pagetotal,
+    int *i_ezsigndocument_signaturesigned,
+    int *i_ezsigndocument_signaturetotal,
+    int *i_ezsigndocument_formfieldtotal,
     char *s_ezsigndocument_md5initial,
     char *t_ezsigndocument_declinedtosignreason,
     char *s_ezsigndocument_md5signed,
-    int b_ezsigndocument_ezsignform,
-    int b_ezsigndocument_hassignedsignatures,
-    int b_ezsigndocument_sendtoged,
+    int *b_ezsigndocument_ezsignform,
+    int *b_ezsigndocument_hassignedsignatures,
+    int *b_ezsigndocument_sendtoged,
     common_audit_t *obj_audit,
     char *s_ezsigndocument_externalid,
-    int i_ezsigndocument_ezsignsignatureattachmenttotal,
-    int i_ezsigndocument_ezsigndiscussiontotal,
-    int i_ezsigndocument_steptotal,
-    int i_ezsigndocument_stepcurrent,
+    int *i_ezsigndocument_ezsignsignatureattachmenttotal,
+    int *i_ezsigndocument_ezsigndiscussiontotal,
+    int *i_ezsigndocument_steptotal,
+    int *i_ezsigndocument_stepcurrent,
     list_t *a_obj_ezsignfoldersignerassociationstatus,
     list_t *a_obj_ezsigndocumentdependency
 );

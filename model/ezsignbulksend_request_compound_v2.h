@@ -20,27 +20,27 @@ typedef struct ezsignbulksend_request_compound_v2_t ezsignbulksend_request_compo
 
 
 typedef struct ezsignbulksend_request_compound_v2_t {
-    int pki_ezsignbulksend_id; //numeric
-    int fki_ezsignfoldertype_id; //numeric
-    int fki_language_id; //numeric
+    int *pki_ezsignbulksend_id; //numeric
+    int *fki_ezsignfoldertype_id; //numeric
+    int *fki_language_id; //numeric
     ezmax_api_definition__full_field_e_ezsignbulksend_ezsignformfieldorder__e e_ezsignbulksend_ezsignformfieldorder; //referenced enum
     char *s_ezsignbulksend_description; // string
     char *t_ezsignbulksend_note; // string
-    int b_ezsignbulksend_needvalidation; //boolean
-    int b_ezsignbulksend_isactive; //boolean
+    int *b_ezsignbulksend_needvalidation; //boolean
+    int *b_ezsignbulksend_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignbulksend_request_compound_v2_t;
 
 __attribute__((deprecated)) ezsignbulksend_request_compound_v2_t *ezsignbulksend_request_compound_v2_create(
-    int pki_ezsignbulksend_id,
-    int fki_ezsignfoldertype_id,
-    int fki_language_id,
+    int *pki_ezsignbulksend_id,
+    int *fki_ezsignfoldertype_id,
+    int *fki_language_id,
     ezmax_api_definition__full_field_e_ezsignbulksend_ezsignformfieldorder__e e_ezsignbulksend_ezsignformfieldorder,
     char *s_ezsignbulksend_description,
     char *t_ezsignbulksend_note,
-    int b_ezsignbulksend_needvalidation,
-    int b_ezsignbulksend_isactive
+    int *b_ezsignbulksend_needvalidation,
+    int *b_ezsignbulksend_isactive
 );
 
 void ezsignbulksend_request_compound_v2_free(ezsignbulksend_request_compound_v2_t *ezsignbulksend_request_compound_v2);

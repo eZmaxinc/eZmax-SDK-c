@@ -27,18 +27,18 @@ typedef struct custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_w
 
 
 typedef struct custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request_t {
-    int pki_ezsignformfieldgroup_id; //numeric
-    int fki_ezsigndocument_id; //numeric
+    int *pki_ezsignformfieldgroup_id; //numeric
+    int *fki_ezsigndocument_id; //numeric
     ezmax_api_definition__full_field_e_ezsignformfieldgroup_type__e e_ezsignformfieldgroup_type; //referenced enum
     ezmax_api_definition__full_field_e_ezsignformfieldgroup_signerrequirement__e e_ezsignformfieldgroup_signerrequirement; //referenced enum
     char *s_ezsignformfieldgroup_label; // string
-    int i_ezsignformfieldgroup_step; //numeric
+    int *i_ezsignformfieldgroup_step; //numeric
     char *s_ezsignformfieldgroup_defaultvalue; // string
-    int i_ezsignformfieldgroup_filledmin; //numeric
-    int i_ezsignformfieldgroup_filledmax; //numeric
-    int b_ezsignformfieldgroup_readonly; //boolean
-    int i_ezsignformfieldgroup_maxlength; //numeric
-    int b_ezsignformfieldgroup_encrypted; //boolean
+    int *i_ezsignformfieldgroup_filledmin; //numeric
+    int *i_ezsignformfieldgroup_filledmax; //numeric
+    int *b_ezsignformfieldgroup_readonly; //boolean
+    int *i_ezsignformfieldgroup_maxlength; //numeric
+    int *b_ezsignformfieldgroup_encrypted; //boolean
     char *s_ezsignformfieldgroup_regexp; // string
     char *s_ezsignformfieldgroup_textvalidationcustommessage; // string
     char *t_ezsignformfieldgroup_tooltip; // string
@@ -53,18 +53,18 @@ typedef struct custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_w
 } custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request_t;
 
 __attribute__((deprecated)) custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request_t *custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request_create(
-    int pki_ezsignformfieldgroup_id,
-    int fki_ezsigndocument_id,
+    int *pki_ezsignformfieldgroup_id,
+    int *fki_ezsigndocument_id,
     ezmax_api_definition__full_field_e_ezsignformfieldgroup_type__e e_ezsignformfieldgroup_type,
     ezmax_api_definition__full_field_e_ezsignformfieldgroup_signerrequirement__e e_ezsignformfieldgroup_signerrequirement,
     char *s_ezsignformfieldgroup_label,
-    int i_ezsignformfieldgroup_step,
+    int *i_ezsignformfieldgroup_step,
     char *s_ezsignformfieldgroup_defaultvalue,
-    int i_ezsignformfieldgroup_filledmin,
-    int i_ezsignformfieldgroup_filledmax,
-    int b_ezsignformfieldgroup_readonly,
-    int i_ezsignformfieldgroup_maxlength,
-    int b_ezsignformfieldgroup_encrypted,
+    int *i_ezsignformfieldgroup_filledmin,
+    int *i_ezsignformfieldgroup_filledmax,
+    int *b_ezsignformfieldgroup_readonly,
+    int *i_ezsignformfieldgroup_maxlength,
+    int *b_ezsignformfieldgroup_encrypted,
     char *s_ezsignformfieldgroup_regexp,
     char *s_ezsignformfieldgroup_textvalidationcustommessage,
     char *t_ezsignformfieldgroup_tooltip,

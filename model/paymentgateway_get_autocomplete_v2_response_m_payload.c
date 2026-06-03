@@ -12,18 +12,21 @@ static paymentgateway_get_autocomplete_v2_response_m_payload_t *paymentgateway_g
     if (!paymentgateway_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    paymentgateway_get_autocomplete_v2_response_m_payload_local_var->a_obj_paymentgateway = a_obj_paymentgateway;
-
+    memset(paymentgateway_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(paymentgateway_get_autocomplete_v2_response_m_payload_t));
     paymentgateway_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    paymentgateway_get_autocomplete_v2_response_m_payload_local_var->a_obj_paymentgateway = a_obj_paymentgateway;
     return paymentgateway_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) paymentgateway_get_autocomplete_v2_response_m_payload_t *paymentgateway_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_paymentgateway
     ) {
-    return paymentgateway_get_autocomplete_v2_response_m_payload_create_internal (
+    paymentgateway_get_autocomplete_v2_response_m_payload_t *result = paymentgateway_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_paymentgateway
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void paymentgateway_get_autocomplete_v2_response_m_payload_free(paymentgateway_get_autocomplete_v2_response_m_payload_t *paymentgateway_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ paymentgateway_get_autocomplete_v2_response_m_payload_t *paymentgateway_get_auto
     }
 
 
+
     paymentgateway_get_autocomplete_v2_response_m_payload_local_var = paymentgateway_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_paymentgatewayList
         );
+
+    if (!paymentgateway_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return paymentgateway_get_autocomplete_v2_response_m_payload_local_var;
 end:

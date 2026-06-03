@@ -12,18 +12,21 @@ static ezsignsigningreason_create_object_v1_request_t *ezsignsigningreason_creat
     if (!ezsignsigningreason_create_object_v1_request_local_var) {
         return NULL;
     }
-    ezsignsigningreason_create_object_v1_request_local_var->a_obj_ezsignsigningreason = a_obj_ezsignsigningreason;
-
+    memset(ezsignsigningreason_create_object_v1_request_local_var, 0, sizeof(ezsignsigningreason_create_object_v1_request_t));
     ezsignsigningreason_create_object_v1_request_local_var->_library_owned = 1;
+    ezsignsigningreason_create_object_v1_request_local_var->a_obj_ezsignsigningreason = a_obj_ezsignsigningreason;
     return ezsignsigningreason_create_object_v1_request_local_var;
 }
 
 __attribute__((deprecated)) ezsignsigningreason_create_object_v1_request_t *ezsignsigningreason_create_object_v1_request_create(
     list_t *a_obj_ezsignsigningreason
     ) {
-    return ezsignsigningreason_create_object_v1_request_create_internal (
+    ezsignsigningreason_create_object_v1_request_t *result = ezsignsigningreason_create_object_v1_request_create_internal (
         a_obj_ezsignsigningreason
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignsigningreason_create_object_v1_request_free(ezsignsigningreason_create_object_v1_request_t *ezsignsigningreason_create_object_v1_request) {
@@ -111,9 +114,14 @@ ezsignsigningreason_create_object_v1_request_t *ezsignsigningreason_create_objec
     }
 
 
+
     ezsignsigningreason_create_object_v1_request_local_var = ezsignsigningreason_create_object_v1_request_create_internal (
         a_obj_ezsignsigningreasonList
         );
+
+    if (!ezsignsigningreason_create_object_v1_request_local_var) {
+        goto end;
+    }
 
     return ezsignsigningreason_create_object_v1_request_local_var;
 end:

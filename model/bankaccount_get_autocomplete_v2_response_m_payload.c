@@ -12,18 +12,21 @@ static bankaccount_get_autocomplete_v2_response_m_payload_t *bankaccount_get_aut
     if (!bankaccount_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    bankaccount_get_autocomplete_v2_response_m_payload_local_var->a_obj_bankaccount = a_obj_bankaccount;
-
+    memset(bankaccount_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(bankaccount_get_autocomplete_v2_response_m_payload_t));
     bankaccount_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    bankaccount_get_autocomplete_v2_response_m_payload_local_var->a_obj_bankaccount = a_obj_bankaccount;
     return bankaccount_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) bankaccount_get_autocomplete_v2_response_m_payload_t *bankaccount_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_bankaccount
     ) {
-    return bankaccount_get_autocomplete_v2_response_m_payload_create_internal (
+    bankaccount_get_autocomplete_v2_response_m_payload_t *result = bankaccount_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_bankaccount
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void bankaccount_get_autocomplete_v2_response_m_payload_free(bankaccount_get_autocomplete_v2_response_m_payload_t *bankaccount_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ bankaccount_get_autocomplete_v2_response_m_payload_t *bankaccount_get_autocomple
     }
 
 
+
     bankaccount_get_autocomplete_v2_response_m_payload_local_var = bankaccount_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_bankaccountList
         );
+
+    if (!bankaccount_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return bankaccount_get_autocomplete_v2_response_m_payload_local_var;
 end:

@@ -23,10 +23,10 @@ typedef struct common_reportcellstyle_t common_reportcellstyle_t;
 
 
 typedef struct common_reportcellstyle_t {
-    int b_reportcellstyle_bordertop; //boolean
-    int b_reportcellstyle_borderbottom; //boolean
-    int b_reportcellstyle_borderleft; //boolean
-    int b_reportcellstyle_borderright; //boolean
+    int *b_reportcellstyle_bordertop; //boolean
+    int *b_reportcellstyle_borderbottom; //boolean
+    int *b_reportcellstyle_borderleft; //boolean
+    int *b_reportcellstyle_borderright; //boolean
     ezmax_api_definition__full_enum_horizontalalignment__e e_reportcell_horizontalalignment; //referenced enum
     ezmax_api_definition__full_enum_verticalalignment__e e_reportcell_verticalalignment; //referenced enum
     ezmax_api_definition__full_enum_fontweight__e e_reportcell_fontweight; //referenced enum
@@ -36,10 +36,10 @@ typedef struct common_reportcellstyle_t {
 } common_reportcellstyle_t;
 
 __attribute__((deprecated)) common_reportcellstyle_t *common_reportcellstyle_create(
-    int b_reportcellstyle_bordertop,
-    int b_reportcellstyle_borderbottom,
-    int b_reportcellstyle_borderleft,
-    int b_reportcellstyle_borderright,
+    int *b_reportcellstyle_bordertop,
+    int *b_reportcellstyle_borderbottom,
+    int *b_reportcellstyle_borderleft,
+    int *b_reportcellstyle_borderright,
     ezmax_api_definition__full_enum_horizontalalignment__e e_reportcell_horizontalalignment,
     ezmax_api_definition__full_enum_verticalalignment__e e_reportcell_verticalalignment,
     ezmax_api_definition__full_enum_fontweight__e e_reportcell_fontweight,

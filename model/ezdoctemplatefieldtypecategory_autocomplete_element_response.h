@@ -19,19 +19,19 @@ typedef struct ezdoctemplatefieldtypecategory_autocomplete_element_response_t ez
 
 
 typedef struct ezdoctemplatefieldtypecategory_autocomplete_element_response_t {
-    int pki_ezdoctemplatefieldtypecategory_id; //numeric
-    int fki_ezdoctemplatetype_id; //numeric
+    int *pki_ezdoctemplatefieldtypecategory_id; //numeric
+    int *fki_ezdoctemplatetype_id; //numeric
     char *s_ezdoctemplatefieldtypecategory_description_x; // string
-    int b_ezdoctemplatefieldtypecategory_isactive; //boolean
+    int *b_ezdoctemplatefieldtypecategory_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezdoctemplatefieldtypecategory_autocomplete_element_response_t;
 
 __attribute__((deprecated)) ezdoctemplatefieldtypecategory_autocomplete_element_response_t *ezdoctemplatefieldtypecategory_autocomplete_element_response_create(
-    int pki_ezdoctemplatefieldtypecategory_id,
-    int fki_ezdoctemplatetype_id,
+    int *pki_ezdoctemplatefieldtypecategory_id,
+    int *fki_ezdoctemplatetype_id,
     char *s_ezdoctemplatefieldtypecategory_description_x,
-    int b_ezdoctemplatefieldtypecategory_isactive
+    int *b_ezdoctemplatefieldtypecategory_isactive
 );
 
 void ezdoctemplatefieldtypecategory_autocomplete_element_response_free(ezdoctemplatefieldtypecategory_autocomplete_element_response_t *ezdoctemplatefieldtypecategory_autocomplete_element_response);

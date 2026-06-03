@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **e_ezsigntemplate_type** | **field_e_ezsigntemplate_type_t \*** |  | [optional] 
 **obj_ezsigntemplatedocument** | [**ezsigntemplatedocument_response_t**](ezsigntemplatedocument_response.md) \* |  | [optional] 
 **a_obj_ezsigntemplatesigner** | [**list_t**](ezsigntemplatesigner_response_compound.md) \* |  | 
+**a_obj_ezsigntemplateannotation** | [**list_t**](ezsigntemplateannotation_response_compound.md) \* |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

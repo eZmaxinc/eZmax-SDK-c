@@ -19,8 +19,8 @@ typedef struct creditcarddetail_request_t creditcarddetail_request_t;
 
 
 typedef struct creditcarddetail_request_t {
-    int i_creditcarddetail_expirationmonth; //numeric
-    int i_creditcarddetail_expirationyear; //numeric
+    int *i_creditcarddetail_expirationmonth; //numeric
+    int *i_creditcarddetail_expirationyear; //numeric
     char *s_creditcarddetail_civic; // string
     char *s_creditcarddetail_street; // string
     char *s_creditcarddetail_zip; // string
@@ -29,8 +29,8 @@ typedef struct creditcarddetail_request_t {
 } creditcarddetail_request_t;
 
 __attribute__((deprecated)) creditcarddetail_request_t *creditcarddetail_request_create(
-    int i_creditcarddetail_expirationmonth,
-    int i_creditcarddetail_expirationyear,
+    int *i_creditcarddetail_expirationmonth,
+    int *i_creditcarddetail_expirationyear,
     char *s_creditcarddetail_civic,
     char *s_creditcarddetail_street,
     char *s_creditcarddetail_zip

@@ -12,18 +12,21 @@ static cors_create_object_v1_response_m_payload_t *cors_create_object_v1_respons
     if (!cors_create_object_v1_response_m_payload_local_var) {
         return NULL;
     }
-    cors_create_object_v1_response_m_payload_local_var->a_pki_cors_id = a_pki_cors_id;
-
+    memset(cors_create_object_v1_response_m_payload_local_var, 0, sizeof(cors_create_object_v1_response_m_payload_t));
     cors_create_object_v1_response_m_payload_local_var->_library_owned = 1;
+    cors_create_object_v1_response_m_payload_local_var->a_pki_cors_id = a_pki_cors_id;
     return cors_create_object_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) cors_create_object_v1_response_m_payload_t *cors_create_object_v1_response_m_payload_create(
     list_t *a_pki_cors_id
     ) {
-    return cors_create_object_v1_response_m_payload_create_internal (
+    cors_create_object_v1_response_m_payload_t *result = cors_create_object_v1_response_m_payload_create_internal (
         a_pki_cors_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void cors_create_object_v1_response_m_payload_free(cors_create_object_v1_response_m_payload_t *cors_create_object_v1_response_m_payload) {
@@ -112,9 +115,14 @@ cors_create_object_v1_response_m_payload_t *cors_create_object_v1_response_m_pay
     }
 
 
+
     cors_create_object_v1_response_m_payload_local_var = cors_create_object_v1_response_m_payload_create_internal (
         a_pki_cors_idList
         );
+
+    if (!cors_create_object_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return cors_create_object_v1_response_m_payload_local_var;
 end:

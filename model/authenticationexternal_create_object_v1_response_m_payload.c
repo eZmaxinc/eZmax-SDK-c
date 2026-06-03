@@ -12,18 +12,21 @@ static authenticationexternal_create_object_v1_response_m_payload_t *authenticat
     if (!authenticationexternal_create_object_v1_response_m_payload_local_var) {
         return NULL;
     }
-    authenticationexternal_create_object_v1_response_m_payload_local_var->a_pki_authenticationexternal_id = a_pki_authenticationexternal_id;
-
+    memset(authenticationexternal_create_object_v1_response_m_payload_local_var, 0, sizeof(authenticationexternal_create_object_v1_response_m_payload_t));
     authenticationexternal_create_object_v1_response_m_payload_local_var->_library_owned = 1;
+    authenticationexternal_create_object_v1_response_m_payload_local_var->a_pki_authenticationexternal_id = a_pki_authenticationexternal_id;
     return authenticationexternal_create_object_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) authenticationexternal_create_object_v1_response_m_payload_t *authenticationexternal_create_object_v1_response_m_payload_create(
     list_t *a_pki_authenticationexternal_id
     ) {
-    return authenticationexternal_create_object_v1_response_m_payload_create_internal (
+    authenticationexternal_create_object_v1_response_m_payload_t *result = authenticationexternal_create_object_v1_response_m_payload_create_internal (
         a_pki_authenticationexternal_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void authenticationexternal_create_object_v1_response_m_payload_free(authenticationexternal_create_object_v1_response_m_payload_t *authenticationexternal_create_object_v1_response_m_payload) {
@@ -112,9 +115,14 @@ authenticationexternal_create_object_v1_response_m_payload_t *authenticationexte
     }
 
 
+
     authenticationexternal_create_object_v1_response_m_payload_local_var = authenticationexternal_create_object_v1_response_m_payload_create_internal (
         a_pki_authenticationexternal_idList
         );
+
+    if (!authenticationexternal_create_object_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return authenticationexternal_create_object_v1_response_m_payload_local_var;
 end:

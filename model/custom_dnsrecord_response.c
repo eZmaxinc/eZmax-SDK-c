@@ -45,20 +45,20 @@ static custom_dnsrecord_response_t *custom_dnsrecord_response_create_internal(
     char *s_dnsrecord_name,
     char *s_dnsrecord_value,
     char *s_dnsrecord_expectedvalue,
-    int b_dnsrecord_must_match
+    int *b_dnsrecord_must_match
     ) {
     custom_dnsrecord_response_t *custom_dnsrecord_response_local_var = malloc(sizeof(custom_dnsrecord_response_t));
     if (!custom_dnsrecord_response_local_var) {
         return NULL;
     }
+    memset(custom_dnsrecord_response_local_var, 0, sizeof(custom_dnsrecord_response_t));
+    custom_dnsrecord_response_local_var->_library_owned = 1;
     custom_dnsrecord_response_local_var->e_dnsrecord_type = e_dnsrecord_type;
     custom_dnsrecord_response_local_var->e_dnsrecord_validation = e_dnsrecord_validation;
     custom_dnsrecord_response_local_var->s_dnsrecord_name = s_dnsrecord_name;
     custom_dnsrecord_response_local_var->s_dnsrecord_value = s_dnsrecord_value;
     custom_dnsrecord_response_local_var->s_dnsrecord_expectedvalue = s_dnsrecord_expectedvalue;
     custom_dnsrecord_response_local_var->b_dnsrecord_must_match = b_dnsrecord_must_match;
-
-    custom_dnsrecord_response_local_var->_library_owned = 1;
     return custom_dnsrecord_response_local_var;
 }
 
@@ -68,16 +68,25 @@ __attribute__((deprecated)) custom_dnsrecord_response_t *custom_dnsrecord_respon
     char *s_dnsrecord_name,
     char *s_dnsrecord_value,
     char *s_dnsrecord_expectedvalue,
-    int b_dnsrecord_must_match
+    int *b_dnsrecord_must_match
     ) {
-    return custom_dnsrecord_response_create_internal (
+    int *b_dnsrecord_must_match_copy = NULL;
+    if (b_dnsrecord_must_match) {
+        b_dnsrecord_must_match_copy = malloc(sizeof(int));
+        if (b_dnsrecord_must_match_copy) *b_dnsrecord_must_match_copy = *b_dnsrecord_must_match;
+    }
+    custom_dnsrecord_response_t *result = custom_dnsrecord_response_create_internal (
         e_dnsrecord_type,
         e_dnsrecord_validation,
         s_dnsrecord_name,
         s_dnsrecord_value,
         s_dnsrecord_expectedvalue,
-        b_dnsrecord_must_match
+        b_dnsrecord_must_match_copy
         );
+    if (!result) {
+        free(b_dnsrecord_must_match_copy);
+    }
+    return result;
 }
 
 void custom_dnsrecord_response_free(custom_dnsrecord_response_t *custom_dnsrecord_response) {
@@ -100,6 +109,10 @@ void custom_dnsrecord_response_free(custom_dnsrecord_response_t *custom_dnsrecor
     if (custom_dnsrecord_response->s_dnsrecord_expectedvalue) {
         free(custom_dnsrecord_response->s_dnsrecord_expectedvalue);
         custom_dnsrecord_response->s_dnsrecord_expectedvalue = NULL;
+    }
+    if (custom_dnsrecord_response->b_dnsrecord_must_match) {
+        free(custom_dnsrecord_response->b_dnsrecord_must_match);
+        custom_dnsrecord_response->b_dnsrecord_must_match = NULL;
     }
     free(custom_dnsrecord_response);
 }
@@ -156,7 +169,7 @@ cJSON *custom_dnsrecord_response_convertToJSON(custom_dnsrecord_response_t *cust
     if (!custom_dnsrecord_response->b_dnsrecord_must_match) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bDnsrecordMustMatch", custom_dnsrecord_response->b_dnsrecord_must_match) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bDnsrecordMustMatch", *custom_dnsrecord_response->b_dnsrecord_must_match) == NULL) {
     goto fail; //Bool
     }
 
@@ -171,6 +184,15 @@ fail:
 custom_dnsrecord_response_t *custom_dnsrecord_response_parseFromJSON(cJSON *custom_dnsrecord_responseJSON){
 
     custom_dnsrecord_response_t *custom_dnsrecord_response_local_var = NULL;
+
+    char *s_dnsrecord_name_local_str = NULL;
+
+    char *s_dnsrecord_value_local_str = NULL;
+
+    char *s_dnsrecord_expectedvalue_local_str = NULL;
+
+    // define the local variable for custom_dnsrecord_response->b_dnsrecord_must_match
+    int *b_dnsrecord_must_match_local_var = NULL;
 
     // custom_dnsrecord_response->e_dnsrecord_type
     cJSON *e_dnsrecord_type = cJSON_GetObjectItemCaseSensitive(custom_dnsrecord_responseJSON, "eDnsrecordType");
@@ -259,19 +281,49 @@ custom_dnsrecord_response_t *custom_dnsrecord_response_parseFromJSON(cJSON *cust
     {
     goto end; //Bool
     }
+    b_dnsrecord_must_match_local_var = malloc(sizeof(int));
+    if(!b_dnsrecord_must_match_local_var)
+    {
+        goto end;
+    }
+    *b_dnsrecord_must_match_local_var = b_dnsrecord_must_match->valueint;
 
+
+    if (s_dnsrecord_name && !cJSON_IsNull(s_dnsrecord_name)) s_dnsrecord_name_local_str = strdup(s_dnsrecord_name->valuestring);
+    if (s_dnsrecord_value && !cJSON_IsNull(s_dnsrecord_value)) s_dnsrecord_value_local_str = strdup(s_dnsrecord_value->valuestring);
+    if (s_dnsrecord_expectedvalue && !cJSON_IsNull(s_dnsrecord_expectedvalue)) s_dnsrecord_expectedvalue_local_str = strdup(s_dnsrecord_expectedvalue->valuestring);
 
     custom_dnsrecord_response_local_var = custom_dnsrecord_response_create_internal (
         e_dnsrecord_typeVariable,
         e_dnsrecord_validationVariable,
-        strdup(s_dnsrecord_name->valuestring),
-        s_dnsrecord_value && !cJSON_IsNull(s_dnsrecord_value) ? strdup(s_dnsrecord_value->valuestring) : NULL,
-        s_dnsrecord_expectedvalue && !cJSON_IsNull(s_dnsrecord_expectedvalue) ? strdup(s_dnsrecord_expectedvalue->valuestring) : NULL,
-        b_dnsrecord_must_match->valueint
+        s_dnsrecord_name_local_str,
+        s_dnsrecord_value_local_str,
+        s_dnsrecord_expectedvalue_local_str,
+        b_dnsrecord_must_match_local_var
         );
+
+    if (!custom_dnsrecord_response_local_var) {
+        goto end;
+    }
 
     return custom_dnsrecord_response_local_var;
 end:
+    if (s_dnsrecord_name_local_str) {
+        free(s_dnsrecord_name_local_str);
+        s_dnsrecord_name_local_str = NULL;
+    }
+    if (s_dnsrecord_value_local_str) {
+        free(s_dnsrecord_value_local_str);
+        s_dnsrecord_value_local_str = NULL;
+    }
+    if (s_dnsrecord_expectedvalue_local_str) {
+        free(s_dnsrecord_expectedvalue_local_str);
+        s_dnsrecord_expectedvalue_local_str = NULL;
+    }
+    if (b_dnsrecord_must_match_local_var) {
+        free(b_dnsrecord_must_match_local_var);
+        b_dnsrecord_must_match_local_var = NULL;
+    }
     return NULL;
 
 }

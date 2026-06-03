@@ -6,9 +6,9 @@
 
 
 static versionhistory_response_compound_t *versionhistory_response_compound_create_internal(
-    int pki_versionhistory_id,
-    int fki_module_id,
-    int fki_modulesection_id,
+    int *pki_versionhistory_id,
+    int *fki_module_id,
+    int *fki_modulesection_id,
     char *s_module_name_x,
     char *s_modulesection_name_x,
     ezmax_api_definition__full_field_e_versionhistory_usertype__e e_versionhistory_usertype,
@@ -16,12 +16,14 @@ static versionhistory_response_compound_t *versionhistory_response_compound_crea
     char *dt_versionhistory_date,
     char *dt_versionhistory_dateend,
     ezmax_api_definition__full_field_e_versionhistory_type__e e_versionhistory_type,
-    int b_versionhistory_draft
+    int *b_versionhistory_draft
     ) {
     versionhistory_response_compound_t *versionhistory_response_compound_local_var = malloc(sizeof(versionhistory_response_compound_t));
     if (!versionhistory_response_compound_local_var) {
         return NULL;
     }
+    memset(versionhistory_response_compound_local_var, 0, sizeof(versionhistory_response_compound_t));
+    versionhistory_response_compound_local_var->_library_owned = 1;
     versionhistory_response_compound_local_var->pki_versionhistory_id = pki_versionhistory_id;
     versionhistory_response_compound_local_var->fki_module_id = fki_module_id;
     versionhistory_response_compound_local_var->fki_modulesection_id = fki_modulesection_id;
@@ -33,15 +35,13 @@ static versionhistory_response_compound_t *versionhistory_response_compound_crea
     versionhistory_response_compound_local_var->dt_versionhistory_dateend = dt_versionhistory_dateend;
     versionhistory_response_compound_local_var->e_versionhistory_type = e_versionhistory_type;
     versionhistory_response_compound_local_var->b_versionhistory_draft = b_versionhistory_draft;
-
-    versionhistory_response_compound_local_var->_library_owned = 1;
     return versionhistory_response_compound_local_var;
 }
 
 __attribute__((deprecated)) versionhistory_response_compound_t *versionhistory_response_compound_create(
-    int pki_versionhistory_id,
-    int fki_module_id,
-    int fki_modulesection_id,
+    int *pki_versionhistory_id,
+    int *fki_module_id,
+    int *fki_modulesection_id,
     char *s_module_name_x,
     char *s_modulesection_name_x,
     ezmax_api_definition__full_field_e_versionhistory_usertype__e e_versionhistory_usertype,
@@ -49,12 +49,32 @@ __attribute__((deprecated)) versionhistory_response_compound_t *versionhistory_r
     char *dt_versionhistory_date,
     char *dt_versionhistory_dateend,
     ezmax_api_definition__full_field_e_versionhistory_type__e e_versionhistory_type,
-    int b_versionhistory_draft
+    int *b_versionhistory_draft
     ) {
-    return versionhistory_response_compound_create_internal (
-        pki_versionhistory_id,
-        fki_module_id,
-        fki_modulesection_id,
+    int *pki_versionhistory_id_copy = NULL;
+    if (pki_versionhistory_id) {
+        pki_versionhistory_id_copy = malloc(sizeof(int));
+        if (pki_versionhistory_id_copy) *pki_versionhistory_id_copy = *pki_versionhistory_id;
+    }
+    int *fki_module_id_copy = NULL;
+    if (fki_module_id) {
+        fki_module_id_copy = malloc(sizeof(int));
+        if (fki_module_id_copy) *fki_module_id_copy = *fki_module_id;
+    }
+    int *fki_modulesection_id_copy = NULL;
+    if (fki_modulesection_id) {
+        fki_modulesection_id_copy = malloc(sizeof(int));
+        if (fki_modulesection_id_copy) *fki_modulesection_id_copy = *fki_modulesection_id;
+    }
+    int *b_versionhistory_draft_copy = NULL;
+    if (b_versionhistory_draft) {
+        b_versionhistory_draft_copy = malloc(sizeof(int));
+        if (b_versionhistory_draft_copy) *b_versionhistory_draft_copy = *b_versionhistory_draft;
+    }
+    versionhistory_response_compound_t *result = versionhistory_response_compound_create_internal (
+        pki_versionhistory_id_copy,
+        fki_module_id_copy,
+        fki_modulesection_id_copy,
         s_module_name_x,
         s_modulesection_name_x,
         e_versionhistory_usertype,
@@ -62,8 +82,15 @@ __attribute__((deprecated)) versionhistory_response_compound_t *versionhistory_r
         dt_versionhistory_date,
         dt_versionhistory_dateend,
         e_versionhistory_type,
-        b_versionhistory_draft
+        b_versionhistory_draft_copy
         );
+    if (!result) {
+        free(pki_versionhistory_id_copy);
+        free(fki_module_id_copy);
+        free(fki_modulesection_id_copy);
+        free(b_versionhistory_draft_copy);
+    }
+    return result;
 }
 
 void versionhistory_response_compound_free(versionhistory_response_compound_t *versionhistory_response_compound) {
@@ -75,6 +102,18 @@ void versionhistory_response_compound_free(versionhistory_response_compound_t *v
         return ;
     }
     listEntry_t *listEntry;
+    if (versionhistory_response_compound->pki_versionhistory_id) {
+        free(versionhistory_response_compound->pki_versionhistory_id);
+        versionhistory_response_compound->pki_versionhistory_id = NULL;
+    }
+    if (versionhistory_response_compound->fki_module_id) {
+        free(versionhistory_response_compound->fki_module_id);
+        versionhistory_response_compound->fki_module_id = NULL;
+    }
+    if (versionhistory_response_compound->fki_modulesection_id) {
+        free(versionhistory_response_compound->fki_modulesection_id);
+        versionhistory_response_compound->fki_modulesection_id = NULL;
+    }
     if (versionhistory_response_compound->s_module_name_x) {
         free(versionhistory_response_compound->s_module_name_x);
         versionhistory_response_compound->s_module_name_x = NULL;
@@ -95,6 +134,10 @@ void versionhistory_response_compound_free(versionhistory_response_compound_t *v
         free(versionhistory_response_compound->dt_versionhistory_dateend);
         versionhistory_response_compound->dt_versionhistory_dateend = NULL;
     }
+    if (versionhistory_response_compound->b_versionhistory_draft) {
+        free(versionhistory_response_compound->b_versionhistory_draft);
+        versionhistory_response_compound->b_versionhistory_draft = NULL;
+    }
     free(versionhistory_response_compound);
 }
 
@@ -105,14 +148,14 @@ cJSON *versionhistory_response_compound_convertToJSON(versionhistory_response_co
     if (!versionhistory_response_compound->pki_versionhistory_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiVersionhistoryID", versionhistory_response_compound->pki_versionhistory_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiVersionhistoryID", *versionhistory_response_compound->pki_versionhistory_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // versionhistory_response_compound->fki_module_id
     if(versionhistory_response_compound->fki_module_id) {
-    if(cJSON_AddNumberToObject(item, "fkiModuleID", versionhistory_response_compound->fki_module_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiModuleID", *versionhistory_response_compound->fki_module_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -120,7 +163,7 @@ cJSON *versionhistory_response_compound_convertToJSON(versionhistory_response_co
 
     // versionhistory_response_compound->fki_modulesection_id
     if(versionhistory_response_compound->fki_modulesection_id) {
-    if(cJSON_AddNumberToObject(item, "fkiModulesectionID", versionhistory_response_compound->fki_modulesection_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiModulesectionID", *versionhistory_response_compound->fki_modulesection_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -204,7 +247,7 @@ cJSON *versionhistory_response_compound_convertToJSON(versionhistory_response_co
     if (!versionhistory_response_compound->b_versionhistory_draft) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bVersionhistoryDraft", versionhistory_response_compound->b_versionhistory_draft) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bVersionhistoryDraft", *versionhistory_response_compound->b_versionhistory_draft) == NULL) {
     goto fail; //Bool
     }
 
@@ -220,14 +263,34 @@ versionhistory_response_compound_t *versionhistory_response_compound_parseFromJS
 
     versionhistory_response_compound_t *versionhistory_response_compound_local_var = NULL;
 
+    // define the local variable for versionhistory_response_compound->pki_versionhistory_id
+    int *pki_versionhistory_id_local_var = NULL;
+
+    // define the local variable for versionhistory_response_compound->fki_module_id
+    int *fki_module_id_local_var = NULL;
+
+    // define the local variable for versionhistory_response_compound->fki_modulesection_id
+    int *fki_modulesection_id_local_var = NULL;
+
+    char *s_module_name_x_local_str = NULL;
+
+    char *s_modulesection_name_x_local_str = NULL;
+
     // define the local variable for versionhistory_response_compound->e_versionhistory_usertype
     ezmax_api_definition__full_field_e_versionhistory_usertype__e e_versionhistory_usertype_local_nonprim = 0;
 
     // define the local variable for versionhistory_response_compound->obj_versionhistory_detail
     multilingual_versionhistory_detail_t *obj_versionhistory_detail_local_nonprim = NULL;
 
+    char *dt_versionhistory_date_local_str = NULL;
+
+    char *dt_versionhistory_dateend_local_str = NULL;
+
     // define the local variable for versionhistory_response_compound->e_versionhistory_type
     ezmax_api_definition__full_field_e_versionhistory_type__e e_versionhistory_type_local_nonprim = 0;
+
+    // define the local variable for versionhistory_response_compound->b_versionhistory_draft
+    int *b_versionhistory_draft_local_var = NULL;
 
     // versionhistory_response_compound->pki_versionhistory_id
     cJSON *pki_versionhistory_id = cJSON_GetObjectItemCaseSensitive(versionhistory_response_compoundJSON, "pkiVersionhistoryID");
@@ -243,6 +306,12 @@ versionhistory_response_compound_t *versionhistory_response_compound_parseFromJS
     {
     goto end; //Numeric
     }
+    pki_versionhistory_id_local_var = malloc(sizeof(int));
+    if(!pki_versionhistory_id_local_var)
+    {
+        goto end;
+    }
+    *pki_versionhistory_id_local_var = pki_versionhistory_id->valuedouble;
 
     // versionhistory_response_compound->fki_module_id
     cJSON *fki_module_id = cJSON_GetObjectItemCaseSensitive(versionhistory_response_compoundJSON, "fkiModuleID");
@@ -254,6 +323,12 @@ versionhistory_response_compound_t *versionhistory_response_compound_parseFromJS
     {
     goto end; //Numeric
     }
+    fki_module_id_local_var = malloc(sizeof(int));
+    if(!fki_module_id_local_var)
+    {
+        goto end;
+    }
+    *fki_module_id_local_var = fki_module_id->valuedouble;
     }
 
     // versionhistory_response_compound->fki_modulesection_id
@@ -266,6 +341,12 @@ versionhistory_response_compound_t *versionhistory_response_compound_parseFromJS
     {
     goto end; //Numeric
     }
+    fki_modulesection_id_local_var = malloc(sizeof(int));
+    if(!fki_modulesection_id_local_var)
+    {
+        goto end;
+    }
+    *fki_modulesection_id_local_var = fki_modulesection_id->valuedouble;
     }
 
     // versionhistory_response_compound->s_module_name_x
@@ -366,24 +447,59 @@ versionhistory_response_compound_t *versionhistory_response_compound_parseFromJS
     {
     goto end; //Bool
     }
+    b_versionhistory_draft_local_var = malloc(sizeof(int));
+    if(!b_versionhistory_draft_local_var)
+    {
+        goto end;
+    }
+    *b_versionhistory_draft_local_var = b_versionhistory_draft->valueint;
 
+
+    if (s_module_name_x && !cJSON_IsNull(s_module_name_x)) s_module_name_x_local_str = strdup(s_module_name_x->valuestring);
+    if (s_modulesection_name_x && !cJSON_IsNull(s_modulesection_name_x)) s_modulesection_name_x_local_str = strdup(s_modulesection_name_x->valuestring);
+    if (dt_versionhistory_date && !cJSON_IsNull(dt_versionhistory_date)) dt_versionhistory_date_local_str = strdup(dt_versionhistory_date->valuestring);
+    if (dt_versionhistory_dateend && !cJSON_IsNull(dt_versionhistory_dateend)) dt_versionhistory_dateend_local_str = strdup(dt_versionhistory_dateend->valuestring);
 
     versionhistory_response_compound_local_var = versionhistory_response_compound_create_internal (
-        pki_versionhistory_id->valuedouble,
-        fki_module_id ? fki_module_id->valuedouble : 0,
-        fki_modulesection_id ? fki_modulesection_id->valuedouble : 0,
-        s_module_name_x && !cJSON_IsNull(s_module_name_x) ? strdup(s_module_name_x->valuestring) : NULL,
-        s_modulesection_name_x && !cJSON_IsNull(s_modulesection_name_x) ? strdup(s_modulesection_name_x->valuestring) : NULL,
+        pki_versionhistory_id_local_var,
+        fki_module_id_local_var,
+        fki_modulesection_id_local_var,
+        s_module_name_x_local_str,
+        s_modulesection_name_x_local_str,
         e_versionhistory_usertype ? e_versionhistory_usertype_local_nonprim : 0,
         obj_versionhistory_detail_local_nonprim,
-        strdup(dt_versionhistory_date->valuestring),
-        dt_versionhistory_dateend && !cJSON_IsNull(dt_versionhistory_dateend) ? strdup(dt_versionhistory_dateend->valuestring) : NULL,
+        dt_versionhistory_date_local_str,
+        dt_versionhistory_dateend_local_str,
         e_versionhistory_type_local_nonprim,
-        b_versionhistory_draft->valueint
+        b_versionhistory_draft_local_var
         );
+
+    if (!versionhistory_response_compound_local_var) {
+        goto end;
+    }
 
     return versionhistory_response_compound_local_var;
 end:
+    if (pki_versionhistory_id_local_var) {
+        free(pki_versionhistory_id_local_var);
+        pki_versionhistory_id_local_var = NULL;
+    }
+    if (fki_module_id_local_var) {
+        free(fki_module_id_local_var);
+        fki_module_id_local_var = NULL;
+    }
+    if (fki_modulesection_id_local_var) {
+        free(fki_modulesection_id_local_var);
+        fki_modulesection_id_local_var = NULL;
+    }
+    if (s_module_name_x_local_str) {
+        free(s_module_name_x_local_str);
+        s_module_name_x_local_str = NULL;
+    }
+    if (s_modulesection_name_x_local_str) {
+        free(s_modulesection_name_x_local_str);
+        s_modulesection_name_x_local_str = NULL;
+    }
     if (e_versionhistory_usertype_local_nonprim) {
         e_versionhistory_usertype_local_nonprim = 0;
     }
@@ -391,8 +507,20 @@ end:
         multilingual_versionhistory_detail_free(obj_versionhistory_detail_local_nonprim);
         obj_versionhistory_detail_local_nonprim = NULL;
     }
+    if (dt_versionhistory_date_local_str) {
+        free(dt_versionhistory_date_local_str);
+        dt_versionhistory_date_local_str = NULL;
+    }
+    if (dt_versionhistory_dateend_local_str) {
+        free(dt_versionhistory_dateend_local_str);
+        dt_versionhistory_dateend_local_str = NULL;
+    }
     if (e_versionhistory_type_local_nonprim) {
         e_versionhistory_type_local_nonprim = 0;
+    }
+    if (b_versionhistory_draft_local_var) {
+        free(b_versionhistory_draft_local_var);
+        b_versionhistory_draft_local_var = NULL;
     }
     return NULL;
 

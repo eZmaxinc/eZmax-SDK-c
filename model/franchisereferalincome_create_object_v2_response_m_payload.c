@@ -12,18 +12,21 @@ static franchisereferalincome_create_object_v2_response_m_payload_t *franchisere
     if (!franchisereferalincome_create_object_v2_response_m_payload_local_var) {
         return NULL;
     }
-    franchisereferalincome_create_object_v2_response_m_payload_local_var->a_pki_franchisereferalincome_id = a_pki_franchisereferalincome_id;
-
+    memset(franchisereferalincome_create_object_v2_response_m_payload_local_var, 0, sizeof(franchisereferalincome_create_object_v2_response_m_payload_t));
     franchisereferalincome_create_object_v2_response_m_payload_local_var->_library_owned = 1;
+    franchisereferalincome_create_object_v2_response_m_payload_local_var->a_pki_franchisereferalincome_id = a_pki_franchisereferalincome_id;
     return franchisereferalincome_create_object_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) franchisereferalincome_create_object_v2_response_m_payload_t *franchisereferalincome_create_object_v2_response_m_payload_create(
     list_t *a_pki_franchisereferalincome_id
     ) {
-    return franchisereferalincome_create_object_v2_response_m_payload_create_internal (
+    franchisereferalincome_create_object_v2_response_m_payload_t *result = franchisereferalincome_create_object_v2_response_m_payload_create_internal (
         a_pki_franchisereferalincome_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void franchisereferalincome_create_object_v2_response_m_payload_free(franchisereferalincome_create_object_v2_response_m_payload_t *franchisereferalincome_create_object_v2_response_m_payload) {
@@ -112,9 +115,14 @@ franchisereferalincome_create_object_v2_response_m_payload_t *franchisereferalin
     }
 
 
+
     franchisereferalincome_create_object_v2_response_m_payload_local_var = franchisereferalincome_create_object_v2_response_m_payload_create_internal (
         a_pki_franchisereferalincome_idList
         );
+
+    if (!franchisereferalincome_create_object_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return franchisereferalincome_create_object_v2_response_m_payload_local_var;
 end:

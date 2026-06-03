@@ -13,10 +13,10 @@ static ezsignfolder_reorder_v2_request_t *ezsignfolder_reorder_v2_request_create
     if (!ezsignfolder_reorder_v2_request_local_var) {
         return NULL;
     }
+    memset(ezsignfolder_reorder_v2_request_local_var, 0, sizeof(ezsignfolder_reorder_v2_request_t));
+    ezsignfolder_reorder_v2_request_local_var->_library_owned = 1;
     ezsignfolder_reorder_v2_request_local_var->e_ezsignfolder_documentdependency = e_ezsignfolder_documentdependency;
     ezsignfolder_reorder_v2_request_local_var->a_obj_ezsigndocument = a_obj_ezsigndocument;
-
-    ezsignfolder_reorder_v2_request_local_var->_library_owned = 1;
     return ezsignfolder_reorder_v2_request_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) ezsignfolder_reorder_v2_request_t *ezsignfolder_reor
     ezmax_api_definition__full_field_e_ezsignfolder_documentdependency__e e_ezsignfolder_documentdependency,
     list_t *a_obj_ezsigndocument
     ) {
-    return ezsignfolder_reorder_v2_request_create_internal (
+    ezsignfolder_reorder_v2_request_t *result = ezsignfolder_reorder_v2_request_create_internal (
         e_ezsignfolder_documentdependency,
         a_obj_ezsigndocument
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignfolder_reorder_v2_request_free(ezsignfolder_reorder_v2_request_t *ezsignfolder_reorder_v2_request) {
@@ -140,10 +143,15 @@ ezsignfolder_reorder_v2_request_t *ezsignfolder_reorder_v2_request_parseFromJSON
     }
 
 
+
     ezsignfolder_reorder_v2_request_local_var = ezsignfolder_reorder_v2_request_create_internal (
         e_ezsignfolder_documentdependency ? e_ezsignfolder_documentdependency_local_nonprim : 0,
         a_obj_ezsigndocumentList
         );
+
+    if (!ezsignfolder_reorder_v2_request_local_var) {
+        goto end;
+    }
 
     return ezsignfolder_reorder_v2_request_local_var;
 end:

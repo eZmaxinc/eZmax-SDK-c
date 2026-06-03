@@ -20,7 +20,7 @@ typedef struct ezsignsignergroup_response_t ezsignsignergroup_response_t;
 
 
 typedef struct ezsignsignergroup_response_t {
-    int pki_ezsignsignergroup_id; //numeric
+    int *pki_ezsignsignergroup_id; //numeric
     struct multilingual_ezsignsignergroup_description_t *obj_ezsignsignergroup_description; //model
     char *s_ezsignsignergroup_description_x; // string
 
@@ -28,7 +28,7 @@ typedef struct ezsignsignergroup_response_t {
 } ezsignsignergroup_response_t;
 
 __attribute__((deprecated)) ezsignsignergroup_response_t *ezsignsignergroup_response_create(
-    int pki_ezsignsignergroup_id,
+    int *pki_ezsignsignergroup_id,
     multilingual_ezsignsignergroup_description_t *obj_ezsignsignergroup_description,
     char *s_ezsignsignergroup_description_x
 );

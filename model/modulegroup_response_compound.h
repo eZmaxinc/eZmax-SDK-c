@@ -20,7 +20,7 @@ typedef struct modulegroup_response_compound_t modulegroup_response_compound_t;
 
 
 typedef struct modulegroup_response_compound_t {
-    int pki_modulegroup_id; //numeric
+    int *pki_modulegroup_id; //numeric
     char *s_modulegroup_name_x; // string
     list_t *a_obj_module; //nonprimitive container
 
@@ -28,7 +28,7 @@ typedef struct modulegroup_response_compound_t {
 } modulegroup_response_compound_t;
 
 __attribute__((deprecated)) modulegroup_response_compound_t *modulegroup_response_compound_create(
-    int pki_modulegroup_id,
+    int *pki_modulegroup_id,
     char *s_modulegroup_name_x,
     list_t *a_obj_module
 );

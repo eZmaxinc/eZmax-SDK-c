@@ -6,18 +6,18 @@
 
 
 static ezsignformfieldgroup_response_t *ezsignformfieldgroup_response_create_internal(
-    int pki_ezsignformfieldgroup_id,
-    int fki_ezsigndocument_id,
+    int *pki_ezsignformfieldgroup_id,
+    int *fki_ezsigndocument_id,
     ezmax_api_definition__full_field_e_ezsignformfieldgroup_type__e e_ezsignformfieldgroup_type,
     ezmax_api_definition__full_field_e_ezsignformfieldgroup_signerrequirement__e e_ezsignformfieldgroup_signerrequirement,
     char *s_ezsignformfieldgroup_label,
-    int i_ezsignformfieldgroup_step,
+    int *i_ezsignformfieldgroup_step,
     char *s_ezsignformfieldgroup_defaultvalue,
-    int i_ezsignformfieldgroup_filledmin,
-    int i_ezsignformfieldgroup_filledmax,
-    int b_ezsignformfieldgroup_readonly,
-    int i_ezsignformfieldgroup_maxlength,
-    int b_ezsignformfieldgroup_encrypted,
+    int *i_ezsignformfieldgroup_filledmin,
+    int *i_ezsignformfieldgroup_filledmax,
+    int *b_ezsignformfieldgroup_readonly,
+    int *i_ezsignformfieldgroup_maxlength,
+    int *b_ezsignformfieldgroup_encrypted,
     ezmax_api_definition__full_enum_textvalidation__e e_ezsignformfieldgroup_textvalidation,
     char *s_ezsignformfieldgroup_regexp,
     char *s_ezsignformfieldgroup_textvalidationcustommessage,
@@ -28,6 +28,8 @@ static ezsignformfieldgroup_response_t *ezsignformfieldgroup_response_create_int
     if (!ezsignformfieldgroup_response_local_var) {
         return NULL;
     }
+    memset(ezsignformfieldgroup_response_local_var, 0, sizeof(ezsignformfieldgroup_response_t));
+    ezsignformfieldgroup_response_local_var->_library_owned = 1;
     ezsignformfieldgroup_response_local_var->pki_ezsignformfieldgroup_id = pki_ezsignformfieldgroup_id;
     ezsignformfieldgroup_response_local_var->fki_ezsigndocument_id = fki_ezsigndocument_id;
     ezsignformfieldgroup_response_local_var->e_ezsignformfieldgroup_type = e_ezsignformfieldgroup_type;
@@ -45,49 +47,98 @@ static ezsignformfieldgroup_response_t *ezsignformfieldgroup_response_create_int
     ezsignformfieldgroup_response_local_var->s_ezsignformfieldgroup_textvalidationcustommessage = s_ezsignformfieldgroup_textvalidationcustommessage;
     ezsignformfieldgroup_response_local_var->t_ezsignformfieldgroup_tooltip = t_ezsignformfieldgroup_tooltip;
     ezsignformfieldgroup_response_local_var->e_ezsignformfieldgroup_tooltipposition = e_ezsignformfieldgroup_tooltipposition;
-
-    ezsignformfieldgroup_response_local_var->_library_owned = 1;
     return ezsignformfieldgroup_response_local_var;
 }
 
 __attribute__((deprecated)) ezsignformfieldgroup_response_t *ezsignformfieldgroup_response_create(
-    int pki_ezsignformfieldgroup_id,
-    int fki_ezsigndocument_id,
+    int *pki_ezsignformfieldgroup_id,
+    int *fki_ezsigndocument_id,
     ezmax_api_definition__full_field_e_ezsignformfieldgroup_type__e e_ezsignformfieldgroup_type,
     ezmax_api_definition__full_field_e_ezsignformfieldgroup_signerrequirement__e e_ezsignformfieldgroup_signerrequirement,
     char *s_ezsignformfieldgroup_label,
-    int i_ezsignformfieldgroup_step,
+    int *i_ezsignformfieldgroup_step,
     char *s_ezsignformfieldgroup_defaultvalue,
-    int i_ezsignformfieldgroup_filledmin,
-    int i_ezsignformfieldgroup_filledmax,
-    int b_ezsignformfieldgroup_readonly,
-    int i_ezsignformfieldgroup_maxlength,
-    int b_ezsignformfieldgroup_encrypted,
+    int *i_ezsignformfieldgroup_filledmin,
+    int *i_ezsignformfieldgroup_filledmax,
+    int *b_ezsignformfieldgroup_readonly,
+    int *i_ezsignformfieldgroup_maxlength,
+    int *b_ezsignformfieldgroup_encrypted,
     ezmax_api_definition__full_enum_textvalidation__e e_ezsignformfieldgroup_textvalidation,
     char *s_ezsignformfieldgroup_regexp,
     char *s_ezsignformfieldgroup_textvalidationcustommessage,
     char *t_ezsignformfieldgroup_tooltip,
     ezmax_api_definition__full_field_e_ezsignformfieldgroup_tooltipposition__e e_ezsignformfieldgroup_tooltipposition
     ) {
-    return ezsignformfieldgroup_response_create_internal (
-        pki_ezsignformfieldgroup_id,
-        fki_ezsigndocument_id,
+    int *pki_ezsignformfieldgroup_id_copy = NULL;
+    if (pki_ezsignformfieldgroup_id) {
+        pki_ezsignformfieldgroup_id_copy = malloc(sizeof(int));
+        if (pki_ezsignformfieldgroup_id_copy) *pki_ezsignformfieldgroup_id_copy = *pki_ezsignformfieldgroup_id;
+    }
+    int *fki_ezsigndocument_id_copy = NULL;
+    if (fki_ezsigndocument_id) {
+        fki_ezsigndocument_id_copy = malloc(sizeof(int));
+        if (fki_ezsigndocument_id_copy) *fki_ezsigndocument_id_copy = *fki_ezsigndocument_id;
+    }
+    int *i_ezsignformfieldgroup_step_copy = NULL;
+    if (i_ezsignformfieldgroup_step) {
+        i_ezsignformfieldgroup_step_copy = malloc(sizeof(int));
+        if (i_ezsignformfieldgroup_step_copy) *i_ezsignformfieldgroup_step_copy = *i_ezsignformfieldgroup_step;
+    }
+    int *i_ezsignformfieldgroup_filledmin_copy = NULL;
+    if (i_ezsignformfieldgroup_filledmin) {
+        i_ezsignformfieldgroup_filledmin_copy = malloc(sizeof(int));
+        if (i_ezsignformfieldgroup_filledmin_copy) *i_ezsignformfieldgroup_filledmin_copy = *i_ezsignformfieldgroup_filledmin;
+    }
+    int *i_ezsignformfieldgroup_filledmax_copy = NULL;
+    if (i_ezsignformfieldgroup_filledmax) {
+        i_ezsignformfieldgroup_filledmax_copy = malloc(sizeof(int));
+        if (i_ezsignformfieldgroup_filledmax_copy) *i_ezsignformfieldgroup_filledmax_copy = *i_ezsignformfieldgroup_filledmax;
+    }
+    int *b_ezsignformfieldgroup_readonly_copy = NULL;
+    if (b_ezsignformfieldgroup_readonly) {
+        b_ezsignformfieldgroup_readonly_copy = malloc(sizeof(int));
+        if (b_ezsignformfieldgroup_readonly_copy) *b_ezsignformfieldgroup_readonly_copy = *b_ezsignformfieldgroup_readonly;
+    }
+    int *i_ezsignformfieldgroup_maxlength_copy = NULL;
+    if (i_ezsignformfieldgroup_maxlength) {
+        i_ezsignformfieldgroup_maxlength_copy = malloc(sizeof(int));
+        if (i_ezsignformfieldgroup_maxlength_copy) *i_ezsignformfieldgroup_maxlength_copy = *i_ezsignformfieldgroup_maxlength;
+    }
+    int *b_ezsignformfieldgroup_encrypted_copy = NULL;
+    if (b_ezsignformfieldgroup_encrypted) {
+        b_ezsignformfieldgroup_encrypted_copy = malloc(sizeof(int));
+        if (b_ezsignformfieldgroup_encrypted_copy) *b_ezsignformfieldgroup_encrypted_copy = *b_ezsignformfieldgroup_encrypted;
+    }
+    ezsignformfieldgroup_response_t *result = ezsignformfieldgroup_response_create_internal (
+        pki_ezsignformfieldgroup_id_copy,
+        fki_ezsigndocument_id_copy,
         e_ezsignformfieldgroup_type,
         e_ezsignformfieldgroup_signerrequirement,
         s_ezsignformfieldgroup_label,
-        i_ezsignformfieldgroup_step,
+        i_ezsignformfieldgroup_step_copy,
         s_ezsignformfieldgroup_defaultvalue,
-        i_ezsignformfieldgroup_filledmin,
-        i_ezsignformfieldgroup_filledmax,
-        b_ezsignformfieldgroup_readonly,
-        i_ezsignformfieldgroup_maxlength,
-        b_ezsignformfieldgroup_encrypted,
+        i_ezsignformfieldgroup_filledmin_copy,
+        i_ezsignformfieldgroup_filledmax_copy,
+        b_ezsignformfieldgroup_readonly_copy,
+        i_ezsignformfieldgroup_maxlength_copy,
+        b_ezsignformfieldgroup_encrypted_copy,
         e_ezsignformfieldgroup_textvalidation,
         s_ezsignformfieldgroup_regexp,
         s_ezsignformfieldgroup_textvalidationcustommessage,
         t_ezsignformfieldgroup_tooltip,
         e_ezsignformfieldgroup_tooltipposition
         );
+    if (!result) {
+        free(pki_ezsignformfieldgroup_id_copy);
+        free(fki_ezsigndocument_id_copy);
+        free(i_ezsignformfieldgroup_step_copy);
+        free(i_ezsignformfieldgroup_filledmin_copy);
+        free(i_ezsignformfieldgroup_filledmax_copy);
+        free(b_ezsignformfieldgroup_readonly_copy);
+        free(i_ezsignformfieldgroup_maxlength_copy);
+        free(b_ezsignformfieldgroup_encrypted_copy);
+    }
+    return result;
 }
 
 void ezsignformfieldgroup_response_free(ezsignformfieldgroup_response_t *ezsignformfieldgroup_response) {
@@ -99,13 +150,45 @@ void ezsignformfieldgroup_response_free(ezsignformfieldgroup_response_t *ezsignf
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignformfieldgroup_response->pki_ezsignformfieldgroup_id) {
+        free(ezsignformfieldgroup_response->pki_ezsignformfieldgroup_id);
+        ezsignformfieldgroup_response->pki_ezsignformfieldgroup_id = NULL;
+    }
+    if (ezsignformfieldgroup_response->fki_ezsigndocument_id) {
+        free(ezsignformfieldgroup_response->fki_ezsigndocument_id);
+        ezsignformfieldgroup_response->fki_ezsigndocument_id = NULL;
+    }
     if (ezsignformfieldgroup_response->s_ezsignformfieldgroup_label) {
         free(ezsignformfieldgroup_response->s_ezsignformfieldgroup_label);
         ezsignformfieldgroup_response->s_ezsignformfieldgroup_label = NULL;
     }
+    if (ezsignformfieldgroup_response->i_ezsignformfieldgroup_step) {
+        free(ezsignformfieldgroup_response->i_ezsignformfieldgroup_step);
+        ezsignformfieldgroup_response->i_ezsignformfieldgroup_step = NULL;
+    }
     if (ezsignformfieldgroup_response->s_ezsignformfieldgroup_defaultvalue) {
         free(ezsignformfieldgroup_response->s_ezsignformfieldgroup_defaultvalue);
         ezsignformfieldgroup_response->s_ezsignformfieldgroup_defaultvalue = NULL;
+    }
+    if (ezsignformfieldgroup_response->i_ezsignformfieldgroup_filledmin) {
+        free(ezsignformfieldgroup_response->i_ezsignformfieldgroup_filledmin);
+        ezsignformfieldgroup_response->i_ezsignformfieldgroup_filledmin = NULL;
+    }
+    if (ezsignformfieldgroup_response->i_ezsignformfieldgroup_filledmax) {
+        free(ezsignformfieldgroup_response->i_ezsignformfieldgroup_filledmax);
+        ezsignformfieldgroup_response->i_ezsignformfieldgroup_filledmax = NULL;
+    }
+    if (ezsignformfieldgroup_response->b_ezsignformfieldgroup_readonly) {
+        free(ezsignformfieldgroup_response->b_ezsignformfieldgroup_readonly);
+        ezsignformfieldgroup_response->b_ezsignformfieldgroup_readonly = NULL;
+    }
+    if (ezsignformfieldgroup_response->i_ezsignformfieldgroup_maxlength) {
+        free(ezsignformfieldgroup_response->i_ezsignformfieldgroup_maxlength);
+        ezsignformfieldgroup_response->i_ezsignformfieldgroup_maxlength = NULL;
+    }
+    if (ezsignformfieldgroup_response->b_ezsignformfieldgroup_encrypted) {
+        free(ezsignformfieldgroup_response->b_ezsignformfieldgroup_encrypted);
+        ezsignformfieldgroup_response->b_ezsignformfieldgroup_encrypted = NULL;
     }
     if (ezsignformfieldgroup_response->s_ezsignformfieldgroup_regexp) {
         free(ezsignformfieldgroup_response->s_ezsignformfieldgroup_regexp);
@@ -129,7 +212,7 @@ cJSON *ezsignformfieldgroup_response_convertToJSON(ezsignformfieldgroup_response
     if (!ezsignformfieldgroup_response->pki_ezsignformfieldgroup_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiEzsignformfieldgroupID", ezsignformfieldgroup_response->pki_ezsignformfieldgroup_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzsignformfieldgroupID", *ezsignformfieldgroup_response->pki_ezsignformfieldgroup_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -138,7 +221,7 @@ cJSON *ezsignformfieldgroup_response_convertToJSON(ezsignformfieldgroup_response
     if (!ezsignformfieldgroup_response->fki_ezsigndocument_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiEzsigndocumentID", ezsignformfieldgroup_response->fki_ezsigndocument_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsigndocumentID", *ezsignformfieldgroup_response->fki_ezsigndocument_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -183,7 +266,7 @@ cJSON *ezsignformfieldgroup_response_convertToJSON(ezsignformfieldgroup_response
     if (!ezsignformfieldgroup_response->i_ezsignformfieldgroup_step) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iEzsignformfieldgroupStep", ezsignformfieldgroup_response->i_ezsignformfieldgroup_step) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iEzsignformfieldgroupStep", *ezsignformfieldgroup_response->i_ezsignformfieldgroup_step) == NULL) {
     goto fail; //Numeric
     }
 
@@ -200,7 +283,7 @@ cJSON *ezsignformfieldgroup_response_convertToJSON(ezsignformfieldgroup_response
     if (!ezsignformfieldgroup_response->i_ezsignformfieldgroup_filledmin) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iEzsignformfieldgroupFilledmin", ezsignformfieldgroup_response->i_ezsignformfieldgroup_filledmin) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iEzsignformfieldgroupFilledmin", *ezsignformfieldgroup_response->i_ezsignformfieldgroup_filledmin) == NULL) {
     goto fail; //Numeric
     }
 
@@ -209,7 +292,7 @@ cJSON *ezsignformfieldgroup_response_convertToJSON(ezsignformfieldgroup_response
     if (!ezsignformfieldgroup_response->i_ezsignformfieldgroup_filledmax) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iEzsignformfieldgroupFilledmax", ezsignformfieldgroup_response->i_ezsignformfieldgroup_filledmax) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iEzsignformfieldgroupFilledmax", *ezsignformfieldgroup_response->i_ezsignformfieldgroup_filledmax) == NULL) {
     goto fail; //Numeric
     }
 
@@ -218,14 +301,14 @@ cJSON *ezsignformfieldgroup_response_convertToJSON(ezsignformfieldgroup_response
     if (!ezsignformfieldgroup_response->b_ezsignformfieldgroup_readonly) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bEzsignformfieldgroupReadonly", ezsignformfieldgroup_response->b_ezsignformfieldgroup_readonly) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bEzsignformfieldgroupReadonly", *ezsignformfieldgroup_response->b_ezsignformfieldgroup_readonly) == NULL) {
     goto fail; //Bool
     }
 
 
     // ezsignformfieldgroup_response->i_ezsignformfieldgroup_maxlength
     if(ezsignformfieldgroup_response->i_ezsignformfieldgroup_maxlength) {
-    if(cJSON_AddNumberToObject(item, "iEzsignformfieldgroupMaxlength", ezsignformfieldgroup_response->i_ezsignformfieldgroup_maxlength) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iEzsignformfieldgroupMaxlength", *ezsignformfieldgroup_response->i_ezsignformfieldgroup_maxlength) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -233,7 +316,7 @@ cJSON *ezsignformfieldgroup_response_convertToJSON(ezsignformfieldgroup_response
 
     // ezsignformfieldgroup_response->b_ezsignformfieldgroup_encrypted
     if(ezsignformfieldgroup_response->b_ezsignformfieldgroup_encrypted) {
-    if(cJSON_AddBoolToObject(item, "bEzsignformfieldgroupEncrypted", ezsignformfieldgroup_response->b_ezsignformfieldgroup_encrypted) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bEzsignformfieldgroupEncrypted", *ezsignformfieldgroup_response->b_ezsignformfieldgroup_encrypted) == NULL) {
     goto fail; //Bool
     }
     }
@@ -300,14 +383,48 @@ ezsignformfieldgroup_response_t *ezsignformfieldgroup_response_parseFromJSON(cJS
 
     ezsignformfieldgroup_response_t *ezsignformfieldgroup_response_local_var = NULL;
 
+    // define the local variable for ezsignformfieldgroup_response->pki_ezsignformfieldgroup_id
+    int *pki_ezsignformfieldgroup_id_local_var = NULL;
+
+    // define the local variable for ezsignformfieldgroup_response->fki_ezsigndocument_id
+    int *fki_ezsigndocument_id_local_var = NULL;
+
     // define the local variable for ezsignformfieldgroup_response->e_ezsignformfieldgroup_type
     ezmax_api_definition__full_field_e_ezsignformfieldgroup_type__e e_ezsignformfieldgroup_type_local_nonprim = 0;
 
     // define the local variable for ezsignformfieldgroup_response->e_ezsignformfieldgroup_signerrequirement
     ezmax_api_definition__full_field_e_ezsignformfieldgroup_signerrequirement__e e_ezsignformfieldgroup_signerrequirement_local_nonprim = 0;
 
+    char *s_ezsignformfieldgroup_label_local_str = NULL;
+
+    // define the local variable for ezsignformfieldgroup_response->i_ezsignformfieldgroup_step
+    int *i_ezsignformfieldgroup_step_local_var = NULL;
+
+    char *s_ezsignformfieldgroup_defaultvalue_local_str = NULL;
+
+    // define the local variable for ezsignformfieldgroup_response->i_ezsignformfieldgroup_filledmin
+    int *i_ezsignformfieldgroup_filledmin_local_var = NULL;
+
+    // define the local variable for ezsignformfieldgroup_response->i_ezsignformfieldgroup_filledmax
+    int *i_ezsignformfieldgroup_filledmax_local_var = NULL;
+
+    // define the local variable for ezsignformfieldgroup_response->b_ezsignformfieldgroup_readonly
+    int *b_ezsignformfieldgroup_readonly_local_var = NULL;
+
+    // define the local variable for ezsignformfieldgroup_response->i_ezsignformfieldgroup_maxlength
+    int *i_ezsignformfieldgroup_maxlength_local_var = NULL;
+
+    // define the local variable for ezsignformfieldgroup_response->b_ezsignformfieldgroup_encrypted
+    int *b_ezsignformfieldgroup_encrypted_local_var = NULL;
+
     // define the local variable for ezsignformfieldgroup_response->e_ezsignformfieldgroup_textvalidation
     ezmax_api_definition__full_enum_textvalidation__e e_ezsignformfieldgroup_textvalidation_local_nonprim = 0;
+
+    char *s_ezsignformfieldgroup_regexp_local_str = NULL;
+
+    char *s_ezsignformfieldgroup_textvalidationcustommessage_local_str = NULL;
+
+    char *t_ezsignformfieldgroup_tooltip_local_str = NULL;
 
     // define the local variable for ezsignformfieldgroup_response->e_ezsignformfieldgroup_tooltipposition
     ezmax_api_definition__full_field_e_ezsignformfieldgroup_tooltipposition__e e_ezsignformfieldgroup_tooltipposition_local_nonprim = 0;
@@ -326,6 +443,12 @@ ezsignformfieldgroup_response_t *ezsignformfieldgroup_response_parseFromJSON(cJS
     {
     goto end; //Numeric
     }
+    pki_ezsignformfieldgroup_id_local_var = malloc(sizeof(int));
+    if(!pki_ezsignformfieldgroup_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezsignformfieldgroup_id_local_var = pki_ezsignformfieldgroup_id->valuedouble;
 
     // ezsignformfieldgroup_response->fki_ezsigndocument_id
     cJSON *fki_ezsigndocument_id = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroup_responseJSON, "fkiEzsigndocumentID");
@@ -341,6 +464,12 @@ ezsignformfieldgroup_response_t *ezsignformfieldgroup_response_parseFromJSON(cJS
     {
     goto end; //Numeric
     }
+    fki_ezsigndocument_id_local_var = malloc(sizeof(int));
+    if(!fki_ezsigndocument_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezsigndocument_id_local_var = fki_ezsigndocument_id->valuedouble;
 
     // ezsignformfieldgroup_response->e_ezsignformfieldgroup_type
     cJSON *e_ezsignformfieldgroup_type = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroup_responseJSON, "eEzsignformfieldgroupType");
@@ -392,6 +521,12 @@ ezsignformfieldgroup_response_t *ezsignformfieldgroup_response_parseFromJSON(cJS
     {
     goto end; //Numeric
     }
+    i_ezsignformfieldgroup_step_local_var = malloc(sizeof(int));
+    if(!i_ezsignformfieldgroup_step_local_var)
+    {
+        goto end;
+    }
+    *i_ezsignformfieldgroup_step_local_var = i_ezsignformfieldgroup_step->valuedouble;
 
     // ezsignformfieldgroup_response->s_ezsignformfieldgroup_defaultvalue
     cJSON *s_ezsignformfieldgroup_defaultvalue = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroup_responseJSON, "sEzsignformfieldgroupDefaultvalue");
@@ -419,6 +554,12 @@ ezsignformfieldgroup_response_t *ezsignformfieldgroup_response_parseFromJSON(cJS
     {
     goto end; //Numeric
     }
+    i_ezsignformfieldgroup_filledmin_local_var = malloc(sizeof(int));
+    if(!i_ezsignformfieldgroup_filledmin_local_var)
+    {
+        goto end;
+    }
+    *i_ezsignformfieldgroup_filledmin_local_var = i_ezsignformfieldgroup_filledmin->valuedouble;
 
     // ezsignformfieldgroup_response->i_ezsignformfieldgroup_filledmax
     cJSON *i_ezsignformfieldgroup_filledmax = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroup_responseJSON, "iEzsignformfieldgroupFilledmax");
@@ -434,6 +575,12 @@ ezsignformfieldgroup_response_t *ezsignformfieldgroup_response_parseFromJSON(cJS
     {
     goto end; //Numeric
     }
+    i_ezsignformfieldgroup_filledmax_local_var = malloc(sizeof(int));
+    if(!i_ezsignformfieldgroup_filledmax_local_var)
+    {
+        goto end;
+    }
+    *i_ezsignformfieldgroup_filledmax_local_var = i_ezsignformfieldgroup_filledmax->valuedouble;
 
     // ezsignformfieldgroup_response->b_ezsignformfieldgroup_readonly
     cJSON *b_ezsignformfieldgroup_readonly = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroup_responseJSON, "bEzsignformfieldgroupReadonly");
@@ -449,6 +596,12 @@ ezsignformfieldgroup_response_t *ezsignformfieldgroup_response_parseFromJSON(cJS
     {
     goto end; //Bool
     }
+    b_ezsignformfieldgroup_readonly_local_var = malloc(sizeof(int));
+    if(!b_ezsignformfieldgroup_readonly_local_var)
+    {
+        goto end;
+    }
+    *b_ezsignformfieldgroup_readonly_local_var = b_ezsignformfieldgroup_readonly->valueint;
 
     // ezsignformfieldgroup_response->i_ezsignformfieldgroup_maxlength
     cJSON *i_ezsignformfieldgroup_maxlength = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroup_responseJSON, "iEzsignformfieldgroupMaxlength");
@@ -460,6 +613,12 @@ ezsignformfieldgroup_response_t *ezsignformfieldgroup_response_parseFromJSON(cJS
     {
     goto end; //Numeric
     }
+    i_ezsignformfieldgroup_maxlength_local_var = malloc(sizeof(int));
+    if(!i_ezsignformfieldgroup_maxlength_local_var)
+    {
+        goto end;
+    }
+    *i_ezsignformfieldgroup_maxlength_local_var = i_ezsignformfieldgroup_maxlength->valuedouble;
     }
 
     // ezsignformfieldgroup_response->b_ezsignformfieldgroup_encrypted
@@ -472,6 +631,12 @@ ezsignformfieldgroup_response_t *ezsignformfieldgroup_response_parseFromJSON(cJS
     {
     goto end; //Bool
     }
+    b_ezsignformfieldgroup_encrypted_local_var = malloc(sizeof(int));
+    if(!b_ezsignformfieldgroup_encrypted_local_var)
+    {
+        goto end;
+    }
+    *b_ezsignformfieldgroup_encrypted_local_var = b_ezsignformfieldgroup_encrypted->valueint;
     }
 
     // ezsignformfieldgroup_response->e_ezsignformfieldgroup_textvalidation
@@ -529,36 +694,98 @@ ezsignformfieldgroup_response_t *ezsignformfieldgroup_response_parseFromJSON(cJS
     }
 
 
+    if (s_ezsignformfieldgroup_label && !cJSON_IsNull(s_ezsignformfieldgroup_label)) s_ezsignformfieldgroup_label_local_str = strdup(s_ezsignformfieldgroup_label->valuestring);
+    if (s_ezsignformfieldgroup_defaultvalue && !cJSON_IsNull(s_ezsignformfieldgroup_defaultvalue)) s_ezsignformfieldgroup_defaultvalue_local_str = strdup(s_ezsignformfieldgroup_defaultvalue->valuestring);
+    if (s_ezsignformfieldgroup_regexp && !cJSON_IsNull(s_ezsignformfieldgroup_regexp)) s_ezsignformfieldgroup_regexp_local_str = strdup(s_ezsignformfieldgroup_regexp->valuestring);
+    if (s_ezsignformfieldgroup_textvalidationcustommessage && !cJSON_IsNull(s_ezsignformfieldgroup_textvalidationcustommessage)) s_ezsignformfieldgroup_textvalidationcustommessage_local_str = strdup(s_ezsignformfieldgroup_textvalidationcustommessage->valuestring);
+    if (t_ezsignformfieldgroup_tooltip && !cJSON_IsNull(t_ezsignformfieldgroup_tooltip)) t_ezsignformfieldgroup_tooltip_local_str = strdup(t_ezsignformfieldgroup_tooltip->valuestring);
+
     ezsignformfieldgroup_response_local_var = ezsignformfieldgroup_response_create_internal (
-        pki_ezsignformfieldgroup_id->valuedouble,
-        fki_ezsigndocument_id->valuedouble,
+        pki_ezsignformfieldgroup_id_local_var,
+        fki_ezsigndocument_id_local_var,
         e_ezsignformfieldgroup_type_local_nonprim,
         e_ezsignformfieldgroup_signerrequirement ? e_ezsignformfieldgroup_signerrequirement_local_nonprim : 0,
-        strdup(s_ezsignformfieldgroup_label->valuestring),
-        i_ezsignformfieldgroup_step->valuedouble,
-        s_ezsignformfieldgroup_defaultvalue && !cJSON_IsNull(s_ezsignformfieldgroup_defaultvalue) ? strdup(s_ezsignformfieldgroup_defaultvalue->valuestring) : NULL,
-        i_ezsignformfieldgroup_filledmin->valuedouble,
-        i_ezsignformfieldgroup_filledmax->valuedouble,
-        b_ezsignformfieldgroup_readonly->valueint,
-        i_ezsignformfieldgroup_maxlength ? i_ezsignformfieldgroup_maxlength->valuedouble : 0,
-        b_ezsignformfieldgroup_encrypted ? b_ezsignformfieldgroup_encrypted->valueint : 0,
+        s_ezsignformfieldgroup_label_local_str,
+        i_ezsignformfieldgroup_step_local_var,
+        s_ezsignformfieldgroup_defaultvalue_local_str,
+        i_ezsignformfieldgroup_filledmin_local_var,
+        i_ezsignformfieldgroup_filledmax_local_var,
+        b_ezsignformfieldgroup_readonly_local_var,
+        i_ezsignformfieldgroup_maxlength_local_var,
+        b_ezsignformfieldgroup_encrypted_local_var,
         e_ezsignformfieldgroup_textvalidation ? e_ezsignformfieldgroup_textvalidation_local_nonprim : 0,
-        s_ezsignformfieldgroup_regexp && !cJSON_IsNull(s_ezsignformfieldgroup_regexp) ? strdup(s_ezsignformfieldgroup_regexp->valuestring) : NULL,
-        s_ezsignformfieldgroup_textvalidationcustommessage && !cJSON_IsNull(s_ezsignformfieldgroup_textvalidationcustommessage) ? strdup(s_ezsignformfieldgroup_textvalidationcustommessage->valuestring) : NULL,
-        t_ezsignformfieldgroup_tooltip && !cJSON_IsNull(t_ezsignformfieldgroup_tooltip) ? strdup(t_ezsignformfieldgroup_tooltip->valuestring) : NULL,
+        s_ezsignformfieldgroup_regexp_local_str,
+        s_ezsignformfieldgroup_textvalidationcustommessage_local_str,
+        t_ezsignformfieldgroup_tooltip_local_str,
         e_ezsignformfieldgroup_tooltipposition ? e_ezsignformfieldgroup_tooltipposition_local_nonprim : 0
         );
 
+    if (!ezsignformfieldgroup_response_local_var) {
+        goto end;
+    }
+
     return ezsignformfieldgroup_response_local_var;
 end:
+    if (pki_ezsignformfieldgroup_id_local_var) {
+        free(pki_ezsignformfieldgroup_id_local_var);
+        pki_ezsignformfieldgroup_id_local_var = NULL;
+    }
+    if (fki_ezsigndocument_id_local_var) {
+        free(fki_ezsigndocument_id_local_var);
+        fki_ezsigndocument_id_local_var = NULL;
+    }
     if (e_ezsignformfieldgroup_type_local_nonprim) {
         e_ezsignformfieldgroup_type_local_nonprim = 0;
     }
     if (e_ezsignformfieldgroup_signerrequirement_local_nonprim) {
         e_ezsignformfieldgroup_signerrequirement_local_nonprim = 0;
     }
+    if (s_ezsignformfieldgroup_label_local_str) {
+        free(s_ezsignformfieldgroup_label_local_str);
+        s_ezsignformfieldgroup_label_local_str = NULL;
+    }
+    if (i_ezsignformfieldgroup_step_local_var) {
+        free(i_ezsignformfieldgroup_step_local_var);
+        i_ezsignformfieldgroup_step_local_var = NULL;
+    }
+    if (s_ezsignformfieldgroup_defaultvalue_local_str) {
+        free(s_ezsignformfieldgroup_defaultvalue_local_str);
+        s_ezsignformfieldgroup_defaultvalue_local_str = NULL;
+    }
+    if (i_ezsignformfieldgroup_filledmin_local_var) {
+        free(i_ezsignformfieldgroup_filledmin_local_var);
+        i_ezsignformfieldgroup_filledmin_local_var = NULL;
+    }
+    if (i_ezsignformfieldgroup_filledmax_local_var) {
+        free(i_ezsignformfieldgroup_filledmax_local_var);
+        i_ezsignformfieldgroup_filledmax_local_var = NULL;
+    }
+    if (b_ezsignformfieldgroup_readonly_local_var) {
+        free(b_ezsignformfieldgroup_readonly_local_var);
+        b_ezsignformfieldgroup_readonly_local_var = NULL;
+    }
+    if (i_ezsignformfieldgroup_maxlength_local_var) {
+        free(i_ezsignformfieldgroup_maxlength_local_var);
+        i_ezsignformfieldgroup_maxlength_local_var = NULL;
+    }
+    if (b_ezsignformfieldgroup_encrypted_local_var) {
+        free(b_ezsignformfieldgroup_encrypted_local_var);
+        b_ezsignformfieldgroup_encrypted_local_var = NULL;
+    }
     if (e_ezsignformfieldgroup_textvalidation_local_nonprim) {
         e_ezsignformfieldgroup_textvalidation_local_nonprim = 0;
+    }
+    if (s_ezsignformfieldgroup_regexp_local_str) {
+        free(s_ezsignformfieldgroup_regexp_local_str);
+        s_ezsignformfieldgroup_regexp_local_str = NULL;
+    }
+    if (s_ezsignformfieldgroup_textvalidationcustommessage_local_str) {
+        free(s_ezsignformfieldgroup_textvalidationcustommessage_local_str);
+        s_ezsignformfieldgroup_textvalidationcustommessage_local_str = NULL;
+    }
+    if (t_ezsignformfieldgroup_tooltip_local_str) {
+        free(t_ezsignformfieldgroup_tooltip_local_str);
+        t_ezsignformfieldgroup_tooltip_local_str = NULL;
     }
     if (e_ezsignformfieldgroup_tooltipposition_local_nonprim) {
         e_ezsignformfieldgroup_tooltipposition_local_nonprim = 0;

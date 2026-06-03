@@ -6,32 +6,47 @@
 
 
 static ezsigntemplate_get_list_v1_response_m_payload_t *ezsigntemplate_get_list_v1_response_m_payload_create_internal(
-    int i_row_returned,
-    int i_row_filtered,
+    int *i_row_returned,
+    int *i_row_filtered,
     list_t *a_obj_ezsigntemplate
     ) {
     ezsigntemplate_get_list_v1_response_m_payload_t *ezsigntemplate_get_list_v1_response_m_payload_local_var = malloc(sizeof(ezsigntemplate_get_list_v1_response_m_payload_t));
     if (!ezsigntemplate_get_list_v1_response_m_payload_local_var) {
         return NULL;
     }
+    memset(ezsigntemplate_get_list_v1_response_m_payload_local_var, 0, sizeof(ezsigntemplate_get_list_v1_response_m_payload_t));
+    ezsigntemplate_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     ezsigntemplate_get_list_v1_response_m_payload_local_var->i_row_returned = i_row_returned;
     ezsigntemplate_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
     ezsigntemplate_get_list_v1_response_m_payload_local_var->a_obj_ezsigntemplate = a_obj_ezsigntemplate;
-
-    ezsigntemplate_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     return ezsigntemplate_get_list_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplate_get_list_v1_response_m_payload_t *ezsigntemplate_get_list_v1_response_m_payload_create(
-    int i_row_returned,
-    int i_row_filtered,
+    int *i_row_returned,
+    int *i_row_filtered,
     list_t *a_obj_ezsigntemplate
     ) {
-    return ezsigntemplate_get_list_v1_response_m_payload_create_internal (
-        i_row_returned,
-        i_row_filtered,
+    int *i_row_returned_copy = NULL;
+    if (i_row_returned) {
+        i_row_returned_copy = malloc(sizeof(int));
+        if (i_row_returned_copy) *i_row_returned_copy = *i_row_returned;
+    }
+    int *i_row_filtered_copy = NULL;
+    if (i_row_filtered) {
+        i_row_filtered_copy = malloc(sizeof(int));
+        if (i_row_filtered_copy) *i_row_filtered_copy = *i_row_filtered;
+    }
+    ezsigntemplate_get_list_v1_response_m_payload_t *result = ezsigntemplate_get_list_v1_response_m_payload_create_internal (
+        i_row_returned_copy,
+        i_row_filtered_copy,
         a_obj_ezsigntemplate
         );
+    if (!result) {
+        free(i_row_returned_copy);
+        free(i_row_filtered_copy);
+    }
+    return result;
 }
 
 void ezsigntemplate_get_list_v1_response_m_payload_free(ezsigntemplate_get_list_v1_response_m_payload_t *ezsigntemplate_get_list_v1_response_m_payload) {
@@ -43,6 +58,14 @@ void ezsigntemplate_get_list_v1_response_m_payload_free(ezsigntemplate_get_list_
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsigntemplate_get_list_v1_response_m_payload->i_row_returned) {
+        free(ezsigntemplate_get_list_v1_response_m_payload->i_row_returned);
+        ezsigntemplate_get_list_v1_response_m_payload->i_row_returned = NULL;
+    }
+    if (ezsigntemplate_get_list_v1_response_m_payload->i_row_filtered) {
+        free(ezsigntemplate_get_list_v1_response_m_payload->i_row_filtered);
+        ezsigntemplate_get_list_v1_response_m_payload->i_row_filtered = NULL;
+    }
     if (ezsigntemplate_get_list_v1_response_m_payload->a_obj_ezsigntemplate) {
         list_ForEach(listEntry, ezsigntemplate_get_list_v1_response_m_payload->a_obj_ezsigntemplate) {
             ezsigntemplate_list_element_free(listEntry->data);
@@ -60,7 +83,7 @@ cJSON *ezsigntemplate_get_list_v1_response_m_payload_convertToJSON(ezsigntemplat
     if (!ezsigntemplate_get_list_v1_response_m_payload->i_row_returned) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iRowReturned", ezsigntemplate_get_list_v1_response_m_payload->i_row_returned) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iRowReturned", *ezsigntemplate_get_list_v1_response_m_payload->i_row_returned) == NULL) {
     goto fail; //Numeric
     }
 
@@ -69,7 +92,7 @@ cJSON *ezsigntemplate_get_list_v1_response_m_payload_convertToJSON(ezsigntemplat
     if (!ezsigntemplate_get_list_v1_response_m_payload->i_row_filtered) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iRowFiltered", ezsigntemplate_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iRowFiltered", *ezsigntemplate_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
     goto fail; //Numeric
     }
 
@@ -106,6 +129,12 @@ ezsigntemplate_get_list_v1_response_m_payload_t *ezsigntemplate_get_list_v1_resp
 
     ezsigntemplate_get_list_v1_response_m_payload_t *ezsigntemplate_get_list_v1_response_m_payload_local_var = NULL;
 
+    // define the local variable for ezsigntemplate_get_list_v1_response_m_payload->i_row_returned
+    int *i_row_returned_local_var = NULL;
+
+    // define the local variable for ezsigntemplate_get_list_v1_response_m_payload->i_row_filtered
+    int *i_row_filtered_local_var = NULL;
+
     // define the local list for ezsigntemplate_get_list_v1_response_m_payload->a_obj_ezsigntemplate
     list_t *a_obj_ezsigntemplateList = NULL;
 
@@ -123,6 +152,12 @@ ezsigntemplate_get_list_v1_response_m_payload_t *ezsigntemplate_get_list_v1_resp
     {
     goto end; //Numeric
     }
+    i_row_returned_local_var = malloc(sizeof(int));
+    if(!i_row_returned_local_var)
+    {
+        goto end;
+    }
+    *i_row_returned_local_var = i_row_returned->valuedouble;
 
     // ezsigntemplate_get_list_v1_response_m_payload->i_row_filtered
     cJSON *i_row_filtered = cJSON_GetObjectItemCaseSensitive(ezsigntemplate_get_list_v1_response_m_payloadJSON, "iRowFiltered");
@@ -138,6 +173,12 @@ ezsigntemplate_get_list_v1_response_m_payload_t *ezsigntemplate_get_list_v1_resp
     {
     goto end; //Numeric
     }
+    i_row_filtered_local_var = malloc(sizeof(int));
+    if(!i_row_filtered_local_var)
+    {
+        goto end;
+    }
+    *i_row_filtered_local_var = i_row_filtered->valuedouble;
 
     // ezsigntemplate_get_list_v1_response_m_payload->a_obj_ezsigntemplate
     cJSON *a_obj_ezsigntemplate = cJSON_GetObjectItemCaseSensitive(ezsigntemplate_get_list_v1_response_m_payloadJSON, "a_objEzsigntemplate");
@@ -167,14 +208,27 @@ ezsigntemplate_get_list_v1_response_m_payload_t *ezsigntemplate_get_list_v1_resp
     }
 
 
+
     ezsigntemplate_get_list_v1_response_m_payload_local_var = ezsigntemplate_get_list_v1_response_m_payload_create_internal (
-        i_row_returned->valuedouble,
-        i_row_filtered->valuedouble,
+        i_row_returned_local_var,
+        i_row_filtered_local_var,
         a_obj_ezsigntemplateList
         );
 
+    if (!ezsigntemplate_get_list_v1_response_m_payload_local_var) {
+        goto end;
+    }
+
     return ezsigntemplate_get_list_v1_response_m_payload_local_var;
 end:
+    if (i_row_returned_local_var) {
+        free(i_row_returned_local_var);
+        i_row_returned_local_var = NULL;
+    }
+    if (i_row_filtered_local_var) {
+        free(i_row_filtered_local_var);
+        i_row_filtered_local_var = NULL;
+    }
     if (a_obj_ezsigntemplateList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsigntemplateList) {

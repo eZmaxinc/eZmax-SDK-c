@@ -19,28 +19,28 @@ typedef struct usergroupdelegation_response_compound_t usergroupdelegation_respo
 
 
 typedef struct usergroupdelegation_response_compound_t {
-    int pki_usergroupdelegation_id; //numeric
-    int fki_usergroup_id; //numeric
-    int fki_user_id; //numeric
+    int *pki_usergroupdelegation_id; //numeric
+    int *fki_usergroup_id; //numeric
+    int *fki_user_id; //numeric
     char *s_user_firstname; // string
     char *s_user_lastname; // string
     char *s_user_loginname; // string
     char *s_email_address; // string
-    int b_user_isactive; //boolean
+    int *b_user_isactive; //boolean
     char *s_usergroup_name_x; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } usergroupdelegation_response_compound_t;
 
 __attribute__((deprecated)) usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_create(
-    int pki_usergroupdelegation_id,
-    int fki_usergroup_id,
-    int fki_user_id,
+    int *pki_usergroupdelegation_id,
+    int *fki_usergroup_id,
+    int *fki_user_id,
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_user_loginname,
     char *s_email_address,
-    int b_user_isactive,
+    int *b_user_isactive,
     char *s_usergroup_name_x
 );
 

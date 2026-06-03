@@ -7,27 +7,36 @@
 
 static scim_email_t *scim_email_create_internal(
     char *value,
-    int primary
+    int *primary
     ) {
     scim_email_t *scim_email_local_var = malloc(sizeof(scim_email_t));
     if (!scim_email_local_var) {
         return NULL;
     }
+    memset(scim_email_local_var, 0, sizeof(scim_email_t));
+    scim_email_local_var->_library_owned = 1;
     scim_email_local_var->value = value;
     scim_email_local_var->primary = primary;
-
-    scim_email_local_var->_library_owned = 1;
     return scim_email_local_var;
 }
 
 __attribute__((deprecated)) scim_email_t *scim_email_create(
     char *value,
-    int primary
+    int *primary
     ) {
-    return scim_email_create_internal (
+    int *primary_copy = NULL;
+    if (primary) {
+        primary_copy = malloc(sizeof(int));
+        if (primary_copy) *primary_copy = *primary;
+    }
+    scim_email_t *result = scim_email_create_internal (
         value,
-        primary
+        primary_copy
         );
+    if (!result) {
+        free(primary_copy);
+    }
+    return result;
 }
 
 void scim_email_free(scim_email_t *scim_email) {
@@ -42,6 +51,10 @@ void scim_email_free(scim_email_t *scim_email) {
     if (scim_email->value) {
         free(scim_email->value);
         scim_email->value = NULL;
+    }
+    if (scim_email->primary) {
+        free(scim_email->primary);
+        scim_email->primary = NULL;
     }
     free(scim_email);
 }
@@ -59,7 +72,7 @@ cJSON *scim_email_convertToJSON(scim_email_t *scim_email) {
 
     // scim_email->primary
     if(scim_email->primary) {
-    if(cJSON_AddBoolToObject(item, "primary", scim_email->primary) == NULL) {
+    if(cJSON_AddBoolToObject(item, "primary", *scim_email->primary) == NULL) {
     goto fail; //Bool
     }
     }
@@ -75,6 +88,11 @@ fail:
 scim_email_t *scim_email_parseFromJSON(cJSON *scim_emailJSON){
 
     scim_email_t *scim_email_local_var = NULL;
+
+    char *value_local_str = NULL;
+
+    // define the local variable for scim_email->primary
+    int *primary_local_var = NULL;
 
     // scim_email->value
     cJSON *value = cJSON_GetObjectItemCaseSensitive(scim_emailJSON, "value");
@@ -98,16 +116,36 @@ scim_email_t *scim_email_parseFromJSON(cJSON *scim_emailJSON){
     {
     goto end; //Bool
     }
+    primary_local_var = malloc(sizeof(int));
+    if(!primary_local_var)
+    {
+        goto end;
+    }
+    *primary_local_var = primary->valueint;
     }
 
 
+    if (value && !cJSON_IsNull(value)) value_local_str = strdup(value->valuestring);
+
     scim_email_local_var = scim_email_create_internal (
-        value && !cJSON_IsNull(value) ? strdup(value->valuestring) : NULL,
-        primary ? primary->valueint : 0
+        value_local_str,
+        primary_local_var
         );
+
+    if (!scim_email_local_var) {
+        goto end;
+    }
 
     return scim_email_local_var;
 end:
+    if (value_local_str) {
+        free(value_local_str);
+        value_local_str = NULL;
+    }
+    if (primary_local_var) {
+        free(primary_local_var);
+        primary_local_var = NULL;
+    }
     return NULL;
 
 }

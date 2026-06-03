@@ -23,10 +23,10 @@ typedef struct contactinformations_request_compound_t contactinformations_reques
 
 
 typedef struct contactinformations_request_compound_t {
-    int i_address_default; //numeric
-    int i_phone_default; //numeric
-    int i_email_default; //numeric
-    int i_website_default; //numeric
+    int *i_address_default; //numeric
+    int *i_phone_default; //numeric
+    int *i_email_default; //numeric
+    int *i_website_default; //numeric
     list_t *a_obj_address; //nonprimitive container
     list_t *a_obj_phone; //nonprimitive container
     list_t *a_obj_email; //nonprimitive container
@@ -36,10 +36,10 @@ typedef struct contactinformations_request_compound_t {
 } contactinformations_request_compound_t;
 
 __attribute__((deprecated)) contactinformations_request_compound_t *contactinformations_request_compound_create(
-    int i_address_default,
-    int i_phone_default,
-    int i_email_default,
-    int i_website_default,
+    int *i_address_default,
+    int *i_phone_default,
+    int *i_email_default,
+    int *i_website_default,
     list_t *a_obj_address,
     list_t *a_obj_phone,
     list_t *a_obj_email,

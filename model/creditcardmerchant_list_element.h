@@ -19,13 +19,13 @@ typedef struct creditcardmerchant_list_element_t creditcardmerchant_list_element
 
 
 typedef struct creditcardmerchant_list_element_t {
-    int pki_creditcardmerchant_id; //numeric
-    int fki_bankaccount_id; //numeric
-    int fki_language_id; //numeric
-    int b_creditcardmerchant_denyvisa; //boolean
-    int b_creditcardmerchant_denymastercard; //boolean
-    int b_creditcardmerchant_denyamex; //boolean
-    int b_creditcardmerchant_isactive; //boolean
+    int *pki_creditcardmerchant_id; //numeric
+    int *fki_bankaccount_id; //numeric
+    int *fki_language_id; //numeric
+    int *b_creditcardmerchant_denyvisa; //boolean
+    int *b_creditcardmerchant_denymastercard; //boolean
+    int *b_creditcardmerchant_denyamex; //boolean
+    int *b_creditcardmerchant_isactive; //boolean
     char *s_creditcardmerchant_description; // string
     char *s_creditcardmerchant_storeid; // string
 
@@ -33,13 +33,13 @@ typedef struct creditcardmerchant_list_element_t {
 } creditcardmerchant_list_element_t;
 
 __attribute__((deprecated)) creditcardmerchant_list_element_t *creditcardmerchant_list_element_create(
-    int pki_creditcardmerchant_id,
-    int fki_bankaccount_id,
-    int fki_language_id,
-    int b_creditcardmerchant_denyvisa,
-    int b_creditcardmerchant_denymastercard,
-    int b_creditcardmerchant_denyamex,
-    int b_creditcardmerchant_isactive,
+    int *pki_creditcardmerchant_id,
+    int *fki_bankaccount_id,
+    int *fki_language_id,
+    int *b_creditcardmerchant_denyvisa,
+    int *b_creditcardmerchant_denymastercard,
+    int *b_creditcardmerchant_denyamex,
+    int *b_creditcardmerchant_isactive,
     char *s_creditcardmerchant_description,
     char *s_creditcardmerchant_storeid
 );

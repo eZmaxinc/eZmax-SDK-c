@@ -19,8 +19,8 @@ typedef struct modulesection_response_t modulesection_response_t;
 
 
 typedef struct modulesection_response_t {
-    int pki_modulesection_id; //numeric
-    int fki_module_id; //numeric
+    int *pki_modulesection_id; //numeric
+    int *fki_module_id; //numeric
     char *s_modulesection_internalname; // string
     char *s_modulesection_name_x; // string
 
@@ -28,8 +28,8 @@ typedef struct modulesection_response_t {
 } modulesection_response_t;
 
 __attribute__((deprecated)) modulesection_response_t *modulesection_response_create(
-    int pki_modulesection_id,
-    int fki_module_id,
+    int *pki_modulesection_id,
+    int *fki_module_id,
     char *s_modulesection_internalname,
     char *s_modulesection_name_x
 );

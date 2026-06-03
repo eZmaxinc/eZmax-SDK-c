@@ -12,18 +12,21 @@ static cors_create_object_v1_request_t *cors_create_object_v1_request_create_int
     if (!cors_create_object_v1_request_local_var) {
         return NULL;
     }
-    cors_create_object_v1_request_local_var->a_obj_cors = a_obj_cors;
-
+    memset(cors_create_object_v1_request_local_var, 0, sizeof(cors_create_object_v1_request_t));
     cors_create_object_v1_request_local_var->_library_owned = 1;
+    cors_create_object_v1_request_local_var->a_obj_cors = a_obj_cors;
     return cors_create_object_v1_request_local_var;
 }
 
 __attribute__((deprecated)) cors_create_object_v1_request_t *cors_create_object_v1_request_create(
     list_t *a_obj_cors
     ) {
-    return cors_create_object_v1_request_create_internal (
+    cors_create_object_v1_request_t *result = cors_create_object_v1_request_create_internal (
         a_obj_cors
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void cors_create_object_v1_request_free(cors_create_object_v1_request_t *cors_create_object_v1_request) {
@@ -111,9 +114,14 @@ cors_create_object_v1_request_t *cors_create_object_v1_request_parseFromJSON(cJS
     }
 
 
+
     cors_create_object_v1_request_local_var = cors_create_object_v1_request_create_internal (
         a_obj_corsList
         );
+
+    if (!cors_create_object_v1_request_local_var) {
+        goto end;
+    }
 
     return cors_create_object_v1_request_local_var;
 end:

@@ -7,27 +7,36 @@
 
 static discussion_request_patch_t *discussion_request_patch_create_internal(
     char *s_discussion_description,
-    int b_discussion_closed
+    int *b_discussion_closed
     ) {
     discussion_request_patch_t *discussion_request_patch_local_var = malloc(sizeof(discussion_request_patch_t));
     if (!discussion_request_patch_local_var) {
         return NULL;
     }
+    memset(discussion_request_patch_local_var, 0, sizeof(discussion_request_patch_t));
+    discussion_request_patch_local_var->_library_owned = 1;
     discussion_request_patch_local_var->s_discussion_description = s_discussion_description;
     discussion_request_patch_local_var->b_discussion_closed = b_discussion_closed;
-
-    discussion_request_patch_local_var->_library_owned = 1;
     return discussion_request_patch_local_var;
 }
 
 __attribute__((deprecated)) discussion_request_patch_t *discussion_request_patch_create(
     char *s_discussion_description,
-    int b_discussion_closed
+    int *b_discussion_closed
     ) {
-    return discussion_request_patch_create_internal (
+    int *b_discussion_closed_copy = NULL;
+    if (b_discussion_closed) {
+        b_discussion_closed_copy = malloc(sizeof(int));
+        if (b_discussion_closed_copy) *b_discussion_closed_copy = *b_discussion_closed;
+    }
+    discussion_request_patch_t *result = discussion_request_patch_create_internal (
         s_discussion_description,
-        b_discussion_closed
+        b_discussion_closed_copy
         );
+    if (!result) {
+        free(b_discussion_closed_copy);
+    }
+    return result;
 }
 
 void discussion_request_patch_free(discussion_request_patch_t *discussion_request_patch) {
@@ -42,6 +51,10 @@ void discussion_request_patch_free(discussion_request_patch_t *discussion_reques
     if (discussion_request_patch->s_discussion_description) {
         free(discussion_request_patch->s_discussion_description);
         discussion_request_patch->s_discussion_description = NULL;
+    }
+    if (discussion_request_patch->b_discussion_closed) {
+        free(discussion_request_patch->b_discussion_closed);
+        discussion_request_patch->b_discussion_closed = NULL;
     }
     free(discussion_request_patch);
 }
@@ -59,7 +72,7 @@ cJSON *discussion_request_patch_convertToJSON(discussion_request_patch_t *discus
 
     // discussion_request_patch->b_discussion_closed
     if(discussion_request_patch->b_discussion_closed) {
-    if(cJSON_AddBoolToObject(item, "bDiscussionClosed", discussion_request_patch->b_discussion_closed) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bDiscussionClosed", *discussion_request_patch->b_discussion_closed) == NULL) {
     goto fail; //Bool
     }
     }
@@ -75,6 +88,11 @@ fail:
 discussion_request_patch_t *discussion_request_patch_parseFromJSON(cJSON *discussion_request_patchJSON){
 
     discussion_request_patch_t *discussion_request_patch_local_var = NULL;
+
+    char *s_discussion_description_local_str = NULL;
+
+    // define the local variable for discussion_request_patch->b_discussion_closed
+    int *b_discussion_closed_local_var = NULL;
 
     // discussion_request_patch->s_discussion_description
     cJSON *s_discussion_description = cJSON_GetObjectItemCaseSensitive(discussion_request_patchJSON, "sDiscussionDescription");
@@ -98,16 +116,36 @@ discussion_request_patch_t *discussion_request_patch_parseFromJSON(cJSON *discus
     {
     goto end; //Bool
     }
+    b_discussion_closed_local_var = malloc(sizeof(int));
+    if(!b_discussion_closed_local_var)
+    {
+        goto end;
+    }
+    *b_discussion_closed_local_var = b_discussion_closed->valueint;
     }
 
 
+    if (s_discussion_description && !cJSON_IsNull(s_discussion_description)) s_discussion_description_local_str = strdup(s_discussion_description->valuestring);
+
     discussion_request_patch_local_var = discussion_request_patch_create_internal (
-        s_discussion_description && !cJSON_IsNull(s_discussion_description) ? strdup(s_discussion_description->valuestring) : NULL,
-        b_discussion_closed ? b_discussion_closed->valueint : 0
+        s_discussion_description_local_str,
+        b_discussion_closed_local_var
         );
+
+    if (!discussion_request_patch_local_var) {
+        goto end;
+    }
 
     return discussion_request_patch_local_var;
 end:
+    if (s_discussion_description_local_str) {
+        free(s_discussion_description_local_str);
+        s_discussion_description_local_str = NULL;
+    }
+    if (b_discussion_closed_local_var) {
+        free(b_discussion_closed_local_var);
+        b_discussion_closed_local_var = NULL;
+    }
     return NULL;
 
 }

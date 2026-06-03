@@ -20,8 +20,8 @@ typedef struct ezsigndocumentlog_response_compound_t ezsigndocumentlog_response_
 
 
 typedef struct ezsigndocumentlog_response_compound_t {
-    int fki_user_id; //numeric
-    int fki_ezsignsigner_id; //numeric
+    int *fki_user_id; //numeric
+    int *fki_ezsignsigner_id; //numeric
     char *dt_ezsigndocumentlog_datetime; // string
     ezmax_api_definition__full_field_e_ezsigndocumentlog_type__e e_ezsigndocumentlog_type; //referenced enum
     char *s_ezsigndocumentlog_detail; // string
@@ -33,8 +33,8 @@ typedef struct ezsigndocumentlog_response_compound_t {
 } ezsigndocumentlog_response_compound_t;
 
 __attribute__((deprecated)) ezsigndocumentlog_response_compound_t *ezsigndocumentlog_response_compound_create(
-    int fki_user_id,
-    int fki_ezsignsigner_id,
+    int *fki_user_id,
+    int *fki_ezsignsigner_id,
     char *dt_ezsigndocumentlog_datetime,
     ezmax_api_definition__full_field_e_ezsigndocumentlog_type__e e_ezsigndocumentlog_type,
     char *s_ezsigndocumentlog_detail,

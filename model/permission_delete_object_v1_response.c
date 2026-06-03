@@ -13,10 +13,10 @@ static permission_delete_object_v1_response_t *permission_delete_object_v1_respo
     if (!permission_delete_object_v1_response_local_var) {
         return NULL;
     }
+    memset(permission_delete_object_v1_response_local_var, 0, sizeof(permission_delete_object_v1_response_t));
+    permission_delete_object_v1_response_local_var->_library_owned = 1;
     permission_delete_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     permission_delete_object_v1_response_local_var->obj_debug = obj_debug;
-
-    permission_delete_object_v1_response_local_var->_library_owned = 1;
     return permission_delete_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) permission_delete_object_v1_response_t *permission_d
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return permission_delete_object_v1_response_create_internal (
+    permission_delete_object_v1_response_t *result = permission_delete_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void permission_delete_object_v1_response_free(permission_delete_object_v1_response_t *permission_delete_object_v1_response) {
@@ -119,10 +122,15 @@ permission_delete_object_v1_response_t *permission_delete_object_v1_response_par
     }
 
 
+
     permission_delete_object_v1_response_local_var = permission_delete_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!permission_delete_object_v1_response_local_var) {
+        goto end;
+    }
 
     return permission_delete_object_v1_response_local_var;
 end:

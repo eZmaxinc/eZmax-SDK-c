@@ -6,40 +6,67 @@
 
 
 static ezsignbulksendsignermapping_request_compound_t *ezsignbulksendsignermapping_request_compound_create_internal(
-    int pki_ezsignbulksendsignermapping_id,
-    int fki_ezsignbulksend_id,
-    int fki_user_id,
-    int b_ezsignbulksendsignermapping_receivecopy,
+    int *pki_ezsignbulksendsignermapping_id,
+    int *fki_ezsignbulksend_id,
+    int *fki_user_id,
+    int *b_ezsignbulksendsignermapping_receivecopy,
     char *s_ezsignbulksendsignermapping_description
     ) {
     ezsignbulksendsignermapping_request_compound_t *ezsignbulksendsignermapping_request_compound_local_var = malloc(sizeof(ezsignbulksendsignermapping_request_compound_t));
     if (!ezsignbulksendsignermapping_request_compound_local_var) {
         return NULL;
     }
+    memset(ezsignbulksendsignermapping_request_compound_local_var, 0, sizeof(ezsignbulksendsignermapping_request_compound_t));
+    ezsignbulksendsignermapping_request_compound_local_var->_library_owned = 1;
     ezsignbulksendsignermapping_request_compound_local_var->pki_ezsignbulksendsignermapping_id = pki_ezsignbulksendsignermapping_id;
     ezsignbulksendsignermapping_request_compound_local_var->fki_ezsignbulksend_id = fki_ezsignbulksend_id;
     ezsignbulksendsignermapping_request_compound_local_var->fki_user_id = fki_user_id;
     ezsignbulksendsignermapping_request_compound_local_var->b_ezsignbulksendsignermapping_receivecopy = b_ezsignbulksendsignermapping_receivecopy;
     ezsignbulksendsignermapping_request_compound_local_var->s_ezsignbulksendsignermapping_description = s_ezsignbulksendsignermapping_description;
-
-    ezsignbulksendsignermapping_request_compound_local_var->_library_owned = 1;
     return ezsignbulksendsignermapping_request_compound_local_var;
 }
 
 __attribute__((deprecated)) ezsignbulksendsignermapping_request_compound_t *ezsignbulksendsignermapping_request_compound_create(
-    int pki_ezsignbulksendsignermapping_id,
-    int fki_ezsignbulksend_id,
-    int fki_user_id,
-    int b_ezsignbulksendsignermapping_receivecopy,
+    int *pki_ezsignbulksendsignermapping_id,
+    int *fki_ezsignbulksend_id,
+    int *fki_user_id,
+    int *b_ezsignbulksendsignermapping_receivecopy,
     char *s_ezsignbulksendsignermapping_description
     ) {
-    return ezsignbulksendsignermapping_request_compound_create_internal (
-        pki_ezsignbulksendsignermapping_id,
-        fki_ezsignbulksend_id,
-        fki_user_id,
-        b_ezsignbulksendsignermapping_receivecopy,
+    int *pki_ezsignbulksendsignermapping_id_copy = NULL;
+    if (pki_ezsignbulksendsignermapping_id) {
+        pki_ezsignbulksendsignermapping_id_copy = malloc(sizeof(int));
+        if (pki_ezsignbulksendsignermapping_id_copy) *pki_ezsignbulksendsignermapping_id_copy = *pki_ezsignbulksendsignermapping_id;
+    }
+    int *fki_ezsignbulksend_id_copy = NULL;
+    if (fki_ezsignbulksend_id) {
+        fki_ezsignbulksend_id_copy = malloc(sizeof(int));
+        if (fki_ezsignbulksend_id_copy) *fki_ezsignbulksend_id_copy = *fki_ezsignbulksend_id;
+    }
+    int *fki_user_id_copy = NULL;
+    if (fki_user_id) {
+        fki_user_id_copy = malloc(sizeof(int));
+        if (fki_user_id_copy) *fki_user_id_copy = *fki_user_id;
+    }
+    int *b_ezsignbulksendsignermapping_receivecopy_copy = NULL;
+    if (b_ezsignbulksendsignermapping_receivecopy) {
+        b_ezsignbulksendsignermapping_receivecopy_copy = malloc(sizeof(int));
+        if (b_ezsignbulksendsignermapping_receivecopy_copy) *b_ezsignbulksendsignermapping_receivecopy_copy = *b_ezsignbulksendsignermapping_receivecopy;
+    }
+    ezsignbulksendsignermapping_request_compound_t *result = ezsignbulksendsignermapping_request_compound_create_internal (
+        pki_ezsignbulksendsignermapping_id_copy,
+        fki_ezsignbulksend_id_copy,
+        fki_user_id_copy,
+        b_ezsignbulksendsignermapping_receivecopy_copy,
         s_ezsignbulksendsignermapping_description
         );
+    if (!result) {
+        free(pki_ezsignbulksendsignermapping_id_copy);
+        free(fki_ezsignbulksend_id_copy);
+        free(fki_user_id_copy);
+        free(b_ezsignbulksendsignermapping_receivecopy_copy);
+    }
+    return result;
 }
 
 void ezsignbulksendsignermapping_request_compound_free(ezsignbulksendsignermapping_request_compound_t *ezsignbulksendsignermapping_request_compound) {
@@ -51,6 +78,22 @@ void ezsignbulksendsignermapping_request_compound_free(ezsignbulksendsignermappi
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignbulksendsignermapping_request_compound->pki_ezsignbulksendsignermapping_id) {
+        free(ezsignbulksendsignermapping_request_compound->pki_ezsignbulksendsignermapping_id);
+        ezsignbulksendsignermapping_request_compound->pki_ezsignbulksendsignermapping_id = NULL;
+    }
+    if (ezsignbulksendsignermapping_request_compound->fki_ezsignbulksend_id) {
+        free(ezsignbulksendsignermapping_request_compound->fki_ezsignbulksend_id);
+        ezsignbulksendsignermapping_request_compound->fki_ezsignbulksend_id = NULL;
+    }
+    if (ezsignbulksendsignermapping_request_compound->fki_user_id) {
+        free(ezsignbulksendsignermapping_request_compound->fki_user_id);
+        ezsignbulksendsignermapping_request_compound->fki_user_id = NULL;
+    }
+    if (ezsignbulksendsignermapping_request_compound->b_ezsignbulksendsignermapping_receivecopy) {
+        free(ezsignbulksendsignermapping_request_compound->b_ezsignbulksendsignermapping_receivecopy);
+        ezsignbulksendsignermapping_request_compound->b_ezsignbulksendsignermapping_receivecopy = NULL;
+    }
     if (ezsignbulksendsignermapping_request_compound->s_ezsignbulksendsignermapping_description) {
         free(ezsignbulksendsignermapping_request_compound->s_ezsignbulksendsignermapping_description);
         ezsignbulksendsignermapping_request_compound->s_ezsignbulksendsignermapping_description = NULL;
@@ -63,7 +106,7 @@ cJSON *ezsignbulksendsignermapping_request_compound_convertToJSON(ezsignbulksend
 
     // ezsignbulksendsignermapping_request_compound->pki_ezsignbulksendsignermapping_id
     if(ezsignbulksendsignermapping_request_compound->pki_ezsignbulksendsignermapping_id) {
-    if(cJSON_AddNumberToObject(item, "pkiEzsignbulksendsignermappingID", ezsignbulksendsignermapping_request_compound->pki_ezsignbulksendsignermapping_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzsignbulksendsignermappingID", *ezsignbulksendsignermapping_request_compound->pki_ezsignbulksendsignermapping_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -73,14 +116,14 @@ cJSON *ezsignbulksendsignermapping_request_compound_convertToJSON(ezsignbulksend
     if (!ezsignbulksendsignermapping_request_compound->fki_ezsignbulksend_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiEzsignbulksendID", ezsignbulksendsignermapping_request_compound->fki_ezsignbulksend_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsignbulksendID", *ezsignbulksendsignermapping_request_compound->fki_ezsignbulksend_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // ezsignbulksendsignermapping_request_compound->fki_user_id
     if(ezsignbulksendsignermapping_request_compound->fki_user_id) {
-    if(cJSON_AddNumberToObject(item, "fkiUserID", ezsignbulksendsignermapping_request_compound->fki_user_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiUserID", *ezsignbulksendsignermapping_request_compound->fki_user_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -88,7 +131,7 @@ cJSON *ezsignbulksendsignermapping_request_compound_convertToJSON(ezsignbulksend
 
     // ezsignbulksendsignermapping_request_compound->b_ezsignbulksendsignermapping_receivecopy
     if(ezsignbulksendsignermapping_request_compound->b_ezsignbulksendsignermapping_receivecopy) {
-    if(cJSON_AddBoolToObject(item, "bEzsignbulksendsignermappingReceivecopy", ezsignbulksendsignermapping_request_compound->b_ezsignbulksendsignermapping_receivecopy) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bEzsignbulksendsignermappingReceivecopy", *ezsignbulksendsignermapping_request_compound->b_ezsignbulksendsignermapping_receivecopy) == NULL) {
     goto fail; //Bool
     }
     }
@@ -114,6 +157,20 @@ ezsignbulksendsignermapping_request_compound_t *ezsignbulksendsignermapping_requ
 
     ezsignbulksendsignermapping_request_compound_t *ezsignbulksendsignermapping_request_compound_local_var = NULL;
 
+    // define the local variable for ezsignbulksendsignermapping_request_compound->pki_ezsignbulksendsignermapping_id
+    int *pki_ezsignbulksendsignermapping_id_local_var = NULL;
+
+    // define the local variable for ezsignbulksendsignermapping_request_compound->fki_ezsignbulksend_id
+    int *fki_ezsignbulksend_id_local_var = NULL;
+
+    // define the local variable for ezsignbulksendsignermapping_request_compound->fki_user_id
+    int *fki_user_id_local_var = NULL;
+
+    // define the local variable for ezsignbulksendsignermapping_request_compound->b_ezsignbulksendsignermapping_receivecopy
+    int *b_ezsignbulksendsignermapping_receivecopy_local_var = NULL;
+
+    char *s_ezsignbulksendsignermapping_description_local_str = NULL;
+
     // ezsignbulksendsignermapping_request_compound->pki_ezsignbulksendsignermapping_id
     cJSON *pki_ezsignbulksendsignermapping_id = cJSON_GetObjectItemCaseSensitive(ezsignbulksendsignermapping_request_compoundJSON, "pkiEzsignbulksendsignermappingID");
     if (cJSON_IsNull(pki_ezsignbulksendsignermapping_id)) {
@@ -124,6 +181,12 @@ ezsignbulksendsignermapping_request_compound_t *ezsignbulksendsignermapping_requ
     {
     goto end; //Numeric
     }
+    pki_ezsignbulksendsignermapping_id_local_var = malloc(sizeof(int));
+    if(!pki_ezsignbulksendsignermapping_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezsignbulksendsignermapping_id_local_var = pki_ezsignbulksendsignermapping_id->valuedouble;
     }
 
     // ezsignbulksendsignermapping_request_compound->fki_ezsignbulksend_id
@@ -140,6 +203,12 @@ ezsignbulksendsignermapping_request_compound_t *ezsignbulksendsignermapping_requ
     {
     goto end; //Numeric
     }
+    fki_ezsignbulksend_id_local_var = malloc(sizeof(int));
+    if(!fki_ezsignbulksend_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezsignbulksend_id_local_var = fki_ezsignbulksend_id->valuedouble;
 
     // ezsignbulksendsignermapping_request_compound->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(ezsignbulksendsignermapping_request_compoundJSON, "fkiUserID");
@@ -151,6 +220,12 @@ ezsignbulksendsignermapping_request_compound_t *ezsignbulksendsignermapping_requ
     {
     goto end; //Numeric
     }
+    fki_user_id_local_var = malloc(sizeof(int));
+    if(!fki_user_id_local_var)
+    {
+        goto end;
+    }
+    *fki_user_id_local_var = fki_user_id->valuedouble;
     }
 
     // ezsignbulksendsignermapping_request_compound->b_ezsignbulksendsignermapping_receivecopy
@@ -163,6 +238,12 @@ ezsignbulksendsignermapping_request_compound_t *ezsignbulksendsignermapping_requ
     {
     goto end; //Bool
     }
+    b_ezsignbulksendsignermapping_receivecopy_local_var = malloc(sizeof(int));
+    if(!b_ezsignbulksendsignermapping_receivecopy_local_var)
+    {
+        goto end;
+    }
+    *b_ezsignbulksendsignermapping_receivecopy_local_var = b_ezsignbulksendsignermapping_receivecopy->valueint;
     }
 
     // ezsignbulksendsignermapping_request_compound->s_ezsignbulksendsignermapping_description
@@ -181,16 +262,42 @@ ezsignbulksendsignermapping_request_compound_t *ezsignbulksendsignermapping_requ
     }
 
 
+    if (s_ezsignbulksendsignermapping_description && !cJSON_IsNull(s_ezsignbulksendsignermapping_description)) s_ezsignbulksendsignermapping_description_local_str = strdup(s_ezsignbulksendsignermapping_description->valuestring);
+
     ezsignbulksendsignermapping_request_compound_local_var = ezsignbulksendsignermapping_request_compound_create_internal (
-        pki_ezsignbulksendsignermapping_id ? pki_ezsignbulksendsignermapping_id->valuedouble : 0,
-        fki_ezsignbulksend_id->valuedouble,
-        fki_user_id ? fki_user_id->valuedouble : 0,
-        b_ezsignbulksendsignermapping_receivecopy ? b_ezsignbulksendsignermapping_receivecopy->valueint : 0,
-        strdup(s_ezsignbulksendsignermapping_description->valuestring)
+        pki_ezsignbulksendsignermapping_id_local_var,
+        fki_ezsignbulksend_id_local_var,
+        fki_user_id_local_var,
+        b_ezsignbulksendsignermapping_receivecopy_local_var,
+        s_ezsignbulksendsignermapping_description_local_str
         );
+
+    if (!ezsignbulksendsignermapping_request_compound_local_var) {
+        goto end;
+    }
 
     return ezsignbulksendsignermapping_request_compound_local_var;
 end:
+    if (pki_ezsignbulksendsignermapping_id_local_var) {
+        free(pki_ezsignbulksendsignermapping_id_local_var);
+        pki_ezsignbulksendsignermapping_id_local_var = NULL;
+    }
+    if (fki_ezsignbulksend_id_local_var) {
+        free(fki_ezsignbulksend_id_local_var);
+        fki_ezsignbulksend_id_local_var = NULL;
+    }
+    if (fki_user_id_local_var) {
+        free(fki_user_id_local_var);
+        fki_user_id_local_var = NULL;
+    }
+    if (b_ezsignbulksendsignermapping_receivecopy_local_var) {
+        free(b_ezsignbulksendsignermapping_receivecopy_local_var);
+        b_ezsignbulksendsignermapping_receivecopy_local_var = NULL;
+    }
+    if (s_ezsignbulksendsignermapping_description_local_str) {
+        free(s_ezsignbulksendsignermapping_description_local_str);
+        s_ezsignbulksendsignermapping_description_local_str = NULL;
+    }
     return NULL;
 
 }

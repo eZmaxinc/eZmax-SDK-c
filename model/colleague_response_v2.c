@@ -6,16 +6,16 @@
 
 
 static colleague_response_v2_t *colleague_response_v2_create_internal(
-    int pki_colleague_id,
-    int fki_user_id,
-    int fki_user_id_colleague,
-    int b_colleague_ezsignemail,
-    int b_colleague_financial,
-    int b_colleague_usecloneemail,
-    int b_colleague_attachment,
-    int b_colleague_canafe,
-    int b_colleague_permission,
-    int b_colleague_realestatecompleted,
+    int *pki_colleague_id,
+    int *fki_user_id,
+    int *fki_user_id_colleague,
+    int *b_colleague_ezsignemail,
+    int *b_colleague_financial,
+    int *b_colleague_usecloneemail,
+    int *b_colleague_attachment,
+    int *b_colleague_canafe,
+    int *b_colleague_permission,
+    int *b_colleague_realestatecompleted,
     char *dt_colleague_from,
     char *dt_colleague_to,
     ezmax_api_definition__full_field_e_colleague_ezsign__e e_colleague_ezsign,
@@ -27,6 +27,8 @@ static colleague_response_v2_t *colleague_response_v2_create_internal(
     if (!colleague_response_v2_local_var) {
         return NULL;
     }
+    memset(colleague_response_v2_local_var, 0, sizeof(colleague_response_v2_t));
+    colleague_response_v2_local_var->_library_owned = 1;
     colleague_response_v2_local_var->pki_colleague_id = pki_colleague_id;
     colleague_response_v2_local_var->fki_user_id = fki_user_id;
     colleague_response_v2_local_var->fki_user_id_colleague = fki_user_id_colleague;
@@ -43,22 +45,20 @@ static colleague_response_v2_t *colleague_response_v2_create_internal(
     colleague_response_v2_local_var->e_colleague_realestateinprogress = e_colleague_realestateinprogress;
     colleague_response_v2_local_var->obj_user_name = obj_user_name;
     colleague_response_v2_local_var->obj_audit = obj_audit;
-
-    colleague_response_v2_local_var->_library_owned = 1;
     return colleague_response_v2_local_var;
 }
 
 __attribute__((deprecated)) colleague_response_v2_t *colleague_response_v2_create(
-    int pki_colleague_id,
-    int fki_user_id,
-    int fki_user_id_colleague,
-    int b_colleague_ezsignemail,
-    int b_colleague_financial,
-    int b_colleague_usecloneemail,
-    int b_colleague_attachment,
-    int b_colleague_canafe,
-    int b_colleague_permission,
-    int b_colleague_realestatecompleted,
+    int *pki_colleague_id,
+    int *fki_user_id,
+    int *fki_user_id_colleague,
+    int *b_colleague_ezsignemail,
+    int *b_colleague_financial,
+    int *b_colleague_usecloneemail,
+    int *b_colleague_attachment,
+    int *b_colleague_canafe,
+    int *b_colleague_permission,
+    int *b_colleague_realestatecompleted,
     char *dt_colleague_from,
     char *dt_colleague_to,
     ezmax_api_definition__full_field_e_colleague_ezsign__e e_colleague_ezsign,
@@ -66,17 +66,67 @@ __attribute__((deprecated)) colleague_response_v2_t *colleague_response_v2_creat
     custom_user_name_response_t *obj_user_name,
     common_audit_t *obj_audit
     ) {
-    return colleague_response_v2_create_internal (
-        pki_colleague_id,
-        fki_user_id,
-        fki_user_id_colleague,
-        b_colleague_ezsignemail,
-        b_colleague_financial,
-        b_colleague_usecloneemail,
-        b_colleague_attachment,
-        b_colleague_canafe,
-        b_colleague_permission,
-        b_colleague_realestatecompleted,
+    int *pki_colleague_id_copy = NULL;
+    if (pki_colleague_id) {
+        pki_colleague_id_copy = malloc(sizeof(int));
+        if (pki_colleague_id_copy) *pki_colleague_id_copy = *pki_colleague_id;
+    }
+    int *fki_user_id_copy = NULL;
+    if (fki_user_id) {
+        fki_user_id_copy = malloc(sizeof(int));
+        if (fki_user_id_copy) *fki_user_id_copy = *fki_user_id;
+    }
+    int *fki_user_id_colleague_copy = NULL;
+    if (fki_user_id_colleague) {
+        fki_user_id_colleague_copy = malloc(sizeof(int));
+        if (fki_user_id_colleague_copy) *fki_user_id_colleague_copy = *fki_user_id_colleague;
+    }
+    int *b_colleague_ezsignemail_copy = NULL;
+    if (b_colleague_ezsignemail) {
+        b_colleague_ezsignemail_copy = malloc(sizeof(int));
+        if (b_colleague_ezsignemail_copy) *b_colleague_ezsignemail_copy = *b_colleague_ezsignemail;
+    }
+    int *b_colleague_financial_copy = NULL;
+    if (b_colleague_financial) {
+        b_colleague_financial_copy = malloc(sizeof(int));
+        if (b_colleague_financial_copy) *b_colleague_financial_copy = *b_colleague_financial;
+    }
+    int *b_colleague_usecloneemail_copy = NULL;
+    if (b_colleague_usecloneemail) {
+        b_colleague_usecloneemail_copy = malloc(sizeof(int));
+        if (b_colleague_usecloneemail_copy) *b_colleague_usecloneemail_copy = *b_colleague_usecloneemail;
+    }
+    int *b_colleague_attachment_copy = NULL;
+    if (b_colleague_attachment) {
+        b_colleague_attachment_copy = malloc(sizeof(int));
+        if (b_colleague_attachment_copy) *b_colleague_attachment_copy = *b_colleague_attachment;
+    }
+    int *b_colleague_canafe_copy = NULL;
+    if (b_colleague_canafe) {
+        b_colleague_canafe_copy = malloc(sizeof(int));
+        if (b_colleague_canafe_copy) *b_colleague_canafe_copy = *b_colleague_canafe;
+    }
+    int *b_colleague_permission_copy = NULL;
+    if (b_colleague_permission) {
+        b_colleague_permission_copy = malloc(sizeof(int));
+        if (b_colleague_permission_copy) *b_colleague_permission_copy = *b_colleague_permission;
+    }
+    int *b_colleague_realestatecompleted_copy = NULL;
+    if (b_colleague_realestatecompleted) {
+        b_colleague_realestatecompleted_copy = malloc(sizeof(int));
+        if (b_colleague_realestatecompleted_copy) *b_colleague_realestatecompleted_copy = *b_colleague_realestatecompleted;
+    }
+    colleague_response_v2_t *result = colleague_response_v2_create_internal (
+        pki_colleague_id_copy,
+        fki_user_id_copy,
+        fki_user_id_colleague_copy,
+        b_colleague_ezsignemail_copy,
+        b_colleague_financial_copy,
+        b_colleague_usecloneemail_copy,
+        b_colleague_attachment_copy,
+        b_colleague_canafe_copy,
+        b_colleague_permission_copy,
+        b_colleague_realestatecompleted_copy,
         dt_colleague_from,
         dt_colleague_to,
         e_colleague_ezsign,
@@ -84,6 +134,19 @@ __attribute__((deprecated)) colleague_response_v2_t *colleague_response_v2_creat
         obj_user_name,
         obj_audit
         );
+    if (!result) {
+        free(pki_colleague_id_copy);
+        free(fki_user_id_copy);
+        free(fki_user_id_colleague_copy);
+        free(b_colleague_ezsignemail_copy);
+        free(b_colleague_financial_copy);
+        free(b_colleague_usecloneemail_copy);
+        free(b_colleague_attachment_copy);
+        free(b_colleague_canafe_copy);
+        free(b_colleague_permission_copy);
+        free(b_colleague_realestatecompleted_copy);
+    }
+    return result;
 }
 
 void colleague_response_v2_free(colleague_response_v2_t *colleague_response_v2) {
@@ -95,6 +158,46 @@ void colleague_response_v2_free(colleague_response_v2_t *colleague_response_v2) 
         return ;
     }
     listEntry_t *listEntry;
+    if (colleague_response_v2->pki_colleague_id) {
+        free(colleague_response_v2->pki_colleague_id);
+        colleague_response_v2->pki_colleague_id = NULL;
+    }
+    if (colleague_response_v2->fki_user_id) {
+        free(colleague_response_v2->fki_user_id);
+        colleague_response_v2->fki_user_id = NULL;
+    }
+    if (colleague_response_v2->fki_user_id_colleague) {
+        free(colleague_response_v2->fki_user_id_colleague);
+        colleague_response_v2->fki_user_id_colleague = NULL;
+    }
+    if (colleague_response_v2->b_colleague_ezsignemail) {
+        free(colleague_response_v2->b_colleague_ezsignemail);
+        colleague_response_v2->b_colleague_ezsignemail = NULL;
+    }
+    if (colleague_response_v2->b_colleague_financial) {
+        free(colleague_response_v2->b_colleague_financial);
+        colleague_response_v2->b_colleague_financial = NULL;
+    }
+    if (colleague_response_v2->b_colleague_usecloneemail) {
+        free(colleague_response_v2->b_colleague_usecloneemail);
+        colleague_response_v2->b_colleague_usecloneemail = NULL;
+    }
+    if (colleague_response_v2->b_colleague_attachment) {
+        free(colleague_response_v2->b_colleague_attachment);
+        colleague_response_v2->b_colleague_attachment = NULL;
+    }
+    if (colleague_response_v2->b_colleague_canafe) {
+        free(colleague_response_v2->b_colleague_canafe);
+        colleague_response_v2->b_colleague_canafe = NULL;
+    }
+    if (colleague_response_v2->b_colleague_permission) {
+        free(colleague_response_v2->b_colleague_permission);
+        colleague_response_v2->b_colleague_permission = NULL;
+    }
+    if (colleague_response_v2->b_colleague_realestatecompleted) {
+        free(colleague_response_v2->b_colleague_realestatecompleted);
+        colleague_response_v2->b_colleague_realestatecompleted = NULL;
+    }
     if (colleague_response_v2->dt_colleague_from) {
         free(colleague_response_v2->dt_colleague_from);
         colleague_response_v2->dt_colleague_from = NULL;
@@ -121,7 +224,7 @@ cJSON *colleague_response_v2_convertToJSON(colleague_response_v2_t *colleague_re
     if (!colleague_response_v2->pki_colleague_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiColleagueID", colleague_response_v2->pki_colleague_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiColleagueID", *colleague_response_v2->pki_colleague_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -130,7 +233,7 @@ cJSON *colleague_response_v2_convertToJSON(colleague_response_v2_t *colleague_re
     if (!colleague_response_v2->fki_user_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiUserID", colleague_response_v2->fki_user_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiUserID", *colleague_response_v2->fki_user_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -139,7 +242,7 @@ cJSON *colleague_response_v2_convertToJSON(colleague_response_v2_t *colleague_re
     if (!colleague_response_v2->fki_user_id_colleague) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiUserIDColleague", colleague_response_v2->fki_user_id_colleague) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiUserIDColleague", *colleague_response_v2->fki_user_id_colleague) == NULL) {
     goto fail; //Numeric
     }
 
@@ -148,7 +251,7 @@ cJSON *colleague_response_v2_convertToJSON(colleague_response_v2_t *colleague_re
     if (!colleague_response_v2->b_colleague_ezsignemail) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bColleagueEzsignemail", colleague_response_v2->b_colleague_ezsignemail) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bColleagueEzsignemail", *colleague_response_v2->b_colleague_ezsignemail) == NULL) {
     goto fail; //Bool
     }
 
@@ -157,7 +260,7 @@ cJSON *colleague_response_v2_convertToJSON(colleague_response_v2_t *colleague_re
     if (!colleague_response_v2->b_colleague_financial) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bColleagueFinancial", colleague_response_v2->b_colleague_financial) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bColleagueFinancial", *colleague_response_v2->b_colleague_financial) == NULL) {
     goto fail; //Bool
     }
 
@@ -166,7 +269,7 @@ cJSON *colleague_response_v2_convertToJSON(colleague_response_v2_t *colleague_re
     if (!colleague_response_v2->b_colleague_usecloneemail) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bColleagueUsecloneemail", colleague_response_v2->b_colleague_usecloneemail) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bColleagueUsecloneemail", *colleague_response_v2->b_colleague_usecloneemail) == NULL) {
     goto fail; //Bool
     }
 
@@ -175,7 +278,7 @@ cJSON *colleague_response_v2_convertToJSON(colleague_response_v2_t *colleague_re
     if (!colleague_response_v2->b_colleague_attachment) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bColleagueAttachment", colleague_response_v2->b_colleague_attachment) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bColleagueAttachment", *colleague_response_v2->b_colleague_attachment) == NULL) {
     goto fail; //Bool
     }
 
@@ -184,7 +287,7 @@ cJSON *colleague_response_v2_convertToJSON(colleague_response_v2_t *colleague_re
     if (!colleague_response_v2->b_colleague_canafe) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bColleagueCanafe", colleague_response_v2->b_colleague_canafe) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bColleagueCanafe", *colleague_response_v2->b_colleague_canafe) == NULL) {
     goto fail; //Bool
     }
 
@@ -193,7 +296,7 @@ cJSON *colleague_response_v2_convertToJSON(colleague_response_v2_t *colleague_re
     if (!colleague_response_v2->b_colleague_permission) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bColleaguePermission", colleague_response_v2->b_colleague_permission) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bColleaguePermission", *colleague_response_v2->b_colleague_permission) == NULL) {
     goto fail; //Bool
     }
 
@@ -202,7 +305,7 @@ cJSON *colleague_response_v2_convertToJSON(colleague_response_v2_t *colleague_re
     if (!colleague_response_v2->b_colleague_realestatecompleted) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bColleagueRealestatecompleted", colleague_response_v2->b_colleague_realestatecompleted) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bColleagueRealestatecompleted", *colleague_response_v2->b_colleague_realestatecompleted) == NULL) {
     goto fail; //Bool
     }
 
@@ -290,6 +393,40 @@ colleague_response_v2_t *colleague_response_v2_parseFromJSON(cJSON *colleague_re
 
     colleague_response_v2_t *colleague_response_v2_local_var = NULL;
 
+    // define the local variable for colleague_response_v2->pki_colleague_id
+    int *pki_colleague_id_local_var = NULL;
+
+    // define the local variable for colleague_response_v2->fki_user_id
+    int *fki_user_id_local_var = NULL;
+
+    // define the local variable for colleague_response_v2->fki_user_id_colleague
+    int *fki_user_id_colleague_local_var = NULL;
+
+    // define the local variable for colleague_response_v2->b_colleague_ezsignemail
+    int *b_colleague_ezsignemail_local_var = NULL;
+
+    // define the local variable for colleague_response_v2->b_colleague_financial
+    int *b_colleague_financial_local_var = NULL;
+
+    // define the local variable for colleague_response_v2->b_colleague_usecloneemail
+    int *b_colleague_usecloneemail_local_var = NULL;
+
+    // define the local variable for colleague_response_v2->b_colleague_attachment
+    int *b_colleague_attachment_local_var = NULL;
+
+    // define the local variable for colleague_response_v2->b_colleague_canafe
+    int *b_colleague_canafe_local_var = NULL;
+
+    // define the local variable for colleague_response_v2->b_colleague_permission
+    int *b_colleague_permission_local_var = NULL;
+
+    // define the local variable for colleague_response_v2->b_colleague_realestatecompleted
+    int *b_colleague_realestatecompleted_local_var = NULL;
+
+    char *dt_colleague_from_local_str = NULL;
+
+    char *dt_colleague_to_local_str = NULL;
+
     // define the local variable for colleague_response_v2->e_colleague_ezsign
     ezmax_api_definition__full_field_e_colleague_ezsign__e e_colleague_ezsign_local_nonprim = 0;
 
@@ -316,6 +453,12 @@ colleague_response_v2_t *colleague_response_v2_parseFromJSON(cJSON *colleague_re
     {
     goto end; //Numeric
     }
+    pki_colleague_id_local_var = malloc(sizeof(int));
+    if(!pki_colleague_id_local_var)
+    {
+        goto end;
+    }
+    *pki_colleague_id_local_var = pki_colleague_id->valuedouble;
 
     // colleague_response_v2->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(colleague_response_v2JSON, "fkiUserID");
@@ -331,6 +474,12 @@ colleague_response_v2_t *colleague_response_v2_parseFromJSON(cJSON *colleague_re
     {
     goto end; //Numeric
     }
+    fki_user_id_local_var = malloc(sizeof(int));
+    if(!fki_user_id_local_var)
+    {
+        goto end;
+    }
+    *fki_user_id_local_var = fki_user_id->valuedouble;
 
     // colleague_response_v2->fki_user_id_colleague
     cJSON *fki_user_id_colleague = cJSON_GetObjectItemCaseSensitive(colleague_response_v2JSON, "fkiUserIDColleague");
@@ -346,6 +495,12 @@ colleague_response_v2_t *colleague_response_v2_parseFromJSON(cJSON *colleague_re
     {
     goto end; //Numeric
     }
+    fki_user_id_colleague_local_var = malloc(sizeof(int));
+    if(!fki_user_id_colleague_local_var)
+    {
+        goto end;
+    }
+    *fki_user_id_colleague_local_var = fki_user_id_colleague->valuedouble;
 
     // colleague_response_v2->b_colleague_ezsignemail
     cJSON *b_colleague_ezsignemail = cJSON_GetObjectItemCaseSensitive(colleague_response_v2JSON, "bColleagueEzsignemail");
@@ -361,6 +516,12 @@ colleague_response_v2_t *colleague_response_v2_parseFromJSON(cJSON *colleague_re
     {
     goto end; //Bool
     }
+    b_colleague_ezsignemail_local_var = malloc(sizeof(int));
+    if(!b_colleague_ezsignemail_local_var)
+    {
+        goto end;
+    }
+    *b_colleague_ezsignemail_local_var = b_colleague_ezsignemail->valueint;
 
     // colleague_response_v2->b_colleague_financial
     cJSON *b_colleague_financial = cJSON_GetObjectItemCaseSensitive(colleague_response_v2JSON, "bColleagueFinancial");
@@ -376,6 +537,12 @@ colleague_response_v2_t *colleague_response_v2_parseFromJSON(cJSON *colleague_re
     {
     goto end; //Bool
     }
+    b_colleague_financial_local_var = malloc(sizeof(int));
+    if(!b_colleague_financial_local_var)
+    {
+        goto end;
+    }
+    *b_colleague_financial_local_var = b_colleague_financial->valueint;
 
     // colleague_response_v2->b_colleague_usecloneemail
     cJSON *b_colleague_usecloneemail = cJSON_GetObjectItemCaseSensitive(colleague_response_v2JSON, "bColleagueUsecloneemail");
@@ -391,6 +558,12 @@ colleague_response_v2_t *colleague_response_v2_parseFromJSON(cJSON *colleague_re
     {
     goto end; //Bool
     }
+    b_colleague_usecloneemail_local_var = malloc(sizeof(int));
+    if(!b_colleague_usecloneemail_local_var)
+    {
+        goto end;
+    }
+    *b_colleague_usecloneemail_local_var = b_colleague_usecloneemail->valueint;
 
     // colleague_response_v2->b_colleague_attachment
     cJSON *b_colleague_attachment = cJSON_GetObjectItemCaseSensitive(colleague_response_v2JSON, "bColleagueAttachment");
@@ -406,6 +579,12 @@ colleague_response_v2_t *colleague_response_v2_parseFromJSON(cJSON *colleague_re
     {
     goto end; //Bool
     }
+    b_colleague_attachment_local_var = malloc(sizeof(int));
+    if(!b_colleague_attachment_local_var)
+    {
+        goto end;
+    }
+    *b_colleague_attachment_local_var = b_colleague_attachment->valueint;
 
     // colleague_response_v2->b_colleague_canafe
     cJSON *b_colleague_canafe = cJSON_GetObjectItemCaseSensitive(colleague_response_v2JSON, "bColleagueCanafe");
@@ -421,6 +600,12 @@ colleague_response_v2_t *colleague_response_v2_parseFromJSON(cJSON *colleague_re
     {
     goto end; //Bool
     }
+    b_colleague_canafe_local_var = malloc(sizeof(int));
+    if(!b_colleague_canafe_local_var)
+    {
+        goto end;
+    }
+    *b_colleague_canafe_local_var = b_colleague_canafe->valueint;
 
     // colleague_response_v2->b_colleague_permission
     cJSON *b_colleague_permission = cJSON_GetObjectItemCaseSensitive(colleague_response_v2JSON, "bColleaguePermission");
@@ -436,6 +621,12 @@ colleague_response_v2_t *colleague_response_v2_parseFromJSON(cJSON *colleague_re
     {
     goto end; //Bool
     }
+    b_colleague_permission_local_var = malloc(sizeof(int));
+    if(!b_colleague_permission_local_var)
+    {
+        goto end;
+    }
+    *b_colleague_permission_local_var = b_colleague_permission->valueint;
 
     // colleague_response_v2->b_colleague_realestatecompleted
     cJSON *b_colleague_realestatecompleted = cJSON_GetObjectItemCaseSensitive(colleague_response_v2JSON, "bColleagueRealestatecompleted");
@@ -451,6 +642,12 @@ colleague_response_v2_t *colleague_response_v2_parseFromJSON(cJSON *colleague_re
     {
     goto end; //Bool
     }
+    b_colleague_realestatecompleted_local_var = malloc(sizeof(int));
+    if(!b_colleague_realestatecompleted_local_var)
+    {
+        goto end;
+    }
+    *b_colleague_realestatecompleted_local_var = b_colleague_realestatecompleted->valueint;
 
     // colleague_response_v2->dt_colleague_from
     cJSON *dt_colleague_from = cJSON_GetObjectItemCaseSensitive(colleague_response_v2JSON, "dtColleagueFrom");
@@ -525,27 +722,82 @@ colleague_response_v2_t *colleague_response_v2_parseFromJSON(cJSON *colleague_re
     obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
 
 
+    if (dt_colleague_from && !cJSON_IsNull(dt_colleague_from)) dt_colleague_from_local_str = strdup(dt_colleague_from->valuestring);
+    if (dt_colleague_to && !cJSON_IsNull(dt_colleague_to)) dt_colleague_to_local_str = strdup(dt_colleague_to->valuestring);
+
     colleague_response_v2_local_var = colleague_response_v2_create_internal (
-        pki_colleague_id->valuedouble,
-        fki_user_id->valuedouble,
-        fki_user_id_colleague->valuedouble,
-        b_colleague_ezsignemail->valueint,
-        b_colleague_financial->valueint,
-        b_colleague_usecloneemail->valueint,
-        b_colleague_attachment->valueint,
-        b_colleague_canafe->valueint,
-        b_colleague_permission->valueint,
-        b_colleague_realestatecompleted->valueint,
-        dt_colleague_from && !cJSON_IsNull(dt_colleague_from) ? strdup(dt_colleague_from->valuestring) : NULL,
-        dt_colleague_to && !cJSON_IsNull(dt_colleague_to) ? strdup(dt_colleague_to->valuestring) : NULL,
+        pki_colleague_id_local_var,
+        fki_user_id_local_var,
+        fki_user_id_colleague_local_var,
+        b_colleague_ezsignemail_local_var,
+        b_colleague_financial_local_var,
+        b_colleague_usecloneemail_local_var,
+        b_colleague_attachment_local_var,
+        b_colleague_canafe_local_var,
+        b_colleague_permission_local_var,
+        b_colleague_realestatecompleted_local_var,
+        dt_colleague_from_local_str,
+        dt_colleague_to_local_str,
         e_colleague_ezsign_local_nonprim,
         e_colleague_realestateinprogress_local_nonprim,
         obj_user_name_local_nonprim,
         obj_audit_local_nonprim
         );
 
+    if (!colleague_response_v2_local_var) {
+        goto end;
+    }
+
     return colleague_response_v2_local_var;
 end:
+    if (pki_colleague_id_local_var) {
+        free(pki_colleague_id_local_var);
+        pki_colleague_id_local_var = NULL;
+    }
+    if (fki_user_id_local_var) {
+        free(fki_user_id_local_var);
+        fki_user_id_local_var = NULL;
+    }
+    if (fki_user_id_colleague_local_var) {
+        free(fki_user_id_colleague_local_var);
+        fki_user_id_colleague_local_var = NULL;
+    }
+    if (b_colleague_ezsignemail_local_var) {
+        free(b_colleague_ezsignemail_local_var);
+        b_colleague_ezsignemail_local_var = NULL;
+    }
+    if (b_colleague_financial_local_var) {
+        free(b_colleague_financial_local_var);
+        b_colleague_financial_local_var = NULL;
+    }
+    if (b_colleague_usecloneemail_local_var) {
+        free(b_colleague_usecloneemail_local_var);
+        b_colleague_usecloneemail_local_var = NULL;
+    }
+    if (b_colleague_attachment_local_var) {
+        free(b_colleague_attachment_local_var);
+        b_colleague_attachment_local_var = NULL;
+    }
+    if (b_colleague_canafe_local_var) {
+        free(b_colleague_canafe_local_var);
+        b_colleague_canafe_local_var = NULL;
+    }
+    if (b_colleague_permission_local_var) {
+        free(b_colleague_permission_local_var);
+        b_colleague_permission_local_var = NULL;
+    }
+    if (b_colleague_realestatecompleted_local_var) {
+        free(b_colleague_realestatecompleted_local_var);
+        b_colleague_realestatecompleted_local_var = NULL;
+    }
+    if (dt_colleague_from_local_str) {
+        free(dt_colleague_from_local_str);
+        dt_colleague_from_local_str = NULL;
+    }
+    if (dt_colleague_to_local_str) {
+        free(dt_colleague_to_local_str);
+        dt_colleague_to_local_str = NULL;
+    }
     if (e_colleague_ezsign_local_nonprim) {
         e_colleague_ezsign_local_nonprim = 0;
     }

@@ -14,11 +14,11 @@ static ezsigndocument_get_words_positions_v1_response_t *ezsigndocument_get_word
     if (!ezsigndocument_get_words_positions_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsigndocument_get_words_positions_v1_response_local_var, 0, sizeof(ezsigndocument_get_words_positions_v1_response_t));
+    ezsigndocument_get_words_positions_v1_response_local_var->_library_owned = 1;
     ezsigndocument_get_words_positions_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsigndocument_get_words_positions_v1_response_local_var->obj_debug = obj_debug;
     ezsigndocument_get_words_positions_v1_response_local_var->m_payload = m_payload;
-
-    ezsigndocument_get_words_positions_v1_response_local_var->_library_owned = 1;
     return ezsigndocument_get_words_positions_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) ezsigndocument_get_words_positions_v1_response_t *ez
     common_response_obj_debug_t *obj_debug,
     list_t *m_payload
     ) {
-    return ezsigndocument_get_words_positions_v1_response_create_internal (
+    ezsigndocument_get_words_positions_v1_response_t *result = ezsigndocument_get_words_positions_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigndocument_get_words_positions_v1_response_free(ezsigndocument_get_words_positions_v1_response_t *ezsigndocument_get_words_positions_v1_response) {
@@ -181,11 +184,16 @@ ezsigndocument_get_words_positions_v1_response_t *ezsigndocument_get_words_posit
     }
 
 
+
     ezsigndocument_get_words_positions_v1_response_local_var = ezsigndocument_get_words_positions_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payloadList
         );
+
+    if (!ezsigndocument_get_words_positions_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsigndocument_get_words_positions_v1_response_local_var;
 end:

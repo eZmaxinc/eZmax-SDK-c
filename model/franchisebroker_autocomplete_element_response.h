@@ -20,16 +20,16 @@ typedef struct franchisebroker_autocomplete_element_response_t franchisebroker_a
 
 typedef struct franchisebroker_autocomplete_element_response_t {
     char *s_franchisebroker_name; // string
-    int pki_franchisebroker_id; //numeric
-    int b_franchisebroker_isactive; //boolean
+    int *pki_franchisebroker_id; //numeric
+    int *b_franchisebroker_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } franchisebroker_autocomplete_element_response_t;
 
 __attribute__((deprecated)) franchisebroker_autocomplete_element_response_t *franchisebroker_autocomplete_element_response_create(
     char *s_franchisebroker_name,
-    int pki_franchisebroker_id,
-    int b_franchisebroker_isactive
+    int *pki_franchisebroker_id,
+    int *b_franchisebroker_isactive
 );
 
 void franchisebroker_autocomplete_element_response_free(franchisebroker_autocomplete_element_response_t *franchisebroker_autocomplete_element_response);

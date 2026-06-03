@@ -6,8 +6,8 @@
 
 
 static ezsignsignaturepaymentdetail_response_t *ezsignsignaturepaymentdetail_response_create_internal(
-    int pki_ezsignsignaturepaymentdetail_id,
-    int fki_glaccountcontainer_id,
+    int *pki_ezsignsignaturepaymentdetail_id,
+    int *fki_glaccountcontainer_id,
     char *t_ezsignsignaturepaymentdetail_description,
     char *d_ezsignsignaturepaymentdetail_amount,
     ezmax_api_definition__full_field_e_ezsignsignaturepaymentdetail_taxable__e e_ezsignsignaturepaymentdetail_taxable
@@ -16,30 +16,45 @@ static ezsignsignaturepaymentdetail_response_t *ezsignsignaturepaymentdetail_res
     if (!ezsignsignaturepaymentdetail_response_local_var) {
         return NULL;
     }
+    memset(ezsignsignaturepaymentdetail_response_local_var, 0, sizeof(ezsignsignaturepaymentdetail_response_t));
+    ezsignsignaturepaymentdetail_response_local_var->_library_owned = 1;
     ezsignsignaturepaymentdetail_response_local_var->pki_ezsignsignaturepaymentdetail_id = pki_ezsignsignaturepaymentdetail_id;
     ezsignsignaturepaymentdetail_response_local_var->fki_glaccountcontainer_id = fki_glaccountcontainer_id;
     ezsignsignaturepaymentdetail_response_local_var->t_ezsignsignaturepaymentdetail_description = t_ezsignsignaturepaymentdetail_description;
     ezsignsignaturepaymentdetail_response_local_var->d_ezsignsignaturepaymentdetail_amount = d_ezsignsignaturepaymentdetail_amount;
     ezsignsignaturepaymentdetail_response_local_var->e_ezsignsignaturepaymentdetail_taxable = e_ezsignsignaturepaymentdetail_taxable;
-
-    ezsignsignaturepaymentdetail_response_local_var->_library_owned = 1;
     return ezsignsignaturepaymentdetail_response_local_var;
 }
 
 __attribute__((deprecated)) ezsignsignaturepaymentdetail_response_t *ezsignsignaturepaymentdetail_response_create(
-    int pki_ezsignsignaturepaymentdetail_id,
-    int fki_glaccountcontainer_id,
+    int *pki_ezsignsignaturepaymentdetail_id,
+    int *fki_glaccountcontainer_id,
     char *t_ezsignsignaturepaymentdetail_description,
     char *d_ezsignsignaturepaymentdetail_amount,
     ezmax_api_definition__full_field_e_ezsignsignaturepaymentdetail_taxable__e e_ezsignsignaturepaymentdetail_taxable
     ) {
-    return ezsignsignaturepaymentdetail_response_create_internal (
-        pki_ezsignsignaturepaymentdetail_id,
-        fki_glaccountcontainer_id,
+    int *pki_ezsignsignaturepaymentdetail_id_copy = NULL;
+    if (pki_ezsignsignaturepaymentdetail_id) {
+        pki_ezsignsignaturepaymentdetail_id_copy = malloc(sizeof(int));
+        if (pki_ezsignsignaturepaymentdetail_id_copy) *pki_ezsignsignaturepaymentdetail_id_copy = *pki_ezsignsignaturepaymentdetail_id;
+    }
+    int *fki_glaccountcontainer_id_copy = NULL;
+    if (fki_glaccountcontainer_id) {
+        fki_glaccountcontainer_id_copy = malloc(sizeof(int));
+        if (fki_glaccountcontainer_id_copy) *fki_glaccountcontainer_id_copy = *fki_glaccountcontainer_id;
+    }
+    ezsignsignaturepaymentdetail_response_t *result = ezsignsignaturepaymentdetail_response_create_internal (
+        pki_ezsignsignaturepaymentdetail_id_copy,
+        fki_glaccountcontainer_id_copy,
         t_ezsignsignaturepaymentdetail_description,
         d_ezsignsignaturepaymentdetail_amount,
         e_ezsignsignaturepaymentdetail_taxable
         );
+    if (!result) {
+        free(pki_ezsignsignaturepaymentdetail_id_copy);
+        free(fki_glaccountcontainer_id_copy);
+    }
+    return result;
 }
 
 void ezsignsignaturepaymentdetail_response_free(ezsignsignaturepaymentdetail_response_t *ezsignsignaturepaymentdetail_response) {
@@ -51,6 +66,14 @@ void ezsignsignaturepaymentdetail_response_free(ezsignsignaturepaymentdetail_res
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignsignaturepaymentdetail_response->pki_ezsignsignaturepaymentdetail_id) {
+        free(ezsignsignaturepaymentdetail_response->pki_ezsignsignaturepaymentdetail_id);
+        ezsignsignaturepaymentdetail_response->pki_ezsignsignaturepaymentdetail_id = NULL;
+    }
+    if (ezsignsignaturepaymentdetail_response->fki_glaccountcontainer_id) {
+        free(ezsignsignaturepaymentdetail_response->fki_glaccountcontainer_id);
+        ezsignsignaturepaymentdetail_response->fki_glaccountcontainer_id = NULL;
+    }
     if (ezsignsignaturepaymentdetail_response->t_ezsignsignaturepaymentdetail_description) {
         free(ezsignsignaturepaymentdetail_response->t_ezsignsignaturepaymentdetail_description);
         ezsignsignaturepaymentdetail_response->t_ezsignsignaturepaymentdetail_description = NULL;
@@ -69,14 +92,14 @@ cJSON *ezsignsignaturepaymentdetail_response_convertToJSON(ezsignsignaturepaymen
     if (!ezsignsignaturepaymentdetail_response->pki_ezsignsignaturepaymentdetail_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiEzsignsignaturepaymentdetailID", ezsignsignaturepaymentdetail_response->pki_ezsignsignaturepaymentdetail_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzsignsignaturepaymentdetailID", *ezsignsignaturepaymentdetail_response->pki_ezsignsignaturepaymentdetail_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // ezsignsignaturepaymentdetail_response->fki_glaccountcontainer_id
     if(ezsignsignaturepaymentdetail_response->fki_glaccountcontainer_id) {
-    if(cJSON_AddNumberToObject(item, "fkiGlaccountcontainerID", ezsignsignaturepaymentdetail_response->fki_glaccountcontainer_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiGlaccountcontainerID", *ezsignsignaturepaymentdetail_response->fki_glaccountcontainer_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -125,6 +148,16 @@ ezsignsignaturepaymentdetail_response_t *ezsignsignaturepaymentdetail_response_p
 
     ezsignsignaturepaymentdetail_response_t *ezsignsignaturepaymentdetail_response_local_var = NULL;
 
+    // define the local variable for ezsignsignaturepaymentdetail_response->pki_ezsignsignaturepaymentdetail_id
+    int *pki_ezsignsignaturepaymentdetail_id_local_var = NULL;
+
+    // define the local variable for ezsignsignaturepaymentdetail_response->fki_glaccountcontainer_id
+    int *fki_glaccountcontainer_id_local_var = NULL;
+
+    char *t_ezsignsignaturepaymentdetail_description_local_str = NULL;
+
+    char *d_ezsignsignaturepaymentdetail_amount_local_str = NULL;
+
     // define the local variable for ezsignsignaturepaymentdetail_response->e_ezsignsignaturepaymentdetail_taxable
     ezmax_api_definition__full_field_e_ezsignsignaturepaymentdetail_taxable__e e_ezsignsignaturepaymentdetail_taxable_local_nonprim = 0;
 
@@ -142,6 +175,12 @@ ezsignsignaturepaymentdetail_response_t *ezsignsignaturepaymentdetail_response_p
     {
     goto end; //Numeric
     }
+    pki_ezsignsignaturepaymentdetail_id_local_var = malloc(sizeof(int));
+    if(!pki_ezsignsignaturepaymentdetail_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezsignsignaturepaymentdetail_id_local_var = pki_ezsignsignaturepaymentdetail_id->valuedouble;
 
     // ezsignsignaturepaymentdetail_response->fki_glaccountcontainer_id
     cJSON *fki_glaccountcontainer_id = cJSON_GetObjectItemCaseSensitive(ezsignsignaturepaymentdetail_responseJSON, "fkiGlaccountcontainerID");
@@ -153,6 +192,12 @@ ezsignsignaturepaymentdetail_response_t *ezsignsignaturepaymentdetail_response_p
     {
     goto end; //Numeric
     }
+    fki_glaccountcontainer_id_local_var = malloc(sizeof(int));
+    if(!fki_glaccountcontainer_id_local_var)
+    {
+        goto end;
+    }
+    *fki_glaccountcontainer_id_local_var = fki_glaccountcontainer_id->valuedouble;
     }
 
     // ezsignsignaturepaymentdetail_response->t_ezsignsignaturepaymentdetail_description
@@ -198,16 +243,39 @@ ezsignsignaturepaymentdetail_response_t *ezsignsignaturepaymentdetail_response_p
     e_ezsignsignaturepaymentdetail_taxable_local_nonprim = field_e_ezsignsignaturepaymentdetail_taxable_parseFromJSON(e_ezsignsignaturepaymentdetail_taxable); //custom
 
 
+    if (t_ezsignsignaturepaymentdetail_description && !cJSON_IsNull(t_ezsignsignaturepaymentdetail_description)) t_ezsignsignaturepaymentdetail_description_local_str = strdup(t_ezsignsignaturepaymentdetail_description->valuestring);
+    if (d_ezsignsignaturepaymentdetail_amount && !cJSON_IsNull(d_ezsignsignaturepaymentdetail_amount)) d_ezsignsignaturepaymentdetail_amount_local_str = strdup(d_ezsignsignaturepaymentdetail_amount->valuestring);
+
     ezsignsignaturepaymentdetail_response_local_var = ezsignsignaturepaymentdetail_response_create_internal (
-        pki_ezsignsignaturepaymentdetail_id->valuedouble,
-        fki_glaccountcontainer_id ? fki_glaccountcontainer_id->valuedouble : 0,
-        strdup(t_ezsignsignaturepaymentdetail_description->valuestring),
-        strdup(d_ezsignsignaturepaymentdetail_amount->valuestring),
+        pki_ezsignsignaturepaymentdetail_id_local_var,
+        fki_glaccountcontainer_id_local_var,
+        t_ezsignsignaturepaymentdetail_description_local_str,
+        d_ezsignsignaturepaymentdetail_amount_local_str,
         e_ezsignsignaturepaymentdetail_taxable_local_nonprim
         );
 
+    if (!ezsignsignaturepaymentdetail_response_local_var) {
+        goto end;
+    }
+
     return ezsignsignaturepaymentdetail_response_local_var;
 end:
+    if (pki_ezsignsignaturepaymentdetail_id_local_var) {
+        free(pki_ezsignsignaturepaymentdetail_id_local_var);
+        pki_ezsignsignaturepaymentdetail_id_local_var = NULL;
+    }
+    if (fki_glaccountcontainer_id_local_var) {
+        free(fki_glaccountcontainer_id_local_var);
+        fki_glaccountcontainer_id_local_var = NULL;
+    }
+    if (t_ezsignsignaturepaymentdetail_description_local_str) {
+        free(t_ezsignsignaturepaymentdetail_description_local_str);
+        t_ezsignsignaturepaymentdetail_description_local_str = NULL;
+    }
+    if (d_ezsignsignaturepaymentdetail_amount_local_str) {
+        free(d_ezsignsignaturepaymentdetail_amount_local_str);
+        d_ezsignsignaturepaymentdetail_amount_local_str = NULL;
+    }
     if (e_ezsignsignaturepaymentdetail_taxable_local_nonprim) {
         e_ezsignsignaturepaymentdetail_taxable_local_nonprim = 0;
     }

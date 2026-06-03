@@ -14,11 +14,11 @@ static permission_get_object_v2_response_t *permission_get_object_v2_response_cr
     if (!permission_get_object_v2_response_local_var) {
         return NULL;
     }
+    memset(permission_get_object_v2_response_local_var, 0, sizeof(permission_get_object_v2_response_t));
+    permission_get_object_v2_response_local_var->_library_owned = 1;
     permission_get_object_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     permission_get_object_v2_response_local_var->obj_debug = obj_debug;
     permission_get_object_v2_response_local_var->m_payload = m_payload;
-
-    permission_get_object_v2_response_local_var->_library_owned = 1;
     return permission_get_object_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) permission_get_object_v2_response_t *permission_get_
     common_response_obj_debug_t *obj_debug,
     permission_get_object_v2_response_m_payload_t *m_payload
     ) {
-    return permission_get_object_v2_response_create_internal (
+    permission_get_object_v2_response_t *result = permission_get_object_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void permission_get_object_v2_response_free(permission_get_object_v2_response_t *permission_get_object_v2_response) {
@@ -156,11 +159,16 @@ permission_get_object_v2_response_t *permission_get_object_v2_response_parseFrom
     m_payload_local_nonprim = permission_get_object_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     permission_get_object_v2_response_local_var = permission_get_object_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!permission_get_object_v2_response_local_var) {
+        goto end;
+    }
 
     return permission_get_object_v2_response_local_var;
 end:

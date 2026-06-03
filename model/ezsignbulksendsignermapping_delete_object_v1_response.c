@@ -13,10 +13,10 @@ static ezsignbulksendsignermapping_delete_object_v1_response_t *ezsignbulksendsi
     if (!ezsignbulksendsignermapping_delete_object_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsignbulksendsignermapping_delete_object_v1_response_local_var, 0, sizeof(ezsignbulksendsignermapping_delete_object_v1_response_t));
+    ezsignbulksendsignermapping_delete_object_v1_response_local_var->_library_owned = 1;
     ezsignbulksendsignermapping_delete_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsignbulksendsignermapping_delete_object_v1_response_local_var->obj_debug = obj_debug;
-
-    ezsignbulksendsignermapping_delete_object_v1_response_local_var->_library_owned = 1;
     return ezsignbulksendsignermapping_delete_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) ezsignbulksendsignermapping_delete_object_v1_respons
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return ezsignbulksendsignermapping_delete_object_v1_response_create_internal (
+    ezsignbulksendsignermapping_delete_object_v1_response_t *result = ezsignbulksendsignermapping_delete_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignbulksendsignermapping_delete_object_v1_response_free(ezsignbulksendsignermapping_delete_object_v1_response_t *ezsignbulksendsignermapping_delete_object_v1_response) {
@@ -119,10 +122,15 @@ ezsignbulksendsignermapping_delete_object_v1_response_t *ezsignbulksendsignermap
     }
 
 
+
     ezsignbulksendsignermapping_delete_object_v1_response_local_var = ezsignbulksendsignermapping_delete_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!ezsignbulksendsignermapping_delete_object_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsignbulksendsignermapping_delete_object_v1_response_local_var;
 end:

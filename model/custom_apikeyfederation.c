@@ -13,10 +13,10 @@ static custom_apikeyfederation_t *custom_apikeyfederation_create_internal(
     if (!custom_apikeyfederation_local_var) {
         return NULL;
     }
+    memset(custom_apikeyfederation_local_var, 0, sizeof(custom_apikeyfederation_t));
+    custom_apikeyfederation_local_var->_library_owned = 1;
     custom_apikeyfederation_local_var->s_apikeyfederation_key = s_apikeyfederation_key;
     custom_apikeyfederation_local_var->s_apikeyfederation_secret = s_apikeyfederation_secret;
-
-    custom_apikeyfederation_local_var->_library_owned = 1;
     return custom_apikeyfederation_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) custom_apikeyfederation_t *custom_apikeyfederation_c
     char *s_apikeyfederation_key,
     char *s_apikeyfederation_secret
     ) {
-    return custom_apikeyfederation_create_internal (
+    custom_apikeyfederation_t *result = custom_apikeyfederation_create_internal (
         s_apikeyfederation_key,
         s_apikeyfederation_secret
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void custom_apikeyfederation_free(custom_apikeyfederation_t *custom_apikeyfederation) {
@@ -82,6 +85,10 @@ custom_apikeyfederation_t *custom_apikeyfederation_parseFromJSON(cJSON *custom_a
 
     custom_apikeyfederation_t *custom_apikeyfederation_local_var = NULL;
 
+    char *s_apikeyfederation_key_local_str = NULL;
+
+    char *s_apikeyfederation_secret_local_str = NULL;
+
     // custom_apikeyfederation->s_apikeyfederation_key
     cJSON *s_apikeyfederation_key = cJSON_GetObjectItemCaseSensitive(custom_apikeyfederationJSON, "sApikeyfederationKey");
     if (cJSON_IsNull(s_apikeyfederation_key)) {
@@ -113,13 +120,28 @@ custom_apikeyfederation_t *custom_apikeyfederation_parseFromJSON(cJSON *custom_a
     }
 
 
+    if (s_apikeyfederation_key && !cJSON_IsNull(s_apikeyfederation_key)) s_apikeyfederation_key_local_str = strdup(s_apikeyfederation_key->valuestring);
+    if (s_apikeyfederation_secret && !cJSON_IsNull(s_apikeyfederation_secret)) s_apikeyfederation_secret_local_str = strdup(s_apikeyfederation_secret->valuestring);
+
     custom_apikeyfederation_local_var = custom_apikeyfederation_create_internal (
-        strdup(s_apikeyfederation_key->valuestring),
-        strdup(s_apikeyfederation_secret->valuestring)
+        s_apikeyfederation_key_local_str,
+        s_apikeyfederation_secret_local_str
         );
+
+    if (!custom_apikeyfederation_local_var) {
+        goto end;
+    }
 
     return custom_apikeyfederation_local_var;
 end:
+    if (s_apikeyfederation_key_local_str) {
+        free(s_apikeyfederation_key_local_str);
+        s_apikeyfederation_key_local_str = NULL;
+    }
+    if (s_apikeyfederation_secret_local_str) {
+        free(s_apikeyfederation_secret_local_str);
+        s_apikeyfederation_secret_local_str = NULL;
+    }
     return NULL;
 
 }

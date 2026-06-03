@@ -19,20 +19,20 @@ typedef struct ezsignbulksendsignermapping_request_compound_t ezsignbulksendsign
 
 
 typedef struct ezsignbulksendsignermapping_request_compound_t {
-    int pki_ezsignbulksendsignermapping_id; //numeric
-    int fki_ezsignbulksend_id; //numeric
-    int fki_user_id; //numeric
-    int b_ezsignbulksendsignermapping_receivecopy; //boolean
+    int *pki_ezsignbulksendsignermapping_id; //numeric
+    int *fki_ezsignbulksend_id; //numeric
+    int *fki_user_id; //numeric
+    int *b_ezsignbulksendsignermapping_receivecopy; //boolean
     char *s_ezsignbulksendsignermapping_description; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignbulksendsignermapping_request_compound_t;
 
 __attribute__((deprecated)) ezsignbulksendsignermapping_request_compound_t *ezsignbulksendsignermapping_request_compound_create(
-    int pki_ezsignbulksendsignermapping_id,
-    int fki_ezsignbulksend_id,
-    int fki_user_id,
-    int b_ezsignbulksendsignermapping_receivecopy,
+    int *pki_ezsignbulksendsignermapping_id,
+    int *fki_ezsignbulksend_id,
+    int *fki_user_id,
+    int *b_ezsignbulksendsignermapping_receivecopy,
     char *s_ezsignbulksendsignermapping_description
 );
 

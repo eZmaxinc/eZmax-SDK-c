@@ -12,18 +12,21 @@ static ezsigntemplatedocumentpagerecognition_create_object_v1_request_t *ezsignt
     if (!ezsigntemplatedocumentpagerecognition_create_object_v1_request_local_var) {
         return NULL;
     }
-    ezsigntemplatedocumentpagerecognition_create_object_v1_request_local_var->a_obj_ezsigntemplatedocumentpagerecognition = a_obj_ezsigntemplatedocumentpagerecognition;
-
+    memset(ezsigntemplatedocumentpagerecognition_create_object_v1_request_local_var, 0, sizeof(ezsigntemplatedocumentpagerecognition_create_object_v1_request_t));
     ezsigntemplatedocumentpagerecognition_create_object_v1_request_local_var->_library_owned = 1;
+    ezsigntemplatedocumentpagerecognition_create_object_v1_request_local_var->a_obj_ezsigntemplatedocumentpagerecognition = a_obj_ezsigntemplatedocumentpagerecognition;
     return ezsigntemplatedocumentpagerecognition_create_object_v1_request_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplatedocumentpagerecognition_create_object_v1_request_t *ezsigntemplatedocumentpagerecognition_create_object_v1_request_create(
     list_t *a_obj_ezsigntemplatedocumentpagerecognition
     ) {
-    return ezsigntemplatedocumentpagerecognition_create_object_v1_request_create_internal (
+    ezsigntemplatedocumentpagerecognition_create_object_v1_request_t *result = ezsigntemplatedocumentpagerecognition_create_object_v1_request_create_internal (
         a_obj_ezsigntemplatedocumentpagerecognition
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatedocumentpagerecognition_create_object_v1_request_free(ezsigntemplatedocumentpagerecognition_create_object_v1_request_t *ezsigntemplatedocumentpagerecognition_create_object_v1_request) {
@@ -111,9 +114,14 @@ ezsigntemplatedocumentpagerecognition_create_object_v1_request_t *ezsigntemplate
     }
 
 
+
     ezsigntemplatedocumentpagerecognition_create_object_v1_request_local_var = ezsigntemplatedocumentpagerecognition_create_object_v1_request_create_internal (
         a_obj_ezsigntemplatedocumentpagerecognitionList
         );
+
+    if (!ezsigntemplatedocumentpagerecognition_create_object_v1_request_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatedocumentpagerecognition_create_object_v1_request_local_var;
 end:

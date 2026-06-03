@@ -20,24 +20,24 @@ typedef struct ezsignimportfolder_list_element_t ezsignimportfolder_list_element
 
 
 typedef struct ezsignimportfolder_list_element_t {
-    int pki_ezsignimportfolder_id; //numeric
+    int *pki_ezsignimportfolder_id; //numeric
     char *s_ezsignimportfolder_name; // string
     char *dt_created_date; // string
     char *dt_modified_date; // string
-    int i_total_ezsignimportdocument; //numeric
-    int i_total_ezsignimportdocument_not_imported; //numeric
+    int *i_total_ezsignimportdocument; //numeric
+    int *i_total_ezsignimportdocument_not_imported; //numeric
     ezmax_api_definition__full_computed_e_ezsignimportfolder_status__e e_ezsignimportfolder_status; //referenced enum
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignimportfolder_list_element_t;
 
 __attribute__((deprecated)) ezsignimportfolder_list_element_t *ezsignimportfolder_list_element_create(
-    int pki_ezsignimportfolder_id,
+    int *pki_ezsignimportfolder_id,
     char *s_ezsignimportfolder_name,
     char *dt_created_date,
     char *dt_modified_date,
-    int i_total_ezsignimportdocument,
-    int i_total_ezsignimportdocument_not_imported,
+    int *i_total_ezsignimportdocument,
+    int *i_total_ezsignimportdocument_not_imported,
     ezmax_api_definition__full_computed_e_ezsignimportfolder_status__e e_ezsignimportfolder_status
 );
 

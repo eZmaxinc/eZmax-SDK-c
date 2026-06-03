@@ -14,11 +14,11 @@ static systemconfigurationtype_get_autocomplete_v2_response_t *systemconfigurati
     if (!systemconfigurationtype_get_autocomplete_v2_response_local_var) {
         return NULL;
     }
+    memset(systemconfigurationtype_get_autocomplete_v2_response_local_var, 0, sizeof(systemconfigurationtype_get_autocomplete_v2_response_t));
+    systemconfigurationtype_get_autocomplete_v2_response_local_var->_library_owned = 1;
     systemconfigurationtype_get_autocomplete_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     systemconfigurationtype_get_autocomplete_v2_response_local_var->obj_debug = obj_debug;
     systemconfigurationtype_get_autocomplete_v2_response_local_var->m_payload = m_payload;
-
-    systemconfigurationtype_get_autocomplete_v2_response_local_var->_library_owned = 1;
     return systemconfigurationtype_get_autocomplete_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) systemconfigurationtype_get_autocomplete_v2_response
     common_response_obj_debug_t *obj_debug,
     systemconfigurationtype_get_autocomplete_v2_response_m_payload_t *m_payload
     ) {
-    return systemconfigurationtype_get_autocomplete_v2_response_create_internal (
+    systemconfigurationtype_get_autocomplete_v2_response_t *result = systemconfigurationtype_get_autocomplete_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void systemconfigurationtype_get_autocomplete_v2_response_free(systemconfigurationtype_get_autocomplete_v2_response_t *systemconfigurationtype_get_autocomplete_v2_response) {
@@ -156,11 +159,16 @@ systemconfigurationtype_get_autocomplete_v2_response_t *systemconfigurationtype_
     m_payload_local_nonprim = systemconfigurationtype_get_autocomplete_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     systemconfigurationtype_get_autocomplete_v2_response_local_var = systemconfigurationtype_get_autocomplete_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!systemconfigurationtype_get_autocomplete_v2_response_local_var) {
+        goto end;
+    }
 
     return systemconfigurationtype_get_autocomplete_v2_response_local_var;
 end:

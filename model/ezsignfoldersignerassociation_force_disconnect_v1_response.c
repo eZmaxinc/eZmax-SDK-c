@@ -13,10 +13,10 @@ static ezsignfoldersignerassociation_force_disconnect_v1_response_t *ezsignfolde
     if (!ezsignfoldersignerassociation_force_disconnect_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsignfoldersignerassociation_force_disconnect_v1_response_local_var, 0, sizeof(ezsignfoldersignerassociation_force_disconnect_v1_response_t));
+    ezsignfoldersignerassociation_force_disconnect_v1_response_local_var->_library_owned = 1;
     ezsignfoldersignerassociation_force_disconnect_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsignfoldersignerassociation_force_disconnect_v1_response_local_var->obj_debug = obj_debug;
-
-    ezsignfoldersignerassociation_force_disconnect_v1_response_local_var->_library_owned = 1;
     return ezsignfoldersignerassociation_force_disconnect_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) ezsignfoldersignerassociation_force_disconnect_v1_re
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return ezsignfoldersignerassociation_force_disconnect_v1_response_create_internal (
+    ezsignfoldersignerassociation_force_disconnect_v1_response_t *result = ezsignfoldersignerassociation_force_disconnect_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignfoldersignerassociation_force_disconnect_v1_response_free(ezsignfoldersignerassociation_force_disconnect_v1_response_t *ezsignfoldersignerassociation_force_disconnect_v1_response) {
@@ -119,10 +122,15 @@ ezsignfoldersignerassociation_force_disconnect_v1_response_t *ezsignfoldersigner
     }
 
 
+
     ezsignfoldersignerassociation_force_disconnect_v1_response_local_var = ezsignfoldersignerassociation_force_disconnect_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!ezsignfoldersignerassociation_force_disconnect_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsignfoldersignerassociation_force_disconnect_v1_response_local_var;
 end:

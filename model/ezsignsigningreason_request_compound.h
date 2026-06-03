@@ -20,17 +20,17 @@ typedef struct ezsignsigningreason_request_compound_t ezsignsigningreason_reques
 
 
 typedef struct ezsignsigningreason_request_compound_t {
-    int pki_ezsignsigningreason_id; //numeric
+    int *pki_ezsignsigningreason_id; //numeric
     struct multilingual_ezsignsigningreason_description_t *obj_ezsignsigningreason_description; //model
-    int b_ezsignsigningreason_isactive; //boolean
+    int *b_ezsignsigningreason_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsigningreason_request_compound_t;
 
 __attribute__((deprecated)) ezsignsigningreason_request_compound_t *ezsignsigningreason_request_compound_create(
-    int pki_ezsignsigningreason_id,
+    int *pki_ezsignsigningreason_id,
     multilingual_ezsignsigningreason_description_t *obj_ezsignsigningreason_description,
-    int b_ezsignsigningreason_isactive
+    int *b_ezsignsigningreason_isactive
 );
 
 void ezsignsigningreason_request_compound_free(ezsignsigningreason_request_compound_t *ezsignsigningreason_request_compound);

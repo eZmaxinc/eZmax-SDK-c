@@ -21,16 +21,16 @@ typedef struct colleague_request_v2_t colleague_request_v2_t;
 
 
 typedef struct colleague_request_v2_t {
-    int pki_colleague_id; //numeric
-    int fki_user_id; //numeric
-    int fki_user_id_colleague; //numeric
-    int b_colleague_ezsignemail; //boolean
-    int b_colleague_financial; //boolean
-    int b_colleague_usecloneemail; //boolean
-    int b_colleague_attachment; //boolean
-    int b_colleague_canafe; //boolean
-    int b_colleague_permission; //boolean
-    int b_colleague_realestatecompleted; //boolean
+    int *pki_colleague_id; //numeric
+    int *fki_user_id; //numeric
+    int *fki_user_id_colleague; //numeric
+    int *b_colleague_ezsignemail; //boolean
+    int *b_colleague_financial; //boolean
+    int *b_colleague_usecloneemail; //boolean
+    int *b_colleague_attachment; //boolean
+    int *b_colleague_canafe; //boolean
+    int *b_colleague_permission; //boolean
+    int *b_colleague_realestatecompleted; //boolean
     char *dt_colleague_from; // string
     char *dt_colleague_to; // string
     ezmax_api_definition__full_field_e_colleague_ezsign__e e_colleague_ezsign; //referenced enum
@@ -40,16 +40,16 @@ typedef struct colleague_request_v2_t {
 } colleague_request_v2_t;
 
 __attribute__((deprecated)) colleague_request_v2_t *colleague_request_v2_create(
-    int pki_colleague_id,
-    int fki_user_id,
-    int fki_user_id_colleague,
-    int b_colleague_ezsignemail,
-    int b_colleague_financial,
-    int b_colleague_usecloneemail,
-    int b_colleague_attachment,
-    int b_colleague_canafe,
-    int b_colleague_permission,
-    int b_colleague_realestatecompleted,
+    int *pki_colleague_id,
+    int *fki_user_id,
+    int *fki_user_id_colleague,
+    int *b_colleague_ezsignemail,
+    int *b_colleague_financial,
+    int *b_colleague_usecloneemail,
+    int *b_colleague_attachment,
+    int *b_colleague_canafe,
+    int *b_colleague_permission,
+    int *b_colleague_realestatecompleted,
     char *dt_colleague_from,
     char *dt_colleague_to,
     ezmax_api_definition__full_field_e_colleague_ezsign__e e_colleague_ezsign,

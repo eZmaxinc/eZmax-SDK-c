@@ -12,18 +12,21 @@ static ezsignbulksendtransmission_get_forms_data_v1_response_m_payload_t *ezsign
     if (!ezsignbulksendtransmission_get_forms_data_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsignbulksendtransmission_get_forms_data_v1_response_m_payload_local_var->a_obj_forms_data_folder = a_obj_forms_data_folder;
-
+    memset(ezsignbulksendtransmission_get_forms_data_v1_response_m_payload_local_var, 0, sizeof(ezsignbulksendtransmission_get_forms_data_v1_response_m_payload_t));
     ezsignbulksendtransmission_get_forms_data_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsignbulksendtransmission_get_forms_data_v1_response_m_payload_local_var->a_obj_forms_data_folder = a_obj_forms_data_folder;
     return ezsignbulksendtransmission_get_forms_data_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsignbulksendtransmission_get_forms_data_v1_response_m_payload_t *ezsignbulksendtransmission_get_forms_data_v1_response_m_payload_create(
     list_t *a_obj_forms_data_folder
     ) {
-    return ezsignbulksendtransmission_get_forms_data_v1_response_m_payload_create_internal (
+    ezsignbulksendtransmission_get_forms_data_v1_response_m_payload_t *result = ezsignbulksendtransmission_get_forms_data_v1_response_m_payload_create_internal (
         a_obj_forms_data_folder
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignbulksendtransmission_get_forms_data_v1_response_m_payload_free(ezsignbulksendtransmission_get_forms_data_v1_response_m_payload_t *ezsignbulksendtransmission_get_forms_data_v1_response_m_payload) {
@@ -111,9 +114,14 @@ ezsignbulksendtransmission_get_forms_data_v1_response_m_payload_t *ezsignbulksen
     }
 
 
+
     ezsignbulksendtransmission_get_forms_data_v1_response_m_payload_local_var = ezsignbulksendtransmission_get_forms_data_v1_response_m_payload_create_internal (
         a_obj_forms_data_folderList
         );
+
+    if (!ezsignbulksendtransmission_get_forms_data_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsignbulksendtransmission_get_forms_data_v1_response_m_payload_local_var;
 end:

@@ -20,46 +20,46 @@ typedef struct custom_ezsignfoldertype_response_t custom_ezsignfoldertype_respon
 
 
 typedef struct custom_ezsignfoldertype_response_t {
-    int pki_ezsignfoldertype_id; //numeric
-    int fki_font_id_annotation; //numeric
-    int fki_font_id_formfield; //numeric
-    int fki_font_id_signature; //numeric
+    int *pki_ezsignfoldertype_id; //numeric
+    int *fki_font_id_annotation; //numeric
+    int *fki_font_id_formfield; //numeric
+    int *fki_font_id_signature; //numeric
     char *s_ezsignfoldertype_name_x; // string
-    int b_ezsignfoldertype_sendproofezsignsigner; //boolean
-    int b_ezsignfoldertype_allowdownloadattachmentezsignsigner; //boolean
-    int b_ezsignfoldertype_allowdownloadproofezsignsigner; //boolean
-    int b_ezsignfoldertype_automaticsignature; //boolean
-    int b_ezsignfoldertype_delegate; //boolean
-    int b_ezsignfoldertype_discussion; //boolean
-    int b_ezsignfoldertype_reassignezsignsigner; //boolean
-    int b_ezsignfoldertype_reassignuser; //boolean
-    int b_ezsignfoldertype_reassigngroup; //boolean
-    int i_ezsignfoldertype_deadlinedays; //numeric
-    int i_ezsignfoldertype_fontsizeannotation; //numeric
-    int i_ezsignfoldertype_fontsizeformfield; //numeric
+    int *b_ezsignfoldertype_sendproofezsignsigner; //boolean
+    int *b_ezsignfoldertype_allowdownloadattachmentezsignsigner; //boolean
+    int *b_ezsignfoldertype_allowdownloadproofezsignsigner; //boolean
+    int *b_ezsignfoldertype_automaticsignature; //boolean
+    int *b_ezsignfoldertype_delegate; //boolean
+    int *b_ezsignfoldertype_discussion; //boolean
+    int *b_ezsignfoldertype_reassignezsignsigner; //boolean
+    int *b_ezsignfoldertype_reassignuser; //boolean
+    int *b_ezsignfoldertype_reassigngroup; //boolean
+    int *i_ezsignfoldertype_deadlinedays; //numeric
+    int *i_ezsignfoldertype_fontsizeannotation; //numeric
+    int *i_ezsignfoldertype_fontsizeformfield; //numeric
     ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__e e_ezsignfoldertype_documentmerge; //referenced enum
 
     int _library_owned; // Is the library responsible for freeing this object?
 } custom_ezsignfoldertype_response_t;
 
 __attribute__((deprecated)) custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_create(
-    int pki_ezsignfoldertype_id,
-    int fki_font_id_annotation,
-    int fki_font_id_formfield,
-    int fki_font_id_signature,
+    int *pki_ezsignfoldertype_id,
+    int *fki_font_id_annotation,
+    int *fki_font_id_formfield,
+    int *fki_font_id_signature,
     char *s_ezsignfoldertype_name_x,
-    int b_ezsignfoldertype_sendproofezsignsigner,
-    int b_ezsignfoldertype_allowdownloadattachmentezsignsigner,
-    int b_ezsignfoldertype_allowdownloadproofezsignsigner,
-    int b_ezsignfoldertype_automaticsignature,
-    int b_ezsignfoldertype_delegate,
-    int b_ezsignfoldertype_discussion,
-    int b_ezsignfoldertype_reassignezsignsigner,
-    int b_ezsignfoldertype_reassignuser,
-    int b_ezsignfoldertype_reassigngroup,
-    int i_ezsignfoldertype_deadlinedays,
-    int i_ezsignfoldertype_fontsizeannotation,
-    int i_ezsignfoldertype_fontsizeformfield,
+    int *b_ezsignfoldertype_sendproofezsignsigner,
+    int *b_ezsignfoldertype_allowdownloadattachmentezsignsigner,
+    int *b_ezsignfoldertype_allowdownloadproofezsignsigner,
+    int *b_ezsignfoldertype_automaticsignature,
+    int *b_ezsignfoldertype_delegate,
+    int *b_ezsignfoldertype_discussion,
+    int *b_ezsignfoldertype_reassignezsignsigner,
+    int *b_ezsignfoldertype_reassignuser,
+    int *b_ezsignfoldertype_reassigngroup,
+    int *i_ezsignfoldertype_deadlinedays,
+    int *i_ezsignfoldertype_fontsizeannotation,
+    int *i_ezsignfoldertype_fontsizeformfield,
     ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__e e_ezsignfoldertype_documentmerge
 );
 

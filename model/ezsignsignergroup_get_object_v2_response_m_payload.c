@@ -12,18 +12,21 @@ static ezsignsignergroup_get_object_v2_response_m_payload_t *ezsignsignergroup_g
     if (!ezsignsignergroup_get_object_v2_response_m_payload_local_var) {
         return NULL;
     }
-    ezsignsignergroup_get_object_v2_response_m_payload_local_var->obj_ezsignsignergroup = obj_ezsignsignergroup;
-
+    memset(ezsignsignergroup_get_object_v2_response_m_payload_local_var, 0, sizeof(ezsignsignergroup_get_object_v2_response_m_payload_t));
     ezsignsignergroup_get_object_v2_response_m_payload_local_var->_library_owned = 1;
+    ezsignsignergroup_get_object_v2_response_m_payload_local_var->obj_ezsignsignergroup = obj_ezsignsignergroup;
     return ezsignsignergroup_get_object_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsignsignergroup_get_object_v2_response_m_payload_t *ezsignsignergroup_get_object_v2_response_m_payload_create(
     ezsignsignergroup_response_compound_t *obj_ezsignsignergroup
     ) {
-    return ezsignsignergroup_get_object_v2_response_m_payload_create_internal (
+    ezsignsignergroup_get_object_v2_response_m_payload_t *result = ezsignsignergroup_get_object_v2_response_m_payload_create_internal (
         obj_ezsignsignergroup
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignsignergroup_get_object_v2_response_m_payload_free(ezsignsignergroup_get_object_v2_response_m_payload_t *ezsignsignergroup_get_object_v2_response_m_payload) {
@@ -86,9 +89,14 @@ ezsignsignergroup_get_object_v2_response_m_payload_t *ezsignsignergroup_get_obje
     obj_ezsignsignergroup_local_nonprim = ezsignsignergroup_response_compound_parseFromJSON(obj_ezsignsignergroup); //nonprimitive
 
 
+
     ezsignsignergroup_get_object_v2_response_m_payload_local_var = ezsignsignergroup_get_object_v2_response_m_payload_create_internal (
         obj_ezsignsignergroup_local_nonprim
         );
+
+    if (!ezsignsignergroup_get_object_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsignsignergroup_get_object_v2_response_m_payload_local_var;
 end:

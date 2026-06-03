@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 **e_ezsignfoldertype_privacylevel** | **field_e_ezsignfoldertype_privacylevel_t \*** |  | 
 **i_ezsignfoldertype_fontsizeannotation** | **int** | Font size for annotations | [optional] 
 **i_ezsignfoldertype_fontsizeformfield** | **int** | Font size for form fields | [optional] 
-**i_ezsignfoldertype_sendreminderfirstdays** | **int** | The number of days before the the first reminder sending | [optional] 
+**i_ezsignfoldertype_sendreminderfirstdays** | **int** | The number of days before the first reminder sending | [optional] 
 **i_ezsignfoldertype_sendreminderotherdays** | **int** | The number of days after the first reminder sending | [optional] 
 **i_ezsignfoldertype_archivaldays** | **int** | The number of days before the archival of Ezsignfolders created using this Ezsignfoldertype | 
 **e_ezsignfoldertype_disposal** | **field_e_ezsignfoldertype_disposal_t \*** |  | 
@@ -42,6 +42,10 @@ Name | Type | Description | Notes
 **b_ezsignfoldertype_reassignezsignsigner** | **int** | Wheter if Reassignment of signature is allowed by a signatory to another signatory or not | [optional] 
 **b_ezsignfoldertype_reassignuser** | **int** | Wheter if Reassignment of signature is allowed by a user to a signatory or another user or not | [optional] 
 **b_ezsignfoldertype_reassigngroup** | **int** | Wheter if Reassignment of signatures of the groups to which the user belongs is authorized by a user to himself | [optional] 
+**b_ezsignfoldertype_senddocumentmergetoemail** | **int** | Whether we send the merged documents in the email to external recipient | [optional] 
+**b_ezsignfoldertype_senddocumentmergetoezsignsigner** | **int** | Whether we send the merged documents in the email to Ezsignsigner | [optional] 
+**b_ezsignfoldertype_senddocumentmergetoreceivealldocument** | **int** | Whether we send the merged documents in the email to user and Ezsignsigner who receive all documents. | [optional] 
+**b_ezsignfoldertype_senddocumentmergetouser** | **int** | Whether we send the merged documents in the email to User | [optional] 
 **b_ezsignfoldertype_sendsignedtoezsignsigner** | **int** | Whether we send an email to Ezsignsigner  when document is completed | [optional] 
 **b_ezsignfoldertype_sendsignedtouser** | **int** | Whether we send an email to User who signed when document is completed | [optional] 
 **b_ezsignfoldertype_sendattachmentezsignsigner** | **int** | Whether we send the Ezsigndocument in the email to Ezsignsigner | [optional] 

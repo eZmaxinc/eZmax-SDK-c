@@ -22,7 +22,7 @@ typedef struct common_reportcolumn_t common_reportcolumn_t;
 
 typedef struct common_reportcolumn_t {
     struct common_reportcellstyle_t *obj_reportcellstyle_default; //model
-    int i_reportcolumn_width; //numeric
+    int *i_reportcolumn_width; //numeric
     ezmax_api_definition__full_enum_reportdata_type__e e_reportcolumn_type; //referenced enum
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -30,7 +30,7 @@ typedef struct common_reportcolumn_t {
 
 __attribute__((deprecated)) common_reportcolumn_t *common_reportcolumn_create(
     common_reportcellstyle_t *obj_reportcellstyle_default,
-    int i_reportcolumn_width,
+    int *i_reportcolumn_width,
     ezmax_api_definition__full_enum_reportdata_type__e e_reportcolumn_type
 );
 

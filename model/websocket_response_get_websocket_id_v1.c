@@ -30,10 +30,10 @@ static websocket_response_get_websocket_id_v1_t *websocket_response_get_websocke
     if (!websocket_response_get_websocket_id_v1_local_var) {
         return NULL;
     }
+    memset(websocket_response_get_websocket_id_v1_local_var, 0, sizeof(websocket_response_get_websocket_id_v1_t));
+    websocket_response_get_websocket_id_v1_local_var->_library_owned = 1;
     websocket_response_get_websocket_id_v1_local_var->e_websocket_messagetype = e_websocket_messagetype;
     websocket_response_get_websocket_id_v1_local_var->m_payload = m_payload;
-
-    websocket_response_get_websocket_id_v1_local_var->_library_owned = 1;
     return websocket_response_get_websocket_id_v1_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) websocket_response_get_websocket_id_v1_t *websocket_
     ezmax_api_definition__full_websocket_response_get_websocket_id_v1_EWEBSOCKETMESSAGETYPE_e e_websocket_messagetype,
     websocket_response_get_websocket_id_v1_m_payload_t *m_payload
     ) {
-    return websocket_response_get_websocket_id_v1_create_internal (
+    websocket_response_get_websocket_id_v1_t *result = websocket_response_get_websocket_id_v1_create_internal (
         e_websocket_messagetype,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void websocket_response_get_websocket_id_v1_free(websocket_response_get_websocket_id_v1_t *websocket_response_get_websocket_id_v1) {
@@ -134,10 +137,15 @@ websocket_response_get_websocket_id_v1_t *websocket_response_get_websocket_id_v1
     m_payload_local_nonprim = websocket_response_get_websocket_id_v1_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     websocket_response_get_websocket_id_v1_local_var = websocket_response_get_websocket_id_v1_create_internal (
         e_websocket_messagetypeVariable,
         m_payload_local_nonprim
         );
+
+    if (!websocket_response_get_websocket_id_v1_local_var) {
+        goto end;
+    }
 
     return websocket_response_get_websocket_id_v1_local_var;
 end:

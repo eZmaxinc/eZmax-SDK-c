@@ -12,18 +12,21 @@ static ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload
     if (!ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload_local_var) {
         return NULL;
     }
-    ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload_local_var->a_obj_ezsigntemplatesignature = a_obj_ezsigntemplatesignature;
-
+    memset(ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload_local_var, 0, sizeof(ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload_t));
     ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload_local_var->_library_owned = 1;
+    ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload_local_var->a_obj_ezsigntemplatesignature = a_obj_ezsigntemplatesignature;
     return ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload_t *ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload_create(
     list_t *a_obj_ezsigntemplatesignature
     ) {
-    return ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload_create_internal (
+    ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload_t *result = ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload_create_internal (
         a_obj_ezsigntemplatesignature
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload_free(ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload_t *ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload) {
@@ -111,9 +114,14 @@ ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload_t *ezs
     }
 
 
+
     ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload_local_var = ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload_create_internal (
         a_obj_ezsigntemplatesignatureList
         );
+
+    if (!ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload_local_var;
 end:

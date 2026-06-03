@@ -31,11 +31,11 @@ static scim_authentication_scheme_t *scim_authentication_scheme_create_internal(
     if (!scim_authentication_scheme_local_var) {
         return NULL;
     }
+    memset(scim_authentication_scheme_local_var, 0, sizeof(scim_authentication_scheme_t));
+    scim_authentication_scheme_local_var->_library_owned = 1;
     scim_authentication_scheme_local_var->description = description;
     scim_authentication_scheme_local_var->name = name;
     scim_authentication_scheme_local_var->type = type;
-
-    scim_authentication_scheme_local_var->_library_owned = 1;
     return scim_authentication_scheme_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) scim_authentication_scheme_t *scim_authentication_sc
     char *name,
     ezmax_api_definition__full_scim_authentication_scheme_TYPE_e type
     ) {
-    return scim_authentication_scheme_create_internal (
+    scim_authentication_scheme_t *result = scim_authentication_scheme_create_internal (
         description,
         name,
         type
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void scim_authentication_scheme_free(scim_authentication_scheme_t *scim_authentication_scheme) {
@@ -113,6 +116,10 @@ scim_authentication_scheme_t *scim_authentication_scheme_parseFromJSON(cJSON *sc
 
     scim_authentication_scheme_t *scim_authentication_scheme_local_var = NULL;
 
+    char *description_local_str = NULL;
+
+    char *name_local_str = NULL;
+
     // scim_authentication_scheme->description
     cJSON *description = cJSON_GetObjectItemCaseSensitive(scim_authentication_schemeJSON, "description");
     if (cJSON_IsNull(description)) {
@@ -161,14 +168,29 @@ scim_authentication_scheme_t *scim_authentication_scheme_parseFromJSON(cJSON *sc
     typeVariable = scim_authentication_scheme_type_FromString(type->valuestring);
 
 
+    if (description && !cJSON_IsNull(description)) description_local_str = strdup(description->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+
     scim_authentication_scheme_local_var = scim_authentication_scheme_create_internal (
-        strdup(description->valuestring),
-        strdup(name->valuestring),
+        description_local_str,
+        name_local_str,
         typeVariable
         );
 
+    if (!scim_authentication_scheme_local_var) {
+        goto end;
+    }
+
     return scim_authentication_scheme_local_var;
 end:
+    if (description_local_str) {
+        free(description_local_str);
+        description_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
     return NULL;
 
 }

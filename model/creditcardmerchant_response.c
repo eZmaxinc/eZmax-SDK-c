@@ -6,17 +6,17 @@
 
 
 static creditcardmerchant_response_t *creditcardmerchant_response_create_internal(
-    int pki_creditcardmerchant_id,
-    int fki_bankaccount_id,
-    int fki_language_id,
+    int *pki_creditcardmerchant_id,
+    int *fki_bankaccount_id,
+    int *fki_language_id,
     char *s_language_name_x,
-    int fki_currency_id,
+    int *fki_currency_id,
     char *s_currency_description_x,
     char *s_bankaccount_bankname,
-    int b_creditcardmerchant_denyvisa,
-    int b_creditcardmerchant_denymastercard,
-    int b_creditcardmerchant_denyamex,
-    int b_creditcardmerchant_isactive,
+    int *b_creditcardmerchant_denyvisa,
+    int *b_creditcardmerchant_denymastercard,
+    int *b_creditcardmerchant_denyamex,
+    int *b_creditcardmerchant_isactive,
     char *s_creditcardmerchant_description,
     char *s_creditcardmerchant_storeid
     ) {
@@ -24,6 +24,8 @@ static creditcardmerchant_response_t *creditcardmerchant_response_create_interna
     if (!creditcardmerchant_response_local_var) {
         return NULL;
     }
+    memset(creditcardmerchant_response_local_var, 0, sizeof(creditcardmerchant_response_t));
+    creditcardmerchant_response_local_var->_library_owned = 1;
     creditcardmerchant_response_local_var->pki_creditcardmerchant_id = pki_creditcardmerchant_id;
     creditcardmerchant_response_local_var->fki_bankaccount_id = fki_bankaccount_id;
     creditcardmerchant_response_local_var->fki_language_id = fki_language_id;
@@ -37,41 +39,90 @@ static creditcardmerchant_response_t *creditcardmerchant_response_create_interna
     creditcardmerchant_response_local_var->b_creditcardmerchant_isactive = b_creditcardmerchant_isactive;
     creditcardmerchant_response_local_var->s_creditcardmerchant_description = s_creditcardmerchant_description;
     creditcardmerchant_response_local_var->s_creditcardmerchant_storeid = s_creditcardmerchant_storeid;
-
-    creditcardmerchant_response_local_var->_library_owned = 1;
     return creditcardmerchant_response_local_var;
 }
 
 __attribute__((deprecated)) creditcardmerchant_response_t *creditcardmerchant_response_create(
-    int pki_creditcardmerchant_id,
-    int fki_bankaccount_id,
-    int fki_language_id,
+    int *pki_creditcardmerchant_id,
+    int *fki_bankaccount_id,
+    int *fki_language_id,
     char *s_language_name_x,
-    int fki_currency_id,
+    int *fki_currency_id,
     char *s_currency_description_x,
     char *s_bankaccount_bankname,
-    int b_creditcardmerchant_denyvisa,
-    int b_creditcardmerchant_denymastercard,
-    int b_creditcardmerchant_denyamex,
-    int b_creditcardmerchant_isactive,
+    int *b_creditcardmerchant_denyvisa,
+    int *b_creditcardmerchant_denymastercard,
+    int *b_creditcardmerchant_denyamex,
+    int *b_creditcardmerchant_isactive,
     char *s_creditcardmerchant_description,
     char *s_creditcardmerchant_storeid
     ) {
-    return creditcardmerchant_response_create_internal (
-        pki_creditcardmerchant_id,
-        fki_bankaccount_id,
-        fki_language_id,
+    int *pki_creditcardmerchant_id_copy = NULL;
+    if (pki_creditcardmerchant_id) {
+        pki_creditcardmerchant_id_copy = malloc(sizeof(int));
+        if (pki_creditcardmerchant_id_copy) *pki_creditcardmerchant_id_copy = *pki_creditcardmerchant_id;
+    }
+    int *fki_bankaccount_id_copy = NULL;
+    if (fki_bankaccount_id) {
+        fki_bankaccount_id_copy = malloc(sizeof(int));
+        if (fki_bankaccount_id_copy) *fki_bankaccount_id_copy = *fki_bankaccount_id;
+    }
+    int *fki_language_id_copy = NULL;
+    if (fki_language_id) {
+        fki_language_id_copy = malloc(sizeof(int));
+        if (fki_language_id_copy) *fki_language_id_copy = *fki_language_id;
+    }
+    int *fki_currency_id_copy = NULL;
+    if (fki_currency_id) {
+        fki_currency_id_copy = malloc(sizeof(int));
+        if (fki_currency_id_copy) *fki_currency_id_copy = *fki_currency_id;
+    }
+    int *b_creditcardmerchant_denyvisa_copy = NULL;
+    if (b_creditcardmerchant_denyvisa) {
+        b_creditcardmerchant_denyvisa_copy = malloc(sizeof(int));
+        if (b_creditcardmerchant_denyvisa_copy) *b_creditcardmerchant_denyvisa_copy = *b_creditcardmerchant_denyvisa;
+    }
+    int *b_creditcardmerchant_denymastercard_copy = NULL;
+    if (b_creditcardmerchant_denymastercard) {
+        b_creditcardmerchant_denymastercard_copy = malloc(sizeof(int));
+        if (b_creditcardmerchant_denymastercard_copy) *b_creditcardmerchant_denymastercard_copy = *b_creditcardmerchant_denymastercard;
+    }
+    int *b_creditcardmerchant_denyamex_copy = NULL;
+    if (b_creditcardmerchant_denyamex) {
+        b_creditcardmerchant_denyamex_copy = malloc(sizeof(int));
+        if (b_creditcardmerchant_denyamex_copy) *b_creditcardmerchant_denyamex_copy = *b_creditcardmerchant_denyamex;
+    }
+    int *b_creditcardmerchant_isactive_copy = NULL;
+    if (b_creditcardmerchant_isactive) {
+        b_creditcardmerchant_isactive_copy = malloc(sizeof(int));
+        if (b_creditcardmerchant_isactive_copy) *b_creditcardmerchant_isactive_copy = *b_creditcardmerchant_isactive;
+    }
+    creditcardmerchant_response_t *result = creditcardmerchant_response_create_internal (
+        pki_creditcardmerchant_id_copy,
+        fki_bankaccount_id_copy,
+        fki_language_id_copy,
         s_language_name_x,
-        fki_currency_id,
+        fki_currency_id_copy,
         s_currency_description_x,
         s_bankaccount_bankname,
-        b_creditcardmerchant_denyvisa,
-        b_creditcardmerchant_denymastercard,
-        b_creditcardmerchant_denyamex,
-        b_creditcardmerchant_isactive,
+        b_creditcardmerchant_denyvisa_copy,
+        b_creditcardmerchant_denymastercard_copy,
+        b_creditcardmerchant_denyamex_copy,
+        b_creditcardmerchant_isactive_copy,
         s_creditcardmerchant_description,
         s_creditcardmerchant_storeid
         );
+    if (!result) {
+        free(pki_creditcardmerchant_id_copy);
+        free(fki_bankaccount_id_copy);
+        free(fki_language_id_copy);
+        free(fki_currency_id_copy);
+        free(b_creditcardmerchant_denyvisa_copy);
+        free(b_creditcardmerchant_denymastercard_copy);
+        free(b_creditcardmerchant_denyamex_copy);
+        free(b_creditcardmerchant_isactive_copy);
+    }
+    return result;
 }
 
 void creditcardmerchant_response_free(creditcardmerchant_response_t *creditcardmerchant_response) {
@@ -83,9 +134,25 @@ void creditcardmerchant_response_free(creditcardmerchant_response_t *creditcardm
         return ;
     }
     listEntry_t *listEntry;
+    if (creditcardmerchant_response->pki_creditcardmerchant_id) {
+        free(creditcardmerchant_response->pki_creditcardmerchant_id);
+        creditcardmerchant_response->pki_creditcardmerchant_id = NULL;
+    }
+    if (creditcardmerchant_response->fki_bankaccount_id) {
+        free(creditcardmerchant_response->fki_bankaccount_id);
+        creditcardmerchant_response->fki_bankaccount_id = NULL;
+    }
+    if (creditcardmerchant_response->fki_language_id) {
+        free(creditcardmerchant_response->fki_language_id);
+        creditcardmerchant_response->fki_language_id = NULL;
+    }
     if (creditcardmerchant_response->s_language_name_x) {
         free(creditcardmerchant_response->s_language_name_x);
         creditcardmerchant_response->s_language_name_x = NULL;
+    }
+    if (creditcardmerchant_response->fki_currency_id) {
+        free(creditcardmerchant_response->fki_currency_id);
+        creditcardmerchant_response->fki_currency_id = NULL;
     }
     if (creditcardmerchant_response->s_currency_description_x) {
         free(creditcardmerchant_response->s_currency_description_x);
@@ -94,6 +161,22 @@ void creditcardmerchant_response_free(creditcardmerchant_response_t *creditcardm
     if (creditcardmerchant_response->s_bankaccount_bankname) {
         free(creditcardmerchant_response->s_bankaccount_bankname);
         creditcardmerchant_response->s_bankaccount_bankname = NULL;
+    }
+    if (creditcardmerchant_response->b_creditcardmerchant_denyvisa) {
+        free(creditcardmerchant_response->b_creditcardmerchant_denyvisa);
+        creditcardmerchant_response->b_creditcardmerchant_denyvisa = NULL;
+    }
+    if (creditcardmerchant_response->b_creditcardmerchant_denymastercard) {
+        free(creditcardmerchant_response->b_creditcardmerchant_denymastercard);
+        creditcardmerchant_response->b_creditcardmerchant_denymastercard = NULL;
+    }
+    if (creditcardmerchant_response->b_creditcardmerchant_denyamex) {
+        free(creditcardmerchant_response->b_creditcardmerchant_denyamex);
+        creditcardmerchant_response->b_creditcardmerchant_denyamex = NULL;
+    }
+    if (creditcardmerchant_response->b_creditcardmerchant_isactive) {
+        free(creditcardmerchant_response->b_creditcardmerchant_isactive);
+        creditcardmerchant_response->b_creditcardmerchant_isactive = NULL;
     }
     if (creditcardmerchant_response->s_creditcardmerchant_description) {
         free(creditcardmerchant_response->s_creditcardmerchant_description);
@@ -113,14 +196,14 @@ cJSON *creditcardmerchant_response_convertToJSON(creditcardmerchant_response_t *
     if (!creditcardmerchant_response->pki_creditcardmerchant_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiCreditcardmerchantID", creditcardmerchant_response->pki_creditcardmerchant_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiCreditcardmerchantID", *creditcardmerchant_response->pki_creditcardmerchant_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // creditcardmerchant_response->fki_bankaccount_id
     if(creditcardmerchant_response->fki_bankaccount_id) {
-    if(cJSON_AddNumberToObject(item, "fkiBankaccountID", creditcardmerchant_response->fki_bankaccount_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiBankaccountID", *creditcardmerchant_response->fki_bankaccount_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -130,7 +213,7 @@ cJSON *creditcardmerchant_response_convertToJSON(creditcardmerchant_response_t *
     if (!creditcardmerchant_response->fki_language_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiLanguageID", creditcardmerchant_response->fki_language_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiLanguageID", *creditcardmerchant_response->fki_language_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -148,7 +231,7 @@ cJSON *creditcardmerchant_response_convertToJSON(creditcardmerchant_response_t *
     if (!creditcardmerchant_response->fki_currency_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiCurrencyID", creditcardmerchant_response->fki_currency_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiCurrencyID", *creditcardmerchant_response->fki_currency_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -174,7 +257,7 @@ cJSON *creditcardmerchant_response_convertToJSON(creditcardmerchant_response_t *
     if (!creditcardmerchant_response->b_creditcardmerchant_denyvisa) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bCreditcardmerchantDenyvisa", creditcardmerchant_response->b_creditcardmerchant_denyvisa) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bCreditcardmerchantDenyvisa", *creditcardmerchant_response->b_creditcardmerchant_denyvisa) == NULL) {
     goto fail; //Bool
     }
 
@@ -183,7 +266,7 @@ cJSON *creditcardmerchant_response_convertToJSON(creditcardmerchant_response_t *
     if (!creditcardmerchant_response->b_creditcardmerchant_denymastercard) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bCreditcardmerchantDenymastercard", creditcardmerchant_response->b_creditcardmerchant_denymastercard) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bCreditcardmerchantDenymastercard", *creditcardmerchant_response->b_creditcardmerchant_denymastercard) == NULL) {
     goto fail; //Bool
     }
 
@@ -192,7 +275,7 @@ cJSON *creditcardmerchant_response_convertToJSON(creditcardmerchant_response_t *
     if (!creditcardmerchant_response->b_creditcardmerchant_denyamex) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bCreditcardmerchantDenyamex", creditcardmerchant_response->b_creditcardmerchant_denyamex) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bCreditcardmerchantDenyamex", *creditcardmerchant_response->b_creditcardmerchant_denyamex) == NULL) {
     goto fail; //Bool
     }
 
@@ -201,7 +284,7 @@ cJSON *creditcardmerchant_response_convertToJSON(creditcardmerchant_response_t *
     if (!creditcardmerchant_response->b_creditcardmerchant_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bCreditcardmerchantIsactive", creditcardmerchant_response->b_creditcardmerchant_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bCreditcardmerchantIsactive", *creditcardmerchant_response->b_creditcardmerchant_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -235,6 +318,40 @@ creditcardmerchant_response_t *creditcardmerchant_response_parseFromJSON(cJSON *
 
     creditcardmerchant_response_t *creditcardmerchant_response_local_var = NULL;
 
+    // define the local variable for creditcardmerchant_response->pki_creditcardmerchant_id
+    int *pki_creditcardmerchant_id_local_var = NULL;
+
+    // define the local variable for creditcardmerchant_response->fki_bankaccount_id
+    int *fki_bankaccount_id_local_var = NULL;
+
+    // define the local variable for creditcardmerchant_response->fki_language_id
+    int *fki_language_id_local_var = NULL;
+
+    char *s_language_name_x_local_str = NULL;
+
+    // define the local variable for creditcardmerchant_response->fki_currency_id
+    int *fki_currency_id_local_var = NULL;
+
+    char *s_currency_description_x_local_str = NULL;
+
+    char *s_bankaccount_bankname_local_str = NULL;
+
+    // define the local variable for creditcardmerchant_response->b_creditcardmerchant_denyvisa
+    int *b_creditcardmerchant_denyvisa_local_var = NULL;
+
+    // define the local variable for creditcardmerchant_response->b_creditcardmerchant_denymastercard
+    int *b_creditcardmerchant_denymastercard_local_var = NULL;
+
+    // define the local variable for creditcardmerchant_response->b_creditcardmerchant_denyamex
+    int *b_creditcardmerchant_denyamex_local_var = NULL;
+
+    // define the local variable for creditcardmerchant_response->b_creditcardmerchant_isactive
+    int *b_creditcardmerchant_isactive_local_var = NULL;
+
+    char *s_creditcardmerchant_description_local_str = NULL;
+
+    char *s_creditcardmerchant_storeid_local_str = NULL;
+
     // creditcardmerchant_response->pki_creditcardmerchant_id
     cJSON *pki_creditcardmerchant_id = cJSON_GetObjectItemCaseSensitive(creditcardmerchant_responseJSON, "pkiCreditcardmerchantID");
     if (cJSON_IsNull(pki_creditcardmerchant_id)) {
@@ -249,6 +366,12 @@ creditcardmerchant_response_t *creditcardmerchant_response_parseFromJSON(cJSON *
     {
     goto end; //Numeric
     }
+    pki_creditcardmerchant_id_local_var = malloc(sizeof(int));
+    if(!pki_creditcardmerchant_id_local_var)
+    {
+        goto end;
+    }
+    *pki_creditcardmerchant_id_local_var = pki_creditcardmerchant_id->valuedouble;
 
     // creditcardmerchant_response->fki_bankaccount_id
     cJSON *fki_bankaccount_id = cJSON_GetObjectItemCaseSensitive(creditcardmerchant_responseJSON, "fkiBankaccountID");
@@ -260,6 +383,12 @@ creditcardmerchant_response_t *creditcardmerchant_response_parseFromJSON(cJSON *
     {
     goto end; //Numeric
     }
+    fki_bankaccount_id_local_var = malloc(sizeof(int));
+    if(!fki_bankaccount_id_local_var)
+    {
+        goto end;
+    }
+    *fki_bankaccount_id_local_var = fki_bankaccount_id->valuedouble;
     }
 
     // creditcardmerchant_response->fki_language_id
@@ -276,6 +405,12 @@ creditcardmerchant_response_t *creditcardmerchant_response_parseFromJSON(cJSON *
     {
     goto end; //Numeric
     }
+    fki_language_id_local_var = malloc(sizeof(int));
+    if(!fki_language_id_local_var)
+    {
+        goto end;
+    }
+    *fki_language_id_local_var = fki_language_id->valuedouble;
 
     // creditcardmerchant_response->s_language_name_x
     cJSON *s_language_name_x = cJSON_GetObjectItemCaseSensitive(creditcardmerchant_responseJSON, "sLanguageNameX");
@@ -306,6 +441,12 @@ creditcardmerchant_response_t *creditcardmerchant_response_parseFromJSON(cJSON *
     {
     goto end; //Numeric
     }
+    fki_currency_id_local_var = malloc(sizeof(int));
+    if(!fki_currency_id_local_var)
+    {
+        goto end;
+    }
+    *fki_currency_id_local_var = fki_currency_id->valuedouble;
 
     // creditcardmerchant_response->s_currency_description_x
     cJSON *s_currency_description_x = cJSON_GetObjectItemCaseSensitive(creditcardmerchant_responseJSON, "sCurrencyDescriptionX");
@@ -348,6 +489,12 @@ creditcardmerchant_response_t *creditcardmerchant_response_parseFromJSON(cJSON *
     {
     goto end; //Bool
     }
+    b_creditcardmerchant_denyvisa_local_var = malloc(sizeof(int));
+    if(!b_creditcardmerchant_denyvisa_local_var)
+    {
+        goto end;
+    }
+    *b_creditcardmerchant_denyvisa_local_var = b_creditcardmerchant_denyvisa->valueint;
 
     // creditcardmerchant_response->b_creditcardmerchant_denymastercard
     cJSON *b_creditcardmerchant_denymastercard = cJSON_GetObjectItemCaseSensitive(creditcardmerchant_responseJSON, "bCreditcardmerchantDenymastercard");
@@ -363,6 +510,12 @@ creditcardmerchant_response_t *creditcardmerchant_response_parseFromJSON(cJSON *
     {
     goto end; //Bool
     }
+    b_creditcardmerchant_denymastercard_local_var = malloc(sizeof(int));
+    if(!b_creditcardmerchant_denymastercard_local_var)
+    {
+        goto end;
+    }
+    *b_creditcardmerchant_denymastercard_local_var = b_creditcardmerchant_denymastercard->valueint;
 
     // creditcardmerchant_response->b_creditcardmerchant_denyamex
     cJSON *b_creditcardmerchant_denyamex = cJSON_GetObjectItemCaseSensitive(creditcardmerchant_responseJSON, "bCreditcardmerchantDenyamex");
@@ -378,6 +531,12 @@ creditcardmerchant_response_t *creditcardmerchant_response_parseFromJSON(cJSON *
     {
     goto end; //Bool
     }
+    b_creditcardmerchant_denyamex_local_var = malloc(sizeof(int));
+    if(!b_creditcardmerchant_denyamex_local_var)
+    {
+        goto end;
+    }
+    *b_creditcardmerchant_denyamex_local_var = b_creditcardmerchant_denyamex->valueint;
 
     // creditcardmerchant_response->b_creditcardmerchant_isactive
     cJSON *b_creditcardmerchant_isactive = cJSON_GetObjectItemCaseSensitive(creditcardmerchant_responseJSON, "bCreditcardmerchantIsactive");
@@ -393,6 +552,12 @@ creditcardmerchant_response_t *creditcardmerchant_response_parseFromJSON(cJSON *
     {
     goto end; //Bool
     }
+    b_creditcardmerchant_isactive_local_var = malloc(sizeof(int));
+    if(!b_creditcardmerchant_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_creditcardmerchant_isactive_local_var = b_creditcardmerchant_isactive->valueint;
 
     // creditcardmerchant_response->s_creditcardmerchant_description
     cJSON *s_creditcardmerchant_description = cJSON_GetObjectItemCaseSensitive(creditcardmerchant_responseJSON, "sCreditcardmerchantDescription");
@@ -425,24 +590,86 @@ creditcardmerchant_response_t *creditcardmerchant_response_parseFromJSON(cJSON *
     }
 
 
+    if (s_language_name_x && !cJSON_IsNull(s_language_name_x)) s_language_name_x_local_str = strdup(s_language_name_x->valuestring);
+    if (s_currency_description_x && !cJSON_IsNull(s_currency_description_x)) s_currency_description_x_local_str = strdup(s_currency_description_x->valuestring);
+    if (s_bankaccount_bankname && !cJSON_IsNull(s_bankaccount_bankname)) s_bankaccount_bankname_local_str = strdup(s_bankaccount_bankname->valuestring);
+    if (s_creditcardmerchant_description && !cJSON_IsNull(s_creditcardmerchant_description)) s_creditcardmerchant_description_local_str = strdup(s_creditcardmerchant_description->valuestring);
+    if (s_creditcardmerchant_storeid && !cJSON_IsNull(s_creditcardmerchant_storeid)) s_creditcardmerchant_storeid_local_str = strdup(s_creditcardmerchant_storeid->valuestring);
+
     creditcardmerchant_response_local_var = creditcardmerchant_response_create_internal (
-        pki_creditcardmerchant_id->valuedouble,
-        fki_bankaccount_id ? fki_bankaccount_id->valuedouble : 0,
-        fki_language_id->valuedouble,
-        strdup(s_language_name_x->valuestring),
-        fki_currency_id->valuedouble,
-        strdup(s_currency_description_x->valuestring),
-        s_bankaccount_bankname && !cJSON_IsNull(s_bankaccount_bankname) ? strdup(s_bankaccount_bankname->valuestring) : NULL,
-        b_creditcardmerchant_denyvisa->valueint,
-        b_creditcardmerchant_denymastercard->valueint,
-        b_creditcardmerchant_denyamex->valueint,
-        b_creditcardmerchant_isactive->valueint,
-        strdup(s_creditcardmerchant_description->valuestring),
-        strdup(s_creditcardmerchant_storeid->valuestring)
+        pki_creditcardmerchant_id_local_var,
+        fki_bankaccount_id_local_var,
+        fki_language_id_local_var,
+        s_language_name_x_local_str,
+        fki_currency_id_local_var,
+        s_currency_description_x_local_str,
+        s_bankaccount_bankname_local_str,
+        b_creditcardmerchant_denyvisa_local_var,
+        b_creditcardmerchant_denymastercard_local_var,
+        b_creditcardmerchant_denyamex_local_var,
+        b_creditcardmerchant_isactive_local_var,
+        s_creditcardmerchant_description_local_str,
+        s_creditcardmerchant_storeid_local_str
         );
+
+    if (!creditcardmerchant_response_local_var) {
+        goto end;
+    }
 
     return creditcardmerchant_response_local_var;
 end:
+    if (pki_creditcardmerchant_id_local_var) {
+        free(pki_creditcardmerchant_id_local_var);
+        pki_creditcardmerchant_id_local_var = NULL;
+    }
+    if (fki_bankaccount_id_local_var) {
+        free(fki_bankaccount_id_local_var);
+        fki_bankaccount_id_local_var = NULL;
+    }
+    if (fki_language_id_local_var) {
+        free(fki_language_id_local_var);
+        fki_language_id_local_var = NULL;
+    }
+    if (s_language_name_x_local_str) {
+        free(s_language_name_x_local_str);
+        s_language_name_x_local_str = NULL;
+    }
+    if (fki_currency_id_local_var) {
+        free(fki_currency_id_local_var);
+        fki_currency_id_local_var = NULL;
+    }
+    if (s_currency_description_x_local_str) {
+        free(s_currency_description_x_local_str);
+        s_currency_description_x_local_str = NULL;
+    }
+    if (s_bankaccount_bankname_local_str) {
+        free(s_bankaccount_bankname_local_str);
+        s_bankaccount_bankname_local_str = NULL;
+    }
+    if (b_creditcardmerchant_denyvisa_local_var) {
+        free(b_creditcardmerchant_denyvisa_local_var);
+        b_creditcardmerchant_denyvisa_local_var = NULL;
+    }
+    if (b_creditcardmerchant_denymastercard_local_var) {
+        free(b_creditcardmerchant_denymastercard_local_var);
+        b_creditcardmerchant_denymastercard_local_var = NULL;
+    }
+    if (b_creditcardmerchant_denyamex_local_var) {
+        free(b_creditcardmerchant_denyamex_local_var);
+        b_creditcardmerchant_denyamex_local_var = NULL;
+    }
+    if (b_creditcardmerchant_isactive_local_var) {
+        free(b_creditcardmerchant_isactive_local_var);
+        b_creditcardmerchant_isactive_local_var = NULL;
+    }
+    if (s_creditcardmerchant_description_local_str) {
+        free(s_creditcardmerchant_description_local_str);
+        s_creditcardmerchant_description_local_str = NULL;
+    }
+    if (s_creditcardmerchant_storeid_local_str) {
+        free(s_creditcardmerchant_storeid_local_str);
+        s_creditcardmerchant_storeid_local_str = NULL;
+    }
     return NULL;
 
 }

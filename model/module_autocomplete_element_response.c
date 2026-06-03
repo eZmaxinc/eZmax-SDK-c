@@ -6,32 +6,47 @@
 
 
 static module_autocomplete_element_response_t *module_autocomplete_element_response_create_internal(
-    int pki_module_id,
+    int *pki_module_id,
     char *s_module_name_x,
-    int b_module_isactive
+    int *b_module_isactive
     ) {
     module_autocomplete_element_response_t *module_autocomplete_element_response_local_var = malloc(sizeof(module_autocomplete_element_response_t));
     if (!module_autocomplete_element_response_local_var) {
         return NULL;
     }
+    memset(module_autocomplete_element_response_local_var, 0, sizeof(module_autocomplete_element_response_t));
+    module_autocomplete_element_response_local_var->_library_owned = 1;
     module_autocomplete_element_response_local_var->pki_module_id = pki_module_id;
     module_autocomplete_element_response_local_var->s_module_name_x = s_module_name_x;
     module_autocomplete_element_response_local_var->b_module_isactive = b_module_isactive;
-
-    module_autocomplete_element_response_local_var->_library_owned = 1;
     return module_autocomplete_element_response_local_var;
 }
 
 __attribute__((deprecated)) module_autocomplete_element_response_t *module_autocomplete_element_response_create(
-    int pki_module_id,
+    int *pki_module_id,
     char *s_module_name_x,
-    int b_module_isactive
+    int *b_module_isactive
     ) {
-    return module_autocomplete_element_response_create_internal (
-        pki_module_id,
+    int *pki_module_id_copy = NULL;
+    if (pki_module_id) {
+        pki_module_id_copy = malloc(sizeof(int));
+        if (pki_module_id_copy) *pki_module_id_copy = *pki_module_id;
+    }
+    int *b_module_isactive_copy = NULL;
+    if (b_module_isactive) {
+        b_module_isactive_copy = malloc(sizeof(int));
+        if (b_module_isactive_copy) *b_module_isactive_copy = *b_module_isactive;
+    }
+    module_autocomplete_element_response_t *result = module_autocomplete_element_response_create_internal (
+        pki_module_id_copy,
         s_module_name_x,
-        b_module_isactive
+        b_module_isactive_copy
         );
+    if (!result) {
+        free(pki_module_id_copy);
+        free(b_module_isactive_copy);
+    }
+    return result;
 }
 
 void module_autocomplete_element_response_free(module_autocomplete_element_response_t *module_autocomplete_element_response) {
@@ -43,9 +58,17 @@ void module_autocomplete_element_response_free(module_autocomplete_element_respo
         return ;
     }
     listEntry_t *listEntry;
+    if (module_autocomplete_element_response->pki_module_id) {
+        free(module_autocomplete_element_response->pki_module_id);
+        module_autocomplete_element_response->pki_module_id = NULL;
+    }
     if (module_autocomplete_element_response->s_module_name_x) {
         free(module_autocomplete_element_response->s_module_name_x);
         module_autocomplete_element_response->s_module_name_x = NULL;
+    }
+    if (module_autocomplete_element_response->b_module_isactive) {
+        free(module_autocomplete_element_response->b_module_isactive);
+        module_autocomplete_element_response->b_module_isactive = NULL;
     }
     free(module_autocomplete_element_response);
 }
@@ -57,7 +80,7 @@ cJSON *module_autocomplete_element_response_convertToJSON(module_autocomplete_el
     if (!module_autocomplete_element_response->pki_module_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiModuleID", module_autocomplete_element_response->pki_module_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiModuleID", *module_autocomplete_element_response->pki_module_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -75,7 +98,7 @@ cJSON *module_autocomplete_element_response_convertToJSON(module_autocomplete_el
     if (!module_autocomplete_element_response->b_module_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bModuleIsactive", module_autocomplete_element_response->b_module_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bModuleIsactive", *module_autocomplete_element_response->b_module_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -91,6 +114,14 @@ module_autocomplete_element_response_t *module_autocomplete_element_response_par
 
     module_autocomplete_element_response_t *module_autocomplete_element_response_local_var = NULL;
 
+    // define the local variable for module_autocomplete_element_response->pki_module_id
+    int *pki_module_id_local_var = NULL;
+
+    char *s_module_name_x_local_str = NULL;
+
+    // define the local variable for module_autocomplete_element_response->b_module_isactive
+    int *b_module_isactive_local_var = NULL;
+
     // module_autocomplete_element_response->pki_module_id
     cJSON *pki_module_id = cJSON_GetObjectItemCaseSensitive(module_autocomplete_element_responseJSON, "pkiModuleID");
     if (cJSON_IsNull(pki_module_id)) {
@@ -105,6 +136,12 @@ module_autocomplete_element_response_t *module_autocomplete_element_response_par
     {
     goto end; //Numeric
     }
+    pki_module_id_local_var = malloc(sizeof(int));
+    if(!pki_module_id_local_var)
+    {
+        goto end;
+    }
+    *pki_module_id_local_var = pki_module_id->valuedouble;
 
     // module_autocomplete_element_response->s_module_name_x
     cJSON *s_module_name_x = cJSON_GetObjectItemCaseSensitive(module_autocomplete_element_responseJSON, "sModuleNameX");
@@ -135,16 +172,40 @@ module_autocomplete_element_response_t *module_autocomplete_element_response_par
     {
     goto end; //Bool
     }
+    b_module_isactive_local_var = malloc(sizeof(int));
+    if(!b_module_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_module_isactive_local_var = b_module_isactive->valueint;
 
+
+    if (s_module_name_x && !cJSON_IsNull(s_module_name_x)) s_module_name_x_local_str = strdup(s_module_name_x->valuestring);
 
     module_autocomplete_element_response_local_var = module_autocomplete_element_response_create_internal (
-        pki_module_id->valuedouble,
-        strdup(s_module_name_x->valuestring),
-        b_module_isactive->valueint
+        pki_module_id_local_var,
+        s_module_name_x_local_str,
+        b_module_isactive_local_var
         );
+
+    if (!module_autocomplete_element_response_local_var) {
+        goto end;
+    }
 
     return module_autocomplete_element_response_local_var;
 end:
+    if (pki_module_id_local_var) {
+        free(pki_module_id_local_var);
+        pki_module_id_local_var = NULL;
+    }
+    if (s_module_name_x_local_str) {
+        free(s_module_name_x_local_str);
+        s_module_name_x_local_str = NULL;
+    }
+    if (b_module_isactive_local_var) {
+        free(b_module_isactive_local_var);
+        b_module_isactive_local_var = NULL;
+    }
     return NULL;
 
 }

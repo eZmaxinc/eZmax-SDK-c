@@ -13,10 +13,10 @@ static multilingual_apikey_description_t *multilingual_apikey_description_create
     if (!multilingual_apikey_description_local_var) {
         return NULL;
     }
+    memset(multilingual_apikey_description_local_var, 0, sizeof(multilingual_apikey_description_t));
+    multilingual_apikey_description_local_var->_library_owned = 1;
     multilingual_apikey_description_local_var->s_apikey_description1 = s_apikey_description1;
     multilingual_apikey_description_local_var->s_apikey_description2 = s_apikey_description2;
-
-    multilingual_apikey_description_local_var->_library_owned = 1;
     return multilingual_apikey_description_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) multilingual_apikey_description_t *multilingual_apik
     char *s_apikey_description1,
     char *s_apikey_description2
     ) {
-    return multilingual_apikey_description_create_internal (
+    multilingual_apikey_description_t *result = multilingual_apikey_description_create_internal (
         s_apikey_description1,
         s_apikey_description2
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void multilingual_apikey_description_free(multilingual_apikey_description_t *multilingual_apikey_description) {
@@ -80,6 +83,10 @@ multilingual_apikey_description_t *multilingual_apikey_description_parseFromJSON
 
     multilingual_apikey_description_t *multilingual_apikey_description_local_var = NULL;
 
+    char *s_apikey_description1_local_str = NULL;
+
+    char *s_apikey_description2_local_str = NULL;
+
     // multilingual_apikey_description->s_apikey_description1
     cJSON *s_apikey_description1 = cJSON_GetObjectItemCaseSensitive(multilingual_apikey_descriptionJSON, "sApikeyDescription1");
     if (cJSON_IsNull(s_apikey_description1)) {
@@ -105,13 +112,28 @@ multilingual_apikey_description_t *multilingual_apikey_description_parseFromJSON
     }
 
 
+    if (s_apikey_description1 && !cJSON_IsNull(s_apikey_description1)) s_apikey_description1_local_str = strdup(s_apikey_description1->valuestring);
+    if (s_apikey_description2 && !cJSON_IsNull(s_apikey_description2)) s_apikey_description2_local_str = strdup(s_apikey_description2->valuestring);
+
     multilingual_apikey_description_local_var = multilingual_apikey_description_create_internal (
-        s_apikey_description1 && !cJSON_IsNull(s_apikey_description1) ? strdup(s_apikey_description1->valuestring) : NULL,
-        s_apikey_description2 && !cJSON_IsNull(s_apikey_description2) ? strdup(s_apikey_description2->valuestring) : NULL
+        s_apikey_description1_local_str,
+        s_apikey_description2_local_str
         );
+
+    if (!multilingual_apikey_description_local_var) {
+        goto end;
+    }
 
     return multilingual_apikey_description_local_var;
 end:
+    if (s_apikey_description1_local_str) {
+        free(s_apikey_description1_local_str);
+        s_apikey_description1_local_str = NULL;
+    }
+    if (s_apikey_description2_local_str) {
+        free(s_apikey_description2_local_str);
+        s_apikey_description2_local_str = NULL;
+    }
     return NULL;
 
 }

@@ -24,22 +24,24 @@ ezmax_api_definition__full_custom_attachment_import_into_edm_request_EATTACHMENT
 
 static custom_attachment_import_into_edm_request_t *custom_attachment_import_into_edm_request_create_internal(
     ezmax_api_definition__full_custom_attachment_import_into_edm_request_EATTACHMENTSOURCE_e e_attachment_source,
-    int fki_attachment_id,
-    int fki_inscriptionchecklist_id,
+    int *fki_attachment_id,
+    int *fki_inscriptionchecklist_id,
     char *s_attachment_url,
     char *s_attachment_base64,
     char *s_attachment_name,
     char *s_attachment_category,
     ezmax_api_definition__full_field_e_attachment_privacy__e e_attachment_privacy,
-    int fki_user_id_specific,
+    int *fki_user_id_specific,
     char *s_attachment_md5,
-    int b_attachment_forceoverwrite,
-    int b_attachment_forcerestore
+    int *b_attachment_forceoverwrite,
+    int *b_attachment_forcerestore
     ) {
     custom_attachment_import_into_edm_request_t *custom_attachment_import_into_edm_request_local_var = malloc(sizeof(custom_attachment_import_into_edm_request_t));
     if (!custom_attachment_import_into_edm_request_local_var) {
         return NULL;
     }
+    memset(custom_attachment_import_into_edm_request_local_var, 0, sizeof(custom_attachment_import_into_edm_request_t));
+    custom_attachment_import_into_edm_request_local_var->_library_owned = 1;
     custom_attachment_import_into_edm_request_local_var->e_attachment_source = e_attachment_source;
     custom_attachment_import_into_edm_request_local_var->fki_attachment_id = fki_attachment_id;
     custom_attachment_import_into_edm_request_local_var->fki_inscriptionchecklist_id = fki_inscriptionchecklist_id;
@@ -52,39 +54,70 @@ static custom_attachment_import_into_edm_request_t *custom_attachment_import_int
     custom_attachment_import_into_edm_request_local_var->s_attachment_md5 = s_attachment_md5;
     custom_attachment_import_into_edm_request_local_var->b_attachment_forceoverwrite = b_attachment_forceoverwrite;
     custom_attachment_import_into_edm_request_local_var->b_attachment_forcerestore = b_attachment_forcerestore;
-
-    custom_attachment_import_into_edm_request_local_var->_library_owned = 1;
     return custom_attachment_import_into_edm_request_local_var;
 }
 
 __attribute__((deprecated)) custom_attachment_import_into_edm_request_t *custom_attachment_import_into_edm_request_create(
     ezmax_api_definition__full_custom_attachment_import_into_edm_request_EATTACHMENTSOURCE_e e_attachment_source,
-    int fki_attachment_id,
-    int fki_inscriptionchecklist_id,
+    int *fki_attachment_id,
+    int *fki_inscriptionchecklist_id,
     char *s_attachment_url,
     char *s_attachment_base64,
     char *s_attachment_name,
     char *s_attachment_category,
     ezmax_api_definition__full_field_e_attachment_privacy__e e_attachment_privacy,
-    int fki_user_id_specific,
+    int *fki_user_id_specific,
     char *s_attachment_md5,
-    int b_attachment_forceoverwrite,
-    int b_attachment_forcerestore
+    int *b_attachment_forceoverwrite,
+    int *b_attachment_forcerestore
     ) {
-    return custom_attachment_import_into_edm_request_create_internal (
+    int *fki_attachment_id_copy = NULL;
+    if (fki_attachment_id) {
+        fki_attachment_id_copy = malloc(sizeof(int));
+        if (fki_attachment_id_copy) *fki_attachment_id_copy = *fki_attachment_id;
+    }
+    int *fki_inscriptionchecklist_id_copy = NULL;
+    if (fki_inscriptionchecklist_id) {
+        fki_inscriptionchecklist_id_copy = malloc(sizeof(int));
+        if (fki_inscriptionchecklist_id_copy) *fki_inscriptionchecklist_id_copy = *fki_inscriptionchecklist_id;
+    }
+    int *fki_user_id_specific_copy = NULL;
+    if (fki_user_id_specific) {
+        fki_user_id_specific_copy = malloc(sizeof(int));
+        if (fki_user_id_specific_copy) *fki_user_id_specific_copy = *fki_user_id_specific;
+    }
+    int *b_attachment_forceoverwrite_copy = NULL;
+    if (b_attachment_forceoverwrite) {
+        b_attachment_forceoverwrite_copy = malloc(sizeof(int));
+        if (b_attachment_forceoverwrite_copy) *b_attachment_forceoverwrite_copy = *b_attachment_forceoverwrite;
+    }
+    int *b_attachment_forcerestore_copy = NULL;
+    if (b_attachment_forcerestore) {
+        b_attachment_forcerestore_copy = malloc(sizeof(int));
+        if (b_attachment_forcerestore_copy) *b_attachment_forcerestore_copy = *b_attachment_forcerestore;
+    }
+    custom_attachment_import_into_edm_request_t *result = custom_attachment_import_into_edm_request_create_internal (
         e_attachment_source,
-        fki_attachment_id,
-        fki_inscriptionchecklist_id,
+        fki_attachment_id_copy,
+        fki_inscriptionchecklist_id_copy,
         s_attachment_url,
         s_attachment_base64,
         s_attachment_name,
         s_attachment_category,
         e_attachment_privacy,
-        fki_user_id_specific,
+        fki_user_id_specific_copy,
         s_attachment_md5,
-        b_attachment_forceoverwrite,
-        b_attachment_forcerestore
+        b_attachment_forceoverwrite_copy,
+        b_attachment_forcerestore_copy
         );
+    if (!result) {
+        free(fki_attachment_id_copy);
+        free(fki_inscriptionchecklist_id_copy);
+        free(fki_user_id_specific_copy);
+        free(b_attachment_forceoverwrite_copy);
+        free(b_attachment_forcerestore_copy);
+    }
+    return result;
 }
 
 void custom_attachment_import_into_edm_request_free(custom_attachment_import_into_edm_request_t *custom_attachment_import_into_edm_request) {
@@ -96,6 +129,14 @@ void custom_attachment_import_into_edm_request_free(custom_attachment_import_int
         return ;
     }
     listEntry_t *listEntry;
+    if (custom_attachment_import_into_edm_request->fki_attachment_id) {
+        free(custom_attachment_import_into_edm_request->fki_attachment_id);
+        custom_attachment_import_into_edm_request->fki_attachment_id = NULL;
+    }
+    if (custom_attachment_import_into_edm_request->fki_inscriptionchecklist_id) {
+        free(custom_attachment_import_into_edm_request->fki_inscriptionchecklist_id);
+        custom_attachment_import_into_edm_request->fki_inscriptionchecklist_id = NULL;
+    }
     if (custom_attachment_import_into_edm_request->s_attachment_url) {
         free(custom_attachment_import_into_edm_request->s_attachment_url);
         custom_attachment_import_into_edm_request->s_attachment_url = NULL;
@@ -112,9 +153,21 @@ void custom_attachment_import_into_edm_request_free(custom_attachment_import_int
         free(custom_attachment_import_into_edm_request->s_attachment_category);
         custom_attachment_import_into_edm_request->s_attachment_category = NULL;
     }
+    if (custom_attachment_import_into_edm_request->fki_user_id_specific) {
+        free(custom_attachment_import_into_edm_request->fki_user_id_specific);
+        custom_attachment_import_into_edm_request->fki_user_id_specific = NULL;
+    }
     if (custom_attachment_import_into_edm_request->s_attachment_md5) {
         free(custom_attachment_import_into_edm_request->s_attachment_md5);
         custom_attachment_import_into_edm_request->s_attachment_md5 = NULL;
+    }
+    if (custom_attachment_import_into_edm_request->b_attachment_forceoverwrite) {
+        free(custom_attachment_import_into_edm_request->b_attachment_forceoverwrite);
+        custom_attachment_import_into_edm_request->b_attachment_forceoverwrite = NULL;
+    }
+    if (custom_attachment_import_into_edm_request->b_attachment_forcerestore) {
+        free(custom_attachment_import_into_edm_request->b_attachment_forcerestore);
+        custom_attachment_import_into_edm_request->b_attachment_forcerestore = NULL;
     }
     free(custom_attachment_import_into_edm_request);
 }
@@ -134,7 +187,7 @@ cJSON *custom_attachment_import_into_edm_request_convertToJSON(custom_attachment
 
     // custom_attachment_import_into_edm_request->fki_attachment_id
     if(custom_attachment_import_into_edm_request->fki_attachment_id) {
-    if(cJSON_AddNumberToObject(item, "fkiAttachmentID", custom_attachment_import_into_edm_request->fki_attachment_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiAttachmentID", *custom_attachment_import_into_edm_request->fki_attachment_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -142,7 +195,7 @@ cJSON *custom_attachment_import_into_edm_request_convertToJSON(custom_attachment
 
     // custom_attachment_import_into_edm_request->fki_inscriptionchecklist_id
     if(custom_attachment_import_into_edm_request->fki_inscriptionchecklist_id) {
-    if(cJSON_AddNumberToObject(item, "fkiInscriptionchecklistID", custom_attachment_import_into_edm_request->fki_inscriptionchecklist_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiInscriptionchecklistID", *custom_attachment_import_into_edm_request->fki_inscriptionchecklist_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -198,7 +251,7 @@ cJSON *custom_attachment_import_into_edm_request_convertToJSON(custom_attachment
 
     // custom_attachment_import_into_edm_request->fki_user_id_specific
     if(custom_attachment_import_into_edm_request->fki_user_id_specific) {
-    if(cJSON_AddNumberToObject(item, "fkiUserIDSpecific", custom_attachment_import_into_edm_request->fki_user_id_specific) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiUserIDSpecific", *custom_attachment_import_into_edm_request->fki_user_id_specific) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -214,7 +267,7 @@ cJSON *custom_attachment_import_into_edm_request_convertToJSON(custom_attachment
 
     // custom_attachment_import_into_edm_request->b_attachment_forceoverwrite
     if(custom_attachment_import_into_edm_request->b_attachment_forceoverwrite) {
-    if(cJSON_AddBoolToObject(item, "bAttachmentForceoverwrite", custom_attachment_import_into_edm_request->b_attachment_forceoverwrite) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bAttachmentForceoverwrite", *custom_attachment_import_into_edm_request->b_attachment_forceoverwrite) == NULL) {
     goto fail; //Bool
     }
     }
@@ -222,7 +275,7 @@ cJSON *custom_attachment_import_into_edm_request_convertToJSON(custom_attachment
 
     // custom_attachment_import_into_edm_request->b_attachment_forcerestore
     if(custom_attachment_import_into_edm_request->b_attachment_forcerestore) {
-    if(cJSON_AddBoolToObject(item, "bAttachmentForcerestore", custom_attachment_import_into_edm_request->b_attachment_forcerestore) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bAttachmentForcerestore", *custom_attachment_import_into_edm_request->b_attachment_forcerestore) == NULL) {
     goto fail; //Bool
     }
     }
@@ -239,8 +292,33 @@ custom_attachment_import_into_edm_request_t *custom_attachment_import_into_edm_r
 
     custom_attachment_import_into_edm_request_t *custom_attachment_import_into_edm_request_local_var = NULL;
 
+    // define the local variable for custom_attachment_import_into_edm_request->fki_attachment_id
+    int *fki_attachment_id_local_var = NULL;
+
+    // define the local variable for custom_attachment_import_into_edm_request->fki_inscriptionchecklist_id
+    int *fki_inscriptionchecklist_id_local_var = NULL;
+
+    char *s_attachment_url_local_str = NULL;
+
+    char *s_attachment_base64_local_str = NULL;
+
+    char *s_attachment_name_local_str = NULL;
+
+    char *s_attachment_category_local_str = NULL;
+
     // define the local variable for custom_attachment_import_into_edm_request->e_attachment_privacy
     ezmax_api_definition__full_field_e_attachment_privacy__e e_attachment_privacy_local_nonprim = 0;
+
+    // define the local variable for custom_attachment_import_into_edm_request->fki_user_id_specific
+    int *fki_user_id_specific_local_var = NULL;
+
+    char *s_attachment_md5_local_str = NULL;
+
+    // define the local variable for custom_attachment_import_into_edm_request->b_attachment_forceoverwrite
+    int *b_attachment_forceoverwrite_local_var = NULL;
+
+    // define the local variable for custom_attachment_import_into_edm_request->b_attachment_forcerestore
+    int *b_attachment_forcerestore_local_var = NULL;
 
     // custom_attachment_import_into_edm_request->e_attachment_source
     cJSON *e_attachment_source = cJSON_GetObjectItemCaseSensitive(custom_attachment_import_into_edm_requestJSON, "eAttachmentSource");
@@ -269,6 +347,12 @@ custom_attachment_import_into_edm_request_t *custom_attachment_import_into_edm_r
     {
     goto end; //Numeric
     }
+    fki_attachment_id_local_var = malloc(sizeof(int));
+    if(!fki_attachment_id_local_var)
+    {
+        goto end;
+    }
+    *fki_attachment_id_local_var = fki_attachment_id->valuedouble;
     }
 
     // custom_attachment_import_into_edm_request->fki_inscriptionchecklist_id
@@ -281,6 +365,12 @@ custom_attachment_import_into_edm_request_t *custom_attachment_import_into_edm_r
     {
     goto end; //Numeric
     }
+    fki_inscriptionchecklist_id_local_var = malloc(sizeof(int));
+    if(!fki_inscriptionchecklist_id_local_var)
+    {
+        goto end;
+    }
+    *fki_inscriptionchecklist_id_local_var = fki_inscriptionchecklist_id->valuedouble;
     }
 
     // custom_attachment_import_into_edm_request->s_attachment_url
@@ -359,6 +449,12 @@ custom_attachment_import_into_edm_request_t *custom_attachment_import_into_edm_r
     {
     goto end; //Numeric
     }
+    fki_user_id_specific_local_var = malloc(sizeof(int));
+    if(!fki_user_id_specific_local_var)
+    {
+        goto end;
+    }
+    *fki_user_id_specific_local_var = fki_user_id_specific->valuedouble;
     }
 
     // custom_attachment_import_into_edm_request->s_attachment_md5
@@ -383,6 +479,12 @@ custom_attachment_import_into_edm_request_t *custom_attachment_import_into_edm_r
     {
     goto end; //Bool
     }
+    b_attachment_forceoverwrite_local_var = malloc(sizeof(int));
+    if(!b_attachment_forceoverwrite_local_var)
+    {
+        goto end;
+    }
+    *b_attachment_forceoverwrite_local_var = b_attachment_forceoverwrite->valueint;
     }
 
     // custom_attachment_import_into_edm_request->b_attachment_forcerestore
@@ -395,28 +497,84 @@ custom_attachment_import_into_edm_request_t *custom_attachment_import_into_edm_r
     {
     goto end; //Bool
     }
+    b_attachment_forcerestore_local_var = malloc(sizeof(int));
+    if(!b_attachment_forcerestore_local_var)
+    {
+        goto end;
+    }
+    *b_attachment_forcerestore_local_var = b_attachment_forcerestore->valueint;
     }
 
 
+    if (s_attachment_url && !cJSON_IsNull(s_attachment_url)) s_attachment_url_local_str = strdup(s_attachment_url->valuestring);
+    if (s_attachment_base64) s_attachment_base64_local_str = strdup(s_attachment_base64->valuestring);
+    if (s_attachment_name && !cJSON_IsNull(s_attachment_name)) s_attachment_name_local_str = strdup(s_attachment_name->valuestring);
+    if (s_attachment_category && !cJSON_IsNull(s_attachment_category)) s_attachment_category_local_str = strdup(s_attachment_category->valuestring);
+    if (s_attachment_md5 && !cJSON_IsNull(s_attachment_md5)) s_attachment_md5_local_str = strdup(s_attachment_md5->valuestring);
+
     custom_attachment_import_into_edm_request_local_var = custom_attachment_import_into_edm_request_create_internal (
         e_attachment_sourceVariable,
-        fki_attachment_id ? fki_attachment_id->valuedouble : 0,
-        fki_inscriptionchecklist_id ? fki_inscriptionchecklist_id->valuedouble : 0,
-        s_attachment_url && !cJSON_IsNull(s_attachment_url) ? strdup(s_attachment_url->valuestring) : NULL,
-        s_attachment_base64 ? strdup(s_attachment_base64->valuestring) : NULL,
-        strdup(s_attachment_name->valuestring),
-        strdup(s_attachment_category->valuestring),
+        fki_attachment_id_local_var,
+        fki_inscriptionchecklist_id_local_var,
+        s_attachment_url_local_str,
+        s_attachment_base64_local_str,
+        s_attachment_name_local_str,
+        s_attachment_category_local_str,
         e_attachment_privacy_local_nonprim,
-        fki_user_id_specific ? fki_user_id_specific->valuedouble : 0,
-        s_attachment_md5 && !cJSON_IsNull(s_attachment_md5) ? strdup(s_attachment_md5->valuestring) : NULL,
-        b_attachment_forceoverwrite ? b_attachment_forceoverwrite->valueint : 0,
-        b_attachment_forcerestore ? b_attachment_forcerestore->valueint : 0
+        fki_user_id_specific_local_var,
+        s_attachment_md5_local_str,
+        b_attachment_forceoverwrite_local_var,
+        b_attachment_forcerestore_local_var
         );
+
+    if (!custom_attachment_import_into_edm_request_local_var) {
+        goto end;
+    }
 
     return custom_attachment_import_into_edm_request_local_var;
 end:
+    if (fki_attachment_id_local_var) {
+        free(fki_attachment_id_local_var);
+        fki_attachment_id_local_var = NULL;
+    }
+    if (fki_inscriptionchecklist_id_local_var) {
+        free(fki_inscriptionchecklist_id_local_var);
+        fki_inscriptionchecklist_id_local_var = NULL;
+    }
+    if (s_attachment_url_local_str) {
+        free(s_attachment_url_local_str);
+        s_attachment_url_local_str = NULL;
+    }
+    if (s_attachment_base64_local_str) {
+        free(s_attachment_base64_local_str);
+        s_attachment_base64_local_str = NULL;
+    }
+    if (s_attachment_name_local_str) {
+        free(s_attachment_name_local_str);
+        s_attachment_name_local_str = NULL;
+    }
+    if (s_attachment_category_local_str) {
+        free(s_attachment_category_local_str);
+        s_attachment_category_local_str = NULL;
+    }
     if (e_attachment_privacy_local_nonprim) {
         e_attachment_privacy_local_nonprim = 0;
+    }
+    if (fki_user_id_specific_local_var) {
+        free(fki_user_id_specific_local_var);
+        fki_user_id_specific_local_var = NULL;
+    }
+    if (s_attachment_md5_local_str) {
+        free(s_attachment_md5_local_str);
+        s_attachment_md5_local_str = NULL;
+    }
+    if (b_attachment_forceoverwrite_local_var) {
+        free(b_attachment_forceoverwrite_local_var);
+        b_attachment_forceoverwrite_local_var = NULL;
+    }
+    if (b_attachment_forcerestore_local_var) {
+        free(b_attachment_forcerestore_local_var);
+        b_attachment_forcerestore_local_var = NULL;
     }
     return NULL;
 

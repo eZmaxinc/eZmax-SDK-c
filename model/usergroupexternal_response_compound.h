@@ -19,7 +19,7 @@ typedef struct usergroupexternal_response_compound_t usergroupexternal_response_
 
 
 typedef struct usergroupexternal_response_compound_t {
-    int pki_usergroupexternal_id; //numeric
+    int *pki_usergroupexternal_id; //numeric
     char *s_usergroupexternal_name; // string
     char *s_usergroupexternal_id; // string
 
@@ -27,7 +27,7 @@ typedef struct usergroupexternal_response_compound_t {
 } usergroupexternal_response_compound_t;
 
 __attribute__((deprecated)) usergroupexternal_response_compound_t *usergroupexternal_response_compound_create(
-    int pki_usergroupexternal_id,
+    int *pki_usergroupexternal_id,
     char *s_usergroupexternal_name,
     char *s_usergroupexternal_id
 );

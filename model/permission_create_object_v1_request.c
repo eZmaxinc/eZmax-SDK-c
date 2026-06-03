@@ -12,18 +12,21 @@ static permission_create_object_v1_request_t *permission_create_object_v1_reques
     if (!permission_create_object_v1_request_local_var) {
         return NULL;
     }
-    permission_create_object_v1_request_local_var->a_obj_permission = a_obj_permission;
-
+    memset(permission_create_object_v1_request_local_var, 0, sizeof(permission_create_object_v1_request_t));
     permission_create_object_v1_request_local_var->_library_owned = 1;
+    permission_create_object_v1_request_local_var->a_obj_permission = a_obj_permission;
     return permission_create_object_v1_request_local_var;
 }
 
 __attribute__((deprecated)) permission_create_object_v1_request_t *permission_create_object_v1_request_create(
     list_t *a_obj_permission
     ) {
-    return permission_create_object_v1_request_create_internal (
+    permission_create_object_v1_request_t *result = permission_create_object_v1_request_create_internal (
         a_obj_permission
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void permission_create_object_v1_request_free(permission_create_object_v1_request_t *permission_create_object_v1_request) {
@@ -111,9 +114,14 @@ permission_create_object_v1_request_t *permission_create_object_v1_request_parse
     }
 
 
+
     permission_create_object_v1_request_local_var = permission_create_object_v1_request_create_internal (
         a_obj_permissionList
         );
+
+    if (!permission_create_object_v1_request_local_var) {
+        goto end;
+    }
 
     return permission_create_object_v1_request_local_var;
 end:

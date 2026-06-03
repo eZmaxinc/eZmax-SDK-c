@@ -12,18 +12,21 @@ static ezdoctemplatedocument_get_object_v2_response_m_payload_t *ezdoctemplatedo
     if (!ezdoctemplatedocument_get_object_v2_response_m_payload_local_var) {
         return NULL;
     }
-    ezdoctemplatedocument_get_object_v2_response_m_payload_local_var->obj_ezdoctemplatedocument = obj_ezdoctemplatedocument;
-
+    memset(ezdoctemplatedocument_get_object_v2_response_m_payload_local_var, 0, sizeof(ezdoctemplatedocument_get_object_v2_response_m_payload_t));
     ezdoctemplatedocument_get_object_v2_response_m_payload_local_var->_library_owned = 1;
+    ezdoctemplatedocument_get_object_v2_response_m_payload_local_var->obj_ezdoctemplatedocument = obj_ezdoctemplatedocument;
     return ezdoctemplatedocument_get_object_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezdoctemplatedocument_get_object_v2_response_m_payload_t *ezdoctemplatedocument_get_object_v2_response_m_payload_create(
     ezdoctemplatedocument_response_compound_t *obj_ezdoctemplatedocument
     ) {
-    return ezdoctemplatedocument_get_object_v2_response_m_payload_create_internal (
+    ezdoctemplatedocument_get_object_v2_response_m_payload_t *result = ezdoctemplatedocument_get_object_v2_response_m_payload_create_internal (
         obj_ezdoctemplatedocument
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezdoctemplatedocument_get_object_v2_response_m_payload_free(ezdoctemplatedocument_get_object_v2_response_m_payload_t *ezdoctemplatedocument_get_object_v2_response_m_payload) {
@@ -86,9 +89,14 @@ ezdoctemplatedocument_get_object_v2_response_m_payload_t *ezdoctemplatedocument_
     obj_ezdoctemplatedocument_local_nonprim = ezdoctemplatedocument_response_compound_parseFromJSON(obj_ezdoctemplatedocument); //nonprimitive
 
 
+
     ezdoctemplatedocument_get_object_v2_response_m_payload_local_var = ezdoctemplatedocument_get_object_v2_response_m_payload_create_internal (
         obj_ezdoctemplatedocument_local_nonprim
         );
+
+    if (!ezdoctemplatedocument_get_object_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezdoctemplatedocument_get_object_v2_response_m_payload_local_var;
 end:

@@ -19,8 +19,8 @@ typedef struct webhookheader_response_compound_t webhookheader_response_compound
 
 
 typedef struct webhookheader_response_compound_t {
-    int pki_webhookheader_id; //numeric
-    int fki_webhook_id; //numeric
+    int *pki_webhookheader_id; //numeric
+    int *fki_webhook_id; //numeric
     char *s_webhookheader_name; // string
     char *s_webhookheader_value; // string
 
@@ -28,8 +28,8 @@ typedef struct webhookheader_response_compound_t {
 } webhookheader_response_compound_t;
 
 __attribute__((deprecated)) webhookheader_response_compound_t *webhookheader_response_compound_create(
-    int pki_webhookheader_id,
-    int fki_webhook_id,
+    int *pki_webhookheader_id,
+    int *fki_webhook_id,
     char *s_webhookheader_name,
     char *s_webhookheader_value
 );

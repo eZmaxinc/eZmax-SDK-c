@@ -19,17 +19,17 @@ typedef struct module_autocomplete_element_response_t module_autocomplete_elemen
 
 
 typedef struct module_autocomplete_element_response_t {
-    int pki_module_id; //numeric
+    int *pki_module_id; //numeric
     char *s_module_name_x; // string
-    int b_module_isactive; //boolean
+    int *b_module_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } module_autocomplete_element_response_t;
 
 __attribute__((deprecated)) module_autocomplete_element_response_t *module_autocomplete_element_response_create(
-    int pki_module_id,
+    int *pki_module_id,
     char *s_module_name_x,
-    int b_module_isactive
+    int *b_module_isactive
 );
 
 void module_autocomplete_element_response_free(module_autocomplete_element_response_t *module_autocomplete_element_response);

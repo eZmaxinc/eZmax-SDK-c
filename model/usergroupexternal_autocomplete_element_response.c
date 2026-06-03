@@ -6,32 +6,47 @@
 
 
 static usergroupexternal_autocomplete_element_response_t *usergroupexternal_autocomplete_element_response_create_internal(
-    int pki_usergroupexternal_id,
+    int *pki_usergroupexternal_id,
     char *s_usergroupexternal_name,
-    int b_usergroupexternal_isactive
+    int *b_usergroupexternal_isactive
     ) {
     usergroupexternal_autocomplete_element_response_t *usergroupexternal_autocomplete_element_response_local_var = malloc(sizeof(usergroupexternal_autocomplete_element_response_t));
     if (!usergroupexternal_autocomplete_element_response_local_var) {
         return NULL;
     }
+    memset(usergroupexternal_autocomplete_element_response_local_var, 0, sizeof(usergroupexternal_autocomplete_element_response_t));
+    usergroupexternal_autocomplete_element_response_local_var->_library_owned = 1;
     usergroupexternal_autocomplete_element_response_local_var->pki_usergroupexternal_id = pki_usergroupexternal_id;
     usergroupexternal_autocomplete_element_response_local_var->s_usergroupexternal_name = s_usergroupexternal_name;
     usergroupexternal_autocomplete_element_response_local_var->b_usergroupexternal_isactive = b_usergroupexternal_isactive;
-
-    usergroupexternal_autocomplete_element_response_local_var->_library_owned = 1;
     return usergroupexternal_autocomplete_element_response_local_var;
 }
 
 __attribute__((deprecated)) usergroupexternal_autocomplete_element_response_t *usergroupexternal_autocomplete_element_response_create(
-    int pki_usergroupexternal_id,
+    int *pki_usergroupexternal_id,
     char *s_usergroupexternal_name,
-    int b_usergroupexternal_isactive
+    int *b_usergroupexternal_isactive
     ) {
-    return usergroupexternal_autocomplete_element_response_create_internal (
-        pki_usergroupexternal_id,
+    int *pki_usergroupexternal_id_copy = NULL;
+    if (pki_usergroupexternal_id) {
+        pki_usergroupexternal_id_copy = malloc(sizeof(int));
+        if (pki_usergroupexternal_id_copy) *pki_usergroupexternal_id_copy = *pki_usergroupexternal_id;
+    }
+    int *b_usergroupexternal_isactive_copy = NULL;
+    if (b_usergroupexternal_isactive) {
+        b_usergroupexternal_isactive_copy = malloc(sizeof(int));
+        if (b_usergroupexternal_isactive_copy) *b_usergroupexternal_isactive_copy = *b_usergroupexternal_isactive;
+    }
+    usergroupexternal_autocomplete_element_response_t *result = usergroupexternal_autocomplete_element_response_create_internal (
+        pki_usergroupexternal_id_copy,
         s_usergroupexternal_name,
-        b_usergroupexternal_isactive
+        b_usergroupexternal_isactive_copy
         );
+    if (!result) {
+        free(pki_usergroupexternal_id_copy);
+        free(b_usergroupexternal_isactive_copy);
+    }
+    return result;
 }
 
 void usergroupexternal_autocomplete_element_response_free(usergroupexternal_autocomplete_element_response_t *usergroupexternal_autocomplete_element_response) {
@@ -43,9 +58,17 @@ void usergroupexternal_autocomplete_element_response_free(usergroupexternal_auto
         return ;
     }
     listEntry_t *listEntry;
+    if (usergroupexternal_autocomplete_element_response->pki_usergroupexternal_id) {
+        free(usergroupexternal_autocomplete_element_response->pki_usergroupexternal_id);
+        usergroupexternal_autocomplete_element_response->pki_usergroupexternal_id = NULL;
+    }
     if (usergroupexternal_autocomplete_element_response->s_usergroupexternal_name) {
         free(usergroupexternal_autocomplete_element_response->s_usergroupexternal_name);
         usergroupexternal_autocomplete_element_response->s_usergroupexternal_name = NULL;
+    }
+    if (usergroupexternal_autocomplete_element_response->b_usergroupexternal_isactive) {
+        free(usergroupexternal_autocomplete_element_response->b_usergroupexternal_isactive);
+        usergroupexternal_autocomplete_element_response->b_usergroupexternal_isactive = NULL;
     }
     free(usergroupexternal_autocomplete_element_response);
 }
@@ -57,7 +80,7 @@ cJSON *usergroupexternal_autocomplete_element_response_convertToJSON(usergroupex
     if (!usergroupexternal_autocomplete_element_response->pki_usergroupexternal_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiUsergroupexternalID", usergroupexternal_autocomplete_element_response->pki_usergroupexternal_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiUsergroupexternalID", *usergroupexternal_autocomplete_element_response->pki_usergroupexternal_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -75,7 +98,7 @@ cJSON *usergroupexternal_autocomplete_element_response_convertToJSON(usergroupex
     if (!usergroupexternal_autocomplete_element_response->b_usergroupexternal_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bUsergroupexternalIsactive", usergroupexternal_autocomplete_element_response->b_usergroupexternal_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bUsergroupexternalIsactive", *usergroupexternal_autocomplete_element_response->b_usergroupexternal_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -91,6 +114,14 @@ usergroupexternal_autocomplete_element_response_t *usergroupexternal_autocomplet
 
     usergroupexternal_autocomplete_element_response_t *usergroupexternal_autocomplete_element_response_local_var = NULL;
 
+    // define the local variable for usergroupexternal_autocomplete_element_response->pki_usergroupexternal_id
+    int *pki_usergroupexternal_id_local_var = NULL;
+
+    char *s_usergroupexternal_name_local_str = NULL;
+
+    // define the local variable for usergroupexternal_autocomplete_element_response->b_usergroupexternal_isactive
+    int *b_usergroupexternal_isactive_local_var = NULL;
+
     // usergroupexternal_autocomplete_element_response->pki_usergroupexternal_id
     cJSON *pki_usergroupexternal_id = cJSON_GetObjectItemCaseSensitive(usergroupexternal_autocomplete_element_responseJSON, "pkiUsergroupexternalID");
     if (cJSON_IsNull(pki_usergroupexternal_id)) {
@@ -105,6 +136,12 @@ usergroupexternal_autocomplete_element_response_t *usergroupexternal_autocomplet
     {
     goto end; //Numeric
     }
+    pki_usergroupexternal_id_local_var = malloc(sizeof(int));
+    if(!pki_usergroupexternal_id_local_var)
+    {
+        goto end;
+    }
+    *pki_usergroupexternal_id_local_var = pki_usergroupexternal_id->valuedouble;
 
     // usergroupexternal_autocomplete_element_response->s_usergroupexternal_name
     cJSON *s_usergroupexternal_name = cJSON_GetObjectItemCaseSensitive(usergroupexternal_autocomplete_element_responseJSON, "sUsergroupexternalName");
@@ -135,16 +172,40 @@ usergroupexternal_autocomplete_element_response_t *usergroupexternal_autocomplet
     {
     goto end; //Bool
     }
+    b_usergroupexternal_isactive_local_var = malloc(sizeof(int));
+    if(!b_usergroupexternal_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_usergroupexternal_isactive_local_var = b_usergroupexternal_isactive->valueint;
 
+
+    if (s_usergroupexternal_name && !cJSON_IsNull(s_usergroupexternal_name)) s_usergroupexternal_name_local_str = strdup(s_usergroupexternal_name->valuestring);
 
     usergroupexternal_autocomplete_element_response_local_var = usergroupexternal_autocomplete_element_response_create_internal (
-        pki_usergroupexternal_id->valuedouble,
-        strdup(s_usergroupexternal_name->valuestring),
-        b_usergroupexternal_isactive->valueint
+        pki_usergroupexternal_id_local_var,
+        s_usergroupexternal_name_local_str,
+        b_usergroupexternal_isactive_local_var
         );
+
+    if (!usergroupexternal_autocomplete_element_response_local_var) {
+        goto end;
+    }
 
     return usergroupexternal_autocomplete_element_response_local_var;
 end:
+    if (pki_usergroupexternal_id_local_var) {
+        free(pki_usergroupexternal_id_local_var);
+        pki_usergroupexternal_id_local_var = NULL;
+    }
+    if (s_usergroupexternal_name_local_str) {
+        free(s_usergroupexternal_name_local_str);
+        s_usergroupexternal_name_local_str = NULL;
+    }
+    if (b_usergroupexternal_isactive_local_var) {
+        free(b_usergroupexternal_isactive_local_var);
+        b_usergroupexternal_isactive_local_var = NULL;
+    }
     return NULL;
 
 }

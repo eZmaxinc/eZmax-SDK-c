@@ -12,18 +12,21 @@ static billingentityexternal_generate_federation_token_v1_request_t *billingenti
     if (!billingentityexternal_generate_federation_token_v1_request_local_var) {
         return NULL;
     }
-    billingentityexternal_generate_federation_token_v1_request_local_var->fks_ezmaxcustomer_code = fks_ezmaxcustomer_code;
-
+    memset(billingentityexternal_generate_federation_token_v1_request_local_var, 0, sizeof(billingentityexternal_generate_federation_token_v1_request_t));
     billingentityexternal_generate_federation_token_v1_request_local_var->_library_owned = 1;
+    billingentityexternal_generate_federation_token_v1_request_local_var->fks_ezmaxcustomer_code = fks_ezmaxcustomer_code;
     return billingentityexternal_generate_federation_token_v1_request_local_var;
 }
 
 __attribute__((deprecated)) billingentityexternal_generate_federation_token_v1_request_t *billingentityexternal_generate_federation_token_v1_request_create(
     char *fks_ezmaxcustomer_code
     ) {
-    return billingentityexternal_generate_federation_token_v1_request_create_internal (
+    billingentityexternal_generate_federation_token_v1_request_t *result = billingentityexternal_generate_federation_token_v1_request_create_internal (
         fks_ezmaxcustomer_code
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void billingentityexternal_generate_federation_token_v1_request_free(billingentityexternal_generate_federation_token_v1_request_t *billingentityexternal_generate_federation_token_v1_request) {
@@ -65,6 +68,8 @@ billingentityexternal_generate_federation_token_v1_request_t *billingentityexter
 
     billingentityexternal_generate_federation_token_v1_request_t *billingentityexternal_generate_federation_token_v1_request_local_var = NULL;
 
+    char *fks_ezmaxcustomer_code_local_str = NULL;
+
     // billingentityexternal_generate_federation_token_v1_request->fks_ezmaxcustomer_code
     cJSON *fks_ezmaxcustomer_code = cJSON_GetObjectItemCaseSensitive(billingentityexternal_generate_federation_token_v1_requestJSON, "fksEzmaxcustomerCode");
     if (cJSON_IsNull(fks_ezmaxcustomer_code)) {
@@ -81,12 +86,22 @@ billingentityexternal_generate_federation_token_v1_request_t *billingentityexter
     }
 
 
+    if (fks_ezmaxcustomer_code && !cJSON_IsNull(fks_ezmaxcustomer_code)) fks_ezmaxcustomer_code_local_str = strdup(fks_ezmaxcustomer_code->valuestring);
+
     billingentityexternal_generate_federation_token_v1_request_local_var = billingentityexternal_generate_federation_token_v1_request_create_internal (
-        strdup(fks_ezmaxcustomer_code->valuestring)
+        fks_ezmaxcustomer_code_local_str
         );
+
+    if (!billingentityexternal_generate_federation_token_v1_request_local_var) {
+        goto end;
+    }
 
     return billingentityexternal_generate_federation_token_v1_request_local_var;
 end:
+    if (fks_ezmaxcustomer_code_local_str) {
+        free(fks_ezmaxcustomer_code_local_str);
+        fks_ezmaxcustomer_code_local_str = NULL;
+    }
     return NULL;
 
 }

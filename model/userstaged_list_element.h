@@ -19,7 +19,7 @@ typedef struct userstaged_list_element_t userstaged_list_element_t;
 
 
 typedef struct userstaged_list_element_t {
-    int pki_userstaged_id; //numeric
+    int *pki_userstaged_id; //numeric
     char *s_email_address; // string
     char *s_userstaged_firstname; // string
     char *s_userstaged_lastname; // string
@@ -29,7 +29,7 @@ typedef struct userstaged_list_element_t {
 } userstaged_list_element_t;
 
 __attribute__((deprecated)) userstaged_list_element_t *userstaged_list_element_create(
-    int pki_userstaged_id,
+    int *pki_userstaged_id,
     char *s_email_address,
     char *s_userstaged_firstname,
     char *s_userstaged_lastname,

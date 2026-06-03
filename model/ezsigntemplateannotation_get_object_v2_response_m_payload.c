@@ -12,18 +12,21 @@ static ezsigntemplateannotation_get_object_v2_response_m_payload_t *ezsigntempla
     if (!ezsigntemplateannotation_get_object_v2_response_m_payload_local_var) {
         return NULL;
     }
-    ezsigntemplateannotation_get_object_v2_response_m_payload_local_var->obj_ezsigntemplateannotation = obj_ezsigntemplateannotation;
-
+    memset(ezsigntemplateannotation_get_object_v2_response_m_payload_local_var, 0, sizeof(ezsigntemplateannotation_get_object_v2_response_m_payload_t));
     ezsigntemplateannotation_get_object_v2_response_m_payload_local_var->_library_owned = 1;
+    ezsigntemplateannotation_get_object_v2_response_m_payload_local_var->obj_ezsigntemplateannotation = obj_ezsigntemplateannotation;
     return ezsigntemplateannotation_get_object_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplateannotation_get_object_v2_response_m_payload_t *ezsigntemplateannotation_get_object_v2_response_m_payload_create(
     ezsigntemplateannotation_response_compound_t *obj_ezsigntemplateannotation
     ) {
-    return ezsigntemplateannotation_get_object_v2_response_m_payload_create_internal (
+    ezsigntemplateannotation_get_object_v2_response_m_payload_t *result = ezsigntemplateannotation_get_object_v2_response_m_payload_create_internal (
         obj_ezsigntemplateannotation
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplateannotation_get_object_v2_response_m_payload_free(ezsigntemplateannotation_get_object_v2_response_m_payload_t *ezsigntemplateannotation_get_object_v2_response_m_payload) {
@@ -86,9 +89,14 @@ ezsigntemplateannotation_get_object_v2_response_m_payload_t *ezsigntemplateannot
     obj_ezsigntemplateannotation_local_nonprim = ezsigntemplateannotation_response_compound_parseFromJSON(obj_ezsigntemplateannotation); //nonprimitive
 
 
+
     ezsigntemplateannotation_get_object_v2_response_m_payload_local_var = ezsigntemplateannotation_get_object_v2_response_m_payload_create_internal (
         obj_ezsigntemplateannotation_local_nonprim
         );
+
+    if (!ezsigntemplateannotation_get_object_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsigntemplateannotation_get_object_v2_response_m_payload_local_var;
 end:

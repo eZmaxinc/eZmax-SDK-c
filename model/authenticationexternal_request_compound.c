@@ -6,7 +6,7 @@
 
 
 static authenticationexternal_request_compound_t *authenticationexternal_request_compound_create_internal(
-    int pki_authenticationexternal_id,
+    int *pki_authenticationexternal_id,
     char *s_authenticationexternal_description,
     ezmax_api_definition__full_field_e_authenticationexternal_type__e e_authenticationexternal_type
     ) {
@@ -14,24 +14,33 @@ static authenticationexternal_request_compound_t *authenticationexternal_request
     if (!authenticationexternal_request_compound_local_var) {
         return NULL;
     }
+    memset(authenticationexternal_request_compound_local_var, 0, sizeof(authenticationexternal_request_compound_t));
+    authenticationexternal_request_compound_local_var->_library_owned = 1;
     authenticationexternal_request_compound_local_var->pki_authenticationexternal_id = pki_authenticationexternal_id;
     authenticationexternal_request_compound_local_var->s_authenticationexternal_description = s_authenticationexternal_description;
     authenticationexternal_request_compound_local_var->e_authenticationexternal_type = e_authenticationexternal_type;
-
-    authenticationexternal_request_compound_local_var->_library_owned = 1;
     return authenticationexternal_request_compound_local_var;
 }
 
 __attribute__((deprecated)) authenticationexternal_request_compound_t *authenticationexternal_request_compound_create(
-    int pki_authenticationexternal_id,
+    int *pki_authenticationexternal_id,
     char *s_authenticationexternal_description,
     ezmax_api_definition__full_field_e_authenticationexternal_type__e e_authenticationexternal_type
     ) {
-    return authenticationexternal_request_compound_create_internal (
-        pki_authenticationexternal_id,
+    int *pki_authenticationexternal_id_copy = NULL;
+    if (pki_authenticationexternal_id) {
+        pki_authenticationexternal_id_copy = malloc(sizeof(int));
+        if (pki_authenticationexternal_id_copy) *pki_authenticationexternal_id_copy = *pki_authenticationexternal_id;
+    }
+    authenticationexternal_request_compound_t *result = authenticationexternal_request_compound_create_internal (
+        pki_authenticationexternal_id_copy,
         s_authenticationexternal_description,
         e_authenticationexternal_type
         );
+    if (!result) {
+        free(pki_authenticationexternal_id_copy);
+    }
+    return result;
 }
 
 void authenticationexternal_request_compound_free(authenticationexternal_request_compound_t *authenticationexternal_request_compound) {
@@ -43,6 +52,10 @@ void authenticationexternal_request_compound_free(authenticationexternal_request
         return ;
     }
     listEntry_t *listEntry;
+    if (authenticationexternal_request_compound->pki_authenticationexternal_id) {
+        free(authenticationexternal_request_compound->pki_authenticationexternal_id);
+        authenticationexternal_request_compound->pki_authenticationexternal_id = NULL;
+    }
     if (authenticationexternal_request_compound->s_authenticationexternal_description) {
         free(authenticationexternal_request_compound->s_authenticationexternal_description);
         authenticationexternal_request_compound->s_authenticationexternal_description = NULL;
@@ -55,7 +68,7 @@ cJSON *authenticationexternal_request_compound_convertToJSON(authenticationexter
 
     // authenticationexternal_request_compound->pki_authenticationexternal_id
     if(authenticationexternal_request_compound->pki_authenticationexternal_id) {
-    if(cJSON_AddNumberToObject(item, "pkiAuthenticationexternalID", authenticationexternal_request_compound->pki_authenticationexternal_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiAuthenticationexternalID", *authenticationexternal_request_compound->pki_authenticationexternal_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -95,6 +108,11 @@ authenticationexternal_request_compound_t *authenticationexternal_request_compou
 
     authenticationexternal_request_compound_t *authenticationexternal_request_compound_local_var = NULL;
 
+    // define the local variable for authenticationexternal_request_compound->pki_authenticationexternal_id
+    int *pki_authenticationexternal_id_local_var = NULL;
+
+    char *s_authenticationexternal_description_local_str = NULL;
+
     // define the local variable for authenticationexternal_request_compound->e_authenticationexternal_type
     ezmax_api_definition__full_field_e_authenticationexternal_type__e e_authenticationexternal_type_local_nonprim = 0;
 
@@ -108,6 +126,12 @@ authenticationexternal_request_compound_t *authenticationexternal_request_compou
     {
     goto end; //Numeric
     }
+    pki_authenticationexternal_id_local_var = malloc(sizeof(int));
+    if(!pki_authenticationexternal_id_local_var)
+    {
+        goto end;
+    }
+    *pki_authenticationexternal_id_local_var = pki_authenticationexternal_id->valuedouble;
     }
 
     // authenticationexternal_request_compound->s_authenticationexternal_description
@@ -138,14 +162,28 @@ authenticationexternal_request_compound_t *authenticationexternal_request_compou
     e_authenticationexternal_type_local_nonprim = field_e_authenticationexternal_type_parseFromJSON(e_authenticationexternal_type); //custom
 
 
+    if (s_authenticationexternal_description && !cJSON_IsNull(s_authenticationexternal_description)) s_authenticationexternal_description_local_str = strdup(s_authenticationexternal_description->valuestring);
+
     authenticationexternal_request_compound_local_var = authenticationexternal_request_compound_create_internal (
-        pki_authenticationexternal_id ? pki_authenticationexternal_id->valuedouble : 0,
-        strdup(s_authenticationexternal_description->valuestring),
+        pki_authenticationexternal_id_local_var,
+        s_authenticationexternal_description_local_str,
         e_authenticationexternal_type_local_nonprim
         );
 
+    if (!authenticationexternal_request_compound_local_var) {
+        goto end;
+    }
+
     return authenticationexternal_request_compound_local_var;
 end:
+    if (pki_authenticationexternal_id_local_var) {
+        free(pki_authenticationexternal_id_local_var);
+        pki_authenticationexternal_id_local_var = NULL;
+    }
+    if (s_authenticationexternal_description_local_str) {
+        free(s_authenticationexternal_description_local_str);
+        s_authenticationexternal_description_local_str = NULL;
+    }
     if (e_authenticationexternal_type_local_nonprim) {
         e_authenticationexternal_type_local_nonprim = 0;
     }

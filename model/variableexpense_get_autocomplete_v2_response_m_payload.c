@@ -12,18 +12,21 @@ static variableexpense_get_autocomplete_v2_response_m_payload_t *variableexpense
     if (!variableexpense_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    variableexpense_get_autocomplete_v2_response_m_payload_local_var->a_obj_variableexpense = a_obj_variableexpense;
-
+    memset(variableexpense_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(variableexpense_get_autocomplete_v2_response_m_payload_t));
     variableexpense_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    variableexpense_get_autocomplete_v2_response_m_payload_local_var->a_obj_variableexpense = a_obj_variableexpense;
     return variableexpense_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) variableexpense_get_autocomplete_v2_response_m_payload_t *variableexpense_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_variableexpense
     ) {
-    return variableexpense_get_autocomplete_v2_response_m_payload_create_internal (
+    variableexpense_get_autocomplete_v2_response_m_payload_t *result = variableexpense_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_variableexpense
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void variableexpense_get_autocomplete_v2_response_m_payload_free(variableexpense_get_autocomplete_v2_response_m_payload_t *variableexpense_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ variableexpense_get_autocomplete_v2_response_m_payload_t *variableexpense_get_au
     }
 
 
+
     variableexpense_get_autocomplete_v2_response_m_payload_local_var = variableexpense_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_variableexpenseList
         );
+
+    if (!variableexpense_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return variableexpense_get_autocomplete_v2_response_m_payload_local_var;
 end:

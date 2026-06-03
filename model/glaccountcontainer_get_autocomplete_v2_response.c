@@ -14,11 +14,11 @@ static glaccountcontainer_get_autocomplete_v2_response_t *glaccountcontainer_get
     if (!glaccountcontainer_get_autocomplete_v2_response_local_var) {
         return NULL;
     }
+    memset(glaccountcontainer_get_autocomplete_v2_response_local_var, 0, sizeof(glaccountcontainer_get_autocomplete_v2_response_t));
+    glaccountcontainer_get_autocomplete_v2_response_local_var->_library_owned = 1;
     glaccountcontainer_get_autocomplete_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     glaccountcontainer_get_autocomplete_v2_response_local_var->obj_debug = obj_debug;
     glaccountcontainer_get_autocomplete_v2_response_local_var->m_payload = m_payload;
-
-    glaccountcontainer_get_autocomplete_v2_response_local_var->_library_owned = 1;
     return glaccountcontainer_get_autocomplete_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) glaccountcontainer_get_autocomplete_v2_response_t *g
     common_response_obj_debug_t *obj_debug,
     glaccountcontainer_get_autocomplete_v2_response_m_payload_t *m_payload
     ) {
-    return glaccountcontainer_get_autocomplete_v2_response_create_internal (
+    glaccountcontainer_get_autocomplete_v2_response_t *result = glaccountcontainer_get_autocomplete_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void glaccountcontainer_get_autocomplete_v2_response_free(glaccountcontainer_get_autocomplete_v2_response_t *glaccountcontainer_get_autocomplete_v2_response) {
@@ -156,11 +159,16 @@ glaccountcontainer_get_autocomplete_v2_response_t *glaccountcontainer_get_autoco
     m_payload_local_nonprim = glaccountcontainer_get_autocomplete_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     glaccountcontainer_get_autocomplete_v2_response_local_var = glaccountcontainer_get_autocomplete_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!glaccountcontainer_get_autocomplete_v2_response_local_var) {
+        goto end;
+    }
 
     return glaccountcontainer_get_autocomplete_v2_response_local_var;
 end:

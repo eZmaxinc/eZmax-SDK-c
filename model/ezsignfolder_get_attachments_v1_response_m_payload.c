@@ -12,18 +12,21 @@ static ezsignfolder_get_attachments_v1_response_m_payload_t *ezsignfolder_get_at
     if (!ezsignfolder_get_attachments_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsignfolder_get_attachments_v1_response_m_payload_local_var->a_obj_attachmentdocumenttype = a_obj_attachmentdocumenttype;
-
+    memset(ezsignfolder_get_attachments_v1_response_m_payload_local_var, 0, sizeof(ezsignfolder_get_attachments_v1_response_m_payload_t));
     ezsignfolder_get_attachments_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsignfolder_get_attachments_v1_response_m_payload_local_var->a_obj_attachmentdocumenttype = a_obj_attachmentdocumenttype;
     return ezsignfolder_get_attachments_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsignfolder_get_attachments_v1_response_m_payload_t *ezsignfolder_get_attachments_v1_response_m_payload_create(
     list_t *a_obj_attachmentdocumenttype
     ) {
-    return ezsignfolder_get_attachments_v1_response_m_payload_create_internal (
+    ezsignfolder_get_attachments_v1_response_m_payload_t *result = ezsignfolder_get_attachments_v1_response_m_payload_create_internal (
         a_obj_attachmentdocumenttype
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignfolder_get_attachments_v1_response_m_payload_free(ezsignfolder_get_attachments_v1_response_m_payload_t *ezsignfolder_get_attachments_v1_response_m_payload) {
@@ -111,9 +114,14 @@ ezsignfolder_get_attachments_v1_response_m_payload_t *ezsignfolder_get_attachmen
     }
 
 
+
     ezsignfolder_get_attachments_v1_response_m_payload_local_var = ezsignfolder_get_attachments_v1_response_m_payload_create_internal (
         a_obj_attachmentdocumenttypeList
         );
+
+    if (!ezsignfolder_get_attachments_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsignfolder_get_attachments_v1_response_m_payload_local_var;
 end:

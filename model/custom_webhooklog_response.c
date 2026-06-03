@@ -13,10 +13,10 @@ static custom_webhooklog_response_t *custom_webhooklog_response_create_internal(
     if (!custom_webhooklog_response_local_var) {
         return NULL;
     }
+    memset(custom_webhooklog_response_local_var, 0, sizeof(custom_webhooklog_response_t));
+    custom_webhooklog_response_local_var->_library_owned = 1;
     custom_webhooklog_response_local_var->dt_webhooklog_date = dt_webhooklog_date;
     custom_webhooklog_response_local_var->t_webhooklog_json = t_webhooklog_json;
-
-    custom_webhooklog_response_local_var->_library_owned = 1;
     return custom_webhooklog_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) custom_webhooklog_response_t *custom_webhooklog_resp
     char *dt_webhooklog_date,
     char *t_webhooklog_json
     ) {
-    return custom_webhooklog_response_create_internal (
+    custom_webhooklog_response_t *result = custom_webhooklog_response_create_internal (
         dt_webhooklog_date,
         t_webhooklog_json
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void custom_webhooklog_response_free(custom_webhooklog_response_t *custom_webhooklog_response) {
@@ -82,6 +85,10 @@ custom_webhooklog_response_t *custom_webhooklog_response_parseFromJSON(cJSON *cu
 
     custom_webhooklog_response_t *custom_webhooklog_response_local_var = NULL;
 
+    char *dt_webhooklog_date_local_str = NULL;
+
+    char *t_webhooklog_json_local_str = NULL;
+
     // custom_webhooklog_response->dt_webhooklog_date
     cJSON *dt_webhooklog_date = cJSON_GetObjectItemCaseSensitive(custom_webhooklog_responseJSON, "dtWebhooklogDate");
     if (cJSON_IsNull(dt_webhooklog_date)) {
@@ -113,13 +120,28 @@ custom_webhooklog_response_t *custom_webhooklog_response_parseFromJSON(cJSON *cu
     }
 
 
+    if (dt_webhooklog_date && !cJSON_IsNull(dt_webhooklog_date)) dt_webhooklog_date_local_str = strdup(dt_webhooklog_date->valuestring);
+    if (t_webhooklog_json && !cJSON_IsNull(t_webhooklog_json)) t_webhooklog_json_local_str = strdup(t_webhooklog_json->valuestring);
+
     custom_webhooklog_response_local_var = custom_webhooklog_response_create_internal (
-        strdup(dt_webhooklog_date->valuestring),
-        strdup(t_webhooklog_json->valuestring)
+        dt_webhooklog_date_local_str,
+        t_webhooklog_json_local_str
         );
+
+    if (!custom_webhooklog_response_local_var) {
+        goto end;
+    }
 
     return custom_webhooklog_response_local_var;
 end:
+    if (dt_webhooklog_date_local_str) {
+        free(dt_webhooklog_date_local_str);
+        dt_webhooklog_date_local_str = NULL;
+    }
+    if (t_webhooklog_json_local_str) {
+        free(t_webhooklog_json_local_str);
+        t_webhooklog_json_local_str = NULL;
+    }
     return NULL;
 
 }

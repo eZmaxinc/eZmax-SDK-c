@@ -19,15 +19,15 @@ typedef struct ezsigndocumentdependency_request_t ezsigndocumentdependency_reque
 
 
 typedef struct ezsigndocumentdependency_request_t {
-    int pki_ezsigndocumentdependency_id; //numeric
-    int fki_ezsigndocument_i_ddependency; //numeric
+    int *pki_ezsigndocumentdependency_id; //numeric
+    int *fki_ezsigndocument_i_ddependency; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndocumentdependency_request_t;
 
 __attribute__((deprecated)) ezsigndocumentdependency_request_t *ezsigndocumentdependency_request_create(
-    int pki_ezsigndocumentdependency_id,
-    int fki_ezsigndocument_i_ddependency
+    int *pki_ezsigndocumentdependency_id,
+    int *fki_ezsigndocument_i_ddependency
 );
 
 void ezsigndocumentdependency_request_free(ezsigndocumentdependency_request_t *ezsigndocumentdependency_request);

@@ -12,18 +12,21 @@ static websocket_response_get_websocket_id_v1_m_payload_t *websocket_response_ge
     if (!websocket_response_get_websocket_id_v1_m_payload_local_var) {
         return NULL;
     }
-    websocket_response_get_websocket_id_v1_m_payload_local_var->s_websocket_id = s_websocket_id;
-
+    memset(websocket_response_get_websocket_id_v1_m_payload_local_var, 0, sizeof(websocket_response_get_websocket_id_v1_m_payload_t));
     websocket_response_get_websocket_id_v1_m_payload_local_var->_library_owned = 1;
+    websocket_response_get_websocket_id_v1_m_payload_local_var->s_websocket_id = s_websocket_id;
     return websocket_response_get_websocket_id_v1_m_payload_local_var;
 }
 
 __attribute__((deprecated)) websocket_response_get_websocket_id_v1_m_payload_t *websocket_response_get_websocket_id_v1_m_payload_create(
     char *s_websocket_id
     ) {
-    return websocket_response_get_websocket_id_v1_m_payload_create_internal (
+    websocket_response_get_websocket_id_v1_m_payload_t *result = websocket_response_get_websocket_id_v1_m_payload_create_internal (
         s_websocket_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void websocket_response_get_websocket_id_v1_m_payload_free(websocket_response_get_websocket_id_v1_m_payload_t *websocket_response_get_websocket_id_v1_m_payload) {
@@ -65,6 +68,8 @@ websocket_response_get_websocket_id_v1_m_payload_t *websocket_response_get_webso
 
     websocket_response_get_websocket_id_v1_m_payload_t *websocket_response_get_websocket_id_v1_m_payload_local_var = NULL;
 
+    char *s_websocket_id_local_str = NULL;
+
     // websocket_response_get_websocket_id_v1_m_payload->s_websocket_id
     cJSON *s_websocket_id = cJSON_GetObjectItemCaseSensitive(websocket_response_get_websocket_id_v1_m_payloadJSON, "sWebsocketID");
     if (cJSON_IsNull(s_websocket_id)) {
@@ -81,12 +86,22 @@ websocket_response_get_websocket_id_v1_m_payload_t *websocket_response_get_webso
     }
 
 
+    if (s_websocket_id && !cJSON_IsNull(s_websocket_id)) s_websocket_id_local_str = strdup(s_websocket_id->valuestring);
+
     websocket_response_get_websocket_id_v1_m_payload_local_var = websocket_response_get_websocket_id_v1_m_payload_create_internal (
-        strdup(s_websocket_id->valuestring)
+        s_websocket_id_local_str
         );
+
+    if (!websocket_response_get_websocket_id_v1_m_payload_local_var) {
+        goto end;
+    }
 
     return websocket_response_get_websocket_id_v1_m_payload_local_var;
 end:
+    if (s_websocket_id_local_str) {
+        free(s_websocket_id_local_str);
+        s_websocket_id_local_str = NULL;
+    }
     return NULL;
 
 }

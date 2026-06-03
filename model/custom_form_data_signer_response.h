@@ -20,8 +20,8 @@ typedef struct custom_form_data_signer_response_t custom_form_data_signer_respon
 
 
 typedef struct custom_form_data_signer_response_t {
-    int fki_ezsignfoldersignerassociation_id; //numeric
-    int fki_user_id; //numeric
+    int *fki_ezsignfoldersignerassociation_id; //numeric
+    int *fki_user_id; //numeric
     char *s_contact_firstname; // string
     char *s_contact_lastname; // string
     list_t *a_obj_ezsignformfieldgroup; //nonprimitive container
@@ -30,8 +30,8 @@ typedef struct custom_form_data_signer_response_t {
 } custom_form_data_signer_response_t;
 
 __attribute__((deprecated)) custom_form_data_signer_response_t *custom_form_data_signer_response_create(
-    int fki_ezsignfoldersignerassociation_id,
-    int fki_user_id,
+    int *fki_ezsignfoldersignerassociation_id,
+    int *fki_user_id,
     char *s_contact_firstname,
     char *s_contact_lastname,
     list_t *a_obj_ezsignformfieldgroup

@@ -14,11 +14,11 @@ static usergroupdelegation_create_object_v1_response_t *usergroupdelegation_crea
     if (!usergroupdelegation_create_object_v1_response_local_var) {
         return NULL;
     }
+    memset(usergroupdelegation_create_object_v1_response_local_var, 0, sizeof(usergroupdelegation_create_object_v1_response_t));
+    usergroupdelegation_create_object_v1_response_local_var->_library_owned = 1;
     usergroupdelegation_create_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     usergroupdelegation_create_object_v1_response_local_var->obj_debug = obj_debug;
     usergroupdelegation_create_object_v1_response_local_var->m_payload = m_payload;
-
-    usergroupdelegation_create_object_v1_response_local_var->_library_owned = 1;
     return usergroupdelegation_create_object_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) usergroupdelegation_create_object_v1_response_t *use
     common_response_obj_debug_t *obj_debug,
     usergroupdelegation_create_object_v1_response_m_payload_t *m_payload
     ) {
-    return usergroupdelegation_create_object_v1_response_create_internal (
+    usergroupdelegation_create_object_v1_response_t *result = usergroupdelegation_create_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void usergroupdelegation_create_object_v1_response_free(usergroupdelegation_create_object_v1_response_t *usergroupdelegation_create_object_v1_response) {
@@ -156,11 +159,16 @@ usergroupdelegation_create_object_v1_response_t *usergroupdelegation_create_obje
     m_payload_local_nonprim = usergroupdelegation_create_object_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     usergroupdelegation_create_object_v1_response_local_var = usergroupdelegation_create_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!usergroupdelegation_create_object_v1_response_local_var) {
+        goto end;
+    }
 
     return usergroupdelegation_create_object_v1_response_local_var;
 end:

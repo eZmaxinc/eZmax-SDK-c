@@ -20,16 +20,16 @@ typedef struct taxassignment_autocomplete_element_response_t taxassignment_autoc
 
 typedef struct taxassignment_autocomplete_element_response_t {
     char *s_taxassignment_description_x; // string
-    int pki_taxassignment_id; //numeric
-    int b_taxassignment_isactive; //boolean
+    int *pki_taxassignment_id; //numeric
+    int *b_taxassignment_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } taxassignment_autocomplete_element_response_t;
 
 __attribute__((deprecated)) taxassignment_autocomplete_element_response_t *taxassignment_autocomplete_element_response_create(
     char *s_taxassignment_description_x,
-    int pki_taxassignment_id,
-    int b_taxassignment_isactive
+    int *pki_taxassignment_id,
+    int *b_taxassignment_isactive
 );
 
 void taxassignment_autocomplete_element_response_free(taxassignment_autocomplete_element_response_t *taxassignment_autocomplete_element_response);

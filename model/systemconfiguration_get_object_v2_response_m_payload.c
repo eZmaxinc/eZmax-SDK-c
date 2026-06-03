@@ -12,18 +12,21 @@ static systemconfiguration_get_object_v2_response_m_payload_t *systemconfigurati
     if (!systemconfiguration_get_object_v2_response_m_payload_local_var) {
         return NULL;
     }
-    systemconfiguration_get_object_v2_response_m_payload_local_var->obj_systemconfiguration = obj_systemconfiguration;
-
+    memset(systemconfiguration_get_object_v2_response_m_payload_local_var, 0, sizeof(systemconfiguration_get_object_v2_response_m_payload_t));
     systemconfiguration_get_object_v2_response_m_payload_local_var->_library_owned = 1;
+    systemconfiguration_get_object_v2_response_m_payload_local_var->obj_systemconfiguration = obj_systemconfiguration;
     return systemconfiguration_get_object_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) systemconfiguration_get_object_v2_response_m_payload_t *systemconfiguration_get_object_v2_response_m_payload_create(
     systemconfiguration_response_compound_t *obj_systemconfiguration
     ) {
-    return systemconfiguration_get_object_v2_response_m_payload_create_internal (
+    systemconfiguration_get_object_v2_response_m_payload_t *result = systemconfiguration_get_object_v2_response_m_payload_create_internal (
         obj_systemconfiguration
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void systemconfiguration_get_object_v2_response_m_payload_free(systemconfiguration_get_object_v2_response_m_payload_t *systemconfiguration_get_object_v2_response_m_payload) {
@@ -86,9 +89,14 @@ systemconfiguration_get_object_v2_response_m_payload_t *systemconfiguration_get_
     obj_systemconfiguration_local_nonprim = systemconfiguration_response_compound_parseFromJSON(obj_systemconfiguration); //nonprimitive
 
 
+
     systemconfiguration_get_object_v2_response_m_payload_local_var = systemconfiguration_get_object_v2_response_m_payload_create_internal (
         obj_systemconfiguration_local_nonprim
         );
+
+    if (!systemconfiguration_get_object_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return systemconfiguration_get_object_v2_response_m_payload_local_var;
 end:

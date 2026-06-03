@@ -8,38 +8,53 @@
 static common_response_obj_debug_t *common_response_obj_debug_create_internal(
     char *s_memory_usage,
     char *s_run_time,
-    int i_sql_selects,
-    int i_sql_queries,
+    int *i_sql_selects,
+    int *i_sql_queries,
     list_t *a_obj_sql_query
     ) {
     common_response_obj_debug_t *common_response_obj_debug_local_var = malloc(sizeof(common_response_obj_debug_t));
     if (!common_response_obj_debug_local_var) {
         return NULL;
     }
+    memset(common_response_obj_debug_local_var, 0, sizeof(common_response_obj_debug_t));
+    common_response_obj_debug_local_var->_library_owned = 1;
     common_response_obj_debug_local_var->s_memory_usage = s_memory_usage;
     common_response_obj_debug_local_var->s_run_time = s_run_time;
     common_response_obj_debug_local_var->i_sql_selects = i_sql_selects;
     common_response_obj_debug_local_var->i_sql_queries = i_sql_queries;
     common_response_obj_debug_local_var->a_obj_sql_query = a_obj_sql_query;
-
-    common_response_obj_debug_local_var->_library_owned = 1;
     return common_response_obj_debug_local_var;
 }
 
 __attribute__((deprecated)) common_response_obj_debug_t *common_response_obj_debug_create(
     char *s_memory_usage,
     char *s_run_time,
-    int i_sql_selects,
-    int i_sql_queries,
+    int *i_sql_selects,
+    int *i_sql_queries,
     list_t *a_obj_sql_query
     ) {
-    return common_response_obj_debug_create_internal (
+    int *i_sql_selects_copy = NULL;
+    if (i_sql_selects) {
+        i_sql_selects_copy = malloc(sizeof(int));
+        if (i_sql_selects_copy) *i_sql_selects_copy = *i_sql_selects;
+    }
+    int *i_sql_queries_copy = NULL;
+    if (i_sql_queries) {
+        i_sql_queries_copy = malloc(sizeof(int));
+        if (i_sql_queries_copy) *i_sql_queries_copy = *i_sql_queries;
+    }
+    common_response_obj_debug_t *result = common_response_obj_debug_create_internal (
         s_memory_usage,
         s_run_time,
-        i_sql_selects,
-        i_sql_queries,
+        i_sql_selects_copy,
+        i_sql_queries_copy,
         a_obj_sql_query
         );
+    if (!result) {
+        free(i_sql_selects_copy);
+        free(i_sql_queries_copy);
+    }
+    return result;
 }
 
 void common_response_obj_debug_free(common_response_obj_debug_t *common_response_obj_debug) {
@@ -58,6 +73,14 @@ void common_response_obj_debug_free(common_response_obj_debug_t *common_response
     if (common_response_obj_debug->s_run_time) {
         free(common_response_obj_debug->s_run_time);
         common_response_obj_debug->s_run_time = NULL;
+    }
+    if (common_response_obj_debug->i_sql_selects) {
+        free(common_response_obj_debug->i_sql_selects);
+        common_response_obj_debug->i_sql_selects = NULL;
+    }
+    if (common_response_obj_debug->i_sql_queries) {
+        free(common_response_obj_debug->i_sql_queries);
+        common_response_obj_debug->i_sql_queries = NULL;
     }
     if (common_response_obj_debug->a_obj_sql_query) {
         list_ForEach(listEntry, common_response_obj_debug->a_obj_sql_query) {
@@ -94,7 +117,7 @@ cJSON *common_response_obj_debug_convertToJSON(common_response_obj_debug_t *comm
     if (!common_response_obj_debug->i_sql_selects) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iSQLSelects", common_response_obj_debug->i_sql_selects) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iSQLSelects", *common_response_obj_debug->i_sql_selects) == NULL) {
     goto fail; //Numeric
     }
 
@@ -103,7 +126,7 @@ cJSON *common_response_obj_debug_convertToJSON(common_response_obj_debug_t *comm
     if (!common_response_obj_debug->i_sql_queries) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iSQLQueries", common_response_obj_debug->i_sql_queries) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iSQLQueries", *common_response_obj_debug->i_sql_queries) == NULL) {
     goto fail; //Numeric
     }
 
@@ -139,6 +162,16 @@ fail:
 common_response_obj_debug_t *common_response_obj_debug_parseFromJSON(cJSON *common_response_obj_debugJSON){
 
     common_response_obj_debug_t *common_response_obj_debug_local_var = NULL;
+
+    char *s_memory_usage_local_str = NULL;
+
+    char *s_run_time_local_str = NULL;
+
+    // define the local variable for common_response_obj_debug->i_sql_selects
+    int *i_sql_selects_local_var = NULL;
+
+    // define the local variable for common_response_obj_debug->i_sql_queries
+    int *i_sql_queries_local_var = NULL;
 
     // define the local list for common_response_obj_debug->a_obj_sql_query
     list_t *a_obj_sql_queryList = NULL;
@@ -187,6 +220,12 @@ common_response_obj_debug_t *common_response_obj_debug_parseFromJSON(cJSON *comm
     {
     goto end; //Numeric
     }
+    i_sql_selects_local_var = malloc(sizeof(int));
+    if(!i_sql_selects_local_var)
+    {
+        goto end;
+    }
+    *i_sql_selects_local_var = i_sql_selects->valuedouble;
 
     // common_response_obj_debug->i_sql_queries
     cJSON *i_sql_queries = cJSON_GetObjectItemCaseSensitive(common_response_obj_debugJSON, "iSQLQueries");
@@ -202,6 +241,12 @@ common_response_obj_debug_t *common_response_obj_debug_parseFromJSON(cJSON *comm
     {
     goto end; //Numeric
     }
+    i_sql_queries_local_var = malloc(sizeof(int));
+    if(!i_sql_queries_local_var)
+    {
+        goto end;
+    }
+    *i_sql_queries_local_var = i_sql_queries->valuedouble;
 
     // common_response_obj_debug->a_obj_sql_query
     cJSON *a_obj_sql_query = cJSON_GetObjectItemCaseSensitive(common_response_obj_debugJSON, "a_objSQLQuery");
@@ -231,16 +276,39 @@ common_response_obj_debug_t *common_response_obj_debug_parseFromJSON(cJSON *comm
     }
 
 
+    if (s_memory_usage && !cJSON_IsNull(s_memory_usage)) s_memory_usage_local_str = strdup(s_memory_usage->valuestring);
+    if (s_run_time && !cJSON_IsNull(s_run_time)) s_run_time_local_str = strdup(s_run_time->valuestring);
+
     common_response_obj_debug_local_var = common_response_obj_debug_create_internal (
-        strdup(s_memory_usage->valuestring),
-        strdup(s_run_time->valuestring),
-        i_sql_selects->valuedouble,
-        i_sql_queries->valuedouble,
+        s_memory_usage_local_str,
+        s_run_time_local_str,
+        i_sql_selects_local_var,
+        i_sql_queries_local_var,
         a_obj_sql_queryList
         );
 
+    if (!common_response_obj_debug_local_var) {
+        goto end;
+    }
+
     return common_response_obj_debug_local_var;
 end:
+    if (s_memory_usage_local_str) {
+        free(s_memory_usage_local_str);
+        s_memory_usage_local_str = NULL;
+    }
+    if (s_run_time_local_str) {
+        free(s_run_time_local_str);
+        s_run_time_local_str = NULL;
+    }
+    if (i_sql_selects_local_var) {
+        free(i_sql_selects_local_var);
+        i_sql_selects_local_var = NULL;
+    }
+    if (i_sql_queries_local_var) {
+        free(i_sql_queries_local_var);
+        i_sql_queries_local_var = NULL;
+    }
     if (a_obj_sql_queryList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_sql_queryList) {

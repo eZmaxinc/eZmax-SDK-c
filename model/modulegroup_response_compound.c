@@ -6,7 +6,7 @@
 
 
 static modulegroup_response_compound_t *modulegroup_response_compound_create_internal(
-    int pki_modulegroup_id,
+    int *pki_modulegroup_id,
     char *s_modulegroup_name_x,
     list_t *a_obj_module
     ) {
@@ -14,24 +14,33 @@ static modulegroup_response_compound_t *modulegroup_response_compound_create_int
     if (!modulegroup_response_compound_local_var) {
         return NULL;
     }
+    memset(modulegroup_response_compound_local_var, 0, sizeof(modulegroup_response_compound_t));
+    modulegroup_response_compound_local_var->_library_owned = 1;
     modulegroup_response_compound_local_var->pki_modulegroup_id = pki_modulegroup_id;
     modulegroup_response_compound_local_var->s_modulegroup_name_x = s_modulegroup_name_x;
     modulegroup_response_compound_local_var->a_obj_module = a_obj_module;
-
-    modulegroup_response_compound_local_var->_library_owned = 1;
     return modulegroup_response_compound_local_var;
 }
 
 __attribute__((deprecated)) modulegroup_response_compound_t *modulegroup_response_compound_create(
-    int pki_modulegroup_id,
+    int *pki_modulegroup_id,
     char *s_modulegroup_name_x,
     list_t *a_obj_module
     ) {
-    return modulegroup_response_compound_create_internal (
-        pki_modulegroup_id,
+    int *pki_modulegroup_id_copy = NULL;
+    if (pki_modulegroup_id) {
+        pki_modulegroup_id_copy = malloc(sizeof(int));
+        if (pki_modulegroup_id_copy) *pki_modulegroup_id_copy = *pki_modulegroup_id;
+    }
+    modulegroup_response_compound_t *result = modulegroup_response_compound_create_internal (
+        pki_modulegroup_id_copy,
         s_modulegroup_name_x,
         a_obj_module
         );
+    if (!result) {
+        free(pki_modulegroup_id_copy);
+    }
+    return result;
 }
 
 void modulegroup_response_compound_free(modulegroup_response_compound_t *modulegroup_response_compound) {
@@ -43,6 +52,10 @@ void modulegroup_response_compound_free(modulegroup_response_compound_t *moduleg
         return ;
     }
     listEntry_t *listEntry;
+    if (modulegroup_response_compound->pki_modulegroup_id) {
+        free(modulegroup_response_compound->pki_modulegroup_id);
+        modulegroup_response_compound->pki_modulegroup_id = NULL;
+    }
     if (modulegroup_response_compound->s_modulegroup_name_x) {
         free(modulegroup_response_compound->s_modulegroup_name_x);
         modulegroup_response_compound->s_modulegroup_name_x = NULL;
@@ -64,7 +77,7 @@ cJSON *modulegroup_response_compound_convertToJSON(modulegroup_response_compound
     if (!modulegroup_response_compound->pki_modulegroup_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiModulegroupID", modulegroup_response_compound->pki_modulegroup_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiModulegroupID", *modulegroup_response_compound->pki_modulegroup_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -109,6 +122,11 @@ modulegroup_response_compound_t *modulegroup_response_compound_parseFromJSON(cJS
 
     modulegroup_response_compound_t *modulegroup_response_compound_local_var = NULL;
 
+    // define the local variable for modulegroup_response_compound->pki_modulegroup_id
+    int *pki_modulegroup_id_local_var = NULL;
+
+    char *s_modulegroup_name_x_local_str = NULL;
+
     // define the local list for modulegroup_response_compound->a_obj_module
     list_t *a_obj_moduleList = NULL;
 
@@ -126,6 +144,12 @@ modulegroup_response_compound_t *modulegroup_response_compound_parseFromJSON(cJS
     {
     goto end; //Numeric
     }
+    pki_modulegroup_id_local_var = malloc(sizeof(int));
+    if(!pki_modulegroup_id_local_var)
+    {
+        goto end;
+    }
+    *pki_modulegroup_id_local_var = pki_modulegroup_id->valuedouble;
 
     // modulegroup_response_compound->s_modulegroup_name_x
     cJSON *s_modulegroup_name_x = cJSON_GetObjectItemCaseSensitive(modulegroup_response_compoundJSON, "sModulegroupNameX");
@@ -167,14 +191,28 @@ modulegroup_response_compound_t *modulegroup_response_compound_parseFromJSON(cJS
     }
 
 
+    if (s_modulegroup_name_x && !cJSON_IsNull(s_modulegroup_name_x)) s_modulegroup_name_x_local_str = strdup(s_modulegroup_name_x->valuestring);
+
     modulegroup_response_compound_local_var = modulegroup_response_compound_create_internal (
-        pki_modulegroup_id->valuedouble,
-        strdup(s_modulegroup_name_x->valuestring),
+        pki_modulegroup_id_local_var,
+        s_modulegroup_name_x_local_str,
         a_obj_module ? a_obj_moduleList : NULL
         );
 
+    if (!modulegroup_response_compound_local_var) {
+        goto end;
+    }
+
     return modulegroup_response_compound_local_var;
 end:
+    if (pki_modulegroup_id_local_var) {
+        free(pki_modulegroup_id_local_var);
+        pki_modulegroup_id_local_var = NULL;
+    }
+    if (s_modulegroup_name_x_local_str) {
+        free(s_modulegroup_name_x_local_str);
+        s_modulegroup_name_x_local_str = NULL;
+    }
     if (a_obj_moduleList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_moduleList) {

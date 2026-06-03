@@ -12,18 +12,21 @@ static apikey_generate_delegated_credentials_v1_response_m_payload_t *apikey_gen
     if (!apikey_generate_delegated_credentials_v1_response_m_payload_local_var) {
         return NULL;
     }
-    apikey_generate_delegated_credentials_v1_response_m_payload_local_var->obj_apikey = obj_apikey;
-
+    memset(apikey_generate_delegated_credentials_v1_response_m_payload_local_var, 0, sizeof(apikey_generate_delegated_credentials_v1_response_m_payload_t));
     apikey_generate_delegated_credentials_v1_response_m_payload_local_var->_library_owned = 1;
+    apikey_generate_delegated_credentials_v1_response_m_payload_local_var->obj_apikey = obj_apikey;
     return apikey_generate_delegated_credentials_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) apikey_generate_delegated_credentials_v1_response_m_payload_t *apikey_generate_delegated_credentials_v1_response_m_payload_create(
     custom_apikey_t *obj_apikey
     ) {
-    return apikey_generate_delegated_credentials_v1_response_m_payload_create_internal (
+    apikey_generate_delegated_credentials_v1_response_m_payload_t *result = apikey_generate_delegated_credentials_v1_response_m_payload_create_internal (
         obj_apikey
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void apikey_generate_delegated_credentials_v1_response_m_payload_free(apikey_generate_delegated_credentials_v1_response_m_payload_t *apikey_generate_delegated_credentials_v1_response_m_payload) {
@@ -86,9 +89,14 @@ apikey_generate_delegated_credentials_v1_response_m_payload_t *apikey_generate_d
     obj_apikey_local_nonprim = custom_apikey_parseFromJSON(obj_apikey); //nonprimitive
 
 
+
     apikey_generate_delegated_credentials_v1_response_m_payload_local_var = apikey_generate_delegated_credentials_v1_response_m_payload_create_internal (
         obj_apikey_local_nonprim
         );
+
+    if (!apikey_generate_delegated_credentials_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return apikey_generate_delegated_credentials_v1_response_m_payload_local_var;
 end:

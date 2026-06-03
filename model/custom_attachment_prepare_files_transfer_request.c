@@ -13,10 +13,10 @@ static custom_attachment_prepare_files_transfer_request_t *custom_attachment_pre
     if (!custom_attachment_prepare_files_transfer_request_local_var) {
         return NULL;
     }
+    memset(custom_attachment_prepare_files_transfer_request_local_var, 0, sizeof(custom_attachment_prepare_files_transfer_request_t));
+    custom_attachment_prepare_files_transfer_request_local_var->_library_owned = 1;
     custom_attachment_prepare_files_transfer_request_local_var->s_attachment_name = s_attachment_name;
     custom_attachment_prepare_files_transfer_request_local_var->s_attachment_md5 = s_attachment_md5;
-
-    custom_attachment_prepare_files_transfer_request_local_var->_library_owned = 1;
     return custom_attachment_prepare_files_transfer_request_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) custom_attachment_prepare_files_transfer_request_t *
     char *s_attachment_name,
     char *s_attachment_md5
     ) {
-    return custom_attachment_prepare_files_transfer_request_create_internal (
+    custom_attachment_prepare_files_transfer_request_t *result = custom_attachment_prepare_files_transfer_request_create_internal (
         s_attachment_name,
         s_attachment_md5
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void custom_attachment_prepare_files_transfer_request_free(custom_attachment_prepare_files_transfer_request_t *custom_attachment_prepare_files_transfer_request) {
@@ -82,6 +85,10 @@ custom_attachment_prepare_files_transfer_request_t *custom_attachment_prepare_fi
 
     custom_attachment_prepare_files_transfer_request_t *custom_attachment_prepare_files_transfer_request_local_var = NULL;
 
+    char *s_attachment_name_local_str = NULL;
+
+    char *s_attachment_md5_local_str = NULL;
+
     // custom_attachment_prepare_files_transfer_request->s_attachment_name
     cJSON *s_attachment_name = cJSON_GetObjectItemCaseSensitive(custom_attachment_prepare_files_transfer_requestJSON, "sAttachmentName");
     if (cJSON_IsNull(s_attachment_name)) {
@@ -113,13 +120,28 @@ custom_attachment_prepare_files_transfer_request_t *custom_attachment_prepare_fi
     }
 
 
+    if (s_attachment_name && !cJSON_IsNull(s_attachment_name)) s_attachment_name_local_str = strdup(s_attachment_name->valuestring);
+    if (s_attachment_md5 && !cJSON_IsNull(s_attachment_md5)) s_attachment_md5_local_str = strdup(s_attachment_md5->valuestring);
+
     custom_attachment_prepare_files_transfer_request_local_var = custom_attachment_prepare_files_transfer_request_create_internal (
-        strdup(s_attachment_name->valuestring),
-        strdup(s_attachment_md5->valuestring)
+        s_attachment_name_local_str,
+        s_attachment_md5_local_str
         );
+
+    if (!custom_attachment_prepare_files_transfer_request_local_var) {
+        goto end;
+    }
 
     return custom_attachment_prepare_files_transfer_request_local_var;
 end:
+    if (s_attachment_name_local_str) {
+        free(s_attachment_name_local_str);
+        s_attachment_name_local_str = NULL;
+    }
+    if (s_attachment_md5_local_str) {
+        free(s_attachment_md5_local_str);
+        s_attachment_md5_local_str = NULL;
+    }
     return NULL;
 
 }

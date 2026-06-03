@@ -15,23 +15,26 @@
 
 typedef struct ezsigntemplateglobaldocument_response_t ezsigntemplateglobaldocument_response_t;
 
+#include "field_e_ezsigntemplateglobaldocument_acceptationtype.h"
 
 
 
 typedef struct ezsigntemplateglobaldocument_response_t {
-    int pki_ezsigntemplateglobaldocument_id; //numeric
+    int *pki_ezsigntemplateglobaldocument_id; //numeric
     char *s_ezsigntemplateglobaldocument_name; // string
-    int i_ezsigntemplateglobaldocument_pagetotal; //numeric
-    int i_ezsigntemplateglobaldocument_signaturetotal; //numeric
+    ezmax_api_definition__full_field_e_ezsigntemplateglobaldocument_acceptationtype__e e_ezsigntemplateglobaldocument_acceptationtype; //referenced enum
+    int *i_ezsigntemplateglobaldocument_pagetotal; //numeric
+    int *i_ezsigntemplateglobaldocument_signaturetotal; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplateglobaldocument_response_t;
 
 __attribute__((deprecated)) ezsigntemplateglobaldocument_response_t *ezsigntemplateglobaldocument_response_create(
-    int pki_ezsigntemplateglobaldocument_id,
+    int *pki_ezsigntemplateglobaldocument_id,
     char *s_ezsigntemplateglobaldocument_name,
-    int i_ezsigntemplateglobaldocument_pagetotal,
-    int i_ezsigntemplateglobaldocument_signaturetotal
+    ezmax_api_definition__full_field_e_ezsigntemplateglobaldocument_acceptationtype__e e_ezsigntemplateglobaldocument_acceptationtype,
+    int *i_ezsigntemplateglobaldocument_pagetotal,
+    int *i_ezsigntemplateglobaldocument_signaturetotal
 );
 
 void ezsigntemplateglobaldocument_response_free(ezsigntemplateglobaldocument_response_t *ezsigntemplateglobaldocument_response);

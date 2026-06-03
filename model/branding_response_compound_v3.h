@@ -22,18 +22,18 @@ typedef struct branding_response_compound_v3_t branding_response_compound_v3_t;
 
 
 typedef struct branding_response_compound_v3_t {
-    int pki_branding_id; //numeric
-    int fki_domain_id; //numeric
+    int *pki_branding_id; //numeric
+    int *fki_domain_id; //numeric
     char *s_domain_name; // string
-    int fki_email_id; //numeric
+    int *fki_email_id; //numeric
     struct multilingual_branding_description_t *obj_branding_description; //model
     char *s_branding_description_x; // string
     char *s_branding_name; // string
     char *s_email_address; // string
     ezmax_api_definition__full_field_e_branding_logo__e e_branding_logo; //referenced enum
     ezmax_api_definition__full_field_e_branding_alignlogo__e e_branding_alignlogo; //referenced enum
-    int i_branding_color; //numeric
-    int b_branding_isactive; //boolean
+    int *i_branding_color; //numeric
+    int *b_branding_isactive; //boolean
     char *s_branding_logourl; // string
     char *s_branding_logoemailurl; // string
     char *s_branding_logointerfaceurl; // string
@@ -42,18 +42,18 @@ typedef struct branding_response_compound_v3_t {
 } branding_response_compound_v3_t;
 
 __attribute__((deprecated)) branding_response_compound_v3_t *branding_response_compound_v3_create(
-    int pki_branding_id,
-    int fki_domain_id,
+    int *pki_branding_id,
+    int *fki_domain_id,
     char *s_domain_name,
-    int fki_email_id,
+    int *fki_email_id,
     multilingual_branding_description_t *obj_branding_description,
     char *s_branding_description_x,
     char *s_branding_name,
     char *s_email_address,
     ezmax_api_definition__full_field_e_branding_logo__e e_branding_logo,
     ezmax_api_definition__full_field_e_branding_alignlogo__e e_branding_alignlogo,
-    int i_branding_color,
-    int b_branding_isactive,
+    int *i_branding_color,
+    int *b_branding_isactive,
     char *s_branding_logourl,
     char *s_branding_logoemailurl,
     char *s_branding_logointerfaceurl

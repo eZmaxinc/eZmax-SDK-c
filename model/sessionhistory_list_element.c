@@ -6,9 +6,9 @@
 
 
 static sessionhistory_list_element_t *sessionhistory_list_element_create_internal(
-    int pki_sessionhistory_id,
-    int fki_computer_id,
-    int fki_user_id,
+    int *pki_sessionhistory_id,
+    int *fki_computer_id,
+    int *fki_user_id,
     char *dt_sessionhistory_firsthit,
     char *dt_sessionhistory_lasthit,
     ezmax_api_definition__full_field_e_sessionhistory_endby__e e_sessionhistory_endby,
@@ -21,6 +21,8 @@ static sessionhistory_list_element_t *sessionhistory_list_element_create_interna
     if (!sessionhistory_list_element_local_var) {
         return NULL;
     }
+    memset(sessionhistory_list_element_local_var, 0, sizeof(sessionhistory_list_element_t));
+    sessionhistory_list_element_local_var->_library_owned = 1;
     sessionhistory_list_element_local_var->pki_sessionhistory_id = pki_sessionhistory_id;
     sessionhistory_list_element_local_var->fki_computer_id = fki_computer_id;
     sessionhistory_list_element_local_var->fki_user_id = fki_user_id;
@@ -31,15 +33,13 @@ static sessionhistory_list_element_t *sessionhistory_list_element_create_interna
     sessionhistory_list_element_local_var->s_sessionhistory_duration = s_sessionhistory_duration;
     sessionhistory_list_element_local_var->s_sessionhistory_ip = s_sessionhistory_ip;
     sessionhistory_list_element_local_var->s_user_loginname = s_user_loginname;
-
-    sessionhistory_list_element_local_var->_library_owned = 1;
     return sessionhistory_list_element_local_var;
 }
 
 __attribute__((deprecated)) sessionhistory_list_element_t *sessionhistory_list_element_create(
-    int pki_sessionhistory_id,
-    int fki_computer_id,
-    int fki_user_id,
+    int *pki_sessionhistory_id,
+    int *fki_computer_id,
+    int *fki_user_id,
     char *dt_sessionhistory_firsthit,
     char *dt_sessionhistory_lasthit,
     ezmax_api_definition__full_field_e_sessionhistory_endby__e e_sessionhistory_endby,
@@ -48,10 +48,25 @@ __attribute__((deprecated)) sessionhistory_list_element_t *sessionhistory_list_e
     char *s_sessionhistory_ip,
     char *s_user_loginname
     ) {
-    return sessionhistory_list_element_create_internal (
-        pki_sessionhistory_id,
-        fki_computer_id,
-        fki_user_id,
+    int *pki_sessionhistory_id_copy = NULL;
+    if (pki_sessionhistory_id) {
+        pki_sessionhistory_id_copy = malloc(sizeof(int));
+        if (pki_sessionhistory_id_copy) *pki_sessionhistory_id_copy = *pki_sessionhistory_id;
+    }
+    int *fki_computer_id_copy = NULL;
+    if (fki_computer_id) {
+        fki_computer_id_copy = malloc(sizeof(int));
+        if (fki_computer_id_copy) *fki_computer_id_copy = *fki_computer_id;
+    }
+    int *fki_user_id_copy = NULL;
+    if (fki_user_id) {
+        fki_user_id_copy = malloc(sizeof(int));
+        if (fki_user_id_copy) *fki_user_id_copy = *fki_user_id;
+    }
+    sessionhistory_list_element_t *result = sessionhistory_list_element_create_internal (
+        pki_sessionhistory_id_copy,
+        fki_computer_id_copy,
+        fki_user_id_copy,
         dt_sessionhistory_firsthit,
         dt_sessionhistory_lasthit,
         e_sessionhistory_endby,
@@ -60,6 +75,12 @@ __attribute__((deprecated)) sessionhistory_list_element_t *sessionhistory_list_e
         s_sessionhistory_ip,
         s_user_loginname
         );
+    if (!result) {
+        free(pki_sessionhistory_id_copy);
+        free(fki_computer_id_copy);
+        free(fki_user_id_copy);
+    }
+    return result;
 }
 
 void sessionhistory_list_element_free(sessionhistory_list_element_t *sessionhistory_list_element) {
@@ -71,6 +92,18 @@ void sessionhistory_list_element_free(sessionhistory_list_element_t *sessionhist
         return ;
     }
     listEntry_t *listEntry;
+    if (sessionhistory_list_element->pki_sessionhistory_id) {
+        free(sessionhistory_list_element->pki_sessionhistory_id);
+        sessionhistory_list_element->pki_sessionhistory_id = NULL;
+    }
+    if (sessionhistory_list_element->fki_computer_id) {
+        free(sessionhistory_list_element->fki_computer_id);
+        sessionhistory_list_element->fki_computer_id = NULL;
+    }
+    if (sessionhistory_list_element->fki_user_id) {
+        free(sessionhistory_list_element->fki_user_id);
+        sessionhistory_list_element->fki_user_id = NULL;
+    }
     if (sessionhistory_list_element->dt_sessionhistory_firsthit) {
         free(sessionhistory_list_element->dt_sessionhistory_firsthit);
         sessionhistory_list_element->dt_sessionhistory_firsthit = NULL;
@@ -105,14 +138,14 @@ cJSON *sessionhistory_list_element_convertToJSON(sessionhistory_list_element_t *
     if (!sessionhistory_list_element->pki_sessionhistory_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiSessionhistoryID", sessionhistory_list_element->pki_sessionhistory_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiSessionhistoryID", *sessionhistory_list_element->pki_sessionhistory_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // sessionhistory_list_element->fki_computer_id
     if(sessionhistory_list_element->fki_computer_id) {
-    if(cJSON_AddNumberToObject(item, "fkiComputerID", sessionhistory_list_element->fki_computer_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiComputerID", *sessionhistory_list_element->fki_computer_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -120,7 +153,7 @@ cJSON *sessionhistory_list_element_convertToJSON(sessionhistory_list_element_t *
 
     // sessionhistory_list_element->fki_user_id
     if(sessionhistory_list_element->fki_user_id) {
-    if(cJSON_AddNumberToObject(item, "fkiUserID", sessionhistory_list_element->fki_user_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiUserID", *sessionhistory_list_element->fki_user_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -203,8 +236,29 @@ sessionhistory_list_element_t *sessionhistory_list_element_parseFromJSON(cJSON *
 
     sessionhistory_list_element_t *sessionhistory_list_element_local_var = NULL;
 
+    // define the local variable for sessionhistory_list_element->pki_sessionhistory_id
+    int *pki_sessionhistory_id_local_var = NULL;
+
+    // define the local variable for sessionhistory_list_element->fki_computer_id
+    int *fki_computer_id_local_var = NULL;
+
+    // define the local variable for sessionhistory_list_element->fki_user_id
+    int *fki_user_id_local_var = NULL;
+
+    char *dt_sessionhistory_firsthit_local_str = NULL;
+
+    char *dt_sessionhistory_lasthit_local_str = NULL;
+
     // define the local variable for sessionhistory_list_element->e_sessionhistory_endby
     ezmax_api_definition__full_field_e_sessionhistory_endby__e e_sessionhistory_endby_local_nonprim = 0;
+
+    char *s_computer_description_local_str = NULL;
+
+    char *s_sessionhistory_duration_local_str = NULL;
+
+    char *s_sessionhistory_ip_local_str = NULL;
+
+    char *s_user_loginname_local_str = NULL;
 
     // sessionhistory_list_element->pki_sessionhistory_id
     cJSON *pki_sessionhistory_id = cJSON_GetObjectItemCaseSensitive(sessionhistory_list_elementJSON, "pkiSessionhistoryID");
@@ -220,6 +274,12 @@ sessionhistory_list_element_t *sessionhistory_list_element_parseFromJSON(cJSON *
     {
     goto end; //Numeric
     }
+    pki_sessionhistory_id_local_var = malloc(sizeof(int));
+    if(!pki_sessionhistory_id_local_var)
+    {
+        goto end;
+    }
+    *pki_sessionhistory_id_local_var = pki_sessionhistory_id->valuedouble;
 
     // sessionhistory_list_element->fki_computer_id
     cJSON *fki_computer_id = cJSON_GetObjectItemCaseSensitive(sessionhistory_list_elementJSON, "fkiComputerID");
@@ -231,6 +291,12 @@ sessionhistory_list_element_t *sessionhistory_list_element_parseFromJSON(cJSON *
     {
     goto end; //Numeric
     }
+    fki_computer_id_local_var = malloc(sizeof(int));
+    if(!fki_computer_id_local_var)
+    {
+        goto end;
+    }
+    *fki_computer_id_local_var = fki_computer_id->valuedouble;
     }
 
     // sessionhistory_list_element->fki_user_id
@@ -243,6 +309,12 @@ sessionhistory_list_element_t *sessionhistory_list_element_parseFromJSON(cJSON *
     {
     goto end; //Numeric
     }
+    fki_user_id_local_var = malloc(sizeof(int));
+    if(!fki_user_id_local_var)
+    {
+        goto end;
+    }
+    *fki_user_id_local_var = fki_user_id->valuedouble;
     }
 
     // sessionhistory_list_element->dt_sessionhistory_firsthit
@@ -342,23 +414,70 @@ sessionhistory_list_element_t *sessionhistory_list_element_parseFromJSON(cJSON *
     }
 
 
+    if (dt_sessionhistory_firsthit && !cJSON_IsNull(dt_sessionhistory_firsthit)) dt_sessionhistory_firsthit_local_str = strdup(dt_sessionhistory_firsthit->valuestring);
+    if (dt_sessionhistory_lasthit && !cJSON_IsNull(dt_sessionhistory_lasthit)) dt_sessionhistory_lasthit_local_str = strdup(dt_sessionhistory_lasthit->valuestring);
+    if (s_computer_description && !cJSON_IsNull(s_computer_description)) s_computer_description_local_str = strdup(s_computer_description->valuestring);
+    if (s_sessionhistory_duration && !cJSON_IsNull(s_sessionhistory_duration)) s_sessionhistory_duration_local_str = strdup(s_sessionhistory_duration->valuestring);
+    if (s_sessionhistory_ip && !cJSON_IsNull(s_sessionhistory_ip)) s_sessionhistory_ip_local_str = strdup(s_sessionhistory_ip->valuestring);
+    if (s_user_loginname && !cJSON_IsNull(s_user_loginname)) s_user_loginname_local_str = strdup(s_user_loginname->valuestring);
+
     sessionhistory_list_element_local_var = sessionhistory_list_element_create_internal (
-        pki_sessionhistory_id->valuedouble,
-        fki_computer_id ? fki_computer_id->valuedouble : 0,
-        fki_user_id ? fki_user_id->valuedouble : 0,
-        strdup(dt_sessionhistory_firsthit->valuestring),
-        strdup(dt_sessionhistory_lasthit->valuestring),
+        pki_sessionhistory_id_local_var,
+        fki_computer_id_local_var,
+        fki_user_id_local_var,
+        dt_sessionhistory_firsthit_local_str,
+        dt_sessionhistory_lasthit_local_str,
         e_sessionhistory_endby_local_nonprim,
-        s_computer_description && !cJSON_IsNull(s_computer_description) ? strdup(s_computer_description->valuestring) : NULL,
-        strdup(s_sessionhistory_duration->valuestring),
-        strdup(s_sessionhistory_ip->valuestring),
-        s_user_loginname && !cJSON_IsNull(s_user_loginname) ? strdup(s_user_loginname->valuestring) : NULL
+        s_computer_description_local_str,
+        s_sessionhistory_duration_local_str,
+        s_sessionhistory_ip_local_str,
+        s_user_loginname_local_str
         );
+
+    if (!sessionhistory_list_element_local_var) {
+        goto end;
+    }
 
     return sessionhistory_list_element_local_var;
 end:
+    if (pki_sessionhistory_id_local_var) {
+        free(pki_sessionhistory_id_local_var);
+        pki_sessionhistory_id_local_var = NULL;
+    }
+    if (fki_computer_id_local_var) {
+        free(fki_computer_id_local_var);
+        fki_computer_id_local_var = NULL;
+    }
+    if (fki_user_id_local_var) {
+        free(fki_user_id_local_var);
+        fki_user_id_local_var = NULL;
+    }
+    if (dt_sessionhistory_firsthit_local_str) {
+        free(dt_sessionhistory_firsthit_local_str);
+        dt_sessionhistory_firsthit_local_str = NULL;
+    }
+    if (dt_sessionhistory_lasthit_local_str) {
+        free(dt_sessionhistory_lasthit_local_str);
+        dt_sessionhistory_lasthit_local_str = NULL;
+    }
     if (e_sessionhistory_endby_local_nonprim) {
         e_sessionhistory_endby_local_nonprim = 0;
+    }
+    if (s_computer_description_local_str) {
+        free(s_computer_description_local_str);
+        s_computer_description_local_str = NULL;
+    }
+    if (s_sessionhistory_duration_local_str) {
+        free(s_sessionhistory_duration_local_str);
+        s_sessionhistory_duration_local_str = NULL;
+    }
+    if (s_sessionhistory_ip_local_str) {
+        free(s_sessionhistory_ip_local_str);
+        s_sessionhistory_ip_local_str = NULL;
+    }
+    if (s_user_loginname_local_str) {
+        free(s_user_loginname_local_str);
+        s_user_loginname_local_str = NULL;
     }
     return NULL;
 

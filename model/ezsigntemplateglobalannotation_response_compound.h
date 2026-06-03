@@ -18,20 +18,22 @@ typedef struct ezsigntemplateglobalannotation_response_compound_t ezsigntemplate
 #include "field_e_ezsigntemplateglobalannotation_horizontalalignment.h"
 #include "field_e_ezsigntemplateglobalannotation_type.h"
 #include "field_e_ezsigntemplateglobalannotation_verticalalignment.h"
+#include "textstylestatic_request_compound.h"
 
 
 
 typedef struct ezsigntemplateglobalannotation_response_compound_t {
-    int pki_ezsigntemplateglobalannotation_id; //numeric
-    int fki_ezsigntemplateglobaldocumentpage_id; //numeric
-    int fki_textstylestatic_id; //numeric
+    int *pki_ezsigntemplateglobalannotation_id; //numeric
+    int *fki_textstylestatic_id; //numeric
+    struct textstylestatic_request_compound_t *obj_textstylestatic; //model
     ezmax_api_definition__full_field_e_ezsigntemplateglobalannotation_horizontalalignment__e e_ezsigntemplateglobalannotation_horizontalalignment; //referenced enum
     ezmax_api_definition__full_field_e_ezsigntemplateglobalannotation_verticalalignment__e e_ezsigntemplateglobalannotation_verticalalignment; //referenced enum
     ezmax_api_definition__full_field_e_ezsigntemplateglobalannotation_type__e e_ezsigntemplateglobalannotation_type; //referenced enum
-    int i_ezsigntemplateglobalannotation_x; //numeric
-    int i_ezsigntemplateglobalannotation_y; //numeric
-    int i_ezsigntemplateglobalannotation_width; //numeric
-    int i_ezsigntemplateglobalannotation_height; //numeric
+    int *i_ezsigntemplateglobalannotation_x; //numeric
+    int *i_ezsigntemplateglobalannotation_y; //numeric
+    int *i_ezsigntemplateglobalannotation_width; //numeric
+    int *i_ezsigntemplateglobalannotation_height; //numeric
+    int *i_ezsigntemplateglobaldocumentpage_pagenumber; //numeric
     char *s_ezsigntemplateglobalannotation_description; // string
     char *s_ezsigntemplateglobalannotation_defaulttext; // string
     char *s_ezsigntemplateglobalannotation_dropdownvalues; // string
@@ -40,16 +42,17 @@ typedef struct ezsigntemplateglobalannotation_response_compound_t {
 } ezsigntemplateglobalannotation_response_compound_t;
 
 __attribute__((deprecated)) ezsigntemplateglobalannotation_response_compound_t *ezsigntemplateglobalannotation_response_compound_create(
-    int pki_ezsigntemplateglobalannotation_id,
-    int fki_ezsigntemplateglobaldocumentpage_id,
-    int fki_textstylestatic_id,
+    int *pki_ezsigntemplateglobalannotation_id,
+    int *fki_textstylestatic_id,
+    textstylestatic_request_compound_t *obj_textstylestatic,
     ezmax_api_definition__full_field_e_ezsigntemplateglobalannotation_horizontalalignment__e e_ezsigntemplateglobalannotation_horizontalalignment,
     ezmax_api_definition__full_field_e_ezsigntemplateglobalannotation_verticalalignment__e e_ezsigntemplateglobalannotation_verticalalignment,
     ezmax_api_definition__full_field_e_ezsigntemplateglobalannotation_type__e e_ezsigntemplateglobalannotation_type,
-    int i_ezsigntemplateglobalannotation_x,
-    int i_ezsigntemplateglobalannotation_y,
-    int i_ezsigntemplateglobalannotation_width,
-    int i_ezsigntemplateglobalannotation_height,
+    int *i_ezsigntemplateglobalannotation_x,
+    int *i_ezsigntemplateglobalannotation_y,
+    int *i_ezsigntemplateglobalannotation_width,
+    int *i_ezsigntemplateglobalannotation_height,
+    int *i_ezsigntemplateglobaldocumentpage_pagenumber,
     char *s_ezsigntemplateglobalannotation_description,
     char *s_ezsigntemplateglobalannotation_defaulttext,
     char *s_ezsigntemplateglobalannotation_dropdownvalues

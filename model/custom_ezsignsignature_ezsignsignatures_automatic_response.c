@@ -6,32 +6,47 @@
 
 
 static custom_ezsignsignature_ezsignsignatures_automatic_response_t *custom_ezsignsignature_ezsignsignatures_automatic_response_create_internal(
-    int pki_ezsignsignature_id,
+    int *pki_ezsignsignature_id,
     ezmax_api_definition__full_field_e_ezsignsignature_type__e e_ezsignsignature_type,
-    int i_ezsignpage_pagenumber
+    int *i_ezsignpage_pagenumber
     ) {
     custom_ezsignsignature_ezsignsignatures_automatic_response_t *custom_ezsignsignature_ezsignsignatures_automatic_response_local_var = malloc(sizeof(custom_ezsignsignature_ezsignsignatures_automatic_response_t));
     if (!custom_ezsignsignature_ezsignsignatures_automatic_response_local_var) {
         return NULL;
     }
+    memset(custom_ezsignsignature_ezsignsignatures_automatic_response_local_var, 0, sizeof(custom_ezsignsignature_ezsignsignatures_automatic_response_t));
+    custom_ezsignsignature_ezsignsignatures_automatic_response_local_var->_library_owned = 1;
     custom_ezsignsignature_ezsignsignatures_automatic_response_local_var->pki_ezsignsignature_id = pki_ezsignsignature_id;
     custom_ezsignsignature_ezsignsignatures_automatic_response_local_var->e_ezsignsignature_type = e_ezsignsignature_type;
     custom_ezsignsignature_ezsignsignatures_automatic_response_local_var->i_ezsignpage_pagenumber = i_ezsignpage_pagenumber;
-
-    custom_ezsignsignature_ezsignsignatures_automatic_response_local_var->_library_owned = 1;
     return custom_ezsignsignature_ezsignsignatures_automatic_response_local_var;
 }
 
 __attribute__((deprecated)) custom_ezsignsignature_ezsignsignatures_automatic_response_t *custom_ezsignsignature_ezsignsignatures_automatic_response_create(
-    int pki_ezsignsignature_id,
+    int *pki_ezsignsignature_id,
     ezmax_api_definition__full_field_e_ezsignsignature_type__e e_ezsignsignature_type,
-    int i_ezsignpage_pagenumber
+    int *i_ezsignpage_pagenumber
     ) {
-    return custom_ezsignsignature_ezsignsignatures_automatic_response_create_internal (
-        pki_ezsignsignature_id,
+    int *pki_ezsignsignature_id_copy = NULL;
+    if (pki_ezsignsignature_id) {
+        pki_ezsignsignature_id_copy = malloc(sizeof(int));
+        if (pki_ezsignsignature_id_copy) *pki_ezsignsignature_id_copy = *pki_ezsignsignature_id;
+    }
+    int *i_ezsignpage_pagenumber_copy = NULL;
+    if (i_ezsignpage_pagenumber) {
+        i_ezsignpage_pagenumber_copy = malloc(sizeof(int));
+        if (i_ezsignpage_pagenumber_copy) *i_ezsignpage_pagenumber_copy = *i_ezsignpage_pagenumber;
+    }
+    custom_ezsignsignature_ezsignsignatures_automatic_response_t *result = custom_ezsignsignature_ezsignsignatures_automatic_response_create_internal (
+        pki_ezsignsignature_id_copy,
         e_ezsignsignature_type,
-        i_ezsignpage_pagenumber
+        i_ezsignpage_pagenumber_copy
         );
+    if (!result) {
+        free(pki_ezsignsignature_id_copy);
+        free(i_ezsignpage_pagenumber_copy);
+    }
+    return result;
 }
 
 void custom_ezsignsignature_ezsignsignatures_automatic_response_free(custom_ezsignsignature_ezsignsignatures_automatic_response_t *custom_ezsignsignature_ezsignsignatures_automatic_response) {
@@ -43,6 +58,14 @@ void custom_ezsignsignature_ezsignsignatures_automatic_response_free(custom_ezsi
         return ;
     }
     listEntry_t *listEntry;
+    if (custom_ezsignsignature_ezsignsignatures_automatic_response->pki_ezsignsignature_id) {
+        free(custom_ezsignsignature_ezsignsignatures_automatic_response->pki_ezsignsignature_id);
+        custom_ezsignsignature_ezsignsignatures_automatic_response->pki_ezsignsignature_id = NULL;
+    }
+    if (custom_ezsignsignature_ezsignsignatures_automatic_response->i_ezsignpage_pagenumber) {
+        free(custom_ezsignsignature_ezsignsignatures_automatic_response->i_ezsignpage_pagenumber);
+        custom_ezsignsignature_ezsignsignatures_automatic_response->i_ezsignpage_pagenumber = NULL;
+    }
     free(custom_ezsignsignature_ezsignsignatures_automatic_response);
 }
 
@@ -53,7 +76,7 @@ cJSON *custom_ezsignsignature_ezsignsignatures_automatic_response_convertToJSON(
     if (!custom_ezsignsignature_ezsignsignatures_automatic_response->pki_ezsignsignature_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiEzsignsignatureID", custom_ezsignsignature_ezsignsignatures_automatic_response->pki_ezsignsignature_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzsignsignatureID", *custom_ezsignsignature_ezsignsignatures_automatic_response->pki_ezsignsignature_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -76,7 +99,7 @@ cJSON *custom_ezsignsignature_ezsignsignatures_automatic_response_convertToJSON(
     if (!custom_ezsignsignature_ezsignsignatures_automatic_response->i_ezsignpage_pagenumber) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iEzsignpagePagenumber", custom_ezsignsignature_ezsignsignatures_automatic_response->i_ezsignpage_pagenumber) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iEzsignpagePagenumber", *custom_ezsignsignature_ezsignsignatures_automatic_response->i_ezsignpage_pagenumber) == NULL) {
     goto fail; //Numeric
     }
 
@@ -92,8 +115,14 @@ custom_ezsignsignature_ezsignsignatures_automatic_response_t *custom_ezsignsigna
 
     custom_ezsignsignature_ezsignsignatures_automatic_response_t *custom_ezsignsignature_ezsignsignatures_automatic_response_local_var = NULL;
 
+    // define the local variable for custom_ezsignsignature_ezsignsignatures_automatic_response->pki_ezsignsignature_id
+    int *pki_ezsignsignature_id_local_var = NULL;
+
     // define the local variable for custom_ezsignsignature_ezsignsignatures_automatic_response->e_ezsignsignature_type
     ezmax_api_definition__full_field_e_ezsignsignature_type__e e_ezsignsignature_type_local_nonprim = 0;
+
+    // define the local variable for custom_ezsignsignature_ezsignsignatures_automatic_response->i_ezsignpage_pagenumber
+    int *i_ezsignpage_pagenumber_local_var = NULL;
 
     // custom_ezsignsignature_ezsignsignatures_automatic_response->pki_ezsignsignature_id
     cJSON *pki_ezsignsignature_id = cJSON_GetObjectItemCaseSensitive(custom_ezsignsignature_ezsignsignatures_automatic_responseJSON, "pkiEzsignsignatureID");
@@ -109,6 +138,12 @@ custom_ezsignsignature_ezsignsignatures_automatic_response_t *custom_ezsignsigna
     {
     goto end; //Numeric
     }
+    pki_ezsignsignature_id_local_var = malloc(sizeof(int));
+    if(!pki_ezsignsignature_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezsignsignature_id_local_var = pki_ezsignsignature_id->valuedouble;
 
     // custom_ezsignsignature_ezsignsignatures_automatic_response->e_ezsignsignature_type
     cJSON *e_ezsignsignature_type = cJSON_GetObjectItemCaseSensitive(custom_ezsignsignature_ezsignsignatures_automatic_responseJSON, "eEzsignsignatureType");
@@ -136,18 +171,37 @@ custom_ezsignsignature_ezsignsignatures_automatic_response_t *custom_ezsignsigna
     {
     goto end; //Numeric
     }
+    i_ezsignpage_pagenumber_local_var = malloc(sizeof(int));
+    if(!i_ezsignpage_pagenumber_local_var)
+    {
+        goto end;
+    }
+    *i_ezsignpage_pagenumber_local_var = i_ezsignpage_pagenumber->valuedouble;
+
 
 
     custom_ezsignsignature_ezsignsignatures_automatic_response_local_var = custom_ezsignsignature_ezsignsignatures_automatic_response_create_internal (
-        pki_ezsignsignature_id->valuedouble,
+        pki_ezsignsignature_id_local_var,
         e_ezsignsignature_type_local_nonprim,
-        i_ezsignpage_pagenumber->valuedouble
+        i_ezsignpage_pagenumber_local_var
         );
+
+    if (!custom_ezsignsignature_ezsignsignatures_automatic_response_local_var) {
+        goto end;
+    }
 
     return custom_ezsignsignature_ezsignsignatures_automatic_response_local_var;
 end:
+    if (pki_ezsignsignature_id_local_var) {
+        free(pki_ezsignsignature_id_local_var);
+        pki_ezsignsignature_id_local_var = NULL;
+    }
     if (e_ezsignsignature_type_local_nonprim) {
         e_ezsignsignature_type_local_nonprim = 0;
+    }
+    if (i_ezsignpage_pagenumber_local_var) {
+        free(i_ezsignpage_pagenumber_local_var);
+        i_ezsignpage_pagenumber_local_var = NULL;
     }
     return NULL;
 

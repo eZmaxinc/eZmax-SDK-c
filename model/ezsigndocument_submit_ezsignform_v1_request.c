@@ -6,28 +6,37 @@
 
 
 static ezsigndocument_submit_ezsignform_v1_request_t *ezsigndocument_submit_ezsignform_v1_request_create_internal(
-    int b_ezsignform_isdraft,
+    int *b_ezsignform_isdraft,
     list_t *a_obj_ezsignformfieldgroup
     ) {
     ezsigndocument_submit_ezsignform_v1_request_t *ezsigndocument_submit_ezsignform_v1_request_local_var = malloc(sizeof(ezsigndocument_submit_ezsignform_v1_request_t));
     if (!ezsigndocument_submit_ezsignform_v1_request_local_var) {
         return NULL;
     }
+    memset(ezsigndocument_submit_ezsignform_v1_request_local_var, 0, sizeof(ezsigndocument_submit_ezsignform_v1_request_t));
+    ezsigndocument_submit_ezsignform_v1_request_local_var->_library_owned = 1;
     ezsigndocument_submit_ezsignform_v1_request_local_var->b_ezsignform_isdraft = b_ezsignform_isdraft;
     ezsigndocument_submit_ezsignform_v1_request_local_var->a_obj_ezsignformfieldgroup = a_obj_ezsignformfieldgroup;
-
-    ezsigndocument_submit_ezsignform_v1_request_local_var->_library_owned = 1;
     return ezsigndocument_submit_ezsignform_v1_request_local_var;
 }
 
 __attribute__((deprecated)) ezsigndocument_submit_ezsignform_v1_request_t *ezsigndocument_submit_ezsignform_v1_request_create(
-    int b_ezsignform_isdraft,
+    int *b_ezsignform_isdraft,
     list_t *a_obj_ezsignformfieldgroup
     ) {
-    return ezsigndocument_submit_ezsignform_v1_request_create_internal (
-        b_ezsignform_isdraft,
+    int *b_ezsignform_isdraft_copy = NULL;
+    if (b_ezsignform_isdraft) {
+        b_ezsignform_isdraft_copy = malloc(sizeof(int));
+        if (b_ezsignform_isdraft_copy) *b_ezsignform_isdraft_copy = *b_ezsignform_isdraft;
+    }
+    ezsigndocument_submit_ezsignform_v1_request_t *result = ezsigndocument_submit_ezsignform_v1_request_create_internal (
+        b_ezsignform_isdraft_copy,
         a_obj_ezsignformfieldgroup
         );
+    if (!result) {
+        free(b_ezsignform_isdraft_copy);
+    }
+    return result;
 }
 
 void ezsigndocument_submit_ezsignform_v1_request_free(ezsigndocument_submit_ezsignform_v1_request_t *ezsigndocument_submit_ezsignform_v1_request) {
@@ -39,6 +48,10 @@ void ezsigndocument_submit_ezsignform_v1_request_free(ezsigndocument_submit_ezsi
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsigndocument_submit_ezsignform_v1_request->b_ezsignform_isdraft) {
+        free(ezsigndocument_submit_ezsignform_v1_request->b_ezsignform_isdraft);
+        ezsigndocument_submit_ezsignform_v1_request->b_ezsignform_isdraft = NULL;
+    }
     if (ezsigndocument_submit_ezsignform_v1_request->a_obj_ezsignformfieldgroup) {
         list_ForEach(listEntry, ezsigndocument_submit_ezsignform_v1_request->a_obj_ezsignformfieldgroup) {
             custom_ezsignformfieldgroup_request_free(listEntry->data);
@@ -56,7 +69,7 @@ cJSON *ezsigndocument_submit_ezsignform_v1_request_convertToJSON(ezsigndocument_
     if (!ezsigndocument_submit_ezsignform_v1_request->b_ezsignform_isdraft) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bEzsignformIsdraft", ezsigndocument_submit_ezsignform_v1_request->b_ezsignform_isdraft) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bEzsignformIsdraft", *ezsigndocument_submit_ezsignform_v1_request->b_ezsignform_isdraft) == NULL) {
     goto fail; //Bool
     }
 
@@ -93,6 +106,9 @@ ezsigndocument_submit_ezsignform_v1_request_t *ezsigndocument_submit_ezsignform_
 
     ezsigndocument_submit_ezsignform_v1_request_t *ezsigndocument_submit_ezsignform_v1_request_local_var = NULL;
 
+    // define the local variable for ezsigndocument_submit_ezsignform_v1_request->b_ezsignform_isdraft
+    int *b_ezsignform_isdraft_local_var = NULL;
+
     // define the local list for ezsigndocument_submit_ezsignform_v1_request->a_obj_ezsignformfieldgroup
     list_t *a_obj_ezsignformfieldgroupList = NULL;
 
@@ -110,6 +126,12 @@ ezsigndocument_submit_ezsignform_v1_request_t *ezsigndocument_submit_ezsignform_
     {
     goto end; //Bool
     }
+    b_ezsignform_isdraft_local_var = malloc(sizeof(int));
+    if(!b_ezsignform_isdraft_local_var)
+    {
+        goto end;
+    }
+    *b_ezsignform_isdraft_local_var = b_ezsignform_isdraft->valueint;
 
     // ezsigndocument_submit_ezsignform_v1_request->a_obj_ezsignformfieldgroup
     cJSON *a_obj_ezsignformfieldgroup = cJSON_GetObjectItemCaseSensitive(ezsigndocument_submit_ezsignform_v1_requestJSON, "a_objEzsignformfieldgroup");
@@ -139,13 +161,22 @@ ezsigndocument_submit_ezsignform_v1_request_t *ezsigndocument_submit_ezsignform_
     }
 
 
+
     ezsigndocument_submit_ezsignform_v1_request_local_var = ezsigndocument_submit_ezsignform_v1_request_create_internal (
-        b_ezsignform_isdraft->valueint,
+        b_ezsignform_isdraft_local_var,
         a_obj_ezsignformfieldgroupList
         );
 
+    if (!ezsigndocument_submit_ezsignform_v1_request_local_var) {
+        goto end;
+    }
+
     return ezsigndocument_submit_ezsignform_v1_request_local_var;
 end:
+    if (b_ezsignform_isdraft_local_var) {
+        free(b_ezsignform_isdraft_local_var);
+        b_ezsignform_isdraft_local_var = NULL;
+    }
     if (a_obj_ezsignformfieldgroupList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsignformfieldgroupList) {

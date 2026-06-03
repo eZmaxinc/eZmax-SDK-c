@@ -19,34 +19,34 @@ typedef struct ezmaxinvoicingsummaryinternaldetail_response_t ezmaxinvoicingsumm
 
 
 typedef struct ezmaxinvoicingsummaryinternaldetail_response_t {
-    int pki_ezmaxinvoicingsummaryinternaldetail_id; //numeric
-    int fki_ezmaxinvoicingsummaryinternal_id; //numeric
-    int fki_ezmaxproduct_id; //numeric
+    int *pki_ezmaxinvoicingsummaryinternaldetail_id; //numeric
+    int *fki_ezmaxinvoicingsummaryinternal_id; //numeric
+    int *fki_ezmaxproduct_id; //numeric
     char *s_ezmaxproduct_description_x; // string
-    int fki_billingentityexternal_id; //numeric
+    int *fki_billingentityexternal_id; //numeric
     char *s_billingentityexternal_description; // string
     char *d_ezmaxinvoicingsummaryinternaldetail_countreal; // string
     char *d_ezmaxinvoicingsummaryinternaldetail_subtotal; // string
     char *d_ezmaxinvoicingsummaryinternaldetail_rebate; // string
     char *d_ezmaxinvoicingsummaryinternaldetail_total; // string
-    int b_ezmaxinvoicingsummaryinternaldetail_adjustment; //boolean
+    int *b_ezmaxinvoicingsummaryinternaldetail_adjustment; //boolean
     char *t_ezmaxproduct_help_x; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezmaxinvoicingsummaryinternaldetail_response_t;
 
 __attribute__((deprecated)) ezmaxinvoicingsummaryinternaldetail_response_t *ezmaxinvoicingsummaryinternaldetail_response_create(
-    int pki_ezmaxinvoicingsummaryinternaldetail_id,
-    int fki_ezmaxinvoicingsummaryinternal_id,
-    int fki_ezmaxproduct_id,
+    int *pki_ezmaxinvoicingsummaryinternaldetail_id,
+    int *fki_ezmaxinvoicingsummaryinternal_id,
+    int *fki_ezmaxproduct_id,
     char *s_ezmaxproduct_description_x,
-    int fki_billingentityexternal_id,
+    int *fki_billingentityexternal_id,
     char *s_billingentityexternal_description,
     char *d_ezmaxinvoicingsummaryinternaldetail_countreal,
     char *d_ezmaxinvoicingsummaryinternaldetail_subtotal,
     char *d_ezmaxinvoicingsummaryinternaldetail_rebate,
     char *d_ezmaxinvoicingsummaryinternaldetail_total,
-    int b_ezmaxinvoicingsummaryinternaldetail_adjustment,
+    int *b_ezmaxinvoicingsummaryinternaldetail_adjustment,
     char *t_ezmaxproduct_help_x
 );
 

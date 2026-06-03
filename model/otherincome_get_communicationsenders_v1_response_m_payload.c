@@ -12,18 +12,21 @@ static otherincome_get_communicationsenders_v1_response_m_payload_t *otherincome
     if (!otherincome_get_communicationsenders_v1_response_m_payload_local_var) {
         return NULL;
     }
-    otherincome_get_communicationsenders_v1_response_m_payload_local_var->a_obj_communicationsenders = a_obj_communicationsenders;
-
+    memset(otherincome_get_communicationsenders_v1_response_m_payload_local_var, 0, sizeof(otherincome_get_communicationsenders_v1_response_m_payload_t));
     otherincome_get_communicationsenders_v1_response_m_payload_local_var->_library_owned = 1;
+    otherincome_get_communicationsenders_v1_response_m_payload_local_var->a_obj_communicationsenders = a_obj_communicationsenders;
     return otherincome_get_communicationsenders_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) otherincome_get_communicationsenders_v1_response_m_payload_t *otherincome_get_communicationsenders_v1_response_m_payload_create(
     list_t *a_obj_communicationsenders
     ) {
-    return otherincome_get_communicationsenders_v1_response_m_payload_create_internal (
+    otherincome_get_communicationsenders_v1_response_m_payload_t *result = otherincome_get_communicationsenders_v1_response_m_payload_create_internal (
         a_obj_communicationsenders
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void otherincome_get_communicationsenders_v1_response_m_payload_free(otherincome_get_communicationsenders_v1_response_m_payload_t *otherincome_get_communicationsenders_v1_response_m_payload) {
@@ -111,9 +114,14 @@ otherincome_get_communicationsenders_v1_response_m_payload_t *otherincome_get_co
     }
 
 
+
     otherincome_get_communicationsenders_v1_response_m_payload_local_var = otherincome_get_communicationsenders_v1_response_m_payload_create_internal (
         a_obj_communicationsendersList
         );
+
+    if (!otherincome_get_communicationsenders_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return otherincome_get_communicationsenders_v1_response_m_payload_local_var;
 end:

@@ -19,19 +19,19 @@ typedef struct usergroup_list_element_t usergroup_list_element_t;
 
 
 typedef struct usergroup_list_element_t {
-    int pki_usergroup_id; //numeric
+    int *pki_usergroup_id; //numeric
     char *s_usergroup_name_x; // string
-    int i_count_user; //numeric
-    int i_count_inactiveuser; //numeric
+    int *i_count_user; //numeric
+    int *i_count_inactiveuser; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } usergroup_list_element_t;
 
 __attribute__((deprecated)) usergroup_list_element_t *usergroup_list_element_create(
-    int pki_usergroup_id,
+    int *pki_usergroup_id,
     char *s_usergroup_name_x,
-    int i_count_user,
-    int i_count_inactiveuser
+    int *i_count_user,
+    int *i_count_inactiveuser
 );
 
 void usergroup_list_element_free(usergroup_list_element_t *usergroup_list_element);

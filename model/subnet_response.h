@@ -20,23 +20,23 @@ typedef struct subnet_response_t subnet_response_t;
 
 
 typedef struct subnet_response_t {
-    int pki_subnet_id; //numeric
-    int fki_user_id; //numeric
-    int fki_apikey_id; //numeric
+    int *pki_subnet_id; //numeric
+    int *fki_user_id; //numeric
+    int *fki_apikey_id; //numeric
     struct multilingual_subnet_description_t *obj_subnet_description; //model
-    long i_subnet_network; //numeric
-    long i_subnet_mask; //numeric
+    long *i_subnet_network; //numeric
+    long *i_subnet_mask; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } subnet_response_t;
 
 __attribute__((deprecated)) subnet_response_t *subnet_response_create(
-    int pki_subnet_id,
-    int fki_user_id,
-    int fki_apikey_id,
+    int *pki_subnet_id,
+    int *fki_user_id,
+    int *fki_apikey_id,
     multilingual_subnet_description_t *obj_subnet_description,
-    long i_subnet_network,
-    long i_subnet_mask
+    long *i_subnet_network,
+    long *i_subnet_mask
 );
 
 void subnet_response_free(subnet_response_t *subnet_response);

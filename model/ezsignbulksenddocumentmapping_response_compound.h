@@ -21,11 +21,11 @@ typedef struct ezsignbulksenddocumentmapping_response_compound_t ezsignbulksendd
 
 
 typedef struct ezsignbulksenddocumentmapping_response_compound_t {
-    int pki_ezsignbulksenddocumentmapping_id; //numeric
-    int fki_ezsignbulksend_id; //numeric
-    int fki_ezsigntemplatepackage_id; //numeric
-    int fki_ezsigntemplate_id; //numeric
-    int i_ezsignbulksenddocumentmapping_order; //numeric
+    int *pki_ezsignbulksenddocumentmapping_id; //numeric
+    int *fki_ezsignbulksend_id; //numeric
+    int *fki_ezsigntemplatepackage_id; //numeric
+    int *fki_ezsigntemplate_id; //numeric
+    int *i_ezsignbulksenddocumentmapping_order; //numeric
     struct ezsigntemplate_response_compound_t *obj_ezsigntemplate; //model
     struct ezsigntemplatepackage_response_compound_t *obj_ezsigntemplatepackage; //model
 
@@ -33,11 +33,11 @@ typedef struct ezsignbulksenddocumentmapping_response_compound_t {
 } ezsignbulksenddocumentmapping_response_compound_t;
 
 __attribute__((deprecated)) ezsignbulksenddocumentmapping_response_compound_t *ezsignbulksenddocumentmapping_response_compound_create(
-    int pki_ezsignbulksenddocumentmapping_id,
-    int fki_ezsignbulksend_id,
-    int fki_ezsigntemplatepackage_id,
-    int fki_ezsigntemplate_id,
-    int i_ezsignbulksenddocumentmapping_order,
+    int *pki_ezsignbulksenddocumentmapping_id,
+    int *fki_ezsignbulksend_id,
+    int *fki_ezsigntemplatepackage_id,
+    int *fki_ezsigntemplate_id,
+    int *i_ezsignbulksenddocumentmapping_order,
     ezsigntemplate_response_compound_t *obj_ezsigntemplate,
     ezsigntemplatepackage_response_compound_t *obj_ezsigntemplatepackage
 );

@@ -30,10 +30,10 @@ static ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_m_p
     if (!ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_m_payload_local_var) {
         return NULL;
     }
+    memset(ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_m_payload_local_var, 0, sizeof(ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_m_payload_t));
+    ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_m_payload_local_var->_library_owned = 1;
     ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_m_payload_local_var->a_e_ezsignsignature_type = a_e_ezsignsignature_type;
     ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_m_payload_local_var->a_obj_ezsignfolder = a_obj_ezsignfolder;
-
-    ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_m_payload_local_var->_library_owned = 1;
     return ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_m_payload_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) ezsignbulksendtransmission_get_ezsignsignatures_auto
     list_t *a_e_ezsignsignature_type,
     list_t *a_obj_ezsignfolder
     ) {
-    return ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_m_payload_create_internal (
+    ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_m_payload_t *result = ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_m_payload_create_internal (
         a_e_ezsignsignature_type,
         a_obj_ezsignfolder
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_m_payload_free(ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_m_payload_t *ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_m_payload) {
@@ -190,10 +193,15 @@ ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_m_payload_
     }
 
 
+
     ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_m_payload_local_var = ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_m_payload_create_internal (
         a_e_ezsignsignature_typeList,
         a_obj_ezsignfolderList
         );
+
+    if (!ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_m_payload_local_var;
 end:

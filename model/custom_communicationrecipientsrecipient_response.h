@@ -30,21 +30,21 @@ ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOM
 
 
 typedef struct custom_communicationrecipientsrecipient_response_t {
-    int fki_agent_id; //numeric
-    int fki_broker_id; //numeric
-    int fki_contact_id; //numeric
-    int fki_customer_id; //numeric
-    int fki_employee_id; //numeric
-    int fki_ezsignsigner_id; //numeric
-    int fki_franchiseoffice_id; //numeric
-    int fki_user_id; //numeric
-    int fki_agentincorporation_id; //numeric
-    int fki_assistant_id; //numeric
-    int fki_externalbroker_id; //numeric
-    int fki_ezcomagent_id; //numeric
-    int fki_notary_id; //numeric
-    int fki_rewardmember_id; //numeric
-    int fki_supplier_id; //numeric
+    int *fki_agent_id; //numeric
+    int *fki_broker_id; //numeric
+    int *fki_contact_id; //numeric
+    int *fki_customer_id; //numeric
+    int *fki_employee_id; //numeric
+    int *fki_ezsignsigner_id; //numeric
+    int *fki_franchiseoffice_id; //numeric
+    int *fki_user_id; //numeric
+    int *fki_agentincorporation_id; //numeric
+    int *fki_assistant_id; //numeric
+    int *fki_externalbroker_id; //numeric
+    int *fki_ezcomagent_id; //numeric
+    int *fki_notary_id; //numeric
+    int *fki_rewardmember_id; //numeric
+    int *fki_supplier_id; //numeric
     ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_e e_communicationrecipientsrecipient_objecttype; //enum
     struct custom_contact_name_response_t *obj_contact_name; //model
     struct email_response_compound_t *obj_email; //model
@@ -55,21 +55,21 @@ typedef struct custom_communicationrecipientsrecipient_response_t {
 } custom_communicationrecipientsrecipient_response_t;
 
 __attribute__((deprecated)) custom_communicationrecipientsrecipient_response_t *custom_communicationrecipientsrecipient_response_create(
-    int fki_agent_id,
-    int fki_broker_id,
-    int fki_contact_id,
-    int fki_customer_id,
-    int fki_employee_id,
-    int fki_ezsignsigner_id,
-    int fki_franchiseoffice_id,
-    int fki_user_id,
-    int fki_agentincorporation_id,
-    int fki_assistant_id,
-    int fki_externalbroker_id,
-    int fki_ezcomagent_id,
-    int fki_notary_id,
-    int fki_rewardmember_id,
-    int fki_supplier_id,
+    int *fki_agent_id,
+    int *fki_broker_id,
+    int *fki_contact_id,
+    int *fki_customer_id,
+    int *fki_employee_id,
+    int *fki_ezsignsigner_id,
+    int *fki_franchiseoffice_id,
+    int *fki_user_id,
+    int *fki_agentincorporation_id,
+    int *fki_assistant_id,
+    int *fki_externalbroker_id,
+    int *fki_ezcomagent_id,
+    int *fki_notary_id,
+    int *fki_rewardmember_id,
+    int *fki_supplier_id,
     ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_e e_communicationrecipientsrecipient_objecttype,
     custom_contact_name_response_t *obj_contact_name,
     email_response_compound_t *obj_email,

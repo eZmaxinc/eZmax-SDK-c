@@ -19,19 +19,19 @@ typedef struct broker_autocomplete_element_response_t broker_autocomplete_elemen
 
 
 typedef struct broker_autocomplete_element_response_t {
-    int pki_broker_id; //numeric
-    int fki_department_id; //numeric
+    int *pki_broker_id; //numeric
+    int *fki_department_id; //numeric
     char *s_broker_name; // string
-    int b_broker_isactive; //boolean
+    int *b_broker_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } broker_autocomplete_element_response_t;
 
 __attribute__((deprecated)) broker_autocomplete_element_response_t *broker_autocomplete_element_response_create(
-    int pki_broker_id,
-    int fki_department_id,
+    int *pki_broker_id,
+    int *fki_department_id,
     char *s_broker_name,
-    int b_broker_isactive
+    int *b_broker_isactive
 );
 
 void broker_autocomplete_element_response_free(broker_autocomplete_element_response_t *broker_autocomplete_element_response);

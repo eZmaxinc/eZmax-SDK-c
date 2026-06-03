@@ -19,18 +19,18 @@ typedef struct discussionmessage_request_compound_t discussionmessage_request_co
 
 
 typedef struct discussionmessage_request_compound_t {
-    int pki_discussionmessage_id; //numeric
-    int fki_discussion_id; //numeric
-    int fki_discussionmembership_id_actionrequired; //numeric
+    int *pki_discussionmessage_id; //numeric
+    int *fki_discussion_id; //numeric
+    int *fki_discussionmembership_id_actionrequired; //numeric
     char *t_discussionmessage_content; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } discussionmessage_request_compound_t;
 
 __attribute__((deprecated)) discussionmessage_request_compound_t *discussionmessage_request_compound_create(
-    int pki_discussionmessage_id,
-    int fki_discussion_id,
-    int fki_discussionmembership_id_actionrequired,
+    int *pki_discussionmessage_id,
+    int *fki_discussion_id,
+    int *fki_discussionmembership_id_actionrequired,
     char *t_discussionmessage_content
 );
 

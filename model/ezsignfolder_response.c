@@ -6,22 +6,22 @@
 
 
 static ezsignfolder_response_t *ezsignfolder_response_create_internal(
-    int pki_ezsignfolder_id,
-    int fki_ezsignfoldertype_id,
+    int *pki_ezsignfolder_id,
+    int *fki_ezsignfoldertype_id,
     custom_ezsignfoldertype_response_t *obj_ezsignfoldertype,
-    int fki_timezone_id,
+    int *fki_timezone_id,
     ezmax_api_definition__full_field_e_ezsignfolder_completion__e e_ezsignfolder_completion,
     char *s_ezsignfoldertype_name_x,
-    int fki_billingentityinternal_id,
+    int *fki_billingentityinternal_id,
     char *s_billingentityinternal_description_x,
-    int fki_ezsigntsarequirement_id,
+    int *fki_ezsigntsarequirement_id,
     char *s_ezsigntsarequirement_description_x,
     char *s_ezsignfolder_description,
     char *t_ezsignfolder_note,
-    int b_ezsignfolder_isdisposable,
+    int *b_ezsignfolder_isdisposable,
     ezmax_api_definition__full_field_e_ezsignfolder_sendreminderfrequency__e e_ezsignfolder_sendreminderfrequency,
-    int i_ezsignfolder_sendreminderfirstdays,
-    int i_ezsignfolder_sendreminderotherdays,
+    int *i_ezsignfolder_sendreminderfirstdays,
+    int *i_ezsignfolder_sendreminderotherdays,
     char *dt_ezsignfolder_delayedsenddate,
     char *dt_ezsignfolder_duedate,
     char *dt_ezsignfolder_sentdate,
@@ -38,6 +38,8 @@ static ezsignfolder_response_t *ezsignfolder_response_create_internal(
     if (!ezsignfolder_response_local_var) {
         return NULL;
     }
+    memset(ezsignfolder_response_local_var, 0, sizeof(ezsignfolder_response_t));
+    ezsignfolder_response_local_var->_library_owned = 1;
     ezsignfolder_response_local_var->pki_ezsignfolder_id = pki_ezsignfolder_id;
     ezsignfolder_response_local_var->fki_ezsignfoldertype_id = fki_ezsignfoldertype_id;
     ezsignfolder_response_local_var->obj_ezsignfoldertype = obj_ezsignfoldertype;
@@ -65,28 +67,26 @@ static ezsignfolder_response_t *ezsignfolder_response_create_internal(
     ezsignfolder_response_local_var->t_ezsignfolder_message = t_ezsignfolder_message;
     ezsignfolder_response_local_var->obj_audit = obj_audit;
     ezsignfolder_response_local_var->s_ezsignfolder_externalid = s_ezsignfolder_externalid;
-
-    ezsignfolder_response_local_var->_library_owned = 1;
     return ezsignfolder_response_local_var;
 }
 
 __attribute__((deprecated)) ezsignfolder_response_t *ezsignfolder_response_create(
-    int pki_ezsignfolder_id,
-    int fki_ezsignfoldertype_id,
+    int *pki_ezsignfolder_id,
+    int *fki_ezsignfoldertype_id,
     custom_ezsignfoldertype_response_t *obj_ezsignfoldertype,
-    int fki_timezone_id,
+    int *fki_timezone_id,
     ezmax_api_definition__full_field_e_ezsignfolder_completion__e e_ezsignfolder_completion,
     char *s_ezsignfoldertype_name_x,
-    int fki_billingentityinternal_id,
+    int *fki_billingentityinternal_id,
     char *s_billingentityinternal_description_x,
-    int fki_ezsigntsarequirement_id,
+    int *fki_ezsigntsarequirement_id,
     char *s_ezsigntsarequirement_description_x,
     char *s_ezsignfolder_description,
     char *t_ezsignfolder_note,
-    int b_ezsignfolder_isdisposable,
+    int *b_ezsignfolder_isdisposable,
     ezmax_api_definition__full_field_e_ezsignfolder_sendreminderfrequency__e e_ezsignfolder_sendreminderfrequency,
-    int i_ezsignfolder_sendreminderfirstdays,
-    int i_ezsignfolder_sendreminderotherdays,
+    int *i_ezsignfolder_sendreminderfirstdays,
+    int *i_ezsignfolder_sendreminderotherdays,
     char *dt_ezsignfolder_delayedsenddate,
     char *dt_ezsignfolder_duedate,
     char *dt_ezsignfolder_sentdate,
@@ -99,23 +99,63 @@ __attribute__((deprecated)) ezsignfolder_response_t *ezsignfolder_response_creat
     common_audit_t *obj_audit,
     char *s_ezsignfolder_externalid
     ) {
-    return ezsignfolder_response_create_internal (
-        pki_ezsignfolder_id,
-        fki_ezsignfoldertype_id,
+    int *pki_ezsignfolder_id_copy = NULL;
+    if (pki_ezsignfolder_id) {
+        pki_ezsignfolder_id_copy = malloc(sizeof(int));
+        if (pki_ezsignfolder_id_copy) *pki_ezsignfolder_id_copy = *pki_ezsignfolder_id;
+    }
+    int *fki_ezsignfoldertype_id_copy = NULL;
+    if (fki_ezsignfoldertype_id) {
+        fki_ezsignfoldertype_id_copy = malloc(sizeof(int));
+        if (fki_ezsignfoldertype_id_copy) *fki_ezsignfoldertype_id_copy = *fki_ezsignfoldertype_id;
+    }
+    int *fki_timezone_id_copy = NULL;
+    if (fki_timezone_id) {
+        fki_timezone_id_copy = malloc(sizeof(int));
+        if (fki_timezone_id_copy) *fki_timezone_id_copy = *fki_timezone_id;
+    }
+    int *fki_billingentityinternal_id_copy = NULL;
+    if (fki_billingentityinternal_id) {
+        fki_billingentityinternal_id_copy = malloc(sizeof(int));
+        if (fki_billingentityinternal_id_copy) *fki_billingentityinternal_id_copy = *fki_billingentityinternal_id;
+    }
+    int *fki_ezsigntsarequirement_id_copy = NULL;
+    if (fki_ezsigntsarequirement_id) {
+        fki_ezsigntsarequirement_id_copy = malloc(sizeof(int));
+        if (fki_ezsigntsarequirement_id_copy) *fki_ezsigntsarequirement_id_copy = *fki_ezsigntsarequirement_id;
+    }
+    int *b_ezsignfolder_isdisposable_copy = NULL;
+    if (b_ezsignfolder_isdisposable) {
+        b_ezsignfolder_isdisposable_copy = malloc(sizeof(int));
+        if (b_ezsignfolder_isdisposable_copy) *b_ezsignfolder_isdisposable_copy = *b_ezsignfolder_isdisposable;
+    }
+    int *i_ezsignfolder_sendreminderfirstdays_copy = NULL;
+    if (i_ezsignfolder_sendreminderfirstdays) {
+        i_ezsignfolder_sendreminderfirstdays_copy = malloc(sizeof(int));
+        if (i_ezsignfolder_sendreminderfirstdays_copy) *i_ezsignfolder_sendreminderfirstdays_copy = *i_ezsignfolder_sendreminderfirstdays;
+    }
+    int *i_ezsignfolder_sendreminderotherdays_copy = NULL;
+    if (i_ezsignfolder_sendreminderotherdays) {
+        i_ezsignfolder_sendreminderotherdays_copy = malloc(sizeof(int));
+        if (i_ezsignfolder_sendreminderotherdays_copy) *i_ezsignfolder_sendreminderotherdays_copy = *i_ezsignfolder_sendreminderotherdays;
+    }
+    ezsignfolder_response_t *result = ezsignfolder_response_create_internal (
+        pki_ezsignfolder_id_copy,
+        fki_ezsignfoldertype_id_copy,
         obj_ezsignfoldertype,
-        fki_timezone_id,
+        fki_timezone_id_copy,
         e_ezsignfolder_completion,
         s_ezsignfoldertype_name_x,
-        fki_billingentityinternal_id,
+        fki_billingentityinternal_id_copy,
         s_billingentityinternal_description_x,
-        fki_ezsigntsarequirement_id,
+        fki_ezsigntsarequirement_id_copy,
         s_ezsigntsarequirement_description_x,
         s_ezsignfolder_description,
         t_ezsignfolder_note,
-        b_ezsignfolder_isdisposable,
+        b_ezsignfolder_isdisposable_copy,
         e_ezsignfolder_sendreminderfrequency,
-        i_ezsignfolder_sendreminderfirstdays,
-        i_ezsignfolder_sendreminderotherdays,
+        i_ezsignfolder_sendreminderfirstdays_copy,
+        i_ezsignfolder_sendreminderotherdays_copy,
         dt_ezsignfolder_delayedsenddate,
         dt_ezsignfolder_duedate,
         dt_ezsignfolder_sentdate,
@@ -128,6 +168,17 @@ __attribute__((deprecated)) ezsignfolder_response_t *ezsignfolder_response_creat
         obj_audit,
         s_ezsignfolder_externalid
         );
+    if (!result) {
+        free(pki_ezsignfolder_id_copy);
+        free(fki_ezsignfoldertype_id_copy);
+        free(fki_timezone_id_copy);
+        free(fki_billingentityinternal_id_copy);
+        free(fki_ezsigntsarequirement_id_copy);
+        free(b_ezsignfolder_isdisposable_copy);
+        free(i_ezsignfolder_sendreminderfirstdays_copy);
+        free(i_ezsignfolder_sendreminderotherdays_copy);
+    }
+    return result;
 }
 
 void ezsignfolder_response_free(ezsignfolder_response_t *ezsignfolder_response) {
@@ -139,17 +190,37 @@ void ezsignfolder_response_free(ezsignfolder_response_t *ezsignfolder_response) 
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignfolder_response->pki_ezsignfolder_id) {
+        free(ezsignfolder_response->pki_ezsignfolder_id);
+        ezsignfolder_response->pki_ezsignfolder_id = NULL;
+    }
+    if (ezsignfolder_response->fki_ezsignfoldertype_id) {
+        free(ezsignfolder_response->fki_ezsignfoldertype_id);
+        ezsignfolder_response->fki_ezsignfoldertype_id = NULL;
+    }
     if (ezsignfolder_response->obj_ezsignfoldertype) {
         custom_ezsignfoldertype_response_free(ezsignfolder_response->obj_ezsignfoldertype);
         ezsignfolder_response->obj_ezsignfoldertype = NULL;
+    }
+    if (ezsignfolder_response->fki_timezone_id) {
+        free(ezsignfolder_response->fki_timezone_id);
+        ezsignfolder_response->fki_timezone_id = NULL;
     }
     if (ezsignfolder_response->s_ezsignfoldertype_name_x) {
         free(ezsignfolder_response->s_ezsignfoldertype_name_x);
         ezsignfolder_response->s_ezsignfoldertype_name_x = NULL;
     }
+    if (ezsignfolder_response->fki_billingentityinternal_id) {
+        free(ezsignfolder_response->fki_billingentityinternal_id);
+        ezsignfolder_response->fki_billingentityinternal_id = NULL;
+    }
     if (ezsignfolder_response->s_billingentityinternal_description_x) {
         free(ezsignfolder_response->s_billingentityinternal_description_x);
         ezsignfolder_response->s_billingentityinternal_description_x = NULL;
+    }
+    if (ezsignfolder_response->fki_ezsigntsarequirement_id) {
+        free(ezsignfolder_response->fki_ezsigntsarequirement_id);
+        ezsignfolder_response->fki_ezsigntsarequirement_id = NULL;
     }
     if (ezsignfolder_response->s_ezsigntsarequirement_description_x) {
         free(ezsignfolder_response->s_ezsigntsarequirement_description_x);
@@ -162,6 +233,18 @@ void ezsignfolder_response_free(ezsignfolder_response_t *ezsignfolder_response) 
     if (ezsignfolder_response->t_ezsignfolder_note) {
         free(ezsignfolder_response->t_ezsignfolder_note);
         ezsignfolder_response->t_ezsignfolder_note = NULL;
+    }
+    if (ezsignfolder_response->b_ezsignfolder_isdisposable) {
+        free(ezsignfolder_response->b_ezsignfolder_isdisposable);
+        ezsignfolder_response->b_ezsignfolder_isdisposable = NULL;
+    }
+    if (ezsignfolder_response->i_ezsignfolder_sendreminderfirstdays) {
+        free(ezsignfolder_response->i_ezsignfolder_sendreminderfirstdays);
+        ezsignfolder_response->i_ezsignfolder_sendreminderfirstdays = NULL;
+    }
+    if (ezsignfolder_response->i_ezsignfolder_sendreminderotherdays) {
+        free(ezsignfolder_response->i_ezsignfolder_sendreminderotherdays);
+        ezsignfolder_response->i_ezsignfolder_sendreminderotherdays = NULL;
     }
     if (ezsignfolder_response->dt_ezsignfolder_delayedsenddate) {
         free(ezsignfolder_response->dt_ezsignfolder_delayedsenddate);
@@ -209,14 +292,14 @@ cJSON *ezsignfolder_response_convertToJSON(ezsignfolder_response_t *ezsignfolder
     if (!ezsignfolder_response->pki_ezsignfolder_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiEzsignfolderID", ezsignfolder_response->pki_ezsignfolder_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzsignfolderID", *ezsignfolder_response->pki_ezsignfolder_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // ezsignfolder_response->fki_ezsignfoldertype_id
     if(ezsignfolder_response->fki_ezsignfoldertype_id) {
-    if(cJSON_AddNumberToObject(item, "fkiEzsignfoldertypeID", ezsignfolder_response->fki_ezsignfoldertype_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsignfoldertypeID", *ezsignfolder_response->fki_ezsignfoldertype_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -237,7 +320,7 @@ cJSON *ezsignfolder_response_convertToJSON(ezsignfolder_response_t *ezsignfolder
 
     // ezsignfolder_response->fki_timezone_id
     if(ezsignfolder_response->fki_timezone_id) {
-    if(cJSON_AddNumberToObject(item, "fkiTimezoneID", ezsignfolder_response->fki_timezone_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiTimezoneID", *ezsignfolder_response->fki_timezone_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -267,7 +350,7 @@ cJSON *ezsignfolder_response_convertToJSON(ezsignfolder_response_t *ezsignfolder
 
     // ezsignfolder_response->fki_billingentityinternal_id
     if(ezsignfolder_response->fki_billingentityinternal_id) {
-    if(cJSON_AddNumberToObject(item, "fkiBillingentityinternalID", ezsignfolder_response->fki_billingentityinternal_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiBillingentityinternalID", *ezsignfolder_response->fki_billingentityinternal_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -283,7 +366,7 @@ cJSON *ezsignfolder_response_convertToJSON(ezsignfolder_response_t *ezsignfolder
 
     // ezsignfolder_response->fki_ezsigntsarequirement_id
     if(ezsignfolder_response->fki_ezsigntsarequirement_id) {
-    if(cJSON_AddNumberToObject(item, "fkiEzsigntsarequirementID", ezsignfolder_response->fki_ezsigntsarequirement_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsigntsarequirementID", *ezsignfolder_response->fki_ezsigntsarequirement_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -316,7 +399,7 @@ cJSON *ezsignfolder_response_convertToJSON(ezsignfolder_response_t *ezsignfolder
 
     // ezsignfolder_response->b_ezsignfolder_isdisposable
     if(ezsignfolder_response->b_ezsignfolder_isdisposable) {
-    if(cJSON_AddBoolToObject(item, "bEzsignfolderIsdisposable", ezsignfolder_response->b_ezsignfolder_isdisposable) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bEzsignfolderIsdisposable", *ezsignfolder_response->b_ezsignfolder_isdisposable) == NULL) {
     goto fail; //Bool
     }
     }
@@ -337,7 +420,7 @@ cJSON *ezsignfolder_response_convertToJSON(ezsignfolder_response_t *ezsignfolder
 
     // ezsignfolder_response->i_ezsignfolder_sendreminderfirstdays
     if(ezsignfolder_response->i_ezsignfolder_sendreminderfirstdays) {
-    if(cJSON_AddNumberToObject(item, "iEzsignfolderSendreminderfirstdays", ezsignfolder_response->i_ezsignfolder_sendreminderfirstdays) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iEzsignfolderSendreminderfirstdays", *ezsignfolder_response->i_ezsignfolder_sendreminderfirstdays) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -345,7 +428,7 @@ cJSON *ezsignfolder_response_convertToJSON(ezsignfolder_response_t *ezsignfolder
 
     // ezsignfolder_response->i_ezsignfolder_sendreminderotherdays
     if(ezsignfolder_response->i_ezsignfolder_sendreminderotherdays) {
-    if(cJSON_AddNumberToObject(item, "iEzsignfolderSendreminderotherdays", ezsignfolder_response->i_ezsignfolder_sendreminderotherdays) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iEzsignfolderSendreminderotherdays", *ezsignfolder_response->i_ezsignfolder_sendreminderotherdays) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -465,14 +548,58 @@ ezsignfolder_response_t *ezsignfolder_response_parseFromJSON(cJSON *ezsignfolder
 
     ezsignfolder_response_t *ezsignfolder_response_local_var = NULL;
 
+    // define the local variable for ezsignfolder_response->pki_ezsignfolder_id
+    int *pki_ezsignfolder_id_local_var = NULL;
+
+    // define the local variable for ezsignfolder_response->fki_ezsignfoldertype_id
+    int *fki_ezsignfoldertype_id_local_var = NULL;
+
     // define the local variable for ezsignfolder_response->obj_ezsignfoldertype
     custom_ezsignfoldertype_response_t *obj_ezsignfoldertype_local_nonprim = NULL;
+
+    // define the local variable for ezsignfolder_response->fki_timezone_id
+    int *fki_timezone_id_local_var = NULL;
 
     // define the local variable for ezsignfolder_response->e_ezsignfolder_completion
     ezmax_api_definition__full_field_e_ezsignfolder_completion__e e_ezsignfolder_completion_local_nonprim = 0;
 
+    char *s_ezsignfoldertype_name_x_local_str = NULL;
+
+    // define the local variable for ezsignfolder_response->fki_billingentityinternal_id
+    int *fki_billingentityinternal_id_local_var = NULL;
+
+    char *s_billingentityinternal_description_x_local_str = NULL;
+
+    // define the local variable for ezsignfolder_response->fki_ezsigntsarequirement_id
+    int *fki_ezsigntsarequirement_id_local_var = NULL;
+
+    char *s_ezsigntsarequirement_description_x_local_str = NULL;
+
+    char *s_ezsignfolder_description_local_str = NULL;
+
+    char *t_ezsignfolder_note_local_str = NULL;
+
+    // define the local variable for ezsignfolder_response->b_ezsignfolder_isdisposable
+    int *b_ezsignfolder_isdisposable_local_var = NULL;
+
     // define the local variable for ezsignfolder_response->e_ezsignfolder_sendreminderfrequency
     ezmax_api_definition__full_field_e_ezsignfolder_sendreminderfrequency__e e_ezsignfolder_sendreminderfrequency_local_nonprim = 0;
+
+    // define the local variable for ezsignfolder_response->i_ezsignfolder_sendreminderfirstdays
+    int *i_ezsignfolder_sendreminderfirstdays_local_var = NULL;
+
+    // define the local variable for ezsignfolder_response->i_ezsignfolder_sendreminderotherdays
+    int *i_ezsignfolder_sendreminderotherdays_local_var = NULL;
+
+    char *dt_ezsignfolder_delayedsenddate_local_str = NULL;
+
+    char *dt_ezsignfolder_duedate_local_str = NULL;
+
+    char *dt_ezsignfolder_sentdate_local_str = NULL;
+
+    char *dt_ezsignfolder_scheduledarchive_local_str = NULL;
+
+    char *dt_ezsignfolder_scheduleddispose_local_str = NULL;
 
     // define the local variable for ezsignfolder_response->e_ezsignfolder_step
     ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step_local_nonprim = 0;
@@ -480,8 +607,14 @@ ezsignfolder_response_t *ezsignfolder_response_parseFromJSON(cJSON *ezsignfolder
     // define the local variable for ezsignfolder_response->e_ezsignfolder_messageorder
     ezmax_api_definition__full_field_e_ezsignfolder_messageorder__e e_ezsignfolder_messageorder_local_nonprim = 0;
 
+    char *dt_ezsignfolder_close_local_str = NULL;
+
+    char *t_ezsignfolder_message_local_str = NULL;
+
     // define the local variable for ezsignfolder_response->obj_audit
     common_audit_t *obj_audit_local_nonprim = NULL;
+
+    char *s_ezsignfolder_externalid_local_str = NULL;
 
     // ezsignfolder_response->pki_ezsignfolder_id
     cJSON *pki_ezsignfolder_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_responseJSON, "pkiEzsignfolderID");
@@ -497,6 +630,12 @@ ezsignfolder_response_t *ezsignfolder_response_parseFromJSON(cJSON *ezsignfolder
     {
     goto end; //Numeric
     }
+    pki_ezsignfolder_id_local_var = malloc(sizeof(int));
+    if(!pki_ezsignfolder_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezsignfolder_id_local_var = pki_ezsignfolder_id->valuedouble;
 
     // ezsignfolder_response->fki_ezsignfoldertype_id
     cJSON *fki_ezsignfoldertype_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_responseJSON, "fkiEzsignfoldertypeID");
@@ -508,6 +647,12 @@ ezsignfolder_response_t *ezsignfolder_response_parseFromJSON(cJSON *ezsignfolder
     {
     goto end; //Numeric
     }
+    fki_ezsignfoldertype_id_local_var = malloc(sizeof(int));
+    if(!fki_ezsignfoldertype_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezsignfoldertype_id_local_var = fki_ezsignfoldertype_id->valuedouble;
     }
 
     // ezsignfolder_response->obj_ezsignfoldertype
@@ -529,6 +674,12 @@ ezsignfolder_response_t *ezsignfolder_response_parseFromJSON(cJSON *ezsignfolder
     {
     goto end; //Numeric
     }
+    fki_timezone_id_local_var = malloc(sizeof(int));
+    if(!fki_timezone_id_local_var)
+    {
+        goto end;
+    }
+    *fki_timezone_id_local_var = fki_timezone_id->valuedouble;
     }
 
     // ezsignfolder_response->e_ezsignfolder_completion
@@ -565,6 +716,12 @@ ezsignfolder_response_t *ezsignfolder_response_parseFromJSON(cJSON *ezsignfolder
     {
     goto end; //Numeric
     }
+    fki_billingentityinternal_id_local_var = malloc(sizeof(int));
+    if(!fki_billingentityinternal_id_local_var)
+    {
+        goto end;
+    }
+    *fki_billingentityinternal_id_local_var = fki_billingentityinternal_id->valuedouble;
     }
 
     // ezsignfolder_response->s_billingentityinternal_description_x
@@ -589,6 +746,12 @@ ezsignfolder_response_t *ezsignfolder_response_parseFromJSON(cJSON *ezsignfolder
     {
     goto end; //Numeric
     }
+    fki_ezsigntsarequirement_id_local_var = malloc(sizeof(int));
+    if(!fki_ezsigntsarequirement_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezsigntsarequirement_id_local_var = fki_ezsigntsarequirement_id->valuedouble;
     }
 
     // ezsignfolder_response->s_ezsigntsarequirement_description_x
@@ -640,6 +803,12 @@ ezsignfolder_response_t *ezsignfolder_response_parseFromJSON(cJSON *ezsignfolder
     {
     goto end; //Bool
     }
+    b_ezsignfolder_isdisposable_local_var = malloc(sizeof(int));
+    if(!b_ezsignfolder_isdisposable_local_var)
+    {
+        goto end;
+    }
+    *b_ezsignfolder_isdisposable_local_var = b_ezsignfolder_isdisposable->valueint;
     }
 
     // ezsignfolder_response->e_ezsignfolder_sendreminderfrequency
@@ -661,6 +830,12 @@ ezsignfolder_response_t *ezsignfolder_response_parseFromJSON(cJSON *ezsignfolder
     {
     goto end; //Numeric
     }
+    i_ezsignfolder_sendreminderfirstdays_local_var = malloc(sizeof(int));
+    if(!i_ezsignfolder_sendreminderfirstdays_local_var)
+    {
+        goto end;
+    }
+    *i_ezsignfolder_sendreminderfirstdays_local_var = i_ezsignfolder_sendreminderfirstdays->valuedouble;
     }
 
     // ezsignfolder_response->i_ezsignfolder_sendreminderotherdays
@@ -673,6 +848,12 @@ ezsignfolder_response_t *ezsignfolder_response_parseFromJSON(cJSON *ezsignfolder
     {
     goto end; //Numeric
     }
+    i_ezsignfolder_sendreminderotherdays_local_var = malloc(sizeof(int));
+    if(!i_ezsignfolder_sendreminderotherdays_local_var)
+    {
+        goto end;
+    }
+    *i_ezsignfolder_sendreminderotherdays_local_var = i_ezsignfolder_sendreminderotherdays->valuedouble;
     }
 
     // ezsignfolder_response->dt_ezsignfolder_delayedsenddate
@@ -799,47 +980,137 @@ ezsignfolder_response_t *ezsignfolder_response_parseFromJSON(cJSON *ezsignfolder
     }
 
 
+    if (s_ezsignfoldertype_name_x && !cJSON_IsNull(s_ezsignfoldertype_name_x)) s_ezsignfoldertype_name_x_local_str = strdup(s_ezsignfoldertype_name_x->valuestring);
+    if (s_billingentityinternal_description_x && !cJSON_IsNull(s_billingentityinternal_description_x)) s_billingentityinternal_description_x_local_str = strdup(s_billingentityinternal_description_x->valuestring);
+    if (s_ezsigntsarequirement_description_x && !cJSON_IsNull(s_ezsigntsarequirement_description_x)) s_ezsigntsarequirement_description_x_local_str = strdup(s_ezsigntsarequirement_description_x->valuestring);
+    if (s_ezsignfolder_description && !cJSON_IsNull(s_ezsignfolder_description)) s_ezsignfolder_description_local_str = strdup(s_ezsignfolder_description->valuestring);
+    if (t_ezsignfolder_note && !cJSON_IsNull(t_ezsignfolder_note)) t_ezsignfolder_note_local_str = strdup(t_ezsignfolder_note->valuestring);
+    if (dt_ezsignfolder_delayedsenddate && !cJSON_IsNull(dt_ezsignfolder_delayedsenddate)) dt_ezsignfolder_delayedsenddate_local_str = strdup(dt_ezsignfolder_delayedsenddate->valuestring);
+    if (dt_ezsignfolder_duedate && !cJSON_IsNull(dt_ezsignfolder_duedate)) dt_ezsignfolder_duedate_local_str = strdup(dt_ezsignfolder_duedate->valuestring);
+    if (dt_ezsignfolder_sentdate && !cJSON_IsNull(dt_ezsignfolder_sentdate)) dt_ezsignfolder_sentdate_local_str = strdup(dt_ezsignfolder_sentdate->valuestring);
+    if (dt_ezsignfolder_scheduledarchive && !cJSON_IsNull(dt_ezsignfolder_scheduledarchive)) dt_ezsignfolder_scheduledarchive_local_str = strdup(dt_ezsignfolder_scheduledarchive->valuestring);
+    if (dt_ezsignfolder_scheduleddispose && !cJSON_IsNull(dt_ezsignfolder_scheduleddispose)) dt_ezsignfolder_scheduleddispose_local_str = strdup(dt_ezsignfolder_scheduleddispose->valuestring);
+    if (dt_ezsignfolder_close && !cJSON_IsNull(dt_ezsignfolder_close)) dt_ezsignfolder_close_local_str = strdup(dt_ezsignfolder_close->valuestring);
+    if (t_ezsignfolder_message && !cJSON_IsNull(t_ezsignfolder_message)) t_ezsignfolder_message_local_str = strdup(t_ezsignfolder_message->valuestring);
+    if (s_ezsignfolder_externalid && !cJSON_IsNull(s_ezsignfolder_externalid)) s_ezsignfolder_externalid_local_str = strdup(s_ezsignfolder_externalid->valuestring);
+
     ezsignfolder_response_local_var = ezsignfolder_response_create_internal (
-        pki_ezsignfolder_id->valuedouble,
-        fki_ezsignfoldertype_id ? fki_ezsignfoldertype_id->valuedouble : 0,
+        pki_ezsignfolder_id_local_var,
+        fki_ezsignfoldertype_id_local_var,
         obj_ezsignfoldertype ? obj_ezsignfoldertype_local_nonprim : NULL,
-        fki_timezone_id ? fki_timezone_id->valuedouble : 0,
+        fki_timezone_id_local_var,
         e_ezsignfolder_completion_local_nonprim,
-        s_ezsignfoldertype_name_x && !cJSON_IsNull(s_ezsignfoldertype_name_x) ? strdup(s_ezsignfoldertype_name_x->valuestring) : NULL,
-        fki_billingentityinternal_id ? fki_billingentityinternal_id->valuedouble : 0,
-        s_billingentityinternal_description_x && !cJSON_IsNull(s_billingentityinternal_description_x) ? strdup(s_billingentityinternal_description_x->valuestring) : NULL,
-        fki_ezsigntsarequirement_id ? fki_ezsigntsarequirement_id->valuedouble : 0,
-        s_ezsigntsarequirement_description_x && !cJSON_IsNull(s_ezsigntsarequirement_description_x) ? strdup(s_ezsigntsarequirement_description_x->valuestring) : NULL,
-        strdup(s_ezsignfolder_description->valuestring),
-        t_ezsignfolder_note && !cJSON_IsNull(t_ezsignfolder_note) ? strdup(t_ezsignfolder_note->valuestring) : NULL,
-        b_ezsignfolder_isdisposable ? b_ezsignfolder_isdisposable->valueint : 0,
+        s_ezsignfoldertype_name_x_local_str,
+        fki_billingentityinternal_id_local_var,
+        s_billingentityinternal_description_x_local_str,
+        fki_ezsigntsarequirement_id_local_var,
+        s_ezsigntsarequirement_description_x_local_str,
+        s_ezsignfolder_description_local_str,
+        t_ezsignfolder_note_local_str,
+        b_ezsignfolder_isdisposable_local_var,
         e_ezsignfolder_sendreminderfrequency ? e_ezsignfolder_sendreminderfrequency_local_nonprim : 0,
-        i_ezsignfolder_sendreminderfirstdays ? i_ezsignfolder_sendreminderfirstdays->valuedouble : 0,
-        i_ezsignfolder_sendreminderotherdays ? i_ezsignfolder_sendreminderotherdays->valuedouble : 0,
-        dt_ezsignfolder_delayedsenddate && !cJSON_IsNull(dt_ezsignfolder_delayedsenddate) ? strdup(dt_ezsignfolder_delayedsenddate->valuestring) : NULL,
-        dt_ezsignfolder_duedate && !cJSON_IsNull(dt_ezsignfolder_duedate) ? strdup(dt_ezsignfolder_duedate->valuestring) : NULL,
-        dt_ezsignfolder_sentdate && !cJSON_IsNull(dt_ezsignfolder_sentdate) ? strdup(dt_ezsignfolder_sentdate->valuestring) : NULL,
-        dt_ezsignfolder_scheduledarchive && !cJSON_IsNull(dt_ezsignfolder_scheduledarchive) ? strdup(dt_ezsignfolder_scheduledarchive->valuestring) : NULL,
-        dt_ezsignfolder_scheduleddispose && !cJSON_IsNull(dt_ezsignfolder_scheduleddispose) ? strdup(dt_ezsignfolder_scheduleddispose->valuestring) : NULL,
+        i_ezsignfolder_sendreminderfirstdays_local_var,
+        i_ezsignfolder_sendreminderotherdays_local_var,
+        dt_ezsignfolder_delayedsenddate_local_str,
+        dt_ezsignfolder_duedate_local_str,
+        dt_ezsignfolder_sentdate_local_str,
+        dt_ezsignfolder_scheduledarchive_local_str,
+        dt_ezsignfolder_scheduleddispose_local_str,
         e_ezsignfolder_step ? e_ezsignfolder_step_local_nonprim : 0,
         e_ezsignfolder_messageorder ? e_ezsignfolder_messageorder_local_nonprim : 0,
-        dt_ezsignfolder_close && !cJSON_IsNull(dt_ezsignfolder_close) ? strdup(dt_ezsignfolder_close->valuestring) : NULL,
-        t_ezsignfolder_message && !cJSON_IsNull(t_ezsignfolder_message) ? strdup(t_ezsignfolder_message->valuestring) : NULL,
+        dt_ezsignfolder_close_local_str,
+        t_ezsignfolder_message_local_str,
         obj_audit ? obj_audit_local_nonprim : NULL,
-        s_ezsignfolder_externalid && !cJSON_IsNull(s_ezsignfolder_externalid) ? strdup(s_ezsignfolder_externalid->valuestring) : NULL
+        s_ezsignfolder_externalid_local_str
         );
+
+    if (!ezsignfolder_response_local_var) {
+        goto end;
+    }
 
     return ezsignfolder_response_local_var;
 end:
+    if (pki_ezsignfolder_id_local_var) {
+        free(pki_ezsignfolder_id_local_var);
+        pki_ezsignfolder_id_local_var = NULL;
+    }
+    if (fki_ezsignfoldertype_id_local_var) {
+        free(fki_ezsignfoldertype_id_local_var);
+        fki_ezsignfoldertype_id_local_var = NULL;
+    }
     if (obj_ezsignfoldertype_local_nonprim) {
         custom_ezsignfoldertype_response_free(obj_ezsignfoldertype_local_nonprim);
         obj_ezsignfoldertype_local_nonprim = NULL;
     }
+    if (fki_timezone_id_local_var) {
+        free(fki_timezone_id_local_var);
+        fki_timezone_id_local_var = NULL;
+    }
     if (e_ezsignfolder_completion_local_nonprim) {
         e_ezsignfolder_completion_local_nonprim = 0;
     }
+    if (s_ezsignfoldertype_name_x_local_str) {
+        free(s_ezsignfoldertype_name_x_local_str);
+        s_ezsignfoldertype_name_x_local_str = NULL;
+    }
+    if (fki_billingentityinternal_id_local_var) {
+        free(fki_billingentityinternal_id_local_var);
+        fki_billingentityinternal_id_local_var = NULL;
+    }
+    if (s_billingentityinternal_description_x_local_str) {
+        free(s_billingentityinternal_description_x_local_str);
+        s_billingentityinternal_description_x_local_str = NULL;
+    }
+    if (fki_ezsigntsarequirement_id_local_var) {
+        free(fki_ezsigntsarequirement_id_local_var);
+        fki_ezsigntsarequirement_id_local_var = NULL;
+    }
+    if (s_ezsigntsarequirement_description_x_local_str) {
+        free(s_ezsigntsarequirement_description_x_local_str);
+        s_ezsigntsarequirement_description_x_local_str = NULL;
+    }
+    if (s_ezsignfolder_description_local_str) {
+        free(s_ezsignfolder_description_local_str);
+        s_ezsignfolder_description_local_str = NULL;
+    }
+    if (t_ezsignfolder_note_local_str) {
+        free(t_ezsignfolder_note_local_str);
+        t_ezsignfolder_note_local_str = NULL;
+    }
+    if (b_ezsignfolder_isdisposable_local_var) {
+        free(b_ezsignfolder_isdisposable_local_var);
+        b_ezsignfolder_isdisposable_local_var = NULL;
+    }
     if (e_ezsignfolder_sendreminderfrequency_local_nonprim) {
         e_ezsignfolder_sendreminderfrequency_local_nonprim = 0;
+    }
+    if (i_ezsignfolder_sendreminderfirstdays_local_var) {
+        free(i_ezsignfolder_sendreminderfirstdays_local_var);
+        i_ezsignfolder_sendreminderfirstdays_local_var = NULL;
+    }
+    if (i_ezsignfolder_sendreminderotherdays_local_var) {
+        free(i_ezsignfolder_sendreminderotherdays_local_var);
+        i_ezsignfolder_sendreminderotherdays_local_var = NULL;
+    }
+    if (dt_ezsignfolder_delayedsenddate_local_str) {
+        free(dt_ezsignfolder_delayedsenddate_local_str);
+        dt_ezsignfolder_delayedsenddate_local_str = NULL;
+    }
+    if (dt_ezsignfolder_duedate_local_str) {
+        free(dt_ezsignfolder_duedate_local_str);
+        dt_ezsignfolder_duedate_local_str = NULL;
+    }
+    if (dt_ezsignfolder_sentdate_local_str) {
+        free(dt_ezsignfolder_sentdate_local_str);
+        dt_ezsignfolder_sentdate_local_str = NULL;
+    }
+    if (dt_ezsignfolder_scheduledarchive_local_str) {
+        free(dt_ezsignfolder_scheduledarchive_local_str);
+        dt_ezsignfolder_scheduledarchive_local_str = NULL;
+    }
+    if (dt_ezsignfolder_scheduleddispose_local_str) {
+        free(dt_ezsignfolder_scheduleddispose_local_str);
+        dt_ezsignfolder_scheduleddispose_local_str = NULL;
     }
     if (e_ezsignfolder_step_local_nonprim) {
         e_ezsignfolder_step_local_nonprim = 0;
@@ -847,9 +1118,21 @@ end:
     if (e_ezsignfolder_messageorder_local_nonprim) {
         e_ezsignfolder_messageorder_local_nonprim = 0;
     }
+    if (dt_ezsignfolder_close_local_str) {
+        free(dt_ezsignfolder_close_local_str);
+        dt_ezsignfolder_close_local_str = NULL;
+    }
+    if (t_ezsignfolder_message_local_str) {
+        free(t_ezsignfolder_message_local_str);
+        t_ezsignfolder_message_local_str = NULL;
+    }
     if (obj_audit_local_nonprim) {
         common_audit_free(obj_audit_local_nonprim);
         obj_audit_local_nonprim = NULL;
+    }
+    if (s_ezsignfolder_externalid_local_str) {
+        free(s_ezsignfolder_externalid_local_str);
+        s_ezsignfolder_externalid_local_str = NULL;
     }
     return NULL;
 

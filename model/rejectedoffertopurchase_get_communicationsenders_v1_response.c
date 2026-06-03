@@ -14,11 +14,11 @@ static rejectedoffertopurchase_get_communicationsenders_v1_response_t *rejectedo
     if (!rejectedoffertopurchase_get_communicationsenders_v1_response_local_var) {
         return NULL;
     }
+    memset(rejectedoffertopurchase_get_communicationsenders_v1_response_local_var, 0, sizeof(rejectedoffertopurchase_get_communicationsenders_v1_response_t));
+    rejectedoffertopurchase_get_communicationsenders_v1_response_local_var->_library_owned = 1;
     rejectedoffertopurchase_get_communicationsenders_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     rejectedoffertopurchase_get_communicationsenders_v1_response_local_var->obj_debug = obj_debug;
     rejectedoffertopurchase_get_communicationsenders_v1_response_local_var->m_payload = m_payload;
-
-    rejectedoffertopurchase_get_communicationsenders_v1_response_local_var->_library_owned = 1;
     return rejectedoffertopurchase_get_communicationsenders_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) rejectedoffertopurchase_get_communicationsenders_v1_
     common_response_obj_debug_t *obj_debug,
     rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_t *m_payload
     ) {
-    return rejectedoffertopurchase_get_communicationsenders_v1_response_create_internal (
+    rejectedoffertopurchase_get_communicationsenders_v1_response_t *result = rejectedoffertopurchase_get_communicationsenders_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void rejectedoffertopurchase_get_communicationsenders_v1_response_free(rejectedoffertopurchase_get_communicationsenders_v1_response_t *rejectedoffertopurchase_get_communicationsenders_v1_response) {
@@ -156,11 +159,16 @@ rejectedoffertopurchase_get_communicationsenders_v1_response_t *rejectedoffertop
     m_payload_local_nonprim = rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     rejectedoffertopurchase_get_communicationsenders_v1_response_local_var = rejectedoffertopurchase_get_communicationsenders_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!rejectedoffertopurchase_get_communicationsenders_v1_response_local_var) {
+        goto end;
+    }
 
     return rejectedoffertopurchase_get_communicationsenders_v1_response_local_var;
 end:

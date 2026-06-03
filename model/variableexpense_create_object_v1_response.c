@@ -14,11 +14,11 @@ static variableexpense_create_object_v1_response_t *variableexpense_create_objec
     if (!variableexpense_create_object_v1_response_local_var) {
         return NULL;
     }
+    memset(variableexpense_create_object_v1_response_local_var, 0, sizeof(variableexpense_create_object_v1_response_t));
+    variableexpense_create_object_v1_response_local_var->_library_owned = 1;
     variableexpense_create_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     variableexpense_create_object_v1_response_local_var->obj_debug = obj_debug;
     variableexpense_create_object_v1_response_local_var->m_payload = m_payload;
-
-    variableexpense_create_object_v1_response_local_var->_library_owned = 1;
     return variableexpense_create_object_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) variableexpense_create_object_v1_response_t *variabl
     common_response_obj_debug_t *obj_debug,
     variableexpense_create_object_v1_response_m_payload_t *m_payload
     ) {
-    return variableexpense_create_object_v1_response_create_internal (
+    variableexpense_create_object_v1_response_t *result = variableexpense_create_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void variableexpense_create_object_v1_response_free(variableexpense_create_object_v1_response_t *variableexpense_create_object_v1_response) {
@@ -156,11 +159,16 @@ variableexpense_create_object_v1_response_t *variableexpense_create_object_v1_re
     m_payload_local_nonprim = variableexpense_create_object_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     variableexpense_create_object_v1_response_local_var = variableexpense_create_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!variableexpense_create_object_v1_response_local_var) {
+        goto end;
+    }
 
     return variableexpense_create_object_v1_response_local_var;
 end:

@@ -6,36 +6,51 @@
 
 
 static realestateassociation_autocomplete_element_response_t *realestateassociation_autocomplete_element_response_create_internal(
-    int pki_realestateassociation_id,
+    int *pki_realestateassociation_id,
     char *s_realestateassociation_name_x,
     char *s_realestateassociation_acronym_x,
-    int b_realestateassociation_isactive
+    int *b_realestateassociation_isactive
     ) {
     realestateassociation_autocomplete_element_response_t *realestateassociation_autocomplete_element_response_local_var = malloc(sizeof(realestateassociation_autocomplete_element_response_t));
     if (!realestateassociation_autocomplete_element_response_local_var) {
         return NULL;
     }
+    memset(realestateassociation_autocomplete_element_response_local_var, 0, sizeof(realestateassociation_autocomplete_element_response_t));
+    realestateassociation_autocomplete_element_response_local_var->_library_owned = 1;
     realestateassociation_autocomplete_element_response_local_var->pki_realestateassociation_id = pki_realestateassociation_id;
     realestateassociation_autocomplete_element_response_local_var->s_realestateassociation_name_x = s_realestateassociation_name_x;
     realestateassociation_autocomplete_element_response_local_var->s_realestateassociation_acronym_x = s_realestateassociation_acronym_x;
     realestateassociation_autocomplete_element_response_local_var->b_realestateassociation_isactive = b_realestateassociation_isactive;
-
-    realestateassociation_autocomplete_element_response_local_var->_library_owned = 1;
     return realestateassociation_autocomplete_element_response_local_var;
 }
 
 __attribute__((deprecated)) realestateassociation_autocomplete_element_response_t *realestateassociation_autocomplete_element_response_create(
-    int pki_realestateassociation_id,
+    int *pki_realestateassociation_id,
     char *s_realestateassociation_name_x,
     char *s_realestateassociation_acronym_x,
-    int b_realestateassociation_isactive
+    int *b_realestateassociation_isactive
     ) {
-    return realestateassociation_autocomplete_element_response_create_internal (
-        pki_realestateassociation_id,
+    int *pki_realestateassociation_id_copy = NULL;
+    if (pki_realestateassociation_id) {
+        pki_realestateassociation_id_copy = malloc(sizeof(int));
+        if (pki_realestateassociation_id_copy) *pki_realestateassociation_id_copy = *pki_realestateassociation_id;
+    }
+    int *b_realestateassociation_isactive_copy = NULL;
+    if (b_realestateassociation_isactive) {
+        b_realestateassociation_isactive_copy = malloc(sizeof(int));
+        if (b_realestateassociation_isactive_copy) *b_realestateassociation_isactive_copy = *b_realestateassociation_isactive;
+    }
+    realestateassociation_autocomplete_element_response_t *result = realestateassociation_autocomplete_element_response_create_internal (
+        pki_realestateassociation_id_copy,
         s_realestateassociation_name_x,
         s_realestateassociation_acronym_x,
-        b_realestateassociation_isactive
+        b_realestateassociation_isactive_copy
         );
+    if (!result) {
+        free(pki_realestateassociation_id_copy);
+        free(b_realestateassociation_isactive_copy);
+    }
+    return result;
 }
 
 void realestateassociation_autocomplete_element_response_free(realestateassociation_autocomplete_element_response_t *realestateassociation_autocomplete_element_response) {
@@ -47,6 +62,10 @@ void realestateassociation_autocomplete_element_response_free(realestateassociat
         return ;
     }
     listEntry_t *listEntry;
+    if (realestateassociation_autocomplete_element_response->pki_realestateassociation_id) {
+        free(realestateassociation_autocomplete_element_response->pki_realestateassociation_id);
+        realestateassociation_autocomplete_element_response->pki_realestateassociation_id = NULL;
+    }
     if (realestateassociation_autocomplete_element_response->s_realestateassociation_name_x) {
         free(realestateassociation_autocomplete_element_response->s_realestateassociation_name_x);
         realestateassociation_autocomplete_element_response->s_realestateassociation_name_x = NULL;
@@ -54,6 +73,10 @@ void realestateassociation_autocomplete_element_response_free(realestateassociat
     if (realestateassociation_autocomplete_element_response->s_realestateassociation_acronym_x) {
         free(realestateassociation_autocomplete_element_response->s_realestateassociation_acronym_x);
         realestateassociation_autocomplete_element_response->s_realestateassociation_acronym_x = NULL;
+    }
+    if (realestateassociation_autocomplete_element_response->b_realestateassociation_isactive) {
+        free(realestateassociation_autocomplete_element_response->b_realestateassociation_isactive);
+        realestateassociation_autocomplete_element_response->b_realestateassociation_isactive = NULL;
     }
     free(realestateassociation_autocomplete_element_response);
 }
@@ -65,7 +88,7 @@ cJSON *realestateassociation_autocomplete_element_response_convertToJSON(realest
     if (!realestateassociation_autocomplete_element_response->pki_realestateassociation_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiRealestateassociationID", realestateassociation_autocomplete_element_response->pki_realestateassociation_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiRealestateassociationID", *realestateassociation_autocomplete_element_response->pki_realestateassociation_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -92,7 +115,7 @@ cJSON *realestateassociation_autocomplete_element_response_convertToJSON(realest
     if (!realestateassociation_autocomplete_element_response->b_realestateassociation_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bRealestateassociationIsactive", realestateassociation_autocomplete_element_response->b_realestateassociation_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bRealestateassociationIsactive", *realestateassociation_autocomplete_element_response->b_realestateassociation_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -108,6 +131,16 @@ realestateassociation_autocomplete_element_response_t *realestateassociation_aut
 
     realestateassociation_autocomplete_element_response_t *realestateassociation_autocomplete_element_response_local_var = NULL;
 
+    // define the local variable for realestateassociation_autocomplete_element_response->pki_realestateassociation_id
+    int *pki_realestateassociation_id_local_var = NULL;
+
+    char *s_realestateassociation_name_x_local_str = NULL;
+
+    char *s_realestateassociation_acronym_x_local_str = NULL;
+
+    // define the local variable for realestateassociation_autocomplete_element_response->b_realestateassociation_isactive
+    int *b_realestateassociation_isactive_local_var = NULL;
+
     // realestateassociation_autocomplete_element_response->pki_realestateassociation_id
     cJSON *pki_realestateassociation_id = cJSON_GetObjectItemCaseSensitive(realestateassociation_autocomplete_element_responseJSON, "pkiRealestateassociationID");
     if (cJSON_IsNull(pki_realestateassociation_id)) {
@@ -122,6 +155,12 @@ realestateassociation_autocomplete_element_response_t *realestateassociation_aut
     {
     goto end; //Numeric
     }
+    pki_realestateassociation_id_local_var = malloc(sizeof(int));
+    if(!pki_realestateassociation_id_local_var)
+    {
+        goto end;
+    }
+    *pki_realestateassociation_id_local_var = pki_realestateassociation_id->valuedouble;
 
     // realestateassociation_autocomplete_element_response->s_realestateassociation_name_x
     cJSON *s_realestateassociation_name_x = cJSON_GetObjectItemCaseSensitive(realestateassociation_autocomplete_element_responseJSON, "sRealestateassociationNameX");
@@ -167,17 +206,46 @@ realestateassociation_autocomplete_element_response_t *realestateassociation_aut
     {
     goto end; //Bool
     }
+    b_realestateassociation_isactive_local_var = malloc(sizeof(int));
+    if(!b_realestateassociation_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_realestateassociation_isactive_local_var = b_realestateassociation_isactive->valueint;
 
+
+    if (s_realestateassociation_name_x && !cJSON_IsNull(s_realestateassociation_name_x)) s_realestateassociation_name_x_local_str = strdup(s_realestateassociation_name_x->valuestring);
+    if (s_realestateassociation_acronym_x && !cJSON_IsNull(s_realestateassociation_acronym_x)) s_realestateassociation_acronym_x_local_str = strdup(s_realestateassociation_acronym_x->valuestring);
 
     realestateassociation_autocomplete_element_response_local_var = realestateassociation_autocomplete_element_response_create_internal (
-        pki_realestateassociation_id->valuedouble,
-        strdup(s_realestateassociation_name_x->valuestring),
-        strdup(s_realestateassociation_acronym_x->valuestring),
-        b_realestateassociation_isactive->valueint
+        pki_realestateassociation_id_local_var,
+        s_realestateassociation_name_x_local_str,
+        s_realestateassociation_acronym_x_local_str,
+        b_realestateassociation_isactive_local_var
         );
+
+    if (!realestateassociation_autocomplete_element_response_local_var) {
+        goto end;
+    }
 
     return realestateassociation_autocomplete_element_response_local_var;
 end:
+    if (pki_realestateassociation_id_local_var) {
+        free(pki_realestateassociation_id_local_var);
+        pki_realestateassociation_id_local_var = NULL;
+    }
+    if (s_realestateassociation_name_x_local_str) {
+        free(s_realestateassociation_name_x_local_str);
+        s_realestateassociation_name_x_local_str = NULL;
+    }
+    if (s_realestateassociation_acronym_x_local_str) {
+        free(s_realestateassociation_acronym_x_local_str);
+        s_realestateassociation_acronym_x_local_str = NULL;
+    }
+    if (b_realestateassociation_isactive_local_var) {
+        free(b_realestateassociation_isactive_local_var);
+        b_realestateassociation_isactive_local_var = NULL;
+    }
     return NULL;
 
 }

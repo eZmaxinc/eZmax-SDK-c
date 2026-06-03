@@ -6,32 +6,47 @@
 
 
 static creditcardclient_get_list_v1_response_m_payload_t *creditcardclient_get_list_v1_response_m_payload_create_internal(
-    int i_row_returned,
-    int i_row_filtered,
+    int *i_row_returned,
+    int *i_row_filtered,
     list_t *a_obj_creditcardclient
     ) {
     creditcardclient_get_list_v1_response_m_payload_t *creditcardclient_get_list_v1_response_m_payload_local_var = malloc(sizeof(creditcardclient_get_list_v1_response_m_payload_t));
     if (!creditcardclient_get_list_v1_response_m_payload_local_var) {
         return NULL;
     }
+    memset(creditcardclient_get_list_v1_response_m_payload_local_var, 0, sizeof(creditcardclient_get_list_v1_response_m_payload_t));
+    creditcardclient_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     creditcardclient_get_list_v1_response_m_payload_local_var->i_row_returned = i_row_returned;
     creditcardclient_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
     creditcardclient_get_list_v1_response_m_payload_local_var->a_obj_creditcardclient = a_obj_creditcardclient;
-
-    creditcardclient_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     return creditcardclient_get_list_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) creditcardclient_get_list_v1_response_m_payload_t *creditcardclient_get_list_v1_response_m_payload_create(
-    int i_row_returned,
-    int i_row_filtered,
+    int *i_row_returned,
+    int *i_row_filtered,
     list_t *a_obj_creditcardclient
     ) {
-    return creditcardclient_get_list_v1_response_m_payload_create_internal (
-        i_row_returned,
-        i_row_filtered,
+    int *i_row_returned_copy = NULL;
+    if (i_row_returned) {
+        i_row_returned_copy = malloc(sizeof(int));
+        if (i_row_returned_copy) *i_row_returned_copy = *i_row_returned;
+    }
+    int *i_row_filtered_copy = NULL;
+    if (i_row_filtered) {
+        i_row_filtered_copy = malloc(sizeof(int));
+        if (i_row_filtered_copy) *i_row_filtered_copy = *i_row_filtered;
+    }
+    creditcardclient_get_list_v1_response_m_payload_t *result = creditcardclient_get_list_v1_response_m_payload_create_internal (
+        i_row_returned_copy,
+        i_row_filtered_copy,
         a_obj_creditcardclient
         );
+    if (!result) {
+        free(i_row_returned_copy);
+        free(i_row_filtered_copy);
+    }
+    return result;
 }
 
 void creditcardclient_get_list_v1_response_m_payload_free(creditcardclient_get_list_v1_response_m_payload_t *creditcardclient_get_list_v1_response_m_payload) {
@@ -43,6 +58,14 @@ void creditcardclient_get_list_v1_response_m_payload_free(creditcardclient_get_l
         return ;
     }
     listEntry_t *listEntry;
+    if (creditcardclient_get_list_v1_response_m_payload->i_row_returned) {
+        free(creditcardclient_get_list_v1_response_m_payload->i_row_returned);
+        creditcardclient_get_list_v1_response_m_payload->i_row_returned = NULL;
+    }
+    if (creditcardclient_get_list_v1_response_m_payload->i_row_filtered) {
+        free(creditcardclient_get_list_v1_response_m_payload->i_row_filtered);
+        creditcardclient_get_list_v1_response_m_payload->i_row_filtered = NULL;
+    }
     if (creditcardclient_get_list_v1_response_m_payload->a_obj_creditcardclient) {
         list_ForEach(listEntry, creditcardclient_get_list_v1_response_m_payload->a_obj_creditcardclient) {
             creditcardclient_list_element_free(listEntry->data);
@@ -60,7 +83,7 @@ cJSON *creditcardclient_get_list_v1_response_m_payload_convertToJSON(creditcardc
     if (!creditcardclient_get_list_v1_response_m_payload->i_row_returned) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iRowReturned", creditcardclient_get_list_v1_response_m_payload->i_row_returned) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iRowReturned", *creditcardclient_get_list_v1_response_m_payload->i_row_returned) == NULL) {
     goto fail; //Numeric
     }
 
@@ -69,7 +92,7 @@ cJSON *creditcardclient_get_list_v1_response_m_payload_convertToJSON(creditcardc
     if (!creditcardclient_get_list_v1_response_m_payload->i_row_filtered) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iRowFiltered", creditcardclient_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iRowFiltered", *creditcardclient_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
     goto fail; //Numeric
     }
 
@@ -106,6 +129,12 @@ creditcardclient_get_list_v1_response_m_payload_t *creditcardclient_get_list_v1_
 
     creditcardclient_get_list_v1_response_m_payload_t *creditcardclient_get_list_v1_response_m_payload_local_var = NULL;
 
+    // define the local variable for creditcardclient_get_list_v1_response_m_payload->i_row_returned
+    int *i_row_returned_local_var = NULL;
+
+    // define the local variable for creditcardclient_get_list_v1_response_m_payload->i_row_filtered
+    int *i_row_filtered_local_var = NULL;
+
     // define the local list for creditcardclient_get_list_v1_response_m_payload->a_obj_creditcardclient
     list_t *a_obj_creditcardclientList = NULL;
 
@@ -123,6 +152,12 @@ creditcardclient_get_list_v1_response_m_payload_t *creditcardclient_get_list_v1_
     {
     goto end; //Numeric
     }
+    i_row_returned_local_var = malloc(sizeof(int));
+    if(!i_row_returned_local_var)
+    {
+        goto end;
+    }
+    *i_row_returned_local_var = i_row_returned->valuedouble;
 
     // creditcardclient_get_list_v1_response_m_payload->i_row_filtered
     cJSON *i_row_filtered = cJSON_GetObjectItemCaseSensitive(creditcardclient_get_list_v1_response_m_payloadJSON, "iRowFiltered");
@@ -138,6 +173,12 @@ creditcardclient_get_list_v1_response_m_payload_t *creditcardclient_get_list_v1_
     {
     goto end; //Numeric
     }
+    i_row_filtered_local_var = malloc(sizeof(int));
+    if(!i_row_filtered_local_var)
+    {
+        goto end;
+    }
+    *i_row_filtered_local_var = i_row_filtered->valuedouble;
 
     // creditcardclient_get_list_v1_response_m_payload->a_obj_creditcardclient
     cJSON *a_obj_creditcardclient = cJSON_GetObjectItemCaseSensitive(creditcardclient_get_list_v1_response_m_payloadJSON, "a_objCreditcardclient");
@@ -167,14 +208,27 @@ creditcardclient_get_list_v1_response_m_payload_t *creditcardclient_get_list_v1_
     }
 
 
+
     creditcardclient_get_list_v1_response_m_payload_local_var = creditcardclient_get_list_v1_response_m_payload_create_internal (
-        i_row_returned->valuedouble,
-        i_row_filtered->valuedouble,
+        i_row_returned_local_var,
+        i_row_filtered_local_var,
         a_obj_creditcardclientList
         );
 
+    if (!creditcardclient_get_list_v1_response_m_payload_local_var) {
+        goto end;
+    }
+
     return creditcardclient_get_list_v1_response_m_payload_local_var;
 end:
+    if (i_row_returned_local_var) {
+        free(i_row_returned_local_var);
+        i_row_returned_local_var = NULL;
+    }
+    if (i_row_filtered_local_var) {
+        free(i_row_filtered_local_var);
+        i_row_filtered_local_var = NULL;
+    }
     if (a_obj_creditcardclientList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_creditcardclientList) {

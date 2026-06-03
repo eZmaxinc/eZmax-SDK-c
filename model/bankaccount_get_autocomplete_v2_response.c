@@ -14,11 +14,11 @@ static bankaccount_get_autocomplete_v2_response_t *bankaccount_get_autocomplete_
     if (!bankaccount_get_autocomplete_v2_response_local_var) {
         return NULL;
     }
+    memset(bankaccount_get_autocomplete_v2_response_local_var, 0, sizeof(bankaccount_get_autocomplete_v2_response_t));
+    bankaccount_get_autocomplete_v2_response_local_var->_library_owned = 1;
     bankaccount_get_autocomplete_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     bankaccount_get_autocomplete_v2_response_local_var->obj_debug = obj_debug;
     bankaccount_get_autocomplete_v2_response_local_var->m_payload = m_payload;
-
-    bankaccount_get_autocomplete_v2_response_local_var->_library_owned = 1;
     return bankaccount_get_autocomplete_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) bankaccount_get_autocomplete_v2_response_t *bankacco
     common_response_obj_debug_t *obj_debug,
     bankaccount_get_autocomplete_v2_response_m_payload_t *m_payload
     ) {
-    return bankaccount_get_autocomplete_v2_response_create_internal (
+    bankaccount_get_autocomplete_v2_response_t *result = bankaccount_get_autocomplete_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void bankaccount_get_autocomplete_v2_response_free(bankaccount_get_autocomplete_v2_response_t *bankaccount_get_autocomplete_v2_response) {
@@ -156,11 +159,16 @@ bankaccount_get_autocomplete_v2_response_t *bankaccount_get_autocomplete_v2_resp
     m_payload_local_nonprim = bankaccount_get_autocomplete_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     bankaccount_get_autocomplete_v2_response_local_var = bankaccount_get_autocomplete_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!bankaccount_get_autocomplete_v2_response_local_var) {
+        goto end;
+    }
 
     return bankaccount_get_autocomplete_v2_response_local_var;
 end:

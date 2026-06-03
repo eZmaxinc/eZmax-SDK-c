@@ -7,31 +7,46 @@
 
 static taxassignment_autocomplete_element_response_t *taxassignment_autocomplete_element_response_create_internal(
     char *s_taxassignment_description_x,
-    int pki_taxassignment_id,
-    int b_taxassignment_isactive
+    int *pki_taxassignment_id,
+    int *b_taxassignment_isactive
     ) {
     taxassignment_autocomplete_element_response_t *taxassignment_autocomplete_element_response_local_var = malloc(sizeof(taxassignment_autocomplete_element_response_t));
     if (!taxassignment_autocomplete_element_response_local_var) {
         return NULL;
     }
+    memset(taxassignment_autocomplete_element_response_local_var, 0, sizeof(taxassignment_autocomplete_element_response_t));
+    taxassignment_autocomplete_element_response_local_var->_library_owned = 1;
     taxassignment_autocomplete_element_response_local_var->s_taxassignment_description_x = s_taxassignment_description_x;
     taxassignment_autocomplete_element_response_local_var->pki_taxassignment_id = pki_taxassignment_id;
     taxassignment_autocomplete_element_response_local_var->b_taxassignment_isactive = b_taxassignment_isactive;
-
-    taxassignment_autocomplete_element_response_local_var->_library_owned = 1;
     return taxassignment_autocomplete_element_response_local_var;
 }
 
 __attribute__((deprecated)) taxassignment_autocomplete_element_response_t *taxassignment_autocomplete_element_response_create(
     char *s_taxassignment_description_x,
-    int pki_taxassignment_id,
-    int b_taxassignment_isactive
+    int *pki_taxassignment_id,
+    int *b_taxassignment_isactive
     ) {
-    return taxassignment_autocomplete_element_response_create_internal (
+    int *pki_taxassignment_id_copy = NULL;
+    if (pki_taxassignment_id) {
+        pki_taxassignment_id_copy = malloc(sizeof(int));
+        if (pki_taxassignment_id_copy) *pki_taxassignment_id_copy = *pki_taxassignment_id;
+    }
+    int *b_taxassignment_isactive_copy = NULL;
+    if (b_taxassignment_isactive) {
+        b_taxassignment_isactive_copy = malloc(sizeof(int));
+        if (b_taxassignment_isactive_copy) *b_taxassignment_isactive_copy = *b_taxassignment_isactive;
+    }
+    taxassignment_autocomplete_element_response_t *result = taxassignment_autocomplete_element_response_create_internal (
         s_taxassignment_description_x,
-        pki_taxassignment_id,
-        b_taxassignment_isactive
+        pki_taxassignment_id_copy,
+        b_taxassignment_isactive_copy
         );
+    if (!result) {
+        free(pki_taxassignment_id_copy);
+        free(b_taxassignment_isactive_copy);
+    }
+    return result;
 }
 
 void taxassignment_autocomplete_element_response_free(taxassignment_autocomplete_element_response_t *taxassignment_autocomplete_element_response) {
@@ -46,6 +61,14 @@ void taxassignment_autocomplete_element_response_free(taxassignment_autocomplete
     if (taxassignment_autocomplete_element_response->s_taxassignment_description_x) {
         free(taxassignment_autocomplete_element_response->s_taxassignment_description_x);
         taxassignment_autocomplete_element_response->s_taxassignment_description_x = NULL;
+    }
+    if (taxassignment_autocomplete_element_response->pki_taxassignment_id) {
+        free(taxassignment_autocomplete_element_response->pki_taxassignment_id);
+        taxassignment_autocomplete_element_response->pki_taxassignment_id = NULL;
+    }
+    if (taxassignment_autocomplete_element_response->b_taxassignment_isactive) {
+        free(taxassignment_autocomplete_element_response->b_taxassignment_isactive);
+        taxassignment_autocomplete_element_response->b_taxassignment_isactive = NULL;
     }
     free(taxassignment_autocomplete_element_response);
 }
@@ -66,7 +89,7 @@ cJSON *taxassignment_autocomplete_element_response_convertToJSON(taxassignment_a
     if (!taxassignment_autocomplete_element_response->pki_taxassignment_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiTaxassignmentID", taxassignment_autocomplete_element_response->pki_taxassignment_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiTaxassignmentID", *taxassignment_autocomplete_element_response->pki_taxassignment_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -75,7 +98,7 @@ cJSON *taxassignment_autocomplete_element_response_convertToJSON(taxassignment_a
     if (!taxassignment_autocomplete_element_response->b_taxassignment_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bTaxassignmentIsactive", taxassignment_autocomplete_element_response->b_taxassignment_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bTaxassignmentIsactive", *taxassignment_autocomplete_element_response->b_taxassignment_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -90,6 +113,14 @@ fail:
 taxassignment_autocomplete_element_response_t *taxassignment_autocomplete_element_response_parseFromJSON(cJSON *taxassignment_autocomplete_element_responseJSON){
 
     taxassignment_autocomplete_element_response_t *taxassignment_autocomplete_element_response_local_var = NULL;
+
+    char *s_taxassignment_description_x_local_str = NULL;
+
+    // define the local variable for taxassignment_autocomplete_element_response->pki_taxassignment_id
+    int *pki_taxassignment_id_local_var = NULL;
+
+    // define the local variable for taxassignment_autocomplete_element_response->b_taxassignment_isactive
+    int *b_taxassignment_isactive_local_var = NULL;
 
     // taxassignment_autocomplete_element_response->s_taxassignment_description_x
     cJSON *s_taxassignment_description_x = cJSON_GetObjectItemCaseSensitive(taxassignment_autocomplete_element_responseJSON, "sTaxassignmentDescriptionX");
@@ -120,6 +151,12 @@ taxassignment_autocomplete_element_response_t *taxassignment_autocomplete_elemen
     {
     goto end; //Numeric
     }
+    pki_taxassignment_id_local_var = malloc(sizeof(int));
+    if(!pki_taxassignment_id_local_var)
+    {
+        goto end;
+    }
+    *pki_taxassignment_id_local_var = pki_taxassignment_id->valuedouble;
 
     // taxassignment_autocomplete_element_response->b_taxassignment_isactive
     cJSON *b_taxassignment_isactive = cJSON_GetObjectItemCaseSensitive(taxassignment_autocomplete_element_responseJSON, "bTaxassignmentIsactive");
@@ -135,16 +172,40 @@ taxassignment_autocomplete_element_response_t *taxassignment_autocomplete_elemen
     {
     goto end; //Bool
     }
+    b_taxassignment_isactive_local_var = malloc(sizeof(int));
+    if(!b_taxassignment_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_taxassignment_isactive_local_var = b_taxassignment_isactive->valueint;
 
+
+    if (s_taxassignment_description_x && !cJSON_IsNull(s_taxassignment_description_x)) s_taxassignment_description_x_local_str = strdup(s_taxassignment_description_x->valuestring);
 
     taxassignment_autocomplete_element_response_local_var = taxassignment_autocomplete_element_response_create_internal (
-        strdup(s_taxassignment_description_x->valuestring),
-        pki_taxassignment_id->valuedouble,
-        b_taxassignment_isactive->valueint
+        s_taxassignment_description_x_local_str,
+        pki_taxassignment_id_local_var,
+        b_taxassignment_isactive_local_var
         );
+
+    if (!taxassignment_autocomplete_element_response_local_var) {
+        goto end;
+    }
 
     return taxassignment_autocomplete_element_response_local_var;
 end:
+    if (s_taxassignment_description_x_local_str) {
+        free(s_taxassignment_description_x_local_str);
+        s_taxassignment_description_x_local_str = NULL;
+    }
+    if (pki_taxassignment_id_local_var) {
+        free(pki_taxassignment_id_local_var);
+        pki_taxassignment_id_local_var = NULL;
+    }
+    if (b_taxassignment_isactive_local_var) {
+        free(b_taxassignment_isactive_local_var);
+        b_taxassignment_isactive_local_var = NULL;
+    }
     return NULL;
 
 }

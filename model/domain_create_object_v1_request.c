@@ -12,18 +12,21 @@ static domain_create_object_v1_request_t *domain_create_object_v1_request_create
     if (!domain_create_object_v1_request_local_var) {
         return NULL;
     }
-    domain_create_object_v1_request_local_var->a_obj_domain = a_obj_domain;
-
+    memset(domain_create_object_v1_request_local_var, 0, sizeof(domain_create_object_v1_request_t));
     domain_create_object_v1_request_local_var->_library_owned = 1;
+    domain_create_object_v1_request_local_var->a_obj_domain = a_obj_domain;
     return domain_create_object_v1_request_local_var;
 }
 
 __attribute__((deprecated)) domain_create_object_v1_request_t *domain_create_object_v1_request_create(
     list_t *a_obj_domain
     ) {
-    return domain_create_object_v1_request_create_internal (
+    domain_create_object_v1_request_t *result = domain_create_object_v1_request_create_internal (
         a_obj_domain
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void domain_create_object_v1_request_free(domain_create_object_v1_request_t *domain_create_object_v1_request) {
@@ -111,9 +114,14 @@ domain_create_object_v1_request_t *domain_create_object_v1_request_parseFromJSON
     }
 
 
+
     domain_create_object_v1_request_local_var = domain_create_object_v1_request_create_internal (
         a_obj_domainList
         );
+
+    if (!domain_create_object_v1_request_local_var) {
+        goto end;
+    }
 
     return domain_create_object_v1_request_local_var;
 end:

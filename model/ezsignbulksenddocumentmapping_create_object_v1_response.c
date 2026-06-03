@@ -14,11 +14,11 @@ static ezsignbulksenddocumentmapping_create_object_v1_response_t *ezsignbulksend
     if (!ezsignbulksenddocumentmapping_create_object_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsignbulksenddocumentmapping_create_object_v1_response_local_var, 0, sizeof(ezsignbulksenddocumentmapping_create_object_v1_response_t));
+    ezsignbulksenddocumentmapping_create_object_v1_response_local_var->_library_owned = 1;
     ezsignbulksenddocumentmapping_create_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsignbulksenddocumentmapping_create_object_v1_response_local_var->obj_debug = obj_debug;
     ezsignbulksenddocumentmapping_create_object_v1_response_local_var->m_payload = m_payload;
-
-    ezsignbulksenddocumentmapping_create_object_v1_response_local_var->_library_owned = 1;
     return ezsignbulksenddocumentmapping_create_object_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) ezsignbulksenddocumentmapping_create_object_v1_respo
     common_response_obj_debug_t *obj_debug,
     ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_t *m_payload
     ) {
-    return ezsignbulksenddocumentmapping_create_object_v1_response_create_internal (
+    ezsignbulksenddocumentmapping_create_object_v1_response_t *result = ezsignbulksenddocumentmapping_create_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignbulksenddocumentmapping_create_object_v1_response_free(ezsignbulksenddocumentmapping_create_object_v1_response_t *ezsignbulksenddocumentmapping_create_object_v1_response) {
@@ -156,11 +159,16 @@ ezsignbulksenddocumentmapping_create_object_v1_response_t *ezsignbulksenddocumen
     m_payload_local_nonprim = ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     ezsignbulksenddocumentmapping_create_object_v1_response_local_var = ezsignbulksenddocumentmapping_create_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!ezsignbulksenddocumentmapping_create_object_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsignbulksenddocumentmapping_create_object_v1_response_local_var;
 end:

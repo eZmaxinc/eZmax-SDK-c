@@ -6,32 +6,53 @@
 
 
 static scim_service_provider_config_bulk_t *scim_service_provider_config_bulk_create_internal(
-    int supported,
-    int max_operations,
-    int max_payload_size
+    int *supported,
+    int *max_operations,
+    int *max_payload_size
     ) {
     scim_service_provider_config_bulk_t *scim_service_provider_config_bulk_local_var = malloc(sizeof(scim_service_provider_config_bulk_t));
     if (!scim_service_provider_config_bulk_local_var) {
         return NULL;
     }
+    memset(scim_service_provider_config_bulk_local_var, 0, sizeof(scim_service_provider_config_bulk_t));
+    scim_service_provider_config_bulk_local_var->_library_owned = 1;
     scim_service_provider_config_bulk_local_var->supported = supported;
     scim_service_provider_config_bulk_local_var->max_operations = max_operations;
     scim_service_provider_config_bulk_local_var->max_payload_size = max_payload_size;
-
-    scim_service_provider_config_bulk_local_var->_library_owned = 1;
     return scim_service_provider_config_bulk_local_var;
 }
 
 __attribute__((deprecated)) scim_service_provider_config_bulk_t *scim_service_provider_config_bulk_create(
-    int supported,
-    int max_operations,
-    int max_payload_size
+    int *supported,
+    int *max_operations,
+    int *max_payload_size
     ) {
-    return scim_service_provider_config_bulk_create_internal (
-        supported,
-        max_operations,
-        max_payload_size
+    int *supported_copy = NULL;
+    if (supported) {
+        supported_copy = malloc(sizeof(int));
+        if (supported_copy) *supported_copy = *supported;
+    }
+    int *max_operations_copy = NULL;
+    if (max_operations) {
+        max_operations_copy = malloc(sizeof(int));
+        if (max_operations_copy) *max_operations_copy = *max_operations;
+    }
+    int *max_payload_size_copy = NULL;
+    if (max_payload_size) {
+        max_payload_size_copy = malloc(sizeof(int));
+        if (max_payload_size_copy) *max_payload_size_copy = *max_payload_size;
+    }
+    scim_service_provider_config_bulk_t *result = scim_service_provider_config_bulk_create_internal (
+        supported_copy,
+        max_operations_copy,
+        max_payload_size_copy
         );
+    if (!result) {
+        free(supported_copy);
+        free(max_operations_copy);
+        free(max_payload_size_copy);
+    }
+    return result;
 }
 
 void scim_service_provider_config_bulk_free(scim_service_provider_config_bulk_t *scim_service_provider_config_bulk) {
@@ -43,6 +64,18 @@ void scim_service_provider_config_bulk_free(scim_service_provider_config_bulk_t 
         return ;
     }
     listEntry_t *listEntry;
+    if (scim_service_provider_config_bulk->supported) {
+        free(scim_service_provider_config_bulk->supported);
+        scim_service_provider_config_bulk->supported = NULL;
+    }
+    if (scim_service_provider_config_bulk->max_operations) {
+        free(scim_service_provider_config_bulk->max_operations);
+        scim_service_provider_config_bulk->max_operations = NULL;
+    }
+    if (scim_service_provider_config_bulk->max_payload_size) {
+        free(scim_service_provider_config_bulk->max_payload_size);
+        scim_service_provider_config_bulk->max_payload_size = NULL;
+    }
     free(scim_service_provider_config_bulk);
 }
 
@@ -53,7 +86,7 @@ cJSON *scim_service_provider_config_bulk_convertToJSON(scim_service_provider_con
     if (!scim_service_provider_config_bulk->supported) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "supported", scim_service_provider_config_bulk->supported) == NULL) {
+    if(cJSON_AddBoolToObject(item, "supported", *scim_service_provider_config_bulk->supported) == NULL) {
     goto fail; //Bool
     }
 
@@ -62,7 +95,7 @@ cJSON *scim_service_provider_config_bulk_convertToJSON(scim_service_provider_con
     if (!scim_service_provider_config_bulk->max_operations) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "maxOperations", scim_service_provider_config_bulk->max_operations) == NULL) {
+    if(cJSON_AddNumberToObject(item, "maxOperations", *scim_service_provider_config_bulk->max_operations) == NULL) {
     goto fail; //Numeric
     }
 
@@ -71,7 +104,7 @@ cJSON *scim_service_provider_config_bulk_convertToJSON(scim_service_provider_con
     if (!scim_service_provider_config_bulk->max_payload_size) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "maxPayloadSize", scim_service_provider_config_bulk->max_payload_size) == NULL) {
+    if(cJSON_AddNumberToObject(item, "maxPayloadSize", *scim_service_provider_config_bulk->max_payload_size) == NULL) {
     goto fail; //Numeric
     }
 
@@ -87,6 +120,15 @@ scim_service_provider_config_bulk_t *scim_service_provider_config_bulk_parseFrom
 
     scim_service_provider_config_bulk_t *scim_service_provider_config_bulk_local_var = NULL;
 
+    // define the local variable for scim_service_provider_config_bulk->supported
+    int *supported_local_var = NULL;
+
+    // define the local variable for scim_service_provider_config_bulk->max_operations
+    int *max_operations_local_var = NULL;
+
+    // define the local variable for scim_service_provider_config_bulk->max_payload_size
+    int *max_payload_size_local_var = NULL;
+
     // scim_service_provider_config_bulk->supported
     cJSON *supported = cJSON_GetObjectItemCaseSensitive(scim_service_provider_config_bulkJSON, "supported");
     if (cJSON_IsNull(supported)) {
@@ -101,6 +143,12 @@ scim_service_provider_config_bulk_t *scim_service_provider_config_bulk_parseFrom
     {
     goto end; //Bool
     }
+    supported_local_var = malloc(sizeof(int));
+    if(!supported_local_var)
+    {
+        goto end;
+    }
+    *supported_local_var = supported->valueint;
 
     // scim_service_provider_config_bulk->max_operations
     cJSON *max_operations = cJSON_GetObjectItemCaseSensitive(scim_service_provider_config_bulkJSON, "maxOperations");
@@ -116,6 +164,12 @@ scim_service_provider_config_bulk_t *scim_service_provider_config_bulk_parseFrom
     {
     goto end; //Numeric
     }
+    max_operations_local_var = malloc(sizeof(int));
+    if(!max_operations_local_var)
+    {
+        goto end;
+    }
+    *max_operations_local_var = max_operations->valuedouble;
 
     // scim_service_provider_config_bulk->max_payload_size
     cJSON *max_payload_size = cJSON_GetObjectItemCaseSensitive(scim_service_provider_config_bulkJSON, "maxPayloadSize");
@@ -131,16 +185,39 @@ scim_service_provider_config_bulk_t *scim_service_provider_config_bulk_parseFrom
     {
     goto end; //Numeric
     }
+    max_payload_size_local_var = malloc(sizeof(int));
+    if(!max_payload_size_local_var)
+    {
+        goto end;
+    }
+    *max_payload_size_local_var = max_payload_size->valuedouble;
+
 
 
     scim_service_provider_config_bulk_local_var = scim_service_provider_config_bulk_create_internal (
-        supported->valueint,
-        max_operations->valuedouble,
-        max_payload_size->valuedouble
+        supported_local_var,
+        max_operations_local_var,
+        max_payload_size_local_var
         );
+
+    if (!scim_service_provider_config_bulk_local_var) {
+        goto end;
+    }
 
     return scim_service_provider_config_bulk_local_var;
 end:
+    if (supported_local_var) {
+        free(supported_local_var);
+        supported_local_var = NULL;
+    }
+    if (max_operations_local_var) {
+        free(max_operations_local_var);
+        max_operations_local_var = NULL;
+    }
+    if (max_payload_size_local_var) {
+        free(max_payload_size_local_var);
+        max_payload_size_local_var = NULL;
+    }
     return NULL;
 
 }

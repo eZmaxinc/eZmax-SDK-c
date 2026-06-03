@@ -6,32 +6,47 @@
 
 
 static systemconfigurationtype_autocomplete_element_response_t *systemconfigurationtype_autocomplete_element_response_create_internal(
-    int pki_systemconfigurationtype_id,
+    int *pki_systemconfigurationtype_id,
     char *s_systemconfigurationtype_description_x,
-    int b_systemconfigurationtype_isactive
+    int *b_systemconfigurationtype_isactive
     ) {
     systemconfigurationtype_autocomplete_element_response_t *systemconfigurationtype_autocomplete_element_response_local_var = malloc(sizeof(systemconfigurationtype_autocomplete_element_response_t));
     if (!systemconfigurationtype_autocomplete_element_response_local_var) {
         return NULL;
     }
+    memset(systemconfigurationtype_autocomplete_element_response_local_var, 0, sizeof(systemconfigurationtype_autocomplete_element_response_t));
+    systemconfigurationtype_autocomplete_element_response_local_var->_library_owned = 1;
     systemconfigurationtype_autocomplete_element_response_local_var->pki_systemconfigurationtype_id = pki_systemconfigurationtype_id;
     systemconfigurationtype_autocomplete_element_response_local_var->s_systemconfigurationtype_description_x = s_systemconfigurationtype_description_x;
     systemconfigurationtype_autocomplete_element_response_local_var->b_systemconfigurationtype_isactive = b_systemconfigurationtype_isactive;
-
-    systemconfigurationtype_autocomplete_element_response_local_var->_library_owned = 1;
     return systemconfigurationtype_autocomplete_element_response_local_var;
 }
 
 __attribute__((deprecated)) systemconfigurationtype_autocomplete_element_response_t *systemconfigurationtype_autocomplete_element_response_create(
-    int pki_systemconfigurationtype_id,
+    int *pki_systemconfigurationtype_id,
     char *s_systemconfigurationtype_description_x,
-    int b_systemconfigurationtype_isactive
+    int *b_systemconfigurationtype_isactive
     ) {
-    return systemconfigurationtype_autocomplete_element_response_create_internal (
-        pki_systemconfigurationtype_id,
+    int *pki_systemconfigurationtype_id_copy = NULL;
+    if (pki_systemconfigurationtype_id) {
+        pki_systemconfigurationtype_id_copy = malloc(sizeof(int));
+        if (pki_systemconfigurationtype_id_copy) *pki_systemconfigurationtype_id_copy = *pki_systemconfigurationtype_id;
+    }
+    int *b_systemconfigurationtype_isactive_copy = NULL;
+    if (b_systemconfigurationtype_isactive) {
+        b_systemconfigurationtype_isactive_copy = malloc(sizeof(int));
+        if (b_systemconfigurationtype_isactive_copy) *b_systemconfigurationtype_isactive_copy = *b_systemconfigurationtype_isactive;
+    }
+    systemconfigurationtype_autocomplete_element_response_t *result = systemconfigurationtype_autocomplete_element_response_create_internal (
+        pki_systemconfigurationtype_id_copy,
         s_systemconfigurationtype_description_x,
-        b_systemconfigurationtype_isactive
+        b_systemconfigurationtype_isactive_copy
         );
+    if (!result) {
+        free(pki_systemconfigurationtype_id_copy);
+        free(b_systemconfigurationtype_isactive_copy);
+    }
+    return result;
 }
 
 void systemconfigurationtype_autocomplete_element_response_free(systemconfigurationtype_autocomplete_element_response_t *systemconfigurationtype_autocomplete_element_response) {
@@ -43,9 +58,17 @@ void systemconfigurationtype_autocomplete_element_response_free(systemconfigurat
         return ;
     }
     listEntry_t *listEntry;
+    if (systemconfigurationtype_autocomplete_element_response->pki_systemconfigurationtype_id) {
+        free(systemconfigurationtype_autocomplete_element_response->pki_systemconfigurationtype_id);
+        systemconfigurationtype_autocomplete_element_response->pki_systemconfigurationtype_id = NULL;
+    }
     if (systemconfigurationtype_autocomplete_element_response->s_systemconfigurationtype_description_x) {
         free(systemconfigurationtype_autocomplete_element_response->s_systemconfigurationtype_description_x);
         systemconfigurationtype_autocomplete_element_response->s_systemconfigurationtype_description_x = NULL;
+    }
+    if (systemconfigurationtype_autocomplete_element_response->b_systemconfigurationtype_isactive) {
+        free(systemconfigurationtype_autocomplete_element_response->b_systemconfigurationtype_isactive);
+        systemconfigurationtype_autocomplete_element_response->b_systemconfigurationtype_isactive = NULL;
     }
     free(systemconfigurationtype_autocomplete_element_response);
 }
@@ -57,7 +80,7 @@ cJSON *systemconfigurationtype_autocomplete_element_response_convertToJSON(syste
     if (!systemconfigurationtype_autocomplete_element_response->pki_systemconfigurationtype_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiSystemconfigurationtypeID", systemconfigurationtype_autocomplete_element_response->pki_systemconfigurationtype_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiSystemconfigurationtypeID", *systemconfigurationtype_autocomplete_element_response->pki_systemconfigurationtype_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -75,7 +98,7 @@ cJSON *systemconfigurationtype_autocomplete_element_response_convertToJSON(syste
     if (!systemconfigurationtype_autocomplete_element_response->b_systemconfigurationtype_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bSystemconfigurationtypeIsactive", systemconfigurationtype_autocomplete_element_response->b_systemconfigurationtype_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bSystemconfigurationtypeIsactive", *systemconfigurationtype_autocomplete_element_response->b_systemconfigurationtype_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -91,6 +114,14 @@ systemconfigurationtype_autocomplete_element_response_t *systemconfigurationtype
 
     systemconfigurationtype_autocomplete_element_response_t *systemconfigurationtype_autocomplete_element_response_local_var = NULL;
 
+    // define the local variable for systemconfigurationtype_autocomplete_element_response->pki_systemconfigurationtype_id
+    int *pki_systemconfigurationtype_id_local_var = NULL;
+
+    char *s_systemconfigurationtype_description_x_local_str = NULL;
+
+    // define the local variable for systemconfigurationtype_autocomplete_element_response->b_systemconfigurationtype_isactive
+    int *b_systemconfigurationtype_isactive_local_var = NULL;
+
     // systemconfigurationtype_autocomplete_element_response->pki_systemconfigurationtype_id
     cJSON *pki_systemconfigurationtype_id = cJSON_GetObjectItemCaseSensitive(systemconfigurationtype_autocomplete_element_responseJSON, "pkiSystemconfigurationtypeID");
     if (cJSON_IsNull(pki_systemconfigurationtype_id)) {
@@ -105,6 +136,12 @@ systemconfigurationtype_autocomplete_element_response_t *systemconfigurationtype
     {
     goto end; //Numeric
     }
+    pki_systemconfigurationtype_id_local_var = malloc(sizeof(int));
+    if(!pki_systemconfigurationtype_id_local_var)
+    {
+        goto end;
+    }
+    *pki_systemconfigurationtype_id_local_var = pki_systemconfigurationtype_id->valuedouble;
 
     // systemconfigurationtype_autocomplete_element_response->s_systemconfigurationtype_description_x
     cJSON *s_systemconfigurationtype_description_x = cJSON_GetObjectItemCaseSensitive(systemconfigurationtype_autocomplete_element_responseJSON, "sSystemconfigurationtypeDescriptionX");
@@ -135,16 +172,40 @@ systemconfigurationtype_autocomplete_element_response_t *systemconfigurationtype
     {
     goto end; //Bool
     }
+    b_systemconfigurationtype_isactive_local_var = malloc(sizeof(int));
+    if(!b_systemconfigurationtype_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_systemconfigurationtype_isactive_local_var = b_systemconfigurationtype_isactive->valueint;
 
+
+    if (s_systemconfigurationtype_description_x && !cJSON_IsNull(s_systemconfigurationtype_description_x)) s_systemconfigurationtype_description_x_local_str = strdup(s_systemconfigurationtype_description_x->valuestring);
 
     systemconfigurationtype_autocomplete_element_response_local_var = systemconfigurationtype_autocomplete_element_response_create_internal (
-        pki_systemconfigurationtype_id->valuedouble,
-        strdup(s_systemconfigurationtype_description_x->valuestring),
-        b_systemconfigurationtype_isactive->valueint
+        pki_systemconfigurationtype_id_local_var,
+        s_systemconfigurationtype_description_x_local_str,
+        b_systemconfigurationtype_isactive_local_var
         );
+
+    if (!systemconfigurationtype_autocomplete_element_response_local_var) {
+        goto end;
+    }
 
     return systemconfigurationtype_autocomplete_element_response_local_var;
 end:
+    if (pki_systemconfigurationtype_id_local_var) {
+        free(pki_systemconfigurationtype_id_local_var);
+        pki_systemconfigurationtype_id_local_var = NULL;
+    }
+    if (s_systemconfigurationtype_description_x_local_str) {
+        free(s_systemconfigurationtype_description_x_local_str);
+        s_systemconfigurationtype_description_x_local_str = NULL;
+    }
+    if (b_systemconfigurationtype_isactive_local_var) {
+        free(b_systemconfigurationtype_isactive_local_var);
+        b_systemconfigurationtype_isactive_local_var = NULL;
+    }
     return NULL;
 
 }

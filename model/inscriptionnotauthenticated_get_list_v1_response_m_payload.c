@@ -6,32 +6,47 @@
 
 
 static inscriptionnotauthenticated_get_list_v1_response_m_payload_t *inscriptionnotauthenticated_get_list_v1_response_m_payload_create_internal(
-    int i_row_returned,
-    int i_row_filtered,
+    int *i_row_returned,
+    int *i_row_filtered,
     list_t *a_obj_inscriptionnotauthenticated
     ) {
     inscriptionnotauthenticated_get_list_v1_response_m_payload_t *inscriptionnotauthenticated_get_list_v1_response_m_payload_local_var = malloc(sizeof(inscriptionnotauthenticated_get_list_v1_response_m_payload_t));
     if (!inscriptionnotauthenticated_get_list_v1_response_m_payload_local_var) {
         return NULL;
     }
+    memset(inscriptionnotauthenticated_get_list_v1_response_m_payload_local_var, 0, sizeof(inscriptionnotauthenticated_get_list_v1_response_m_payload_t));
+    inscriptionnotauthenticated_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     inscriptionnotauthenticated_get_list_v1_response_m_payload_local_var->i_row_returned = i_row_returned;
     inscriptionnotauthenticated_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
     inscriptionnotauthenticated_get_list_v1_response_m_payload_local_var->a_obj_inscriptionnotauthenticated = a_obj_inscriptionnotauthenticated;
-
-    inscriptionnotauthenticated_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     return inscriptionnotauthenticated_get_list_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) inscriptionnotauthenticated_get_list_v1_response_m_payload_t *inscriptionnotauthenticated_get_list_v1_response_m_payload_create(
-    int i_row_returned,
-    int i_row_filtered,
+    int *i_row_returned,
+    int *i_row_filtered,
     list_t *a_obj_inscriptionnotauthenticated
     ) {
-    return inscriptionnotauthenticated_get_list_v1_response_m_payload_create_internal (
-        i_row_returned,
-        i_row_filtered,
+    int *i_row_returned_copy = NULL;
+    if (i_row_returned) {
+        i_row_returned_copy = malloc(sizeof(int));
+        if (i_row_returned_copy) *i_row_returned_copy = *i_row_returned;
+    }
+    int *i_row_filtered_copy = NULL;
+    if (i_row_filtered) {
+        i_row_filtered_copy = malloc(sizeof(int));
+        if (i_row_filtered_copy) *i_row_filtered_copy = *i_row_filtered;
+    }
+    inscriptionnotauthenticated_get_list_v1_response_m_payload_t *result = inscriptionnotauthenticated_get_list_v1_response_m_payload_create_internal (
+        i_row_returned_copy,
+        i_row_filtered_copy,
         a_obj_inscriptionnotauthenticated
         );
+    if (!result) {
+        free(i_row_returned_copy);
+        free(i_row_filtered_copy);
+    }
+    return result;
 }
 
 void inscriptionnotauthenticated_get_list_v1_response_m_payload_free(inscriptionnotauthenticated_get_list_v1_response_m_payload_t *inscriptionnotauthenticated_get_list_v1_response_m_payload) {
@@ -43,6 +58,14 @@ void inscriptionnotauthenticated_get_list_v1_response_m_payload_free(inscription
         return ;
     }
     listEntry_t *listEntry;
+    if (inscriptionnotauthenticated_get_list_v1_response_m_payload->i_row_returned) {
+        free(inscriptionnotauthenticated_get_list_v1_response_m_payload->i_row_returned);
+        inscriptionnotauthenticated_get_list_v1_response_m_payload->i_row_returned = NULL;
+    }
+    if (inscriptionnotauthenticated_get_list_v1_response_m_payload->i_row_filtered) {
+        free(inscriptionnotauthenticated_get_list_v1_response_m_payload->i_row_filtered);
+        inscriptionnotauthenticated_get_list_v1_response_m_payload->i_row_filtered = NULL;
+    }
     if (inscriptionnotauthenticated_get_list_v1_response_m_payload->a_obj_inscriptionnotauthenticated) {
         list_ForEach(listEntry, inscriptionnotauthenticated_get_list_v1_response_m_payload->a_obj_inscriptionnotauthenticated) {
             inscriptionnotauthenticated_list_element_free(listEntry->data);
@@ -60,7 +83,7 @@ cJSON *inscriptionnotauthenticated_get_list_v1_response_m_payload_convertToJSON(
     if (!inscriptionnotauthenticated_get_list_v1_response_m_payload->i_row_returned) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iRowReturned", inscriptionnotauthenticated_get_list_v1_response_m_payload->i_row_returned) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iRowReturned", *inscriptionnotauthenticated_get_list_v1_response_m_payload->i_row_returned) == NULL) {
     goto fail; //Numeric
     }
 
@@ -69,7 +92,7 @@ cJSON *inscriptionnotauthenticated_get_list_v1_response_m_payload_convertToJSON(
     if (!inscriptionnotauthenticated_get_list_v1_response_m_payload->i_row_filtered) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iRowFiltered", inscriptionnotauthenticated_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iRowFiltered", *inscriptionnotauthenticated_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
     goto fail; //Numeric
     }
 
@@ -106,6 +129,12 @@ inscriptionnotauthenticated_get_list_v1_response_m_payload_t *inscriptionnotauth
 
     inscriptionnotauthenticated_get_list_v1_response_m_payload_t *inscriptionnotauthenticated_get_list_v1_response_m_payload_local_var = NULL;
 
+    // define the local variable for inscriptionnotauthenticated_get_list_v1_response_m_payload->i_row_returned
+    int *i_row_returned_local_var = NULL;
+
+    // define the local variable for inscriptionnotauthenticated_get_list_v1_response_m_payload->i_row_filtered
+    int *i_row_filtered_local_var = NULL;
+
     // define the local list for inscriptionnotauthenticated_get_list_v1_response_m_payload->a_obj_inscriptionnotauthenticated
     list_t *a_obj_inscriptionnotauthenticatedList = NULL;
 
@@ -123,6 +152,12 @@ inscriptionnotauthenticated_get_list_v1_response_m_payload_t *inscriptionnotauth
     {
     goto end; //Numeric
     }
+    i_row_returned_local_var = malloc(sizeof(int));
+    if(!i_row_returned_local_var)
+    {
+        goto end;
+    }
+    *i_row_returned_local_var = i_row_returned->valuedouble;
 
     // inscriptionnotauthenticated_get_list_v1_response_m_payload->i_row_filtered
     cJSON *i_row_filtered = cJSON_GetObjectItemCaseSensitive(inscriptionnotauthenticated_get_list_v1_response_m_payloadJSON, "iRowFiltered");
@@ -138,6 +173,12 @@ inscriptionnotauthenticated_get_list_v1_response_m_payload_t *inscriptionnotauth
     {
     goto end; //Numeric
     }
+    i_row_filtered_local_var = malloc(sizeof(int));
+    if(!i_row_filtered_local_var)
+    {
+        goto end;
+    }
+    *i_row_filtered_local_var = i_row_filtered->valuedouble;
 
     // inscriptionnotauthenticated_get_list_v1_response_m_payload->a_obj_inscriptionnotauthenticated
     cJSON *a_obj_inscriptionnotauthenticated = cJSON_GetObjectItemCaseSensitive(inscriptionnotauthenticated_get_list_v1_response_m_payloadJSON, "a_objInscriptionnotauthenticated");
@@ -167,14 +208,27 @@ inscriptionnotauthenticated_get_list_v1_response_m_payload_t *inscriptionnotauth
     }
 
 
+
     inscriptionnotauthenticated_get_list_v1_response_m_payload_local_var = inscriptionnotauthenticated_get_list_v1_response_m_payload_create_internal (
-        i_row_returned->valuedouble,
-        i_row_filtered->valuedouble,
+        i_row_returned_local_var,
+        i_row_filtered_local_var,
         a_obj_inscriptionnotauthenticatedList
         );
 
+    if (!inscriptionnotauthenticated_get_list_v1_response_m_payload_local_var) {
+        goto end;
+    }
+
     return inscriptionnotauthenticated_get_list_v1_response_m_payload_local_var;
 end:
+    if (i_row_returned_local_var) {
+        free(i_row_returned_local_var);
+        i_row_returned_local_var = NULL;
+    }
+    if (i_row_filtered_local_var) {
+        free(i_row_filtered_local_var);
+        i_row_filtered_local_var = NULL;
+    }
     if (a_obj_inscriptionnotauthenticatedList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_inscriptionnotauthenticatedList) {

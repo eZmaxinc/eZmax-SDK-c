@@ -12,18 +12,21 @@ static rejectedoffertopurchase_get_communication_list_v1_response_m_payload_t *r
     if (!rejectedoffertopurchase_get_communication_list_v1_response_m_payload_local_var) {
         return NULL;
     }
-    rejectedoffertopurchase_get_communication_list_v1_response_m_payload_local_var->a_obj_communication = a_obj_communication;
-
+    memset(rejectedoffertopurchase_get_communication_list_v1_response_m_payload_local_var, 0, sizeof(rejectedoffertopurchase_get_communication_list_v1_response_m_payload_t));
     rejectedoffertopurchase_get_communication_list_v1_response_m_payload_local_var->_library_owned = 1;
+    rejectedoffertopurchase_get_communication_list_v1_response_m_payload_local_var->a_obj_communication = a_obj_communication;
     return rejectedoffertopurchase_get_communication_list_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) rejectedoffertopurchase_get_communication_list_v1_response_m_payload_t *rejectedoffertopurchase_get_communication_list_v1_response_m_payload_create(
     list_t *a_obj_communication
     ) {
-    return rejectedoffertopurchase_get_communication_list_v1_response_m_payload_create_internal (
+    rejectedoffertopurchase_get_communication_list_v1_response_m_payload_t *result = rejectedoffertopurchase_get_communication_list_v1_response_m_payload_create_internal (
         a_obj_communication
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void rejectedoffertopurchase_get_communication_list_v1_response_m_payload_free(rejectedoffertopurchase_get_communication_list_v1_response_m_payload_t *rejectedoffertopurchase_get_communication_list_v1_response_m_payload) {
@@ -111,9 +114,14 @@ rejectedoffertopurchase_get_communication_list_v1_response_m_payload_t *rejected
     }
 
 
+
     rejectedoffertopurchase_get_communication_list_v1_response_m_payload_local_var = rejectedoffertopurchase_get_communication_list_v1_response_m_payload_create_internal (
         a_obj_communicationList
         );
+
+    if (!rejectedoffertopurchase_get_communication_list_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return rejectedoffertopurchase_get_communication_list_v1_response_m_payload_local_var;
 end:

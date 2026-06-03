@@ -13,10 +13,10 @@ static ezdoctemplatedocument_patch_object_v1_response_t *ezdoctemplatedocument_p
     if (!ezdoctemplatedocument_patch_object_v1_response_local_var) {
         return NULL;
     }
+    memset(ezdoctemplatedocument_patch_object_v1_response_local_var, 0, sizeof(ezdoctemplatedocument_patch_object_v1_response_t));
+    ezdoctemplatedocument_patch_object_v1_response_local_var->_library_owned = 1;
     ezdoctemplatedocument_patch_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezdoctemplatedocument_patch_object_v1_response_local_var->obj_debug = obj_debug;
-
-    ezdoctemplatedocument_patch_object_v1_response_local_var->_library_owned = 1;
     return ezdoctemplatedocument_patch_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) ezdoctemplatedocument_patch_object_v1_response_t *ez
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return ezdoctemplatedocument_patch_object_v1_response_create_internal (
+    ezdoctemplatedocument_patch_object_v1_response_t *result = ezdoctemplatedocument_patch_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezdoctemplatedocument_patch_object_v1_response_free(ezdoctemplatedocument_patch_object_v1_response_t *ezdoctemplatedocument_patch_object_v1_response) {
@@ -119,10 +122,15 @@ ezdoctemplatedocument_patch_object_v1_response_t *ezdoctemplatedocument_patch_ob
     }
 
 
+
     ezdoctemplatedocument_patch_object_v1_response_local_var = ezdoctemplatedocument_patch_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!ezdoctemplatedocument_patch_object_v1_response_local_var) {
+        goto end;
+    }
 
     return ezdoctemplatedocument_patch_object_v1_response_local_var;
 end:

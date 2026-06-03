@@ -14,11 +14,11 @@ static ezsignsignature_get_object_v4_response_t *ezsignsignature_get_object_v4_r
     if (!ezsignsignature_get_object_v4_response_local_var) {
         return NULL;
     }
+    memset(ezsignsignature_get_object_v4_response_local_var, 0, sizeof(ezsignsignature_get_object_v4_response_t));
+    ezsignsignature_get_object_v4_response_local_var->_library_owned = 1;
     ezsignsignature_get_object_v4_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsignsignature_get_object_v4_response_local_var->obj_debug = obj_debug;
     ezsignsignature_get_object_v4_response_local_var->m_payload = m_payload;
-
-    ezsignsignature_get_object_v4_response_local_var->_library_owned = 1;
     return ezsignsignature_get_object_v4_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) ezsignsignature_get_object_v4_response_t *ezsignsign
     common_response_obj_debug_t *obj_debug,
     ezsignsignature_get_object_v4_response_m_payload_t *m_payload
     ) {
-    return ezsignsignature_get_object_v4_response_create_internal (
+    ezsignsignature_get_object_v4_response_t *result = ezsignsignature_get_object_v4_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignsignature_get_object_v4_response_free(ezsignsignature_get_object_v4_response_t *ezsignsignature_get_object_v4_response) {
@@ -156,11 +159,16 @@ ezsignsignature_get_object_v4_response_t *ezsignsignature_get_object_v4_response
     m_payload_local_nonprim = ezsignsignature_get_object_v4_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     ezsignsignature_get_object_v4_response_local_var = ezsignsignature_get_object_v4_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!ezsignsignature_get_object_v4_response_local_var) {
+        goto end;
+    }
 
     return ezsignsignature_get_object_v4_response_local_var;
 end:

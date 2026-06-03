@@ -20,10 +20,10 @@ typedef struct ezsignsigner_response_compound_t ezsignsigner_response_compound_t
 
 
 typedef struct ezsignsigner_response_compound_t {
-    int pki_ezsignsigner_id; //numeric
-    int fki_taxassignment_id; //numeric
-    int fki_secretquestion_id; //numeric
-    int fki_userlogintype_id; //numeric
+    int *pki_ezsignsigner_id; //numeric
+    int *fki_taxassignment_id; //numeric
+    int *fki_secretquestion_id; //numeric
+    int *fki_userlogintype_id; //numeric
     char *s_userlogintype_description_x; // string
     struct ezsignsigner_response_compound_contact_t *obj_contact; //model
 
@@ -31,10 +31,10 @@ typedef struct ezsignsigner_response_compound_t {
 } ezsignsigner_response_compound_t;
 
 __attribute__((deprecated)) ezsignsigner_response_compound_t *ezsignsigner_response_compound_create(
-    int pki_ezsignsigner_id,
-    int fki_taxassignment_id,
-    int fki_secretquestion_id,
-    int fki_userlogintype_id,
+    int *pki_ezsignsigner_id,
+    int *fki_taxassignment_id,
+    int *fki_secretquestion_id,
+    int *fki_userlogintype_id,
     char *s_userlogintype_description_x,
     ezsignsigner_response_compound_contact_t *obj_contact
 );

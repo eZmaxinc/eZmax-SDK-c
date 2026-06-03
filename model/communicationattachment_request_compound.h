@@ -19,19 +19,19 @@ typedef struct communicationattachment_request_compound_t communicationattachmen
 
 
 typedef struct communicationattachment_request_compound_t {
-    int pki_communicationattachment_id; //numeric
-    int fki_attachment_id; //numeric
-    int fki_invoice_id; //numeric
-    int fki_salarypreparation_id; //numeric
+    int *pki_communicationattachment_id; //numeric
+    int *fki_attachment_id; //numeric
+    int *fki_invoice_id; //numeric
+    int *fki_salarypreparation_id; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } communicationattachment_request_compound_t;
 
 __attribute__((deprecated)) communicationattachment_request_compound_t *communicationattachment_request_compound_create(
-    int pki_communicationattachment_id,
-    int fki_attachment_id,
-    int fki_invoice_id,
-    int fki_salarypreparation_id
+    int *pki_communicationattachment_id,
+    int *fki_attachment_id,
+    int *fki_invoice_id,
+    int *fki_salarypreparation_id
 );
 
 void communicationattachment_request_compound_free(communicationattachment_request_compound_t *communicationattachment_request_compound);

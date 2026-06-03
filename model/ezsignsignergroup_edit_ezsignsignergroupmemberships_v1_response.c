@@ -14,11 +14,11 @@ static ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_t *ezsign
     if (!ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_local_var, 0, sizeof(ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_t));
+    ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_local_var->_library_owned = 1;
     ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_local_var->obj_debug = obj_debug;
     ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_local_var->m_payload = m_payload;
-
-    ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_local_var->_library_owned = 1;
     return ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) ezsignsignergroup_edit_ezsignsignergroupmemberships_
     common_response_obj_debug_t *obj_debug,
     ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_t *m_payload
     ) {
-    return ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_create_internal (
+    ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_t *result = ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_free(ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_t *ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response) {
@@ -156,11 +159,16 @@ ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_t *ezsignsignerg
     m_payload_local_nonprim = ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_local_var = ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_local_var;
 end:

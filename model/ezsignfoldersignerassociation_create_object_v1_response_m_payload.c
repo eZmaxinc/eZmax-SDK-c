@@ -12,18 +12,21 @@ static ezsignfoldersignerassociation_create_object_v1_response_m_payload_t *ezsi
     if (!ezsignfoldersignerassociation_create_object_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsignfoldersignerassociation_create_object_v1_response_m_payload_local_var->a_pki_ezsignfoldersignerassociation_id = a_pki_ezsignfoldersignerassociation_id;
-
+    memset(ezsignfoldersignerassociation_create_object_v1_response_m_payload_local_var, 0, sizeof(ezsignfoldersignerassociation_create_object_v1_response_m_payload_t));
     ezsignfoldersignerassociation_create_object_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsignfoldersignerassociation_create_object_v1_response_m_payload_local_var->a_pki_ezsignfoldersignerassociation_id = a_pki_ezsignfoldersignerassociation_id;
     return ezsignfoldersignerassociation_create_object_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsignfoldersignerassociation_create_object_v1_response_m_payload_t *ezsignfoldersignerassociation_create_object_v1_response_m_payload_create(
     list_t *a_pki_ezsignfoldersignerassociation_id
     ) {
-    return ezsignfoldersignerassociation_create_object_v1_response_m_payload_create_internal (
+    ezsignfoldersignerassociation_create_object_v1_response_m_payload_t *result = ezsignfoldersignerassociation_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsignfoldersignerassociation_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignfoldersignerassociation_create_object_v1_response_m_payload_free(ezsignfoldersignerassociation_create_object_v1_response_m_payload_t *ezsignfoldersignerassociation_create_object_v1_response_m_payload) {
@@ -112,9 +115,14 @@ ezsignfoldersignerassociation_create_object_v1_response_m_payload_t *ezsignfolde
     }
 
 
+
     ezsignfoldersignerassociation_create_object_v1_response_m_payload_local_var = ezsignfoldersignerassociation_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsignfoldersignerassociation_idList
         );
+
+    if (!ezsignfoldersignerassociation_create_object_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsignfoldersignerassociation_create_object_v1_response_m_payload_local_var;
 end:

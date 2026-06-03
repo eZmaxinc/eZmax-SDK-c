@@ -14,11 +14,11 @@ static billingentityinternal_get_object_v2_response_t *billingentityinternal_get
     if (!billingentityinternal_get_object_v2_response_local_var) {
         return NULL;
     }
+    memset(billingentityinternal_get_object_v2_response_local_var, 0, sizeof(billingentityinternal_get_object_v2_response_t));
+    billingentityinternal_get_object_v2_response_local_var->_library_owned = 1;
     billingentityinternal_get_object_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     billingentityinternal_get_object_v2_response_local_var->obj_debug = obj_debug;
     billingentityinternal_get_object_v2_response_local_var->m_payload = m_payload;
-
-    billingentityinternal_get_object_v2_response_local_var->_library_owned = 1;
     return billingentityinternal_get_object_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) billingentityinternal_get_object_v2_response_t *bill
     common_response_obj_debug_t *obj_debug,
     billingentityinternal_get_object_v2_response_m_payload_t *m_payload
     ) {
-    return billingentityinternal_get_object_v2_response_create_internal (
+    billingentityinternal_get_object_v2_response_t *result = billingentityinternal_get_object_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void billingentityinternal_get_object_v2_response_free(billingentityinternal_get_object_v2_response_t *billingentityinternal_get_object_v2_response) {
@@ -156,11 +159,16 @@ billingentityinternal_get_object_v2_response_t *billingentityinternal_get_object
     m_payload_local_nonprim = billingentityinternal_get_object_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     billingentityinternal_get_object_v2_response_local_var = billingentityinternal_get_object_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!billingentityinternal_get_object_v2_response_local_var) {
+        goto end;
+    }
 
     return billingentityinternal_get_object_v2_response_local_var;
 end:

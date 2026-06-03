@@ -40,7 +40,7 @@ typedef struct custom_dnsrecord_response_t {
     char *s_dnsrecord_name; // string
     char *s_dnsrecord_value; // string
     char *s_dnsrecord_expectedvalue; // string
-    int b_dnsrecord_must_match; //boolean
+    int *b_dnsrecord_must_match; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } custom_dnsrecord_response_t;
@@ -51,7 +51,7 @@ __attribute__((deprecated)) custom_dnsrecord_response_t *custom_dnsrecord_respon
     char *s_dnsrecord_name,
     char *s_dnsrecord_value,
     char *s_dnsrecord_expectedvalue,
-    int b_dnsrecord_must_match
+    int *b_dnsrecord_must_match
 );
 
 void custom_dnsrecord_response_free(custom_dnsrecord_response_t *custom_dnsrecord_response);

@@ -13,10 +13,10 @@ static common_webhook_t *common_webhook_create_internal(
     if (!common_webhook_local_var) {
         return NULL;
     }
+    memset(common_webhook_local_var, 0, sizeof(common_webhook_t));
+    common_webhook_local_var->_library_owned = 1;
     common_webhook_local_var->obj_webhook = obj_webhook;
     common_webhook_local_var->a_obj_attempt = a_obj_attempt;
-
-    common_webhook_local_var->_library_owned = 1;
     return common_webhook_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) common_webhook_t *common_webhook_create(
     custom_webhook_response_t *obj_webhook,
     list_t *a_obj_attempt
     ) {
-    return common_webhook_create_internal (
+    common_webhook_t *result = common_webhook_create_internal (
         obj_webhook,
         a_obj_attempt
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void common_webhook_free(common_webhook_t *common_webhook) {
@@ -148,10 +151,15 @@ common_webhook_t *common_webhook_parseFromJSON(cJSON *common_webhookJSON){
     }
 
 
+
     common_webhook_local_var = common_webhook_create_internal (
         obj_webhook_local_nonprim,
         a_obj_attemptList
         );
+
+    if (!common_webhook_local_var) {
+        goto end;
+    }
 
     return common_webhook_local_var;
 end:

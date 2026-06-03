@@ -12,18 +12,21 @@ static taxassignment_get_autocomplete_v2_response_m_payload_t *taxassignment_get
     if (!taxassignment_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    taxassignment_get_autocomplete_v2_response_m_payload_local_var->a_obj_taxassignment = a_obj_taxassignment;
-
+    memset(taxassignment_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(taxassignment_get_autocomplete_v2_response_m_payload_t));
     taxassignment_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    taxassignment_get_autocomplete_v2_response_m_payload_local_var->a_obj_taxassignment = a_obj_taxassignment;
     return taxassignment_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) taxassignment_get_autocomplete_v2_response_m_payload_t *taxassignment_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_taxassignment
     ) {
-    return taxassignment_get_autocomplete_v2_response_m_payload_create_internal (
+    taxassignment_get_autocomplete_v2_response_m_payload_t *result = taxassignment_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_taxassignment
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void taxassignment_get_autocomplete_v2_response_m_payload_free(taxassignment_get_autocomplete_v2_response_m_payload_t *taxassignment_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ taxassignment_get_autocomplete_v2_response_m_payload_t *taxassignment_get_autoco
     }
 
 
+
     taxassignment_get_autocomplete_v2_response_m_payload_local_var = taxassignment_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_taxassignmentList
         );
+
+    if (!taxassignment_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return taxassignment_get_autocomplete_v2_response_m_payload_local_var;
 end:

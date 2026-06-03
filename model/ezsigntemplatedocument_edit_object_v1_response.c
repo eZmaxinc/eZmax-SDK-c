@@ -14,11 +14,11 @@ static ezsigntemplatedocument_edit_object_v1_response_t *ezsigntemplatedocument_
     if (!ezsigntemplatedocument_edit_object_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsigntemplatedocument_edit_object_v1_response_local_var, 0, sizeof(ezsigntemplatedocument_edit_object_v1_response_t));
+    ezsigntemplatedocument_edit_object_v1_response_local_var->_library_owned = 1;
     ezsigntemplatedocument_edit_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsigntemplatedocument_edit_object_v1_response_local_var->obj_debug = obj_debug;
     ezsigntemplatedocument_edit_object_v1_response_local_var->a_obj_warning = a_obj_warning;
-
-    ezsigntemplatedocument_edit_object_v1_response_local_var->_library_owned = 1;
     return ezsigntemplatedocument_edit_object_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) ezsigntemplatedocument_edit_object_v1_response_t *ez
     common_response_obj_debug_t *obj_debug,
     list_t *a_obj_warning
     ) {
-    return ezsigntemplatedocument_edit_object_v1_response_create_internal (
+    ezsigntemplatedocument_edit_object_v1_response_t *result = ezsigntemplatedocument_edit_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         a_obj_warning
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatedocument_edit_object_v1_response_free(ezsigntemplatedocument_edit_object_v1_response_t *ezsigntemplatedocument_edit_object_v1_response) {
@@ -177,11 +180,16 @@ ezsigntemplatedocument_edit_object_v1_response_t *ezsigntemplatedocument_edit_ob
     }
 
 
+
     ezsigntemplatedocument_edit_object_v1_response_local_var = ezsigntemplatedocument_edit_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         a_obj_warning ? a_obj_warningList : NULL
         );
+
+    if (!ezsigntemplatedocument_edit_object_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatedocument_edit_object_v1_response_local_var;
 end:

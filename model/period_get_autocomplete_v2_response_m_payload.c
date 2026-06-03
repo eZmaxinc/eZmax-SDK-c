@@ -12,18 +12,21 @@ static period_get_autocomplete_v2_response_m_payload_t *period_get_autocomplete_
     if (!period_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    period_get_autocomplete_v2_response_m_payload_local_var->a_obj_period = a_obj_period;
-
+    memset(period_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(period_get_autocomplete_v2_response_m_payload_t));
     period_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    period_get_autocomplete_v2_response_m_payload_local_var->a_obj_period = a_obj_period;
     return period_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) period_get_autocomplete_v2_response_m_payload_t *period_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_period
     ) {
-    return period_get_autocomplete_v2_response_m_payload_create_internal (
+    period_get_autocomplete_v2_response_m_payload_t *result = period_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_period
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void period_get_autocomplete_v2_response_m_payload_free(period_get_autocomplete_v2_response_m_payload_t *period_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ period_get_autocomplete_v2_response_m_payload_t *period_get_autocomplete_v2_resp
     }
 
 
+
     period_get_autocomplete_v2_response_m_payload_local_var = period_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_periodList
         );
+
+    if (!period_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return period_get_autocomplete_v2_response_m_payload_local_var;
 end:

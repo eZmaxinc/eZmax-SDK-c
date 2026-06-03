@@ -19,14 +19,14 @@ typedef struct creditcardclient_autocomplete_element_response_t creditcardclient
 
 
 typedef struct creditcardclient_autocomplete_element_response_t {
-    int pki_creditcardclient_id; //numeric
+    int *pki_creditcardclient_id; //numeric
     char *s_creditcardclient_description; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } creditcardclient_autocomplete_element_response_t;
 
 __attribute__((deprecated)) creditcardclient_autocomplete_element_response_t *creditcardclient_autocomplete_element_response_create(
-    int pki_creditcardclient_id,
+    int *pki_creditcardclient_id,
     char *s_creditcardclient_description
 );
 

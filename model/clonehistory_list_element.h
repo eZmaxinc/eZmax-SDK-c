@@ -19,9 +19,9 @@ typedef struct clonehistory_list_element_t clonehistory_list_element_t;
 
 
 typedef struct clonehistory_list_element_t {
-    int pki_clonehistory_id; //numeric
-    int fki_user_id_cloning; //numeric
-    int fki_user_id_cloned; //numeric
+    int *pki_clonehistory_id; //numeric
+    int *fki_user_id_cloning; //numeric
+    int *fki_user_id_cloned; //numeric
     char *dt_clonehistory_firsthit; // string
     char *dt_clonehistory_lasthit; // string
     char *s_user_loginname_cloning; // string
@@ -35,9 +35,9 @@ typedef struct clonehistory_list_element_t {
 } clonehistory_list_element_t;
 
 __attribute__((deprecated)) clonehistory_list_element_t *clonehistory_list_element_create(
-    int pki_clonehistory_id,
-    int fki_user_id_cloning,
-    int fki_user_id_cloned,
+    int *pki_clonehistory_id,
+    int *fki_user_id_cloning,
+    int *fki_user_id_cloned,
     char *dt_clonehistory_firsthit,
     char *dt_clonehistory_lasthit,
     char *s_user_loginname_cloning,

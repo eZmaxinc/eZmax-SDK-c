@@ -6,32 +6,47 @@
 
 
 static website_response_compound_t *website_response_compound_create_internal(
-    int pki_website_id,
-    int fki_websitetype_id,
+    int *pki_website_id,
+    int *fki_websitetype_id,
     char *s_website_address
     ) {
     website_response_compound_t *website_response_compound_local_var = malloc(sizeof(website_response_compound_t));
     if (!website_response_compound_local_var) {
         return NULL;
     }
+    memset(website_response_compound_local_var, 0, sizeof(website_response_compound_t));
+    website_response_compound_local_var->_library_owned = 1;
     website_response_compound_local_var->pki_website_id = pki_website_id;
     website_response_compound_local_var->fki_websitetype_id = fki_websitetype_id;
     website_response_compound_local_var->s_website_address = s_website_address;
-
-    website_response_compound_local_var->_library_owned = 1;
     return website_response_compound_local_var;
 }
 
 __attribute__((deprecated)) website_response_compound_t *website_response_compound_create(
-    int pki_website_id,
-    int fki_websitetype_id,
+    int *pki_website_id,
+    int *fki_websitetype_id,
     char *s_website_address
     ) {
-    return website_response_compound_create_internal (
-        pki_website_id,
-        fki_websitetype_id,
+    int *pki_website_id_copy = NULL;
+    if (pki_website_id) {
+        pki_website_id_copy = malloc(sizeof(int));
+        if (pki_website_id_copy) *pki_website_id_copy = *pki_website_id;
+    }
+    int *fki_websitetype_id_copy = NULL;
+    if (fki_websitetype_id) {
+        fki_websitetype_id_copy = malloc(sizeof(int));
+        if (fki_websitetype_id_copy) *fki_websitetype_id_copy = *fki_websitetype_id;
+    }
+    website_response_compound_t *result = website_response_compound_create_internal (
+        pki_website_id_copy,
+        fki_websitetype_id_copy,
         s_website_address
         );
+    if (!result) {
+        free(pki_website_id_copy);
+        free(fki_websitetype_id_copy);
+    }
+    return result;
 }
 
 void website_response_compound_free(website_response_compound_t *website_response_compound) {
@@ -43,6 +58,14 @@ void website_response_compound_free(website_response_compound_t *website_respons
         return ;
     }
     listEntry_t *listEntry;
+    if (website_response_compound->pki_website_id) {
+        free(website_response_compound->pki_website_id);
+        website_response_compound->pki_website_id = NULL;
+    }
+    if (website_response_compound->fki_websitetype_id) {
+        free(website_response_compound->fki_websitetype_id);
+        website_response_compound->fki_websitetype_id = NULL;
+    }
     if (website_response_compound->s_website_address) {
         free(website_response_compound->s_website_address);
         website_response_compound->s_website_address = NULL;
@@ -57,7 +80,7 @@ cJSON *website_response_compound_convertToJSON(website_response_compound_t *webs
     if (!website_response_compound->pki_website_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiWebsiteID", website_response_compound->pki_website_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiWebsiteID", *website_response_compound->pki_website_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -66,7 +89,7 @@ cJSON *website_response_compound_convertToJSON(website_response_compound_t *webs
     if (!website_response_compound->fki_websitetype_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiWebsitetypeID", website_response_compound->fki_websitetype_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiWebsitetypeID", *website_response_compound->fki_websitetype_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -91,6 +114,14 @@ website_response_compound_t *website_response_compound_parseFromJSON(cJSON *webs
 
     website_response_compound_t *website_response_compound_local_var = NULL;
 
+    // define the local variable for website_response_compound->pki_website_id
+    int *pki_website_id_local_var = NULL;
+
+    // define the local variable for website_response_compound->fki_websitetype_id
+    int *fki_websitetype_id_local_var = NULL;
+
+    char *s_website_address_local_str = NULL;
+
     // website_response_compound->pki_website_id
     cJSON *pki_website_id = cJSON_GetObjectItemCaseSensitive(website_response_compoundJSON, "pkiWebsiteID");
     if (cJSON_IsNull(pki_website_id)) {
@@ -105,6 +136,12 @@ website_response_compound_t *website_response_compound_parseFromJSON(cJSON *webs
     {
     goto end; //Numeric
     }
+    pki_website_id_local_var = malloc(sizeof(int));
+    if(!pki_website_id_local_var)
+    {
+        goto end;
+    }
+    *pki_website_id_local_var = pki_website_id->valuedouble;
 
     // website_response_compound->fki_websitetype_id
     cJSON *fki_websitetype_id = cJSON_GetObjectItemCaseSensitive(website_response_compoundJSON, "fkiWebsitetypeID");
@@ -120,6 +157,12 @@ website_response_compound_t *website_response_compound_parseFromJSON(cJSON *webs
     {
     goto end; //Numeric
     }
+    fki_websitetype_id_local_var = malloc(sizeof(int));
+    if(!fki_websitetype_id_local_var)
+    {
+        goto end;
+    }
+    *fki_websitetype_id_local_var = fki_websitetype_id->valuedouble;
 
     // website_response_compound->s_website_address
     cJSON *s_website_address = cJSON_GetObjectItemCaseSensitive(website_response_compoundJSON, "sWebsiteAddress");
@@ -137,14 +180,32 @@ website_response_compound_t *website_response_compound_parseFromJSON(cJSON *webs
     }
 
 
+    if (s_website_address && !cJSON_IsNull(s_website_address)) s_website_address_local_str = strdup(s_website_address->valuestring);
+
     website_response_compound_local_var = website_response_compound_create_internal (
-        pki_website_id->valuedouble,
-        fki_websitetype_id->valuedouble,
-        strdup(s_website_address->valuestring)
+        pki_website_id_local_var,
+        fki_websitetype_id_local_var,
+        s_website_address_local_str
         );
+
+    if (!website_response_compound_local_var) {
+        goto end;
+    }
 
     return website_response_compound_local_var;
 end:
+    if (pki_website_id_local_var) {
+        free(pki_website_id_local_var);
+        pki_website_id_local_var = NULL;
+    }
+    if (fki_websitetype_id_local_var) {
+        free(fki_websitetype_id_local_var);
+        fki_websitetype_id_local_var = NULL;
+    }
+    if (s_website_address_local_str) {
+        free(s_website_address_local_str);
+        s_website_address_local_str = NULL;
+    }
     return NULL;
 
 }

@@ -19,24 +19,24 @@ typedef struct ezsigntemplatedocumentpage_response_compound_t ezsigntemplatedocu
 
 
 typedef struct ezsigntemplatedocumentpage_response_compound_t {
-    int pki_ezsigntemplatedocumentpage_id; //numeric
-    int i_ezsigntemplatedocumentpage_widthimage; //numeric
-    int i_ezsigntemplatedocumentpage_heightimage; //numeric
-    int i_ezsigntemplatedocumentpage_widthpdf; //numeric
-    int i_ezsigntemplatedocumentpage_heightpdf; //numeric
-    int i_ezsigntemplatedocumentpage_pagenumber; //numeric
+    int *pki_ezsigntemplatedocumentpage_id; //numeric
+    int *i_ezsigntemplatedocumentpage_widthimage; //numeric
+    int *i_ezsigntemplatedocumentpage_heightimage; //numeric
+    int *i_ezsigntemplatedocumentpage_widthpdf; //numeric
+    int *i_ezsigntemplatedocumentpage_heightpdf; //numeric
+    int *i_ezsigntemplatedocumentpage_pagenumber; //numeric
     char *s_computed_imageurl; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatedocumentpage_response_compound_t;
 
 __attribute__((deprecated)) ezsigntemplatedocumentpage_response_compound_t *ezsigntemplatedocumentpage_response_compound_create(
-    int pki_ezsigntemplatedocumentpage_id,
-    int i_ezsigntemplatedocumentpage_widthimage,
-    int i_ezsigntemplatedocumentpage_heightimage,
-    int i_ezsigntemplatedocumentpage_widthpdf,
-    int i_ezsigntemplatedocumentpage_heightpdf,
-    int i_ezsigntemplatedocumentpage_pagenumber,
+    int *pki_ezsigntemplatedocumentpage_id,
+    int *i_ezsigntemplatedocumentpage_widthimage,
+    int *i_ezsigntemplatedocumentpage_heightimage,
+    int *i_ezsigntemplatedocumentpage_widthpdf,
+    int *i_ezsigntemplatedocumentpage_heightpdf,
+    int *i_ezsigntemplatedocumentpage_pagenumber,
     char *s_computed_imageurl
 );
 

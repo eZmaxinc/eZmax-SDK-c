@@ -14,11 +14,11 @@ static ezsigntemplatedocument_get_words_positions_v1_response_t *ezsigntemplated
     if (!ezsigntemplatedocument_get_words_positions_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsigntemplatedocument_get_words_positions_v1_response_local_var, 0, sizeof(ezsigntemplatedocument_get_words_positions_v1_response_t));
+    ezsigntemplatedocument_get_words_positions_v1_response_local_var->_library_owned = 1;
     ezsigntemplatedocument_get_words_positions_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsigntemplatedocument_get_words_positions_v1_response_local_var->obj_debug = obj_debug;
     ezsigntemplatedocument_get_words_positions_v1_response_local_var->m_payload = m_payload;
-
-    ezsigntemplatedocument_get_words_positions_v1_response_local_var->_library_owned = 1;
     return ezsigntemplatedocument_get_words_positions_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) ezsigntemplatedocument_get_words_positions_v1_respon
     common_response_obj_debug_t *obj_debug,
     list_t *m_payload
     ) {
-    return ezsigntemplatedocument_get_words_positions_v1_response_create_internal (
+    ezsigntemplatedocument_get_words_positions_v1_response_t *result = ezsigntemplatedocument_get_words_positions_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatedocument_get_words_positions_v1_response_free(ezsigntemplatedocument_get_words_positions_v1_response_t *ezsigntemplatedocument_get_words_positions_v1_response) {
@@ -181,11 +184,16 @@ ezsigntemplatedocument_get_words_positions_v1_response_t *ezsigntemplatedocument
     }
 
 
+
     ezsigntemplatedocument_get_words_positions_v1_response_local_var = ezsigntemplatedocument_get_words_positions_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payloadList
         );
+
+    if (!ezsigntemplatedocument_get_words_positions_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatedocument_get_words_positions_v1_response_local_var;
 end:

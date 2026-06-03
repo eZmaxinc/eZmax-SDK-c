@@ -43,17 +43,17 @@ ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORM_e
 
 
 typedef struct ezsigndocument_request_compound_t {
-    int pki_ezsigndocument_id; //numeric
-    int fki_ezsignfolder_id; //numeric
-    int fki_ezsigntemplate_id; //numeric
-    int fki_ezsignfoldersignerassociation_id; //numeric
-    int fki_ezsignimportdocument_id; //numeric
-    int fki_language_id; //numeric
+    int *pki_ezsigndocument_id; //numeric
+    int *fki_ezsignfolder_id; //numeric
+    int *fki_ezsigntemplate_id; //numeric
+    int *fki_ezsignfoldersignerassociation_id; //numeric
+    int *fki_ezsignimportdocument_id; //numeric
+    int *fki_language_id; //numeric
     ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE_e e_ezsigndocument_source; //enum
     ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocument_format; //enum
     char *s_ezsigndocument_base64; //ByteArray
     char *s_ezsigndocument_url; // string
-    int b_ezsigndocument_forcerepair; //boolean
+    int *b_ezsigndocument_forcerepair; //boolean
     char *s_ezsigndocument_password; // string
     ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORM_e e_ezsigndocument_form; //enum
     char *dt_ezsigndocument_duedate; // string
@@ -64,17 +64,17 @@ typedef struct ezsigndocument_request_compound_t {
 } ezsigndocument_request_compound_t;
 
 __attribute__((deprecated)) ezsigndocument_request_compound_t *ezsigndocument_request_compound_create(
-    int pki_ezsigndocument_id,
-    int fki_ezsignfolder_id,
-    int fki_ezsigntemplate_id,
-    int fki_ezsignfoldersignerassociation_id,
-    int fki_ezsignimportdocument_id,
-    int fki_language_id,
+    int *pki_ezsigndocument_id,
+    int *fki_ezsignfolder_id,
+    int *fki_ezsigntemplate_id,
+    int *fki_ezsignfoldersignerassociation_id,
+    int *fki_ezsignimportdocument_id,
+    int *fki_language_id,
     ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE_e e_ezsigndocument_source,
     ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocument_format,
     char *s_ezsigndocument_base64,
     char *s_ezsigndocument_url,
-    int b_ezsigndocument_forcerepair,
+    int *b_ezsigndocument_forcerepair,
     char *s_ezsigndocument_password,
     ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORM_e e_ezsigndocument_form,
     char *dt_ezsigndocument_duedate,

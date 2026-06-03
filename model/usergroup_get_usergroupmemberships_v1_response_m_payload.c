@@ -12,18 +12,21 @@ static usergroup_get_usergroupmemberships_v1_response_m_payload_t *usergroup_get
     if (!usergroup_get_usergroupmemberships_v1_response_m_payload_local_var) {
         return NULL;
     }
-    usergroup_get_usergroupmemberships_v1_response_m_payload_local_var->a_obj_usergroupmembership = a_obj_usergroupmembership;
-
+    memset(usergroup_get_usergroupmemberships_v1_response_m_payload_local_var, 0, sizeof(usergroup_get_usergroupmemberships_v1_response_m_payload_t));
     usergroup_get_usergroupmemberships_v1_response_m_payload_local_var->_library_owned = 1;
+    usergroup_get_usergroupmemberships_v1_response_m_payload_local_var->a_obj_usergroupmembership = a_obj_usergroupmembership;
     return usergroup_get_usergroupmemberships_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) usergroup_get_usergroupmemberships_v1_response_m_payload_t *usergroup_get_usergroupmemberships_v1_response_m_payload_create(
     list_t *a_obj_usergroupmembership
     ) {
-    return usergroup_get_usergroupmemberships_v1_response_m_payload_create_internal (
+    usergroup_get_usergroupmemberships_v1_response_m_payload_t *result = usergroup_get_usergroupmemberships_v1_response_m_payload_create_internal (
         a_obj_usergroupmembership
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void usergroup_get_usergroupmemberships_v1_response_m_payload_free(usergroup_get_usergroupmemberships_v1_response_m_payload_t *usergroup_get_usergroupmemberships_v1_response_m_payload) {
@@ -111,9 +114,14 @@ usergroup_get_usergroupmemberships_v1_response_m_payload_t *usergroup_get_usergr
     }
 
 
+
     usergroup_get_usergroupmemberships_v1_response_m_payload_local_var = usergroup_get_usergroupmemberships_v1_response_m_payload_create_internal (
         a_obj_usergroupmembershipList
         );
+
+    if (!usergroup_get_usergroupmemberships_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return usergroup_get_usergroupmemberships_v1_response_m_payload_local_var;
 end:

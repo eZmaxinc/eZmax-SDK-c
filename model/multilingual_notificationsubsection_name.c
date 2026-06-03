@@ -13,10 +13,10 @@ static multilingual_notificationsubsection_name_t *multilingual_notificationsubs
     if (!multilingual_notificationsubsection_name_local_var) {
         return NULL;
     }
+    memset(multilingual_notificationsubsection_name_local_var, 0, sizeof(multilingual_notificationsubsection_name_t));
+    multilingual_notificationsubsection_name_local_var->_library_owned = 1;
     multilingual_notificationsubsection_name_local_var->s_notificationsubsection_name1 = s_notificationsubsection_name1;
     multilingual_notificationsubsection_name_local_var->s_notificationsubsection_name2 = s_notificationsubsection_name2;
-
-    multilingual_notificationsubsection_name_local_var->_library_owned = 1;
     return multilingual_notificationsubsection_name_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) multilingual_notificationsubsection_name_t *multilin
     char *s_notificationsubsection_name1,
     char *s_notificationsubsection_name2
     ) {
-    return multilingual_notificationsubsection_name_create_internal (
+    multilingual_notificationsubsection_name_t *result = multilingual_notificationsubsection_name_create_internal (
         s_notificationsubsection_name1,
         s_notificationsubsection_name2
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void multilingual_notificationsubsection_name_free(multilingual_notificationsubsection_name_t *multilingual_notificationsubsection_name) {
@@ -80,6 +83,10 @@ multilingual_notificationsubsection_name_t *multilingual_notificationsubsection_
 
     multilingual_notificationsubsection_name_t *multilingual_notificationsubsection_name_local_var = NULL;
 
+    char *s_notificationsubsection_name1_local_str = NULL;
+
+    char *s_notificationsubsection_name2_local_str = NULL;
+
     // multilingual_notificationsubsection_name->s_notificationsubsection_name1
     cJSON *s_notificationsubsection_name1 = cJSON_GetObjectItemCaseSensitive(multilingual_notificationsubsection_nameJSON, "sNotificationsubsectionName1");
     if (cJSON_IsNull(s_notificationsubsection_name1)) {
@@ -105,13 +112,28 @@ multilingual_notificationsubsection_name_t *multilingual_notificationsubsection_
     }
 
 
+    if (s_notificationsubsection_name1 && !cJSON_IsNull(s_notificationsubsection_name1)) s_notificationsubsection_name1_local_str = strdup(s_notificationsubsection_name1->valuestring);
+    if (s_notificationsubsection_name2 && !cJSON_IsNull(s_notificationsubsection_name2)) s_notificationsubsection_name2_local_str = strdup(s_notificationsubsection_name2->valuestring);
+
     multilingual_notificationsubsection_name_local_var = multilingual_notificationsubsection_name_create_internal (
-        s_notificationsubsection_name1 && !cJSON_IsNull(s_notificationsubsection_name1) ? strdup(s_notificationsubsection_name1->valuestring) : NULL,
-        s_notificationsubsection_name2 && !cJSON_IsNull(s_notificationsubsection_name2) ? strdup(s_notificationsubsection_name2->valuestring) : NULL
+        s_notificationsubsection_name1_local_str,
+        s_notificationsubsection_name2_local_str
         );
+
+    if (!multilingual_notificationsubsection_name_local_var) {
+        goto end;
+    }
 
     return multilingual_notificationsubsection_name_local_var;
 end:
+    if (s_notificationsubsection_name1_local_str) {
+        free(s_notificationsubsection_name1_local_str);
+        s_notificationsubsection_name1_local_str = NULL;
+    }
+    if (s_notificationsubsection_name2_local_str) {
+        free(s_notificationsubsection_name2_local_str);
+        s_notificationsubsection_name2_local_str = NULL;
+    }
     return NULL;
 
 }

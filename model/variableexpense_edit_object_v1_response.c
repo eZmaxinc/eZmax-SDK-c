@@ -13,10 +13,10 @@ static variableexpense_edit_object_v1_response_t *variableexpense_edit_object_v1
     if (!variableexpense_edit_object_v1_response_local_var) {
         return NULL;
     }
+    memset(variableexpense_edit_object_v1_response_local_var, 0, sizeof(variableexpense_edit_object_v1_response_t));
+    variableexpense_edit_object_v1_response_local_var->_library_owned = 1;
     variableexpense_edit_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     variableexpense_edit_object_v1_response_local_var->obj_debug = obj_debug;
-
-    variableexpense_edit_object_v1_response_local_var->_library_owned = 1;
     return variableexpense_edit_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) variableexpense_edit_object_v1_response_t *variablee
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return variableexpense_edit_object_v1_response_create_internal (
+    variableexpense_edit_object_v1_response_t *result = variableexpense_edit_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void variableexpense_edit_object_v1_response_free(variableexpense_edit_object_v1_response_t *variableexpense_edit_object_v1_response) {
@@ -119,10 +122,15 @@ variableexpense_edit_object_v1_response_t *variableexpense_edit_object_v1_respon
     }
 
 
+
     variableexpense_edit_object_v1_response_local_var = variableexpense_edit_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!variableexpense_edit_object_v1_response_local_var) {
+        goto end;
+    }
 
     return variableexpense_edit_object_v1_response_local_var;
 end:

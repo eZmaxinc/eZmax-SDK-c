@@ -19,13 +19,13 @@ typedef struct ezsignbulksend_create_ezsignbulksendtransmission_v2_request_t ezs
 
 
 typedef struct ezsignbulksend_create_ezsignbulksendtransmission_v2_request_t {
-    int fki_userlogintype_id; //numeric
-    int fki_secretquestion_id; //numeric
-    int fki_ezsigntsarequirement_id; //numeric
+    int *fki_userlogintype_id; //numeric
+    int *fki_secretquestion_id; //numeric
+    int *fki_ezsigntsarequirement_id; //numeric
     char *s_ezsignbulksendtransmission_description; // string
     char *dt_ezsigndocument_duedate; // string
-    int i_ezsignfolder_sendreminderfirstdays; //numeric
-    int i_ezsignfolder_sendreminderotherdays; //numeric
+    int *i_ezsignfolder_sendreminderfirstdays; //numeric
+    int *i_ezsignfolder_sendreminderotherdays; //numeric
     char *t_extra_message; // string
     char *s_csv_base64; //ByteArray
 
@@ -33,13 +33,13 @@ typedef struct ezsignbulksend_create_ezsignbulksendtransmission_v2_request_t {
 } ezsignbulksend_create_ezsignbulksendtransmission_v2_request_t;
 
 __attribute__((deprecated)) ezsignbulksend_create_ezsignbulksendtransmission_v2_request_t *ezsignbulksend_create_ezsignbulksendtransmission_v2_request_create(
-    int fki_userlogintype_id,
-    int fki_secretquestion_id,
-    int fki_ezsigntsarequirement_id,
+    int *fki_userlogintype_id,
+    int *fki_secretquestion_id,
+    int *fki_ezsigntsarequirement_id,
     char *s_ezsignbulksendtransmission_description,
     char *dt_ezsigndocument_duedate,
-    int i_ezsignfolder_sendreminderfirstdays,
-    int i_ezsignfolder_sendreminderotherdays,
+    int *i_ezsignfolder_sendreminderfirstdays,
+    int *i_ezsignfolder_sendreminderotherdays,
     char *t_extra_message,
     char *s_csv_base64
 );

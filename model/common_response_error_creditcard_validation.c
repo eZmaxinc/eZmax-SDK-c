@@ -15,12 +15,12 @@ static common_response_error_creditcard_validation_t *common_response_error_cred
     if (!common_response_error_creditcard_validation_local_var) {
         return NULL;
     }
+    memset(common_response_error_creditcard_validation_local_var, 0, sizeof(common_response_error_creditcard_validation_t));
+    common_response_error_creditcard_validation_local_var->_library_owned = 1;
     common_response_error_creditcard_validation_local_var->s_error_message = s_error_message;
     common_response_error_creditcard_validation_local_var->e_error_code = e_error_code;
     common_response_error_creditcard_validation_local_var->a_s_error_messagedetail = a_s_error_messagedetail;
     common_response_error_creditcard_validation_local_var->obj_creditcardtransactionresponse = obj_creditcardtransactionresponse;
-
-    common_response_error_creditcard_validation_local_var->_library_owned = 1;
     return common_response_error_creditcard_validation_local_var;
 }
 
@@ -30,12 +30,15 @@ __attribute__((deprecated)) common_response_error_creditcard_validation_t *commo
     list_t *a_s_error_messagedetail,
     custom_creditcardtransactionresponse_response_t *obj_creditcardtransactionresponse
     ) {
-    return common_response_error_creditcard_validation_create_internal (
+    common_response_error_creditcard_validation_t *result = common_response_error_creditcard_validation_create_internal (
         s_error_message,
         e_error_code,
         a_s_error_messagedetail,
         obj_creditcardtransactionresponse
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void common_response_error_creditcard_validation_free(common_response_error_creditcard_validation_t *common_response_error_creditcard_validation) {
@@ -132,6 +135,8 @@ common_response_error_creditcard_validation_t *common_response_error_creditcard_
 
     common_response_error_creditcard_validation_t *common_response_error_creditcard_validation_local_var = NULL;
 
+    char *s_error_message_local_str = NULL;
+
     // define the local variable for common_response_error_creditcard_validation->e_error_code
     ezmax_api_definition__full_field_e_error_code__e e_error_code_local_nonprim = 0;
 
@@ -200,15 +205,25 @@ common_response_error_creditcard_validation_t *common_response_error_creditcard_
     }
 
 
+    if (s_error_message && !cJSON_IsNull(s_error_message)) s_error_message_local_str = strdup(s_error_message->valuestring);
+
     common_response_error_creditcard_validation_local_var = common_response_error_creditcard_validation_create_internal (
-        strdup(s_error_message->valuestring),
+        s_error_message_local_str,
         e_error_code_local_nonprim,
         a_s_error_messagedetail ? a_s_error_messagedetailList : NULL,
         obj_creditcardtransactionresponse ? obj_creditcardtransactionresponse_local_nonprim : NULL
         );
 
+    if (!common_response_error_creditcard_validation_local_var) {
+        goto end;
+    }
+
     return common_response_error_creditcard_validation_local_var;
 end:
+    if (s_error_message_local_str) {
+        free(s_error_message_local_str);
+        s_error_message_local_str = NULL;
+    }
     if (e_error_code_local_nonprim) {
         e_error_code_local_nonprim = 0;
     }

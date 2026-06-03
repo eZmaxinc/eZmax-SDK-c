@@ -19,17 +19,17 @@ typedef struct billingentityinternalproduct_request_t billingentityinternalprodu
 
 
 typedef struct billingentityinternalproduct_request_t {
-    int pki_billingentityinternalproduct_id; //numeric
-    int fki_ezmaxproduct_id; //numeric
-    int fki_billingentityexternal_id; //numeric
+    int *pki_billingentityinternalproduct_id; //numeric
+    int *fki_ezmaxproduct_id; //numeric
+    int *fki_billingentityexternal_id; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } billingentityinternalproduct_request_t;
 
 __attribute__((deprecated)) billingentityinternalproduct_request_t *billingentityinternalproduct_request_create(
-    int pki_billingentityinternalproduct_id,
-    int fki_ezmaxproduct_id,
-    int fki_billingentityexternal_id
+    int *pki_billingentityinternalproduct_id,
+    int *fki_ezmaxproduct_id,
+    int *fki_billingentityexternal_id
 );
 
 void billingentityinternalproduct_request_free(billingentityinternalproduct_request_t *billingentityinternalproduct_request);

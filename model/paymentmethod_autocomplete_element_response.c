@@ -6,32 +6,47 @@
 
 
 static paymentmethod_autocomplete_element_response_t *paymentmethod_autocomplete_element_response_create_internal(
-    int pki_paymentmethod_id,
+    int *pki_paymentmethod_id,
     char *s_paymentmethod_description_x,
-    int b_paymentmethod_isactive
+    int *b_paymentmethod_isactive
     ) {
     paymentmethod_autocomplete_element_response_t *paymentmethod_autocomplete_element_response_local_var = malloc(sizeof(paymentmethod_autocomplete_element_response_t));
     if (!paymentmethod_autocomplete_element_response_local_var) {
         return NULL;
     }
+    memset(paymentmethod_autocomplete_element_response_local_var, 0, sizeof(paymentmethod_autocomplete_element_response_t));
+    paymentmethod_autocomplete_element_response_local_var->_library_owned = 1;
     paymentmethod_autocomplete_element_response_local_var->pki_paymentmethod_id = pki_paymentmethod_id;
     paymentmethod_autocomplete_element_response_local_var->s_paymentmethod_description_x = s_paymentmethod_description_x;
     paymentmethod_autocomplete_element_response_local_var->b_paymentmethod_isactive = b_paymentmethod_isactive;
-
-    paymentmethod_autocomplete_element_response_local_var->_library_owned = 1;
     return paymentmethod_autocomplete_element_response_local_var;
 }
 
 __attribute__((deprecated)) paymentmethod_autocomplete_element_response_t *paymentmethod_autocomplete_element_response_create(
-    int pki_paymentmethod_id,
+    int *pki_paymentmethod_id,
     char *s_paymentmethod_description_x,
-    int b_paymentmethod_isactive
+    int *b_paymentmethod_isactive
     ) {
-    return paymentmethod_autocomplete_element_response_create_internal (
-        pki_paymentmethod_id,
+    int *pki_paymentmethod_id_copy = NULL;
+    if (pki_paymentmethod_id) {
+        pki_paymentmethod_id_copy = malloc(sizeof(int));
+        if (pki_paymentmethod_id_copy) *pki_paymentmethod_id_copy = *pki_paymentmethod_id;
+    }
+    int *b_paymentmethod_isactive_copy = NULL;
+    if (b_paymentmethod_isactive) {
+        b_paymentmethod_isactive_copy = malloc(sizeof(int));
+        if (b_paymentmethod_isactive_copy) *b_paymentmethod_isactive_copy = *b_paymentmethod_isactive;
+    }
+    paymentmethod_autocomplete_element_response_t *result = paymentmethod_autocomplete_element_response_create_internal (
+        pki_paymentmethod_id_copy,
         s_paymentmethod_description_x,
-        b_paymentmethod_isactive
+        b_paymentmethod_isactive_copy
         );
+    if (!result) {
+        free(pki_paymentmethod_id_copy);
+        free(b_paymentmethod_isactive_copy);
+    }
+    return result;
 }
 
 void paymentmethod_autocomplete_element_response_free(paymentmethod_autocomplete_element_response_t *paymentmethod_autocomplete_element_response) {
@@ -43,9 +58,17 @@ void paymentmethod_autocomplete_element_response_free(paymentmethod_autocomplete
         return ;
     }
     listEntry_t *listEntry;
+    if (paymentmethod_autocomplete_element_response->pki_paymentmethod_id) {
+        free(paymentmethod_autocomplete_element_response->pki_paymentmethod_id);
+        paymentmethod_autocomplete_element_response->pki_paymentmethod_id = NULL;
+    }
     if (paymentmethod_autocomplete_element_response->s_paymentmethod_description_x) {
         free(paymentmethod_autocomplete_element_response->s_paymentmethod_description_x);
         paymentmethod_autocomplete_element_response->s_paymentmethod_description_x = NULL;
+    }
+    if (paymentmethod_autocomplete_element_response->b_paymentmethod_isactive) {
+        free(paymentmethod_autocomplete_element_response->b_paymentmethod_isactive);
+        paymentmethod_autocomplete_element_response->b_paymentmethod_isactive = NULL;
     }
     free(paymentmethod_autocomplete_element_response);
 }
@@ -57,7 +80,7 @@ cJSON *paymentmethod_autocomplete_element_response_convertToJSON(paymentmethod_a
     if (!paymentmethod_autocomplete_element_response->pki_paymentmethod_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiPaymentmethodID", paymentmethod_autocomplete_element_response->pki_paymentmethod_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiPaymentmethodID", *paymentmethod_autocomplete_element_response->pki_paymentmethod_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -75,7 +98,7 @@ cJSON *paymentmethod_autocomplete_element_response_convertToJSON(paymentmethod_a
     if (!paymentmethod_autocomplete_element_response->b_paymentmethod_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bPaymentmethodIsactive", paymentmethod_autocomplete_element_response->b_paymentmethod_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bPaymentmethodIsactive", *paymentmethod_autocomplete_element_response->b_paymentmethod_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -91,6 +114,14 @@ paymentmethod_autocomplete_element_response_t *paymentmethod_autocomplete_elemen
 
     paymentmethod_autocomplete_element_response_t *paymentmethod_autocomplete_element_response_local_var = NULL;
 
+    // define the local variable for paymentmethod_autocomplete_element_response->pki_paymentmethod_id
+    int *pki_paymentmethod_id_local_var = NULL;
+
+    char *s_paymentmethod_description_x_local_str = NULL;
+
+    // define the local variable for paymentmethod_autocomplete_element_response->b_paymentmethod_isactive
+    int *b_paymentmethod_isactive_local_var = NULL;
+
     // paymentmethod_autocomplete_element_response->pki_paymentmethod_id
     cJSON *pki_paymentmethod_id = cJSON_GetObjectItemCaseSensitive(paymentmethod_autocomplete_element_responseJSON, "pkiPaymentmethodID");
     if (cJSON_IsNull(pki_paymentmethod_id)) {
@@ -105,6 +136,12 @@ paymentmethod_autocomplete_element_response_t *paymentmethod_autocomplete_elemen
     {
     goto end; //Numeric
     }
+    pki_paymentmethod_id_local_var = malloc(sizeof(int));
+    if(!pki_paymentmethod_id_local_var)
+    {
+        goto end;
+    }
+    *pki_paymentmethod_id_local_var = pki_paymentmethod_id->valuedouble;
 
     // paymentmethod_autocomplete_element_response->s_paymentmethod_description_x
     cJSON *s_paymentmethod_description_x = cJSON_GetObjectItemCaseSensitive(paymentmethod_autocomplete_element_responseJSON, "sPaymentmethodDescriptionX");
@@ -135,16 +172,40 @@ paymentmethod_autocomplete_element_response_t *paymentmethod_autocomplete_elemen
     {
     goto end; //Bool
     }
+    b_paymentmethod_isactive_local_var = malloc(sizeof(int));
+    if(!b_paymentmethod_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_paymentmethod_isactive_local_var = b_paymentmethod_isactive->valueint;
 
+
+    if (s_paymentmethod_description_x && !cJSON_IsNull(s_paymentmethod_description_x)) s_paymentmethod_description_x_local_str = strdup(s_paymentmethod_description_x->valuestring);
 
     paymentmethod_autocomplete_element_response_local_var = paymentmethod_autocomplete_element_response_create_internal (
-        pki_paymentmethod_id->valuedouble,
-        strdup(s_paymentmethod_description_x->valuestring),
-        b_paymentmethod_isactive->valueint
+        pki_paymentmethod_id_local_var,
+        s_paymentmethod_description_x_local_str,
+        b_paymentmethod_isactive_local_var
         );
+
+    if (!paymentmethod_autocomplete_element_response_local_var) {
+        goto end;
+    }
 
     return paymentmethod_autocomplete_element_response_local_var;
 end:
+    if (pki_paymentmethod_id_local_var) {
+        free(pki_paymentmethod_id_local_var);
+        pki_paymentmethod_id_local_var = NULL;
+    }
+    if (s_paymentmethod_description_x_local_str) {
+        free(s_paymentmethod_description_x_local_str);
+        s_paymentmethod_description_x_local_str = NULL;
+    }
+    if (b_paymentmethod_isactive_local_var) {
+        free(b_paymentmethod_isactive_local_var);
+        b_paymentmethod_isactive_local_var = NULL;
+    }
     return NULL;
 
 }

@@ -6,36 +6,51 @@
 
 
 static realestateboard_autocomplete_element_response_t *realestateboard_autocomplete_element_response_create_internal(
-    int pki_realestateboard_id,
+    int *pki_realestateboard_id,
     char *s_province_name_x,
     char *s_realestateboard_name_x,
-    int b_realestateboard_isactive
+    int *b_realestateboard_isactive
     ) {
     realestateboard_autocomplete_element_response_t *realestateboard_autocomplete_element_response_local_var = malloc(sizeof(realestateboard_autocomplete_element_response_t));
     if (!realestateboard_autocomplete_element_response_local_var) {
         return NULL;
     }
+    memset(realestateboard_autocomplete_element_response_local_var, 0, sizeof(realestateboard_autocomplete_element_response_t));
+    realestateboard_autocomplete_element_response_local_var->_library_owned = 1;
     realestateboard_autocomplete_element_response_local_var->pki_realestateboard_id = pki_realestateboard_id;
     realestateboard_autocomplete_element_response_local_var->s_province_name_x = s_province_name_x;
     realestateboard_autocomplete_element_response_local_var->s_realestateboard_name_x = s_realestateboard_name_x;
     realestateboard_autocomplete_element_response_local_var->b_realestateboard_isactive = b_realestateboard_isactive;
-
-    realestateboard_autocomplete_element_response_local_var->_library_owned = 1;
     return realestateboard_autocomplete_element_response_local_var;
 }
 
 __attribute__((deprecated)) realestateboard_autocomplete_element_response_t *realestateboard_autocomplete_element_response_create(
-    int pki_realestateboard_id,
+    int *pki_realestateboard_id,
     char *s_province_name_x,
     char *s_realestateboard_name_x,
-    int b_realestateboard_isactive
+    int *b_realestateboard_isactive
     ) {
-    return realestateboard_autocomplete_element_response_create_internal (
-        pki_realestateboard_id,
+    int *pki_realestateboard_id_copy = NULL;
+    if (pki_realestateboard_id) {
+        pki_realestateboard_id_copy = malloc(sizeof(int));
+        if (pki_realestateboard_id_copy) *pki_realestateboard_id_copy = *pki_realestateboard_id;
+    }
+    int *b_realestateboard_isactive_copy = NULL;
+    if (b_realestateboard_isactive) {
+        b_realestateboard_isactive_copy = malloc(sizeof(int));
+        if (b_realestateboard_isactive_copy) *b_realestateboard_isactive_copy = *b_realestateboard_isactive;
+    }
+    realestateboard_autocomplete_element_response_t *result = realestateboard_autocomplete_element_response_create_internal (
+        pki_realestateboard_id_copy,
         s_province_name_x,
         s_realestateboard_name_x,
-        b_realestateboard_isactive
+        b_realestateboard_isactive_copy
         );
+    if (!result) {
+        free(pki_realestateboard_id_copy);
+        free(b_realestateboard_isactive_copy);
+    }
+    return result;
 }
 
 void realestateboard_autocomplete_element_response_free(realestateboard_autocomplete_element_response_t *realestateboard_autocomplete_element_response) {
@@ -47,6 +62,10 @@ void realestateboard_autocomplete_element_response_free(realestateboard_autocomp
         return ;
     }
     listEntry_t *listEntry;
+    if (realestateboard_autocomplete_element_response->pki_realestateboard_id) {
+        free(realestateboard_autocomplete_element_response->pki_realestateboard_id);
+        realestateboard_autocomplete_element_response->pki_realestateboard_id = NULL;
+    }
     if (realestateboard_autocomplete_element_response->s_province_name_x) {
         free(realestateboard_autocomplete_element_response->s_province_name_x);
         realestateboard_autocomplete_element_response->s_province_name_x = NULL;
@@ -54,6 +73,10 @@ void realestateboard_autocomplete_element_response_free(realestateboard_autocomp
     if (realestateboard_autocomplete_element_response->s_realestateboard_name_x) {
         free(realestateboard_autocomplete_element_response->s_realestateboard_name_x);
         realestateboard_autocomplete_element_response->s_realestateboard_name_x = NULL;
+    }
+    if (realestateboard_autocomplete_element_response->b_realestateboard_isactive) {
+        free(realestateboard_autocomplete_element_response->b_realestateboard_isactive);
+        realestateboard_autocomplete_element_response->b_realestateboard_isactive = NULL;
     }
     free(realestateboard_autocomplete_element_response);
 }
@@ -65,7 +88,7 @@ cJSON *realestateboard_autocomplete_element_response_convertToJSON(realestateboa
     if (!realestateboard_autocomplete_element_response->pki_realestateboard_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiRealestateboardID", realestateboard_autocomplete_element_response->pki_realestateboard_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiRealestateboardID", *realestateboard_autocomplete_element_response->pki_realestateboard_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -92,7 +115,7 @@ cJSON *realestateboard_autocomplete_element_response_convertToJSON(realestateboa
     if (!realestateboard_autocomplete_element_response->b_realestateboard_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bRealestateboardIsactive", realestateboard_autocomplete_element_response->b_realestateboard_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bRealestateboardIsactive", *realestateboard_autocomplete_element_response->b_realestateboard_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -108,6 +131,16 @@ realestateboard_autocomplete_element_response_t *realestateboard_autocomplete_el
 
     realestateboard_autocomplete_element_response_t *realestateboard_autocomplete_element_response_local_var = NULL;
 
+    // define the local variable for realestateboard_autocomplete_element_response->pki_realestateboard_id
+    int *pki_realestateboard_id_local_var = NULL;
+
+    char *s_province_name_x_local_str = NULL;
+
+    char *s_realestateboard_name_x_local_str = NULL;
+
+    // define the local variable for realestateboard_autocomplete_element_response->b_realestateboard_isactive
+    int *b_realestateboard_isactive_local_var = NULL;
+
     // realestateboard_autocomplete_element_response->pki_realestateboard_id
     cJSON *pki_realestateboard_id = cJSON_GetObjectItemCaseSensitive(realestateboard_autocomplete_element_responseJSON, "pkiRealestateboardID");
     if (cJSON_IsNull(pki_realestateboard_id)) {
@@ -122,6 +155,12 @@ realestateboard_autocomplete_element_response_t *realestateboard_autocomplete_el
     {
     goto end; //Numeric
     }
+    pki_realestateboard_id_local_var = malloc(sizeof(int));
+    if(!pki_realestateboard_id_local_var)
+    {
+        goto end;
+    }
+    *pki_realestateboard_id_local_var = pki_realestateboard_id->valuedouble;
 
     // realestateboard_autocomplete_element_response->s_province_name_x
     cJSON *s_province_name_x = cJSON_GetObjectItemCaseSensitive(realestateboard_autocomplete_element_responseJSON, "sProvinceNameX");
@@ -167,17 +206,46 @@ realestateboard_autocomplete_element_response_t *realestateboard_autocomplete_el
     {
     goto end; //Bool
     }
+    b_realestateboard_isactive_local_var = malloc(sizeof(int));
+    if(!b_realestateboard_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_realestateboard_isactive_local_var = b_realestateboard_isactive->valueint;
 
+
+    if (s_province_name_x && !cJSON_IsNull(s_province_name_x)) s_province_name_x_local_str = strdup(s_province_name_x->valuestring);
+    if (s_realestateboard_name_x && !cJSON_IsNull(s_realestateboard_name_x)) s_realestateboard_name_x_local_str = strdup(s_realestateboard_name_x->valuestring);
 
     realestateboard_autocomplete_element_response_local_var = realestateboard_autocomplete_element_response_create_internal (
-        pki_realestateboard_id->valuedouble,
-        strdup(s_province_name_x->valuestring),
-        strdup(s_realestateboard_name_x->valuestring),
-        b_realestateboard_isactive->valueint
+        pki_realestateboard_id_local_var,
+        s_province_name_x_local_str,
+        s_realestateboard_name_x_local_str,
+        b_realestateboard_isactive_local_var
         );
+
+    if (!realestateboard_autocomplete_element_response_local_var) {
+        goto end;
+    }
 
     return realestateboard_autocomplete_element_response_local_var;
 end:
+    if (pki_realestateboard_id_local_var) {
+        free(pki_realestateboard_id_local_var);
+        pki_realestateboard_id_local_var = NULL;
+    }
+    if (s_province_name_x_local_str) {
+        free(s_province_name_x_local_str);
+        s_province_name_x_local_str = NULL;
+    }
+    if (s_realestateboard_name_x_local_str) {
+        free(s_realestateboard_name_x_local_str);
+        s_realestateboard_name_x_local_str = NULL;
+    }
+    if (b_realestateboard_isactive_local_var) {
+        free(b_realestateboard_isactive_local_var);
+        b_realestateboard_isactive_local_var = NULL;
+    }
     return NULL;
 
 }

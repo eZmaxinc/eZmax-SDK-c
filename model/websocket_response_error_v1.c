@@ -31,11 +31,11 @@ static websocket_response_error_v1_t *websocket_response_error_v1_create_interna
     if (!websocket_response_error_v1_local_var) {
         return NULL;
     }
+    memset(websocket_response_error_v1_local_var, 0, sizeof(websocket_response_error_v1_t));
+    websocket_response_error_v1_local_var->_library_owned = 1;
     websocket_response_error_v1_local_var->e_websocket_messagetype = e_websocket_messagetype;
     websocket_response_error_v1_local_var->s_websocket_channel = s_websocket_channel;
     websocket_response_error_v1_local_var->m_payload = m_payload;
-
-    websocket_response_error_v1_local_var->_library_owned = 1;
     return websocket_response_error_v1_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) websocket_response_error_v1_t *websocket_response_er
     char *s_websocket_channel,
     websocket_response_error_v1_m_payload_t *m_payload
     ) {
-    return websocket_response_error_v1_create_internal (
+    websocket_response_error_v1_t *result = websocket_response_error_v1_create_internal (
         e_websocket_messagetype,
         s_websocket_channel,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void websocket_response_error_v1_free(websocket_response_error_v1_t *websocket_response_error_v1) {
@@ -118,6 +121,8 @@ websocket_response_error_v1_t *websocket_response_error_v1_parseFromJSON(cJSON *
 
     websocket_response_error_v1_t *websocket_response_error_v1_local_var = NULL;
 
+    char *s_websocket_channel_local_str = NULL;
+
     // define the local variable for websocket_response_error_v1->m_payload
     websocket_response_error_v1_m_payload_t *m_payload_local_nonprim = NULL;
 
@@ -166,14 +171,24 @@ websocket_response_error_v1_t *websocket_response_error_v1_parseFromJSON(cJSON *
     m_payload_local_nonprim = websocket_response_error_v1_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+    if (s_websocket_channel && !cJSON_IsNull(s_websocket_channel)) s_websocket_channel_local_str = strdup(s_websocket_channel->valuestring);
+
     websocket_response_error_v1_local_var = websocket_response_error_v1_create_internal (
         e_websocket_messagetypeVariable,
-        strdup(s_websocket_channel->valuestring),
+        s_websocket_channel_local_str,
         m_payload_local_nonprim
         );
 
+    if (!websocket_response_error_v1_local_var) {
+        goto end;
+    }
+
     return websocket_response_error_v1_local_var;
 end:
+    if (s_websocket_channel_local_str) {
+        free(s_websocket_channel_local_str);
+        s_websocket_channel_local_str = NULL;
+    }
     if (m_payload_local_nonprim) {
         websocket_response_error_v1_m_payload_free(m_payload_local_nonprim);
         m_payload_local_nonprim = NULL;

@@ -27,23 +27,23 @@ ezmax_api_definition__full_ezsigntemplatedocument_extract_text_v1_request_ESECTI
 
 
 typedef struct ezsigntemplatedocument_extract_text_v1_request_t {
-    int i_page; //numeric
+    int *i_page; //numeric
     ezmax_api_definition__full_ezsigntemplatedocument_extract_text_v1_request_ESECTION_e e_section; //enum
-    int i_x; //numeric
-    int i_y; //numeric
-    int i_width; //numeric
-    int i_height; //numeric
+    int *i_x; //numeric
+    int *i_y; //numeric
+    int *i_width; //numeric
+    int *i_height; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatedocument_extract_text_v1_request_t;
 
 __attribute__((deprecated)) ezsigntemplatedocument_extract_text_v1_request_t *ezsigntemplatedocument_extract_text_v1_request_create(
-    int i_page,
+    int *i_page,
     ezmax_api_definition__full_ezsigntemplatedocument_extract_text_v1_request_ESECTION_e e_section,
-    int i_x,
-    int i_y,
-    int i_width,
-    int i_height
+    int *i_x,
+    int *i_y,
+    int *i_width,
+    int *i_height
 );
 
 void ezsigntemplatedocument_extract_text_v1_request_free(ezsigntemplatedocument_extract_text_v1_request_t *ezsigntemplatedocument_extract_text_v1_request);

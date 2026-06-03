@@ -13,10 +13,10 @@ static activesession_generate_federation_token_v1_response_m_payload_t *activese
     if (!activesession_generate_federation_token_v1_response_m_payload_local_var) {
         return NULL;
     }
+    memset(activesession_generate_federation_token_v1_response_m_payload_local_var, 0, sizeof(activesession_generate_federation_token_v1_response_m_payload_t));
+    activesession_generate_federation_token_v1_response_m_payload_local_var->_library_owned = 1;
     activesession_generate_federation_token_v1_response_m_payload_local_var->obj_apikeyfederation = obj_apikeyfederation;
     activesession_generate_federation_token_v1_response_m_payload_local_var->s_ezmaxcustomercode_url = s_ezmaxcustomercode_url;
-
-    activesession_generate_federation_token_v1_response_m_payload_local_var->_library_owned = 1;
     return activesession_generate_federation_token_v1_response_m_payload_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) activesession_generate_federation_token_v1_response_
     custom_apikeyfederation_t *obj_apikeyfederation,
     char *s_ezmaxcustomercode_url
     ) {
-    return activesession_generate_federation_token_v1_response_m_payload_create_internal (
+    activesession_generate_federation_token_v1_response_m_payload_t *result = activesession_generate_federation_token_v1_response_m_payload_create_internal (
         obj_apikeyfederation,
         s_ezmaxcustomercode_url
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void activesession_generate_federation_token_v1_response_m_payload_free(activesession_generate_federation_token_v1_response_m_payload_t *activesession_generate_federation_token_v1_response_m_payload) {
@@ -90,6 +93,8 @@ activesession_generate_federation_token_v1_response_m_payload_t *activesession_g
     // define the local variable for activesession_generate_federation_token_v1_response_m_payload->obj_apikeyfederation
     custom_apikeyfederation_t *obj_apikeyfederation_local_nonprim = NULL;
 
+    char *s_ezmaxcustomercode_url_local_str = NULL;
+
     // activesession_generate_federation_token_v1_response_m_payload->obj_apikeyfederation
     cJSON *obj_apikeyfederation = cJSON_GetObjectItemCaseSensitive(activesession_generate_federation_token_v1_response_m_payloadJSON, "objApikeyfederation");
     if (cJSON_IsNull(obj_apikeyfederation)) {
@@ -118,16 +123,26 @@ activesession_generate_federation_token_v1_response_m_payload_t *activesession_g
     }
 
 
+    if (s_ezmaxcustomercode_url && !cJSON_IsNull(s_ezmaxcustomercode_url)) s_ezmaxcustomercode_url_local_str = strdup(s_ezmaxcustomercode_url->valuestring);
+
     activesession_generate_federation_token_v1_response_m_payload_local_var = activesession_generate_federation_token_v1_response_m_payload_create_internal (
         obj_apikeyfederation_local_nonprim,
-        strdup(s_ezmaxcustomercode_url->valuestring)
+        s_ezmaxcustomercode_url_local_str
         );
+
+    if (!activesession_generate_federation_token_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return activesession_generate_federation_token_v1_response_m_payload_local_var;
 end:
     if (obj_apikeyfederation_local_nonprim) {
         custom_apikeyfederation_free(obj_apikeyfederation_local_nonprim);
         obj_apikeyfederation_local_nonprim = NULL;
+    }
+    if (s_ezmaxcustomercode_url_local_str) {
+        free(s_ezmaxcustomercode_url_local_str);
+        s_ezmaxcustomercode_url_local_str = NULL;
     }
     return NULL;
 

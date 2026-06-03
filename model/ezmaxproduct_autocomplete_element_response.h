@@ -19,17 +19,17 @@ typedef struct ezmaxproduct_autocomplete_element_response_t ezmaxproduct_autocom
 
 
 typedef struct ezmaxproduct_autocomplete_element_response_t {
-    int pki_ezmaxproduct_id; //numeric
+    int *pki_ezmaxproduct_id; //numeric
     char *s_ezmaxproduct_description_x; // string
-    int b_ezmaxproduct_isactive; //boolean
+    int *b_ezmaxproduct_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezmaxproduct_autocomplete_element_response_t;
 
 __attribute__((deprecated)) ezmaxproduct_autocomplete_element_response_t *ezmaxproduct_autocomplete_element_response_create(
-    int pki_ezmaxproduct_id,
+    int *pki_ezmaxproduct_id,
     char *s_ezmaxproduct_description_x,
-    int b_ezmaxproduct_isactive
+    int *b_ezmaxproduct_isactive
 );
 
 void ezmaxproduct_autocomplete_element_response_free(ezmaxproduct_autocomplete_element_response_t *ezmaxproduct_autocomplete_element_response);

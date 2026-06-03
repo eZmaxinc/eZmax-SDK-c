@@ -7,31 +7,46 @@
 
 static secretquestion_autocomplete_element_response_t *secretquestion_autocomplete_element_response_create_internal(
     char *s_secretquestion_text_x,
-    int pki_secretquestion_id,
-    int b_secretquestion_isactive
+    int *pki_secretquestion_id,
+    int *b_secretquestion_isactive
     ) {
     secretquestion_autocomplete_element_response_t *secretquestion_autocomplete_element_response_local_var = malloc(sizeof(secretquestion_autocomplete_element_response_t));
     if (!secretquestion_autocomplete_element_response_local_var) {
         return NULL;
     }
+    memset(secretquestion_autocomplete_element_response_local_var, 0, sizeof(secretquestion_autocomplete_element_response_t));
+    secretquestion_autocomplete_element_response_local_var->_library_owned = 1;
     secretquestion_autocomplete_element_response_local_var->s_secretquestion_text_x = s_secretquestion_text_x;
     secretquestion_autocomplete_element_response_local_var->pki_secretquestion_id = pki_secretquestion_id;
     secretquestion_autocomplete_element_response_local_var->b_secretquestion_isactive = b_secretquestion_isactive;
-
-    secretquestion_autocomplete_element_response_local_var->_library_owned = 1;
     return secretquestion_autocomplete_element_response_local_var;
 }
 
 __attribute__((deprecated)) secretquestion_autocomplete_element_response_t *secretquestion_autocomplete_element_response_create(
     char *s_secretquestion_text_x,
-    int pki_secretquestion_id,
-    int b_secretquestion_isactive
+    int *pki_secretquestion_id,
+    int *b_secretquestion_isactive
     ) {
-    return secretquestion_autocomplete_element_response_create_internal (
+    int *pki_secretquestion_id_copy = NULL;
+    if (pki_secretquestion_id) {
+        pki_secretquestion_id_copy = malloc(sizeof(int));
+        if (pki_secretquestion_id_copy) *pki_secretquestion_id_copy = *pki_secretquestion_id;
+    }
+    int *b_secretquestion_isactive_copy = NULL;
+    if (b_secretquestion_isactive) {
+        b_secretquestion_isactive_copy = malloc(sizeof(int));
+        if (b_secretquestion_isactive_copy) *b_secretquestion_isactive_copy = *b_secretquestion_isactive;
+    }
+    secretquestion_autocomplete_element_response_t *result = secretquestion_autocomplete_element_response_create_internal (
         s_secretquestion_text_x,
-        pki_secretquestion_id,
-        b_secretquestion_isactive
+        pki_secretquestion_id_copy,
+        b_secretquestion_isactive_copy
         );
+    if (!result) {
+        free(pki_secretquestion_id_copy);
+        free(b_secretquestion_isactive_copy);
+    }
+    return result;
 }
 
 void secretquestion_autocomplete_element_response_free(secretquestion_autocomplete_element_response_t *secretquestion_autocomplete_element_response) {
@@ -46,6 +61,14 @@ void secretquestion_autocomplete_element_response_free(secretquestion_autocomple
     if (secretquestion_autocomplete_element_response->s_secretquestion_text_x) {
         free(secretquestion_autocomplete_element_response->s_secretquestion_text_x);
         secretquestion_autocomplete_element_response->s_secretquestion_text_x = NULL;
+    }
+    if (secretquestion_autocomplete_element_response->pki_secretquestion_id) {
+        free(secretquestion_autocomplete_element_response->pki_secretquestion_id);
+        secretquestion_autocomplete_element_response->pki_secretquestion_id = NULL;
+    }
+    if (secretquestion_autocomplete_element_response->b_secretquestion_isactive) {
+        free(secretquestion_autocomplete_element_response->b_secretquestion_isactive);
+        secretquestion_autocomplete_element_response->b_secretquestion_isactive = NULL;
     }
     free(secretquestion_autocomplete_element_response);
 }
@@ -66,7 +89,7 @@ cJSON *secretquestion_autocomplete_element_response_convertToJSON(secretquestion
     if (!secretquestion_autocomplete_element_response->pki_secretquestion_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiSecretquestionID", secretquestion_autocomplete_element_response->pki_secretquestion_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiSecretquestionID", *secretquestion_autocomplete_element_response->pki_secretquestion_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -75,7 +98,7 @@ cJSON *secretquestion_autocomplete_element_response_convertToJSON(secretquestion
     if (!secretquestion_autocomplete_element_response->b_secretquestion_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bSecretquestionIsactive", secretquestion_autocomplete_element_response->b_secretquestion_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bSecretquestionIsactive", *secretquestion_autocomplete_element_response->b_secretquestion_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -90,6 +113,14 @@ fail:
 secretquestion_autocomplete_element_response_t *secretquestion_autocomplete_element_response_parseFromJSON(cJSON *secretquestion_autocomplete_element_responseJSON){
 
     secretquestion_autocomplete_element_response_t *secretquestion_autocomplete_element_response_local_var = NULL;
+
+    char *s_secretquestion_text_x_local_str = NULL;
+
+    // define the local variable for secretquestion_autocomplete_element_response->pki_secretquestion_id
+    int *pki_secretquestion_id_local_var = NULL;
+
+    // define the local variable for secretquestion_autocomplete_element_response->b_secretquestion_isactive
+    int *b_secretquestion_isactive_local_var = NULL;
 
     // secretquestion_autocomplete_element_response->s_secretquestion_text_x
     cJSON *s_secretquestion_text_x = cJSON_GetObjectItemCaseSensitive(secretquestion_autocomplete_element_responseJSON, "sSecretquestionTextX");
@@ -120,6 +151,12 @@ secretquestion_autocomplete_element_response_t *secretquestion_autocomplete_elem
     {
     goto end; //Numeric
     }
+    pki_secretquestion_id_local_var = malloc(sizeof(int));
+    if(!pki_secretquestion_id_local_var)
+    {
+        goto end;
+    }
+    *pki_secretquestion_id_local_var = pki_secretquestion_id->valuedouble;
 
     // secretquestion_autocomplete_element_response->b_secretquestion_isactive
     cJSON *b_secretquestion_isactive = cJSON_GetObjectItemCaseSensitive(secretquestion_autocomplete_element_responseJSON, "bSecretquestionIsactive");
@@ -135,16 +172,40 @@ secretquestion_autocomplete_element_response_t *secretquestion_autocomplete_elem
     {
     goto end; //Bool
     }
+    b_secretquestion_isactive_local_var = malloc(sizeof(int));
+    if(!b_secretquestion_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_secretquestion_isactive_local_var = b_secretquestion_isactive->valueint;
 
+
+    if (s_secretquestion_text_x && !cJSON_IsNull(s_secretquestion_text_x)) s_secretquestion_text_x_local_str = strdup(s_secretquestion_text_x->valuestring);
 
     secretquestion_autocomplete_element_response_local_var = secretquestion_autocomplete_element_response_create_internal (
-        strdup(s_secretquestion_text_x->valuestring),
-        pki_secretquestion_id->valuedouble,
-        b_secretquestion_isactive->valueint
+        s_secretquestion_text_x_local_str,
+        pki_secretquestion_id_local_var,
+        b_secretquestion_isactive_local_var
         );
+
+    if (!secretquestion_autocomplete_element_response_local_var) {
+        goto end;
+    }
 
     return secretquestion_autocomplete_element_response_local_var;
 end:
+    if (s_secretquestion_text_x_local_str) {
+        free(s_secretquestion_text_x_local_str);
+        s_secretquestion_text_x_local_str = NULL;
+    }
+    if (pki_secretquestion_id_local_var) {
+        free(pki_secretquestion_id_local_var);
+        pki_secretquestion_id_local_var = NULL;
+    }
+    if (b_secretquestion_isactive_local_var) {
+        free(b_secretquestion_isactive_local_var);
+        b_secretquestion_isactive_local_var = NULL;
+    }
     return NULL;
 
 }

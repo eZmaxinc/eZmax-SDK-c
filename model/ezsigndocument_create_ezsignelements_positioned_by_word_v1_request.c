@@ -13,10 +13,10 @@ static ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_t *ezs
     if (!ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_local_var) {
         return NULL;
     }
+    memset(ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_local_var, 0, sizeof(ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_t));
+    ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_local_var->_library_owned = 1;
     ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_local_var->a_obj_ezsignformfieldgroup = a_obj_ezsignformfieldgroup;
     ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_local_var->a_obj_ezsignsignature = a_obj_ezsignsignature;
-
-    ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_local_var->_library_owned = 1;
     return ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) ezsigndocument_create_ezsignelements_positioned_by_w
     list_t *a_obj_ezsignformfieldgroup,
     list_t *a_obj_ezsignsignature
     ) {
-    return ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_create_internal (
+    ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_t *result = ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_create_internal (
         a_obj_ezsignformfieldgroup,
         a_obj_ezsignsignature
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_free(ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_t *ezsigndocument_create_ezsignelements_positioned_by_word_v1_request) {
@@ -173,10 +176,15 @@ ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_t *ezsigndocu
     }
 
 
+
     ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_local_var = ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_create_internal (
         a_obj_ezsignformfieldgroupList,
         a_obj_ezsignsignatureList
         );
+
+    if (!ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_local_var) {
+        goto end;
+    }
 
     return ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_local_var;
 end:

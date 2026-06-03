@@ -13,10 +13,10 @@ static multilingual_paymentterm_description_t *multilingual_paymentterm_descript
     if (!multilingual_paymentterm_description_local_var) {
         return NULL;
     }
+    memset(multilingual_paymentterm_description_local_var, 0, sizeof(multilingual_paymentterm_description_t));
+    multilingual_paymentterm_description_local_var->_library_owned = 1;
     multilingual_paymentterm_description_local_var->s_paymentterm_description1 = s_paymentterm_description1;
     multilingual_paymentterm_description_local_var->s_paymentterm_description2 = s_paymentterm_description2;
-
-    multilingual_paymentterm_description_local_var->_library_owned = 1;
     return multilingual_paymentterm_description_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) multilingual_paymentterm_description_t *multilingual
     char *s_paymentterm_description1,
     char *s_paymentterm_description2
     ) {
-    return multilingual_paymentterm_description_create_internal (
+    multilingual_paymentterm_description_t *result = multilingual_paymentterm_description_create_internal (
         s_paymentterm_description1,
         s_paymentterm_description2
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void multilingual_paymentterm_description_free(multilingual_paymentterm_description_t *multilingual_paymentterm_description) {
@@ -80,6 +83,10 @@ multilingual_paymentterm_description_t *multilingual_paymentterm_description_par
 
     multilingual_paymentterm_description_t *multilingual_paymentterm_description_local_var = NULL;
 
+    char *s_paymentterm_description1_local_str = NULL;
+
+    char *s_paymentterm_description2_local_str = NULL;
+
     // multilingual_paymentterm_description->s_paymentterm_description1
     cJSON *s_paymentterm_description1 = cJSON_GetObjectItemCaseSensitive(multilingual_paymentterm_descriptionJSON, "sPaymenttermDescription1");
     if (cJSON_IsNull(s_paymentterm_description1)) {
@@ -105,13 +112,28 @@ multilingual_paymentterm_description_t *multilingual_paymentterm_description_par
     }
 
 
+    if (s_paymentterm_description1 && !cJSON_IsNull(s_paymentterm_description1)) s_paymentterm_description1_local_str = strdup(s_paymentterm_description1->valuestring);
+    if (s_paymentterm_description2 && !cJSON_IsNull(s_paymentterm_description2)) s_paymentterm_description2_local_str = strdup(s_paymentterm_description2->valuestring);
+
     multilingual_paymentterm_description_local_var = multilingual_paymentterm_description_create_internal (
-        s_paymentterm_description1 && !cJSON_IsNull(s_paymentterm_description1) ? strdup(s_paymentterm_description1->valuestring) : NULL,
-        s_paymentterm_description2 && !cJSON_IsNull(s_paymentterm_description2) ? strdup(s_paymentterm_description2->valuestring) : NULL
+        s_paymentterm_description1_local_str,
+        s_paymentterm_description2_local_str
         );
+
+    if (!multilingual_paymentterm_description_local_var) {
+        goto end;
+    }
 
     return multilingual_paymentterm_description_local_var;
 end:
+    if (s_paymentterm_description1_local_str) {
+        free(s_paymentterm_description1_local_str);
+        s_paymentterm_description1_local_str = NULL;
+    }
+    if (s_paymentterm_description2_local_str) {
+        free(s_paymentterm_description2_local_str);
+        s_paymentterm_description2_local_str = NULL;
+    }
     return NULL;
 
 }

@@ -6,10 +6,10 @@
 
 
 static common_reportcellstyle_t *common_reportcellstyle_create_internal(
-    int b_reportcellstyle_bordertop,
-    int b_reportcellstyle_borderbottom,
-    int b_reportcellstyle_borderleft,
-    int b_reportcellstyle_borderright,
+    int *b_reportcellstyle_bordertop,
+    int *b_reportcellstyle_borderbottom,
+    int *b_reportcellstyle_borderleft,
+    int *b_reportcellstyle_borderright,
     ezmax_api_definition__full_enum_horizontalalignment__e e_reportcell_horizontalalignment,
     ezmax_api_definition__full_enum_verticalalignment__e e_reportcell_verticalalignment,
     ezmax_api_definition__full_enum_fontweight__e e_reportcell_fontweight,
@@ -19,6 +19,8 @@ static common_reportcellstyle_t *common_reportcellstyle_create_internal(
     if (!common_reportcellstyle_local_var) {
         return NULL;
     }
+    memset(common_reportcellstyle_local_var, 0, sizeof(common_reportcellstyle_t));
+    common_reportcellstyle_local_var->_library_owned = 1;
     common_reportcellstyle_local_var->b_reportcellstyle_bordertop = b_reportcellstyle_bordertop;
     common_reportcellstyle_local_var->b_reportcellstyle_borderbottom = b_reportcellstyle_borderbottom;
     common_reportcellstyle_local_var->b_reportcellstyle_borderleft = b_reportcellstyle_borderleft;
@@ -27,31 +29,56 @@ static common_reportcellstyle_t *common_reportcellstyle_create_internal(
     common_reportcellstyle_local_var->e_reportcell_verticalalignment = e_reportcell_verticalalignment;
     common_reportcellstyle_local_var->e_reportcell_fontweight = e_reportcell_fontweight;
     common_reportcellstyle_local_var->e_reportcell_fontunderline = e_reportcell_fontunderline;
-
-    common_reportcellstyle_local_var->_library_owned = 1;
     return common_reportcellstyle_local_var;
 }
 
 __attribute__((deprecated)) common_reportcellstyle_t *common_reportcellstyle_create(
-    int b_reportcellstyle_bordertop,
-    int b_reportcellstyle_borderbottom,
-    int b_reportcellstyle_borderleft,
-    int b_reportcellstyle_borderright,
+    int *b_reportcellstyle_bordertop,
+    int *b_reportcellstyle_borderbottom,
+    int *b_reportcellstyle_borderleft,
+    int *b_reportcellstyle_borderright,
     ezmax_api_definition__full_enum_horizontalalignment__e e_reportcell_horizontalalignment,
     ezmax_api_definition__full_enum_verticalalignment__e e_reportcell_verticalalignment,
     ezmax_api_definition__full_enum_fontweight__e e_reportcell_fontweight,
     ezmax_api_definition__full_enum_fontunderline__e e_reportcell_fontunderline
     ) {
-    return common_reportcellstyle_create_internal (
-        b_reportcellstyle_bordertop,
-        b_reportcellstyle_borderbottom,
-        b_reportcellstyle_borderleft,
-        b_reportcellstyle_borderright,
+    int *b_reportcellstyle_bordertop_copy = NULL;
+    if (b_reportcellstyle_bordertop) {
+        b_reportcellstyle_bordertop_copy = malloc(sizeof(int));
+        if (b_reportcellstyle_bordertop_copy) *b_reportcellstyle_bordertop_copy = *b_reportcellstyle_bordertop;
+    }
+    int *b_reportcellstyle_borderbottom_copy = NULL;
+    if (b_reportcellstyle_borderbottom) {
+        b_reportcellstyle_borderbottom_copy = malloc(sizeof(int));
+        if (b_reportcellstyle_borderbottom_copy) *b_reportcellstyle_borderbottom_copy = *b_reportcellstyle_borderbottom;
+    }
+    int *b_reportcellstyle_borderleft_copy = NULL;
+    if (b_reportcellstyle_borderleft) {
+        b_reportcellstyle_borderleft_copy = malloc(sizeof(int));
+        if (b_reportcellstyle_borderleft_copy) *b_reportcellstyle_borderleft_copy = *b_reportcellstyle_borderleft;
+    }
+    int *b_reportcellstyle_borderright_copy = NULL;
+    if (b_reportcellstyle_borderright) {
+        b_reportcellstyle_borderright_copy = malloc(sizeof(int));
+        if (b_reportcellstyle_borderright_copy) *b_reportcellstyle_borderright_copy = *b_reportcellstyle_borderright;
+    }
+    common_reportcellstyle_t *result = common_reportcellstyle_create_internal (
+        b_reportcellstyle_bordertop_copy,
+        b_reportcellstyle_borderbottom_copy,
+        b_reportcellstyle_borderleft_copy,
+        b_reportcellstyle_borderright_copy,
         e_reportcell_horizontalalignment,
         e_reportcell_verticalalignment,
         e_reportcell_fontweight,
         e_reportcell_fontunderline
         );
+    if (!result) {
+        free(b_reportcellstyle_bordertop_copy);
+        free(b_reportcellstyle_borderbottom_copy);
+        free(b_reportcellstyle_borderleft_copy);
+        free(b_reportcellstyle_borderright_copy);
+    }
+    return result;
 }
 
 void common_reportcellstyle_free(common_reportcellstyle_t *common_reportcellstyle) {
@@ -63,6 +90,22 @@ void common_reportcellstyle_free(common_reportcellstyle_t *common_reportcellstyl
         return ;
     }
     listEntry_t *listEntry;
+    if (common_reportcellstyle->b_reportcellstyle_bordertop) {
+        free(common_reportcellstyle->b_reportcellstyle_bordertop);
+        common_reportcellstyle->b_reportcellstyle_bordertop = NULL;
+    }
+    if (common_reportcellstyle->b_reportcellstyle_borderbottom) {
+        free(common_reportcellstyle->b_reportcellstyle_borderbottom);
+        common_reportcellstyle->b_reportcellstyle_borderbottom = NULL;
+    }
+    if (common_reportcellstyle->b_reportcellstyle_borderleft) {
+        free(common_reportcellstyle->b_reportcellstyle_borderleft);
+        common_reportcellstyle->b_reportcellstyle_borderleft = NULL;
+    }
+    if (common_reportcellstyle->b_reportcellstyle_borderright) {
+        free(common_reportcellstyle->b_reportcellstyle_borderright);
+        common_reportcellstyle->b_reportcellstyle_borderright = NULL;
+    }
     free(common_reportcellstyle);
 }
 
@@ -73,7 +116,7 @@ cJSON *common_reportcellstyle_convertToJSON(common_reportcellstyle_t *common_rep
     if (!common_reportcellstyle->b_reportcellstyle_bordertop) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bReportcellstyleBordertop", common_reportcellstyle->b_reportcellstyle_bordertop) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bReportcellstyleBordertop", *common_reportcellstyle->b_reportcellstyle_bordertop) == NULL) {
     goto fail; //Bool
     }
 
@@ -82,7 +125,7 @@ cJSON *common_reportcellstyle_convertToJSON(common_reportcellstyle_t *common_rep
     if (!common_reportcellstyle->b_reportcellstyle_borderbottom) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bReportcellstyleBorderbottom", common_reportcellstyle->b_reportcellstyle_borderbottom) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bReportcellstyleBorderbottom", *common_reportcellstyle->b_reportcellstyle_borderbottom) == NULL) {
     goto fail; //Bool
     }
 
@@ -91,7 +134,7 @@ cJSON *common_reportcellstyle_convertToJSON(common_reportcellstyle_t *common_rep
     if (!common_reportcellstyle->b_reportcellstyle_borderleft) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bReportcellstyleBorderleft", common_reportcellstyle->b_reportcellstyle_borderleft) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bReportcellstyleBorderleft", *common_reportcellstyle->b_reportcellstyle_borderleft) == NULL) {
     goto fail; //Bool
     }
 
@@ -100,7 +143,7 @@ cJSON *common_reportcellstyle_convertToJSON(common_reportcellstyle_t *common_rep
     if (!common_reportcellstyle->b_reportcellstyle_borderright) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bReportcellstyleBorderright", common_reportcellstyle->b_reportcellstyle_borderright) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bReportcellstyleBorderright", *common_reportcellstyle->b_reportcellstyle_borderright) == NULL) {
     goto fail; //Bool
     }
 
@@ -172,6 +215,18 @@ common_reportcellstyle_t *common_reportcellstyle_parseFromJSON(cJSON *common_rep
 
     common_reportcellstyle_t *common_reportcellstyle_local_var = NULL;
 
+    // define the local variable for common_reportcellstyle->b_reportcellstyle_bordertop
+    int *b_reportcellstyle_bordertop_local_var = NULL;
+
+    // define the local variable for common_reportcellstyle->b_reportcellstyle_borderbottom
+    int *b_reportcellstyle_borderbottom_local_var = NULL;
+
+    // define the local variable for common_reportcellstyle->b_reportcellstyle_borderleft
+    int *b_reportcellstyle_borderleft_local_var = NULL;
+
+    // define the local variable for common_reportcellstyle->b_reportcellstyle_borderright
+    int *b_reportcellstyle_borderright_local_var = NULL;
+
     // define the local variable for common_reportcellstyle->e_reportcell_horizontalalignment
     ezmax_api_definition__full_enum_horizontalalignment__e e_reportcell_horizontalalignment_local_nonprim = 0;
 
@@ -198,6 +253,12 @@ common_reportcellstyle_t *common_reportcellstyle_parseFromJSON(cJSON *common_rep
     {
     goto end; //Bool
     }
+    b_reportcellstyle_bordertop_local_var = malloc(sizeof(int));
+    if(!b_reportcellstyle_bordertop_local_var)
+    {
+        goto end;
+    }
+    *b_reportcellstyle_bordertop_local_var = b_reportcellstyle_bordertop->valueint;
 
     // common_reportcellstyle->b_reportcellstyle_borderbottom
     cJSON *b_reportcellstyle_borderbottom = cJSON_GetObjectItemCaseSensitive(common_reportcellstyleJSON, "bReportcellstyleBorderbottom");
@@ -213,6 +274,12 @@ common_reportcellstyle_t *common_reportcellstyle_parseFromJSON(cJSON *common_rep
     {
     goto end; //Bool
     }
+    b_reportcellstyle_borderbottom_local_var = malloc(sizeof(int));
+    if(!b_reportcellstyle_borderbottom_local_var)
+    {
+        goto end;
+    }
+    *b_reportcellstyle_borderbottom_local_var = b_reportcellstyle_borderbottom->valueint;
 
     // common_reportcellstyle->b_reportcellstyle_borderleft
     cJSON *b_reportcellstyle_borderleft = cJSON_GetObjectItemCaseSensitive(common_reportcellstyleJSON, "bReportcellstyleBorderleft");
@@ -228,6 +295,12 @@ common_reportcellstyle_t *common_reportcellstyle_parseFromJSON(cJSON *common_rep
     {
     goto end; //Bool
     }
+    b_reportcellstyle_borderleft_local_var = malloc(sizeof(int));
+    if(!b_reportcellstyle_borderleft_local_var)
+    {
+        goto end;
+    }
+    *b_reportcellstyle_borderleft_local_var = b_reportcellstyle_borderleft->valueint;
 
     // common_reportcellstyle->b_reportcellstyle_borderright
     cJSON *b_reportcellstyle_borderright = cJSON_GetObjectItemCaseSensitive(common_reportcellstyleJSON, "bReportcellstyleBorderright");
@@ -243,6 +316,12 @@ common_reportcellstyle_t *common_reportcellstyle_parseFromJSON(cJSON *common_rep
     {
     goto end; //Bool
     }
+    b_reportcellstyle_borderright_local_var = malloc(sizeof(int));
+    if(!b_reportcellstyle_borderright_local_var)
+    {
+        goto end;
+    }
+    *b_reportcellstyle_borderright_local_var = b_reportcellstyle_borderright->valueint;
 
     // common_reportcellstyle->e_reportcell_horizontalalignment
     cJSON *e_reportcell_horizontalalignment = cJSON_GetObjectItemCaseSensitive(common_reportcellstyleJSON, "eReportcellHorizontalalignment");
@@ -293,19 +372,40 @@ common_reportcellstyle_t *common_reportcellstyle_parseFromJSON(cJSON *common_rep
     e_reportcell_fontunderline_local_nonprim = enum_fontunderline_parseFromJSON(e_reportcell_fontunderline); //custom
 
 
+
     common_reportcellstyle_local_var = common_reportcellstyle_create_internal (
-        b_reportcellstyle_bordertop->valueint,
-        b_reportcellstyle_borderbottom->valueint,
-        b_reportcellstyle_borderleft->valueint,
-        b_reportcellstyle_borderright->valueint,
+        b_reportcellstyle_bordertop_local_var,
+        b_reportcellstyle_borderbottom_local_var,
+        b_reportcellstyle_borderleft_local_var,
+        b_reportcellstyle_borderright_local_var,
         e_reportcell_horizontalalignment_local_nonprim,
         e_reportcell_verticalalignment_local_nonprim,
         e_reportcell_fontweight_local_nonprim,
         e_reportcell_fontunderline_local_nonprim
         );
 
+    if (!common_reportcellstyle_local_var) {
+        goto end;
+    }
+
     return common_reportcellstyle_local_var;
 end:
+    if (b_reportcellstyle_bordertop_local_var) {
+        free(b_reportcellstyle_bordertop_local_var);
+        b_reportcellstyle_bordertop_local_var = NULL;
+    }
+    if (b_reportcellstyle_borderbottom_local_var) {
+        free(b_reportcellstyle_borderbottom_local_var);
+        b_reportcellstyle_borderbottom_local_var = NULL;
+    }
+    if (b_reportcellstyle_borderleft_local_var) {
+        free(b_reportcellstyle_borderleft_local_var);
+        b_reportcellstyle_borderleft_local_var = NULL;
+    }
+    if (b_reportcellstyle_borderright_local_var) {
+        free(b_reportcellstyle_borderright_local_var);
+        b_reportcellstyle_borderright_local_var = NULL;
+    }
     if (e_reportcell_horizontalalignment_local_nonprim) {
         e_reportcell_horizontalalignment_local_nonprim = 0;
     }

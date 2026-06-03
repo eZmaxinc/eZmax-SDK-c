@@ -19,25 +19,25 @@ typedef struct ezsigntemplatedocument_response_t ezsigntemplatedocument_response
 
 
 typedef struct ezsigntemplatedocument_response_t {
-    int pki_ezsigntemplatedocument_id; //numeric
-    int fki_ezsigntemplate_id; //numeric
+    int *pki_ezsigntemplatedocument_id; //numeric
+    int *fki_ezsigntemplate_id; //numeric
     char *s_ezsigntemplatedocument_name; // string
-    int i_ezsigntemplatedocument_pagetotal; //numeric
-    int i_ezsigntemplatedocument_signaturetotal; //numeric
-    int i_ezsigntemplatedocument_formfieldtotal; //numeric
-    int b_ezsigntemplatedocument_hassignedsignatures; //boolean
+    int *i_ezsigntemplatedocument_pagetotal; //numeric
+    int *i_ezsigntemplatedocument_signaturetotal; //numeric
+    int *i_ezsigntemplatedocument_formfieldtotal; //numeric
+    int *b_ezsigntemplatedocument_hassignedsignatures; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatedocument_response_t;
 
 __attribute__((deprecated)) ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_create(
-    int pki_ezsigntemplatedocument_id,
-    int fki_ezsigntemplate_id,
+    int *pki_ezsigntemplatedocument_id,
+    int *fki_ezsigntemplate_id,
     char *s_ezsigntemplatedocument_name,
-    int i_ezsigntemplatedocument_pagetotal,
-    int i_ezsigntemplatedocument_signaturetotal,
-    int i_ezsigntemplatedocument_formfieldtotal,
-    int b_ezsigntemplatedocument_hassignedsignatures
+    int *i_ezsigntemplatedocument_pagetotal,
+    int *i_ezsigntemplatedocument_signaturetotal,
+    int *i_ezsigntemplatedocument_formfieldtotal,
+    int *b_ezsigntemplatedocument_hassignedsignatures
 );
 
 void ezsigntemplatedocument_response_free(ezsigntemplatedocument_response_t *ezsigntemplatedocument_response);

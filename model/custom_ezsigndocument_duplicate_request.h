@@ -1,0 +1,48 @@
+/*
+ * custom_ezsigndocument_duplicate_request.h
+ *
+ * An Ezsigndocument Object in the context of a duplicate path
+ */
+
+#ifndef _custom_ezsigndocument_duplicate_request_H_
+#define _custom_ezsigndocument_duplicate_request_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct custom_ezsigndocument_duplicate_request_t custom_ezsigndocument_duplicate_request_t;
+
+
+// Enum EEZSIGNDOCUMENTVERSION for custom_ezsigndocument_duplicate_request
+
+typedef enum  { ezmax_api_definition__full_custom_ezsigndocument_duplicate_request_EEZSIGNDOCUMENTVERSION_NULL = 0, ezmax_api_definition__full_custom_ezsigndocument_duplicate_request_EEZSIGNDOCUMENTVERSION_Initial, ezmax_api_definition__full_custom_ezsigndocument_duplicate_request_EEZSIGNDOCUMENTVERSION__Signed } ezmax_api_definition__full_custom_ezsigndocument_duplicate_request_EEZSIGNDOCUMENTVERSION_e;
+
+char* custom_ezsigndocument_duplicate_request_e_ezsigndocument_version_ToString(ezmax_api_definition__full_custom_ezsigndocument_duplicate_request_EEZSIGNDOCUMENTVERSION_e e_ezsigndocument_version);
+
+ezmax_api_definition__full_custom_ezsigndocument_duplicate_request_EEZSIGNDOCUMENTVERSION_e custom_ezsigndocument_duplicate_request_e_ezsigndocument_version_FromString(char* e_ezsigndocument_version);
+
+
+
+typedef struct custom_ezsigndocument_duplicate_request_t {
+    int *pki_ezsigndocument_id; //numeric
+    ezmax_api_definition__full_custom_ezsigndocument_duplicate_request_EEZSIGNDOCUMENTVERSION_e e_ezsigndocument_version; //enum
+
+    int _library_owned; // Is the library responsible for freeing this object?
+} custom_ezsigndocument_duplicate_request_t;
+
+__attribute__((deprecated)) custom_ezsigndocument_duplicate_request_t *custom_ezsigndocument_duplicate_request_create(
+    int *pki_ezsigndocument_id,
+    ezmax_api_definition__full_custom_ezsigndocument_duplicate_request_EEZSIGNDOCUMENTVERSION_e e_ezsigndocument_version
+);
+
+void custom_ezsigndocument_duplicate_request_free(custom_ezsigndocument_duplicate_request_t *custom_ezsigndocument_duplicate_request);
+
+custom_ezsigndocument_duplicate_request_t *custom_ezsigndocument_duplicate_request_parseFromJSON(cJSON *custom_ezsigndocument_duplicate_requestJSON);
+
+cJSON *custom_ezsigndocument_duplicate_request_convertToJSON(custom_ezsigndocument_duplicate_request_t *custom_ezsigndocument_duplicate_request);
+
+#endif /* _custom_ezsigndocument_duplicate_request_H_ */
+

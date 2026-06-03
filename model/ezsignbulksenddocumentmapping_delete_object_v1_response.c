@@ -13,10 +13,10 @@ static ezsignbulksenddocumentmapping_delete_object_v1_response_t *ezsignbulksend
     if (!ezsignbulksenddocumentmapping_delete_object_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsignbulksenddocumentmapping_delete_object_v1_response_local_var, 0, sizeof(ezsignbulksenddocumentmapping_delete_object_v1_response_t));
+    ezsignbulksenddocumentmapping_delete_object_v1_response_local_var->_library_owned = 1;
     ezsignbulksenddocumentmapping_delete_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsignbulksenddocumentmapping_delete_object_v1_response_local_var->obj_debug = obj_debug;
-
-    ezsignbulksenddocumentmapping_delete_object_v1_response_local_var->_library_owned = 1;
     return ezsignbulksenddocumentmapping_delete_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) ezsignbulksenddocumentmapping_delete_object_v1_respo
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return ezsignbulksenddocumentmapping_delete_object_v1_response_create_internal (
+    ezsignbulksenddocumentmapping_delete_object_v1_response_t *result = ezsignbulksenddocumentmapping_delete_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignbulksenddocumentmapping_delete_object_v1_response_free(ezsignbulksenddocumentmapping_delete_object_v1_response_t *ezsignbulksenddocumentmapping_delete_object_v1_response) {
@@ -119,10 +122,15 @@ ezsignbulksenddocumentmapping_delete_object_v1_response_t *ezsignbulksenddocumen
     }
 
 
+
     ezsignbulksenddocumentmapping_delete_object_v1_response_local_var = ezsignbulksenddocumentmapping_delete_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!ezsignbulksenddocumentmapping_delete_object_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsignbulksenddocumentmapping_delete_object_v1_response_local_var;
 end:

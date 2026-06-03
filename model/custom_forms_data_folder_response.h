@@ -20,7 +20,7 @@ typedef struct custom_forms_data_folder_response_t custom_forms_data_folder_resp
 
 
 typedef struct custom_forms_data_folder_response_t {
-    int pki_ezsignfolder_id; //numeric
+    int *pki_ezsignfolder_id; //numeric
     char *s_ezsignfolder_description; // string
     list_t *a_obj_form_data_document; //nonprimitive container
 
@@ -28,7 +28,7 @@ typedef struct custom_forms_data_folder_response_t {
 } custom_forms_data_folder_response_t;
 
 __attribute__((deprecated)) custom_forms_data_folder_response_t *custom_forms_data_folder_response_create(
-    int pki_ezsignfolder_id,
+    int *pki_ezsignfolder_id,
     char *s_ezsignfolder_description,
     list_t *a_obj_form_data_document
 );

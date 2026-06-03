@@ -12,18 +12,21 @@ static franchisebroker_get_autocomplete_v2_response_m_payload_t *franchisebroker
     if (!franchisebroker_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    franchisebroker_get_autocomplete_v2_response_m_payload_local_var->a_obj_franchisebroker = a_obj_franchisebroker;
-
+    memset(franchisebroker_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(franchisebroker_get_autocomplete_v2_response_m_payload_t));
     franchisebroker_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    franchisebroker_get_autocomplete_v2_response_m_payload_local_var->a_obj_franchisebroker = a_obj_franchisebroker;
     return franchisebroker_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) franchisebroker_get_autocomplete_v2_response_m_payload_t *franchisebroker_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_franchisebroker
     ) {
-    return franchisebroker_get_autocomplete_v2_response_m_payload_create_internal (
+    franchisebroker_get_autocomplete_v2_response_m_payload_t *result = franchisebroker_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_franchisebroker
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void franchisebroker_get_autocomplete_v2_response_m_payload_free(franchisebroker_get_autocomplete_v2_response_m_payload_t *franchisebroker_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ franchisebroker_get_autocomplete_v2_response_m_payload_t *franchisebroker_get_au
     }
 
 
+
     franchisebroker_get_autocomplete_v2_response_m_payload_local_var = franchisebroker_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_franchisebrokerList
         );
+
+    if (!franchisebroker_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return franchisebroker_get_autocomplete_v2_response_m_payload_local_var;
 end:

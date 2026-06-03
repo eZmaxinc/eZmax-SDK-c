@@ -12,18 +12,21 @@ static common_response_redirect_s_secretquestion_text_x_t *common_response_redir
     if (!common_response_redirect_s_secretquestion_text_x_local_var) {
         return NULL;
     }
-    common_response_redirect_s_secretquestion_text_x_local_var->s_secretquestion_text_x = s_secretquestion_text_x;
-
+    memset(common_response_redirect_s_secretquestion_text_x_local_var, 0, sizeof(common_response_redirect_s_secretquestion_text_x_t));
     common_response_redirect_s_secretquestion_text_x_local_var->_library_owned = 1;
+    common_response_redirect_s_secretquestion_text_x_local_var->s_secretquestion_text_x = s_secretquestion_text_x;
     return common_response_redirect_s_secretquestion_text_x_local_var;
 }
 
 __attribute__((deprecated)) common_response_redirect_s_secretquestion_text_x_t *common_response_redirect_s_secretquestion_text_x_create(
     char *s_secretquestion_text_x
     ) {
-    return common_response_redirect_s_secretquestion_text_x_create_internal (
+    common_response_redirect_s_secretquestion_text_x_t *result = common_response_redirect_s_secretquestion_text_x_create_internal (
         s_secretquestion_text_x
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void common_response_redirect_s_secretquestion_text_x_free(common_response_redirect_s_secretquestion_text_x_t *common_response_redirect_s_secretquestion_text_x) {
@@ -65,6 +68,8 @@ common_response_redirect_s_secretquestion_text_x_t *common_response_redirect_s_s
 
     common_response_redirect_s_secretquestion_text_x_t *common_response_redirect_s_secretquestion_text_x_local_var = NULL;
 
+    char *s_secretquestion_text_x_local_str = NULL;
+
     // common_response_redirect_s_secretquestion_text_x->s_secretquestion_text_x
     cJSON *s_secretquestion_text_x = cJSON_GetObjectItemCaseSensitive(common_response_redirect_s_secretquestion_text_xJSON, "sSecretquestionTextX");
     if (cJSON_IsNull(s_secretquestion_text_x)) {
@@ -81,12 +86,22 @@ common_response_redirect_s_secretquestion_text_x_t *common_response_redirect_s_s
     }
 
 
+    if (s_secretquestion_text_x && !cJSON_IsNull(s_secretquestion_text_x)) s_secretquestion_text_x_local_str = strdup(s_secretquestion_text_x->valuestring);
+
     common_response_redirect_s_secretquestion_text_x_local_var = common_response_redirect_s_secretquestion_text_x_create_internal (
-        strdup(s_secretquestion_text_x->valuestring)
+        s_secretquestion_text_x_local_str
         );
+
+    if (!common_response_redirect_s_secretquestion_text_x_local_var) {
+        goto end;
+    }
 
     return common_response_redirect_s_secretquestion_text_x_local_var;
 end:
+    if (s_secretquestion_text_x_local_str) {
+        free(s_secretquestion_text_x_local_str);
+        s_secretquestion_text_x_local_str = NULL;
+    }
     return NULL;
 
 }

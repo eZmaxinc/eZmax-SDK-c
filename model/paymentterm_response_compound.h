@@ -22,24 +22,24 @@ typedef struct paymentterm_response_compound_t paymentterm_response_compound_t;
 
 
 typedef struct paymentterm_response_compound_t {
-    int pki_paymentterm_id; //numeric
+    int *pki_paymentterm_id; //numeric
     char *s_paymentterm_code; // string
     ezmax_api_definition__full_field_e_paymentterm_type__e e_paymentterm_type; //referenced enum
-    int i_paymentterm_day; //numeric
+    int *i_paymentterm_day; //numeric
     struct multilingual_paymentterm_description_t *obj_paymentterm_description; //model
-    int b_paymentterm_isactive; //boolean
+    int *b_paymentterm_isactive; //boolean
     struct common_audit_t *obj_audit; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
 } paymentterm_response_compound_t;
 
 __attribute__((deprecated)) paymentterm_response_compound_t *paymentterm_response_compound_create(
-    int pki_paymentterm_id,
+    int *pki_paymentterm_id,
     char *s_paymentterm_code,
     ezmax_api_definition__full_field_e_paymentterm_type__e e_paymentterm_type,
-    int i_paymentterm_day,
+    int *i_paymentterm_day,
     multilingual_paymentterm_description_t *obj_paymentterm_description,
-    int b_paymentterm_isactive,
+    int *b_paymentterm_isactive,
     common_audit_t *obj_audit
 );
 

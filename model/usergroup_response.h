@@ -21,7 +21,7 @@ typedef struct usergroup_response_t usergroup_response_t;
 
 
 typedef struct usergroup_response_t {
-    int pki_usergroup_id; //numeric
+    int *pki_usergroup_id; //numeric
     struct multilingual_usergroup_name_t *obj_usergroup_name; //model
     char *s_usergroup_name_x; // string
     struct email_request_t *obj_email; //model
@@ -30,7 +30,7 @@ typedef struct usergroup_response_t {
 } usergroup_response_t;
 
 __attribute__((deprecated)) usergroup_response_t *usergroup_response_create(
-    int pki_usergroup_id,
+    int *pki_usergroup_id,
     multilingual_usergroup_name_t *obj_usergroup_name,
     char *s_usergroup_name_x,
     email_request_t *obj_email

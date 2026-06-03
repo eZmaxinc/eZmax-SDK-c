@@ -6,28 +6,37 @@
 
 
 static contacttitle_autocomplete_element_response_t *contacttitle_autocomplete_element_response_create_internal(
-    int pki_contacttitle_id,
+    int *pki_contacttitle_id,
     char *s_contacttitle_name_x
     ) {
     contacttitle_autocomplete_element_response_t *contacttitle_autocomplete_element_response_local_var = malloc(sizeof(contacttitle_autocomplete_element_response_t));
     if (!contacttitle_autocomplete_element_response_local_var) {
         return NULL;
     }
+    memset(contacttitle_autocomplete_element_response_local_var, 0, sizeof(contacttitle_autocomplete_element_response_t));
+    contacttitle_autocomplete_element_response_local_var->_library_owned = 1;
     contacttitle_autocomplete_element_response_local_var->pki_contacttitle_id = pki_contacttitle_id;
     contacttitle_autocomplete_element_response_local_var->s_contacttitle_name_x = s_contacttitle_name_x;
-
-    contacttitle_autocomplete_element_response_local_var->_library_owned = 1;
     return contacttitle_autocomplete_element_response_local_var;
 }
 
 __attribute__((deprecated)) contacttitle_autocomplete_element_response_t *contacttitle_autocomplete_element_response_create(
-    int pki_contacttitle_id,
+    int *pki_contacttitle_id,
     char *s_contacttitle_name_x
     ) {
-    return contacttitle_autocomplete_element_response_create_internal (
-        pki_contacttitle_id,
+    int *pki_contacttitle_id_copy = NULL;
+    if (pki_contacttitle_id) {
+        pki_contacttitle_id_copy = malloc(sizeof(int));
+        if (pki_contacttitle_id_copy) *pki_contacttitle_id_copy = *pki_contacttitle_id;
+    }
+    contacttitle_autocomplete_element_response_t *result = contacttitle_autocomplete_element_response_create_internal (
+        pki_contacttitle_id_copy,
         s_contacttitle_name_x
         );
+    if (!result) {
+        free(pki_contacttitle_id_copy);
+    }
+    return result;
 }
 
 void contacttitle_autocomplete_element_response_free(contacttitle_autocomplete_element_response_t *contacttitle_autocomplete_element_response) {
@@ -39,6 +48,10 @@ void contacttitle_autocomplete_element_response_free(contacttitle_autocomplete_e
         return ;
     }
     listEntry_t *listEntry;
+    if (contacttitle_autocomplete_element_response->pki_contacttitle_id) {
+        free(contacttitle_autocomplete_element_response->pki_contacttitle_id);
+        contacttitle_autocomplete_element_response->pki_contacttitle_id = NULL;
+    }
     if (contacttitle_autocomplete_element_response->s_contacttitle_name_x) {
         free(contacttitle_autocomplete_element_response->s_contacttitle_name_x);
         contacttitle_autocomplete_element_response->s_contacttitle_name_x = NULL;
@@ -53,7 +66,7 @@ cJSON *contacttitle_autocomplete_element_response_convertToJSON(contacttitle_aut
     if (!contacttitle_autocomplete_element_response->pki_contacttitle_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiContacttitleID", contacttitle_autocomplete_element_response->pki_contacttitle_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiContacttitleID", *contacttitle_autocomplete_element_response->pki_contacttitle_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -78,6 +91,11 @@ contacttitle_autocomplete_element_response_t *contacttitle_autocomplete_element_
 
     contacttitle_autocomplete_element_response_t *contacttitle_autocomplete_element_response_local_var = NULL;
 
+    // define the local variable for contacttitle_autocomplete_element_response->pki_contacttitle_id
+    int *pki_contacttitle_id_local_var = NULL;
+
+    char *s_contacttitle_name_x_local_str = NULL;
+
     // contacttitle_autocomplete_element_response->pki_contacttitle_id
     cJSON *pki_contacttitle_id = cJSON_GetObjectItemCaseSensitive(contacttitle_autocomplete_element_responseJSON, "pkiContacttitleID");
     if (cJSON_IsNull(pki_contacttitle_id)) {
@@ -92,6 +110,12 @@ contacttitle_autocomplete_element_response_t *contacttitle_autocomplete_element_
     {
     goto end; //Numeric
     }
+    pki_contacttitle_id_local_var = malloc(sizeof(int));
+    if(!pki_contacttitle_id_local_var)
+    {
+        goto end;
+    }
+    *pki_contacttitle_id_local_var = pki_contacttitle_id->valuedouble;
 
     // contacttitle_autocomplete_element_response->s_contacttitle_name_x
     cJSON *s_contacttitle_name_x = cJSON_GetObjectItemCaseSensitive(contacttitle_autocomplete_element_responseJSON, "sContacttitleNameX");
@@ -109,13 +133,27 @@ contacttitle_autocomplete_element_response_t *contacttitle_autocomplete_element_
     }
 
 
+    if (s_contacttitle_name_x && !cJSON_IsNull(s_contacttitle_name_x)) s_contacttitle_name_x_local_str = strdup(s_contacttitle_name_x->valuestring);
+
     contacttitle_autocomplete_element_response_local_var = contacttitle_autocomplete_element_response_create_internal (
-        pki_contacttitle_id->valuedouble,
-        strdup(s_contacttitle_name_x->valuestring)
+        pki_contacttitle_id_local_var,
+        s_contacttitle_name_x_local_str
         );
+
+    if (!contacttitle_autocomplete_element_response_local_var) {
+        goto end;
+    }
 
     return contacttitle_autocomplete_element_response_local_var;
 end:
+    if (pki_contacttitle_id_local_var) {
+        free(pki_contacttitle_id_local_var);
+        pki_contacttitle_id_local_var = NULL;
+    }
+    if (s_contacttitle_name_x_local_str) {
+        free(s_contacttitle_name_x_local_str);
+        s_contacttitle_name_x_local_str = NULL;
+    }
     return NULL;
 
 }

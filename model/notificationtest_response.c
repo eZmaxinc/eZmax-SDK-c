@@ -6,9 +6,9 @@
 
 
 static notificationtest_response_t *notificationtest_response_create_internal(
-    int pki_notificationtest_id,
+    int *pki_notificationtest_id,
     multilingual_notificationtest_name_t *obj_notificationtest_name,
-    int fki_notificationsubsection_id,
+    int *fki_notificationsubsection_id,
     char *s_notificationtest_function,
     char *s_notificationtest_name_x
     ) {
@@ -16,30 +16,45 @@ static notificationtest_response_t *notificationtest_response_create_internal(
     if (!notificationtest_response_local_var) {
         return NULL;
     }
+    memset(notificationtest_response_local_var, 0, sizeof(notificationtest_response_t));
+    notificationtest_response_local_var->_library_owned = 1;
     notificationtest_response_local_var->pki_notificationtest_id = pki_notificationtest_id;
     notificationtest_response_local_var->obj_notificationtest_name = obj_notificationtest_name;
     notificationtest_response_local_var->fki_notificationsubsection_id = fki_notificationsubsection_id;
     notificationtest_response_local_var->s_notificationtest_function = s_notificationtest_function;
     notificationtest_response_local_var->s_notificationtest_name_x = s_notificationtest_name_x;
-
-    notificationtest_response_local_var->_library_owned = 1;
     return notificationtest_response_local_var;
 }
 
 __attribute__((deprecated)) notificationtest_response_t *notificationtest_response_create(
-    int pki_notificationtest_id,
+    int *pki_notificationtest_id,
     multilingual_notificationtest_name_t *obj_notificationtest_name,
-    int fki_notificationsubsection_id,
+    int *fki_notificationsubsection_id,
     char *s_notificationtest_function,
     char *s_notificationtest_name_x
     ) {
-    return notificationtest_response_create_internal (
-        pki_notificationtest_id,
+    int *pki_notificationtest_id_copy = NULL;
+    if (pki_notificationtest_id) {
+        pki_notificationtest_id_copy = malloc(sizeof(int));
+        if (pki_notificationtest_id_copy) *pki_notificationtest_id_copy = *pki_notificationtest_id;
+    }
+    int *fki_notificationsubsection_id_copy = NULL;
+    if (fki_notificationsubsection_id) {
+        fki_notificationsubsection_id_copy = malloc(sizeof(int));
+        if (fki_notificationsubsection_id_copy) *fki_notificationsubsection_id_copy = *fki_notificationsubsection_id;
+    }
+    notificationtest_response_t *result = notificationtest_response_create_internal (
+        pki_notificationtest_id_copy,
         obj_notificationtest_name,
-        fki_notificationsubsection_id,
+        fki_notificationsubsection_id_copy,
         s_notificationtest_function,
         s_notificationtest_name_x
         );
+    if (!result) {
+        free(pki_notificationtest_id_copy);
+        free(fki_notificationsubsection_id_copy);
+    }
+    return result;
 }
 
 void notificationtest_response_free(notificationtest_response_t *notificationtest_response) {
@@ -51,9 +66,17 @@ void notificationtest_response_free(notificationtest_response_t *notificationtes
         return ;
     }
     listEntry_t *listEntry;
+    if (notificationtest_response->pki_notificationtest_id) {
+        free(notificationtest_response->pki_notificationtest_id);
+        notificationtest_response->pki_notificationtest_id = NULL;
+    }
     if (notificationtest_response->obj_notificationtest_name) {
         multilingual_notificationtest_name_free(notificationtest_response->obj_notificationtest_name);
         notificationtest_response->obj_notificationtest_name = NULL;
+    }
+    if (notificationtest_response->fki_notificationsubsection_id) {
+        free(notificationtest_response->fki_notificationsubsection_id);
+        notificationtest_response->fki_notificationsubsection_id = NULL;
     }
     if (notificationtest_response->s_notificationtest_function) {
         free(notificationtest_response->s_notificationtest_function);
@@ -73,7 +96,7 @@ cJSON *notificationtest_response_convertToJSON(notificationtest_response_t *noti
     if (!notificationtest_response->pki_notificationtest_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiNotificationtestID", notificationtest_response->pki_notificationtest_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiNotificationtestID", *notificationtest_response->pki_notificationtest_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -96,7 +119,7 @@ cJSON *notificationtest_response_convertToJSON(notificationtest_response_t *noti
     if (!notificationtest_response->fki_notificationsubsection_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiNotificationsubsectionID", notificationtest_response->fki_notificationsubsection_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiNotificationsubsectionID", *notificationtest_response->fki_notificationsubsection_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -130,8 +153,18 @@ notificationtest_response_t *notificationtest_response_parseFromJSON(cJSON *noti
 
     notificationtest_response_t *notificationtest_response_local_var = NULL;
 
+    // define the local variable for notificationtest_response->pki_notificationtest_id
+    int *pki_notificationtest_id_local_var = NULL;
+
     // define the local variable for notificationtest_response->obj_notificationtest_name
     multilingual_notificationtest_name_t *obj_notificationtest_name_local_nonprim = NULL;
+
+    // define the local variable for notificationtest_response->fki_notificationsubsection_id
+    int *fki_notificationsubsection_id_local_var = NULL;
+
+    char *s_notificationtest_function_local_str = NULL;
+
+    char *s_notificationtest_name_x_local_str = NULL;
 
     // notificationtest_response->pki_notificationtest_id
     cJSON *pki_notificationtest_id = cJSON_GetObjectItemCaseSensitive(notificationtest_responseJSON, "pkiNotificationtestID");
@@ -147,6 +180,12 @@ notificationtest_response_t *notificationtest_response_parseFromJSON(cJSON *noti
     {
     goto end; //Numeric
     }
+    pki_notificationtest_id_local_var = malloc(sizeof(int));
+    if(!pki_notificationtest_id_local_var)
+    {
+        goto end;
+    }
+    *pki_notificationtest_id_local_var = pki_notificationtest_id->valuedouble;
 
     // notificationtest_response->obj_notificationtest_name
     cJSON *obj_notificationtest_name = cJSON_GetObjectItemCaseSensitive(notificationtest_responseJSON, "objNotificationtestName");
@@ -174,6 +213,12 @@ notificationtest_response_t *notificationtest_response_parseFromJSON(cJSON *noti
     {
     goto end; //Numeric
     }
+    fki_notificationsubsection_id_local_var = malloc(sizeof(int));
+    if(!fki_notificationsubsection_id_local_var)
+    {
+        goto end;
+    }
+    *fki_notificationsubsection_id_local_var = fki_notificationsubsection_id->valuedouble;
 
     // notificationtest_response->s_notificationtest_function
     cJSON *s_notificationtest_function = cJSON_GetObjectItemCaseSensitive(notificationtest_responseJSON, "sNotificationtestFunction");
@@ -206,19 +251,42 @@ notificationtest_response_t *notificationtest_response_parseFromJSON(cJSON *noti
     }
 
 
+    if (s_notificationtest_function && !cJSON_IsNull(s_notificationtest_function)) s_notificationtest_function_local_str = strdup(s_notificationtest_function->valuestring);
+    if (s_notificationtest_name_x && !cJSON_IsNull(s_notificationtest_name_x)) s_notificationtest_name_x_local_str = strdup(s_notificationtest_name_x->valuestring);
+
     notificationtest_response_local_var = notificationtest_response_create_internal (
-        pki_notificationtest_id->valuedouble,
+        pki_notificationtest_id_local_var,
         obj_notificationtest_name_local_nonprim,
-        fki_notificationsubsection_id->valuedouble,
-        strdup(s_notificationtest_function->valuestring),
-        strdup(s_notificationtest_name_x->valuestring)
+        fki_notificationsubsection_id_local_var,
+        s_notificationtest_function_local_str,
+        s_notificationtest_name_x_local_str
         );
+
+    if (!notificationtest_response_local_var) {
+        goto end;
+    }
 
     return notificationtest_response_local_var;
 end:
+    if (pki_notificationtest_id_local_var) {
+        free(pki_notificationtest_id_local_var);
+        pki_notificationtest_id_local_var = NULL;
+    }
     if (obj_notificationtest_name_local_nonprim) {
         multilingual_notificationtest_name_free(obj_notificationtest_name_local_nonprim);
         obj_notificationtest_name_local_nonprim = NULL;
+    }
+    if (fki_notificationsubsection_id_local_var) {
+        free(fki_notificationsubsection_id_local_var);
+        fki_notificationsubsection_id_local_var = NULL;
+    }
+    if (s_notificationtest_function_local_str) {
+        free(s_notificationtest_function_local_str);
+        s_notificationtest_function_local_str = NULL;
+    }
+    if (s_notificationtest_name_x_local_str) {
+        free(s_notificationtest_name_x_local_str);
+        s_notificationtest_name_x_local_str = NULL;
     }
     return NULL;
 

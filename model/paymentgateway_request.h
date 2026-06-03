@@ -22,7 +22,7 @@ typedef struct paymentgateway_request_t paymentgateway_request_t;
 
 
 typedef struct paymentgateway_request_t {
-    int pki_paymentgateway_id; //numeric
+    int *pki_paymentgateway_id; //numeric
     ezmax_api_definition__full_field_e_paymentgateway_processor__e e_paymentgateway_processor; //referenced enum
     struct multilingual_paymentgateway_description_t *obj_paymentgateway_description; //model
     struct creditcardmerchant_request_compound_t *obj_creditcardmerchant; //model
@@ -31,7 +31,7 @@ typedef struct paymentgateway_request_t {
 } paymentgateway_request_t;
 
 __attribute__((deprecated)) paymentgateway_request_t *paymentgateway_request_create(
-    int pki_paymentgateway_id,
+    int *pki_paymentgateway_id,
     ezmax_api_definition__full_field_e_paymentgateway_processor__e e_paymentgateway_processor,
     multilingual_paymentgateway_description_t *obj_paymentgateway_description,
     creditcardmerchant_request_compound_t *obj_creditcardmerchant

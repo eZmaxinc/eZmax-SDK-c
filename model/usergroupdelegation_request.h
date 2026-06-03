@@ -19,17 +19,17 @@ typedef struct usergroupdelegation_request_t usergroupdelegation_request_t;
 
 
 typedef struct usergroupdelegation_request_t {
-    int pki_usergroupdelegation_id; //numeric
-    int fki_usergroup_id; //numeric
-    int fki_user_id; //numeric
+    int *pki_usergroupdelegation_id; //numeric
+    int *fki_usergroup_id; //numeric
+    int *fki_user_id; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } usergroupdelegation_request_t;
 
 __attribute__((deprecated)) usergroupdelegation_request_t *usergroupdelegation_request_create(
-    int pki_usergroupdelegation_id,
-    int fki_usergroup_id,
-    int fki_user_id
+    int *pki_usergroupdelegation_id,
+    int *fki_usergroup_id,
+    int *fki_user_id
 );
 
 void usergroupdelegation_request_free(usergroupdelegation_request_t *usergroupdelegation_request);

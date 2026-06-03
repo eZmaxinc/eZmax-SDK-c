@@ -14,11 +14,11 @@ static ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_t *ezdoctempl
     if (!ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_local_var) {
         return NULL;
     }
+    memset(ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_local_var, 0, sizeof(ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_t));
+    ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_local_var->_library_owned = 1;
     ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_local_var->obj_debug = obj_debug;
     ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_local_var->m_payload = m_payload;
-
-    ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_local_var->_library_owned = 1;
     return ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) ezdoctemplatefieldtypecategory_get_autocomplete_v2_r
     common_response_obj_debug_t *obj_debug,
     ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t *m_payload
     ) {
-    return ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_create_internal (
+    ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_t *result = ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_free(ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_t *ezdoctemplatefieldtypecategory_get_autocomplete_v2_response) {
@@ -156,11 +159,16 @@ ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_t *ezdoctemplatefiel
     m_payload_local_nonprim = ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_local_var = ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_local_var) {
+        goto end;
+    }
 
     return ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_local_var;
 end:

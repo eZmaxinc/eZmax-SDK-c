@@ -19,17 +19,17 @@ typedef struct leadsource_autocomplete_element_response_t leadsource_autocomplet
 
 
 typedef struct leadsource_autocomplete_element_response_t {
-    int pki_leadsource_id; //numeric
+    int *pki_leadsource_id; //numeric
     char *s_leadsource_name_x; // string
-    int b_leadsource_isactive; //boolean
+    int *b_leadsource_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } leadsource_autocomplete_element_response_t;
 
 __attribute__((deprecated)) leadsource_autocomplete_element_response_t *leadsource_autocomplete_element_response_create(
-    int pki_leadsource_id,
+    int *pki_leadsource_id,
     char *s_leadsource_name_x,
-    int b_leadsource_isactive
+    int *b_leadsource_isactive
 );
 
 void leadsource_autocomplete_element_response_free(leadsource_autocomplete_element_response_t *leadsource_autocomplete_element_response);

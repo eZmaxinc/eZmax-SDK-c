@@ -14,11 +14,11 @@ static ezsigntemplatepublic_create_object_v1_response_t *ezsigntemplatepublic_cr
     if (!ezsigntemplatepublic_create_object_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsigntemplatepublic_create_object_v1_response_local_var, 0, sizeof(ezsigntemplatepublic_create_object_v1_response_t));
+    ezsigntemplatepublic_create_object_v1_response_local_var->_library_owned = 1;
     ezsigntemplatepublic_create_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsigntemplatepublic_create_object_v1_response_local_var->obj_debug = obj_debug;
     ezsigntemplatepublic_create_object_v1_response_local_var->m_payload = m_payload;
-
-    ezsigntemplatepublic_create_object_v1_response_local_var->_library_owned = 1;
     return ezsigntemplatepublic_create_object_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) ezsigntemplatepublic_create_object_v1_response_t *ez
     common_response_obj_debug_t *obj_debug,
     ezsigntemplatepublic_create_object_v1_response_m_payload_t *m_payload
     ) {
-    return ezsigntemplatepublic_create_object_v1_response_create_internal (
+    ezsigntemplatepublic_create_object_v1_response_t *result = ezsigntemplatepublic_create_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatepublic_create_object_v1_response_free(ezsigntemplatepublic_create_object_v1_response_t *ezsigntemplatepublic_create_object_v1_response) {
@@ -156,11 +159,16 @@ ezsigntemplatepublic_create_object_v1_response_t *ezsigntemplatepublic_create_ob
     m_payload_local_nonprim = ezsigntemplatepublic_create_object_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     ezsigntemplatepublic_create_object_v1_response_local_var = ezsigntemplatepublic_create_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!ezsigntemplatepublic_create_object_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatepublic_create_object_v1_response_local_var;
 end:

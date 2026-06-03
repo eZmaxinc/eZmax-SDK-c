@@ -12,18 +12,21 @@ static franchisereferalincome_create_object_v2_request_t *franchisereferalincome
     if (!franchisereferalincome_create_object_v2_request_local_var) {
         return NULL;
     }
-    franchisereferalincome_create_object_v2_request_local_var->a_obj_franchisereferalincome = a_obj_franchisereferalincome;
-
+    memset(franchisereferalincome_create_object_v2_request_local_var, 0, sizeof(franchisereferalincome_create_object_v2_request_t));
     franchisereferalincome_create_object_v2_request_local_var->_library_owned = 1;
+    franchisereferalincome_create_object_v2_request_local_var->a_obj_franchisereferalincome = a_obj_franchisereferalincome;
     return franchisereferalincome_create_object_v2_request_local_var;
 }
 
 __attribute__((deprecated)) franchisereferalincome_create_object_v2_request_t *franchisereferalincome_create_object_v2_request_create(
     list_t *a_obj_franchisereferalincome
     ) {
-    return franchisereferalincome_create_object_v2_request_create_internal (
+    franchisereferalincome_create_object_v2_request_t *result = franchisereferalincome_create_object_v2_request_create_internal (
         a_obj_franchisereferalincome
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void franchisereferalincome_create_object_v2_request_free(franchisereferalincome_create_object_v2_request_t *franchisereferalincome_create_object_v2_request) {
@@ -111,9 +114,14 @@ franchisereferalincome_create_object_v2_request_t *franchisereferalincome_create
     }
 
 
+
     franchisereferalincome_create_object_v2_request_local_var = franchisereferalincome_create_object_v2_request_create_internal (
         a_obj_franchisereferalincomeList
         );
+
+    if (!franchisereferalincome_create_object_v2_request_local_var) {
+        goto end;
+    }
 
     return franchisereferalincome_create_object_v2_request_local_var;
 end:

@@ -14,11 +14,11 @@ static ezsignsigningreason_get_autocomplete_v2_response_t *ezsignsigningreason_g
     if (!ezsignsigningreason_get_autocomplete_v2_response_local_var) {
         return NULL;
     }
+    memset(ezsignsigningreason_get_autocomplete_v2_response_local_var, 0, sizeof(ezsignsigningreason_get_autocomplete_v2_response_t));
+    ezsignsigningreason_get_autocomplete_v2_response_local_var->_library_owned = 1;
     ezsignsigningreason_get_autocomplete_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsignsigningreason_get_autocomplete_v2_response_local_var->obj_debug = obj_debug;
     ezsignsigningreason_get_autocomplete_v2_response_local_var->m_payload = m_payload;
-
-    ezsignsigningreason_get_autocomplete_v2_response_local_var->_library_owned = 1;
     return ezsignsigningreason_get_autocomplete_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) ezsignsigningreason_get_autocomplete_v2_response_t *
     common_response_obj_debug_t *obj_debug,
     ezsignsigningreason_get_autocomplete_v2_response_m_payload_t *m_payload
     ) {
-    return ezsignsigningreason_get_autocomplete_v2_response_create_internal (
+    ezsignsigningreason_get_autocomplete_v2_response_t *result = ezsignsigningreason_get_autocomplete_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignsigningreason_get_autocomplete_v2_response_free(ezsignsigningreason_get_autocomplete_v2_response_t *ezsignsigningreason_get_autocomplete_v2_response) {
@@ -156,11 +159,16 @@ ezsignsigningreason_get_autocomplete_v2_response_t *ezsignsigningreason_get_auto
     m_payload_local_nonprim = ezsignsigningreason_get_autocomplete_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     ezsignsigningreason_get_autocomplete_v2_response_local_var = ezsignsigningreason_get_autocomplete_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!ezsignsigningreason_get_autocomplete_v2_response_local_var) {
+        goto end;
+    }
 
     return ezsignsigningreason_get_autocomplete_v2_response_local_var;
 end:

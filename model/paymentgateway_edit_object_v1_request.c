@@ -12,18 +12,21 @@ static paymentgateway_edit_object_v1_request_t *paymentgateway_edit_object_v1_re
     if (!paymentgateway_edit_object_v1_request_local_var) {
         return NULL;
     }
-    paymentgateway_edit_object_v1_request_local_var->obj_paymentgateway = obj_paymentgateway;
-
+    memset(paymentgateway_edit_object_v1_request_local_var, 0, sizeof(paymentgateway_edit_object_v1_request_t));
     paymentgateway_edit_object_v1_request_local_var->_library_owned = 1;
+    paymentgateway_edit_object_v1_request_local_var->obj_paymentgateway = obj_paymentgateway;
     return paymentgateway_edit_object_v1_request_local_var;
 }
 
 __attribute__((deprecated)) paymentgateway_edit_object_v1_request_t *paymentgateway_edit_object_v1_request_create(
     paymentgateway_request_compound_t *obj_paymentgateway
     ) {
-    return paymentgateway_edit_object_v1_request_create_internal (
+    paymentgateway_edit_object_v1_request_t *result = paymentgateway_edit_object_v1_request_create_internal (
         obj_paymentgateway
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void paymentgateway_edit_object_v1_request_free(paymentgateway_edit_object_v1_request_t *paymentgateway_edit_object_v1_request) {
@@ -86,9 +89,14 @@ paymentgateway_edit_object_v1_request_t *paymentgateway_edit_object_v1_request_p
     obj_paymentgateway_local_nonprim = paymentgateway_request_compound_parseFromJSON(obj_paymentgateway); //nonprimitive
 
 
+
     paymentgateway_edit_object_v1_request_local_var = paymentgateway_edit_object_v1_request_create_internal (
         obj_paymentgateway_local_nonprim
         );
+
+    if (!paymentgateway_edit_object_v1_request_local_var) {
+        goto end;
+    }
 
     return paymentgateway_edit_object_v1_request_local_var;
 end:

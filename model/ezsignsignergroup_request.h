@@ -20,16 +20,16 @@ typedef struct ezsignsignergroup_request_t ezsignsignergroup_request_t;
 
 
 typedef struct ezsignsignergroup_request_t {
-    int pki_ezsignsignergroup_id; //numeric
-    int fki_ezsignfolder_id; //numeric
+    int *pki_ezsignsignergroup_id; //numeric
+    int *fki_ezsignfolder_id; //numeric
     struct multilingual_ezsignsignergroup_description_t *obj_ezsignsignergroup_description; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsignergroup_request_t;
 
 __attribute__((deprecated)) ezsignsignergroup_request_t *ezsignsignergroup_request_create(
-    int pki_ezsignsignergroup_id,
-    int fki_ezsignfolder_id,
+    int *pki_ezsignsignergroup_id,
+    int *fki_ezsignfolder_id,
     multilingual_ezsignsignergroup_description_t *obj_ezsignsignergroup_description
 );
 

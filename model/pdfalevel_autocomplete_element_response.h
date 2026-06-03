@@ -19,17 +19,17 @@ typedef struct pdfalevel_autocomplete_element_response_t pdfalevel_autocomplete_
 
 
 typedef struct pdfalevel_autocomplete_element_response_t {
-    int pki_pdfalevel_id; //numeric
+    int *pki_pdfalevel_id; //numeric
     char *s_pdfalevel_name; // string
-    int b_pdfalevel_isactive; //boolean
+    int *b_pdfalevel_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } pdfalevel_autocomplete_element_response_t;
 
 __attribute__((deprecated)) pdfalevel_autocomplete_element_response_t *pdfalevel_autocomplete_element_response_create(
-    int pki_pdfalevel_id,
+    int *pki_pdfalevel_id,
     char *s_pdfalevel_name,
-    int b_pdfalevel_isactive
+    int *b_pdfalevel_isactive
 );
 
 void pdfalevel_autocomplete_element_response_free(pdfalevel_autocomplete_element_response_t *pdfalevel_autocomplete_element_response);

@@ -12,18 +12,21 @@ static paymentterm_get_autocomplete_v2_response_m_payload_t *paymentterm_get_aut
     if (!paymentterm_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    paymentterm_get_autocomplete_v2_response_m_payload_local_var->a_obj_paymentterm = a_obj_paymentterm;
-
+    memset(paymentterm_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(paymentterm_get_autocomplete_v2_response_m_payload_t));
     paymentterm_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    paymentterm_get_autocomplete_v2_response_m_payload_local_var->a_obj_paymentterm = a_obj_paymentterm;
     return paymentterm_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) paymentterm_get_autocomplete_v2_response_m_payload_t *paymentterm_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_paymentterm
     ) {
-    return paymentterm_get_autocomplete_v2_response_m_payload_create_internal (
+    paymentterm_get_autocomplete_v2_response_m_payload_t *result = paymentterm_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_paymentterm
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void paymentterm_get_autocomplete_v2_response_m_payload_free(paymentterm_get_autocomplete_v2_response_m_payload_t *paymentterm_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ paymentterm_get_autocomplete_v2_response_m_payload_t *paymentterm_get_autocomple
     }
 
 
+
     paymentterm_get_autocomplete_v2_response_m_payload_local_var = paymentterm_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_paymenttermList
         );
+
+    if (!paymentterm_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return paymentterm_get_autocomplete_v2_response_m_payload_local_var;
 end:

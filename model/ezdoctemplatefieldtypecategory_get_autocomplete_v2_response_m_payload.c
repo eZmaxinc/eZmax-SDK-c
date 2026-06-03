@@ -12,18 +12,21 @@ static ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t *
     if (!ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_local_var->a_obj_ezdoctemplatefieldtypecategory = a_obj_ezdoctemplatefieldtypecategory;
-
+    memset(ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t));
     ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_local_var->a_obj_ezdoctemplatefieldtypecategory = a_obj_ezdoctemplatefieldtypecategory;
     return ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t *ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_ezdoctemplatefieldtypecategory
     ) {
-    return ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_create_internal (
+    ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t *result = ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_ezdoctemplatefieldtypecategory
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_free(ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t *ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t *ezdocte
     }
 
 
+
     ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_local_var = ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_ezdoctemplatefieldtypecategoryList
         );
+
+    if (!ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_local_var;
 end:

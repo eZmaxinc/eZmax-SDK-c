@@ -14,11 +14,11 @@ static inscriptionnotauthenticated_import_into_edm_v1_response_t *inscriptionnot
     if (!inscriptionnotauthenticated_import_into_edm_v1_response_local_var) {
         return NULL;
     }
+    memset(inscriptionnotauthenticated_import_into_edm_v1_response_local_var, 0, sizeof(inscriptionnotauthenticated_import_into_edm_v1_response_t));
+    inscriptionnotauthenticated_import_into_edm_v1_response_local_var->_library_owned = 1;
     inscriptionnotauthenticated_import_into_edm_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     inscriptionnotauthenticated_import_into_edm_v1_response_local_var->obj_debug = obj_debug;
     inscriptionnotauthenticated_import_into_edm_v1_response_local_var->m_payload = m_payload;
-
-    inscriptionnotauthenticated_import_into_edm_v1_response_local_var->_library_owned = 1;
     return inscriptionnotauthenticated_import_into_edm_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) inscriptionnotauthenticated_import_into_edm_v1_respo
     common_response_obj_debug_t *obj_debug,
     inscriptionnotauthenticated_import_into_edm_v1_response_m_payload_t *m_payload
     ) {
-    return inscriptionnotauthenticated_import_into_edm_v1_response_create_internal (
+    inscriptionnotauthenticated_import_into_edm_v1_response_t *result = inscriptionnotauthenticated_import_into_edm_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void inscriptionnotauthenticated_import_into_edm_v1_response_free(inscriptionnotauthenticated_import_into_edm_v1_response_t *inscriptionnotauthenticated_import_into_edm_v1_response) {
@@ -156,11 +159,16 @@ inscriptionnotauthenticated_import_into_edm_v1_response_t *inscriptionnotauthent
     m_payload_local_nonprim = inscriptionnotauthenticated_import_into_edm_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     inscriptionnotauthenticated_import_into_edm_v1_response_local_var = inscriptionnotauthenticated_import_into_edm_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!inscriptionnotauthenticated_import_into_edm_v1_response_local_var) {
+        goto end;
+    }
 
     return inscriptionnotauthenticated_import_into_edm_v1_response_local_var;
 end:

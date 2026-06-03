@@ -6,8 +6,8 @@
 
 
 static ezsignuser_response_t *ezsignuser_response_create_internal(
-    int pki_ezsignuser_id,
-    int fki_contact_id,
+    int *pki_ezsignuser_id,
+    int *fki_contact_id,
     contact_response_compound_t *obj_contact,
     common_audit_t *obj_audit
     ) {
@@ -15,27 +15,42 @@ static ezsignuser_response_t *ezsignuser_response_create_internal(
     if (!ezsignuser_response_local_var) {
         return NULL;
     }
+    memset(ezsignuser_response_local_var, 0, sizeof(ezsignuser_response_t));
+    ezsignuser_response_local_var->_library_owned = 1;
     ezsignuser_response_local_var->pki_ezsignuser_id = pki_ezsignuser_id;
     ezsignuser_response_local_var->fki_contact_id = fki_contact_id;
     ezsignuser_response_local_var->obj_contact = obj_contact;
     ezsignuser_response_local_var->obj_audit = obj_audit;
-
-    ezsignuser_response_local_var->_library_owned = 1;
     return ezsignuser_response_local_var;
 }
 
 __attribute__((deprecated)) ezsignuser_response_t *ezsignuser_response_create(
-    int pki_ezsignuser_id,
-    int fki_contact_id,
+    int *pki_ezsignuser_id,
+    int *fki_contact_id,
     contact_response_compound_t *obj_contact,
     common_audit_t *obj_audit
     ) {
-    return ezsignuser_response_create_internal (
-        pki_ezsignuser_id,
-        fki_contact_id,
+    int *pki_ezsignuser_id_copy = NULL;
+    if (pki_ezsignuser_id) {
+        pki_ezsignuser_id_copy = malloc(sizeof(int));
+        if (pki_ezsignuser_id_copy) *pki_ezsignuser_id_copy = *pki_ezsignuser_id;
+    }
+    int *fki_contact_id_copy = NULL;
+    if (fki_contact_id) {
+        fki_contact_id_copy = malloc(sizeof(int));
+        if (fki_contact_id_copy) *fki_contact_id_copy = *fki_contact_id;
+    }
+    ezsignuser_response_t *result = ezsignuser_response_create_internal (
+        pki_ezsignuser_id_copy,
+        fki_contact_id_copy,
         obj_contact,
         obj_audit
         );
+    if (!result) {
+        free(pki_ezsignuser_id_copy);
+        free(fki_contact_id_copy);
+    }
+    return result;
 }
 
 void ezsignuser_response_free(ezsignuser_response_t *ezsignuser_response) {
@@ -47,6 +62,14 @@ void ezsignuser_response_free(ezsignuser_response_t *ezsignuser_response) {
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignuser_response->pki_ezsignuser_id) {
+        free(ezsignuser_response->pki_ezsignuser_id);
+        ezsignuser_response->pki_ezsignuser_id = NULL;
+    }
+    if (ezsignuser_response->fki_contact_id) {
+        free(ezsignuser_response->fki_contact_id);
+        ezsignuser_response->fki_contact_id = NULL;
+    }
     if (ezsignuser_response->obj_contact) {
         contact_response_compound_free(ezsignuser_response->obj_contact);
         ezsignuser_response->obj_contact = NULL;
@@ -65,7 +88,7 @@ cJSON *ezsignuser_response_convertToJSON(ezsignuser_response_t *ezsignuser_respo
     if (!ezsignuser_response->pki_ezsignuser_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiEzsignuserID", ezsignuser_response->pki_ezsignuser_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzsignuserID", *ezsignuser_response->pki_ezsignuser_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -74,7 +97,7 @@ cJSON *ezsignuser_response_convertToJSON(ezsignuser_response_t *ezsignuser_respo
     if (!ezsignuser_response->fki_contact_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiContactID", ezsignuser_response->fki_contact_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiContactID", *ezsignuser_response->fki_contact_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -118,6 +141,12 @@ ezsignuser_response_t *ezsignuser_response_parseFromJSON(cJSON *ezsignuser_respo
 
     ezsignuser_response_t *ezsignuser_response_local_var = NULL;
 
+    // define the local variable for ezsignuser_response->pki_ezsignuser_id
+    int *pki_ezsignuser_id_local_var = NULL;
+
+    // define the local variable for ezsignuser_response->fki_contact_id
+    int *fki_contact_id_local_var = NULL;
+
     // define the local variable for ezsignuser_response->obj_contact
     contact_response_compound_t *obj_contact_local_nonprim = NULL;
 
@@ -138,6 +167,12 @@ ezsignuser_response_t *ezsignuser_response_parseFromJSON(cJSON *ezsignuser_respo
     {
     goto end; //Numeric
     }
+    pki_ezsignuser_id_local_var = malloc(sizeof(int));
+    if(!pki_ezsignuser_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezsignuser_id_local_var = pki_ezsignuser_id->valuedouble;
 
     // ezsignuser_response->fki_contact_id
     cJSON *fki_contact_id = cJSON_GetObjectItemCaseSensitive(ezsignuser_responseJSON, "fkiContactID");
@@ -153,6 +188,12 @@ ezsignuser_response_t *ezsignuser_response_parseFromJSON(cJSON *ezsignuser_respo
     {
     goto end; //Numeric
     }
+    fki_contact_id_local_var = malloc(sizeof(int));
+    if(!fki_contact_id_local_var)
+    {
+        goto end;
+    }
+    *fki_contact_id_local_var = fki_contact_id->valuedouble;
 
     // ezsignuser_response->obj_contact
     cJSON *obj_contact = cJSON_GetObjectItemCaseSensitive(ezsignuser_responseJSON, "objContact");
@@ -179,15 +220,28 @@ ezsignuser_response_t *ezsignuser_response_parseFromJSON(cJSON *ezsignuser_respo
     obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
 
 
+
     ezsignuser_response_local_var = ezsignuser_response_create_internal (
-        pki_ezsignuser_id->valuedouble,
-        fki_contact_id->valuedouble,
+        pki_ezsignuser_id_local_var,
+        fki_contact_id_local_var,
         obj_contact_local_nonprim,
         obj_audit_local_nonprim
         );
 
+    if (!ezsignuser_response_local_var) {
+        goto end;
+    }
+
     return ezsignuser_response_local_var;
 end:
+    if (pki_ezsignuser_id_local_var) {
+        free(pki_ezsignuser_id_local_var);
+        pki_ezsignuser_id_local_var = NULL;
+    }
+    if (fki_contact_id_local_var) {
+        free(fki_contact_id_local_var);
+        fki_contact_id_local_var = NULL;
+    }
     if (obj_contact_local_nonprim) {
         contact_response_compound_free(obj_contact_local_nonprim);
         obj_contact_local_nonprim = NULL;

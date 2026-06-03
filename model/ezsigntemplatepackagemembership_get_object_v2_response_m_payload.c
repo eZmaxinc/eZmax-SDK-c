@@ -12,18 +12,21 @@ static ezsigntemplatepackagemembership_get_object_v2_response_m_payload_t *ezsig
     if (!ezsigntemplatepackagemembership_get_object_v2_response_m_payload_local_var) {
         return NULL;
     }
-    ezsigntemplatepackagemembership_get_object_v2_response_m_payload_local_var->obj_ezsigntemplatepackagemembership = obj_ezsigntemplatepackagemembership;
-
+    memset(ezsigntemplatepackagemembership_get_object_v2_response_m_payload_local_var, 0, sizeof(ezsigntemplatepackagemembership_get_object_v2_response_m_payload_t));
     ezsigntemplatepackagemembership_get_object_v2_response_m_payload_local_var->_library_owned = 1;
+    ezsigntemplatepackagemembership_get_object_v2_response_m_payload_local_var->obj_ezsigntemplatepackagemembership = obj_ezsigntemplatepackagemembership;
     return ezsigntemplatepackagemembership_get_object_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplatepackagemembership_get_object_v2_response_m_payload_t *ezsigntemplatepackagemembership_get_object_v2_response_m_payload_create(
     ezsigntemplatepackagemembership_response_compound_t *obj_ezsigntemplatepackagemembership
     ) {
-    return ezsigntemplatepackagemembership_get_object_v2_response_m_payload_create_internal (
+    ezsigntemplatepackagemembership_get_object_v2_response_m_payload_t *result = ezsigntemplatepackagemembership_get_object_v2_response_m_payload_create_internal (
         obj_ezsigntemplatepackagemembership
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatepackagemembership_get_object_v2_response_m_payload_free(ezsigntemplatepackagemembership_get_object_v2_response_m_payload_t *ezsigntemplatepackagemembership_get_object_v2_response_m_payload) {
@@ -86,9 +89,14 @@ ezsigntemplatepackagemembership_get_object_v2_response_m_payload_t *ezsigntempla
     obj_ezsigntemplatepackagemembership_local_nonprim = ezsigntemplatepackagemembership_response_compound_parseFromJSON(obj_ezsigntemplatepackagemembership); //nonprimitive
 
 
+
     ezsigntemplatepackagemembership_get_object_v2_response_m_payload_local_var = ezsigntemplatepackagemembership_get_object_v2_response_m_payload_create_internal (
         obj_ezsigntemplatepackagemembership_local_nonprim
         );
+
+    if (!ezsigntemplatepackagemembership_get_object_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatepackagemembership_get_object_v2_response_m_payload_local_var;
 end:

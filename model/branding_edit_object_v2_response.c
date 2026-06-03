@@ -13,10 +13,10 @@ static branding_edit_object_v2_response_t *branding_edit_object_v2_response_crea
     if (!branding_edit_object_v2_response_local_var) {
         return NULL;
     }
+    memset(branding_edit_object_v2_response_local_var, 0, sizeof(branding_edit_object_v2_response_t));
+    branding_edit_object_v2_response_local_var->_library_owned = 1;
     branding_edit_object_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     branding_edit_object_v2_response_local_var->obj_debug = obj_debug;
-
-    branding_edit_object_v2_response_local_var->_library_owned = 1;
     return branding_edit_object_v2_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) branding_edit_object_v2_response_t *branding_edit_ob
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return branding_edit_object_v2_response_create_internal (
+    branding_edit_object_v2_response_t *result = branding_edit_object_v2_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void branding_edit_object_v2_response_free(branding_edit_object_v2_response_t *branding_edit_object_v2_response) {
@@ -119,10 +122,15 @@ branding_edit_object_v2_response_t *branding_edit_object_v2_response_parseFromJS
     }
 
 
+
     branding_edit_object_v2_response_local_var = branding_edit_object_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!branding_edit_object_v2_response_local_var) {
+        goto end;
+    }
 
     return branding_edit_object_v2_response_local_var;
 end:

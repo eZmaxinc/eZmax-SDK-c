@@ -12,18 +12,21 @@ static websocket_response_information_v1_m_payload_t *websocket_response_informa
     if (!websocket_response_information_v1_m_payload_local_var) {
         return NULL;
     }
-    websocket_response_information_v1_m_payload_local_var->s_information_message = s_information_message;
-
+    memset(websocket_response_information_v1_m_payload_local_var, 0, sizeof(websocket_response_information_v1_m_payload_t));
     websocket_response_information_v1_m_payload_local_var->_library_owned = 1;
+    websocket_response_information_v1_m_payload_local_var->s_information_message = s_information_message;
     return websocket_response_information_v1_m_payload_local_var;
 }
 
 __attribute__((deprecated)) websocket_response_information_v1_m_payload_t *websocket_response_information_v1_m_payload_create(
     char *s_information_message
     ) {
-    return websocket_response_information_v1_m_payload_create_internal (
+    websocket_response_information_v1_m_payload_t *result = websocket_response_information_v1_m_payload_create_internal (
         s_information_message
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void websocket_response_information_v1_m_payload_free(websocket_response_information_v1_m_payload_t *websocket_response_information_v1_m_payload) {
@@ -65,6 +68,8 @@ websocket_response_information_v1_m_payload_t *websocket_response_information_v1
 
     websocket_response_information_v1_m_payload_t *websocket_response_information_v1_m_payload_local_var = NULL;
 
+    char *s_information_message_local_str = NULL;
+
     // websocket_response_information_v1_m_payload->s_information_message
     cJSON *s_information_message = cJSON_GetObjectItemCaseSensitive(websocket_response_information_v1_m_payloadJSON, "sInformationMessage");
     if (cJSON_IsNull(s_information_message)) {
@@ -81,12 +86,22 @@ websocket_response_information_v1_m_payload_t *websocket_response_information_v1
     }
 
 
+    if (s_information_message && !cJSON_IsNull(s_information_message)) s_information_message_local_str = strdup(s_information_message->valuestring);
+
     websocket_response_information_v1_m_payload_local_var = websocket_response_information_v1_m_payload_create_internal (
-        strdup(s_information_message->valuestring)
+        s_information_message_local_str
         );
+
+    if (!websocket_response_information_v1_m_payload_local_var) {
+        goto end;
+    }
 
     return websocket_response_information_v1_m_payload_local_var;
 end:
+    if (s_information_message_local_str) {
+        free(s_information_message_local_str);
+        s_information_message_local_str = NULL;
+    }
     return NULL;
 
 }

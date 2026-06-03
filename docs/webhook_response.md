@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**pki_webhook_id** | **int** | The unique ID of the Webhook | 
+**pki_webhook_id** | **int** | The unique ID of the Webhook | [optional] 
 **fki_authenticationexternal_id** | **int** | The unique ID of the Authenticationexternal | [optional] 
 **s_webhook_description** | **char \*** | The description of the Webhook | 
 **fki_ezsignfoldertype_id** | **int** | The unique ID of the Ezsignfoldertype. | [optional] 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **b_webhook_issigned** | **int** | Whether the requests will be signed or not | 
 **b_webhook_skipsslvalidation** | **int** | Wheter the server&#39;s SSL certificate should be validated or not. Not recommended to skip for production use | 
 **s_authenticationexternal_description** | **char \*** | The description of the Authenticationexternal | [optional] 
-**obj_audit** | [**common_audit_t**](common_audit.md) \* |  | 
+**obj_audit** | [**common_audit_t**](common_audit.md) \* |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

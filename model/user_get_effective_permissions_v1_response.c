@@ -14,11 +14,11 @@ static user_get_effective_permissions_v1_response_t *user_get_effective_permissi
     if (!user_get_effective_permissions_v1_response_local_var) {
         return NULL;
     }
+    memset(user_get_effective_permissions_v1_response_local_var, 0, sizeof(user_get_effective_permissions_v1_response_t));
+    user_get_effective_permissions_v1_response_local_var->_library_owned = 1;
     user_get_effective_permissions_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     user_get_effective_permissions_v1_response_local_var->obj_debug = obj_debug;
     user_get_effective_permissions_v1_response_local_var->m_payload = m_payload;
-
-    user_get_effective_permissions_v1_response_local_var->_library_owned = 1;
     return user_get_effective_permissions_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) user_get_effective_permissions_v1_response_t *user_g
     common_response_obj_debug_t *obj_debug,
     user_get_effective_permissions_v1_response_m_payload_t *m_payload
     ) {
-    return user_get_effective_permissions_v1_response_create_internal (
+    user_get_effective_permissions_v1_response_t *result = user_get_effective_permissions_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void user_get_effective_permissions_v1_response_free(user_get_effective_permissions_v1_response_t *user_get_effective_permissions_v1_response) {
@@ -156,11 +159,16 @@ user_get_effective_permissions_v1_response_t *user_get_effective_permissions_v1_
     m_payload_local_nonprim = user_get_effective_permissions_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     user_get_effective_permissions_v1_response_local_var = user_get_effective_permissions_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!user_get_effective_permissions_v1_response_local_var) {
+        goto end;
+    }
 
     return user_get_effective_permissions_v1_response_local_var;
 end:

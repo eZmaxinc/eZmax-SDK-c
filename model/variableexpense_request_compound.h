@@ -21,21 +21,21 @@ typedef struct variableexpense_request_compound_t variableexpense_request_compou
 
 
 typedef struct variableexpense_request_compound_t {
-    int pki_variableexpense_id; //numeric
+    int *pki_variableexpense_id; //numeric
     char *s_variableexpense_code; // string
     struct multilingual_variableexpense_description_t *obj_variableexpense_description; //model
     ezmax_api_definition__full_field_e_variableexpense_taxable__e e_variableexpense_taxable; //referenced enum
-    int b_variableexpense_isactive; //boolean
+    int *b_variableexpense_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } variableexpense_request_compound_t;
 
 __attribute__((deprecated)) variableexpense_request_compound_t *variableexpense_request_compound_create(
-    int pki_variableexpense_id,
+    int *pki_variableexpense_id,
     char *s_variableexpense_code,
     multilingual_variableexpense_description_t *obj_variableexpense_description,
     ezmax_api_definition__full_field_e_variableexpense_taxable__e e_variableexpense_taxable,
-    int b_variableexpense_isactive
+    int *b_variableexpense_isactive
 );
 
 void variableexpense_request_compound_free(variableexpense_request_compound_t *variableexpense_request_compound);

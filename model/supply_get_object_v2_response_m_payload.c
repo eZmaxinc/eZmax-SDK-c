@@ -12,18 +12,21 @@ static supply_get_object_v2_response_m_payload_t *supply_get_object_v2_response_
     if (!supply_get_object_v2_response_m_payload_local_var) {
         return NULL;
     }
-    supply_get_object_v2_response_m_payload_local_var->obj_supply = obj_supply;
-
+    memset(supply_get_object_v2_response_m_payload_local_var, 0, sizeof(supply_get_object_v2_response_m_payload_t));
     supply_get_object_v2_response_m_payload_local_var->_library_owned = 1;
+    supply_get_object_v2_response_m_payload_local_var->obj_supply = obj_supply;
     return supply_get_object_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) supply_get_object_v2_response_m_payload_t *supply_get_object_v2_response_m_payload_create(
     supply_response_compound_t *obj_supply
     ) {
-    return supply_get_object_v2_response_m_payload_create_internal (
+    supply_get_object_v2_response_m_payload_t *result = supply_get_object_v2_response_m_payload_create_internal (
         obj_supply
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void supply_get_object_v2_response_m_payload_free(supply_get_object_v2_response_m_payload_t *supply_get_object_v2_response_m_payload) {
@@ -86,9 +89,14 @@ supply_get_object_v2_response_m_payload_t *supply_get_object_v2_response_m_paylo
     obj_supply_local_nonprim = supply_response_compound_parseFromJSON(obj_supply); //nonprimitive
 
 
+
     supply_get_object_v2_response_m_payload_local_var = supply_get_object_v2_response_m_payload_create_internal (
         obj_supply_local_nonprim
         );
+
+    if (!supply_get_object_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return supply_get_object_v2_response_m_payload_local_var;
 end:

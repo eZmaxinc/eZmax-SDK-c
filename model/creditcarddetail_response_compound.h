@@ -19,11 +19,11 @@ typedef struct creditcarddetail_response_compound_t creditcarddetail_response_co
 
 
 typedef struct creditcarddetail_response_compound_t {
-    int pki_creditcarddetail_id; //numeric
-    int fki_creditcardtype_id; //numeric
-    int i_creditcarddetail_lastdigits; //numeric
-    int i_creditcarddetail_expirationmonth; //numeric
-    int i_creditcarddetail_expirationyear; //numeric
+    int *pki_creditcarddetail_id; //numeric
+    int *fki_creditcardtype_id; //numeric
+    int *i_creditcarddetail_lastdigits; //numeric
+    int *i_creditcarddetail_expirationmonth; //numeric
+    int *i_creditcarddetail_expirationyear; //numeric
     char *s_creditcarddetail_civic; // string
     char *s_creditcarddetail_street; // string
     char *s_creditcarddetail_zip; // string
@@ -32,11 +32,11 @@ typedef struct creditcarddetail_response_compound_t {
 } creditcarddetail_response_compound_t;
 
 __attribute__((deprecated)) creditcarddetail_response_compound_t *creditcarddetail_response_compound_create(
-    int pki_creditcarddetail_id,
-    int fki_creditcardtype_id,
-    int i_creditcarddetail_lastdigits,
-    int i_creditcarddetail_expirationmonth,
-    int i_creditcarddetail_expirationyear,
+    int *pki_creditcarddetail_id,
+    int *fki_creditcardtype_id,
+    int *i_creditcarddetail_lastdigits,
+    int *i_creditcarddetail_expirationmonth,
+    int *i_creditcarddetail_expirationyear,
     char *s_creditcarddetail_civic,
     char *s_creditcarddetail_street,
     char *s_creditcarddetail_zip

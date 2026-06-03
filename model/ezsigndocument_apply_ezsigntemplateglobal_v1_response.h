@@ -1,7 +1,7 @@
 /*
  * ezsigndocument_apply_ezsigntemplateglobal_v1_response.h
  *
- * Response for POST /2/object/ezsigndocument/{pkiEzsigndocument}/applyEzsigntemplate
+ * Response for POST /1/object/ezsigndocument/{pkiEzsigndocument}/applyEzsigntemplateglobal
  */
 
 #ifndef _ezsigndocument_apply_ezsigntemplateglobal_v1_response_H_

@@ -12,18 +12,21 @@ static ezsigntemplateformfieldgroup_edit_object_v1_request_t *ezsigntemplateform
     if (!ezsigntemplateformfieldgroup_edit_object_v1_request_local_var) {
         return NULL;
     }
-    ezsigntemplateformfieldgroup_edit_object_v1_request_local_var->obj_ezsigntemplateformfieldgroup = obj_ezsigntemplateformfieldgroup;
-
+    memset(ezsigntemplateformfieldgroup_edit_object_v1_request_local_var, 0, sizeof(ezsigntemplateformfieldgroup_edit_object_v1_request_t));
     ezsigntemplateformfieldgroup_edit_object_v1_request_local_var->_library_owned = 1;
+    ezsigntemplateformfieldgroup_edit_object_v1_request_local_var->obj_ezsigntemplateformfieldgroup = obj_ezsigntemplateformfieldgroup;
     return ezsigntemplateformfieldgroup_edit_object_v1_request_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplateformfieldgroup_edit_object_v1_request_t *ezsigntemplateformfieldgroup_edit_object_v1_request_create(
     ezsigntemplateformfieldgroup_request_compound_t *obj_ezsigntemplateformfieldgroup
     ) {
-    return ezsigntemplateformfieldgroup_edit_object_v1_request_create_internal (
+    ezsigntemplateformfieldgroup_edit_object_v1_request_t *result = ezsigntemplateformfieldgroup_edit_object_v1_request_create_internal (
         obj_ezsigntemplateformfieldgroup
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplateformfieldgroup_edit_object_v1_request_free(ezsigntemplateformfieldgroup_edit_object_v1_request_t *ezsigntemplateformfieldgroup_edit_object_v1_request) {
@@ -86,9 +89,14 @@ ezsigntemplateformfieldgroup_edit_object_v1_request_t *ezsigntemplateformfieldgr
     obj_ezsigntemplateformfieldgroup_local_nonprim = ezsigntemplateformfieldgroup_request_compound_parseFromJSON(obj_ezsigntemplateformfieldgroup); //nonprimitive
 
 
+
     ezsigntemplateformfieldgroup_edit_object_v1_request_local_var = ezsigntemplateformfieldgroup_edit_object_v1_request_create_internal (
         obj_ezsigntemplateformfieldgroup_local_nonprim
         );
+
+    if (!ezsigntemplateformfieldgroup_edit_object_v1_request_local_var) {
+        goto end;
+    }
 
     return ezsigntemplateformfieldgroup_edit_object_v1_request_local_var;
 end:

@@ -12,18 +12,21 @@ static buyercontract_get_communicationrecipients_v1_response_m_payload_t *buyerc
     if (!buyercontract_get_communicationrecipients_v1_response_m_payload_local_var) {
         return NULL;
     }
-    buyercontract_get_communicationrecipients_v1_response_m_payload_local_var->a_obj_communicationrecipientsgroup = a_obj_communicationrecipientsgroup;
-
+    memset(buyercontract_get_communicationrecipients_v1_response_m_payload_local_var, 0, sizeof(buyercontract_get_communicationrecipients_v1_response_m_payload_t));
     buyercontract_get_communicationrecipients_v1_response_m_payload_local_var->_library_owned = 1;
+    buyercontract_get_communicationrecipients_v1_response_m_payload_local_var->a_obj_communicationrecipientsgroup = a_obj_communicationrecipientsgroup;
     return buyercontract_get_communicationrecipients_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) buyercontract_get_communicationrecipients_v1_response_m_payload_t *buyercontract_get_communicationrecipients_v1_response_m_payload_create(
     list_t *a_obj_communicationrecipientsgroup
     ) {
-    return buyercontract_get_communicationrecipients_v1_response_m_payload_create_internal (
+    buyercontract_get_communicationrecipients_v1_response_m_payload_t *result = buyercontract_get_communicationrecipients_v1_response_m_payload_create_internal (
         a_obj_communicationrecipientsgroup
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void buyercontract_get_communicationrecipients_v1_response_m_payload_free(buyercontract_get_communicationrecipients_v1_response_m_payload_t *buyercontract_get_communicationrecipients_v1_response_m_payload) {
@@ -111,9 +114,14 @@ buyercontract_get_communicationrecipients_v1_response_m_payload_t *buyercontract
     }
 
 
+
     buyercontract_get_communicationrecipients_v1_response_m_payload_local_var = buyercontract_get_communicationrecipients_v1_response_m_payload_create_internal (
         a_obj_communicationrecipientsgroupList
         );
+
+    if (!buyercontract_get_communicationrecipients_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return buyercontract_get_communicationrecipients_v1_response_m_payload_local_var;
 end:

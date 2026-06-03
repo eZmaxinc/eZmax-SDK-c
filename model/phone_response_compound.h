@@ -20,23 +20,23 @@ typedef struct phone_response_compound_t phone_response_compound_t;
 
 
 typedef struct phone_response_compound_t {
-    int pki_phone_id; //numeric
-    int fki_phonetype_id; //numeric
+    int *pki_phone_id; //numeric
+    int *fki_phonetype_id; //numeric
     ezmax_api_definition__full_field_e_phone_type__e e_phone_type; //referenced enum
     char *s_phone_e164; // string
     char *s_phone_extension; // string
-    int b_phone_international; //boolean
+    int *b_phone_international; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } phone_response_compound_t;
 
 __attribute__((deprecated)) phone_response_compound_t *phone_response_compound_create(
-    int pki_phone_id,
-    int fki_phonetype_id,
+    int *pki_phone_id,
+    int *fki_phonetype_id,
     ezmax_api_definition__full_field_e_phone_type__e e_phone_type,
     char *s_phone_e164,
     char *s_phone_extension,
-    int b_phone_international
+    int *b_phone_international
 );
 
 void phone_response_compound_free(phone_response_compound_t *phone_response_compound);

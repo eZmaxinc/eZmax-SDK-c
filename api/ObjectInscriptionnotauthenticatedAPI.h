@@ -7,10 +7,13 @@
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
 #include "../model/header_accept_language.h"
+#include "../model/inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_request.h"
+#include "../model/inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_response.h"
 #include "../model/inscriptionnotauthenticated_get_communication_count_v1_response.h"
 #include "../model/inscriptionnotauthenticated_get_communication_list_v1_response.h"
 #include "../model/inscriptionnotauthenticated_get_communicationrecipients_v1_response.h"
 #include "../model/inscriptionnotauthenticated_get_communicationsenders_v1_response.h"
+#include "../model/inscriptionnotauthenticated_get_inscriptionnotauthenticatedconditions_v1_response.h"
 #include "../model/inscriptionnotauthenticated_get_list_v1_response.h"
 #include "../model/inscriptionnotauthenticated_import_into_edm_v1_request.h"
 #include "../model/inscriptionnotauthenticated_import_into_edm_v1_response.h"
@@ -20,6 +23,14 @@ typedef enum  { ezmax_api_definition__full_inscriptionnotauthenticatedGetListV1_
 
 // Enum  for ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetListV1
 typedef enum  { ezmax_api_definition__full_inscriptionnotauthenticatedGetListV1__NULL = 0, ezmax_api_definition__full_inscriptionnotauthenticatedGetListV1__*, ezmax_api_definition__full_inscriptionnotauthenticatedGetListV1__en, ezmax_api_definition__full_inscriptionnotauthenticatedGetListV1__fr } ezmax_api_definition__full_inscriptionnotauthenticatedGetListV1_Accept-Language_e;
+
+
+// Fills the Inscriptionnotauthenticatedcondition in the Inscriptionnotauthenticated
+//
+// 
+//
+inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_response_t*
+ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedFillInscriptionnotauthenticatedconditionV1(apiClient_t *apiClient, int *pkiInscriptionnotauthenticatedID, inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_request_t *inscriptionnotauthenticated_fill_inscriptionnotauthenticatedcondition_v1_request);
 
 
 // Retrieve Communication count
@@ -52,6 +63,14 @@ ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunication
 //
 inscriptionnotauthenticated_get_communicationsenders_v1_response_t*
 ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiInscriptionnotauthenticatedID);
+
+
+// Retrieve Inscriptionnotauthenticated conditions
+//
+// 
+//
+inscriptionnotauthenticated_get_inscriptionnotauthenticatedconditions_v1_response_t*
+ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetInscriptionnotauthenticatedconditionsV1(apiClient_t *apiClient, int *pkiInscriptionnotauthenticatedID);
 
 
 // Retrieve Inscriptionnotauthenticated list

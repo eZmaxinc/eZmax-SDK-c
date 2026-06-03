@@ -12,18 +12,21 @@ static communication_send_v1_request_t *communication_send_v1_request_create_int
     if (!communication_send_v1_request_local_var) {
         return NULL;
     }
-    communication_send_v1_request_local_var->a_obj_communication = a_obj_communication;
-
+    memset(communication_send_v1_request_local_var, 0, sizeof(communication_send_v1_request_t));
     communication_send_v1_request_local_var->_library_owned = 1;
+    communication_send_v1_request_local_var->a_obj_communication = a_obj_communication;
     return communication_send_v1_request_local_var;
 }
 
 __attribute__((deprecated)) communication_send_v1_request_t *communication_send_v1_request_create(
     list_t *a_obj_communication
     ) {
-    return communication_send_v1_request_create_internal (
+    communication_send_v1_request_t *result = communication_send_v1_request_create_internal (
         a_obj_communication
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void communication_send_v1_request_free(communication_send_v1_request_t *communication_send_v1_request) {
@@ -111,9 +114,14 @@ communication_send_v1_request_t *communication_send_v1_request_parseFromJSON(cJS
     }
 
 
+
     communication_send_v1_request_local_var = communication_send_v1_request_create_internal (
         a_obj_communicationList
         );
+
+    if (!communication_send_v1_request_local_var) {
+        goto end;
+    }
 
     return communication_send_v1_request_local_var;
 end:

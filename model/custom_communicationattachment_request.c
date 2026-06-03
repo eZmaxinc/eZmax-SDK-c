@@ -13,10 +13,10 @@ static custom_communicationattachment_request_t *custom_communicationattachment_
     if (!custom_communicationattachment_request_local_var) {
         return NULL;
     }
+    memset(custom_communicationattachment_request_local_var, 0, sizeof(custom_communicationattachment_request_t));
+    custom_communicationattachment_request_local_var->_library_owned = 1;
     custom_communicationattachment_request_local_var->obj_communicationattachment = obj_communicationattachment;
     custom_communicationattachment_request_local_var->obj_communicationexternalattachment = obj_communicationexternalattachment;
-
-    custom_communicationattachment_request_local_var->_library_owned = 1;
     return custom_communicationattachment_request_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) custom_communicationattachment_request_t *custom_com
     communicationattachment_request_compound_t *obj_communicationattachment,
     common_file_t *obj_communicationexternalattachment
     ) {
-    return custom_communicationattachment_request_create_internal (
+    custom_communicationattachment_request_t *result = custom_communicationattachment_request_create_internal (
         obj_communicationattachment,
         obj_communicationexternalattachment
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void custom_communicationattachment_request_free(custom_communicationattachment_request_t *custom_communicationattachment_request) {
@@ -115,10 +118,15 @@ custom_communicationattachment_request_t *custom_communicationattachment_request
     }
 
 
+
     custom_communicationattachment_request_local_var = custom_communicationattachment_request_create_internal (
         obj_communicationattachment ? obj_communicationattachment_local_nonprim : NULL,
         obj_communicationexternalattachment ? obj_communicationexternalattachment_local_nonprim : NULL
         );
+
+    if (!custom_communicationattachment_request_local_var) {
+        goto end;
+    }
 
     return custom_communicationattachment_request_local_var;
 end:

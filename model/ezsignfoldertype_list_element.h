@@ -20,19 +20,19 @@ typedef struct ezsignfoldertype_list_element_t ezsignfoldertype_list_element_t;
 
 
 typedef struct ezsignfoldertype_list_element_t {
-    int pki_ezsignfoldertype_id; //numeric
+    int *pki_ezsignfoldertype_id; //numeric
     ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel; //referenced enum
     char *s_ezsignfoldertype_name_x; // string
-    int b_ezsignfoldertype_isactive; //boolean
+    int *b_ezsignfoldertype_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfoldertype_list_element_t;
 
 __attribute__((deprecated)) ezsignfoldertype_list_element_t *ezsignfoldertype_list_element_create(
-    int pki_ezsignfoldertype_id,
+    int *pki_ezsignfoldertype_id,
     ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel,
     char *s_ezsignfoldertype_name_x,
-    int b_ezsignfoldertype_isactive
+    int *b_ezsignfoldertype_isactive
 );
 
 void ezsignfoldertype_list_element_free(ezsignfoldertype_list_element_t *ezsignfoldertype_list_element);

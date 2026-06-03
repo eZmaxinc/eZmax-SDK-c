@@ -13,10 +13,10 @@ static multilingual_branding_description_t *multilingual_branding_description_cr
     if (!multilingual_branding_description_local_var) {
         return NULL;
     }
+    memset(multilingual_branding_description_local_var, 0, sizeof(multilingual_branding_description_t));
+    multilingual_branding_description_local_var->_library_owned = 1;
     multilingual_branding_description_local_var->s_branding_description1 = s_branding_description1;
     multilingual_branding_description_local_var->s_branding_description2 = s_branding_description2;
-
-    multilingual_branding_description_local_var->_library_owned = 1;
     return multilingual_branding_description_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) multilingual_branding_description_t *multilingual_br
     char *s_branding_description1,
     char *s_branding_description2
     ) {
-    return multilingual_branding_description_create_internal (
+    multilingual_branding_description_t *result = multilingual_branding_description_create_internal (
         s_branding_description1,
         s_branding_description2
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void multilingual_branding_description_free(multilingual_branding_description_t *multilingual_branding_description) {
@@ -80,6 +83,10 @@ multilingual_branding_description_t *multilingual_branding_description_parseFrom
 
     multilingual_branding_description_t *multilingual_branding_description_local_var = NULL;
 
+    char *s_branding_description1_local_str = NULL;
+
+    char *s_branding_description2_local_str = NULL;
+
     // multilingual_branding_description->s_branding_description1
     cJSON *s_branding_description1 = cJSON_GetObjectItemCaseSensitive(multilingual_branding_descriptionJSON, "sBrandingDescription1");
     if (cJSON_IsNull(s_branding_description1)) {
@@ -105,13 +112,28 @@ multilingual_branding_description_t *multilingual_branding_description_parseFrom
     }
 
 
+    if (s_branding_description1 && !cJSON_IsNull(s_branding_description1)) s_branding_description1_local_str = strdup(s_branding_description1->valuestring);
+    if (s_branding_description2 && !cJSON_IsNull(s_branding_description2)) s_branding_description2_local_str = strdup(s_branding_description2->valuestring);
+
     multilingual_branding_description_local_var = multilingual_branding_description_create_internal (
-        s_branding_description1 && !cJSON_IsNull(s_branding_description1) ? strdup(s_branding_description1->valuestring) : NULL,
-        s_branding_description2 && !cJSON_IsNull(s_branding_description2) ? strdup(s_branding_description2->valuestring) : NULL
+        s_branding_description1_local_str,
+        s_branding_description2_local_str
         );
+
+    if (!multilingual_branding_description_local_var) {
+        goto end;
+    }
 
     return multilingual_branding_description_local_var;
 end:
+    if (s_branding_description1_local_str) {
+        free(s_branding_description1_local_str);
+        s_branding_description1_local_str = NULL;
+    }
+    if (s_branding_description2_local_str) {
+        free(s_branding_description2_local_str);
+        s_branding_description2_local_str = NULL;
+    }
     return NULL;
 
 }

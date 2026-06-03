@@ -15,12 +15,12 @@ static scim_group_member_t *scim_group_member_create_internal(
     if (!scim_group_member_local_var) {
         return NULL;
     }
+    memset(scim_group_member_local_var, 0, sizeof(scim_group_member_t));
+    scim_group_member_local_var->_library_owned = 1;
     scim_group_member_local_var->value = value;
     scim_group_member_local_var->display = display;
     scim_group_member_local_var->type = type;
     scim_group_member_local_var->ref = ref;
-
-    scim_group_member_local_var->_library_owned = 1;
     return scim_group_member_local_var;
 }
 
@@ -30,12 +30,15 @@ __attribute__((deprecated)) scim_group_member_t *scim_group_member_create(
     char *type,
     char *ref
     ) {
-    return scim_group_member_create_internal (
+    scim_group_member_t *result = scim_group_member_create_internal (
         value,
         display,
         type,
         ref
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void scim_group_member_free(scim_group_member_t *scim_group_member) {
@@ -112,6 +115,14 @@ scim_group_member_t *scim_group_member_parseFromJSON(cJSON *scim_group_memberJSO
 
     scim_group_member_t *scim_group_member_local_var = NULL;
 
+    char *value_local_str = NULL;
+
+    char *display_local_str = NULL;
+
+    char *type_local_str = NULL;
+
+    char *ref_local_str = NULL;
+
     // scim_group_member->value
     cJSON *value = cJSON_GetObjectItemCaseSensitive(scim_group_memberJSON, "value");
     if (cJSON_IsNull(value)) {
@@ -161,15 +172,40 @@ scim_group_member_t *scim_group_member_parseFromJSON(cJSON *scim_group_memberJSO
     }
 
 
+    if (value && !cJSON_IsNull(value)) value_local_str = strdup(value->valuestring);
+    if (display && !cJSON_IsNull(display)) display_local_str = strdup(display->valuestring);
+    if (type && !cJSON_IsNull(type)) type_local_str = strdup(type->valuestring);
+    if (ref && !cJSON_IsNull(ref)) ref_local_str = strdup(ref->valuestring);
+
     scim_group_member_local_var = scim_group_member_create_internal (
-        value && !cJSON_IsNull(value) ? strdup(value->valuestring) : NULL,
-        display && !cJSON_IsNull(display) ? strdup(display->valuestring) : NULL,
-        type && !cJSON_IsNull(type) ? strdup(type->valuestring) : NULL,
-        ref && !cJSON_IsNull(ref) ? strdup(ref->valuestring) : NULL
+        value_local_str,
+        display_local_str,
+        type_local_str,
+        ref_local_str
         );
+
+    if (!scim_group_member_local_var) {
+        goto end;
+    }
 
     return scim_group_member_local_var;
 end:
+    if (value_local_str) {
+        free(value_local_str);
+        value_local_str = NULL;
+    }
+    if (display_local_str) {
+        free(display_local_str);
+        display_local_str = NULL;
+    }
+    if (type_local_str) {
+        free(type_local_str);
+        type_local_str = NULL;
+    }
+    if (ref_local_str) {
+        free(ref_local_str);
+        ref_local_str = NULL;
+    }
     return NULL;
 
 }

@@ -19,17 +19,17 @@ typedef struct creditcardmerchant_response_compound_t creditcardmerchant_respons
 
 
 typedef struct creditcardmerchant_response_compound_t {
-    int pki_creditcardmerchant_id; //numeric
-    int fki_bankaccount_id; //numeric
-    int fki_language_id; //numeric
+    int *pki_creditcardmerchant_id; //numeric
+    int *fki_bankaccount_id; //numeric
+    int *fki_language_id; //numeric
     char *s_language_name_x; // string
-    int fki_currency_id; //numeric
+    int *fki_currency_id; //numeric
     char *s_currency_description_x; // string
     char *s_bankaccount_bankname; // string
-    int b_creditcardmerchant_denyvisa; //boolean
-    int b_creditcardmerchant_denymastercard; //boolean
-    int b_creditcardmerchant_denyamex; //boolean
-    int b_creditcardmerchant_isactive; //boolean
+    int *b_creditcardmerchant_denyvisa; //boolean
+    int *b_creditcardmerchant_denymastercard; //boolean
+    int *b_creditcardmerchant_denyamex; //boolean
+    int *b_creditcardmerchant_isactive; //boolean
     char *s_creditcardmerchant_description; // string
     char *s_creditcardmerchant_storeid; // string
 
@@ -37,17 +37,17 @@ typedef struct creditcardmerchant_response_compound_t {
 } creditcardmerchant_response_compound_t;
 
 __attribute__((deprecated)) creditcardmerchant_response_compound_t *creditcardmerchant_response_compound_create(
-    int pki_creditcardmerchant_id,
-    int fki_bankaccount_id,
-    int fki_language_id,
+    int *pki_creditcardmerchant_id,
+    int *fki_bankaccount_id,
+    int *fki_language_id,
     char *s_language_name_x,
-    int fki_currency_id,
+    int *fki_currency_id,
     char *s_currency_description_x,
     char *s_bankaccount_bankname,
-    int b_creditcardmerchant_denyvisa,
-    int b_creditcardmerchant_denymastercard,
-    int b_creditcardmerchant_denyamex,
-    int b_creditcardmerchant_isactive,
+    int *b_creditcardmerchant_denyvisa,
+    int *b_creditcardmerchant_denymastercard,
+    int *b_creditcardmerchant_denyamex,
+    int *b_creditcardmerchant_isactive,
     char *s_creditcardmerchant_description,
     char *s_creditcardmerchant_storeid
 );

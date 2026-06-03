@@ -6,28 +6,37 @@
 
 
 static modulegroup_response_t *modulegroup_response_create_internal(
-    int pki_modulegroup_id,
+    int *pki_modulegroup_id,
     char *s_modulegroup_name_x
     ) {
     modulegroup_response_t *modulegroup_response_local_var = malloc(sizeof(modulegroup_response_t));
     if (!modulegroup_response_local_var) {
         return NULL;
     }
+    memset(modulegroup_response_local_var, 0, sizeof(modulegroup_response_t));
+    modulegroup_response_local_var->_library_owned = 1;
     modulegroup_response_local_var->pki_modulegroup_id = pki_modulegroup_id;
     modulegroup_response_local_var->s_modulegroup_name_x = s_modulegroup_name_x;
-
-    modulegroup_response_local_var->_library_owned = 1;
     return modulegroup_response_local_var;
 }
 
 __attribute__((deprecated)) modulegroup_response_t *modulegroup_response_create(
-    int pki_modulegroup_id,
+    int *pki_modulegroup_id,
     char *s_modulegroup_name_x
     ) {
-    return modulegroup_response_create_internal (
-        pki_modulegroup_id,
+    int *pki_modulegroup_id_copy = NULL;
+    if (pki_modulegroup_id) {
+        pki_modulegroup_id_copy = malloc(sizeof(int));
+        if (pki_modulegroup_id_copy) *pki_modulegroup_id_copy = *pki_modulegroup_id;
+    }
+    modulegroup_response_t *result = modulegroup_response_create_internal (
+        pki_modulegroup_id_copy,
         s_modulegroup_name_x
         );
+    if (!result) {
+        free(pki_modulegroup_id_copy);
+    }
+    return result;
 }
 
 void modulegroup_response_free(modulegroup_response_t *modulegroup_response) {
@@ -39,6 +48,10 @@ void modulegroup_response_free(modulegroup_response_t *modulegroup_response) {
         return ;
     }
     listEntry_t *listEntry;
+    if (modulegroup_response->pki_modulegroup_id) {
+        free(modulegroup_response->pki_modulegroup_id);
+        modulegroup_response->pki_modulegroup_id = NULL;
+    }
     if (modulegroup_response->s_modulegroup_name_x) {
         free(modulegroup_response->s_modulegroup_name_x);
         modulegroup_response->s_modulegroup_name_x = NULL;
@@ -53,7 +66,7 @@ cJSON *modulegroup_response_convertToJSON(modulegroup_response_t *modulegroup_re
     if (!modulegroup_response->pki_modulegroup_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiModulegroupID", modulegroup_response->pki_modulegroup_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiModulegroupID", *modulegroup_response->pki_modulegroup_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -78,6 +91,11 @@ modulegroup_response_t *modulegroup_response_parseFromJSON(cJSON *modulegroup_re
 
     modulegroup_response_t *modulegroup_response_local_var = NULL;
 
+    // define the local variable for modulegroup_response->pki_modulegroup_id
+    int *pki_modulegroup_id_local_var = NULL;
+
+    char *s_modulegroup_name_x_local_str = NULL;
+
     // modulegroup_response->pki_modulegroup_id
     cJSON *pki_modulegroup_id = cJSON_GetObjectItemCaseSensitive(modulegroup_responseJSON, "pkiModulegroupID");
     if (cJSON_IsNull(pki_modulegroup_id)) {
@@ -92,6 +110,12 @@ modulegroup_response_t *modulegroup_response_parseFromJSON(cJSON *modulegroup_re
     {
     goto end; //Numeric
     }
+    pki_modulegroup_id_local_var = malloc(sizeof(int));
+    if(!pki_modulegroup_id_local_var)
+    {
+        goto end;
+    }
+    *pki_modulegroup_id_local_var = pki_modulegroup_id->valuedouble;
 
     // modulegroup_response->s_modulegroup_name_x
     cJSON *s_modulegroup_name_x = cJSON_GetObjectItemCaseSensitive(modulegroup_responseJSON, "sModulegroupNameX");
@@ -109,13 +133,27 @@ modulegroup_response_t *modulegroup_response_parseFromJSON(cJSON *modulegroup_re
     }
 
 
+    if (s_modulegroup_name_x && !cJSON_IsNull(s_modulegroup_name_x)) s_modulegroup_name_x_local_str = strdup(s_modulegroup_name_x->valuestring);
+
     modulegroup_response_local_var = modulegroup_response_create_internal (
-        pki_modulegroup_id->valuedouble,
-        strdup(s_modulegroup_name_x->valuestring)
+        pki_modulegroup_id_local_var,
+        s_modulegroup_name_x_local_str
         );
+
+    if (!modulegroup_response_local_var) {
+        goto end;
+    }
 
     return modulegroup_response_local_var;
 end:
+    if (pki_modulegroup_id_local_var) {
+        free(pki_modulegroup_id_local_var);
+        pki_modulegroup_id_local_var = NULL;
+    }
+    if (s_modulegroup_name_x_local_str) {
+        free(s_modulegroup_name_x_local_str);
+        s_modulegroup_name_x_local_str = NULL;
+    }
     return NULL;
 
 }

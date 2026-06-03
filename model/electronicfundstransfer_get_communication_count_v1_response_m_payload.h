@@ -19,13 +19,13 @@ typedef struct electronicfundstransfer_get_communication_count_v1_response_m_pay
 
 
 typedef struct electronicfundstransfer_get_communication_count_v1_response_m_payload_t {
-    int i_communication_count; //numeric
+    int *i_communication_count; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } electronicfundstransfer_get_communication_count_v1_response_m_payload_t;
 
 __attribute__((deprecated)) electronicfundstransfer_get_communication_count_v1_response_m_payload_t *electronicfundstransfer_get_communication_count_v1_response_m_payload_create(
-    int i_communication_count
+    int *i_communication_count
 );
 
 void electronicfundstransfer_get_communication_count_v1_response_m_payload_free(electronicfundstransfer_get_communication_count_v1_response_m_payload_t *electronicfundstransfer_get_communication_count_v1_response_m_payload);

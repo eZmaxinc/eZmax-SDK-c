@@ -7,31 +7,46 @@
 
 static ezsigntemplate_copy_v1_request_t *ezsigntemplate_copy_v1_request_create_internal(
     list_t *a_fki_ezsignfoldertype_id,
-    int b_copy_company,
-    int b_copy_user
+    int *b_copy_company,
+    int *b_copy_user
     ) {
     ezsigntemplate_copy_v1_request_t *ezsigntemplate_copy_v1_request_local_var = malloc(sizeof(ezsigntemplate_copy_v1_request_t));
     if (!ezsigntemplate_copy_v1_request_local_var) {
         return NULL;
     }
+    memset(ezsigntemplate_copy_v1_request_local_var, 0, sizeof(ezsigntemplate_copy_v1_request_t));
+    ezsigntemplate_copy_v1_request_local_var->_library_owned = 1;
     ezsigntemplate_copy_v1_request_local_var->a_fki_ezsignfoldertype_id = a_fki_ezsignfoldertype_id;
     ezsigntemplate_copy_v1_request_local_var->b_copy_company = b_copy_company;
     ezsigntemplate_copy_v1_request_local_var->b_copy_user = b_copy_user;
-
-    ezsigntemplate_copy_v1_request_local_var->_library_owned = 1;
     return ezsigntemplate_copy_v1_request_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplate_copy_v1_request_t *ezsigntemplate_copy_v1_request_create(
     list_t *a_fki_ezsignfoldertype_id,
-    int b_copy_company,
-    int b_copy_user
+    int *b_copy_company,
+    int *b_copy_user
     ) {
-    return ezsigntemplate_copy_v1_request_create_internal (
+    int *b_copy_company_copy = NULL;
+    if (b_copy_company) {
+        b_copy_company_copy = malloc(sizeof(int));
+        if (b_copy_company_copy) *b_copy_company_copy = *b_copy_company;
+    }
+    int *b_copy_user_copy = NULL;
+    if (b_copy_user) {
+        b_copy_user_copy = malloc(sizeof(int));
+        if (b_copy_user_copy) *b_copy_user_copy = *b_copy_user;
+    }
+    ezsigntemplate_copy_v1_request_t *result = ezsigntemplate_copy_v1_request_create_internal (
         a_fki_ezsignfoldertype_id,
-        b_copy_company,
-        b_copy_user
+        b_copy_company_copy,
+        b_copy_user_copy
         );
+    if (!result) {
+        free(b_copy_company_copy);
+        free(b_copy_user_copy);
+    }
+    return result;
 }
 
 void ezsigntemplate_copy_v1_request_free(ezsigntemplate_copy_v1_request_t *ezsigntemplate_copy_v1_request) {
@@ -49,6 +64,14 @@ void ezsigntemplate_copy_v1_request_free(ezsigntemplate_copy_v1_request_t *ezsig
         }
         list_freeList(ezsigntemplate_copy_v1_request->a_fki_ezsignfoldertype_id);
         ezsigntemplate_copy_v1_request->a_fki_ezsignfoldertype_id = NULL;
+    }
+    if (ezsigntemplate_copy_v1_request->b_copy_company) {
+        free(ezsigntemplate_copy_v1_request->b_copy_company);
+        ezsigntemplate_copy_v1_request->b_copy_company = NULL;
+    }
+    if (ezsigntemplate_copy_v1_request->b_copy_user) {
+        free(ezsigntemplate_copy_v1_request->b_copy_user);
+        ezsigntemplate_copy_v1_request->b_copy_user = NULL;
     }
     free(ezsigntemplate_copy_v1_request);
 }
@@ -75,7 +98,7 @@ cJSON *ezsigntemplate_copy_v1_request_convertToJSON(ezsigntemplate_copy_v1_reque
 
     // ezsigntemplate_copy_v1_request->b_copy_company
     if(ezsigntemplate_copy_v1_request->b_copy_company) {
-    if(cJSON_AddBoolToObject(item, "bCopyCompany", ezsigntemplate_copy_v1_request->b_copy_company) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bCopyCompany", *ezsigntemplate_copy_v1_request->b_copy_company) == NULL) {
     goto fail; //Bool
     }
     }
@@ -83,7 +106,7 @@ cJSON *ezsigntemplate_copy_v1_request_convertToJSON(ezsigntemplate_copy_v1_reque
 
     // ezsigntemplate_copy_v1_request->b_copy_user
     if(ezsigntemplate_copy_v1_request->b_copy_user) {
-    if(cJSON_AddBoolToObject(item, "bCopyUser", ezsigntemplate_copy_v1_request->b_copy_user) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bCopyUser", *ezsigntemplate_copy_v1_request->b_copy_user) == NULL) {
     goto fail; //Bool
     }
     }
@@ -102,6 +125,12 @@ ezsigntemplate_copy_v1_request_t *ezsigntemplate_copy_v1_request_parseFromJSON(c
 
     // define the local list for ezsigntemplate_copy_v1_request->a_fki_ezsignfoldertype_id
     list_t *a_fki_ezsignfoldertype_idList = NULL;
+
+    // define the local variable for ezsigntemplate_copy_v1_request->b_copy_company
+    int *b_copy_company_local_var = NULL;
+
+    // define the local variable for ezsigntemplate_copy_v1_request->b_copy_user
+    int *b_copy_user_local_var = NULL;
 
     // ezsigntemplate_copy_v1_request->a_fki_ezsignfoldertype_id
     cJSON *a_fki_ezsignfoldertype_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplate_copy_v1_requestJSON, "a_fkiEzsignfoldertypeID");
@@ -141,6 +170,12 @@ ezsigntemplate_copy_v1_request_t *ezsigntemplate_copy_v1_request_parseFromJSON(c
     {
     goto end; //Bool
     }
+    b_copy_company_local_var = malloc(sizeof(int));
+    if(!b_copy_company_local_var)
+    {
+        goto end;
+    }
+    *b_copy_company_local_var = b_copy_company->valueint;
     }
 
     // ezsigntemplate_copy_v1_request->b_copy_user
@@ -153,14 +188,25 @@ ezsigntemplate_copy_v1_request_t *ezsigntemplate_copy_v1_request_parseFromJSON(c
     {
     goto end; //Bool
     }
+    b_copy_user_local_var = malloc(sizeof(int));
+    if(!b_copy_user_local_var)
+    {
+        goto end;
     }
+    *b_copy_user_local_var = b_copy_user->valueint;
+    }
+
 
 
     ezsigntemplate_copy_v1_request_local_var = ezsigntemplate_copy_v1_request_create_internal (
         a_fki_ezsignfoldertype_id ? a_fki_ezsignfoldertype_idList : NULL,
-        b_copy_company ? b_copy_company->valueint : 0,
-        b_copy_user ? b_copy_user->valueint : 0
+        b_copy_company_local_var,
+        b_copy_user_local_var
         );
+
+    if (!ezsigntemplate_copy_v1_request_local_var) {
+        goto end;
+    }
 
     return ezsigntemplate_copy_v1_request_local_var;
 end:
@@ -172,6 +218,14 @@ end:
         }
         list_freeList(a_fki_ezsignfoldertype_idList);
         a_fki_ezsignfoldertype_idList = NULL;
+    }
+    if (b_copy_company_local_var) {
+        free(b_copy_company_local_var);
+        b_copy_company_local_var = NULL;
+    }
+    if (b_copy_user_local_var) {
+        free(b_copy_user_local_var);
+        b_copy_user_local_var = NULL;
     }
     return NULL;
 

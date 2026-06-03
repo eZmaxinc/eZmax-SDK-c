@@ -19,23 +19,23 @@ typedef struct apikey_list_element_t apikey_list_element_t;
 
 
 typedef struct apikey_list_element_t {
-    int pki_apikey_id; //numeric
+    int *pki_apikey_id; //numeric
     char *s_apikey_description_x; // string
     char *s_user_firstname; // string
     char *s_user_lastname; // string
-    int b_apikey_isactive; //boolean
-    int b_apikey_issigned; //boolean
+    int *b_apikey_isactive; //boolean
+    int *b_apikey_issigned; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } apikey_list_element_t;
 
 __attribute__((deprecated)) apikey_list_element_t *apikey_list_element_create(
-    int pki_apikey_id,
+    int *pki_apikey_id,
     char *s_apikey_description_x,
     char *s_user_firstname,
     char *s_user_lastname,
-    int b_apikey_isactive,
-    int b_apikey_issigned
+    int *b_apikey_isactive,
+    int *b_apikey_issigned
 );
 
 void apikey_list_element_free(apikey_list_element_t *apikey_list_element);

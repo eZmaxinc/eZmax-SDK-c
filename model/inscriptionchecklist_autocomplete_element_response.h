@@ -19,17 +19,17 @@ typedef struct inscriptionchecklist_autocomplete_element_response_t inscriptionc
 
 
 typedef struct inscriptionchecklist_autocomplete_element_response_t {
-    int pki_inscriptionchecklist_id; //numeric
+    int *pki_inscriptionchecklist_id; //numeric
     char *s_inscriptionchecklistelement_name_x; // string
-    int b_inscriptionchecklist_isactive; //boolean
+    int *b_inscriptionchecklist_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } inscriptionchecklist_autocomplete_element_response_t;
 
 __attribute__((deprecated)) inscriptionchecklist_autocomplete_element_response_t *inscriptionchecklist_autocomplete_element_response_create(
-    int pki_inscriptionchecklist_id,
+    int *pki_inscriptionchecklist_id,
     char *s_inscriptionchecklistelement_name_x,
-    int b_inscriptionchecklist_isactive
+    int *b_inscriptionchecklist_isactive
 );
 
 void inscriptionchecklist_autocomplete_element_response_free(inscriptionchecklist_autocomplete_element_response_t *inscriptionchecklist_autocomplete_element_response);

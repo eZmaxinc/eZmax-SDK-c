@@ -19,21 +19,21 @@ typedef struct customer_autocomplete_element_response_t customer_autocomplete_el
 
 
 typedef struct customer_autocomplete_element_response_t {
-    int pki_customer_id; //numeric
-    int fki_department_id; //numeric
+    int *pki_customer_id; //numeric
+    int *fki_department_id; //numeric
     char *s_customer_name; // string
     char *s_customer_code; // string
-    int b_customer_isactive; //boolean
+    int *b_customer_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } customer_autocomplete_element_response_t;
 
 __attribute__((deprecated)) customer_autocomplete_element_response_t *customer_autocomplete_element_response_create(
-    int pki_customer_id,
-    int fki_department_id,
+    int *pki_customer_id,
+    int *fki_department_id,
     char *s_customer_name,
     char *s_customer_code,
-    int b_customer_isactive
+    int *b_customer_isactive
 );
 
 void customer_autocomplete_element_response_free(customer_autocomplete_element_response_t *customer_autocomplete_element_response);

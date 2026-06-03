@@ -14,11 +14,11 @@ static ezsignannotation_create_object_v1_response_t *ezsignannotation_create_obj
     if (!ezsignannotation_create_object_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsignannotation_create_object_v1_response_local_var, 0, sizeof(ezsignannotation_create_object_v1_response_t));
+    ezsignannotation_create_object_v1_response_local_var->_library_owned = 1;
     ezsignannotation_create_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsignannotation_create_object_v1_response_local_var->obj_debug = obj_debug;
     ezsignannotation_create_object_v1_response_local_var->m_payload = m_payload;
-
-    ezsignannotation_create_object_v1_response_local_var->_library_owned = 1;
     return ezsignannotation_create_object_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) ezsignannotation_create_object_v1_response_t *ezsign
     common_response_obj_debug_t *obj_debug,
     ezsignannotation_create_object_v1_response_m_payload_t *m_payload
     ) {
-    return ezsignannotation_create_object_v1_response_create_internal (
+    ezsignannotation_create_object_v1_response_t *result = ezsignannotation_create_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignannotation_create_object_v1_response_free(ezsignannotation_create_object_v1_response_t *ezsignannotation_create_object_v1_response) {
@@ -156,11 +159,16 @@ ezsignannotation_create_object_v1_response_t *ezsignannotation_create_object_v1_
     m_payload_local_nonprim = ezsignannotation_create_object_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     ezsignannotation_create_object_v1_response_local_var = ezsignannotation_create_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!ezsignannotation_create_object_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsignannotation_create_object_v1_response_local_var;
 end:

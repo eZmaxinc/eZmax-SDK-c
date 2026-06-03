@@ -19,11 +19,11 @@ typedef struct employee_list_element_t employee_list_element_t;
 
 
 typedef struct employee_list_element_t {
-    int pki_employee_id; //numeric
-    int fki_department_id; //numeric
+    int *pki_employee_id; //numeric
+    int *fki_department_id; //numeric
     char *s_employee_code; // string
     char *s_employee_internalcode; // string
-    int b_employee_isactive; //boolean
+    int *b_employee_isactive; //boolean
     char *dt_employee_hiredate; // string
     char *dt_employee_leavedate; // string
     char *s_department_name_x; // string
@@ -36,18 +36,20 @@ typedef struct employee_list_element_t {
     char *s_address_suite; // string
     char *s_address_city; // string
     char *s_address_zip; // string
+    int *fki_province_id; //numeric
     char *s_province_name_x; // string
+    int *fki_country_id; //numeric
     char *s_country_name_x; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } employee_list_element_t;
 
 __attribute__((deprecated)) employee_list_element_t *employee_list_element_create(
-    int pki_employee_id,
-    int fki_department_id,
+    int *pki_employee_id,
+    int *fki_department_id,
     char *s_employee_code,
     char *s_employee_internalcode,
-    int b_employee_isactive,
+    int *b_employee_isactive,
     char *dt_employee_hiredate,
     char *dt_employee_leavedate,
     char *s_department_name_x,
@@ -60,7 +62,9 @@ __attribute__((deprecated)) employee_list_element_t *employee_list_element_creat
     char *s_address_suite,
     char *s_address_city,
     char *s_address_zip,
+    int *fki_province_id,
     char *s_province_name_x,
+    int *fki_country_id,
     char *s_country_name_x
 );
 

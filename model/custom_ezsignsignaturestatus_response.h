@@ -28,20 +28,20 @@ ezmax_api_definition__full_custom_ezsignsignaturestatus_response_EEZSIGNSIGNATUR
 
 typedef struct custom_ezsignsignaturestatus_response_t {
     ezmax_api_definition__full_custom_ezsignsignaturestatus_response_EEZSIGNSIGNATURESTATUSSTEPTYPE_e e_ezsignsignaturestatus_steptype; //enum
-    int i_ezsignsignaturestatus_step; //numeric
-    int i_ezsignsignaturestatus_total; //numeric
-    int i_ezsignsignaturestatus_signed; //numeric
-    int i_ezsignsignaturestatus_conditional; //numeric
+    int *i_ezsignsignaturestatus_step; //numeric
+    int *i_ezsignsignaturestatus_total; //numeric
+    int *i_ezsignsignaturestatus_signed; //numeric
+    int *i_ezsignsignaturestatus_conditional; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } custom_ezsignsignaturestatus_response_t;
 
 __attribute__((deprecated)) custom_ezsignsignaturestatus_response_t *custom_ezsignsignaturestatus_response_create(
     ezmax_api_definition__full_custom_ezsignsignaturestatus_response_EEZSIGNSIGNATURESTATUSSTEPTYPE_e e_ezsignsignaturestatus_steptype,
-    int i_ezsignsignaturestatus_step,
-    int i_ezsignsignaturestatus_total,
-    int i_ezsignsignaturestatus_signed,
-    int i_ezsignsignaturestatus_conditional
+    int *i_ezsignsignaturestatus_step,
+    int *i_ezsignsignaturestatus_total,
+    int *i_ezsignsignaturestatus_signed,
+    int *i_ezsignsignaturestatus_conditional
 );
 
 void custom_ezsignsignaturestatus_response_free(custom_ezsignsignaturestatus_response_t *custom_ezsignsignaturestatus_response);

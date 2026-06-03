@@ -6,36 +6,57 @@
 
 
 static common_reportcell_t *common_reportcell_create_internal(
-    int i_reportcell_columnspan,
-    int i_reportcell_rowspan,
+    int *i_reportcell_columnspan,
+    int *i_reportcell_rowspan,
     char *s_reportcell_content,
-    int i_reportcell_column
+    int *i_reportcell_column
     ) {
     common_reportcell_t *common_reportcell_local_var = malloc(sizeof(common_reportcell_t));
     if (!common_reportcell_local_var) {
         return NULL;
     }
+    memset(common_reportcell_local_var, 0, sizeof(common_reportcell_t));
+    common_reportcell_local_var->_library_owned = 1;
     common_reportcell_local_var->i_reportcell_columnspan = i_reportcell_columnspan;
     common_reportcell_local_var->i_reportcell_rowspan = i_reportcell_rowspan;
     common_reportcell_local_var->s_reportcell_content = s_reportcell_content;
     common_reportcell_local_var->i_reportcell_column = i_reportcell_column;
-
-    common_reportcell_local_var->_library_owned = 1;
     return common_reportcell_local_var;
 }
 
 __attribute__((deprecated)) common_reportcell_t *common_reportcell_create(
-    int i_reportcell_columnspan,
-    int i_reportcell_rowspan,
+    int *i_reportcell_columnspan,
+    int *i_reportcell_rowspan,
     char *s_reportcell_content,
-    int i_reportcell_column
+    int *i_reportcell_column
     ) {
-    return common_reportcell_create_internal (
-        i_reportcell_columnspan,
-        i_reportcell_rowspan,
+    int *i_reportcell_columnspan_copy = NULL;
+    if (i_reportcell_columnspan) {
+        i_reportcell_columnspan_copy = malloc(sizeof(int));
+        if (i_reportcell_columnspan_copy) *i_reportcell_columnspan_copy = *i_reportcell_columnspan;
+    }
+    int *i_reportcell_rowspan_copy = NULL;
+    if (i_reportcell_rowspan) {
+        i_reportcell_rowspan_copy = malloc(sizeof(int));
+        if (i_reportcell_rowspan_copy) *i_reportcell_rowspan_copy = *i_reportcell_rowspan;
+    }
+    int *i_reportcell_column_copy = NULL;
+    if (i_reportcell_column) {
+        i_reportcell_column_copy = malloc(sizeof(int));
+        if (i_reportcell_column_copy) *i_reportcell_column_copy = *i_reportcell_column;
+    }
+    common_reportcell_t *result = common_reportcell_create_internal (
+        i_reportcell_columnspan_copy,
+        i_reportcell_rowspan_copy,
         s_reportcell_content,
-        i_reportcell_column
+        i_reportcell_column_copy
         );
+    if (!result) {
+        free(i_reportcell_columnspan_copy);
+        free(i_reportcell_rowspan_copy);
+        free(i_reportcell_column_copy);
+    }
+    return result;
 }
 
 void common_reportcell_free(common_reportcell_t *common_reportcell) {
@@ -47,9 +68,21 @@ void common_reportcell_free(common_reportcell_t *common_reportcell) {
         return ;
     }
     listEntry_t *listEntry;
+    if (common_reportcell->i_reportcell_columnspan) {
+        free(common_reportcell->i_reportcell_columnspan);
+        common_reportcell->i_reportcell_columnspan = NULL;
+    }
+    if (common_reportcell->i_reportcell_rowspan) {
+        free(common_reportcell->i_reportcell_rowspan);
+        common_reportcell->i_reportcell_rowspan = NULL;
+    }
     if (common_reportcell->s_reportcell_content) {
         free(common_reportcell->s_reportcell_content);
         common_reportcell->s_reportcell_content = NULL;
+    }
+    if (common_reportcell->i_reportcell_column) {
+        free(common_reportcell->i_reportcell_column);
+        common_reportcell->i_reportcell_column = NULL;
     }
     free(common_reportcell);
 }
@@ -61,7 +94,7 @@ cJSON *common_reportcell_convertToJSON(common_reportcell_t *common_reportcell) {
     if (!common_reportcell->i_reportcell_columnspan) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iReportcellColumnspan", common_reportcell->i_reportcell_columnspan) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iReportcellColumnspan", *common_reportcell->i_reportcell_columnspan) == NULL) {
     goto fail; //Numeric
     }
 
@@ -70,7 +103,7 @@ cJSON *common_reportcell_convertToJSON(common_reportcell_t *common_reportcell) {
     if (!common_reportcell->i_reportcell_rowspan) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iReportcellRowspan", common_reportcell->i_reportcell_rowspan) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iReportcellRowspan", *common_reportcell->i_reportcell_rowspan) == NULL) {
     goto fail; //Numeric
     }
 
@@ -88,7 +121,7 @@ cJSON *common_reportcell_convertToJSON(common_reportcell_t *common_reportcell) {
     if (!common_reportcell->i_reportcell_column) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iReportcellColumn", common_reportcell->i_reportcell_column) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iReportcellColumn", *common_reportcell->i_reportcell_column) == NULL) {
     goto fail; //Numeric
     }
 
@@ -104,6 +137,17 @@ common_reportcell_t *common_reportcell_parseFromJSON(cJSON *common_reportcellJSO
 
     common_reportcell_t *common_reportcell_local_var = NULL;
 
+    // define the local variable for common_reportcell->i_reportcell_columnspan
+    int *i_reportcell_columnspan_local_var = NULL;
+
+    // define the local variable for common_reportcell->i_reportcell_rowspan
+    int *i_reportcell_rowspan_local_var = NULL;
+
+    char *s_reportcell_content_local_str = NULL;
+
+    // define the local variable for common_reportcell->i_reportcell_column
+    int *i_reportcell_column_local_var = NULL;
+
     // common_reportcell->i_reportcell_columnspan
     cJSON *i_reportcell_columnspan = cJSON_GetObjectItemCaseSensitive(common_reportcellJSON, "iReportcellColumnspan");
     if (cJSON_IsNull(i_reportcell_columnspan)) {
@@ -118,6 +162,12 @@ common_reportcell_t *common_reportcell_parseFromJSON(cJSON *common_reportcellJSO
     {
     goto end; //Numeric
     }
+    i_reportcell_columnspan_local_var = malloc(sizeof(int));
+    if(!i_reportcell_columnspan_local_var)
+    {
+        goto end;
+    }
+    *i_reportcell_columnspan_local_var = i_reportcell_columnspan->valuedouble;
 
     // common_reportcell->i_reportcell_rowspan
     cJSON *i_reportcell_rowspan = cJSON_GetObjectItemCaseSensitive(common_reportcellJSON, "iReportcellRowspan");
@@ -133,6 +183,12 @@ common_reportcell_t *common_reportcell_parseFromJSON(cJSON *common_reportcellJSO
     {
     goto end; //Numeric
     }
+    i_reportcell_rowspan_local_var = malloc(sizeof(int));
+    if(!i_reportcell_rowspan_local_var)
+    {
+        goto end;
+    }
+    *i_reportcell_rowspan_local_var = i_reportcell_rowspan->valuedouble;
 
     // common_reportcell->s_reportcell_content
     cJSON *s_reportcell_content = cJSON_GetObjectItemCaseSensitive(common_reportcellJSON, "sReportcellContent");
@@ -163,17 +219,45 @@ common_reportcell_t *common_reportcell_parseFromJSON(cJSON *common_reportcellJSO
     {
     goto end; //Numeric
     }
+    i_reportcell_column_local_var = malloc(sizeof(int));
+    if(!i_reportcell_column_local_var)
+    {
+        goto end;
+    }
+    *i_reportcell_column_local_var = i_reportcell_column->valuedouble;
 
+
+    if (s_reportcell_content && !cJSON_IsNull(s_reportcell_content)) s_reportcell_content_local_str = strdup(s_reportcell_content->valuestring);
 
     common_reportcell_local_var = common_reportcell_create_internal (
-        i_reportcell_columnspan->valuedouble,
-        i_reportcell_rowspan->valuedouble,
-        strdup(s_reportcell_content->valuestring),
-        i_reportcell_column->valuedouble
+        i_reportcell_columnspan_local_var,
+        i_reportcell_rowspan_local_var,
+        s_reportcell_content_local_str,
+        i_reportcell_column_local_var
         );
+
+    if (!common_reportcell_local_var) {
+        goto end;
+    }
 
     return common_reportcell_local_var;
 end:
+    if (i_reportcell_columnspan_local_var) {
+        free(i_reportcell_columnspan_local_var);
+        i_reportcell_columnspan_local_var = NULL;
+    }
+    if (i_reportcell_rowspan_local_var) {
+        free(i_reportcell_rowspan_local_var);
+        i_reportcell_rowspan_local_var = NULL;
+    }
+    if (s_reportcell_content_local_str) {
+        free(s_reportcell_content_local_str);
+        s_reportcell_content_local_str = NULL;
+    }
+    if (i_reportcell_column_local_var) {
+        free(i_reportcell_column_local_var);
+        i_reportcell_column_local_var = NULL;
+    }
     return NULL;
 
 }

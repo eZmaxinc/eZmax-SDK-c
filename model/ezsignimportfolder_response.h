@@ -19,14 +19,14 @@ typedef struct ezsignimportfolder_response_t ezsignimportfolder_response_t;
 
 
 typedef struct ezsignimportfolder_response_t {
-    int pki_ezsignimportfolder_id; //numeric
+    int *pki_ezsignimportfolder_id; //numeric
     char *s_ezsignimportfolder_name; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignimportfolder_response_t;
 
 __attribute__((deprecated)) ezsignimportfolder_response_t *ezsignimportfolder_response_create(
-    int pki_ezsignimportfolder_id,
+    int *pki_ezsignimportfolder_id,
     char *s_ezsignimportfolder_name
 );
 

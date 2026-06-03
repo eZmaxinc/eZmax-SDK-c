@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pki_ezsigntemplateglobaldocument_id** | **int** | The unique ID of the Ezsigntemplateglobaldocument | 
 **s_ezsigntemplateglobaldocument_name** | **char \*** | The name of the Ezsigntemplateglobaldocument. | 
+**e_ezsigntemplateglobaldocument_acceptationtype** | **field_e_ezsigntemplateglobaldocument_acceptationtype_t \*** |  | 
 **i_ezsigntemplateglobaldocument_pagetotal** | **int** | The number of pages in the Ezsigntemplateglobaldocument. | 
 **i_ezsigntemplateglobaldocument_signaturetotal** | **int** | The number of total signatures in the Ezsigntemplateglobal. | 
 

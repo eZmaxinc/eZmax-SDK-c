@@ -21,8 +21,8 @@ typedef struct ezsignuser_response_t ezsignuser_response_t;
 
 
 typedef struct ezsignuser_response_t {
-    int pki_ezsignuser_id; //numeric
-    int fki_contact_id; //numeric
+    int *pki_ezsignuser_id; //numeric
+    int *fki_contact_id; //numeric
     struct contact_response_compound_t *obj_contact; //model
     struct common_audit_t *obj_audit; //model
 
@@ -30,8 +30,8 @@ typedef struct ezsignuser_response_t {
 } ezsignuser_response_t;
 
 __attribute__((deprecated)) ezsignuser_response_t *ezsignuser_response_create(
-    int pki_ezsignuser_id,
-    int fki_contact_id,
+    int *pki_ezsignuser_id,
+    int *fki_contact_id,
     contact_response_compound_t *obj_contact,
     common_audit_t *obj_audit
 );

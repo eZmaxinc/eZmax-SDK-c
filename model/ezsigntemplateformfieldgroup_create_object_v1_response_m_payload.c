@@ -12,18 +12,21 @@ static ezsigntemplateformfieldgroup_create_object_v1_response_m_payload_t *ezsig
     if (!ezsigntemplateformfieldgroup_create_object_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsigntemplateformfieldgroup_create_object_v1_response_m_payload_local_var->a_pki_ezsigntemplateformfieldgroup_id = a_pki_ezsigntemplateformfieldgroup_id;
-
+    memset(ezsigntemplateformfieldgroup_create_object_v1_response_m_payload_local_var, 0, sizeof(ezsigntemplateformfieldgroup_create_object_v1_response_m_payload_t));
     ezsigntemplateformfieldgroup_create_object_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsigntemplateformfieldgroup_create_object_v1_response_m_payload_local_var->a_pki_ezsigntemplateformfieldgroup_id = a_pki_ezsigntemplateformfieldgroup_id;
     return ezsigntemplateformfieldgroup_create_object_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplateformfieldgroup_create_object_v1_response_m_payload_t *ezsigntemplateformfieldgroup_create_object_v1_response_m_payload_create(
     list_t *a_pki_ezsigntemplateformfieldgroup_id
     ) {
-    return ezsigntemplateformfieldgroup_create_object_v1_response_m_payload_create_internal (
+    ezsigntemplateformfieldgroup_create_object_v1_response_m_payload_t *result = ezsigntemplateformfieldgroup_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsigntemplateformfieldgroup_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplateformfieldgroup_create_object_v1_response_m_payload_free(ezsigntemplateformfieldgroup_create_object_v1_response_m_payload_t *ezsigntemplateformfieldgroup_create_object_v1_response_m_payload) {
@@ -112,9 +115,14 @@ ezsigntemplateformfieldgroup_create_object_v1_response_m_payload_t *ezsigntempla
     }
 
 
+
     ezsigntemplateformfieldgroup_create_object_v1_response_m_payload_local_var = ezsigntemplateformfieldgroup_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsigntemplateformfieldgroup_idList
         );
+
+    if (!ezsigntemplateformfieldgroup_create_object_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsigntemplateformfieldgroup_create_object_v1_response_m_payload_local_var;
 end:

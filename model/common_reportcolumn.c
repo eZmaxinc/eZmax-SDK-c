@@ -7,31 +7,40 @@
 
 static common_reportcolumn_t *common_reportcolumn_create_internal(
     common_reportcellstyle_t *obj_reportcellstyle_default,
-    int i_reportcolumn_width,
+    int *i_reportcolumn_width,
     ezmax_api_definition__full_enum_reportdata_type__e e_reportcolumn_type
     ) {
     common_reportcolumn_t *common_reportcolumn_local_var = malloc(sizeof(common_reportcolumn_t));
     if (!common_reportcolumn_local_var) {
         return NULL;
     }
+    memset(common_reportcolumn_local_var, 0, sizeof(common_reportcolumn_t));
+    common_reportcolumn_local_var->_library_owned = 1;
     common_reportcolumn_local_var->obj_reportcellstyle_default = obj_reportcellstyle_default;
     common_reportcolumn_local_var->i_reportcolumn_width = i_reportcolumn_width;
     common_reportcolumn_local_var->e_reportcolumn_type = e_reportcolumn_type;
-
-    common_reportcolumn_local_var->_library_owned = 1;
     return common_reportcolumn_local_var;
 }
 
 __attribute__((deprecated)) common_reportcolumn_t *common_reportcolumn_create(
     common_reportcellstyle_t *obj_reportcellstyle_default,
-    int i_reportcolumn_width,
+    int *i_reportcolumn_width,
     ezmax_api_definition__full_enum_reportdata_type__e e_reportcolumn_type
     ) {
-    return common_reportcolumn_create_internal (
+    int *i_reportcolumn_width_copy = NULL;
+    if (i_reportcolumn_width) {
+        i_reportcolumn_width_copy = malloc(sizeof(int));
+        if (i_reportcolumn_width_copy) *i_reportcolumn_width_copy = *i_reportcolumn_width;
+    }
+    common_reportcolumn_t *result = common_reportcolumn_create_internal (
         obj_reportcellstyle_default,
-        i_reportcolumn_width,
+        i_reportcolumn_width_copy,
         e_reportcolumn_type
         );
+    if (!result) {
+        free(i_reportcolumn_width_copy);
+    }
+    return result;
 }
 
 void common_reportcolumn_free(common_reportcolumn_t *common_reportcolumn) {
@@ -46,6 +55,10 @@ void common_reportcolumn_free(common_reportcolumn_t *common_reportcolumn) {
     if (common_reportcolumn->obj_reportcellstyle_default) {
         common_reportcellstyle_free(common_reportcolumn->obj_reportcellstyle_default);
         common_reportcolumn->obj_reportcellstyle_default = NULL;
+    }
+    if (common_reportcolumn->i_reportcolumn_width) {
+        free(common_reportcolumn->i_reportcolumn_width);
+        common_reportcolumn->i_reportcolumn_width = NULL;
     }
     free(common_reportcolumn);
 }
@@ -71,7 +84,7 @@ cJSON *common_reportcolumn_convertToJSON(common_reportcolumn_t *common_reportcol
     if (!common_reportcolumn->i_reportcolumn_width) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iReportcolumnWidth", common_reportcolumn->i_reportcolumn_width) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iReportcolumnWidth", *common_reportcolumn->i_reportcolumn_width) == NULL) {
     goto fail; //Numeric
     }
 
@@ -104,6 +117,9 @@ common_reportcolumn_t *common_reportcolumn_parseFromJSON(cJSON *common_reportcol
     // define the local variable for common_reportcolumn->obj_reportcellstyle_default
     common_reportcellstyle_t *obj_reportcellstyle_default_local_nonprim = NULL;
 
+    // define the local variable for common_reportcolumn->i_reportcolumn_width
+    int *i_reportcolumn_width_local_var = NULL;
+
     // define the local variable for common_reportcolumn->e_reportcolumn_type
     ezmax_api_definition__full_enum_reportdata_type__e e_reportcolumn_type_local_nonprim = 0;
 
@@ -133,6 +149,12 @@ common_reportcolumn_t *common_reportcolumn_parseFromJSON(cJSON *common_reportcol
     {
     goto end; //Numeric
     }
+    i_reportcolumn_width_local_var = malloc(sizeof(int));
+    if(!i_reportcolumn_width_local_var)
+    {
+        goto end;
+    }
+    *i_reportcolumn_width_local_var = i_reportcolumn_width->valuedouble;
 
     // common_reportcolumn->e_reportcolumn_type
     cJSON *e_reportcolumn_type = cJSON_GetObjectItemCaseSensitive(common_reportcolumnJSON, "eReportcolumnType");
@@ -147,17 +169,26 @@ common_reportcolumn_t *common_reportcolumn_parseFromJSON(cJSON *common_reportcol
     e_reportcolumn_type_local_nonprim = enum_reportdata_type_parseFromJSON(e_reportcolumn_type); //custom
 
 
+
     common_reportcolumn_local_var = common_reportcolumn_create_internal (
         obj_reportcellstyle_default_local_nonprim,
-        i_reportcolumn_width->valuedouble,
+        i_reportcolumn_width_local_var,
         e_reportcolumn_type_local_nonprim
         );
+
+    if (!common_reportcolumn_local_var) {
+        goto end;
+    }
 
     return common_reportcolumn_local_var;
 end:
     if (obj_reportcellstyle_default_local_nonprim) {
         common_reportcellstyle_free(obj_reportcellstyle_default_local_nonprim);
         obj_reportcellstyle_default_local_nonprim = NULL;
+    }
+    if (i_reportcolumn_width_local_var) {
+        free(i_reportcolumn_width_local_var);
+        i_reportcolumn_width_local_var = NULL;
     }
     if (e_reportcolumn_type_local_nonprim) {
         e_reportcolumn_type_local_nonprim = 0;

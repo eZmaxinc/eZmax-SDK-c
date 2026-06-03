@@ -6,18 +6,20 @@
 
 
 static ezsigndiscussion_response_t *ezsigndiscussion_response_create_internal(
-    int pki_ezsigndiscussion_id,
-    int fki_ezsignpage_id,
-    int fki_discussion_id,
-    int i_ezsigndiscussion_x,
-    int i_ezsigndiscussion_y,
-    int i_ezsigndiscussion_pagenumber,
+    int *pki_ezsigndiscussion_id,
+    int *fki_ezsignpage_id,
+    int *fki_discussion_id,
+    int *i_ezsigndiscussion_x,
+    int *i_ezsigndiscussion_y,
+    int *i_ezsigndiscussion_pagenumber,
     discussion_response_compound_t *obj_discussion
     ) {
     ezsigndiscussion_response_t *ezsigndiscussion_response_local_var = malloc(sizeof(ezsigndiscussion_response_t));
     if (!ezsigndiscussion_response_local_var) {
         return NULL;
     }
+    memset(ezsigndiscussion_response_local_var, 0, sizeof(ezsigndiscussion_response_t));
+    ezsigndiscussion_response_local_var->_library_owned = 1;
     ezsigndiscussion_response_local_var->pki_ezsigndiscussion_id = pki_ezsigndiscussion_id;
     ezsigndiscussion_response_local_var->fki_ezsignpage_id = fki_ezsignpage_id;
     ezsigndiscussion_response_local_var->fki_discussion_id = fki_discussion_id;
@@ -25,29 +27,66 @@ static ezsigndiscussion_response_t *ezsigndiscussion_response_create_internal(
     ezsigndiscussion_response_local_var->i_ezsigndiscussion_y = i_ezsigndiscussion_y;
     ezsigndiscussion_response_local_var->i_ezsigndiscussion_pagenumber = i_ezsigndiscussion_pagenumber;
     ezsigndiscussion_response_local_var->obj_discussion = obj_discussion;
-
-    ezsigndiscussion_response_local_var->_library_owned = 1;
     return ezsigndiscussion_response_local_var;
 }
 
 __attribute__((deprecated)) ezsigndiscussion_response_t *ezsigndiscussion_response_create(
-    int pki_ezsigndiscussion_id,
-    int fki_ezsignpage_id,
-    int fki_discussion_id,
-    int i_ezsigndiscussion_x,
-    int i_ezsigndiscussion_y,
-    int i_ezsigndiscussion_pagenumber,
+    int *pki_ezsigndiscussion_id,
+    int *fki_ezsignpage_id,
+    int *fki_discussion_id,
+    int *i_ezsigndiscussion_x,
+    int *i_ezsigndiscussion_y,
+    int *i_ezsigndiscussion_pagenumber,
     discussion_response_compound_t *obj_discussion
     ) {
-    return ezsigndiscussion_response_create_internal (
-        pki_ezsigndiscussion_id,
-        fki_ezsignpage_id,
-        fki_discussion_id,
-        i_ezsigndiscussion_x,
-        i_ezsigndiscussion_y,
-        i_ezsigndiscussion_pagenumber,
+    int *pki_ezsigndiscussion_id_copy = NULL;
+    if (pki_ezsigndiscussion_id) {
+        pki_ezsigndiscussion_id_copy = malloc(sizeof(int));
+        if (pki_ezsigndiscussion_id_copy) *pki_ezsigndiscussion_id_copy = *pki_ezsigndiscussion_id;
+    }
+    int *fki_ezsignpage_id_copy = NULL;
+    if (fki_ezsignpage_id) {
+        fki_ezsignpage_id_copy = malloc(sizeof(int));
+        if (fki_ezsignpage_id_copy) *fki_ezsignpage_id_copy = *fki_ezsignpage_id;
+    }
+    int *fki_discussion_id_copy = NULL;
+    if (fki_discussion_id) {
+        fki_discussion_id_copy = malloc(sizeof(int));
+        if (fki_discussion_id_copy) *fki_discussion_id_copy = *fki_discussion_id;
+    }
+    int *i_ezsigndiscussion_x_copy = NULL;
+    if (i_ezsigndiscussion_x) {
+        i_ezsigndiscussion_x_copy = malloc(sizeof(int));
+        if (i_ezsigndiscussion_x_copy) *i_ezsigndiscussion_x_copy = *i_ezsigndiscussion_x;
+    }
+    int *i_ezsigndiscussion_y_copy = NULL;
+    if (i_ezsigndiscussion_y) {
+        i_ezsigndiscussion_y_copy = malloc(sizeof(int));
+        if (i_ezsigndiscussion_y_copy) *i_ezsigndiscussion_y_copy = *i_ezsigndiscussion_y;
+    }
+    int *i_ezsigndiscussion_pagenumber_copy = NULL;
+    if (i_ezsigndiscussion_pagenumber) {
+        i_ezsigndiscussion_pagenumber_copy = malloc(sizeof(int));
+        if (i_ezsigndiscussion_pagenumber_copy) *i_ezsigndiscussion_pagenumber_copy = *i_ezsigndiscussion_pagenumber;
+    }
+    ezsigndiscussion_response_t *result = ezsigndiscussion_response_create_internal (
+        pki_ezsigndiscussion_id_copy,
+        fki_ezsignpage_id_copy,
+        fki_discussion_id_copy,
+        i_ezsigndiscussion_x_copy,
+        i_ezsigndiscussion_y_copy,
+        i_ezsigndiscussion_pagenumber_copy,
         obj_discussion
         );
+    if (!result) {
+        free(pki_ezsigndiscussion_id_copy);
+        free(fki_ezsignpage_id_copy);
+        free(fki_discussion_id_copy);
+        free(i_ezsigndiscussion_x_copy);
+        free(i_ezsigndiscussion_y_copy);
+        free(i_ezsigndiscussion_pagenumber_copy);
+    }
+    return result;
 }
 
 void ezsigndiscussion_response_free(ezsigndiscussion_response_t *ezsigndiscussion_response) {
@@ -59,6 +98,30 @@ void ezsigndiscussion_response_free(ezsigndiscussion_response_t *ezsigndiscussio
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsigndiscussion_response->pki_ezsigndiscussion_id) {
+        free(ezsigndiscussion_response->pki_ezsigndiscussion_id);
+        ezsigndiscussion_response->pki_ezsigndiscussion_id = NULL;
+    }
+    if (ezsigndiscussion_response->fki_ezsignpage_id) {
+        free(ezsigndiscussion_response->fki_ezsignpage_id);
+        ezsigndiscussion_response->fki_ezsignpage_id = NULL;
+    }
+    if (ezsigndiscussion_response->fki_discussion_id) {
+        free(ezsigndiscussion_response->fki_discussion_id);
+        ezsigndiscussion_response->fki_discussion_id = NULL;
+    }
+    if (ezsigndiscussion_response->i_ezsigndiscussion_x) {
+        free(ezsigndiscussion_response->i_ezsigndiscussion_x);
+        ezsigndiscussion_response->i_ezsigndiscussion_x = NULL;
+    }
+    if (ezsigndiscussion_response->i_ezsigndiscussion_y) {
+        free(ezsigndiscussion_response->i_ezsigndiscussion_y);
+        ezsigndiscussion_response->i_ezsigndiscussion_y = NULL;
+    }
+    if (ezsigndiscussion_response->i_ezsigndiscussion_pagenumber) {
+        free(ezsigndiscussion_response->i_ezsigndiscussion_pagenumber);
+        ezsigndiscussion_response->i_ezsigndiscussion_pagenumber = NULL;
+    }
     if (ezsigndiscussion_response->obj_discussion) {
         discussion_response_compound_free(ezsigndiscussion_response->obj_discussion);
         ezsigndiscussion_response->obj_discussion = NULL;
@@ -73,7 +136,7 @@ cJSON *ezsigndiscussion_response_convertToJSON(ezsigndiscussion_response_t *ezsi
     if (!ezsigndiscussion_response->pki_ezsigndiscussion_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiEzsigndiscussionID", ezsigndiscussion_response->pki_ezsigndiscussion_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzsigndiscussionID", *ezsigndiscussion_response->pki_ezsigndiscussion_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -82,7 +145,7 @@ cJSON *ezsigndiscussion_response_convertToJSON(ezsigndiscussion_response_t *ezsi
     if (!ezsigndiscussion_response->fki_ezsignpage_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiEzsignpageID", ezsigndiscussion_response->fki_ezsignpage_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsignpageID", *ezsigndiscussion_response->fki_ezsignpage_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -91,7 +154,7 @@ cJSON *ezsigndiscussion_response_convertToJSON(ezsigndiscussion_response_t *ezsi
     if (!ezsigndiscussion_response->fki_discussion_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiDiscussionID", ezsigndiscussion_response->fki_discussion_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiDiscussionID", *ezsigndiscussion_response->fki_discussion_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -100,7 +163,7 @@ cJSON *ezsigndiscussion_response_convertToJSON(ezsigndiscussion_response_t *ezsi
     if (!ezsigndiscussion_response->i_ezsigndiscussion_x) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iEzsigndiscussionX", ezsigndiscussion_response->i_ezsigndiscussion_x) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iEzsigndiscussionX", *ezsigndiscussion_response->i_ezsigndiscussion_x) == NULL) {
     goto fail; //Numeric
     }
 
@@ -109,7 +172,7 @@ cJSON *ezsigndiscussion_response_convertToJSON(ezsigndiscussion_response_t *ezsi
     if (!ezsigndiscussion_response->i_ezsigndiscussion_y) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iEzsigndiscussionY", ezsigndiscussion_response->i_ezsigndiscussion_y) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iEzsigndiscussionY", *ezsigndiscussion_response->i_ezsigndiscussion_y) == NULL) {
     goto fail; //Numeric
     }
 
@@ -118,7 +181,7 @@ cJSON *ezsigndiscussion_response_convertToJSON(ezsigndiscussion_response_t *ezsi
     if (!ezsigndiscussion_response->i_ezsigndiscussion_pagenumber) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iEzsigndiscussionPagenumber", ezsigndiscussion_response->i_ezsigndiscussion_pagenumber) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iEzsigndiscussionPagenumber", *ezsigndiscussion_response->i_ezsigndiscussion_pagenumber) == NULL) {
     goto fail; //Numeric
     }
 
@@ -148,6 +211,24 @@ ezsigndiscussion_response_t *ezsigndiscussion_response_parseFromJSON(cJSON *ezsi
 
     ezsigndiscussion_response_t *ezsigndiscussion_response_local_var = NULL;
 
+    // define the local variable for ezsigndiscussion_response->pki_ezsigndiscussion_id
+    int *pki_ezsigndiscussion_id_local_var = NULL;
+
+    // define the local variable for ezsigndiscussion_response->fki_ezsignpage_id
+    int *fki_ezsignpage_id_local_var = NULL;
+
+    // define the local variable for ezsigndiscussion_response->fki_discussion_id
+    int *fki_discussion_id_local_var = NULL;
+
+    // define the local variable for ezsigndiscussion_response->i_ezsigndiscussion_x
+    int *i_ezsigndiscussion_x_local_var = NULL;
+
+    // define the local variable for ezsigndiscussion_response->i_ezsigndiscussion_y
+    int *i_ezsigndiscussion_y_local_var = NULL;
+
+    // define the local variable for ezsigndiscussion_response->i_ezsigndiscussion_pagenumber
+    int *i_ezsigndiscussion_pagenumber_local_var = NULL;
+
     // define the local variable for ezsigndiscussion_response->obj_discussion
     discussion_response_compound_t *obj_discussion_local_nonprim = NULL;
 
@@ -165,6 +246,12 @@ ezsigndiscussion_response_t *ezsigndiscussion_response_parseFromJSON(cJSON *ezsi
     {
     goto end; //Numeric
     }
+    pki_ezsigndiscussion_id_local_var = malloc(sizeof(int));
+    if(!pki_ezsigndiscussion_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezsigndiscussion_id_local_var = pki_ezsigndiscussion_id->valuedouble;
 
     // ezsigndiscussion_response->fki_ezsignpage_id
     cJSON *fki_ezsignpage_id = cJSON_GetObjectItemCaseSensitive(ezsigndiscussion_responseJSON, "fkiEzsignpageID");
@@ -180,6 +267,12 @@ ezsigndiscussion_response_t *ezsigndiscussion_response_parseFromJSON(cJSON *ezsi
     {
     goto end; //Numeric
     }
+    fki_ezsignpage_id_local_var = malloc(sizeof(int));
+    if(!fki_ezsignpage_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezsignpage_id_local_var = fki_ezsignpage_id->valuedouble;
 
     // ezsigndiscussion_response->fki_discussion_id
     cJSON *fki_discussion_id = cJSON_GetObjectItemCaseSensitive(ezsigndiscussion_responseJSON, "fkiDiscussionID");
@@ -195,6 +288,12 @@ ezsigndiscussion_response_t *ezsigndiscussion_response_parseFromJSON(cJSON *ezsi
     {
     goto end; //Numeric
     }
+    fki_discussion_id_local_var = malloc(sizeof(int));
+    if(!fki_discussion_id_local_var)
+    {
+        goto end;
+    }
+    *fki_discussion_id_local_var = fki_discussion_id->valuedouble;
 
     // ezsigndiscussion_response->i_ezsigndiscussion_x
     cJSON *i_ezsigndiscussion_x = cJSON_GetObjectItemCaseSensitive(ezsigndiscussion_responseJSON, "iEzsigndiscussionX");
@@ -210,6 +309,12 @@ ezsigndiscussion_response_t *ezsigndiscussion_response_parseFromJSON(cJSON *ezsi
     {
     goto end; //Numeric
     }
+    i_ezsigndiscussion_x_local_var = malloc(sizeof(int));
+    if(!i_ezsigndiscussion_x_local_var)
+    {
+        goto end;
+    }
+    *i_ezsigndiscussion_x_local_var = i_ezsigndiscussion_x->valuedouble;
 
     // ezsigndiscussion_response->i_ezsigndiscussion_y
     cJSON *i_ezsigndiscussion_y = cJSON_GetObjectItemCaseSensitive(ezsigndiscussion_responseJSON, "iEzsigndiscussionY");
@@ -225,6 +330,12 @@ ezsigndiscussion_response_t *ezsigndiscussion_response_parseFromJSON(cJSON *ezsi
     {
     goto end; //Numeric
     }
+    i_ezsigndiscussion_y_local_var = malloc(sizeof(int));
+    if(!i_ezsigndiscussion_y_local_var)
+    {
+        goto end;
+    }
+    *i_ezsigndiscussion_y_local_var = i_ezsigndiscussion_y->valuedouble;
 
     // ezsigndiscussion_response->i_ezsigndiscussion_pagenumber
     cJSON *i_ezsigndiscussion_pagenumber = cJSON_GetObjectItemCaseSensitive(ezsigndiscussion_responseJSON, "iEzsigndiscussionPagenumber");
@@ -240,6 +351,12 @@ ezsigndiscussion_response_t *ezsigndiscussion_response_parseFromJSON(cJSON *ezsi
     {
     goto end; //Numeric
     }
+    i_ezsigndiscussion_pagenumber_local_var = malloc(sizeof(int));
+    if(!i_ezsigndiscussion_pagenumber_local_var)
+    {
+        goto end;
+    }
+    *i_ezsigndiscussion_pagenumber_local_var = i_ezsigndiscussion_pagenumber->valuedouble;
 
     // ezsigndiscussion_response->obj_discussion
     cJSON *obj_discussion = cJSON_GetObjectItemCaseSensitive(ezsigndiscussion_responseJSON, "objDiscussion");
@@ -254,18 +371,47 @@ ezsigndiscussion_response_t *ezsigndiscussion_response_parseFromJSON(cJSON *ezsi
     obj_discussion_local_nonprim = discussion_response_compound_parseFromJSON(obj_discussion); //nonprimitive
 
 
+
     ezsigndiscussion_response_local_var = ezsigndiscussion_response_create_internal (
-        pki_ezsigndiscussion_id->valuedouble,
-        fki_ezsignpage_id->valuedouble,
-        fki_discussion_id->valuedouble,
-        i_ezsigndiscussion_x->valuedouble,
-        i_ezsigndiscussion_y->valuedouble,
-        i_ezsigndiscussion_pagenumber->valuedouble,
+        pki_ezsigndiscussion_id_local_var,
+        fki_ezsignpage_id_local_var,
+        fki_discussion_id_local_var,
+        i_ezsigndiscussion_x_local_var,
+        i_ezsigndiscussion_y_local_var,
+        i_ezsigndiscussion_pagenumber_local_var,
         obj_discussion_local_nonprim
         );
 
+    if (!ezsigndiscussion_response_local_var) {
+        goto end;
+    }
+
     return ezsigndiscussion_response_local_var;
 end:
+    if (pki_ezsigndiscussion_id_local_var) {
+        free(pki_ezsigndiscussion_id_local_var);
+        pki_ezsigndiscussion_id_local_var = NULL;
+    }
+    if (fki_ezsignpage_id_local_var) {
+        free(fki_ezsignpage_id_local_var);
+        fki_ezsignpage_id_local_var = NULL;
+    }
+    if (fki_discussion_id_local_var) {
+        free(fki_discussion_id_local_var);
+        fki_discussion_id_local_var = NULL;
+    }
+    if (i_ezsigndiscussion_x_local_var) {
+        free(i_ezsigndiscussion_x_local_var);
+        i_ezsigndiscussion_x_local_var = NULL;
+    }
+    if (i_ezsigndiscussion_y_local_var) {
+        free(i_ezsigndiscussion_y_local_var);
+        i_ezsigndiscussion_y_local_var = NULL;
+    }
+    if (i_ezsigndiscussion_pagenumber_local_var) {
+        free(i_ezsigndiscussion_pagenumber_local_var);
+        i_ezsigndiscussion_pagenumber_local_var = NULL;
+    }
     if (obj_discussion_local_nonprim) {
         discussion_response_compound_free(obj_discussion_local_nonprim);
         obj_discussion_local_nonprim = NULL;

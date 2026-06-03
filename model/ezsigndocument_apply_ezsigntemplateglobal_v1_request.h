@@ -19,7 +19,7 @@ typedef struct ezsigndocument_apply_ezsigntemplateglobal_v1_request_t ezsigndocu
 
 
 typedef struct ezsigndocument_apply_ezsigntemplateglobal_v1_request_t {
-    int fki_ezsigntemplateglobal_id; //numeric
+    int *fki_ezsigntemplateglobal_id; //numeric
     list_t *a_s_ezsigntemplateglobalsigner; //primitive container
     list_t *a_pki_ezsignfoldersignerassociation_id; //primitive container
 
@@ -27,7 +27,7 @@ typedef struct ezsigndocument_apply_ezsigntemplateglobal_v1_request_t {
 } ezsigndocument_apply_ezsigntemplateglobal_v1_request_t;
 
 __attribute__((deprecated)) ezsigndocument_apply_ezsigntemplateglobal_v1_request_t *ezsigndocument_apply_ezsigntemplateglobal_v1_request_create(
-    int fki_ezsigntemplateglobal_id,
+    int *fki_ezsigntemplateglobal_id,
     list_t *a_s_ezsigntemplateglobalsigner,
     list_t *a_pki_ezsignfoldersignerassociation_id
 );

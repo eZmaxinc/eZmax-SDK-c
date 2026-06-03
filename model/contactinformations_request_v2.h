@@ -21,20 +21,20 @@ typedef struct contactinformations_request_v2_t contactinformations_request_v2_t
 
 typedef struct contactinformations_request_v2_t {
     ezmax_api_definition__full_field_e_contactinformations_type__e e_contactinformations_type; //referenced enum
-    int i_address_default; //numeric
-    int i_phone_default; //numeric
-    int i_email_default; //numeric
-    int i_website_default; //numeric
+    int *i_address_default; //numeric
+    int *i_phone_default; //numeric
+    int *i_email_default; //numeric
+    int *i_website_default; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } contactinformations_request_v2_t;
 
 __attribute__((deprecated)) contactinformations_request_v2_t *contactinformations_request_v2_create(
     ezmax_api_definition__full_field_e_contactinformations_type__e e_contactinformations_type,
-    int i_address_default,
-    int i_phone_default,
-    int i_email_default,
-    int i_website_default
+    int *i_address_default,
+    int *i_phone_default,
+    int *i_email_default,
+    int *i_website_default
 );
 
 void contactinformations_request_v2_free(contactinformations_request_v2_t *contactinformations_request_v2);

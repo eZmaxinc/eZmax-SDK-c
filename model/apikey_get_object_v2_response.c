@@ -14,11 +14,11 @@ static apikey_get_object_v2_response_t *apikey_get_object_v2_response_create_int
     if (!apikey_get_object_v2_response_local_var) {
         return NULL;
     }
+    memset(apikey_get_object_v2_response_local_var, 0, sizeof(apikey_get_object_v2_response_t));
+    apikey_get_object_v2_response_local_var->_library_owned = 1;
     apikey_get_object_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     apikey_get_object_v2_response_local_var->obj_debug = obj_debug;
     apikey_get_object_v2_response_local_var->m_payload = m_payload;
-
-    apikey_get_object_v2_response_local_var->_library_owned = 1;
     return apikey_get_object_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) apikey_get_object_v2_response_t *apikey_get_object_v
     common_response_obj_debug_t *obj_debug,
     apikey_get_object_v2_response_m_payload_t *m_payload
     ) {
-    return apikey_get_object_v2_response_create_internal (
+    apikey_get_object_v2_response_t *result = apikey_get_object_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void apikey_get_object_v2_response_free(apikey_get_object_v2_response_t *apikey_get_object_v2_response) {
@@ -156,11 +159,16 @@ apikey_get_object_v2_response_t *apikey_get_object_v2_response_parseFromJSON(cJS
     m_payload_local_nonprim = apikey_get_object_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     apikey_get_object_v2_response_local_var = apikey_get_object_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!apikey_get_object_v2_response_local_var) {
+        goto end;
+    }
 
     return apikey_get_object_v2_response_local_var;
 end:

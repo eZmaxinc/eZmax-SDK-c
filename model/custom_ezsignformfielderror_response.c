@@ -13,10 +13,10 @@ static custom_ezsignformfielderror_response_t *custom_ezsignformfielderror_respo
     if (!custom_ezsignformfielderror_response_local_var) {
         return NULL;
     }
+    memset(custom_ezsignformfielderror_response_local_var, 0, sizeof(custom_ezsignformfielderror_response_t));
+    custom_ezsignformfielderror_response_local_var->_library_owned = 1;
     custom_ezsignformfielderror_response_local_var->s_ezsignformfield_label = s_ezsignformfield_label;
     custom_ezsignformfielderror_response_local_var->a_obj_ezsignformfielderrortest = a_obj_ezsignformfielderrortest;
-
-    custom_ezsignformfielderror_response_local_var->_library_owned = 1;
     return custom_ezsignformfielderror_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) custom_ezsignformfielderror_response_t *custom_ezsig
     char *s_ezsignformfield_label,
     list_t *a_obj_ezsignformfielderrortest
     ) {
-    return custom_ezsignformfielderror_response_create_internal (
+    custom_ezsignformfielderror_response_t *result = custom_ezsignformfielderror_response_create_internal (
         s_ezsignformfield_label,
         a_obj_ezsignformfielderrortest
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void custom_ezsignformfielderror_response_free(custom_ezsignformfielderror_response_t *custom_ezsignformfielderror_response) {
@@ -97,6 +100,8 @@ custom_ezsignformfielderror_response_t *custom_ezsignformfielderror_response_par
 
     custom_ezsignformfielderror_response_t *custom_ezsignformfielderror_response_local_var = NULL;
 
+    char *s_ezsignformfield_label_local_str = NULL;
+
     // define the local list for custom_ezsignformfielderror_response->a_obj_ezsignformfielderrortest
     list_t *a_obj_ezsignformfielderrortestList = NULL;
 
@@ -143,13 +148,23 @@ custom_ezsignformfielderror_response_t *custom_ezsignformfielderror_response_par
     }
 
 
+    if (s_ezsignformfield_label && !cJSON_IsNull(s_ezsignformfield_label)) s_ezsignformfield_label_local_str = strdup(s_ezsignformfield_label->valuestring);
+
     custom_ezsignformfielderror_response_local_var = custom_ezsignformfielderror_response_create_internal (
-        strdup(s_ezsignformfield_label->valuestring),
+        s_ezsignformfield_label_local_str,
         a_obj_ezsignformfielderrortestList
         );
 
+    if (!custom_ezsignformfielderror_response_local_var) {
+        goto end;
+    }
+
     return custom_ezsignformfielderror_response_local_var;
 end:
+    if (s_ezsignformfield_label_local_str) {
+        free(s_ezsignformfield_label_local_str);
+        s_ezsignformfield_label_local_str = NULL;
+    }
     if (a_obj_ezsignformfielderrortestList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsignformfielderrortestList) {

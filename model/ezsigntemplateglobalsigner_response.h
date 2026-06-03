@@ -19,16 +19,16 @@ typedef struct ezsigntemplateglobalsigner_response_t ezsigntemplateglobalsigner_
 
 
 typedef struct ezsigntemplateglobalsigner_response_t {
-    int pki_ezsigntemplateglobalsigner_id; //numeric
-    int fki_ezsigntemplateglobal_id; //numeric
+    int *pki_ezsigntemplateglobalsigner_id; //numeric
+    int *fki_ezsigntemplateglobal_id; //numeric
     char *s_ezsigntemplateglobalsigner_description; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplateglobalsigner_response_t;
 
 __attribute__((deprecated)) ezsigntemplateglobalsigner_response_t *ezsigntemplateglobalsigner_response_create(
-    int pki_ezsigntemplateglobalsigner_id,
-    int fki_ezsigntemplateglobal_id,
+    int *pki_ezsigntemplateglobalsigner_id,
+    int *fki_ezsigntemplateglobal_id,
     char *s_ezsigntemplateglobalsigner_description
 );
 

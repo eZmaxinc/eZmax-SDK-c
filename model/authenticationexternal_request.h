@@ -20,7 +20,7 @@ typedef struct authenticationexternal_request_t authenticationexternal_request_t
 
 
 typedef struct authenticationexternal_request_t {
-    int pki_authenticationexternal_id; //numeric
+    int *pki_authenticationexternal_id; //numeric
     char *s_authenticationexternal_description; // string
     ezmax_api_definition__full_field_e_authenticationexternal_type__e e_authenticationexternal_type; //referenced enum
 
@@ -28,7 +28,7 @@ typedef struct authenticationexternal_request_t {
 } authenticationexternal_request_t;
 
 __attribute__((deprecated)) authenticationexternal_request_t *authenticationexternal_request_create(
-    int pki_authenticationexternal_id,
+    int *pki_authenticationexternal_id,
     char *s_authenticationexternal_description,
     ezmax_api_definition__full_field_e_authenticationexternal_type__e e_authenticationexternal_type
 );

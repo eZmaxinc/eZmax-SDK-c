@@ -6,7 +6,7 @@
 
 
 static usergroup_response_compound_t *usergroup_response_compound_create_internal(
-    int pki_usergroup_id,
+    int *pki_usergroup_id,
     multilingual_usergroup_name_t *obj_usergroup_name,
     char *s_usergroup_name_x,
     email_request_t *obj_email
@@ -15,27 +15,36 @@ static usergroup_response_compound_t *usergroup_response_compound_create_interna
     if (!usergroup_response_compound_local_var) {
         return NULL;
     }
+    memset(usergroup_response_compound_local_var, 0, sizeof(usergroup_response_compound_t));
+    usergroup_response_compound_local_var->_library_owned = 1;
     usergroup_response_compound_local_var->pki_usergroup_id = pki_usergroup_id;
     usergroup_response_compound_local_var->obj_usergroup_name = obj_usergroup_name;
     usergroup_response_compound_local_var->s_usergroup_name_x = s_usergroup_name_x;
     usergroup_response_compound_local_var->obj_email = obj_email;
-
-    usergroup_response_compound_local_var->_library_owned = 1;
     return usergroup_response_compound_local_var;
 }
 
 __attribute__((deprecated)) usergroup_response_compound_t *usergroup_response_compound_create(
-    int pki_usergroup_id,
+    int *pki_usergroup_id,
     multilingual_usergroup_name_t *obj_usergroup_name,
     char *s_usergroup_name_x,
     email_request_t *obj_email
     ) {
-    return usergroup_response_compound_create_internal (
-        pki_usergroup_id,
+    int *pki_usergroup_id_copy = NULL;
+    if (pki_usergroup_id) {
+        pki_usergroup_id_copy = malloc(sizeof(int));
+        if (pki_usergroup_id_copy) *pki_usergroup_id_copy = *pki_usergroup_id;
+    }
+    usergroup_response_compound_t *result = usergroup_response_compound_create_internal (
+        pki_usergroup_id_copy,
         obj_usergroup_name,
         s_usergroup_name_x,
         obj_email
         );
+    if (!result) {
+        free(pki_usergroup_id_copy);
+    }
+    return result;
 }
 
 void usergroup_response_compound_free(usergroup_response_compound_t *usergroup_response_compound) {
@@ -47,6 +56,10 @@ void usergroup_response_compound_free(usergroup_response_compound_t *usergroup_r
         return ;
     }
     listEntry_t *listEntry;
+    if (usergroup_response_compound->pki_usergroup_id) {
+        free(usergroup_response_compound->pki_usergroup_id);
+        usergroup_response_compound->pki_usergroup_id = NULL;
+    }
     if (usergroup_response_compound->obj_usergroup_name) {
         multilingual_usergroup_name_free(usergroup_response_compound->obj_usergroup_name);
         usergroup_response_compound->obj_usergroup_name = NULL;
@@ -69,7 +82,7 @@ cJSON *usergroup_response_compound_convertToJSON(usergroup_response_compound_t *
     if (!usergroup_response_compound->pki_usergroup_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiUsergroupID", usergroup_response_compound->pki_usergroup_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiUsergroupID", *usergroup_response_compound->pki_usergroup_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -120,8 +133,13 @@ usergroup_response_compound_t *usergroup_response_compound_parseFromJSON(cJSON *
 
     usergroup_response_compound_t *usergroup_response_compound_local_var = NULL;
 
+    // define the local variable for usergroup_response_compound->pki_usergroup_id
+    int *pki_usergroup_id_local_var = NULL;
+
     // define the local variable for usergroup_response_compound->obj_usergroup_name
     multilingual_usergroup_name_t *obj_usergroup_name_local_nonprim = NULL;
+
+    char *s_usergroup_name_x_local_str = NULL;
 
     // define the local variable for usergroup_response_compound->obj_email
     email_request_t *obj_email_local_nonprim = NULL;
@@ -140,6 +158,12 @@ usergroup_response_compound_t *usergroup_response_compound_parseFromJSON(cJSON *
     {
     goto end; //Numeric
     }
+    pki_usergroup_id_local_var = malloc(sizeof(int));
+    if(!pki_usergroup_id_local_var)
+    {
+        goto end;
+    }
+    *pki_usergroup_id_local_var = pki_usergroup_id->valuedouble;
 
     // usergroup_response_compound->obj_usergroup_name
     cJSON *obj_usergroup_name = cJSON_GetObjectItemCaseSensitive(usergroup_response_compoundJSON, "objUsergroupName");
@@ -175,18 +199,32 @@ usergroup_response_compound_t *usergroup_response_compound_parseFromJSON(cJSON *
     }
 
 
+    if (s_usergroup_name_x && !cJSON_IsNull(s_usergroup_name_x)) s_usergroup_name_x_local_str = strdup(s_usergroup_name_x->valuestring);
+
     usergroup_response_compound_local_var = usergroup_response_compound_create_internal (
-        pki_usergroup_id->valuedouble,
+        pki_usergroup_id_local_var,
         obj_usergroup_name_local_nonprim,
-        s_usergroup_name_x && !cJSON_IsNull(s_usergroup_name_x) ? strdup(s_usergroup_name_x->valuestring) : NULL,
+        s_usergroup_name_x_local_str,
         obj_email ? obj_email_local_nonprim : NULL
         );
 
+    if (!usergroup_response_compound_local_var) {
+        goto end;
+    }
+
     return usergroup_response_compound_local_var;
 end:
+    if (pki_usergroup_id_local_var) {
+        free(pki_usergroup_id_local_var);
+        pki_usergroup_id_local_var = NULL;
+    }
     if (obj_usergroup_name_local_nonprim) {
         multilingual_usergroup_name_free(obj_usergroup_name_local_nonprim);
         obj_usergroup_name_local_nonprim = NULL;
+    }
+    if (s_usergroup_name_x_local_str) {
+        free(s_usergroup_name_x_local_str);
+        s_usergroup_name_x_local_str = NULL;
     }
     if (obj_email_local_nonprim) {
         email_request_free(obj_email_local_nonprim);

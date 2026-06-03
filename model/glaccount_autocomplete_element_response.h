@@ -19,19 +19,19 @@ typedef struct glaccount_autocomplete_element_response_t glaccount_autocomplete_
 
 
 typedef struct glaccount_autocomplete_element_response_t {
-    int pki_glaccount_id; //numeric
-    int i_glaccount_code; //numeric
+    int *pki_glaccount_id; //numeric
+    int *i_glaccount_code; //numeric
     char *s_glaccount_description_x; // string
-    int b_glaccount_isactive; //boolean
+    int *b_glaccount_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } glaccount_autocomplete_element_response_t;
 
 __attribute__((deprecated)) glaccount_autocomplete_element_response_t *glaccount_autocomplete_element_response_create(
-    int pki_glaccount_id,
-    int i_glaccount_code,
+    int *pki_glaccount_id,
+    int *i_glaccount_code,
     char *s_glaccount_description_x,
-    int b_glaccount_isactive
+    int *b_glaccount_isactive
 );
 
 void glaccount_autocomplete_element_response_free(glaccount_autocomplete_element_response_t *glaccount_autocomplete_element_response);

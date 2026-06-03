@@ -12,18 +12,21 @@ static global_customer_get_endpoint_v1_response_t *global_customer_get_endpoint_
     if (!global_customer_get_endpoint_v1_response_local_var) {
         return NULL;
     }
-    global_customer_get_endpoint_v1_response_local_var->s_endpoint_url = s_endpoint_url;
-
+    memset(global_customer_get_endpoint_v1_response_local_var, 0, sizeof(global_customer_get_endpoint_v1_response_t));
     global_customer_get_endpoint_v1_response_local_var->_library_owned = 1;
+    global_customer_get_endpoint_v1_response_local_var->s_endpoint_url = s_endpoint_url;
     return global_customer_get_endpoint_v1_response_local_var;
 }
 
 __attribute__((deprecated)) global_customer_get_endpoint_v1_response_t *global_customer_get_endpoint_v1_response_create(
     char *s_endpoint_url
     ) {
-    return global_customer_get_endpoint_v1_response_create_internal (
+    global_customer_get_endpoint_v1_response_t *result = global_customer_get_endpoint_v1_response_create_internal (
         s_endpoint_url
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void global_customer_get_endpoint_v1_response_free(global_customer_get_endpoint_v1_response_t *global_customer_get_endpoint_v1_response) {
@@ -65,6 +68,8 @@ global_customer_get_endpoint_v1_response_t *global_customer_get_endpoint_v1_resp
 
     global_customer_get_endpoint_v1_response_t *global_customer_get_endpoint_v1_response_local_var = NULL;
 
+    char *s_endpoint_url_local_str = NULL;
+
     // global_customer_get_endpoint_v1_response->s_endpoint_url
     cJSON *s_endpoint_url = cJSON_GetObjectItemCaseSensitive(global_customer_get_endpoint_v1_responseJSON, "sEndpointURL");
     if (cJSON_IsNull(s_endpoint_url)) {
@@ -81,12 +86,22 @@ global_customer_get_endpoint_v1_response_t *global_customer_get_endpoint_v1_resp
     }
 
 
+    if (s_endpoint_url && !cJSON_IsNull(s_endpoint_url)) s_endpoint_url_local_str = strdup(s_endpoint_url->valuestring);
+
     global_customer_get_endpoint_v1_response_local_var = global_customer_get_endpoint_v1_response_create_internal (
-        strdup(s_endpoint_url->valuestring)
+        s_endpoint_url_local_str
         );
+
+    if (!global_customer_get_endpoint_v1_response_local_var) {
+        goto end;
+    }
 
     return global_customer_get_endpoint_v1_response_local_var;
 end:
+    if (s_endpoint_url_local_str) {
+        free(s_endpoint_url_local_str);
+        s_endpoint_url_local_str = NULL;
+    }
     return NULL;
 
 }

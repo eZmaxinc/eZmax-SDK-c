@@ -12,18 +12,21 @@ static paymentgateway_get_object_v2_response_m_payload_t *paymentgateway_get_obj
     if (!paymentgateway_get_object_v2_response_m_payload_local_var) {
         return NULL;
     }
-    paymentgateway_get_object_v2_response_m_payload_local_var->obj_paymentgateway = obj_paymentgateway;
-
+    memset(paymentgateway_get_object_v2_response_m_payload_local_var, 0, sizeof(paymentgateway_get_object_v2_response_m_payload_t));
     paymentgateway_get_object_v2_response_m_payload_local_var->_library_owned = 1;
+    paymentgateway_get_object_v2_response_m_payload_local_var->obj_paymentgateway = obj_paymentgateway;
     return paymentgateway_get_object_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) paymentgateway_get_object_v2_response_m_payload_t *paymentgateway_get_object_v2_response_m_payload_create(
     paymentgateway_response_compound_t *obj_paymentgateway
     ) {
-    return paymentgateway_get_object_v2_response_m_payload_create_internal (
+    paymentgateway_get_object_v2_response_m_payload_t *result = paymentgateway_get_object_v2_response_m_payload_create_internal (
         obj_paymentgateway
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void paymentgateway_get_object_v2_response_m_payload_free(paymentgateway_get_object_v2_response_m_payload_t *paymentgateway_get_object_v2_response_m_payload) {
@@ -86,9 +89,14 @@ paymentgateway_get_object_v2_response_m_payload_t *paymentgateway_get_object_v2_
     obj_paymentgateway_local_nonprim = paymentgateway_response_compound_parseFromJSON(obj_paymentgateway); //nonprimitive
 
 
+
     paymentgateway_get_object_v2_response_m_payload_local_var = paymentgateway_get_object_v2_response_m_payload_create_internal (
         obj_paymentgateway_local_nonprim
         );
+
+    if (!paymentgateway_get_object_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return paymentgateway_get_object_v2_response_m_payload_local_var;
 end:

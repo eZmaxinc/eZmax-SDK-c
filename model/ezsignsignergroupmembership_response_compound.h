@@ -19,21 +19,21 @@ typedef struct ezsignsignergroupmembership_response_compound_t ezsignsignergroup
 
 
 typedef struct ezsignsignergroupmembership_response_compound_t {
-    int pki_ezsignsignergroupmembership_id; //numeric
-    int fki_ezsignsignergroup_id; //numeric
-    int fki_ezsignsigner_id; //numeric
-    int fki_user_id; //numeric
-    int fki_usergroup_id; //numeric
+    int *pki_ezsignsignergroupmembership_id; //numeric
+    int *fki_ezsignsignergroup_id; //numeric
+    int *fki_ezsignsigner_id; //numeric
+    int *fki_user_id; //numeric
+    int *fki_usergroup_id; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsignergroupmembership_response_compound_t;
 
 __attribute__((deprecated)) ezsignsignergroupmembership_response_compound_t *ezsignsignergroupmembership_response_compound_create(
-    int pki_ezsignsignergroupmembership_id,
-    int fki_ezsignsignergroup_id,
-    int fki_ezsignsigner_id,
-    int fki_user_id,
-    int fki_usergroup_id
+    int *pki_ezsignsignergroupmembership_id,
+    int *fki_ezsignsignergroup_id,
+    int *fki_ezsignsigner_id,
+    int *fki_user_id,
+    int *fki_usergroup_id
 );
 
 void ezsignsignergroupmembership_response_compound_free(ezsignsignergroupmembership_response_compound_t *ezsignsignergroupmembership_response_compound);

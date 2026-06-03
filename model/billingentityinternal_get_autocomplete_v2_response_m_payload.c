@@ -12,18 +12,21 @@ static billingentityinternal_get_autocomplete_v2_response_m_payload_t *billingen
     if (!billingentityinternal_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    billingentityinternal_get_autocomplete_v2_response_m_payload_local_var->a_obj_billingentityinternal = a_obj_billingentityinternal;
-
+    memset(billingentityinternal_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(billingentityinternal_get_autocomplete_v2_response_m_payload_t));
     billingentityinternal_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    billingentityinternal_get_autocomplete_v2_response_m_payload_local_var->a_obj_billingentityinternal = a_obj_billingentityinternal;
     return billingentityinternal_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) billingentityinternal_get_autocomplete_v2_response_m_payload_t *billingentityinternal_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_billingentityinternal
     ) {
-    return billingentityinternal_get_autocomplete_v2_response_m_payload_create_internal (
+    billingentityinternal_get_autocomplete_v2_response_m_payload_t *result = billingentityinternal_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_billingentityinternal
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void billingentityinternal_get_autocomplete_v2_response_m_payload_free(billingentityinternal_get_autocomplete_v2_response_m_payload_t *billingentityinternal_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ billingentityinternal_get_autocomplete_v2_response_m_payload_t *billingentityint
     }
 
 
+
     billingentityinternal_get_autocomplete_v2_response_m_payload_local_var = billingentityinternal_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_billingentityinternalList
         );
+
+    if (!billingentityinternal_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return billingentityinternal_get_autocomplete_v2_response_m_payload_local_var;
 end:

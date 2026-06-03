@@ -14,11 +14,11 @@ static creditcardclient_get_autocomplete_v2_response_t *creditcardclient_get_aut
     if (!creditcardclient_get_autocomplete_v2_response_local_var) {
         return NULL;
     }
+    memset(creditcardclient_get_autocomplete_v2_response_local_var, 0, sizeof(creditcardclient_get_autocomplete_v2_response_t));
+    creditcardclient_get_autocomplete_v2_response_local_var->_library_owned = 1;
     creditcardclient_get_autocomplete_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     creditcardclient_get_autocomplete_v2_response_local_var->obj_debug = obj_debug;
     creditcardclient_get_autocomplete_v2_response_local_var->m_payload = m_payload;
-
-    creditcardclient_get_autocomplete_v2_response_local_var->_library_owned = 1;
     return creditcardclient_get_autocomplete_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) creditcardclient_get_autocomplete_v2_response_t *cre
     common_response_obj_debug_t *obj_debug,
     creditcardclient_get_autocomplete_v2_response_m_payload_t *m_payload
     ) {
-    return creditcardclient_get_autocomplete_v2_response_create_internal (
+    creditcardclient_get_autocomplete_v2_response_t *result = creditcardclient_get_autocomplete_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void creditcardclient_get_autocomplete_v2_response_free(creditcardclient_get_autocomplete_v2_response_t *creditcardclient_get_autocomplete_v2_response) {
@@ -156,11 +159,16 @@ creditcardclient_get_autocomplete_v2_response_t *creditcardclient_get_autocomple
     m_payload_local_nonprim = creditcardclient_get_autocomplete_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     creditcardclient_get_autocomplete_v2_response_local_var = creditcardclient_get_autocomplete_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!creditcardclient_get_autocomplete_v2_response_local_var) {
+        goto end;
+    }
 
     return creditcardclient_get_autocomplete_v2_response_local_var;
 end:

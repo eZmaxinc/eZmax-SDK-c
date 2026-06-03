@@ -13,10 +13,10 @@ static discussionmembership_delete_object_v1_response_t *discussionmembership_de
     if (!discussionmembership_delete_object_v1_response_local_var) {
         return NULL;
     }
+    memset(discussionmembership_delete_object_v1_response_local_var, 0, sizeof(discussionmembership_delete_object_v1_response_t));
+    discussionmembership_delete_object_v1_response_local_var->_library_owned = 1;
     discussionmembership_delete_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     discussionmembership_delete_object_v1_response_local_var->obj_debug = obj_debug;
-
-    discussionmembership_delete_object_v1_response_local_var->_library_owned = 1;
     return discussionmembership_delete_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) discussionmembership_delete_object_v1_response_t *di
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return discussionmembership_delete_object_v1_response_create_internal (
+    discussionmembership_delete_object_v1_response_t *result = discussionmembership_delete_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void discussionmembership_delete_object_v1_response_free(discussionmembership_delete_object_v1_response_t *discussionmembership_delete_object_v1_response) {
@@ -119,10 +122,15 @@ discussionmembership_delete_object_v1_response_t *discussionmembership_delete_ob
     }
 
 
+
     discussionmembership_delete_object_v1_response_local_var = discussionmembership_delete_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!discussionmembership_delete_object_v1_response_local_var) {
+        goto end;
+    }
 
     return discussionmembership_delete_object_v1_response_local_var;
 end:

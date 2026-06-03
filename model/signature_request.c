@@ -6,8 +6,8 @@
 
 
 static signature_request_t *signature_request_create_internal(
-    int pki_signature_id,
-    int fki_font_id,
+    int *pki_signature_id,
+    int *fki_font_id,
     ezmax_api_definition__full_field_e_signature_preference__e e_signature_preference,
     char *t_signature_svg,
     char *t_signature_svginitials
@@ -16,30 +16,45 @@ static signature_request_t *signature_request_create_internal(
     if (!signature_request_local_var) {
         return NULL;
     }
+    memset(signature_request_local_var, 0, sizeof(signature_request_t));
+    signature_request_local_var->_library_owned = 1;
     signature_request_local_var->pki_signature_id = pki_signature_id;
     signature_request_local_var->fki_font_id = fki_font_id;
     signature_request_local_var->e_signature_preference = e_signature_preference;
     signature_request_local_var->t_signature_svg = t_signature_svg;
     signature_request_local_var->t_signature_svginitials = t_signature_svginitials;
-
-    signature_request_local_var->_library_owned = 1;
     return signature_request_local_var;
 }
 
 __attribute__((deprecated)) signature_request_t *signature_request_create(
-    int pki_signature_id,
-    int fki_font_id,
+    int *pki_signature_id,
+    int *fki_font_id,
     ezmax_api_definition__full_field_e_signature_preference__e e_signature_preference,
     char *t_signature_svg,
     char *t_signature_svginitials
     ) {
-    return signature_request_create_internal (
-        pki_signature_id,
-        fki_font_id,
+    int *pki_signature_id_copy = NULL;
+    if (pki_signature_id) {
+        pki_signature_id_copy = malloc(sizeof(int));
+        if (pki_signature_id_copy) *pki_signature_id_copy = *pki_signature_id;
+    }
+    int *fki_font_id_copy = NULL;
+    if (fki_font_id) {
+        fki_font_id_copy = malloc(sizeof(int));
+        if (fki_font_id_copy) *fki_font_id_copy = *fki_font_id;
+    }
+    signature_request_t *result = signature_request_create_internal (
+        pki_signature_id_copy,
+        fki_font_id_copy,
         e_signature_preference,
         t_signature_svg,
         t_signature_svginitials
         );
+    if (!result) {
+        free(pki_signature_id_copy);
+        free(fki_font_id_copy);
+    }
+    return result;
 }
 
 void signature_request_free(signature_request_t *signature_request) {
@@ -51,6 +66,14 @@ void signature_request_free(signature_request_t *signature_request) {
         return ;
     }
     listEntry_t *listEntry;
+    if (signature_request->pki_signature_id) {
+        free(signature_request->pki_signature_id);
+        signature_request->pki_signature_id = NULL;
+    }
+    if (signature_request->fki_font_id) {
+        free(signature_request->fki_font_id);
+        signature_request->fki_font_id = NULL;
+    }
     if (signature_request->t_signature_svg) {
         free(signature_request->t_signature_svg);
         signature_request->t_signature_svg = NULL;
@@ -67,7 +90,7 @@ cJSON *signature_request_convertToJSON(signature_request_t *signature_request) {
 
     // signature_request->pki_signature_id
     if(signature_request->pki_signature_id) {
-    if(cJSON_AddNumberToObject(item, "pkiSignatureID", signature_request->pki_signature_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiSignatureID", *signature_request->pki_signature_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -77,7 +100,7 @@ cJSON *signature_request_convertToJSON(signature_request_t *signature_request) {
     if (!signature_request->fki_font_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiFontID", signature_request->fki_font_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiFontID", *signature_request->fki_font_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -123,8 +146,18 @@ signature_request_t *signature_request_parseFromJSON(cJSON *signature_requestJSO
 
     signature_request_t *signature_request_local_var = NULL;
 
+    // define the local variable for signature_request->pki_signature_id
+    int *pki_signature_id_local_var = NULL;
+
+    // define the local variable for signature_request->fki_font_id
+    int *fki_font_id_local_var = NULL;
+
     // define the local variable for signature_request->e_signature_preference
     ezmax_api_definition__full_field_e_signature_preference__e e_signature_preference_local_nonprim = 0;
+
+    char *t_signature_svg_local_str = NULL;
+
+    char *t_signature_svginitials_local_str = NULL;
 
     // signature_request->pki_signature_id
     cJSON *pki_signature_id = cJSON_GetObjectItemCaseSensitive(signature_requestJSON, "pkiSignatureID");
@@ -136,6 +169,12 @@ signature_request_t *signature_request_parseFromJSON(cJSON *signature_requestJSO
     {
     goto end; //Numeric
     }
+    pki_signature_id_local_var = malloc(sizeof(int));
+    if(!pki_signature_id_local_var)
+    {
+        goto end;
+    }
+    *pki_signature_id_local_var = pki_signature_id->valuedouble;
     }
 
     // signature_request->fki_font_id
@@ -152,6 +191,12 @@ signature_request_t *signature_request_parseFromJSON(cJSON *signature_requestJSO
     {
     goto end; //Numeric
     }
+    fki_font_id_local_var = malloc(sizeof(int));
+    if(!fki_font_id_local_var)
+    {
+        goto end;
+    }
+    *fki_font_id_local_var = fki_font_id->valuedouble;
 
     // signature_request->e_signature_preference
     cJSON *e_signature_preference = cJSON_GetObjectItemCaseSensitive(signature_requestJSON, "eSignaturePreference");
@@ -190,18 +235,41 @@ signature_request_t *signature_request_parseFromJSON(cJSON *signature_requestJSO
     }
 
 
+    if (t_signature_svg && !cJSON_IsNull(t_signature_svg)) t_signature_svg_local_str = strdup(t_signature_svg->valuestring);
+    if (t_signature_svginitials && !cJSON_IsNull(t_signature_svginitials)) t_signature_svginitials_local_str = strdup(t_signature_svginitials->valuestring);
+
     signature_request_local_var = signature_request_create_internal (
-        pki_signature_id ? pki_signature_id->valuedouble : 0,
-        fki_font_id->valuedouble,
+        pki_signature_id_local_var,
+        fki_font_id_local_var,
         e_signature_preference_local_nonprim,
-        t_signature_svg && !cJSON_IsNull(t_signature_svg) ? strdup(t_signature_svg->valuestring) : NULL,
-        t_signature_svginitials && !cJSON_IsNull(t_signature_svginitials) ? strdup(t_signature_svginitials->valuestring) : NULL
+        t_signature_svg_local_str,
+        t_signature_svginitials_local_str
         );
+
+    if (!signature_request_local_var) {
+        goto end;
+    }
 
     return signature_request_local_var;
 end:
+    if (pki_signature_id_local_var) {
+        free(pki_signature_id_local_var);
+        pki_signature_id_local_var = NULL;
+    }
+    if (fki_font_id_local_var) {
+        free(fki_font_id_local_var);
+        fki_font_id_local_var = NULL;
+    }
     if (e_signature_preference_local_nonprim) {
         e_signature_preference_local_nonprim = 0;
+    }
+    if (t_signature_svg_local_str) {
+        free(t_signature_svg_local_str);
+        t_signature_svg_local_str = NULL;
+    }
+    if (t_signature_svginitials_local_str) {
+        free(t_signature_svginitials_local_str);
+        t_signature_svginitials_local_str = NULL;
     }
     return NULL;
 

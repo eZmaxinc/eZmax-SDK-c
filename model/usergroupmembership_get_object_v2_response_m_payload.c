@@ -12,18 +12,21 @@ static usergroupmembership_get_object_v2_response_m_payload_t *usergroupmembersh
     if (!usergroupmembership_get_object_v2_response_m_payload_local_var) {
         return NULL;
     }
-    usergroupmembership_get_object_v2_response_m_payload_local_var->obj_usergroupmembership = obj_usergroupmembership;
-
+    memset(usergroupmembership_get_object_v2_response_m_payload_local_var, 0, sizeof(usergroupmembership_get_object_v2_response_m_payload_t));
     usergroupmembership_get_object_v2_response_m_payload_local_var->_library_owned = 1;
+    usergroupmembership_get_object_v2_response_m_payload_local_var->obj_usergroupmembership = obj_usergroupmembership;
     return usergroupmembership_get_object_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) usergroupmembership_get_object_v2_response_m_payload_t *usergroupmembership_get_object_v2_response_m_payload_create(
     usergroupmembership_response_compound_t *obj_usergroupmembership
     ) {
-    return usergroupmembership_get_object_v2_response_m_payload_create_internal (
+    usergroupmembership_get_object_v2_response_m_payload_t *result = usergroupmembership_get_object_v2_response_m_payload_create_internal (
         obj_usergroupmembership
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void usergroupmembership_get_object_v2_response_m_payload_free(usergroupmembership_get_object_v2_response_m_payload_t *usergroupmembership_get_object_v2_response_m_payload) {
@@ -86,9 +89,14 @@ usergroupmembership_get_object_v2_response_m_payload_t *usergroupmembership_get_
     obj_usergroupmembership_local_nonprim = usergroupmembership_response_compound_parseFromJSON(obj_usergroupmembership); //nonprimitive
 
 
+
     usergroupmembership_get_object_v2_response_m_payload_local_var = usergroupmembership_get_object_v2_response_m_payload_create_internal (
         obj_usergroupmembership_local_nonprim
         );
+
+    if (!usergroupmembership_get_object_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return usergroupmembership_get_object_v2_response_m_payload_local_var;
 end:

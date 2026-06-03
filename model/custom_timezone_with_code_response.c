@@ -13,10 +13,10 @@ static custom_timezone_with_code_response_t *custom_timezone_with_code_response_
     if (!custom_timezone_with_code_response_local_var) {
         return NULL;
     }
+    memset(custom_timezone_with_code_response_local_var, 0, sizeof(custom_timezone_with_code_response_t));
+    custom_timezone_with_code_response_local_var->_library_owned = 1;
     custom_timezone_with_code_response_local_var->s_timezone_name = s_timezone_name;
     custom_timezone_with_code_response_local_var->s_code = s_code;
-
-    custom_timezone_with_code_response_local_var->_library_owned = 1;
     return custom_timezone_with_code_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) custom_timezone_with_code_response_t *custom_timezon
     char *s_timezone_name,
     char *s_code
     ) {
-    return custom_timezone_with_code_response_create_internal (
+    custom_timezone_with_code_response_t *result = custom_timezone_with_code_response_create_internal (
         s_timezone_name,
         s_code
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void custom_timezone_with_code_response_free(custom_timezone_with_code_response_t *custom_timezone_with_code_response) {
@@ -82,6 +85,10 @@ custom_timezone_with_code_response_t *custom_timezone_with_code_response_parseFr
 
     custom_timezone_with_code_response_t *custom_timezone_with_code_response_local_var = NULL;
 
+    char *s_timezone_name_local_str = NULL;
+
+    char *s_code_local_str = NULL;
+
     // custom_timezone_with_code_response->s_timezone_name
     cJSON *s_timezone_name = cJSON_GetObjectItemCaseSensitive(custom_timezone_with_code_responseJSON, "sTimezoneName");
     if (cJSON_IsNull(s_timezone_name)) {
@@ -113,13 +120,28 @@ custom_timezone_with_code_response_t *custom_timezone_with_code_response_parseFr
     }
 
 
+    if (s_timezone_name && !cJSON_IsNull(s_timezone_name)) s_timezone_name_local_str = strdup(s_timezone_name->valuestring);
+    if (s_code && !cJSON_IsNull(s_code)) s_code_local_str = strdup(s_code->valuestring);
+
     custom_timezone_with_code_response_local_var = custom_timezone_with_code_response_create_internal (
-        strdup(s_timezone_name->valuestring),
-        strdup(s_code->valuestring)
+        s_timezone_name_local_str,
+        s_code_local_str
         );
+
+    if (!custom_timezone_with_code_response_local_var) {
+        goto end;
+    }
 
     return custom_timezone_with_code_response_local_var;
 end:
+    if (s_timezone_name_local_str) {
+        free(s_timezone_name_local_str);
+        s_timezone_name_local_str = NULL;
+    }
+    if (s_code_local_str) {
+        free(s_code_local_str);
+        s_code_local_str = NULL;
+    }
     return NULL;
 
 }

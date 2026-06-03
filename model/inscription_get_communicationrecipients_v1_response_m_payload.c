@@ -12,18 +12,21 @@ static inscription_get_communicationrecipients_v1_response_m_payload_t *inscript
     if (!inscription_get_communicationrecipients_v1_response_m_payload_local_var) {
         return NULL;
     }
-    inscription_get_communicationrecipients_v1_response_m_payload_local_var->a_obj_communicationrecipientsgroup = a_obj_communicationrecipientsgroup;
-
+    memset(inscription_get_communicationrecipients_v1_response_m_payload_local_var, 0, sizeof(inscription_get_communicationrecipients_v1_response_m_payload_t));
     inscription_get_communicationrecipients_v1_response_m_payload_local_var->_library_owned = 1;
+    inscription_get_communicationrecipients_v1_response_m_payload_local_var->a_obj_communicationrecipientsgroup = a_obj_communicationrecipientsgroup;
     return inscription_get_communicationrecipients_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) inscription_get_communicationrecipients_v1_response_m_payload_t *inscription_get_communicationrecipients_v1_response_m_payload_create(
     list_t *a_obj_communicationrecipientsgroup
     ) {
-    return inscription_get_communicationrecipients_v1_response_m_payload_create_internal (
+    inscription_get_communicationrecipients_v1_response_m_payload_t *result = inscription_get_communicationrecipients_v1_response_m_payload_create_internal (
         a_obj_communicationrecipientsgroup
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void inscription_get_communicationrecipients_v1_response_m_payload_free(inscription_get_communicationrecipients_v1_response_m_payload_t *inscription_get_communicationrecipients_v1_response_m_payload) {
@@ -111,9 +114,14 @@ inscription_get_communicationrecipients_v1_response_m_payload_t *inscription_get
     }
 
 
+
     inscription_get_communicationrecipients_v1_response_m_payload_local_var = inscription_get_communicationrecipients_v1_response_m_payload_create_internal (
         a_obj_communicationrecipientsgroupList
         );
+
+    if (!inscription_get_communicationrecipients_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return inscription_get_communicationrecipients_v1_response_m_payload_local_var;
 end:

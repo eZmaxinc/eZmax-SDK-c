@@ -15,12 +15,12 @@ static ezsignfolder_send_v3_request_t *ezsignfolder_send_v3_request_create_inter
     if (!ezsignfolder_send_v3_request_local_var) {
         return NULL;
     }
+    memset(ezsignfolder_send_v3_request_local_var, 0, sizeof(ezsignfolder_send_v3_request_t));
+    ezsignfolder_send_v3_request_local_var->_library_owned = 1;
     ezsignfolder_send_v3_request_local_var->t_ezsignfolder_message = t_ezsignfolder_message;
     ezsignfolder_send_v3_request_local_var->e_ezsignfolder_messageorder = e_ezsignfolder_messageorder;
     ezsignfolder_send_v3_request_local_var->dt_ezsignfolder_delayedsenddate = dt_ezsignfolder_delayedsenddate;
     ezsignfolder_send_v3_request_local_var->a_fki_ezsignfoldersignerassociation_id = a_fki_ezsignfoldersignerassociation_id;
-
-    ezsignfolder_send_v3_request_local_var->_library_owned = 1;
     return ezsignfolder_send_v3_request_local_var;
 }
 
@@ -30,12 +30,15 @@ __attribute__((deprecated)) ezsignfolder_send_v3_request_t *ezsignfolder_send_v3
     char *dt_ezsignfolder_delayedsenddate,
     list_t *a_fki_ezsignfoldersignerassociation_id
     ) {
-    return ezsignfolder_send_v3_request_create_internal (
+    ezsignfolder_send_v3_request_t *result = ezsignfolder_send_v3_request_create_internal (
         t_ezsignfolder_message,
         e_ezsignfolder_messageorder,
         dt_ezsignfolder_delayedsenddate,
         a_fki_ezsignfoldersignerassociation_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignfolder_send_v3_request_free(ezsignfolder_send_v3_request_t *ezsignfolder_send_v3_request) {
@@ -126,8 +129,12 @@ ezsignfolder_send_v3_request_t *ezsignfolder_send_v3_request_parseFromJSON(cJSON
 
     ezsignfolder_send_v3_request_t *ezsignfolder_send_v3_request_local_var = NULL;
 
+    char *t_ezsignfolder_message_local_str = NULL;
+
     // define the local variable for ezsignfolder_send_v3_request->e_ezsignfolder_messageorder
     ezmax_api_definition__full_field_e_ezsignfolder_messageorder__e e_ezsignfolder_messageorder_local_nonprim = 0;
+
+    char *dt_ezsignfolder_delayedsenddate_local_str = NULL;
 
     // define the local list for ezsignfolder_send_v3_request->a_fki_ezsignfoldersignerassociation_id
     list_t *a_fki_ezsignfoldersignerassociation_idList = NULL;
@@ -197,17 +204,32 @@ ezsignfolder_send_v3_request_t *ezsignfolder_send_v3_request_parseFromJSON(cJSON
     }
 
 
+    if (t_ezsignfolder_message && !cJSON_IsNull(t_ezsignfolder_message)) t_ezsignfolder_message_local_str = strdup(t_ezsignfolder_message->valuestring);
+    if (dt_ezsignfolder_delayedsenddate && !cJSON_IsNull(dt_ezsignfolder_delayedsenddate)) dt_ezsignfolder_delayedsenddate_local_str = strdup(dt_ezsignfolder_delayedsenddate->valuestring);
+
     ezsignfolder_send_v3_request_local_var = ezsignfolder_send_v3_request_create_internal (
-        t_ezsignfolder_message && !cJSON_IsNull(t_ezsignfolder_message) ? strdup(t_ezsignfolder_message->valuestring) : NULL,
+        t_ezsignfolder_message_local_str,
         e_ezsignfolder_messageorder ? e_ezsignfolder_messageorder_local_nonprim : 0,
-        dt_ezsignfolder_delayedsenddate && !cJSON_IsNull(dt_ezsignfolder_delayedsenddate) ? strdup(dt_ezsignfolder_delayedsenddate->valuestring) : NULL,
+        dt_ezsignfolder_delayedsenddate_local_str,
         a_fki_ezsignfoldersignerassociation_idList
         );
 
+    if (!ezsignfolder_send_v3_request_local_var) {
+        goto end;
+    }
+
     return ezsignfolder_send_v3_request_local_var;
 end:
+    if (t_ezsignfolder_message_local_str) {
+        free(t_ezsignfolder_message_local_str);
+        t_ezsignfolder_message_local_str = NULL;
+    }
     if (e_ezsignfolder_messageorder_local_nonprim) {
         e_ezsignfolder_messageorder_local_nonprim = 0;
+    }
+    if (dt_ezsignfolder_delayedsenddate_local_str) {
+        free(dt_ezsignfolder_delayedsenddate_local_str);
+        dt_ezsignfolder_delayedsenddate_local_str = NULL;
     }
     if (a_fki_ezsignfoldersignerassociation_idList) {
         listEntry_t *listEntry = NULL;

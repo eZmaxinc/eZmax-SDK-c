@@ -20,16 +20,16 @@ typedef struct ezsignuser_request_compound_t ezsignuser_request_compound_t;
 
 
 typedef struct ezsignuser_request_compound_t {
-    int pki_ezsignuser_id; //numeric
-    int fki_contact_id; //numeric
+    int *pki_ezsignuser_id; //numeric
+    int *fki_contact_id; //numeric
     struct contact_request_compound_v2_t *obj_contact; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignuser_request_compound_t;
 
 __attribute__((deprecated)) ezsignuser_request_compound_t *ezsignuser_request_compound_create(
-    int pki_ezsignuser_id,
-    int fki_contact_id,
+    int *pki_ezsignuser_id,
+    int *fki_contact_id,
     contact_request_compound_v2_t *obj_contact
 );
 

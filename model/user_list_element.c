@@ -6,11 +6,12 @@
 
 
 static user_list_element_t *user_list_element_create_internal(
-    int pki_user_id,
+    int *pki_user_id,
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_user_loginname,
-    int b_user_isactive,
+    int *b_user_isactive,
+    int *b_user_suspended,
     ezmax_api_definition__full_field_e_user_type__e e_user_type,
     ezmax_api_definition__full_field_e_user_origin__e e_user_origin,
     ezmax_api_definition__full_field_e_user_ezsignaccess__e e_user_ezsignaccess,
@@ -22,28 +23,30 @@ static user_list_element_t *user_list_element_create_internal(
     if (!user_list_element_local_var) {
         return NULL;
     }
+    memset(user_list_element_local_var, 0, sizeof(user_list_element_t));
+    user_list_element_local_var->_library_owned = 1;
     user_list_element_local_var->pki_user_id = pki_user_id;
     user_list_element_local_var->s_user_firstname = s_user_firstname;
     user_list_element_local_var->s_user_lastname = s_user_lastname;
     user_list_element_local_var->s_user_loginname = s_user_loginname;
     user_list_element_local_var->b_user_isactive = b_user_isactive;
+    user_list_element_local_var->b_user_suspended = b_user_suspended;
     user_list_element_local_var->e_user_type = e_user_type;
     user_list_element_local_var->e_user_origin = e_user_origin;
     user_list_element_local_var->e_user_ezsignaccess = e_user_ezsignaccess;
     user_list_element_local_var->dt_user_ezsignprepaidexpiration = dt_user_ezsignprepaidexpiration;
     user_list_element_local_var->s_email_address = s_email_address;
     user_list_element_local_var->s_user_jobtitle = s_user_jobtitle;
-
-    user_list_element_local_var->_library_owned = 1;
     return user_list_element_local_var;
 }
 
 __attribute__((deprecated)) user_list_element_t *user_list_element_create(
-    int pki_user_id,
+    int *pki_user_id,
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_user_loginname,
-    int b_user_isactive,
+    int *b_user_isactive,
+    int *b_user_suspended,
     ezmax_api_definition__full_field_e_user_type__e e_user_type,
     ezmax_api_definition__full_field_e_user_origin__e e_user_origin,
     ezmax_api_definition__full_field_e_user_ezsignaccess__e e_user_ezsignaccess,
@@ -51,12 +54,28 @@ __attribute__((deprecated)) user_list_element_t *user_list_element_create(
     char *s_email_address,
     char *s_user_jobtitle
     ) {
-    return user_list_element_create_internal (
-        pki_user_id,
+    int *pki_user_id_copy = NULL;
+    if (pki_user_id) {
+        pki_user_id_copy = malloc(sizeof(int));
+        if (pki_user_id_copy) *pki_user_id_copy = *pki_user_id;
+    }
+    int *b_user_isactive_copy = NULL;
+    if (b_user_isactive) {
+        b_user_isactive_copy = malloc(sizeof(int));
+        if (b_user_isactive_copy) *b_user_isactive_copy = *b_user_isactive;
+    }
+    int *b_user_suspended_copy = NULL;
+    if (b_user_suspended) {
+        b_user_suspended_copy = malloc(sizeof(int));
+        if (b_user_suspended_copy) *b_user_suspended_copy = *b_user_suspended;
+    }
+    user_list_element_t *result = user_list_element_create_internal (
+        pki_user_id_copy,
         s_user_firstname,
         s_user_lastname,
         s_user_loginname,
-        b_user_isactive,
+        b_user_isactive_copy,
+        b_user_suspended_copy,
         e_user_type,
         e_user_origin,
         e_user_ezsignaccess,
@@ -64,6 +83,12 @@ __attribute__((deprecated)) user_list_element_t *user_list_element_create(
         s_email_address,
         s_user_jobtitle
         );
+    if (!result) {
+        free(pki_user_id_copy);
+        free(b_user_isactive_copy);
+        free(b_user_suspended_copy);
+    }
+    return result;
 }
 
 void user_list_element_free(user_list_element_t *user_list_element) {
@@ -75,6 +100,10 @@ void user_list_element_free(user_list_element_t *user_list_element) {
         return ;
     }
     listEntry_t *listEntry;
+    if (user_list_element->pki_user_id) {
+        free(user_list_element->pki_user_id);
+        user_list_element->pki_user_id = NULL;
+    }
     if (user_list_element->s_user_firstname) {
         free(user_list_element->s_user_firstname);
         user_list_element->s_user_firstname = NULL;
@@ -86,6 +115,14 @@ void user_list_element_free(user_list_element_t *user_list_element) {
     if (user_list_element->s_user_loginname) {
         free(user_list_element->s_user_loginname);
         user_list_element->s_user_loginname = NULL;
+    }
+    if (user_list_element->b_user_isactive) {
+        free(user_list_element->b_user_isactive);
+        user_list_element->b_user_isactive = NULL;
+    }
+    if (user_list_element->b_user_suspended) {
+        free(user_list_element->b_user_suspended);
+        user_list_element->b_user_suspended = NULL;
     }
     if (user_list_element->dt_user_ezsignprepaidexpiration) {
         free(user_list_element->dt_user_ezsignprepaidexpiration);
@@ -109,7 +146,7 @@ cJSON *user_list_element_convertToJSON(user_list_element_t *user_list_element) {
     if (!user_list_element->pki_user_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiUserID", user_list_element->pki_user_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiUserID", *user_list_element->pki_user_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -145,8 +182,16 @@ cJSON *user_list_element_convertToJSON(user_list_element_t *user_list_element) {
     if (!user_list_element->b_user_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bUserIsactive", user_list_element->b_user_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bUserIsactive", *user_list_element->b_user_isactive) == NULL) {
     goto fail; //Bool
+    }
+
+
+    // user_list_element->b_user_suspended
+    if(user_list_element->b_user_suspended) {
+    if(cJSON_AddBoolToObject(item, "bUserSuspended", *user_list_element->b_user_suspended) == NULL) {
+    goto fail; //Bool
+    }
     }
 
 
@@ -228,6 +273,21 @@ user_list_element_t *user_list_element_parseFromJSON(cJSON *user_list_elementJSO
 
     user_list_element_t *user_list_element_local_var = NULL;
 
+    // define the local variable for user_list_element->pki_user_id
+    int *pki_user_id_local_var = NULL;
+
+    char *s_user_firstname_local_str = NULL;
+
+    char *s_user_lastname_local_str = NULL;
+
+    char *s_user_loginname_local_str = NULL;
+
+    // define the local variable for user_list_element->b_user_isactive
+    int *b_user_isactive_local_var = NULL;
+
+    // define the local variable for user_list_element->b_user_suspended
+    int *b_user_suspended_local_var = NULL;
+
     // define the local variable for user_list_element->e_user_type
     ezmax_api_definition__full_field_e_user_type__e e_user_type_local_nonprim = 0;
 
@@ -236,6 +296,12 @@ user_list_element_t *user_list_element_parseFromJSON(cJSON *user_list_elementJSO
 
     // define the local variable for user_list_element->e_user_ezsignaccess
     ezmax_api_definition__full_field_e_user_ezsignaccess__e e_user_ezsignaccess_local_nonprim = 0;
+
+    char *dt_user_ezsignprepaidexpiration_local_str = NULL;
+
+    char *s_email_address_local_str = NULL;
+
+    char *s_user_jobtitle_local_str = NULL;
 
     // user_list_element->pki_user_id
     cJSON *pki_user_id = cJSON_GetObjectItemCaseSensitive(user_list_elementJSON, "pkiUserID");
@@ -251,6 +317,12 @@ user_list_element_t *user_list_element_parseFromJSON(cJSON *user_list_elementJSO
     {
     goto end; //Numeric
     }
+    pki_user_id_local_var = malloc(sizeof(int));
+    if(!pki_user_id_local_var)
+    {
+        goto end;
+    }
+    *pki_user_id_local_var = pki_user_id->valuedouble;
 
     // user_list_element->s_user_firstname
     cJSON *s_user_firstname = cJSON_GetObjectItemCaseSensitive(user_list_elementJSON, "sUserFirstname");
@@ -310,6 +382,30 @@ user_list_element_t *user_list_element_parseFromJSON(cJSON *user_list_elementJSO
     if(!cJSON_IsBool(b_user_isactive))
     {
     goto end; //Bool
+    }
+    b_user_isactive_local_var = malloc(sizeof(int));
+    if(!b_user_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_user_isactive_local_var = b_user_isactive->valueint;
+
+    // user_list_element->b_user_suspended
+    cJSON *b_user_suspended = cJSON_GetObjectItemCaseSensitive(user_list_elementJSON, "bUserSuspended");
+    if (cJSON_IsNull(b_user_suspended)) {
+        b_user_suspended = NULL;
+    }
+    if (b_user_suspended) { 
+    if(!cJSON_IsBool(b_user_suspended))
+    {
+    goto end; //Bool
+    }
+    b_user_suspended_local_var = malloc(sizeof(int));
+    if(!b_user_suspended_local_var)
+    {
+        goto end;
+    }
+    *b_user_suspended_local_var = b_user_suspended->valueint;
     }
 
     // user_list_element->e_user_type
@@ -388,22 +484,58 @@ user_list_element_t *user_list_element_parseFromJSON(cJSON *user_list_elementJSO
     }
 
 
+    if (s_user_firstname && !cJSON_IsNull(s_user_firstname)) s_user_firstname_local_str = strdup(s_user_firstname->valuestring);
+    if (s_user_lastname && !cJSON_IsNull(s_user_lastname)) s_user_lastname_local_str = strdup(s_user_lastname->valuestring);
+    if (s_user_loginname && !cJSON_IsNull(s_user_loginname)) s_user_loginname_local_str = strdup(s_user_loginname->valuestring);
+    if (dt_user_ezsignprepaidexpiration && !cJSON_IsNull(dt_user_ezsignprepaidexpiration)) dt_user_ezsignprepaidexpiration_local_str = strdup(dt_user_ezsignprepaidexpiration->valuestring);
+    if (s_email_address && !cJSON_IsNull(s_email_address)) s_email_address_local_str = strdup(s_email_address->valuestring);
+    if (s_user_jobtitle && !cJSON_IsNull(s_user_jobtitle)) s_user_jobtitle_local_str = strdup(s_user_jobtitle->valuestring);
+
     user_list_element_local_var = user_list_element_create_internal (
-        pki_user_id->valuedouble,
-        strdup(s_user_firstname->valuestring),
-        strdup(s_user_lastname->valuestring),
-        strdup(s_user_loginname->valuestring),
-        b_user_isactive->valueint,
+        pki_user_id_local_var,
+        s_user_firstname_local_str,
+        s_user_lastname_local_str,
+        s_user_loginname_local_str,
+        b_user_isactive_local_var,
+        b_user_suspended_local_var,
         e_user_type_local_nonprim,
         e_user_origin_local_nonprim,
         e_user_ezsignaccess_local_nonprim,
-        dt_user_ezsignprepaidexpiration && !cJSON_IsNull(dt_user_ezsignprepaidexpiration) ? strdup(dt_user_ezsignprepaidexpiration->valuestring) : NULL,
-        strdup(s_email_address->valuestring),
-        s_user_jobtitle && !cJSON_IsNull(s_user_jobtitle) ? strdup(s_user_jobtitle->valuestring) : NULL
+        dt_user_ezsignprepaidexpiration_local_str,
+        s_email_address_local_str,
+        s_user_jobtitle_local_str
         );
+
+    if (!user_list_element_local_var) {
+        goto end;
+    }
 
     return user_list_element_local_var;
 end:
+    if (pki_user_id_local_var) {
+        free(pki_user_id_local_var);
+        pki_user_id_local_var = NULL;
+    }
+    if (s_user_firstname_local_str) {
+        free(s_user_firstname_local_str);
+        s_user_firstname_local_str = NULL;
+    }
+    if (s_user_lastname_local_str) {
+        free(s_user_lastname_local_str);
+        s_user_lastname_local_str = NULL;
+    }
+    if (s_user_loginname_local_str) {
+        free(s_user_loginname_local_str);
+        s_user_loginname_local_str = NULL;
+    }
+    if (b_user_isactive_local_var) {
+        free(b_user_isactive_local_var);
+        b_user_isactive_local_var = NULL;
+    }
+    if (b_user_suspended_local_var) {
+        free(b_user_suspended_local_var);
+        b_user_suspended_local_var = NULL;
+    }
     if (e_user_type_local_nonprim) {
         e_user_type_local_nonprim = 0;
     }
@@ -412,6 +544,18 @@ end:
     }
     if (e_user_ezsignaccess_local_nonprim) {
         e_user_ezsignaccess_local_nonprim = 0;
+    }
+    if (dt_user_ezsignprepaidexpiration_local_str) {
+        free(dt_user_ezsignprepaidexpiration_local_str);
+        dt_user_ezsignprepaidexpiration_local_str = NULL;
+    }
+    if (s_email_address_local_str) {
+        free(s_email_address_local_str);
+        s_email_address_local_str = NULL;
+    }
+    if (s_user_jobtitle_local_str) {
+        free(s_user_jobtitle_local_str);
+        s_user_jobtitle_local_str = NULL;
     }
     return NULL;
 

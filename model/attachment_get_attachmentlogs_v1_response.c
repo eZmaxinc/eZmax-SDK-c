@@ -14,11 +14,11 @@ static attachment_get_attachmentlogs_v1_response_t *attachment_get_attachmentlog
     if (!attachment_get_attachmentlogs_v1_response_local_var) {
         return NULL;
     }
+    memset(attachment_get_attachmentlogs_v1_response_local_var, 0, sizeof(attachment_get_attachmentlogs_v1_response_t));
+    attachment_get_attachmentlogs_v1_response_local_var->_library_owned = 1;
     attachment_get_attachmentlogs_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     attachment_get_attachmentlogs_v1_response_local_var->obj_debug = obj_debug;
     attachment_get_attachmentlogs_v1_response_local_var->m_payload = m_payload;
-
-    attachment_get_attachmentlogs_v1_response_local_var->_library_owned = 1;
     return attachment_get_attachmentlogs_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) attachment_get_attachmentlogs_v1_response_t *attachm
     common_response_obj_debug_t *obj_debug,
     attachment_get_attachmentlogs_v1_response_m_payload_t *m_payload
     ) {
-    return attachment_get_attachmentlogs_v1_response_create_internal (
+    attachment_get_attachmentlogs_v1_response_t *result = attachment_get_attachmentlogs_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void attachment_get_attachmentlogs_v1_response_free(attachment_get_attachmentlogs_v1_response_t *attachment_get_attachmentlogs_v1_response) {
@@ -156,11 +159,16 @@ attachment_get_attachmentlogs_v1_response_t *attachment_get_attachmentlogs_v1_re
     m_payload_local_nonprim = attachment_get_attachmentlogs_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     attachment_get_attachmentlogs_v1_response_local_var = attachment_get_attachmentlogs_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!attachment_get_attachmentlogs_v1_response_local_var) {
+        goto end;
+    }
 
     return attachment_get_attachmentlogs_v1_response_local_var;
 end:

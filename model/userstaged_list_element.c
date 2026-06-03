@@ -6,7 +6,7 @@
 
 
 static userstaged_list_element_t *userstaged_list_element_create_internal(
-    int pki_userstaged_id,
+    int *pki_userstaged_id,
     char *s_email_address,
     char *s_userstaged_firstname,
     char *s_userstaged_lastname,
@@ -16,30 +16,39 @@ static userstaged_list_element_t *userstaged_list_element_create_internal(
     if (!userstaged_list_element_local_var) {
         return NULL;
     }
+    memset(userstaged_list_element_local_var, 0, sizeof(userstaged_list_element_t));
+    userstaged_list_element_local_var->_library_owned = 1;
     userstaged_list_element_local_var->pki_userstaged_id = pki_userstaged_id;
     userstaged_list_element_local_var->s_email_address = s_email_address;
     userstaged_list_element_local_var->s_userstaged_firstname = s_userstaged_firstname;
     userstaged_list_element_local_var->s_userstaged_lastname = s_userstaged_lastname;
     userstaged_list_element_local_var->s_userstaged_externalid = s_userstaged_externalid;
-
-    userstaged_list_element_local_var->_library_owned = 1;
     return userstaged_list_element_local_var;
 }
 
 __attribute__((deprecated)) userstaged_list_element_t *userstaged_list_element_create(
-    int pki_userstaged_id,
+    int *pki_userstaged_id,
     char *s_email_address,
     char *s_userstaged_firstname,
     char *s_userstaged_lastname,
     char *s_userstaged_externalid
     ) {
-    return userstaged_list_element_create_internal (
-        pki_userstaged_id,
+    int *pki_userstaged_id_copy = NULL;
+    if (pki_userstaged_id) {
+        pki_userstaged_id_copy = malloc(sizeof(int));
+        if (pki_userstaged_id_copy) *pki_userstaged_id_copy = *pki_userstaged_id;
+    }
+    userstaged_list_element_t *result = userstaged_list_element_create_internal (
+        pki_userstaged_id_copy,
         s_email_address,
         s_userstaged_firstname,
         s_userstaged_lastname,
         s_userstaged_externalid
         );
+    if (!result) {
+        free(pki_userstaged_id_copy);
+    }
+    return result;
 }
 
 void userstaged_list_element_free(userstaged_list_element_t *userstaged_list_element) {
@@ -51,6 +60,10 @@ void userstaged_list_element_free(userstaged_list_element_t *userstaged_list_ele
         return ;
     }
     listEntry_t *listEntry;
+    if (userstaged_list_element->pki_userstaged_id) {
+        free(userstaged_list_element->pki_userstaged_id);
+        userstaged_list_element->pki_userstaged_id = NULL;
+    }
     if (userstaged_list_element->s_email_address) {
         free(userstaged_list_element->s_email_address);
         userstaged_list_element->s_email_address = NULL;
@@ -77,7 +90,7 @@ cJSON *userstaged_list_element_convertToJSON(userstaged_list_element_t *userstag
     if (!userstaged_list_element->pki_userstaged_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiUserstagedID", userstaged_list_element->pki_userstaged_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiUserstagedID", *userstaged_list_element->pki_userstaged_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -129,6 +142,17 @@ userstaged_list_element_t *userstaged_list_element_parseFromJSON(cJSON *userstag
 
     userstaged_list_element_t *userstaged_list_element_local_var = NULL;
 
+    // define the local variable for userstaged_list_element->pki_userstaged_id
+    int *pki_userstaged_id_local_var = NULL;
+
+    char *s_email_address_local_str = NULL;
+
+    char *s_userstaged_firstname_local_str = NULL;
+
+    char *s_userstaged_lastname_local_str = NULL;
+
+    char *s_userstaged_externalid_local_str = NULL;
+
     // userstaged_list_element->pki_userstaged_id
     cJSON *pki_userstaged_id = cJSON_GetObjectItemCaseSensitive(userstaged_list_elementJSON, "pkiUserstagedID");
     if (cJSON_IsNull(pki_userstaged_id)) {
@@ -143,6 +167,12 @@ userstaged_list_element_t *userstaged_list_element_parseFromJSON(cJSON *userstag
     {
     goto end; //Numeric
     }
+    pki_userstaged_id_local_var = malloc(sizeof(int));
+    if(!pki_userstaged_id_local_var)
+    {
+        goto end;
+    }
+    *pki_userstaged_id_local_var = pki_userstaged_id->valuedouble;
 
     // userstaged_list_element->s_email_address
     cJSON *s_email_address = cJSON_GetObjectItemCaseSensitive(userstaged_list_elementJSON, "sEmailAddress");
@@ -205,16 +235,45 @@ userstaged_list_element_t *userstaged_list_element_parseFromJSON(cJSON *userstag
     }
 
 
+    if (s_email_address && !cJSON_IsNull(s_email_address)) s_email_address_local_str = strdup(s_email_address->valuestring);
+    if (s_userstaged_firstname && !cJSON_IsNull(s_userstaged_firstname)) s_userstaged_firstname_local_str = strdup(s_userstaged_firstname->valuestring);
+    if (s_userstaged_lastname && !cJSON_IsNull(s_userstaged_lastname)) s_userstaged_lastname_local_str = strdup(s_userstaged_lastname->valuestring);
+    if (s_userstaged_externalid && !cJSON_IsNull(s_userstaged_externalid)) s_userstaged_externalid_local_str = strdup(s_userstaged_externalid->valuestring);
+
     userstaged_list_element_local_var = userstaged_list_element_create_internal (
-        pki_userstaged_id->valuedouble,
-        strdup(s_email_address->valuestring),
-        strdup(s_userstaged_firstname->valuestring),
-        strdup(s_userstaged_lastname->valuestring),
-        strdup(s_userstaged_externalid->valuestring)
+        pki_userstaged_id_local_var,
+        s_email_address_local_str,
+        s_userstaged_firstname_local_str,
+        s_userstaged_lastname_local_str,
+        s_userstaged_externalid_local_str
         );
+
+    if (!userstaged_list_element_local_var) {
+        goto end;
+    }
 
     return userstaged_list_element_local_var;
 end:
+    if (pki_userstaged_id_local_var) {
+        free(pki_userstaged_id_local_var);
+        pki_userstaged_id_local_var = NULL;
+    }
+    if (s_email_address_local_str) {
+        free(s_email_address_local_str);
+        s_email_address_local_str = NULL;
+    }
+    if (s_userstaged_firstname_local_str) {
+        free(s_userstaged_firstname_local_str);
+        s_userstaged_firstname_local_str = NULL;
+    }
+    if (s_userstaged_lastname_local_str) {
+        free(s_userstaged_lastname_local_str);
+        s_userstaged_lastname_local_str = NULL;
+    }
+    if (s_userstaged_externalid_local_str) {
+        free(s_userstaged_externalid_local_str);
+        s_userstaged_externalid_local_str = NULL;
+    }
     return NULL;
 
 }

@@ -19,17 +19,17 @@ typedef struct bankaccount_autocomplete_element_response_t bankaccount_autocompl
 
 
 typedef struct bankaccount_autocomplete_element_response_t {
-    int pki_bankaccount_id; //numeric
+    int *pki_bankaccount_id; //numeric
     char *s_bankaccount_bankname; // string
-    int b_bankaccount_isactive; //boolean
+    int *b_bankaccount_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } bankaccount_autocomplete_element_response_t;
 
 __attribute__((deprecated)) bankaccount_autocomplete_element_response_t *bankaccount_autocomplete_element_response_create(
-    int pki_bankaccount_id,
+    int *pki_bankaccount_id,
     char *s_bankaccount_bankname,
-    int b_bankaccount_isactive
+    int *b_bankaccount_isactive
 );
 
 void bankaccount_autocomplete_element_response_free(bankaccount_autocomplete_element_response_t *bankaccount_autocomplete_element_response);

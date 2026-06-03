@@ -12,18 +12,21 @@ static ezsigntemplateannotation_edit_object_v1_request_t *ezsigntemplateannotati
     if (!ezsigntemplateannotation_edit_object_v1_request_local_var) {
         return NULL;
     }
-    ezsigntemplateannotation_edit_object_v1_request_local_var->obj_ezsigntemplateannotation = obj_ezsigntemplateannotation;
-
+    memset(ezsigntemplateannotation_edit_object_v1_request_local_var, 0, sizeof(ezsigntemplateannotation_edit_object_v1_request_t));
     ezsigntemplateannotation_edit_object_v1_request_local_var->_library_owned = 1;
+    ezsigntemplateannotation_edit_object_v1_request_local_var->obj_ezsigntemplateannotation = obj_ezsigntemplateannotation;
     return ezsigntemplateannotation_edit_object_v1_request_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplateannotation_edit_object_v1_request_t *ezsigntemplateannotation_edit_object_v1_request_create(
     ezsigntemplateannotation_request_compound_t *obj_ezsigntemplateannotation
     ) {
-    return ezsigntemplateannotation_edit_object_v1_request_create_internal (
+    ezsigntemplateannotation_edit_object_v1_request_t *result = ezsigntemplateannotation_edit_object_v1_request_create_internal (
         obj_ezsigntemplateannotation
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplateannotation_edit_object_v1_request_free(ezsigntemplateannotation_edit_object_v1_request_t *ezsigntemplateannotation_edit_object_v1_request) {
@@ -86,9 +89,14 @@ ezsigntemplateannotation_edit_object_v1_request_t *ezsigntemplateannotation_edit
     obj_ezsigntemplateannotation_local_nonprim = ezsigntemplateannotation_request_compound_parseFromJSON(obj_ezsigntemplateannotation); //nonprimitive
 
 
+
     ezsigntemplateannotation_edit_object_v1_request_local_var = ezsigntemplateannotation_edit_object_v1_request_create_internal (
         obj_ezsigntemplateannotation_local_nonprim
         );
+
+    if (!ezsigntemplateannotation_edit_object_v1_request_local_var) {
+        goto end;
+    }
 
     return ezsigntemplateannotation_edit_object_v1_request_local_var;
 end:

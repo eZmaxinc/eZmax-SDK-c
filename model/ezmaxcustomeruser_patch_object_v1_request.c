@@ -12,18 +12,21 @@ static ezmaxcustomeruser_patch_object_v1_request_t *ezmaxcustomeruser_patch_obje
     if (!ezmaxcustomeruser_patch_object_v1_request_local_var) {
         return NULL;
     }
-    ezmaxcustomeruser_patch_object_v1_request_local_var->obj_ezmaxcustomeruser = obj_ezmaxcustomeruser;
-
+    memset(ezmaxcustomeruser_patch_object_v1_request_local_var, 0, sizeof(ezmaxcustomeruser_patch_object_v1_request_t));
     ezmaxcustomeruser_patch_object_v1_request_local_var->_library_owned = 1;
+    ezmaxcustomeruser_patch_object_v1_request_local_var->obj_ezmaxcustomeruser = obj_ezmaxcustomeruser;
     return ezmaxcustomeruser_patch_object_v1_request_local_var;
 }
 
 __attribute__((deprecated)) ezmaxcustomeruser_patch_object_v1_request_t *ezmaxcustomeruser_patch_object_v1_request_create(
     ezmaxcustomeruser_request_patch_t *obj_ezmaxcustomeruser
     ) {
-    return ezmaxcustomeruser_patch_object_v1_request_create_internal (
+    ezmaxcustomeruser_patch_object_v1_request_t *result = ezmaxcustomeruser_patch_object_v1_request_create_internal (
         obj_ezmaxcustomeruser
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezmaxcustomeruser_patch_object_v1_request_free(ezmaxcustomeruser_patch_object_v1_request_t *ezmaxcustomeruser_patch_object_v1_request) {
@@ -86,9 +89,14 @@ ezmaxcustomeruser_patch_object_v1_request_t *ezmaxcustomeruser_patch_object_v1_r
     obj_ezmaxcustomeruser_local_nonprim = ezmaxcustomeruser_request_patch_parseFromJSON(obj_ezmaxcustomeruser); //nonprimitive
 
 
+
     ezmaxcustomeruser_patch_object_v1_request_local_var = ezmaxcustomeruser_patch_object_v1_request_create_internal (
         obj_ezmaxcustomeruser_local_nonprim
         );
+
+    if (!ezmaxcustomeruser_patch_object_v1_request_local_var) {
+        goto end;
+    }
 
     return ezmaxcustomeruser_patch_object_v1_request_local_var;
 end:

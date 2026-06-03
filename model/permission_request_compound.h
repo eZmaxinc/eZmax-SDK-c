@@ -19,23 +19,23 @@ typedef struct permission_request_compound_t permission_request_compound_t;
 
 
 typedef struct permission_request_compound_t {
-    int pki_permission_id; //numeric
-    int fki_user_id; //numeric
-    int fki_apikey_id; //numeric
-    int fki_usergroup_id; //numeric
-    int fki_company_id; //numeric
-    int fki_modulesection_id; //numeric
+    int *pki_permission_id; //numeric
+    int *fki_user_id; //numeric
+    int *fki_apikey_id; //numeric
+    int *fki_usergroup_id; //numeric
+    int *fki_company_id; //numeric
+    int *fki_modulesection_id; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } permission_request_compound_t;
 
 __attribute__((deprecated)) permission_request_compound_t *permission_request_compound_create(
-    int pki_permission_id,
-    int fki_user_id,
-    int fki_apikey_id,
-    int fki_usergroup_id,
-    int fki_company_id,
-    int fki_modulesection_id
+    int *pki_permission_id,
+    int *fki_user_id,
+    int *fki_apikey_id,
+    int *fki_usergroup_id,
+    int *fki_company_id,
+    int *fki_modulesection_id
 );
 
 void permission_request_compound_free(permission_request_compound_t *permission_request_compound);

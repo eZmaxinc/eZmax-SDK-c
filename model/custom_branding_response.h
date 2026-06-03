@@ -19,14 +19,14 @@ typedef struct custom_branding_response_t custom_branding_response_t;
 
 
 typedef struct custom_branding_response_t {
-    int i_branding_color; //numeric
+    int *i_branding_color; //numeric
     char *s_branding_logointerfaceurl; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } custom_branding_response_t;
 
 __attribute__((deprecated)) custom_branding_response_t *custom_branding_response_create(
-    int i_branding_color,
+    int *i_branding_color,
     char *s_branding_logointerfaceurl
 );
 

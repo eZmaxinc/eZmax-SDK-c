@@ -6,32 +6,53 @@
 
 
 static ezsigntemplatepackagemembership_request_compound_t *ezsigntemplatepackagemembership_request_compound_create_internal(
-    int pki_ezsigntemplatepackagemembership_id,
-    int fki_ezsigntemplatepackage_id,
-    int fki_ezsigntemplate_id
+    int *pki_ezsigntemplatepackagemembership_id,
+    int *fki_ezsigntemplatepackage_id,
+    int *fki_ezsigntemplate_id
     ) {
     ezsigntemplatepackagemembership_request_compound_t *ezsigntemplatepackagemembership_request_compound_local_var = malloc(sizeof(ezsigntemplatepackagemembership_request_compound_t));
     if (!ezsigntemplatepackagemembership_request_compound_local_var) {
         return NULL;
     }
+    memset(ezsigntemplatepackagemembership_request_compound_local_var, 0, sizeof(ezsigntemplatepackagemembership_request_compound_t));
+    ezsigntemplatepackagemembership_request_compound_local_var->_library_owned = 1;
     ezsigntemplatepackagemembership_request_compound_local_var->pki_ezsigntemplatepackagemembership_id = pki_ezsigntemplatepackagemembership_id;
     ezsigntemplatepackagemembership_request_compound_local_var->fki_ezsigntemplatepackage_id = fki_ezsigntemplatepackage_id;
     ezsigntemplatepackagemembership_request_compound_local_var->fki_ezsigntemplate_id = fki_ezsigntemplate_id;
-
-    ezsigntemplatepackagemembership_request_compound_local_var->_library_owned = 1;
     return ezsigntemplatepackagemembership_request_compound_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplatepackagemembership_request_compound_t *ezsigntemplatepackagemembership_request_compound_create(
-    int pki_ezsigntemplatepackagemembership_id,
-    int fki_ezsigntemplatepackage_id,
-    int fki_ezsigntemplate_id
+    int *pki_ezsigntemplatepackagemembership_id,
+    int *fki_ezsigntemplatepackage_id,
+    int *fki_ezsigntemplate_id
     ) {
-    return ezsigntemplatepackagemembership_request_compound_create_internal (
-        pki_ezsigntemplatepackagemembership_id,
-        fki_ezsigntemplatepackage_id,
-        fki_ezsigntemplate_id
+    int *pki_ezsigntemplatepackagemembership_id_copy = NULL;
+    if (pki_ezsigntemplatepackagemembership_id) {
+        pki_ezsigntemplatepackagemembership_id_copy = malloc(sizeof(int));
+        if (pki_ezsigntemplatepackagemembership_id_copy) *pki_ezsigntemplatepackagemembership_id_copy = *pki_ezsigntemplatepackagemembership_id;
+    }
+    int *fki_ezsigntemplatepackage_id_copy = NULL;
+    if (fki_ezsigntemplatepackage_id) {
+        fki_ezsigntemplatepackage_id_copy = malloc(sizeof(int));
+        if (fki_ezsigntemplatepackage_id_copy) *fki_ezsigntemplatepackage_id_copy = *fki_ezsigntemplatepackage_id;
+    }
+    int *fki_ezsigntemplate_id_copy = NULL;
+    if (fki_ezsigntemplate_id) {
+        fki_ezsigntemplate_id_copy = malloc(sizeof(int));
+        if (fki_ezsigntemplate_id_copy) *fki_ezsigntemplate_id_copy = *fki_ezsigntemplate_id;
+    }
+    ezsigntemplatepackagemembership_request_compound_t *result = ezsigntemplatepackagemembership_request_compound_create_internal (
+        pki_ezsigntemplatepackagemembership_id_copy,
+        fki_ezsigntemplatepackage_id_copy,
+        fki_ezsigntemplate_id_copy
         );
+    if (!result) {
+        free(pki_ezsigntemplatepackagemembership_id_copy);
+        free(fki_ezsigntemplatepackage_id_copy);
+        free(fki_ezsigntemplate_id_copy);
+    }
+    return result;
 }
 
 void ezsigntemplatepackagemembership_request_compound_free(ezsigntemplatepackagemembership_request_compound_t *ezsigntemplatepackagemembership_request_compound) {
@@ -43,6 +64,18 @@ void ezsigntemplatepackagemembership_request_compound_free(ezsigntemplatepackage
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsigntemplatepackagemembership_request_compound->pki_ezsigntemplatepackagemembership_id) {
+        free(ezsigntemplatepackagemembership_request_compound->pki_ezsigntemplatepackagemembership_id);
+        ezsigntemplatepackagemembership_request_compound->pki_ezsigntemplatepackagemembership_id = NULL;
+    }
+    if (ezsigntemplatepackagemembership_request_compound->fki_ezsigntemplatepackage_id) {
+        free(ezsigntemplatepackagemembership_request_compound->fki_ezsigntemplatepackage_id);
+        ezsigntemplatepackagemembership_request_compound->fki_ezsigntemplatepackage_id = NULL;
+    }
+    if (ezsigntemplatepackagemembership_request_compound->fki_ezsigntemplate_id) {
+        free(ezsigntemplatepackagemembership_request_compound->fki_ezsigntemplate_id);
+        ezsigntemplatepackagemembership_request_compound->fki_ezsigntemplate_id = NULL;
+    }
     free(ezsigntemplatepackagemembership_request_compound);
 }
 
@@ -51,7 +84,7 @@ cJSON *ezsigntemplatepackagemembership_request_compound_convertToJSON(ezsigntemp
 
     // ezsigntemplatepackagemembership_request_compound->pki_ezsigntemplatepackagemembership_id
     if(ezsigntemplatepackagemembership_request_compound->pki_ezsigntemplatepackagemembership_id) {
-    if(cJSON_AddNumberToObject(item, "pkiEzsigntemplatepackagemembershipID", ezsigntemplatepackagemembership_request_compound->pki_ezsigntemplatepackagemembership_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzsigntemplatepackagemembershipID", *ezsigntemplatepackagemembership_request_compound->pki_ezsigntemplatepackagemembership_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -61,7 +94,7 @@ cJSON *ezsigntemplatepackagemembership_request_compound_convertToJSON(ezsigntemp
     if (!ezsigntemplatepackagemembership_request_compound->fki_ezsigntemplatepackage_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiEzsigntemplatepackageID", ezsigntemplatepackagemembership_request_compound->fki_ezsigntemplatepackage_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsigntemplatepackageID", *ezsigntemplatepackagemembership_request_compound->fki_ezsigntemplatepackage_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -70,7 +103,7 @@ cJSON *ezsigntemplatepackagemembership_request_compound_convertToJSON(ezsigntemp
     if (!ezsigntemplatepackagemembership_request_compound->fki_ezsigntemplate_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiEzsigntemplateID", ezsigntemplatepackagemembership_request_compound->fki_ezsigntemplate_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsigntemplateID", *ezsigntemplatepackagemembership_request_compound->fki_ezsigntemplate_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -86,6 +119,15 @@ ezsigntemplatepackagemembership_request_compound_t *ezsigntemplatepackagemembers
 
     ezsigntemplatepackagemembership_request_compound_t *ezsigntemplatepackagemembership_request_compound_local_var = NULL;
 
+    // define the local variable for ezsigntemplatepackagemembership_request_compound->pki_ezsigntemplatepackagemembership_id
+    int *pki_ezsigntemplatepackagemembership_id_local_var = NULL;
+
+    // define the local variable for ezsigntemplatepackagemembership_request_compound->fki_ezsigntemplatepackage_id
+    int *fki_ezsigntemplatepackage_id_local_var = NULL;
+
+    // define the local variable for ezsigntemplatepackagemembership_request_compound->fki_ezsigntemplate_id
+    int *fki_ezsigntemplate_id_local_var = NULL;
+
     // ezsigntemplatepackagemembership_request_compound->pki_ezsigntemplatepackagemembership_id
     cJSON *pki_ezsigntemplatepackagemembership_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackagemembership_request_compoundJSON, "pkiEzsigntemplatepackagemembershipID");
     if (cJSON_IsNull(pki_ezsigntemplatepackagemembership_id)) {
@@ -96,6 +138,12 @@ ezsigntemplatepackagemembership_request_compound_t *ezsigntemplatepackagemembers
     {
     goto end; //Numeric
     }
+    pki_ezsigntemplatepackagemembership_id_local_var = malloc(sizeof(int));
+    if(!pki_ezsigntemplatepackagemembership_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezsigntemplatepackagemembership_id_local_var = pki_ezsigntemplatepackagemembership_id->valuedouble;
     }
 
     // ezsigntemplatepackagemembership_request_compound->fki_ezsigntemplatepackage_id
@@ -112,6 +160,12 @@ ezsigntemplatepackagemembership_request_compound_t *ezsigntemplatepackagemembers
     {
     goto end; //Numeric
     }
+    fki_ezsigntemplatepackage_id_local_var = malloc(sizeof(int));
+    if(!fki_ezsigntemplatepackage_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezsigntemplatepackage_id_local_var = fki_ezsigntemplatepackage_id->valuedouble;
 
     // ezsigntemplatepackagemembership_request_compound->fki_ezsigntemplate_id
     cJSON *fki_ezsigntemplate_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackagemembership_request_compoundJSON, "fkiEzsigntemplateID");
@@ -127,16 +181,39 @@ ezsigntemplatepackagemembership_request_compound_t *ezsigntemplatepackagemembers
     {
     goto end; //Numeric
     }
+    fki_ezsigntemplate_id_local_var = malloc(sizeof(int));
+    if(!fki_ezsigntemplate_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezsigntemplate_id_local_var = fki_ezsigntemplate_id->valuedouble;
+
 
 
     ezsigntemplatepackagemembership_request_compound_local_var = ezsigntemplatepackagemembership_request_compound_create_internal (
-        pki_ezsigntemplatepackagemembership_id ? pki_ezsigntemplatepackagemembership_id->valuedouble : 0,
-        fki_ezsigntemplatepackage_id->valuedouble,
-        fki_ezsigntemplate_id->valuedouble
+        pki_ezsigntemplatepackagemembership_id_local_var,
+        fki_ezsigntemplatepackage_id_local_var,
+        fki_ezsigntemplate_id_local_var
         );
+
+    if (!ezsigntemplatepackagemembership_request_compound_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatepackagemembership_request_compound_local_var;
 end:
+    if (pki_ezsigntemplatepackagemembership_id_local_var) {
+        free(pki_ezsigntemplatepackagemembership_id_local_var);
+        pki_ezsigntemplatepackagemembership_id_local_var = NULL;
+    }
+    if (fki_ezsigntemplatepackage_id_local_var) {
+        free(fki_ezsigntemplatepackage_id_local_var);
+        fki_ezsigntemplatepackage_id_local_var = NULL;
+    }
+    if (fki_ezsigntemplate_id_local_var) {
+        free(fki_ezsigntemplate_id_local_var);
+        fki_ezsigntemplate_id_local_var = NULL;
+    }
     return NULL;
 
 }

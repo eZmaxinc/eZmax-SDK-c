@@ -19,8 +19,8 @@ typedef struct phone_request_compound_v2_t phone_request_compound_v2_t;
 
 
 typedef struct phone_request_compound_v2_t {
-    int pki_phone_id; //numeric
-    int fki_phonetype_id; //numeric
+    int *pki_phone_id; //numeric
+    int *fki_phonetype_id; //numeric
     char *s_phone_extension; // string
     char *s_phone_e164; // string
 
@@ -28,8 +28,8 @@ typedef struct phone_request_compound_v2_t {
 } phone_request_compound_v2_t;
 
 __attribute__((deprecated)) phone_request_compound_v2_t *phone_request_compound_v2_create(
-    int pki_phone_id,
-    int fki_phonetype_id,
+    int *pki_phone_id,
+    int *fki_phonetype_id,
     char *s_phone_extension,
     char *s_phone_e164
 );

@@ -12,18 +12,21 @@ static inscriptionnotauthenticated_get_communication_list_v1_response_m_payload_
     if (!inscriptionnotauthenticated_get_communication_list_v1_response_m_payload_local_var) {
         return NULL;
     }
-    inscriptionnotauthenticated_get_communication_list_v1_response_m_payload_local_var->a_obj_communication = a_obj_communication;
-
+    memset(inscriptionnotauthenticated_get_communication_list_v1_response_m_payload_local_var, 0, sizeof(inscriptionnotauthenticated_get_communication_list_v1_response_m_payload_t));
     inscriptionnotauthenticated_get_communication_list_v1_response_m_payload_local_var->_library_owned = 1;
+    inscriptionnotauthenticated_get_communication_list_v1_response_m_payload_local_var->a_obj_communication = a_obj_communication;
     return inscriptionnotauthenticated_get_communication_list_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) inscriptionnotauthenticated_get_communication_list_v1_response_m_payload_t *inscriptionnotauthenticated_get_communication_list_v1_response_m_payload_create(
     list_t *a_obj_communication
     ) {
-    return inscriptionnotauthenticated_get_communication_list_v1_response_m_payload_create_internal (
+    inscriptionnotauthenticated_get_communication_list_v1_response_m_payload_t *result = inscriptionnotauthenticated_get_communication_list_v1_response_m_payload_create_internal (
         a_obj_communication
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void inscriptionnotauthenticated_get_communication_list_v1_response_m_payload_free(inscriptionnotauthenticated_get_communication_list_v1_response_m_payload_t *inscriptionnotauthenticated_get_communication_list_v1_response_m_payload) {
@@ -111,9 +114,14 @@ inscriptionnotauthenticated_get_communication_list_v1_response_m_payload_t *insc
     }
 
 
+
     inscriptionnotauthenticated_get_communication_list_v1_response_m_payload_local_var = inscriptionnotauthenticated_get_communication_list_v1_response_m_payload_create_internal (
         a_obj_communicationList
         );
+
+    if (!inscriptionnotauthenticated_get_communication_list_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return inscriptionnotauthenticated_get_communication_list_v1_response_m_payload_local_var;
 end:

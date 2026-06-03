@@ -6,40 +6,61 @@
 
 
 static province_autocomplete_element_response_t *province_autocomplete_element_response_create_internal(
-    int pki_province_id,
-    int fki_country_id,
+    int *pki_province_id,
+    int *fki_country_id,
     char *s_province_name_x,
     char *s_province_shortname,
-    int b_province_isactive
+    int *b_province_isactive
     ) {
     province_autocomplete_element_response_t *province_autocomplete_element_response_local_var = malloc(sizeof(province_autocomplete_element_response_t));
     if (!province_autocomplete_element_response_local_var) {
         return NULL;
     }
+    memset(province_autocomplete_element_response_local_var, 0, sizeof(province_autocomplete_element_response_t));
+    province_autocomplete_element_response_local_var->_library_owned = 1;
     province_autocomplete_element_response_local_var->pki_province_id = pki_province_id;
     province_autocomplete_element_response_local_var->fki_country_id = fki_country_id;
     province_autocomplete_element_response_local_var->s_province_name_x = s_province_name_x;
     province_autocomplete_element_response_local_var->s_province_shortname = s_province_shortname;
     province_autocomplete_element_response_local_var->b_province_isactive = b_province_isactive;
-
-    province_autocomplete_element_response_local_var->_library_owned = 1;
     return province_autocomplete_element_response_local_var;
 }
 
 __attribute__((deprecated)) province_autocomplete_element_response_t *province_autocomplete_element_response_create(
-    int pki_province_id,
-    int fki_country_id,
+    int *pki_province_id,
+    int *fki_country_id,
     char *s_province_name_x,
     char *s_province_shortname,
-    int b_province_isactive
+    int *b_province_isactive
     ) {
-    return province_autocomplete_element_response_create_internal (
-        pki_province_id,
-        fki_country_id,
+    int *pki_province_id_copy = NULL;
+    if (pki_province_id) {
+        pki_province_id_copy = malloc(sizeof(int));
+        if (pki_province_id_copy) *pki_province_id_copy = *pki_province_id;
+    }
+    int *fki_country_id_copy = NULL;
+    if (fki_country_id) {
+        fki_country_id_copy = malloc(sizeof(int));
+        if (fki_country_id_copy) *fki_country_id_copy = *fki_country_id;
+    }
+    int *b_province_isactive_copy = NULL;
+    if (b_province_isactive) {
+        b_province_isactive_copy = malloc(sizeof(int));
+        if (b_province_isactive_copy) *b_province_isactive_copy = *b_province_isactive;
+    }
+    province_autocomplete_element_response_t *result = province_autocomplete_element_response_create_internal (
+        pki_province_id_copy,
+        fki_country_id_copy,
         s_province_name_x,
         s_province_shortname,
-        b_province_isactive
+        b_province_isactive_copy
         );
+    if (!result) {
+        free(pki_province_id_copy);
+        free(fki_country_id_copy);
+        free(b_province_isactive_copy);
+    }
+    return result;
 }
 
 void province_autocomplete_element_response_free(province_autocomplete_element_response_t *province_autocomplete_element_response) {
@@ -51,6 +72,14 @@ void province_autocomplete_element_response_free(province_autocomplete_element_r
         return ;
     }
     listEntry_t *listEntry;
+    if (province_autocomplete_element_response->pki_province_id) {
+        free(province_autocomplete_element_response->pki_province_id);
+        province_autocomplete_element_response->pki_province_id = NULL;
+    }
+    if (province_autocomplete_element_response->fki_country_id) {
+        free(province_autocomplete_element_response->fki_country_id);
+        province_autocomplete_element_response->fki_country_id = NULL;
+    }
     if (province_autocomplete_element_response->s_province_name_x) {
         free(province_autocomplete_element_response->s_province_name_x);
         province_autocomplete_element_response->s_province_name_x = NULL;
@@ -58,6 +87,10 @@ void province_autocomplete_element_response_free(province_autocomplete_element_r
     if (province_autocomplete_element_response->s_province_shortname) {
         free(province_autocomplete_element_response->s_province_shortname);
         province_autocomplete_element_response->s_province_shortname = NULL;
+    }
+    if (province_autocomplete_element_response->b_province_isactive) {
+        free(province_autocomplete_element_response->b_province_isactive);
+        province_autocomplete_element_response->b_province_isactive = NULL;
     }
     free(province_autocomplete_element_response);
 }
@@ -69,7 +102,7 @@ cJSON *province_autocomplete_element_response_convertToJSON(province_autocomplet
     if (!province_autocomplete_element_response->pki_province_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiProvinceID", province_autocomplete_element_response->pki_province_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiProvinceID", *province_autocomplete_element_response->pki_province_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -78,7 +111,7 @@ cJSON *province_autocomplete_element_response_convertToJSON(province_autocomplet
     if (!province_autocomplete_element_response->fki_country_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiCountryID", province_autocomplete_element_response->fki_country_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiCountryID", *province_autocomplete_element_response->fki_country_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -105,7 +138,7 @@ cJSON *province_autocomplete_element_response_convertToJSON(province_autocomplet
     if (!province_autocomplete_element_response->b_province_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bProvinceIsactive", province_autocomplete_element_response->b_province_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bProvinceIsactive", *province_autocomplete_element_response->b_province_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -121,6 +154,19 @@ province_autocomplete_element_response_t *province_autocomplete_element_response
 
     province_autocomplete_element_response_t *province_autocomplete_element_response_local_var = NULL;
 
+    // define the local variable for province_autocomplete_element_response->pki_province_id
+    int *pki_province_id_local_var = NULL;
+
+    // define the local variable for province_autocomplete_element_response->fki_country_id
+    int *fki_country_id_local_var = NULL;
+
+    char *s_province_name_x_local_str = NULL;
+
+    char *s_province_shortname_local_str = NULL;
+
+    // define the local variable for province_autocomplete_element_response->b_province_isactive
+    int *b_province_isactive_local_var = NULL;
+
     // province_autocomplete_element_response->pki_province_id
     cJSON *pki_province_id = cJSON_GetObjectItemCaseSensitive(province_autocomplete_element_responseJSON, "pkiProvinceID");
     if (cJSON_IsNull(pki_province_id)) {
@@ -135,6 +181,12 @@ province_autocomplete_element_response_t *province_autocomplete_element_response
     {
     goto end; //Numeric
     }
+    pki_province_id_local_var = malloc(sizeof(int));
+    if(!pki_province_id_local_var)
+    {
+        goto end;
+    }
+    *pki_province_id_local_var = pki_province_id->valuedouble;
 
     // province_autocomplete_element_response->fki_country_id
     cJSON *fki_country_id = cJSON_GetObjectItemCaseSensitive(province_autocomplete_element_responseJSON, "fkiCountryID");
@@ -150,6 +202,12 @@ province_autocomplete_element_response_t *province_autocomplete_element_response
     {
     goto end; //Numeric
     }
+    fki_country_id_local_var = malloc(sizeof(int));
+    if(!fki_country_id_local_var)
+    {
+        goto end;
+    }
+    *fki_country_id_local_var = fki_country_id->valuedouble;
 
     // province_autocomplete_element_response->s_province_name_x
     cJSON *s_province_name_x = cJSON_GetObjectItemCaseSensitive(province_autocomplete_element_responseJSON, "sProvinceNameX");
@@ -195,18 +253,51 @@ province_autocomplete_element_response_t *province_autocomplete_element_response
     {
     goto end; //Bool
     }
+    b_province_isactive_local_var = malloc(sizeof(int));
+    if(!b_province_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_province_isactive_local_var = b_province_isactive->valueint;
 
+
+    if (s_province_name_x && !cJSON_IsNull(s_province_name_x)) s_province_name_x_local_str = strdup(s_province_name_x->valuestring);
+    if (s_province_shortname && !cJSON_IsNull(s_province_shortname)) s_province_shortname_local_str = strdup(s_province_shortname->valuestring);
 
     province_autocomplete_element_response_local_var = province_autocomplete_element_response_create_internal (
-        pki_province_id->valuedouble,
-        fki_country_id->valuedouble,
-        strdup(s_province_name_x->valuestring),
-        strdup(s_province_shortname->valuestring),
-        b_province_isactive->valueint
+        pki_province_id_local_var,
+        fki_country_id_local_var,
+        s_province_name_x_local_str,
+        s_province_shortname_local_str,
+        b_province_isactive_local_var
         );
+
+    if (!province_autocomplete_element_response_local_var) {
+        goto end;
+    }
 
     return province_autocomplete_element_response_local_var;
 end:
+    if (pki_province_id_local_var) {
+        free(pki_province_id_local_var);
+        pki_province_id_local_var = NULL;
+    }
+    if (fki_country_id_local_var) {
+        free(fki_country_id_local_var);
+        fki_country_id_local_var = NULL;
+    }
+    if (s_province_name_x_local_str) {
+        free(s_province_name_x_local_str);
+        s_province_name_x_local_str = NULL;
+    }
+    if (s_province_shortname_local_str) {
+        free(s_province_shortname_local_str);
+        s_province_shortname_local_str = NULL;
+    }
+    if (b_province_isactive_local_var) {
+        free(b_province_isactive_local_var);
+        b_province_isactive_local_var = NULL;
+    }
     return NULL;
 
 }

@@ -12,18 +12,21 @@ static ezsigntemplatepackage_get_autocomplete_v2_response_m_payload_t *ezsigntem
     if (!ezsigntemplatepackage_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    ezsigntemplatepackage_get_autocomplete_v2_response_m_payload_local_var->a_obj_ezsigntemplatepackage = a_obj_ezsigntemplatepackage;
-
+    memset(ezsigntemplatepackage_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(ezsigntemplatepackage_get_autocomplete_v2_response_m_payload_t));
     ezsigntemplatepackage_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    ezsigntemplatepackage_get_autocomplete_v2_response_m_payload_local_var->a_obj_ezsigntemplatepackage = a_obj_ezsigntemplatepackage;
     return ezsigntemplatepackage_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplatepackage_get_autocomplete_v2_response_m_payload_t *ezsigntemplatepackage_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_ezsigntemplatepackage
     ) {
-    return ezsigntemplatepackage_get_autocomplete_v2_response_m_payload_create_internal (
+    ezsigntemplatepackage_get_autocomplete_v2_response_m_payload_t *result = ezsigntemplatepackage_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_ezsigntemplatepackage
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatepackage_get_autocomplete_v2_response_m_payload_free(ezsigntemplatepackage_get_autocomplete_v2_response_m_payload_t *ezsigntemplatepackage_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ ezsigntemplatepackage_get_autocomplete_v2_response_m_payload_t *ezsigntemplatepa
     }
 
 
+
     ezsigntemplatepackage_get_autocomplete_v2_response_m_payload_local_var = ezsigntemplatepackage_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_ezsigntemplatepackageList
         );
+
+    if (!ezsigntemplatepackage_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatepackage_get_autocomplete_v2_response_m_payload_local_var;
 end:

@@ -13,10 +13,10 @@ static ezsigntemplatepackagemembership_delete_object_v1_response_t *ezsigntempla
     if (!ezsigntemplatepackagemembership_delete_object_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsigntemplatepackagemembership_delete_object_v1_response_local_var, 0, sizeof(ezsigntemplatepackagemembership_delete_object_v1_response_t));
+    ezsigntemplatepackagemembership_delete_object_v1_response_local_var->_library_owned = 1;
     ezsigntemplatepackagemembership_delete_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsigntemplatepackagemembership_delete_object_v1_response_local_var->obj_debug = obj_debug;
-
-    ezsigntemplatepackagemembership_delete_object_v1_response_local_var->_library_owned = 1;
     return ezsigntemplatepackagemembership_delete_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) ezsigntemplatepackagemembership_delete_object_v1_res
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return ezsigntemplatepackagemembership_delete_object_v1_response_create_internal (
+    ezsigntemplatepackagemembership_delete_object_v1_response_t *result = ezsigntemplatepackagemembership_delete_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatepackagemembership_delete_object_v1_response_free(ezsigntemplatepackagemembership_delete_object_v1_response_t *ezsigntemplatepackagemembership_delete_object_v1_response) {
@@ -119,10 +122,15 @@ ezsigntemplatepackagemembership_delete_object_v1_response_t *ezsigntemplatepacka
     }
 
 
+
     ezsigntemplatepackagemembership_delete_object_v1_response_local_var = ezsigntemplatepackagemembership_delete_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!ezsigntemplatepackagemembership_delete_object_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatepackagemembership_delete_object_v1_response_local_var;
 end:

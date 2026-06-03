@@ -6,20 +6,22 @@
 
 
 static communicationreference_request_t *communicationreference_request_create_internal(
-    int pki_communicationreference_id,
-    int fki_buyercontract_id,
-    int fki_ezsignfolder_id,
-    int fki_inscription_id,
-    int fki_inscriptiontemp_id,
-    int fki_invoice_id,
-    int fki_otherincome_id,
-    int fki_electronicfundstransfer_id,
-    int fki_rejectedoffertopurchase_id
+    int *pki_communicationreference_id,
+    int *fki_buyercontract_id,
+    int *fki_ezsignfolder_id,
+    int *fki_inscription_id,
+    int *fki_inscriptiontemp_id,
+    int *fki_invoice_id,
+    int *fki_otherincome_id,
+    int *fki_electronicfundstransfer_id,
+    int *fki_rejectedoffertopurchase_id
     ) {
     communicationreference_request_t *communicationreference_request_local_var = malloc(sizeof(communicationreference_request_t));
     if (!communicationreference_request_local_var) {
         return NULL;
     }
+    memset(communicationreference_request_local_var, 0, sizeof(communicationreference_request_t));
+    communicationreference_request_local_var->_library_owned = 1;
     communicationreference_request_local_var->pki_communicationreference_id = pki_communicationreference_id;
     communicationreference_request_local_var->fki_buyercontract_id = fki_buyercontract_id;
     communicationreference_request_local_var->fki_ezsignfolder_id = fki_ezsignfolder_id;
@@ -29,33 +31,88 @@ static communicationreference_request_t *communicationreference_request_create_i
     communicationreference_request_local_var->fki_otherincome_id = fki_otherincome_id;
     communicationreference_request_local_var->fki_electronicfundstransfer_id = fki_electronicfundstransfer_id;
     communicationreference_request_local_var->fki_rejectedoffertopurchase_id = fki_rejectedoffertopurchase_id;
-
-    communicationreference_request_local_var->_library_owned = 1;
     return communicationreference_request_local_var;
 }
 
 __attribute__((deprecated)) communicationreference_request_t *communicationreference_request_create(
-    int pki_communicationreference_id,
-    int fki_buyercontract_id,
-    int fki_ezsignfolder_id,
-    int fki_inscription_id,
-    int fki_inscriptiontemp_id,
-    int fki_invoice_id,
-    int fki_otherincome_id,
-    int fki_electronicfundstransfer_id,
-    int fki_rejectedoffertopurchase_id
+    int *pki_communicationreference_id,
+    int *fki_buyercontract_id,
+    int *fki_ezsignfolder_id,
+    int *fki_inscription_id,
+    int *fki_inscriptiontemp_id,
+    int *fki_invoice_id,
+    int *fki_otherincome_id,
+    int *fki_electronicfundstransfer_id,
+    int *fki_rejectedoffertopurchase_id
     ) {
-    return communicationreference_request_create_internal (
-        pki_communicationreference_id,
-        fki_buyercontract_id,
-        fki_ezsignfolder_id,
-        fki_inscription_id,
-        fki_inscriptiontemp_id,
-        fki_invoice_id,
-        fki_otherincome_id,
-        fki_electronicfundstransfer_id,
-        fki_rejectedoffertopurchase_id
+    int *pki_communicationreference_id_copy = NULL;
+    if (pki_communicationreference_id) {
+        pki_communicationreference_id_copy = malloc(sizeof(int));
+        if (pki_communicationreference_id_copy) *pki_communicationreference_id_copy = *pki_communicationreference_id;
+    }
+    int *fki_buyercontract_id_copy = NULL;
+    if (fki_buyercontract_id) {
+        fki_buyercontract_id_copy = malloc(sizeof(int));
+        if (fki_buyercontract_id_copy) *fki_buyercontract_id_copy = *fki_buyercontract_id;
+    }
+    int *fki_ezsignfolder_id_copy = NULL;
+    if (fki_ezsignfolder_id) {
+        fki_ezsignfolder_id_copy = malloc(sizeof(int));
+        if (fki_ezsignfolder_id_copy) *fki_ezsignfolder_id_copy = *fki_ezsignfolder_id;
+    }
+    int *fki_inscription_id_copy = NULL;
+    if (fki_inscription_id) {
+        fki_inscription_id_copy = malloc(sizeof(int));
+        if (fki_inscription_id_copy) *fki_inscription_id_copy = *fki_inscription_id;
+    }
+    int *fki_inscriptiontemp_id_copy = NULL;
+    if (fki_inscriptiontemp_id) {
+        fki_inscriptiontemp_id_copy = malloc(sizeof(int));
+        if (fki_inscriptiontemp_id_copy) *fki_inscriptiontemp_id_copy = *fki_inscriptiontemp_id;
+    }
+    int *fki_invoice_id_copy = NULL;
+    if (fki_invoice_id) {
+        fki_invoice_id_copy = malloc(sizeof(int));
+        if (fki_invoice_id_copy) *fki_invoice_id_copy = *fki_invoice_id;
+    }
+    int *fki_otherincome_id_copy = NULL;
+    if (fki_otherincome_id) {
+        fki_otherincome_id_copy = malloc(sizeof(int));
+        if (fki_otherincome_id_copy) *fki_otherincome_id_copy = *fki_otherincome_id;
+    }
+    int *fki_electronicfundstransfer_id_copy = NULL;
+    if (fki_electronicfundstransfer_id) {
+        fki_electronicfundstransfer_id_copy = malloc(sizeof(int));
+        if (fki_electronicfundstransfer_id_copy) *fki_electronicfundstransfer_id_copy = *fki_electronicfundstransfer_id;
+    }
+    int *fki_rejectedoffertopurchase_id_copy = NULL;
+    if (fki_rejectedoffertopurchase_id) {
+        fki_rejectedoffertopurchase_id_copy = malloc(sizeof(int));
+        if (fki_rejectedoffertopurchase_id_copy) *fki_rejectedoffertopurchase_id_copy = *fki_rejectedoffertopurchase_id;
+    }
+    communicationreference_request_t *result = communicationreference_request_create_internal (
+        pki_communicationreference_id_copy,
+        fki_buyercontract_id_copy,
+        fki_ezsignfolder_id_copy,
+        fki_inscription_id_copy,
+        fki_inscriptiontemp_id_copy,
+        fki_invoice_id_copy,
+        fki_otherincome_id_copy,
+        fki_electronicfundstransfer_id_copy,
+        fki_rejectedoffertopurchase_id_copy
         );
+    if (!result) {
+        free(pki_communicationreference_id_copy);
+        free(fki_buyercontract_id_copy);
+        free(fki_ezsignfolder_id_copy);
+        free(fki_inscription_id_copy);
+        free(fki_inscriptiontemp_id_copy);
+        free(fki_invoice_id_copy);
+        free(fki_otherincome_id_copy);
+        free(fki_electronicfundstransfer_id_copy);
+        free(fki_rejectedoffertopurchase_id_copy);
+    }
+    return result;
 }
 
 void communicationreference_request_free(communicationreference_request_t *communicationreference_request) {
@@ -67,6 +124,42 @@ void communicationreference_request_free(communicationreference_request_t *commu
         return ;
     }
     listEntry_t *listEntry;
+    if (communicationreference_request->pki_communicationreference_id) {
+        free(communicationreference_request->pki_communicationreference_id);
+        communicationreference_request->pki_communicationreference_id = NULL;
+    }
+    if (communicationreference_request->fki_buyercontract_id) {
+        free(communicationreference_request->fki_buyercontract_id);
+        communicationreference_request->fki_buyercontract_id = NULL;
+    }
+    if (communicationreference_request->fki_ezsignfolder_id) {
+        free(communicationreference_request->fki_ezsignfolder_id);
+        communicationreference_request->fki_ezsignfolder_id = NULL;
+    }
+    if (communicationreference_request->fki_inscription_id) {
+        free(communicationreference_request->fki_inscription_id);
+        communicationreference_request->fki_inscription_id = NULL;
+    }
+    if (communicationreference_request->fki_inscriptiontemp_id) {
+        free(communicationreference_request->fki_inscriptiontemp_id);
+        communicationreference_request->fki_inscriptiontemp_id = NULL;
+    }
+    if (communicationreference_request->fki_invoice_id) {
+        free(communicationreference_request->fki_invoice_id);
+        communicationreference_request->fki_invoice_id = NULL;
+    }
+    if (communicationreference_request->fki_otherincome_id) {
+        free(communicationreference_request->fki_otherincome_id);
+        communicationreference_request->fki_otherincome_id = NULL;
+    }
+    if (communicationreference_request->fki_electronicfundstransfer_id) {
+        free(communicationreference_request->fki_electronicfundstransfer_id);
+        communicationreference_request->fki_electronicfundstransfer_id = NULL;
+    }
+    if (communicationreference_request->fki_rejectedoffertopurchase_id) {
+        free(communicationreference_request->fki_rejectedoffertopurchase_id);
+        communicationreference_request->fki_rejectedoffertopurchase_id = NULL;
+    }
     free(communicationreference_request);
 }
 
@@ -75,7 +168,7 @@ cJSON *communicationreference_request_convertToJSON(communicationreference_reque
 
     // communicationreference_request->pki_communicationreference_id
     if(communicationreference_request->pki_communicationreference_id) {
-    if(cJSON_AddNumberToObject(item, "pkiCommunicationreferenceID", communicationreference_request->pki_communicationreference_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiCommunicationreferenceID", *communicationreference_request->pki_communicationreference_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -83,7 +176,7 @@ cJSON *communicationreference_request_convertToJSON(communicationreference_reque
 
     // communicationreference_request->fki_buyercontract_id
     if(communicationreference_request->fki_buyercontract_id) {
-    if(cJSON_AddNumberToObject(item, "fkiBuyercontractID", communicationreference_request->fki_buyercontract_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiBuyercontractID", *communicationreference_request->fki_buyercontract_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -91,7 +184,7 @@ cJSON *communicationreference_request_convertToJSON(communicationreference_reque
 
     // communicationreference_request->fki_ezsignfolder_id
     if(communicationreference_request->fki_ezsignfolder_id) {
-    if(cJSON_AddNumberToObject(item, "fkiEzsignfolderID", communicationreference_request->fki_ezsignfolder_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsignfolderID", *communicationreference_request->fki_ezsignfolder_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -99,7 +192,7 @@ cJSON *communicationreference_request_convertToJSON(communicationreference_reque
 
     // communicationreference_request->fki_inscription_id
     if(communicationreference_request->fki_inscription_id) {
-    if(cJSON_AddNumberToObject(item, "fkiInscriptionID", communicationreference_request->fki_inscription_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiInscriptionID", *communicationreference_request->fki_inscription_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -107,7 +200,7 @@ cJSON *communicationreference_request_convertToJSON(communicationreference_reque
 
     // communicationreference_request->fki_inscriptiontemp_id
     if(communicationreference_request->fki_inscriptiontemp_id) {
-    if(cJSON_AddNumberToObject(item, "fkiInscriptiontempID", communicationreference_request->fki_inscriptiontemp_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiInscriptiontempID", *communicationreference_request->fki_inscriptiontemp_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -115,7 +208,7 @@ cJSON *communicationreference_request_convertToJSON(communicationreference_reque
 
     // communicationreference_request->fki_invoice_id
     if(communicationreference_request->fki_invoice_id) {
-    if(cJSON_AddNumberToObject(item, "fkiInvoiceID", communicationreference_request->fki_invoice_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiInvoiceID", *communicationreference_request->fki_invoice_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -123,7 +216,7 @@ cJSON *communicationreference_request_convertToJSON(communicationreference_reque
 
     // communicationreference_request->fki_otherincome_id
     if(communicationreference_request->fki_otherincome_id) {
-    if(cJSON_AddNumberToObject(item, "fkiOtherincomeID", communicationreference_request->fki_otherincome_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiOtherincomeID", *communicationreference_request->fki_otherincome_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -131,7 +224,7 @@ cJSON *communicationreference_request_convertToJSON(communicationreference_reque
 
     // communicationreference_request->fki_electronicfundstransfer_id
     if(communicationreference_request->fki_electronicfundstransfer_id) {
-    if(cJSON_AddNumberToObject(item, "fkiElectronicfundstransferID", communicationreference_request->fki_electronicfundstransfer_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiElectronicfundstransferID", *communicationreference_request->fki_electronicfundstransfer_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -139,7 +232,7 @@ cJSON *communicationreference_request_convertToJSON(communicationreference_reque
 
     // communicationreference_request->fki_rejectedoffertopurchase_id
     if(communicationreference_request->fki_rejectedoffertopurchase_id) {
-    if(cJSON_AddNumberToObject(item, "fkiRejectedoffertopurchaseID", communicationreference_request->fki_rejectedoffertopurchase_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiRejectedoffertopurchaseID", *communicationreference_request->fki_rejectedoffertopurchase_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -156,6 +249,33 @@ communicationreference_request_t *communicationreference_request_parseFromJSON(c
 
     communicationreference_request_t *communicationreference_request_local_var = NULL;
 
+    // define the local variable for communicationreference_request->pki_communicationreference_id
+    int *pki_communicationreference_id_local_var = NULL;
+
+    // define the local variable for communicationreference_request->fki_buyercontract_id
+    int *fki_buyercontract_id_local_var = NULL;
+
+    // define the local variable for communicationreference_request->fki_ezsignfolder_id
+    int *fki_ezsignfolder_id_local_var = NULL;
+
+    // define the local variable for communicationreference_request->fki_inscription_id
+    int *fki_inscription_id_local_var = NULL;
+
+    // define the local variable for communicationreference_request->fki_inscriptiontemp_id
+    int *fki_inscriptiontemp_id_local_var = NULL;
+
+    // define the local variable for communicationreference_request->fki_invoice_id
+    int *fki_invoice_id_local_var = NULL;
+
+    // define the local variable for communicationreference_request->fki_otherincome_id
+    int *fki_otherincome_id_local_var = NULL;
+
+    // define the local variable for communicationreference_request->fki_electronicfundstransfer_id
+    int *fki_electronicfundstransfer_id_local_var = NULL;
+
+    // define the local variable for communicationreference_request->fki_rejectedoffertopurchase_id
+    int *fki_rejectedoffertopurchase_id_local_var = NULL;
+
     // communicationreference_request->pki_communicationreference_id
     cJSON *pki_communicationreference_id = cJSON_GetObjectItemCaseSensitive(communicationreference_requestJSON, "pkiCommunicationreferenceID");
     if (cJSON_IsNull(pki_communicationreference_id)) {
@@ -166,6 +286,12 @@ communicationreference_request_t *communicationreference_request_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    pki_communicationreference_id_local_var = malloc(sizeof(int));
+    if(!pki_communicationreference_id_local_var)
+    {
+        goto end;
+    }
+    *pki_communicationreference_id_local_var = pki_communicationreference_id->valuedouble;
     }
 
     // communicationreference_request->fki_buyercontract_id
@@ -178,6 +304,12 @@ communicationreference_request_t *communicationreference_request_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    fki_buyercontract_id_local_var = malloc(sizeof(int));
+    if(!fki_buyercontract_id_local_var)
+    {
+        goto end;
+    }
+    *fki_buyercontract_id_local_var = fki_buyercontract_id->valuedouble;
     }
 
     // communicationreference_request->fki_ezsignfolder_id
@@ -190,6 +322,12 @@ communicationreference_request_t *communicationreference_request_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    fki_ezsignfolder_id_local_var = malloc(sizeof(int));
+    if(!fki_ezsignfolder_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezsignfolder_id_local_var = fki_ezsignfolder_id->valuedouble;
     }
 
     // communicationreference_request->fki_inscription_id
@@ -202,6 +340,12 @@ communicationreference_request_t *communicationreference_request_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    fki_inscription_id_local_var = malloc(sizeof(int));
+    if(!fki_inscription_id_local_var)
+    {
+        goto end;
+    }
+    *fki_inscription_id_local_var = fki_inscription_id->valuedouble;
     }
 
     // communicationreference_request->fki_inscriptiontemp_id
@@ -214,6 +358,12 @@ communicationreference_request_t *communicationreference_request_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    fki_inscriptiontemp_id_local_var = malloc(sizeof(int));
+    if(!fki_inscriptiontemp_id_local_var)
+    {
+        goto end;
+    }
+    *fki_inscriptiontemp_id_local_var = fki_inscriptiontemp_id->valuedouble;
     }
 
     // communicationreference_request->fki_invoice_id
@@ -226,6 +376,12 @@ communicationreference_request_t *communicationreference_request_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    fki_invoice_id_local_var = malloc(sizeof(int));
+    if(!fki_invoice_id_local_var)
+    {
+        goto end;
+    }
+    *fki_invoice_id_local_var = fki_invoice_id->valuedouble;
     }
 
     // communicationreference_request->fki_otherincome_id
@@ -238,6 +394,12 @@ communicationreference_request_t *communicationreference_request_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    fki_otherincome_id_local_var = malloc(sizeof(int));
+    if(!fki_otherincome_id_local_var)
+    {
+        goto end;
+    }
+    *fki_otherincome_id_local_var = fki_otherincome_id->valuedouble;
     }
 
     // communicationreference_request->fki_electronicfundstransfer_id
@@ -250,6 +412,12 @@ communicationreference_request_t *communicationreference_request_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    fki_electronicfundstransfer_id_local_var = malloc(sizeof(int));
+    if(!fki_electronicfundstransfer_id_local_var)
+    {
+        goto end;
+    }
+    *fki_electronicfundstransfer_id_local_var = fki_electronicfundstransfer_id->valuedouble;
     }
 
     // communicationreference_request->fki_rejectedoffertopurchase_id
@@ -262,23 +430,70 @@ communicationreference_request_t *communicationreference_request_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    fki_rejectedoffertopurchase_id_local_var = malloc(sizeof(int));
+    if(!fki_rejectedoffertopurchase_id_local_var)
+    {
+        goto end;
+    }
+    *fki_rejectedoffertopurchase_id_local_var = fki_rejectedoffertopurchase_id->valuedouble;
     }
 
 
+
     communicationreference_request_local_var = communicationreference_request_create_internal (
-        pki_communicationreference_id ? pki_communicationreference_id->valuedouble : 0,
-        fki_buyercontract_id ? fki_buyercontract_id->valuedouble : 0,
-        fki_ezsignfolder_id ? fki_ezsignfolder_id->valuedouble : 0,
-        fki_inscription_id ? fki_inscription_id->valuedouble : 0,
-        fki_inscriptiontemp_id ? fki_inscriptiontemp_id->valuedouble : 0,
-        fki_invoice_id ? fki_invoice_id->valuedouble : 0,
-        fki_otherincome_id ? fki_otherincome_id->valuedouble : 0,
-        fki_electronicfundstransfer_id ? fki_electronicfundstransfer_id->valuedouble : 0,
-        fki_rejectedoffertopurchase_id ? fki_rejectedoffertopurchase_id->valuedouble : 0
+        pki_communicationreference_id_local_var,
+        fki_buyercontract_id_local_var,
+        fki_ezsignfolder_id_local_var,
+        fki_inscription_id_local_var,
+        fki_inscriptiontemp_id_local_var,
+        fki_invoice_id_local_var,
+        fki_otherincome_id_local_var,
+        fki_electronicfundstransfer_id_local_var,
+        fki_rejectedoffertopurchase_id_local_var
         );
+
+    if (!communicationreference_request_local_var) {
+        goto end;
+    }
 
     return communicationreference_request_local_var;
 end:
+    if (pki_communicationreference_id_local_var) {
+        free(pki_communicationreference_id_local_var);
+        pki_communicationreference_id_local_var = NULL;
+    }
+    if (fki_buyercontract_id_local_var) {
+        free(fki_buyercontract_id_local_var);
+        fki_buyercontract_id_local_var = NULL;
+    }
+    if (fki_ezsignfolder_id_local_var) {
+        free(fki_ezsignfolder_id_local_var);
+        fki_ezsignfolder_id_local_var = NULL;
+    }
+    if (fki_inscription_id_local_var) {
+        free(fki_inscription_id_local_var);
+        fki_inscription_id_local_var = NULL;
+    }
+    if (fki_inscriptiontemp_id_local_var) {
+        free(fki_inscriptiontemp_id_local_var);
+        fki_inscriptiontemp_id_local_var = NULL;
+    }
+    if (fki_invoice_id_local_var) {
+        free(fki_invoice_id_local_var);
+        fki_invoice_id_local_var = NULL;
+    }
+    if (fki_otherincome_id_local_var) {
+        free(fki_otherincome_id_local_var);
+        fki_otherincome_id_local_var = NULL;
+    }
+    if (fki_electronicfundstransfer_id_local_var) {
+        free(fki_electronicfundstransfer_id_local_var);
+        fki_electronicfundstransfer_id_local_var = NULL;
+    }
+    if (fki_rejectedoffertopurchase_id_local_var) {
+        free(fki_rejectedoffertopurchase_id_local_var);
+        fki_rejectedoffertopurchase_id_local_var = NULL;
+    }
     return NULL;
 
 }

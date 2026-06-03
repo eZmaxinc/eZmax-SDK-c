@@ -13,10 +13,10 @@ static custom_ezsignformfielderrortest_response_t *custom_ezsignformfielderrorte
     if (!custom_ezsignformfielderrortest_response_local_var) {
         return NULL;
     }
+    memset(custom_ezsignformfielderrortest_response_local_var, 0, sizeof(custom_ezsignformfielderrortest_response_t));
+    custom_ezsignformfielderrortest_response_local_var->_library_owned = 1;
     custom_ezsignformfielderrortest_response_local_var->s_ezsignformfielderrortest_name = s_ezsignformfielderrortest_name;
     custom_ezsignformfielderrortest_response_local_var->s_ezsignformfielderrortest_detail = s_ezsignformfielderrortest_detail;
-
-    custom_ezsignformfielderrortest_response_local_var->_library_owned = 1;
     return custom_ezsignformfielderrortest_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) custom_ezsignformfielderrortest_response_t *custom_e
     char *s_ezsignformfielderrortest_name,
     char *s_ezsignformfielderrortest_detail
     ) {
-    return custom_ezsignformfielderrortest_response_create_internal (
+    custom_ezsignformfielderrortest_response_t *result = custom_ezsignformfielderrortest_response_create_internal (
         s_ezsignformfielderrortest_name,
         s_ezsignformfielderrortest_detail
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void custom_ezsignformfielderrortest_response_free(custom_ezsignformfielderrortest_response_t *custom_ezsignformfielderrortest_response) {
@@ -82,6 +85,10 @@ custom_ezsignformfielderrortest_response_t *custom_ezsignformfielderrortest_resp
 
     custom_ezsignformfielderrortest_response_t *custom_ezsignformfielderrortest_response_local_var = NULL;
 
+    char *s_ezsignformfielderrortest_name_local_str = NULL;
+
+    char *s_ezsignformfielderrortest_detail_local_str = NULL;
+
     // custom_ezsignformfielderrortest_response->s_ezsignformfielderrortest_name
     cJSON *s_ezsignformfielderrortest_name = cJSON_GetObjectItemCaseSensitive(custom_ezsignformfielderrortest_responseJSON, "sEzsignformfielderrortestName");
     if (cJSON_IsNull(s_ezsignformfielderrortest_name)) {
@@ -113,13 +120,28 @@ custom_ezsignformfielderrortest_response_t *custom_ezsignformfielderrortest_resp
     }
 
 
+    if (s_ezsignformfielderrortest_name && !cJSON_IsNull(s_ezsignformfielderrortest_name)) s_ezsignformfielderrortest_name_local_str = strdup(s_ezsignformfielderrortest_name->valuestring);
+    if (s_ezsignformfielderrortest_detail && !cJSON_IsNull(s_ezsignformfielderrortest_detail)) s_ezsignformfielderrortest_detail_local_str = strdup(s_ezsignformfielderrortest_detail->valuestring);
+
     custom_ezsignformfielderrortest_response_local_var = custom_ezsignformfielderrortest_response_create_internal (
-        strdup(s_ezsignformfielderrortest_name->valuestring),
-        strdup(s_ezsignformfielderrortest_detail->valuestring)
+        s_ezsignformfielderrortest_name_local_str,
+        s_ezsignformfielderrortest_detail_local_str
         );
+
+    if (!custom_ezsignformfielderrortest_response_local_var) {
+        goto end;
+    }
 
     return custom_ezsignformfielderrortest_response_local_var;
 end:
+    if (s_ezsignformfielderrortest_name_local_str) {
+        free(s_ezsignformfielderrortest_name_local_str);
+        s_ezsignformfielderrortest_name_local_str = NULL;
+    }
+    if (s_ezsignformfielderrortest_detail_local_str) {
+        free(s_ezsignformfielderrortest_detail_local_str);
+        s_ezsignformfielderrortest_detail_local_str = NULL;
+    }
     return NULL;
 
 }

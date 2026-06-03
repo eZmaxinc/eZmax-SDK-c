@@ -19,15 +19,15 @@ typedef struct ezsigndocument_matchingtemplate_v3_response_t ezsigndocument_matc
 
 
 typedef struct ezsigndocument_matchingtemplate_v3_response_t {
-    int pki_ezsigntemplate_id; //numeric
-    int pki_ezsigntemplateglobal_id; //numeric
+    int *pki_ezsigntemplate_id; //numeric
+    int *pki_ezsigntemplateglobal_id; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndocument_matchingtemplate_v3_response_t;
 
 __attribute__((deprecated)) ezsigndocument_matchingtemplate_v3_response_t *ezsigndocument_matchingtemplate_v3_response_create(
-    int pki_ezsigntemplate_id,
-    int pki_ezsigntemplateglobal_id
+    int *pki_ezsigntemplate_id,
+    int *pki_ezsigntemplateglobal_id
 );
 
 void ezsigndocument_matchingtemplate_v3_response_free(ezsigndocument_matchingtemplate_v3_response_t *ezsigndocument_matchingtemplate_v3_response);

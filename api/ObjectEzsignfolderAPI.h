@@ -18,6 +18,8 @@
 #include "../model/ezsignfolder_dispose_ezsignfolders_v1_request.h"
 #include "../model/ezsignfolder_dispose_ezsignfolders_v1_response.h"
 #include "../model/ezsignfolder_dispose_v1_response.h"
+#include "../model/ezsignfolder_duplicate_v1_request.h"
+#include "../model/ezsignfolder_duplicate_v1_response.h"
 #include "../model/ezsignfolder_edit_object_v3_request.h"
 #include "../model/ezsignfolder_edit_object_v3_response.h"
 #include "../model/ezsignfolder_end_prematurely_v1_response.h"
@@ -30,10 +32,13 @@
 #include "../model/ezsignfolder_get_communication_list_v1_response.h"
 #include "../model/ezsignfolder_get_communicationrecipients_v1_response.h"
 #include "../model/ezsignfolder_get_communicationsenders_v1_response.h"
+#include "../model/ezsignfolder_get_ezsignannotations_v1_response.h"
 #include "../model/ezsignfolder_get_ezsigndocuments_v1_response.h"
 #include "../model/ezsignfolder_get_ezsigndocuments_v2_response.h"
 #include "../model/ezsignfolder_get_ezsignfoldersignerassociations_v1_response.h"
+#include "../model/ezsignfolder_get_ezsignformfieldgroups_v1_response.h"
 #include "../model/ezsignfolder_get_ezsignsignatures_automatic_v1_response.h"
+#include "../model/ezsignfolder_get_ezsignsignatures_v1_response.h"
 #include "../model/ezsignfolder_get_forms_data_v1_response.h"
 #include "../model/ezsignfolder_get_list_v1_response.h"
 #include "../model/ezsignfolder_get_object_v1_response.h"
@@ -45,6 +50,8 @@
 #include "../model/ezsignfolder_import_ezsigntemplatepackage_v1_response.h"
 #include "../model/ezsignfolder_import_ezsigntemplatepackage_v2_request.h"
 #include "../model/ezsignfolder_import_ezsigntemplatepackage_v2_response.h"
+#include "../model/ezsignfolder_import_ezsigntemplatepackage_v3_request.h"
+#include "../model/ezsignfolder_import_ezsigntemplatepackage_v3_response.h"
 #include "../model/ezsignfolder_reorder_v2_request.h"
 #include "../model/ezsignfolder_reorder_v2_response.h"
 #include "../model/ezsignfolder_send_v1_request.h"
@@ -56,7 +63,7 @@
 #include "../model/object.h"
 
 // Enum EORDERBY for ObjectEzsignfolderAPI_ezsignfolderGetListV1
-typedef enum  { ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_NULL = 0, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_pkiEzsignfolderID_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_pkiEzsignfolderID_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_sEzsignfolderDescription_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_sEzsignfolderDescription_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dtCreatedDate_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dtCreatedDate_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_fkiEzsignfoldertypeID_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_fkiEzsignfoldertypeID_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_sEzsignfoldertypeNameX_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_sEzsignfoldertypeNameX_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_eEzsignfolderStep_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_eEzsignfolderStep_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_eEzsignfolderCompletion_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_eEzsignfolderCompletion_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dtEzsignfolderSentdate_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dtEzsignfolderSentdate_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dtEzsignfolderDuedate_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dtEzsignfolderDuedate_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsigndocument_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsigndocument_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsigndocumentEdm_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsigndocumentEdm_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsignsignature_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsignsignature_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsignsignatureSigned_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsignsignatureSigned_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsignformfieldgroup_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsignformfieldgroup_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsignformfieldgroupCompleted_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsignformfieldgroupCompleted_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dEzsignfolderCompletedpercentage_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dEzsignfolderCompletedpercentage_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dEzsignfolderFormcompletedpercentage_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dEzsignfolderFormcompletedpercentage_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dEzsignfolderSignaturecompletedpercentage_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dEzsignfolderSignaturecompletedpercentagee_DESC } ezmax_api_definition__full_ezsignfolderGetListV1_eOrderBy_e;
+typedef enum  { ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_NULL = 0, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_pkiEzsignfolderID_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_pkiEzsignfolderID_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_sEzsignfolderDescription_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_sEzsignfolderDescription_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dtCreatedDate_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dtCreatedDate_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_fkiEzsignfoldertypeID_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_fkiEzsignfoldertypeID_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_sEzsignfoldertypeNameX_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_sEzsignfoldertypeNameX_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_eEzsignfolderStep_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_eEzsignfolderStep_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_eEzsignfolderCompletion_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_eEzsignfolderCompletion_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dtEzsignfolderSentdate_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dtEzsignfolderSentdate_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dtEzsignfolderDuedate_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dtEzsignfolderDuedate_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsigndocument_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsigndocument_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsigndocumentEdm_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsigndocumentEdm_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsignsignature_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsignsignature_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsignsignatureSigned_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsignsignatureSigned_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsignformfieldgroup_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsignformfieldgroup_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsignformfieldgroupCompleted_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_iEzsignformfieldgroupCompleted_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dEzsignfolderCompletedpercentage_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dEzsignfolderCompletedpercentage_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dEzsignfolderFormcompletedpercentage_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dEzsignfolderFormcompletedpercentage_DESC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dEzsignfolderSignaturecompletedpercentage_ASC, ezmax_api_definition__full_ezsignfolderGetListV1_EORDERBY_dEzsignfolderSignaturecompletedpercentage_DESC } ezmax_api_definition__full_ezsignfolderGetListV1_eOrderBy_e;
 
 // Enum  for ObjectEzsignfolderAPI_ezsignfolderGetListV1
 typedef enum  { ezmax_api_definition__full_ezsignfolderGetListV1__NULL = 0, ezmax_api_definition__full_ezsignfolderGetListV1__*, ezmax_api_definition__full_ezsignfolderGetListV1__en, ezmax_api_definition__full_ezsignfolderGetListV1__fr } ezmax_api_definition__full_ezsignfolderGetListV1_Accept-Language_e;
@@ -120,6 +127,14 @@ ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1(apiClient_t *apiClient,
 //
 ezsignfolder_dispose_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderDisposeV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body);
+
+
+// Duplicate the Ezsignfolder
+//
+// 
+//
+ezsignfolder_duplicate_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderDuplicateV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_duplicate_v1_request_t *ezsignfolder_duplicate_v1_request);
 
 
 // Edit an existing Ezsignfolder
@@ -210,6 +225,14 @@ ezsignfolder_get_communicationsenders_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
 
 
+// Retrieve an existing Ezsignfolder's Ezsignannotations
+//
+// 
+//
+ezsignfolder_get_ezsignannotations_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetEzsignannotationsV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
+
+
 // Retrieve an existing Ezsignfolder's Ezsigndocuments
 //
 // Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
@@ -234,12 +257,28 @@ ezsignfolder_get_ezsignfoldersignerassociations_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
 
 
+// Retrieve an existing Ezsignfolder's Ezsignformfieldgroups
+//
+// 
+//
+ezsignfolder_get_ezsignformfieldgroups_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetEzsignformfieldgroupsV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
+
+
 // Retrieve an existing Ezsignfolder's automatic Ezsignsignatures
 //
 // Return the Ezsignsignatures that can be signed by the current user at the current step in the process
 //
 ezsignfolder_get_ezsignsignatures_automatic_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetEzsignsignaturesAutomaticV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
+
+
+// Retrieve an existing Ezsignfolder's Ezsignsignatures
+//
+// 
+//
+ezsignfolder_get_ezsignsignatures_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetEzsignsignaturesV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
 
 
 // Retrieve an existing Ezsignfolder's forms data
@@ -252,7 +291,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int *pk
 
 // Retrieve Ezsignfolder list
 //
-// Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eEzsignfolderStep | Unsent<br>Sent<br>PartiallySigned<br>Expired<br>Completed<br>Archived<br>Disposed| | eEzsignfoldertypePrivacylevel | User<br>Usergroup |  Advanced filters that can be used in query parameter *sFilter*:  | Variable | |---| | fkiUserID | | sContactFirstname | | sContactLastname | | sUserFirstname | | sUserLastname | | sEzsigndocumentName |
+// Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eEzsignfolderStep | Unsent<br>Sent<br>PartiallySigned<br>Expired<br>Completed<br>Archived<br>Disposed| | eEzsignfoldertypePrivacylevel | User<br>Usergroup | | eEzsignfolderSource | Normal<br>Ezsignbulksend<br>Ezsigntemplatepublic |  Advanced filters that can be used in query parameter *sFilter*:  | Variable | |---| | fkiUserID | | sContactFirstname | | sContactLastname | | sUserFirstname | | sUserLastname | | sEzsigndocumentName |
 //
 ezsignfolder_get_list_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignfolderGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
@@ -302,6 +341,14 @@ ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1(apiClient_t *api
 //
 ezsignfolder_import_ezsigntemplatepackage_v2_response_t*
 ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV2(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_import_ezsigntemplatepackage_v2_request_t *ezsignfolder_import_ezsigntemplatepackage_v2_request);
+
+
+// Import an Ezsigntemplatepackage in the Ezsignfolder
+//
+// This endpoint imports all of the Ezsigntemplates from the Ezsigntemplatepackage into the Ezsignfolder as Ezsigndocuments.  This allows to automatically apply all the Ezsigntemplateformfieldgroups and Ezsigntemplatesignatures on the newly created Ezsigndocuments in a single step.
+//
+ezsignfolder_import_ezsigntemplatepackage_v3_response_t*
+ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV3(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_import_ezsigntemplatepackage_v3_request_t *ezsignfolder_import_ezsigntemplatepackage_v3_request);
 
 
 // Reorder Ezsigndocuments in the Ezsignfolder

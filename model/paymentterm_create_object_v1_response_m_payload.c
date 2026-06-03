@@ -12,18 +12,21 @@ static paymentterm_create_object_v1_response_m_payload_t *paymentterm_create_obj
     if (!paymentterm_create_object_v1_response_m_payload_local_var) {
         return NULL;
     }
-    paymentterm_create_object_v1_response_m_payload_local_var->a_pki_paymentterm_id = a_pki_paymentterm_id;
-
+    memset(paymentterm_create_object_v1_response_m_payload_local_var, 0, sizeof(paymentterm_create_object_v1_response_m_payload_t));
     paymentterm_create_object_v1_response_m_payload_local_var->_library_owned = 1;
+    paymentterm_create_object_v1_response_m_payload_local_var->a_pki_paymentterm_id = a_pki_paymentterm_id;
     return paymentterm_create_object_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) paymentterm_create_object_v1_response_m_payload_t *paymentterm_create_object_v1_response_m_payload_create(
     list_t *a_pki_paymentterm_id
     ) {
-    return paymentterm_create_object_v1_response_m_payload_create_internal (
+    paymentterm_create_object_v1_response_m_payload_t *result = paymentterm_create_object_v1_response_m_payload_create_internal (
         a_pki_paymentterm_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void paymentterm_create_object_v1_response_m_payload_free(paymentterm_create_object_v1_response_m_payload_t *paymentterm_create_object_v1_response_m_payload) {
@@ -112,9 +115,14 @@ paymentterm_create_object_v1_response_m_payload_t *paymentterm_create_object_v1_
     }
 
 
+
     paymentterm_create_object_v1_response_m_payload_local_var = paymentterm_create_object_v1_response_m_payload_create_internal (
         a_pki_paymentterm_idList
         );
+
+    if (!paymentterm_create_object_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return paymentterm_create_object_v1_response_m_payload_local_var;
 end:

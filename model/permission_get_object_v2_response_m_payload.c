@@ -12,18 +12,21 @@ static permission_get_object_v2_response_m_payload_t *permission_get_object_v2_r
     if (!permission_get_object_v2_response_m_payload_local_var) {
         return NULL;
     }
-    permission_get_object_v2_response_m_payload_local_var->obj_permission = obj_permission;
-
+    memset(permission_get_object_v2_response_m_payload_local_var, 0, sizeof(permission_get_object_v2_response_m_payload_t));
     permission_get_object_v2_response_m_payload_local_var->_library_owned = 1;
+    permission_get_object_v2_response_m_payload_local_var->obj_permission = obj_permission;
     return permission_get_object_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) permission_get_object_v2_response_m_payload_t *permission_get_object_v2_response_m_payload_create(
     permission_response_compound_t *obj_permission
     ) {
-    return permission_get_object_v2_response_m_payload_create_internal (
+    permission_get_object_v2_response_m_payload_t *result = permission_get_object_v2_response_m_payload_create_internal (
         obj_permission
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void permission_get_object_v2_response_m_payload_free(permission_get_object_v2_response_m_payload_t *permission_get_object_v2_response_m_payload) {
@@ -86,9 +89,14 @@ permission_get_object_v2_response_m_payload_t *permission_get_object_v2_response
     obj_permission_local_nonprim = permission_response_compound_parseFromJSON(obj_permission); //nonprimitive
 
 
+
     permission_get_object_v2_response_m_payload_local_var = permission_get_object_v2_response_m_payload_create_internal (
         obj_permission_local_nonprim
         );
+
+    if (!permission_get_object_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return permission_get_object_v2_response_m_payload_local_var;
 end:

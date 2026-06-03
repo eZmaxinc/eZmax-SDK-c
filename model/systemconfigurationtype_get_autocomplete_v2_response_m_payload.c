@@ -12,18 +12,21 @@ static systemconfigurationtype_get_autocomplete_v2_response_m_payload_t *systemc
     if (!systemconfigurationtype_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    systemconfigurationtype_get_autocomplete_v2_response_m_payload_local_var->a_obj_systemconfigurationtype = a_obj_systemconfigurationtype;
-
+    memset(systemconfigurationtype_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(systemconfigurationtype_get_autocomplete_v2_response_m_payload_t));
     systemconfigurationtype_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    systemconfigurationtype_get_autocomplete_v2_response_m_payload_local_var->a_obj_systemconfigurationtype = a_obj_systemconfigurationtype;
     return systemconfigurationtype_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) systemconfigurationtype_get_autocomplete_v2_response_m_payload_t *systemconfigurationtype_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_systemconfigurationtype
     ) {
-    return systemconfigurationtype_get_autocomplete_v2_response_m_payload_create_internal (
+    systemconfigurationtype_get_autocomplete_v2_response_m_payload_t *result = systemconfigurationtype_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_systemconfigurationtype
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void systemconfigurationtype_get_autocomplete_v2_response_m_payload_free(systemconfigurationtype_get_autocomplete_v2_response_m_payload_t *systemconfigurationtype_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ systemconfigurationtype_get_autocomplete_v2_response_m_payload_t *systemconfigur
     }
 
 
+
     systemconfigurationtype_get_autocomplete_v2_response_m_payload_local_var = systemconfigurationtype_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_systemconfigurationtypeList
         );
+
+    if (!systemconfigurationtype_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return systemconfigurationtype_get_autocomplete_v2_response_m_payload_local_var;
 end:

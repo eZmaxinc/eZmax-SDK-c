@@ -21,7 +21,7 @@ typedef struct attempt_response_compound_t attempt_response_compound_t;
 typedef struct attempt_response_compound_t {
     char *dt_attempt_start; // string
     char *s_attempt_result; // string
-    int i_attempt_duration; //numeric
+    int *i_attempt_duration; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } attempt_response_compound_t;
@@ -29,7 +29,7 @@ typedef struct attempt_response_compound_t {
 __attribute__((deprecated)) attempt_response_compound_t *attempt_response_compound_create(
     char *dt_attempt_start,
     char *s_attempt_result,
-    int i_attempt_duration
+    int *i_attempt_duration
 );
 
 void attempt_response_compound_free(attempt_response_compound_t *attempt_response_compound);

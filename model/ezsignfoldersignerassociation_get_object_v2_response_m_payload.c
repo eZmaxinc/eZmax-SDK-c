@@ -12,18 +12,21 @@ static ezsignfoldersignerassociation_get_object_v2_response_m_payload_t *ezsignf
     if (!ezsignfoldersignerassociation_get_object_v2_response_m_payload_local_var) {
         return NULL;
     }
-    ezsignfoldersignerassociation_get_object_v2_response_m_payload_local_var->obj_ezsignfoldersignerassociation = obj_ezsignfoldersignerassociation;
-
+    memset(ezsignfoldersignerassociation_get_object_v2_response_m_payload_local_var, 0, sizeof(ezsignfoldersignerassociation_get_object_v2_response_m_payload_t));
     ezsignfoldersignerassociation_get_object_v2_response_m_payload_local_var->_library_owned = 1;
+    ezsignfoldersignerassociation_get_object_v2_response_m_payload_local_var->obj_ezsignfoldersignerassociation = obj_ezsignfoldersignerassociation;
     return ezsignfoldersignerassociation_get_object_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsignfoldersignerassociation_get_object_v2_response_m_payload_t *ezsignfoldersignerassociation_get_object_v2_response_m_payload_create(
     ezsignfoldersignerassociation_response_compound_t *obj_ezsignfoldersignerassociation
     ) {
-    return ezsignfoldersignerassociation_get_object_v2_response_m_payload_create_internal (
+    ezsignfoldersignerassociation_get_object_v2_response_m_payload_t *result = ezsignfoldersignerassociation_get_object_v2_response_m_payload_create_internal (
         obj_ezsignfoldersignerassociation
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignfoldersignerassociation_get_object_v2_response_m_payload_free(ezsignfoldersignerassociation_get_object_v2_response_m_payload_t *ezsignfoldersignerassociation_get_object_v2_response_m_payload) {
@@ -86,9 +89,14 @@ ezsignfoldersignerassociation_get_object_v2_response_m_payload_t *ezsignfoldersi
     obj_ezsignfoldersignerassociation_local_nonprim = ezsignfoldersignerassociation_response_compound_parseFromJSON(obj_ezsignfoldersignerassociation); //nonprimitive
 
 
+
     ezsignfoldersignerassociation_get_object_v2_response_m_payload_local_var = ezsignfoldersignerassociation_get_object_v2_response_m_payload_create_internal (
         obj_ezsignfoldersignerassociation_local_nonprim
         );
+
+    if (!ezsignfoldersignerassociation_get_object_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsignfoldersignerassociation_get_object_v2_response_m_payload_local_var;
 end:

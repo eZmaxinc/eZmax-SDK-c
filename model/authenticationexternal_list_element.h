@@ -20,19 +20,19 @@ typedef struct authenticationexternal_list_element_t authenticationexternal_list
 
 
 typedef struct authenticationexternal_list_element_t {
-    int pki_authenticationexternal_id; //numeric
+    int *pki_authenticationexternal_id; //numeric
     char *s_authenticationexternal_description; // string
     ezmax_api_definition__full_field_e_authenticationexternal_type__e e_authenticationexternal_type; //referenced enum
-    int b_authenticationexternal_connected; //boolean
+    int *b_authenticationexternal_connected; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } authenticationexternal_list_element_t;
 
 __attribute__((deprecated)) authenticationexternal_list_element_t *authenticationexternal_list_element_create(
-    int pki_authenticationexternal_id,
+    int *pki_authenticationexternal_id,
     char *s_authenticationexternal_description,
     ezmax_api_definition__full_field_e_authenticationexternal_type__e e_authenticationexternal_type,
-    int b_authenticationexternal_connected
+    int *b_authenticationexternal_connected
 );
 
 void authenticationexternal_list_element_free(authenticationexternal_list_element_t *authenticationexternal_list_element);

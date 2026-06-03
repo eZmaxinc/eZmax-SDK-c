@@ -14,11 +14,11 @@ static employee_import_into_edm_v1_response_t *employee_import_into_edm_v1_respo
     if (!employee_import_into_edm_v1_response_local_var) {
         return NULL;
     }
+    memset(employee_import_into_edm_v1_response_local_var, 0, sizeof(employee_import_into_edm_v1_response_t));
+    employee_import_into_edm_v1_response_local_var->_library_owned = 1;
     employee_import_into_edm_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     employee_import_into_edm_v1_response_local_var->obj_debug = obj_debug;
     employee_import_into_edm_v1_response_local_var->m_payload = m_payload;
-
-    employee_import_into_edm_v1_response_local_var->_library_owned = 1;
     return employee_import_into_edm_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) employee_import_into_edm_v1_response_t *employee_imp
     common_response_obj_debug_t *obj_debug,
     employee_import_into_edm_v1_response_m_payload_t *m_payload
     ) {
-    return employee_import_into_edm_v1_response_create_internal (
+    employee_import_into_edm_v1_response_t *result = employee_import_into_edm_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void employee_import_into_edm_v1_response_free(employee_import_into_edm_v1_response_t *employee_import_into_edm_v1_response) {
@@ -156,11 +159,16 @@ employee_import_into_edm_v1_response_t *employee_import_into_edm_v1_response_par
     m_payload_local_nonprim = employee_import_into_edm_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     employee_import_into_edm_v1_response_local_var = employee_import_into_edm_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!employee_import_into_edm_v1_response_local_var) {
+        goto end;
+    }
 
     return employee_import_into_edm_v1_response_local_var;
 end:

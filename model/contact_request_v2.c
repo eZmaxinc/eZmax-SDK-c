@@ -6,8 +6,8 @@
 
 
 static contact_request_v2_t *contact_request_v2_create_internal(
-    int fki_contacttitle_id,
-    int fki_language_id,
+    int *fki_contacttitle_id,
+    int *fki_language_id,
     ezmax_api_definition__full_field_e_contact_type__e e_contact_type,
     char *s_contact_firstname,
     char *s_contact_lastname,
@@ -15,13 +15,15 @@ static contact_request_v2_t *contact_request_v2_create_internal(
     char *dt_contact_birthdate,
     char *s_contact_occupation,
     char *t_contact_note,
-    int b_contact_isactive,
+    int *b_contact_isactive,
     contactinformations_request_compound_t *obj_contactinformations
     ) {
     contact_request_v2_t *contact_request_v2_local_var = malloc(sizeof(contact_request_v2_t));
     if (!contact_request_v2_local_var) {
         return NULL;
     }
+    memset(contact_request_v2_local_var, 0, sizeof(contact_request_v2_t));
+    contact_request_v2_local_var->_library_owned = 1;
     contact_request_v2_local_var->fki_contacttitle_id = fki_contacttitle_id;
     contact_request_v2_local_var->fki_language_id = fki_language_id;
     contact_request_v2_local_var->e_contact_type = e_contact_type;
@@ -33,14 +35,12 @@ static contact_request_v2_t *contact_request_v2_create_internal(
     contact_request_v2_local_var->t_contact_note = t_contact_note;
     contact_request_v2_local_var->b_contact_isactive = b_contact_isactive;
     contact_request_v2_local_var->obj_contactinformations = obj_contactinformations;
-
-    contact_request_v2_local_var->_library_owned = 1;
     return contact_request_v2_local_var;
 }
 
 __attribute__((deprecated)) contact_request_v2_t *contact_request_v2_create(
-    int fki_contacttitle_id,
-    int fki_language_id,
+    int *fki_contacttitle_id,
+    int *fki_language_id,
     ezmax_api_definition__full_field_e_contact_type__e e_contact_type,
     char *s_contact_firstname,
     char *s_contact_lastname,
@@ -48,12 +48,27 @@ __attribute__((deprecated)) contact_request_v2_t *contact_request_v2_create(
     char *dt_contact_birthdate,
     char *s_contact_occupation,
     char *t_contact_note,
-    int b_contact_isactive,
+    int *b_contact_isactive,
     contactinformations_request_compound_t *obj_contactinformations
     ) {
-    return contact_request_v2_create_internal (
-        fki_contacttitle_id,
-        fki_language_id,
+    int *fki_contacttitle_id_copy = NULL;
+    if (fki_contacttitle_id) {
+        fki_contacttitle_id_copy = malloc(sizeof(int));
+        if (fki_contacttitle_id_copy) *fki_contacttitle_id_copy = *fki_contacttitle_id;
+    }
+    int *fki_language_id_copy = NULL;
+    if (fki_language_id) {
+        fki_language_id_copy = malloc(sizeof(int));
+        if (fki_language_id_copy) *fki_language_id_copy = *fki_language_id;
+    }
+    int *b_contact_isactive_copy = NULL;
+    if (b_contact_isactive) {
+        b_contact_isactive_copy = malloc(sizeof(int));
+        if (b_contact_isactive_copy) *b_contact_isactive_copy = *b_contact_isactive;
+    }
+    contact_request_v2_t *result = contact_request_v2_create_internal (
+        fki_contacttitle_id_copy,
+        fki_language_id_copy,
         e_contact_type,
         s_contact_firstname,
         s_contact_lastname,
@@ -61,9 +76,15 @@ __attribute__((deprecated)) contact_request_v2_t *contact_request_v2_create(
         dt_contact_birthdate,
         s_contact_occupation,
         t_contact_note,
-        b_contact_isactive,
+        b_contact_isactive_copy,
         obj_contactinformations
         );
+    if (!result) {
+        free(fki_contacttitle_id_copy);
+        free(fki_language_id_copy);
+        free(b_contact_isactive_copy);
+    }
+    return result;
 }
 
 void contact_request_v2_free(contact_request_v2_t *contact_request_v2) {
@@ -75,6 +96,14 @@ void contact_request_v2_free(contact_request_v2_t *contact_request_v2) {
         return ;
     }
     listEntry_t *listEntry;
+    if (contact_request_v2->fki_contacttitle_id) {
+        free(contact_request_v2->fki_contacttitle_id);
+        contact_request_v2->fki_contacttitle_id = NULL;
+    }
+    if (contact_request_v2->fki_language_id) {
+        free(contact_request_v2->fki_language_id);
+        contact_request_v2->fki_language_id = NULL;
+    }
     if (contact_request_v2->s_contact_firstname) {
         free(contact_request_v2->s_contact_firstname);
         contact_request_v2->s_contact_firstname = NULL;
@@ -99,6 +128,10 @@ void contact_request_v2_free(contact_request_v2_t *contact_request_v2) {
         free(contact_request_v2->t_contact_note);
         contact_request_v2->t_contact_note = NULL;
     }
+    if (contact_request_v2->b_contact_isactive) {
+        free(contact_request_v2->b_contact_isactive);
+        contact_request_v2->b_contact_isactive = NULL;
+    }
     if (contact_request_v2->obj_contactinformations) {
         contactinformations_request_compound_free(contact_request_v2->obj_contactinformations);
         contact_request_v2->obj_contactinformations = NULL;
@@ -113,7 +146,7 @@ cJSON *contact_request_v2_convertToJSON(contact_request_v2_t *contact_request_v2
     if (!contact_request_v2->fki_contacttitle_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiContacttitleID", contact_request_v2->fki_contacttitle_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiContacttitleID", *contact_request_v2->fki_contacttitle_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -122,7 +155,7 @@ cJSON *contact_request_v2_convertToJSON(contact_request_v2_t *contact_request_v2
     if (!contact_request_v2->fki_language_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiLanguageID", contact_request_v2->fki_language_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiLanguageID", *contact_request_v2->fki_language_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -193,7 +226,7 @@ cJSON *contact_request_v2_convertToJSON(contact_request_v2_t *contact_request_v2
 
     // contact_request_v2->b_contact_isactive
     if(contact_request_v2->b_contact_isactive) {
-    if(cJSON_AddBoolToObject(item, "bContactIsactive", contact_request_v2->b_contact_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bContactIsactive", *contact_request_v2->b_contact_isactive) == NULL) {
     goto fail; //Bool
     }
     }
@@ -224,8 +257,29 @@ contact_request_v2_t *contact_request_v2_parseFromJSON(cJSON *contact_request_v2
 
     contact_request_v2_t *contact_request_v2_local_var = NULL;
 
+    // define the local variable for contact_request_v2->fki_contacttitle_id
+    int *fki_contacttitle_id_local_var = NULL;
+
+    // define the local variable for contact_request_v2->fki_language_id
+    int *fki_language_id_local_var = NULL;
+
     // define the local variable for contact_request_v2->e_contact_type
     ezmax_api_definition__full_field_e_contact_type__e e_contact_type_local_nonprim = 0;
+
+    char *s_contact_firstname_local_str = NULL;
+
+    char *s_contact_lastname_local_str = NULL;
+
+    char *s_contact_company_local_str = NULL;
+
+    char *dt_contact_birthdate_local_str = NULL;
+
+    char *s_contact_occupation_local_str = NULL;
+
+    char *t_contact_note_local_str = NULL;
+
+    // define the local variable for contact_request_v2->b_contact_isactive
+    int *b_contact_isactive_local_var = NULL;
 
     // define the local variable for contact_request_v2->obj_contactinformations
     contactinformations_request_compound_t *obj_contactinformations_local_nonprim = NULL;
@@ -244,6 +298,12 @@ contact_request_v2_t *contact_request_v2_parseFromJSON(cJSON *contact_request_v2
     {
     goto end; //Numeric
     }
+    fki_contacttitle_id_local_var = malloc(sizeof(int));
+    if(!fki_contacttitle_id_local_var)
+    {
+        goto end;
+    }
+    *fki_contacttitle_id_local_var = fki_contacttitle_id->valuedouble;
 
     // contact_request_v2->fki_language_id
     cJSON *fki_language_id = cJSON_GetObjectItemCaseSensitive(contact_request_v2JSON, "fkiLanguageID");
@@ -259,6 +319,12 @@ contact_request_v2_t *contact_request_v2_parseFromJSON(cJSON *contact_request_v2
     {
     goto end; //Numeric
     }
+    fki_language_id_local_var = malloc(sizeof(int));
+    if(!fki_language_id_local_var)
+    {
+        goto end;
+    }
+    *fki_language_id_local_var = fki_language_id->valuedouble;
 
     // contact_request_v2->e_contact_type
     cJSON *e_contact_type = cJSON_GetObjectItemCaseSensitive(contact_request_v2JSON, "eContactType");
@@ -360,6 +426,12 @@ contact_request_v2_t *contact_request_v2_parseFromJSON(cJSON *contact_request_v2
     {
     goto end; //Bool
     }
+    b_contact_isactive_local_var = malloc(sizeof(int));
+    if(!b_contact_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_contact_isactive_local_var = b_contact_isactive->valueint;
     }
 
     // contact_request_v2->obj_contactinformations
@@ -375,24 +447,71 @@ contact_request_v2_t *contact_request_v2_parseFromJSON(cJSON *contact_request_v2
     obj_contactinformations_local_nonprim = contactinformations_request_compound_parseFromJSON(obj_contactinformations); //nonprimitive
 
 
+    if (s_contact_firstname && !cJSON_IsNull(s_contact_firstname)) s_contact_firstname_local_str = strdup(s_contact_firstname->valuestring);
+    if (s_contact_lastname && !cJSON_IsNull(s_contact_lastname)) s_contact_lastname_local_str = strdup(s_contact_lastname->valuestring);
+    if (s_contact_company && !cJSON_IsNull(s_contact_company)) s_contact_company_local_str = strdup(s_contact_company->valuestring);
+    if (dt_contact_birthdate && !cJSON_IsNull(dt_contact_birthdate)) dt_contact_birthdate_local_str = strdup(dt_contact_birthdate->valuestring);
+    if (s_contact_occupation && !cJSON_IsNull(s_contact_occupation)) s_contact_occupation_local_str = strdup(s_contact_occupation->valuestring);
+    if (t_contact_note && !cJSON_IsNull(t_contact_note)) t_contact_note_local_str = strdup(t_contact_note->valuestring);
+
     contact_request_v2_local_var = contact_request_v2_create_internal (
-        fki_contacttitle_id->valuedouble,
-        fki_language_id->valuedouble,
+        fki_contacttitle_id_local_var,
+        fki_language_id_local_var,
         e_contact_type_local_nonprim,
-        strdup(s_contact_firstname->valuestring),
-        strdup(s_contact_lastname->valuestring),
-        s_contact_company && !cJSON_IsNull(s_contact_company) ? strdup(s_contact_company->valuestring) : NULL,
-        dt_contact_birthdate && !cJSON_IsNull(dt_contact_birthdate) ? strdup(dt_contact_birthdate->valuestring) : NULL,
-        s_contact_occupation && !cJSON_IsNull(s_contact_occupation) ? strdup(s_contact_occupation->valuestring) : NULL,
-        t_contact_note && !cJSON_IsNull(t_contact_note) ? strdup(t_contact_note->valuestring) : NULL,
-        b_contact_isactive ? b_contact_isactive->valueint : 0,
+        s_contact_firstname_local_str,
+        s_contact_lastname_local_str,
+        s_contact_company_local_str,
+        dt_contact_birthdate_local_str,
+        s_contact_occupation_local_str,
+        t_contact_note_local_str,
+        b_contact_isactive_local_var,
         obj_contactinformations_local_nonprim
         );
 
+    if (!contact_request_v2_local_var) {
+        goto end;
+    }
+
     return contact_request_v2_local_var;
 end:
+    if (fki_contacttitle_id_local_var) {
+        free(fki_contacttitle_id_local_var);
+        fki_contacttitle_id_local_var = NULL;
+    }
+    if (fki_language_id_local_var) {
+        free(fki_language_id_local_var);
+        fki_language_id_local_var = NULL;
+    }
     if (e_contact_type_local_nonprim) {
         e_contact_type_local_nonprim = 0;
+    }
+    if (s_contact_firstname_local_str) {
+        free(s_contact_firstname_local_str);
+        s_contact_firstname_local_str = NULL;
+    }
+    if (s_contact_lastname_local_str) {
+        free(s_contact_lastname_local_str);
+        s_contact_lastname_local_str = NULL;
+    }
+    if (s_contact_company_local_str) {
+        free(s_contact_company_local_str);
+        s_contact_company_local_str = NULL;
+    }
+    if (dt_contact_birthdate_local_str) {
+        free(dt_contact_birthdate_local_str);
+        dt_contact_birthdate_local_str = NULL;
+    }
+    if (s_contact_occupation_local_str) {
+        free(s_contact_occupation_local_str);
+        s_contact_occupation_local_str = NULL;
+    }
+    if (t_contact_note_local_str) {
+        free(t_contact_note_local_str);
+        t_contact_note_local_str = NULL;
+    }
+    if (b_contact_isactive_local_var) {
+        free(b_contact_isactive_local_var);
+        b_contact_isactive_local_var = NULL;
     }
     if (obj_contactinformations_local_nonprim) {
         contactinformations_request_compound_free(obj_contactinformations_local_nonprim);

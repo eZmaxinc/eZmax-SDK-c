@@ -12,18 +12,21 @@ static ezsigntemplatesignature_edit_object_v3_request_t *ezsigntemplatesignature
     if (!ezsigntemplatesignature_edit_object_v3_request_local_var) {
         return NULL;
     }
-    ezsigntemplatesignature_edit_object_v3_request_local_var->obj_ezsigntemplatesignature = obj_ezsigntemplatesignature;
-
+    memset(ezsigntemplatesignature_edit_object_v3_request_local_var, 0, sizeof(ezsigntemplatesignature_edit_object_v3_request_t));
     ezsigntemplatesignature_edit_object_v3_request_local_var->_library_owned = 1;
+    ezsigntemplatesignature_edit_object_v3_request_local_var->obj_ezsigntemplatesignature = obj_ezsigntemplatesignature;
     return ezsigntemplatesignature_edit_object_v3_request_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplatesignature_edit_object_v3_request_t *ezsigntemplatesignature_edit_object_v3_request_create(
     ezsigntemplatesignature_request_compound_v2_t *obj_ezsigntemplatesignature
     ) {
-    return ezsigntemplatesignature_edit_object_v3_request_create_internal (
+    ezsigntemplatesignature_edit_object_v3_request_t *result = ezsigntemplatesignature_edit_object_v3_request_create_internal (
         obj_ezsigntemplatesignature
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatesignature_edit_object_v3_request_free(ezsigntemplatesignature_edit_object_v3_request_t *ezsigntemplatesignature_edit_object_v3_request) {
@@ -86,9 +89,14 @@ ezsigntemplatesignature_edit_object_v3_request_t *ezsigntemplatesignature_edit_o
     obj_ezsigntemplatesignature_local_nonprim = ezsigntemplatesignature_request_compound_v2_parseFromJSON(obj_ezsigntemplatesignature); //nonprimitive
 
 
+
     ezsigntemplatesignature_edit_object_v3_request_local_var = ezsigntemplatesignature_edit_object_v3_request_create_internal (
         obj_ezsigntemplatesignature_local_nonprim
         );
+
+    if (!ezsigntemplatesignature_edit_object_v3_request_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatesignature_edit_object_v3_request_local_var;
 end:

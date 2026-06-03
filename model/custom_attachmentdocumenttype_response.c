@@ -13,10 +13,10 @@ static custom_attachmentdocumenttype_response_t *custom_attachmentdocumenttype_r
     if (!custom_attachmentdocumenttype_response_local_var) {
         return NULL;
     }
+    memset(custom_attachmentdocumenttype_response_local_var, 0, sizeof(custom_attachmentdocumenttype_response_t));
+    custom_attachmentdocumenttype_response_local_var->_library_owned = 1;
     custom_attachmentdocumenttype_response_local_var->e_attachment_documenttype = e_attachment_documenttype;
     custom_attachmentdocumenttype_response_local_var->a_obj_attachment = a_obj_attachment;
-
-    custom_attachmentdocumenttype_response_local_var->_library_owned = 1;
     return custom_attachmentdocumenttype_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) custom_attachmentdocumenttype_response_t *custom_att
     ezmax_api_definition__full_field_e_attachment_documenttype__e e_attachment_documenttype,
     list_t *a_obj_attachment
     ) {
-    return custom_attachmentdocumenttype_response_create_internal (
+    custom_attachmentdocumenttype_response_t *result = custom_attachmentdocumenttype_response_create_internal (
         e_attachment_documenttype,
         a_obj_attachment
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void custom_attachmentdocumenttype_response_free(custom_attachmentdocumenttype_response_t *custom_attachmentdocumenttype_response) {
@@ -144,10 +147,15 @@ custom_attachmentdocumenttype_response_t *custom_attachmentdocumenttype_response
     }
 
 
+
     custom_attachmentdocumenttype_response_local_var = custom_attachmentdocumenttype_response_create_internal (
         e_attachment_documenttype_local_nonprim,
         a_obj_attachmentList
         );
+
+    if (!custom_attachmentdocumenttype_response_local_var) {
+        goto end;
+    }
 
     return custom_attachmentdocumenttype_response_local_var;
 end:

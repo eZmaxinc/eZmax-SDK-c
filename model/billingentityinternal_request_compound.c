@@ -6,7 +6,7 @@
 
 
 static billingentityinternal_request_compound_t *billingentityinternal_request_compound_create_internal(
-    int pki_billingentityinternal_id,
+    int *pki_billingentityinternal_id,
     multilingual_billingentityinternal_description_t *obj_billingentityinternal_description,
     list_t *a_obj_billingentityinternalproduct
     ) {
@@ -14,24 +14,33 @@ static billingentityinternal_request_compound_t *billingentityinternal_request_c
     if (!billingentityinternal_request_compound_local_var) {
         return NULL;
     }
+    memset(billingentityinternal_request_compound_local_var, 0, sizeof(billingentityinternal_request_compound_t));
+    billingentityinternal_request_compound_local_var->_library_owned = 1;
     billingentityinternal_request_compound_local_var->pki_billingentityinternal_id = pki_billingentityinternal_id;
     billingentityinternal_request_compound_local_var->obj_billingentityinternal_description = obj_billingentityinternal_description;
     billingentityinternal_request_compound_local_var->a_obj_billingentityinternalproduct = a_obj_billingentityinternalproduct;
-
-    billingentityinternal_request_compound_local_var->_library_owned = 1;
     return billingentityinternal_request_compound_local_var;
 }
 
 __attribute__((deprecated)) billingentityinternal_request_compound_t *billingentityinternal_request_compound_create(
-    int pki_billingentityinternal_id,
+    int *pki_billingentityinternal_id,
     multilingual_billingentityinternal_description_t *obj_billingentityinternal_description,
     list_t *a_obj_billingentityinternalproduct
     ) {
-    return billingentityinternal_request_compound_create_internal (
-        pki_billingentityinternal_id,
+    int *pki_billingentityinternal_id_copy = NULL;
+    if (pki_billingentityinternal_id) {
+        pki_billingentityinternal_id_copy = malloc(sizeof(int));
+        if (pki_billingentityinternal_id_copy) *pki_billingentityinternal_id_copy = *pki_billingentityinternal_id;
+    }
+    billingentityinternal_request_compound_t *result = billingentityinternal_request_compound_create_internal (
+        pki_billingentityinternal_id_copy,
         obj_billingentityinternal_description,
         a_obj_billingentityinternalproduct
         );
+    if (!result) {
+        free(pki_billingentityinternal_id_copy);
+    }
+    return result;
 }
 
 void billingentityinternal_request_compound_free(billingentityinternal_request_compound_t *billingentityinternal_request_compound) {
@@ -43,6 +52,10 @@ void billingentityinternal_request_compound_free(billingentityinternal_request_c
         return ;
     }
     listEntry_t *listEntry;
+    if (billingentityinternal_request_compound->pki_billingentityinternal_id) {
+        free(billingentityinternal_request_compound->pki_billingentityinternal_id);
+        billingentityinternal_request_compound->pki_billingentityinternal_id = NULL;
+    }
     if (billingentityinternal_request_compound->obj_billingentityinternal_description) {
         multilingual_billingentityinternal_description_free(billingentityinternal_request_compound->obj_billingentityinternal_description);
         billingentityinternal_request_compound->obj_billingentityinternal_description = NULL;
@@ -62,7 +75,7 @@ cJSON *billingentityinternal_request_compound_convertToJSON(billingentityinterna
 
     // billingentityinternal_request_compound->pki_billingentityinternal_id
     if(billingentityinternal_request_compound->pki_billingentityinternal_id) {
-    if(cJSON_AddNumberToObject(item, "pkiBillingentityinternalID", billingentityinternal_request_compound->pki_billingentityinternal_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiBillingentityinternalID", *billingentityinternal_request_compound->pki_billingentityinternal_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -114,6 +127,9 @@ billingentityinternal_request_compound_t *billingentityinternal_request_compound
 
     billingentityinternal_request_compound_t *billingentityinternal_request_compound_local_var = NULL;
 
+    // define the local variable for billingentityinternal_request_compound->pki_billingentityinternal_id
+    int *pki_billingentityinternal_id_local_var = NULL;
+
     // define the local variable for billingentityinternal_request_compound->obj_billingentityinternal_description
     multilingual_billingentityinternal_description_t *obj_billingentityinternal_description_local_nonprim = NULL;
 
@@ -130,6 +146,12 @@ billingentityinternal_request_compound_t *billingentityinternal_request_compound
     {
     goto end; //Numeric
     }
+    pki_billingentityinternal_id_local_var = malloc(sizeof(int));
+    if(!pki_billingentityinternal_id_local_var)
+    {
+        goto end;
+    }
+    *pki_billingentityinternal_id_local_var = pki_billingentityinternal_id->valuedouble;
     }
 
     // billingentityinternal_request_compound->obj_billingentityinternal_description
@@ -172,14 +194,23 @@ billingentityinternal_request_compound_t *billingentityinternal_request_compound
     }
 
 
+
     billingentityinternal_request_compound_local_var = billingentityinternal_request_compound_create_internal (
-        pki_billingentityinternal_id ? pki_billingentityinternal_id->valuedouble : 0,
+        pki_billingentityinternal_id_local_var,
         obj_billingentityinternal_description_local_nonprim,
         a_obj_billingentityinternalproductList
         );
 
+    if (!billingentityinternal_request_compound_local_var) {
+        goto end;
+    }
+
     return billingentityinternal_request_compound_local_var;
 end:
+    if (pki_billingentityinternal_id_local_var) {
+        free(pki_billingentityinternal_id_local_var);
+        pki_billingentityinternal_id_local_var = NULL;
+    }
     if (obj_billingentityinternal_description_local_nonprim) {
         multilingual_billingentityinternal_description_free(obj_billingentityinternal_description_local_nonprim);
         obj_billingentityinternal_description_local_nonprim = NULL;

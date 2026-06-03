@@ -6,30 +6,35 @@
 
 
 static agent_list_element_t *agent_list_element_create_internal(
-    int pki_agent_id,
-    int fki_agenttype_id,
+    int *pki_agent_id,
+    int *fki_agenttype_id,
     char *s_agenttype_name_x,
-    int fki_agentincorporation_id,
+    int *fki_agentincorporation_id,
     char *s_agentincorporation_name,
-    int fki_department_id,
+    int *fki_department_id,
     char *s_department_name_x,
-    int fki_language_id,
+    int *fki_language_id,
     char *s_language_name_x,
     char *s_realestateboardnumber_number,
     char *s_agent_code,
-    int i_agent_photocopiercode,
-    int i_agent_longdistancecode,
-    int i_agent_bannernumber,
+    int *i_agent_photocopiercode,
+    int *i_agent_longdistancecode,
+    int *i_agent_bannernumber,
     char *s_agent_realestateassociationlicense,
     char *dt_agent_hiredate,
     char *dt_agent_leavedate,
-    int b_agent_tranquillit,
-    int b_agent_residentiallicense,
-    int b_agent_commerciallicense,
-    int b_agent_mortgagelicense,
-    int b_agent_paidbyofficetranquillit,
+    char *dt_agent_contractdate,
+    char *dt_agent_transferdate,
+    char *dt_agent_senioritydate,
+    char *dt_agent_sickleavestart,
+    char *dt_agent_sickleaveend,
+    int *b_agent_tranquillit,
+    int *b_agent_residentiallicense,
+    int *b_agent_commerciallicense,
+    int *b_agent_mortgagelicense,
+    int *b_agent_paidbyofficetranquillit,
     char *dt_agent_fintraccertification,
-    int b_agent_isactive,
+    int *b_agent_isactive,
     char *s_contact_firstname,
     char *s_contact_lastname,
     char *dt_contact_birthdate,
@@ -40,13 +45,17 @@ static agent_list_element_t *agent_list_element_create_internal(
     char *s_address_suite,
     char *s_address_city,
     char *s_address_zip,
+    int *fki_province_id,
     char *s_province_name_x,
+    int *fki_country_id,
     char *s_country_name_x
     ) {
     agent_list_element_t *agent_list_element_local_var = malloc(sizeof(agent_list_element_t));
     if (!agent_list_element_local_var) {
         return NULL;
     }
+    memset(agent_list_element_local_var, 0, sizeof(agent_list_element_t));
+    agent_list_element_local_var->_library_owned = 1;
     agent_list_element_local_var->pki_agent_id = pki_agent_id;
     agent_list_element_local_var->fki_agenttype_id = fki_agenttype_id;
     agent_list_element_local_var->s_agenttype_name_x = s_agenttype_name_x;
@@ -64,6 +73,11 @@ static agent_list_element_t *agent_list_element_create_internal(
     agent_list_element_local_var->s_agent_realestateassociationlicense = s_agent_realestateassociationlicense;
     agent_list_element_local_var->dt_agent_hiredate = dt_agent_hiredate;
     agent_list_element_local_var->dt_agent_leavedate = dt_agent_leavedate;
+    agent_list_element_local_var->dt_agent_contractdate = dt_agent_contractdate;
+    agent_list_element_local_var->dt_agent_transferdate = dt_agent_transferdate;
+    agent_list_element_local_var->dt_agent_senioritydate = dt_agent_senioritydate;
+    agent_list_element_local_var->dt_agent_sickleavestart = dt_agent_sickleavestart;
+    agent_list_element_local_var->dt_agent_sickleaveend = dt_agent_sickleaveend;
     agent_list_element_local_var->b_agent_tranquillit = b_agent_tranquillit;
     agent_list_element_local_var->b_agent_residentiallicense = b_agent_residentiallicense;
     agent_list_element_local_var->b_agent_commerciallicense = b_agent_commerciallicense;
@@ -81,38 +95,43 @@ static agent_list_element_t *agent_list_element_create_internal(
     agent_list_element_local_var->s_address_suite = s_address_suite;
     agent_list_element_local_var->s_address_city = s_address_city;
     agent_list_element_local_var->s_address_zip = s_address_zip;
+    agent_list_element_local_var->fki_province_id = fki_province_id;
     agent_list_element_local_var->s_province_name_x = s_province_name_x;
+    agent_list_element_local_var->fki_country_id = fki_country_id;
     agent_list_element_local_var->s_country_name_x = s_country_name_x;
-
-    agent_list_element_local_var->_library_owned = 1;
     return agent_list_element_local_var;
 }
 
 __attribute__((deprecated)) agent_list_element_t *agent_list_element_create(
-    int pki_agent_id,
-    int fki_agenttype_id,
+    int *pki_agent_id,
+    int *fki_agenttype_id,
     char *s_agenttype_name_x,
-    int fki_agentincorporation_id,
+    int *fki_agentincorporation_id,
     char *s_agentincorporation_name,
-    int fki_department_id,
+    int *fki_department_id,
     char *s_department_name_x,
-    int fki_language_id,
+    int *fki_language_id,
     char *s_language_name_x,
     char *s_realestateboardnumber_number,
     char *s_agent_code,
-    int i_agent_photocopiercode,
-    int i_agent_longdistancecode,
-    int i_agent_bannernumber,
+    int *i_agent_photocopiercode,
+    int *i_agent_longdistancecode,
+    int *i_agent_bannernumber,
     char *s_agent_realestateassociationlicense,
     char *dt_agent_hiredate,
     char *dt_agent_leavedate,
-    int b_agent_tranquillit,
-    int b_agent_residentiallicense,
-    int b_agent_commerciallicense,
-    int b_agent_mortgagelicense,
-    int b_agent_paidbyofficetranquillit,
+    char *dt_agent_contractdate,
+    char *dt_agent_transferdate,
+    char *dt_agent_senioritydate,
+    char *dt_agent_sickleavestart,
+    char *dt_agent_sickleaveend,
+    int *b_agent_tranquillit,
+    int *b_agent_residentiallicense,
+    int *b_agent_commerciallicense,
+    int *b_agent_mortgagelicense,
+    int *b_agent_paidbyofficetranquillit,
     char *dt_agent_fintraccertification,
-    int b_agent_isactive,
+    int *b_agent_isactive,
     char *s_contact_firstname,
     char *s_contact_lastname,
     char *dt_contact_birthdate,
@@ -123,34 +142,121 @@ __attribute__((deprecated)) agent_list_element_t *agent_list_element_create(
     char *s_address_suite,
     char *s_address_city,
     char *s_address_zip,
+    int *fki_province_id,
     char *s_province_name_x,
+    int *fki_country_id,
     char *s_country_name_x
     ) {
-    return agent_list_element_create_internal (
-        pki_agent_id,
-        fki_agenttype_id,
+    int *pki_agent_id_copy = NULL;
+    if (pki_agent_id) {
+        pki_agent_id_copy = malloc(sizeof(int));
+        if (pki_agent_id_copy) *pki_agent_id_copy = *pki_agent_id;
+    }
+    int *fki_agenttype_id_copy = NULL;
+    if (fki_agenttype_id) {
+        fki_agenttype_id_copy = malloc(sizeof(int));
+        if (fki_agenttype_id_copy) *fki_agenttype_id_copy = *fki_agenttype_id;
+    }
+    int *fki_agentincorporation_id_copy = NULL;
+    if (fki_agentincorporation_id) {
+        fki_agentincorporation_id_copy = malloc(sizeof(int));
+        if (fki_agentincorporation_id_copy) *fki_agentincorporation_id_copy = *fki_agentincorporation_id;
+    }
+    int *fki_department_id_copy = NULL;
+    if (fki_department_id) {
+        fki_department_id_copy = malloc(sizeof(int));
+        if (fki_department_id_copy) *fki_department_id_copy = *fki_department_id;
+    }
+    int *fki_language_id_copy = NULL;
+    if (fki_language_id) {
+        fki_language_id_copy = malloc(sizeof(int));
+        if (fki_language_id_copy) *fki_language_id_copy = *fki_language_id;
+    }
+    int *i_agent_photocopiercode_copy = NULL;
+    if (i_agent_photocopiercode) {
+        i_agent_photocopiercode_copy = malloc(sizeof(int));
+        if (i_agent_photocopiercode_copy) *i_agent_photocopiercode_copy = *i_agent_photocopiercode;
+    }
+    int *i_agent_longdistancecode_copy = NULL;
+    if (i_agent_longdistancecode) {
+        i_agent_longdistancecode_copy = malloc(sizeof(int));
+        if (i_agent_longdistancecode_copy) *i_agent_longdistancecode_copy = *i_agent_longdistancecode;
+    }
+    int *i_agent_bannernumber_copy = NULL;
+    if (i_agent_bannernumber) {
+        i_agent_bannernumber_copy = malloc(sizeof(int));
+        if (i_agent_bannernumber_copy) *i_agent_bannernumber_copy = *i_agent_bannernumber;
+    }
+    int *b_agent_tranquillit_copy = NULL;
+    if (b_agent_tranquillit) {
+        b_agent_tranquillit_copy = malloc(sizeof(int));
+        if (b_agent_tranquillit_copy) *b_agent_tranquillit_copy = *b_agent_tranquillit;
+    }
+    int *b_agent_residentiallicense_copy = NULL;
+    if (b_agent_residentiallicense) {
+        b_agent_residentiallicense_copy = malloc(sizeof(int));
+        if (b_agent_residentiallicense_copy) *b_agent_residentiallicense_copy = *b_agent_residentiallicense;
+    }
+    int *b_agent_commerciallicense_copy = NULL;
+    if (b_agent_commerciallicense) {
+        b_agent_commerciallicense_copy = malloc(sizeof(int));
+        if (b_agent_commerciallicense_copy) *b_agent_commerciallicense_copy = *b_agent_commerciallicense;
+    }
+    int *b_agent_mortgagelicense_copy = NULL;
+    if (b_agent_mortgagelicense) {
+        b_agent_mortgagelicense_copy = malloc(sizeof(int));
+        if (b_agent_mortgagelicense_copy) *b_agent_mortgagelicense_copy = *b_agent_mortgagelicense;
+    }
+    int *b_agent_paidbyofficetranquillit_copy = NULL;
+    if (b_agent_paidbyofficetranquillit) {
+        b_agent_paidbyofficetranquillit_copy = malloc(sizeof(int));
+        if (b_agent_paidbyofficetranquillit_copy) *b_agent_paidbyofficetranquillit_copy = *b_agent_paidbyofficetranquillit;
+    }
+    int *b_agent_isactive_copy = NULL;
+    if (b_agent_isactive) {
+        b_agent_isactive_copy = malloc(sizeof(int));
+        if (b_agent_isactive_copy) *b_agent_isactive_copy = *b_agent_isactive;
+    }
+    int *fki_province_id_copy = NULL;
+    if (fki_province_id) {
+        fki_province_id_copy = malloc(sizeof(int));
+        if (fki_province_id_copy) *fki_province_id_copy = *fki_province_id;
+    }
+    int *fki_country_id_copy = NULL;
+    if (fki_country_id) {
+        fki_country_id_copy = malloc(sizeof(int));
+        if (fki_country_id_copy) *fki_country_id_copy = *fki_country_id;
+    }
+    agent_list_element_t *result = agent_list_element_create_internal (
+        pki_agent_id_copy,
+        fki_agenttype_id_copy,
         s_agenttype_name_x,
-        fki_agentincorporation_id,
+        fki_agentincorporation_id_copy,
         s_agentincorporation_name,
-        fki_department_id,
+        fki_department_id_copy,
         s_department_name_x,
-        fki_language_id,
+        fki_language_id_copy,
         s_language_name_x,
         s_realestateboardnumber_number,
         s_agent_code,
-        i_agent_photocopiercode,
-        i_agent_longdistancecode,
-        i_agent_bannernumber,
+        i_agent_photocopiercode_copy,
+        i_agent_longdistancecode_copy,
+        i_agent_bannernumber_copy,
         s_agent_realestateassociationlicense,
         dt_agent_hiredate,
         dt_agent_leavedate,
-        b_agent_tranquillit,
-        b_agent_residentiallicense,
-        b_agent_commerciallicense,
-        b_agent_mortgagelicense,
-        b_agent_paidbyofficetranquillit,
+        dt_agent_contractdate,
+        dt_agent_transferdate,
+        dt_agent_senioritydate,
+        dt_agent_sickleavestart,
+        dt_agent_sickleaveend,
+        b_agent_tranquillit_copy,
+        b_agent_residentiallicense_copy,
+        b_agent_commerciallicense_copy,
+        b_agent_mortgagelicense_copy,
+        b_agent_paidbyofficetranquillit_copy,
         dt_agent_fintraccertification,
-        b_agent_isactive,
+        b_agent_isactive_copy,
         s_contact_firstname,
         s_contact_lastname,
         dt_contact_birthdate,
@@ -161,9 +267,30 @@ __attribute__((deprecated)) agent_list_element_t *agent_list_element_create(
         s_address_suite,
         s_address_city,
         s_address_zip,
+        fki_province_id_copy,
         s_province_name_x,
+        fki_country_id_copy,
         s_country_name_x
         );
+    if (!result) {
+        free(pki_agent_id_copy);
+        free(fki_agenttype_id_copy);
+        free(fki_agentincorporation_id_copy);
+        free(fki_department_id_copy);
+        free(fki_language_id_copy);
+        free(i_agent_photocopiercode_copy);
+        free(i_agent_longdistancecode_copy);
+        free(i_agent_bannernumber_copy);
+        free(b_agent_tranquillit_copy);
+        free(b_agent_residentiallicense_copy);
+        free(b_agent_commerciallicense_copy);
+        free(b_agent_mortgagelicense_copy);
+        free(b_agent_paidbyofficetranquillit_copy);
+        free(b_agent_isactive_copy);
+        free(fki_province_id_copy);
+        free(fki_country_id_copy);
+    }
+    return result;
 }
 
 void agent_list_element_free(agent_list_element_t *agent_list_element) {
@@ -175,17 +302,37 @@ void agent_list_element_free(agent_list_element_t *agent_list_element) {
         return ;
     }
     listEntry_t *listEntry;
+    if (agent_list_element->pki_agent_id) {
+        free(agent_list_element->pki_agent_id);
+        agent_list_element->pki_agent_id = NULL;
+    }
+    if (agent_list_element->fki_agenttype_id) {
+        free(agent_list_element->fki_agenttype_id);
+        agent_list_element->fki_agenttype_id = NULL;
+    }
     if (agent_list_element->s_agenttype_name_x) {
         free(agent_list_element->s_agenttype_name_x);
         agent_list_element->s_agenttype_name_x = NULL;
+    }
+    if (agent_list_element->fki_agentincorporation_id) {
+        free(agent_list_element->fki_agentincorporation_id);
+        agent_list_element->fki_agentincorporation_id = NULL;
     }
     if (agent_list_element->s_agentincorporation_name) {
         free(agent_list_element->s_agentincorporation_name);
         agent_list_element->s_agentincorporation_name = NULL;
     }
+    if (agent_list_element->fki_department_id) {
+        free(agent_list_element->fki_department_id);
+        agent_list_element->fki_department_id = NULL;
+    }
     if (agent_list_element->s_department_name_x) {
         free(agent_list_element->s_department_name_x);
         agent_list_element->s_department_name_x = NULL;
+    }
+    if (agent_list_element->fki_language_id) {
+        free(agent_list_element->fki_language_id);
+        agent_list_element->fki_language_id = NULL;
     }
     if (agent_list_element->s_language_name_x) {
         free(agent_list_element->s_language_name_x);
@@ -199,6 +346,18 @@ void agent_list_element_free(agent_list_element_t *agent_list_element) {
         free(agent_list_element->s_agent_code);
         agent_list_element->s_agent_code = NULL;
     }
+    if (agent_list_element->i_agent_photocopiercode) {
+        free(agent_list_element->i_agent_photocopiercode);
+        agent_list_element->i_agent_photocopiercode = NULL;
+    }
+    if (agent_list_element->i_agent_longdistancecode) {
+        free(agent_list_element->i_agent_longdistancecode);
+        agent_list_element->i_agent_longdistancecode = NULL;
+    }
+    if (agent_list_element->i_agent_bannernumber) {
+        free(agent_list_element->i_agent_bannernumber);
+        agent_list_element->i_agent_bannernumber = NULL;
+    }
     if (agent_list_element->s_agent_realestateassociationlicense) {
         free(agent_list_element->s_agent_realestateassociationlicense);
         agent_list_element->s_agent_realestateassociationlicense = NULL;
@@ -211,9 +370,53 @@ void agent_list_element_free(agent_list_element_t *agent_list_element) {
         free(agent_list_element->dt_agent_leavedate);
         agent_list_element->dt_agent_leavedate = NULL;
     }
+    if (agent_list_element->dt_agent_contractdate) {
+        free(agent_list_element->dt_agent_contractdate);
+        agent_list_element->dt_agent_contractdate = NULL;
+    }
+    if (agent_list_element->dt_agent_transferdate) {
+        free(agent_list_element->dt_agent_transferdate);
+        agent_list_element->dt_agent_transferdate = NULL;
+    }
+    if (agent_list_element->dt_agent_senioritydate) {
+        free(agent_list_element->dt_agent_senioritydate);
+        agent_list_element->dt_agent_senioritydate = NULL;
+    }
+    if (agent_list_element->dt_agent_sickleavestart) {
+        free(agent_list_element->dt_agent_sickleavestart);
+        agent_list_element->dt_agent_sickleavestart = NULL;
+    }
+    if (agent_list_element->dt_agent_sickleaveend) {
+        free(agent_list_element->dt_agent_sickleaveend);
+        agent_list_element->dt_agent_sickleaveend = NULL;
+    }
+    if (agent_list_element->b_agent_tranquillit) {
+        free(agent_list_element->b_agent_tranquillit);
+        agent_list_element->b_agent_tranquillit = NULL;
+    }
+    if (agent_list_element->b_agent_residentiallicense) {
+        free(agent_list_element->b_agent_residentiallicense);
+        agent_list_element->b_agent_residentiallicense = NULL;
+    }
+    if (agent_list_element->b_agent_commerciallicense) {
+        free(agent_list_element->b_agent_commerciallicense);
+        agent_list_element->b_agent_commerciallicense = NULL;
+    }
+    if (agent_list_element->b_agent_mortgagelicense) {
+        free(agent_list_element->b_agent_mortgagelicense);
+        agent_list_element->b_agent_mortgagelicense = NULL;
+    }
+    if (agent_list_element->b_agent_paidbyofficetranquillit) {
+        free(agent_list_element->b_agent_paidbyofficetranquillit);
+        agent_list_element->b_agent_paidbyofficetranquillit = NULL;
+    }
     if (agent_list_element->dt_agent_fintraccertification) {
         free(agent_list_element->dt_agent_fintraccertification);
         agent_list_element->dt_agent_fintraccertification = NULL;
+    }
+    if (agent_list_element->b_agent_isactive) {
+        free(agent_list_element->b_agent_isactive);
+        agent_list_element->b_agent_isactive = NULL;
     }
     if (agent_list_element->s_contact_firstname) {
         free(agent_list_element->s_contact_firstname);
@@ -255,9 +458,17 @@ void agent_list_element_free(agent_list_element_t *agent_list_element) {
         free(agent_list_element->s_address_zip);
         agent_list_element->s_address_zip = NULL;
     }
+    if (agent_list_element->fki_province_id) {
+        free(agent_list_element->fki_province_id);
+        agent_list_element->fki_province_id = NULL;
+    }
     if (agent_list_element->s_province_name_x) {
         free(agent_list_element->s_province_name_x);
         agent_list_element->s_province_name_x = NULL;
+    }
+    if (agent_list_element->fki_country_id) {
+        free(agent_list_element->fki_country_id);
+        agent_list_element->fki_country_id = NULL;
     }
     if (agent_list_element->s_country_name_x) {
         free(agent_list_element->s_country_name_x);
@@ -273,7 +484,7 @@ cJSON *agent_list_element_convertToJSON(agent_list_element_t *agent_list_element
     if (!agent_list_element->pki_agent_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiAgentID", agent_list_element->pki_agent_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiAgentID", *agent_list_element->pki_agent_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -282,7 +493,7 @@ cJSON *agent_list_element_convertToJSON(agent_list_element_t *agent_list_element
     if (!agent_list_element->fki_agenttype_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiAgenttypeID", agent_list_element->fki_agenttype_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiAgenttypeID", *agent_list_element->fki_agenttype_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -298,7 +509,7 @@ cJSON *agent_list_element_convertToJSON(agent_list_element_t *agent_list_element
 
     // agent_list_element->fki_agentincorporation_id
     if(agent_list_element->fki_agentincorporation_id) {
-    if(cJSON_AddNumberToObject(item, "fkiAgentincorporationID", agent_list_element->fki_agentincorporation_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiAgentincorporationID", *agent_list_element->fki_agentincorporation_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -316,7 +527,7 @@ cJSON *agent_list_element_convertToJSON(agent_list_element_t *agent_list_element
     if (!agent_list_element->fki_department_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiDepartmentID", agent_list_element->fki_department_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiDepartmentID", *agent_list_element->fki_department_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -334,7 +545,7 @@ cJSON *agent_list_element_convertToJSON(agent_list_element_t *agent_list_element
     if (!agent_list_element->fki_language_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiLanguageID", agent_list_element->fki_language_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiLanguageID", *agent_list_element->fki_language_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -369,7 +580,7 @@ cJSON *agent_list_element_convertToJSON(agent_list_element_t *agent_list_element
     if (!agent_list_element->i_agent_photocopiercode) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iAgentPhotocopiercode", agent_list_element->i_agent_photocopiercode) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iAgentPhotocopiercode", *agent_list_element->i_agent_photocopiercode) == NULL) {
     goto fail; //Numeric
     }
 
@@ -378,7 +589,7 @@ cJSON *agent_list_element_convertToJSON(agent_list_element_t *agent_list_element
     if (!agent_list_element->i_agent_longdistancecode) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iAgentLongdistancecode", agent_list_element->i_agent_longdistancecode) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iAgentLongdistancecode", *agent_list_element->i_agent_longdistancecode) == NULL) {
     goto fail; //Numeric
     }
 
@@ -387,7 +598,7 @@ cJSON *agent_list_element_convertToJSON(agent_list_element_t *agent_list_element
     if (!agent_list_element->i_agent_bannernumber) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iAgentBannernumber", agent_list_element->i_agent_bannernumber) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iAgentBannernumber", *agent_list_element->i_agent_bannernumber) == NULL) {
     goto fail; //Numeric
     }
 
@@ -417,11 +628,51 @@ cJSON *agent_list_element_convertToJSON(agent_list_element_t *agent_list_element
     }
 
 
+    // agent_list_element->dt_agent_contractdate
+    if(agent_list_element->dt_agent_contractdate) {
+    if(cJSON_AddStringToObject(item, "dtAgentContractdate", agent_list_element->dt_agent_contractdate) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // agent_list_element->dt_agent_transferdate
+    if(agent_list_element->dt_agent_transferdate) {
+    if(cJSON_AddStringToObject(item, "dtAgentTransferdate", agent_list_element->dt_agent_transferdate) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // agent_list_element->dt_agent_senioritydate
+    if(agent_list_element->dt_agent_senioritydate) {
+    if(cJSON_AddStringToObject(item, "dtAgentSenioritydate", agent_list_element->dt_agent_senioritydate) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // agent_list_element->dt_agent_sickleavestart
+    if(agent_list_element->dt_agent_sickleavestart) {
+    if(cJSON_AddStringToObject(item, "dtAgentSickleavestart", agent_list_element->dt_agent_sickleavestart) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // agent_list_element->dt_agent_sickleaveend
+    if(agent_list_element->dt_agent_sickleaveend) {
+    if(cJSON_AddStringToObject(item, "dtAgentSickleaveend", agent_list_element->dt_agent_sickleaveend) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
     // agent_list_element->b_agent_tranquillit
     if (!agent_list_element->b_agent_tranquillit) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bAgentTranquillit", agent_list_element->b_agent_tranquillit) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bAgentTranquillit", *agent_list_element->b_agent_tranquillit) == NULL) {
     goto fail; //Bool
     }
 
@@ -430,7 +681,7 @@ cJSON *agent_list_element_convertToJSON(agent_list_element_t *agent_list_element
     if (!agent_list_element->b_agent_residentiallicense) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bAgentResidentiallicense", agent_list_element->b_agent_residentiallicense) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bAgentResidentiallicense", *agent_list_element->b_agent_residentiallicense) == NULL) {
     goto fail; //Bool
     }
 
@@ -439,7 +690,7 @@ cJSON *agent_list_element_convertToJSON(agent_list_element_t *agent_list_element
     if (!agent_list_element->b_agent_commerciallicense) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bAgentCommerciallicense", agent_list_element->b_agent_commerciallicense) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bAgentCommerciallicense", *agent_list_element->b_agent_commerciallicense) == NULL) {
     goto fail; //Bool
     }
 
@@ -448,7 +699,7 @@ cJSON *agent_list_element_convertToJSON(agent_list_element_t *agent_list_element
     if (!agent_list_element->b_agent_mortgagelicense) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bAgentMortgagelicense", agent_list_element->b_agent_mortgagelicense) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bAgentMortgagelicense", *agent_list_element->b_agent_mortgagelicense) == NULL) {
     goto fail; //Bool
     }
 
@@ -457,7 +708,7 @@ cJSON *agent_list_element_convertToJSON(agent_list_element_t *agent_list_element
     if (!agent_list_element->b_agent_paidbyofficetranquillit) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bAgentPaidbyofficetranquillit", agent_list_element->b_agent_paidbyofficetranquillit) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bAgentPaidbyofficetranquillit", *agent_list_element->b_agent_paidbyofficetranquillit) == NULL) {
     goto fail; //Bool
     }
 
@@ -474,7 +725,7 @@ cJSON *agent_list_element_convertToJSON(agent_list_element_t *agent_list_element
     if (!agent_list_element->b_agent_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bAgentIsactive", agent_list_element->b_agent_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bAgentIsactive", *agent_list_element->b_agent_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -561,10 +812,26 @@ cJSON *agent_list_element_convertToJSON(agent_list_element_t *agent_list_element
     }
 
 
+    // agent_list_element->fki_province_id
+    if(agent_list_element->fki_province_id) {
+    if(cJSON_AddNumberToObject(item, "fkiProvinceID", *agent_list_element->fki_province_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
     // agent_list_element->s_province_name_x
     if(agent_list_element->s_province_name_x) {
     if(cJSON_AddStringToObject(item, "sProvinceNameX", agent_list_element->s_province_name_x) == NULL) {
     goto fail; //String
+    }
+    }
+
+
+    // agent_list_element->fki_country_id
+    if(agent_list_element->fki_country_id) {
+    if(cJSON_AddNumberToObject(item, "fkiCountryID", *agent_list_element->fki_country_id) == NULL) {
+    goto fail; //Numeric
     }
     }
 
@@ -588,6 +855,108 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
 
     agent_list_element_t *agent_list_element_local_var = NULL;
 
+    // define the local variable for agent_list_element->pki_agent_id
+    int *pki_agent_id_local_var = NULL;
+
+    // define the local variable for agent_list_element->fki_agenttype_id
+    int *fki_agenttype_id_local_var = NULL;
+
+    char *s_agenttype_name_x_local_str = NULL;
+
+    // define the local variable for agent_list_element->fki_agentincorporation_id
+    int *fki_agentincorporation_id_local_var = NULL;
+
+    char *s_agentincorporation_name_local_str = NULL;
+
+    // define the local variable for agent_list_element->fki_department_id
+    int *fki_department_id_local_var = NULL;
+
+    char *s_department_name_x_local_str = NULL;
+
+    // define the local variable for agent_list_element->fki_language_id
+    int *fki_language_id_local_var = NULL;
+
+    char *s_language_name_x_local_str = NULL;
+
+    char *s_realestateboardnumber_number_local_str = NULL;
+
+    char *s_agent_code_local_str = NULL;
+
+    // define the local variable for agent_list_element->i_agent_photocopiercode
+    int *i_agent_photocopiercode_local_var = NULL;
+
+    // define the local variable for agent_list_element->i_agent_longdistancecode
+    int *i_agent_longdistancecode_local_var = NULL;
+
+    // define the local variable for agent_list_element->i_agent_bannernumber
+    int *i_agent_bannernumber_local_var = NULL;
+
+    char *s_agent_realestateassociationlicense_local_str = NULL;
+
+    char *dt_agent_hiredate_local_str = NULL;
+
+    char *dt_agent_leavedate_local_str = NULL;
+
+    char *dt_agent_contractdate_local_str = NULL;
+
+    char *dt_agent_transferdate_local_str = NULL;
+
+    char *dt_agent_senioritydate_local_str = NULL;
+
+    char *dt_agent_sickleavestart_local_str = NULL;
+
+    char *dt_agent_sickleaveend_local_str = NULL;
+
+    // define the local variable for agent_list_element->b_agent_tranquillit
+    int *b_agent_tranquillit_local_var = NULL;
+
+    // define the local variable for agent_list_element->b_agent_residentiallicense
+    int *b_agent_residentiallicense_local_var = NULL;
+
+    // define the local variable for agent_list_element->b_agent_commerciallicense
+    int *b_agent_commerciallicense_local_var = NULL;
+
+    // define the local variable for agent_list_element->b_agent_mortgagelicense
+    int *b_agent_mortgagelicense_local_var = NULL;
+
+    // define the local variable for agent_list_element->b_agent_paidbyofficetranquillit
+    int *b_agent_paidbyofficetranquillit_local_var = NULL;
+
+    char *dt_agent_fintraccertification_local_str = NULL;
+
+    // define the local variable for agent_list_element->b_agent_isactive
+    int *b_agent_isactive_local_var = NULL;
+
+    char *s_contact_firstname_local_str = NULL;
+
+    char *s_contact_lastname_local_str = NULL;
+
+    char *dt_contact_birthdate_local_str = NULL;
+
+    char *s_email_address_local_str = NULL;
+
+    char *s_phone_e164_local_str = NULL;
+
+    char *s_address_civic_local_str = NULL;
+
+    char *s_address_street_local_str = NULL;
+
+    char *s_address_suite_local_str = NULL;
+
+    char *s_address_city_local_str = NULL;
+
+    char *s_address_zip_local_str = NULL;
+
+    // define the local variable for agent_list_element->fki_province_id
+    int *fki_province_id_local_var = NULL;
+
+    char *s_province_name_x_local_str = NULL;
+
+    // define the local variable for agent_list_element->fki_country_id
+    int *fki_country_id_local_var = NULL;
+
+    char *s_country_name_x_local_str = NULL;
+
     // agent_list_element->pki_agent_id
     cJSON *pki_agent_id = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "pkiAgentID");
     if (cJSON_IsNull(pki_agent_id)) {
@@ -602,6 +971,12 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     {
     goto end; //Numeric
     }
+    pki_agent_id_local_var = malloc(sizeof(int));
+    if(!pki_agent_id_local_var)
+    {
+        goto end;
+    }
+    *pki_agent_id_local_var = pki_agent_id->valuedouble;
 
     // agent_list_element->fki_agenttype_id
     cJSON *fki_agenttype_id = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "fkiAgenttypeID");
@@ -617,6 +992,12 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     {
     goto end; //Numeric
     }
+    fki_agenttype_id_local_var = malloc(sizeof(int));
+    if(!fki_agenttype_id_local_var)
+    {
+        goto end;
+    }
+    *fki_agenttype_id_local_var = fki_agenttype_id->valuedouble;
 
     // agent_list_element->s_agenttype_name_x
     cJSON *s_agenttype_name_x = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "sAgenttypeNameX");
@@ -643,6 +1024,12 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     {
     goto end; //Numeric
     }
+    fki_agentincorporation_id_local_var = malloc(sizeof(int));
+    if(!fki_agentincorporation_id_local_var)
+    {
+        goto end;
+    }
+    *fki_agentincorporation_id_local_var = fki_agentincorporation_id->valuedouble;
     }
 
     // agent_list_element->s_agentincorporation_name
@@ -671,6 +1058,12 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     {
     goto end; //Numeric
     }
+    fki_department_id_local_var = malloc(sizeof(int));
+    if(!fki_department_id_local_var)
+    {
+        goto end;
+    }
+    *fki_department_id_local_var = fki_department_id->valuedouble;
 
     // agent_list_element->s_department_name_x
     cJSON *s_department_name_x = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "sDepartmentNameX");
@@ -701,6 +1094,12 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     {
     goto end; //Numeric
     }
+    fki_language_id_local_var = malloc(sizeof(int));
+    if(!fki_language_id_local_var)
+    {
+        goto end;
+    }
+    *fki_language_id_local_var = fki_language_id->valuedouble;
 
     // agent_list_element->s_language_name_x
     cJSON *s_language_name_x = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "sLanguageNameX");
@@ -758,6 +1157,12 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     {
     goto end; //Numeric
     }
+    i_agent_photocopiercode_local_var = malloc(sizeof(int));
+    if(!i_agent_photocopiercode_local_var)
+    {
+        goto end;
+    }
+    *i_agent_photocopiercode_local_var = i_agent_photocopiercode->valuedouble;
 
     // agent_list_element->i_agent_longdistancecode
     cJSON *i_agent_longdistancecode = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "iAgentLongdistancecode");
@@ -773,6 +1178,12 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     {
     goto end; //Numeric
     }
+    i_agent_longdistancecode_local_var = malloc(sizeof(int));
+    if(!i_agent_longdistancecode_local_var)
+    {
+        goto end;
+    }
+    *i_agent_longdistancecode_local_var = i_agent_longdistancecode->valuedouble;
 
     // agent_list_element->i_agent_bannernumber
     cJSON *i_agent_bannernumber = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "iAgentBannernumber");
@@ -788,6 +1199,12 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     {
     goto end; //Numeric
     }
+    i_agent_bannernumber_local_var = malloc(sizeof(int));
+    if(!i_agent_bannernumber_local_var)
+    {
+        goto end;
+    }
+    *i_agent_bannernumber_local_var = i_agent_bannernumber->valuedouble;
 
     // agent_list_element->s_agent_realestateassociationlicense
     cJSON *s_agent_realestateassociationlicense = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "sAgentRealestateassociationlicense");
@@ -828,6 +1245,66 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     }
     }
 
+    // agent_list_element->dt_agent_contractdate
+    cJSON *dt_agent_contractdate = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "dtAgentContractdate");
+    if (cJSON_IsNull(dt_agent_contractdate)) {
+        dt_agent_contractdate = NULL;
+    }
+    if (dt_agent_contractdate) { 
+    if(!cJSON_IsString(dt_agent_contractdate) && !cJSON_IsNull(dt_agent_contractdate))
+    {
+    goto end; //String
+    }
+    }
+
+    // agent_list_element->dt_agent_transferdate
+    cJSON *dt_agent_transferdate = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "dtAgentTransferdate");
+    if (cJSON_IsNull(dt_agent_transferdate)) {
+        dt_agent_transferdate = NULL;
+    }
+    if (dt_agent_transferdate) { 
+    if(!cJSON_IsString(dt_agent_transferdate) && !cJSON_IsNull(dt_agent_transferdate))
+    {
+    goto end; //String
+    }
+    }
+
+    // agent_list_element->dt_agent_senioritydate
+    cJSON *dt_agent_senioritydate = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "dtAgentSenioritydate");
+    if (cJSON_IsNull(dt_agent_senioritydate)) {
+        dt_agent_senioritydate = NULL;
+    }
+    if (dt_agent_senioritydate) { 
+    if(!cJSON_IsString(dt_agent_senioritydate) && !cJSON_IsNull(dt_agent_senioritydate))
+    {
+    goto end; //String
+    }
+    }
+
+    // agent_list_element->dt_agent_sickleavestart
+    cJSON *dt_agent_sickleavestart = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "dtAgentSickleavestart");
+    if (cJSON_IsNull(dt_agent_sickleavestart)) {
+        dt_agent_sickleavestart = NULL;
+    }
+    if (dt_agent_sickleavestart) { 
+    if(!cJSON_IsString(dt_agent_sickleavestart) && !cJSON_IsNull(dt_agent_sickleavestart))
+    {
+    goto end; //String
+    }
+    }
+
+    // agent_list_element->dt_agent_sickleaveend
+    cJSON *dt_agent_sickleaveend = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "dtAgentSickleaveend");
+    if (cJSON_IsNull(dt_agent_sickleaveend)) {
+        dt_agent_sickleaveend = NULL;
+    }
+    if (dt_agent_sickleaveend) { 
+    if(!cJSON_IsString(dt_agent_sickleaveend) && !cJSON_IsNull(dt_agent_sickleaveend))
+    {
+    goto end; //String
+    }
+    }
+
     // agent_list_element->b_agent_tranquillit
     cJSON *b_agent_tranquillit = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "bAgentTranquillit");
     if (cJSON_IsNull(b_agent_tranquillit)) {
@@ -842,6 +1319,12 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     {
     goto end; //Bool
     }
+    b_agent_tranquillit_local_var = malloc(sizeof(int));
+    if(!b_agent_tranquillit_local_var)
+    {
+        goto end;
+    }
+    *b_agent_tranquillit_local_var = b_agent_tranquillit->valueint;
 
     // agent_list_element->b_agent_residentiallicense
     cJSON *b_agent_residentiallicense = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "bAgentResidentiallicense");
@@ -857,6 +1340,12 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     {
     goto end; //Bool
     }
+    b_agent_residentiallicense_local_var = malloc(sizeof(int));
+    if(!b_agent_residentiallicense_local_var)
+    {
+        goto end;
+    }
+    *b_agent_residentiallicense_local_var = b_agent_residentiallicense->valueint;
 
     // agent_list_element->b_agent_commerciallicense
     cJSON *b_agent_commerciallicense = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "bAgentCommerciallicense");
@@ -872,6 +1361,12 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     {
     goto end; //Bool
     }
+    b_agent_commerciallicense_local_var = malloc(sizeof(int));
+    if(!b_agent_commerciallicense_local_var)
+    {
+        goto end;
+    }
+    *b_agent_commerciallicense_local_var = b_agent_commerciallicense->valueint;
 
     // agent_list_element->b_agent_mortgagelicense
     cJSON *b_agent_mortgagelicense = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "bAgentMortgagelicense");
@@ -887,6 +1382,12 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     {
     goto end; //Bool
     }
+    b_agent_mortgagelicense_local_var = malloc(sizeof(int));
+    if(!b_agent_mortgagelicense_local_var)
+    {
+        goto end;
+    }
+    *b_agent_mortgagelicense_local_var = b_agent_mortgagelicense->valueint;
 
     // agent_list_element->b_agent_paidbyofficetranquillit
     cJSON *b_agent_paidbyofficetranquillit = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "bAgentPaidbyofficetranquillit");
@@ -902,6 +1403,12 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     {
     goto end; //Bool
     }
+    b_agent_paidbyofficetranquillit_local_var = malloc(sizeof(int));
+    if(!b_agent_paidbyofficetranquillit_local_var)
+    {
+        goto end;
+    }
+    *b_agent_paidbyofficetranquillit_local_var = b_agent_paidbyofficetranquillit->valueint;
 
     // agent_list_element->dt_agent_fintraccertification
     cJSON *dt_agent_fintraccertification = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "dtAgentFintraccertification");
@@ -929,6 +1436,12 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     {
     goto end; //Bool
     }
+    b_agent_isactive_local_var = malloc(sizeof(int));
+    if(!b_agent_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_agent_isactive_local_var = b_agent_isactive->valueint;
 
     // agent_list_element->s_contact_firstname
     cJSON *s_contact_firstname = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "sContactFirstname");
@@ -1056,6 +1569,24 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     }
     }
 
+    // agent_list_element->fki_province_id
+    cJSON *fki_province_id = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "fkiProvinceID");
+    if (cJSON_IsNull(fki_province_id)) {
+        fki_province_id = NULL;
+    }
+    if (fki_province_id) { 
+    if(!cJSON_IsNumber(fki_province_id))
+    {
+    goto end; //Numeric
+    }
+    fki_province_id_local_var = malloc(sizeof(int));
+    if(!fki_province_id_local_var)
+    {
+        goto end;
+    }
+    *fki_province_id_local_var = fki_province_id->valuedouble;
+    }
+
     // agent_list_element->s_province_name_x
     cJSON *s_province_name_x = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "sProvinceNameX");
     if (cJSON_IsNull(s_province_name_x)) {
@@ -1066,6 +1597,24 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     {
     goto end; //String
     }
+    }
+
+    // agent_list_element->fki_country_id
+    cJSON *fki_country_id = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "fkiCountryID");
+    if (cJSON_IsNull(fki_country_id)) {
+        fki_country_id = NULL;
+    }
+    if (fki_country_id) { 
+    if(!cJSON_IsNumber(fki_country_id))
+    {
+    goto end; //Numeric
+    }
+    fki_country_id_local_var = malloc(sizeof(int));
+    if(!fki_country_id_local_var)
+    {
+        goto end;
+    }
+    *fki_country_id_local_var = fki_country_id->valuedouble;
     }
 
     // agent_list_element->s_country_name_x
@@ -1081,47 +1630,258 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     }
 
 
+    if (s_agenttype_name_x && !cJSON_IsNull(s_agenttype_name_x)) s_agenttype_name_x_local_str = strdup(s_agenttype_name_x->valuestring);
+    if (s_agentincorporation_name && !cJSON_IsNull(s_agentincorporation_name)) s_agentincorporation_name_local_str = strdup(s_agentincorporation_name->valuestring);
+    if (s_department_name_x && !cJSON_IsNull(s_department_name_x)) s_department_name_x_local_str = strdup(s_department_name_x->valuestring);
+    if (s_language_name_x && !cJSON_IsNull(s_language_name_x)) s_language_name_x_local_str = strdup(s_language_name_x->valuestring);
+    if (s_realestateboardnumber_number && !cJSON_IsNull(s_realestateboardnumber_number)) s_realestateboardnumber_number_local_str = strdup(s_realestateboardnumber_number->valuestring);
+    if (s_agent_code && !cJSON_IsNull(s_agent_code)) s_agent_code_local_str = strdup(s_agent_code->valuestring);
+    if (s_agent_realestateassociationlicense && !cJSON_IsNull(s_agent_realestateassociationlicense)) s_agent_realestateassociationlicense_local_str = strdup(s_agent_realestateassociationlicense->valuestring);
+    if (dt_agent_hiredate && !cJSON_IsNull(dt_agent_hiredate)) dt_agent_hiredate_local_str = strdup(dt_agent_hiredate->valuestring);
+    if (dt_agent_leavedate && !cJSON_IsNull(dt_agent_leavedate)) dt_agent_leavedate_local_str = strdup(dt_agent_leavedate->valuestring);
+    if (dt_agent_contractdate && !cJSON_IsNull(dt_agent_contractdate)) dt_agent_contractdate_local_str = strdup(dt_agent_contractdate->valuestring);
+    if (dt_agent_transferdate && !cJSON_IsNull(dt_agent_transferdate)) dt_agent_transferdate_local_str = strdup(dt_agent_transferdate->valuestring);
+    if (dt_agent_senioritydate && !cJSON_IsNull(dt_agent_senioritydate)) dt_agent_senioritydate_local_str = strdup(dt_agent_senioritydate->valuestring);
+    if (dt_agent_sickleavestart && !cJSON_IsNull(dt_agent_sickleavestart)) dt_agent_sickleavestart_local_str = strdup(dt_agent_sickleavestart->valuestring);
+    if (dt_agent_sickleaveend && !cJSON_IsNull(dt_agent_sickleaveend)) dt_agent_sickleaveend_local_str = strdup(dt_agent_sickleaveend->valuestring);
+    if (dt_agent_fintraccertification && !cJSON_IsNull(dt_agent_fintraccertification)) dt_agent_fintraccertification_local_str = strdup(dt_agent_fintraccertification->valuestring);
+    if (s_contact_firstname && !cJSON_IsNull(s_contact_firstname)) s_contact_firstname_local_str = strdup(s_contact_firstname->valuestring);
+    if (s_contact_lastname && !cJSON_IsNull(s_contact_lastname)) s_contact_lastname_local_str = strdup(s_contact_lastname->valuestring);
+    if (dt_contact_birthdate && !cJSON_IsNull(dt_contact_birthdate)) dt_contact_birthdate_local_str = strdup(dt_contact_birthdate->valuestring);
+    if (s_email_address && !cJSON_IsNull(s_email_address)) s_email_address_local_str = strdup(s_email_address->valuestring);
+    if (s_phone_e164 && !cJSON_IsNull(s_phone_e164)) s_phone_e164_local_str = strdup(s_phone_e164->valuestring);
+    if (s_address_civic && !cJSON_IsNull(s_address_civic)) s_address_civic_local_str = strdup(s_address_civic->valuestring);
+    if (s_address_street && !cJSON_IsNull(s_address_street)) s_address_street_local_str = strdup(s_address_street->valuestring);
+    if (s_address_suite && !cJSON_IsNull(s_address_suite)) s_address_suite_local_str = strdup(s_address_suite->valuestring);
+    if (s_address_city && !cJSON_IsNull(s_address_city)) s_address_city_local_str = strdup(s_address_city->valuestring);
+    if (s_address_zip && !cJSON_IsNull(s_address_zip)) s_address_zip_local_str = strdup(s_address_zip->valuestring);
+    if (s_province_name_x && !cJSON_IsNull(s_province_name_x)) s_province_name_x_local_str = strdup(s_province_name_x->valuestring);
+    if (s_country_name_x && !cJSON_IsNull(s_country_name_x)) s_country_name_x_local_str = strdup(s_country_name_x->valuestring);
+
     agent_list_element_local_var = agent_list_element_create_internal (
-        pki_agent_id->valuedouble,
-        fki_agenttype_id->valuedouble,
-        strdup(s_agenttype_name_x->valuestring),
-        fki_agentincorporation_id ? fki_agentincorporation_id->valuedouble : 0,
-        s_agentincorporation_name && !cJSON_IsNull(s_agentincorporation_name) ? strdup(s_agentincorporation_name->valuestring) : NULL,
-        fki_department_id->valuedouble,
-        strdup(s_department_name_x->valuestring),
-        fki_language_id->valuedouble,
-        strdup(s_language_name_x->valuestring),
-        s_realestateboardnumber_number && !cJSON_IsNull(s_realestateboardnumber_number) ? strdup(s_realestateboardnumber_number->valuestring) : NULL,
-        strdup(s_agent_code->valuestring),
-        i_agent_photocopiercode->valuedouble,
-        i_agent_longdistancecode->valuedouble,
-        i_agent_bannernumber->valuedouble,
-        strdup(s_agent_realestateassociationlicense->valuestring),
-        dt_agent_hiredate && !cJSON_IsNull(dt_agent_hiredate) ? strdup(dt_agent_hiredate->valuestring) : NULL,
-        dt_agent_leavedate && !cJSON_IsNull(dt_agent_leavedate) ? strdup(dt_agent_leavedate->valuestring) : NULL,
-        b_agent_tranquillit->valueint,
-        b_agent_residentiallicense->valueint,
-        b_agent_commerciallicense->valueint,
-        b_agent_mortgagelicense->valueint,
-        b_agent_paidbyofficetranquillit->valueint,
-        dt_agent_fintraccertification && !cJSON_IsNull(dt_agent_fintraccertification) ? strdup(dt_agent_fintraccertification->valuestring) : NULL,
-        b_agent_isactive->valueint,
-        strdup(s_contact_firstname->valuestring),
-        strdup(s_contact_lastname->valuestring),
-        dt_contact_birthdate && !cJSON_IsNull(dt_contact_birthdate) ? strdup(dt_contact_birthdate->valuestring) : NULL,
-        s_email_address && !cJSON_IsNull(s_email_address) ? strdup(s_email_address->valuestring) : NULL,
-        s_phone_e164 && !cJSON_IsNull(s_phone_e164) ? strdup(s_phone_e164->valuestring) : NULL,
-        s_address_civic && !cJSON_IsNull(s_address_civic) ? strdup(s_address_civic->valuestring) : NULL,
-        s_address_street && !cJSON_IsNull(s_address_street) ? strdup(s_address_street->valuestring) : NULL,
-        s_address_suite && !cJSON_IsNull(s_address_suite) ? strdup(s_address_suite->valuestring) : NULL,
-        s_address_city && !cJSON_IsNull(s_address_city) ? strdup(s_address_city->valuestring) : NULL,
-        s_address_zip && !cJSON_IsNull(s_address_zip) ? strdup(s_address_zip->valuestring) : NULL,
-        s_province_name_x && !cJSON_IsNull(s_province_name_x) ? strdup(s_province_name_x->valuestring) : NULL,
-        s_country_name_x && !cJSON_IsNull(s_country_name_x) ? strdup(s_country_name_x->valuestring) : NULL
+        pki_agent_id_local_var,
+        fki_agenttype_id_local_var,
+        s_agenttype_name_x_local_str,
+        fki_agentincorporation_id_local_var,
+        s_agentincorporation_name_local_str,
+        fki_department_id_local_var,
+        s_department_name_x_local_str,
+        fki_language_id_local_var,
+        s_language_name_x_local_str,
+        s_realestateboardnumber_number_local_str,
+        s_agent_code_local_str,
+        i_agent_photocopiercode_local_var,
+        i_agent_longdistancecode_local_var,
+        i_agent_bannernumber_local_var,
+        s_agent_realestateassociationlicense_local_str,
+        dt_agent_hiredate_local_str,
+        dt_agent_leavedate_local_str,
+        dt_agent_contractdate_local_str,
+        dt_agent_transferdate_local_str,
+        dt_agent_senioritydate_local_str,
+        dt_agent_sickleavestart_local_str,
+        dt_agent_sickleaveend_local_str,
+        b_agent_tranquillit_local_var,
+        b_agent_residentiallicense_local_var,
+        b_agent_commerciallicense_local_var,
+        b_agent_mortgagelicense_local_var,
+        b_agent_paidbyofficetranquillit_local_var,
+        dt_agent_fintraccertification_local_str,
+        b_agent_isactive_local_var,
+        s_contact_firstname_local_str,
+        s_contact_lastname_local_str,
+        dt_contact_birthdate_local_str,
+        s_email_address_local_str,
+        s_phone_e164_local_str,
+        s_address_civic_local_str,
+        s_address_street_local_str,
+        s_address_suite_local_str,
+        s_address_city_local_str,
+        s_address_zip_local_str,
+        fki_province_id_local_var,
+        s_province_name_x_local_str,
+        fki_country_id_local_var,
+        s_country_name_x_local_str
         );
+
+    if (!agent_list_element_local_var) {
+        goto end;
+    }
 
     return agent_list_element_local_var;
 end:
+    if (pki_agent_id_local_var) {
+        free(pki_agent_id_local_var);
+        pki_agent_id_local_var = NULL;
+    }
+    if (fki_agenttype_id_local_var) {
+        free(fki_agenttype_id_local_var);
+        fki_agenttype_id_local_var = NULL;
+    }
+    if (s_agenttype_name_x_local_str) {
+        free(s_agenttype_name_x_local_str);
+        s_agenttype_name_x_local_str = NULL;
+    }
+    if (fki_agentincorporation_id_local_var) {
+        free(fki_agentincorporation_id_local_var);
+        fki_agentincorporation_id_local_var = NULL;
+    }
+    if (s_agentincorporation_name_local_str) {
+        free(s_agentincorporation_name_local_str);
+        s_agentincorporation_name_local_str = NULL;
+    }
+    if (fki_department_id_local_var) {
+        free(fki_department_id_local_var);
+        fki_department_id_local_var = NULL;
+    }
+    if (s_department_name_x_local_str) {
+        free(s_department_name_x_local_str);
+        s_department_name_x_local_str = NULL;
+    }
+    if (fki_language_id_local_var) {
+        free(fki_language_id_local_var);
+        fki_language_id_local_var = NULL;
+    }
+    if (s_language_name_x_local_str) {
+        free(s_language_name_x_local_str);
+        s_language_name_x_local_str = NULL;
+    }
+    if (s_realestateboardnumber_number_local_str) {
+        free(s_realestateboardnumber_number_local_str);
+        s_realestateboardnumber_number_local_str = NULL;
+    }
+    if (s_agent_code_local_str) {
+        free(s_agent_code_local_str);
+        s_agent_code_local_str = NULL;
+    }
+    if (i_agent_photocopiercode_local_var) {
+        free(i_agent_photocopiercode_local_var);
+        i_agent_photocopiercode_local_var = NULL;
+    }
+    if (i_agent_longdistancecode_local_var) {
+        free(i_agent_longdistancecode_local_var);
+        i_agent_longdistancecode_local_var = NULL;
+    }
+    if (i_agent_bannernumber_local_var) {
+        free(i_agent_bannernumber_local_var);
+        i_agent_bannernumber_local_var = NULL;
+    }
+    if (s_agent_realestateassociationlicense_local_str) {
+        free(s_agent_realestateassociationlicense_local_str);
+        s_agent_realestateassociationlicense_local_str = NULL;
+    }
+    if (dt_agent_hiredate_local_str) {
+        free(dt_agent_hiredate_local_str);
+        dt_agent_hiredate_local_str = NULL;
+    }
+    if (dt_agent_leavedate_local_str) {
+        free(dt_agent_leavedate_local_str);
+        dt_agent_leavedate_local_str = NULL;
+    }
+    if (dt_agent_contractdate_local_str) {
+        free(dt_agent_contractdate_local_str);
+        dt_agent_contractdate_local_str = NULL;
+    }
+    if (dt_agent_transferdate_local_str) {
+        free(dt_agent_transferdate_local_str);
+        dt_agent_transferdate_local_str = NULL;
+    }
+    if (dt_agent_senioritydate_local_str) {
+        free(dt_agent_senioritydate_local_str);
+        dt_agent_senioritydate_local_str = NULL;
+    }
+    if (dt_agent_sickleavestart_local_str) {
+        free(dt_agent_sickleavestart_local_str);
+        dt_agent_sickleavestart_local_str = NULL;
+    }
+    if (dt_agent_sickleaveend_local_str) {
+        free(dt_agent_sickleaveend_local_str);
+        dt_agent_sickleaveend_local_str = NULL;
+    }
+    if (b_agent_tranquillit_local_var) {
+        free(b_agent_tranquillit_local_var);
+        b_agent_tranquillit_local_var = NULL;
+    }
+    if (b_agent_residentiallicense_local_var) {
+        free(b_agent_residentiallicense_local_var);
+        b_agent_residentiallicense_local_var = NULL;
+    }
+    if (b_agent_commerciallicense_local_var) {
+        free(b_agent_commerciallicense_local_var);
+        b_agent_commerciallicense_local_var = NULL;
+    }
+    if (b_agent_mortgagelicense_local_var) {
+        free(b_agent_mortgagelicense_local_var);
+        b_agent_mortgagelicense_local_var = NULL;
+    }
+    if (b_agent_paidbyofficetranquillit_local_var) {
+        free(b_agent_paidbyofficetranquillit_local_var);
+        b_agent_paidbyofficetranquillit_local_var = NULL;
+    }
+    if (dt_agent_fintraccertification_local_str) {
+        free(dt_agent_fintraccertification_local_str);
+        dt_agent_fintraccertification_local_str = NULL;
+    }
+    if (b_agent_isactive_local_var) {
+        free(b_agent_isactive_local_var);
+        b_agent_isactive_local_var = NULL;
+    }
+    if (s_contact_firstname_local_str) {
+        free(s_contact_firstname_local_str);
+        s_contact_firstname_local_str = NULL;
+    }
+    if (s_contact_lastname_local_str) {
+        free(s_contact_lastname_local_str);
+        s_contact_lastname_local_str = NULL;
+    }
+    if (dt_contact_birthdate_local_str) {
+        free(dt_contact_birthdate_local_str);
+        dt_contact_birthdate_local_str = NULL;
+    }
+    if (s_email_address_local_str) {
+        free(s_email_address_local_str);
+        s_email_address_local_str = NULL;
+    }
+    if (s_phone_e164_local_str) {
+        free(s_phone_e164_local_str);
+        s_phone_e164_local_str = NULL;
+    }
+    if (s_address_civic_local_str) {
+        free(s_address_civic_local_str);
+        s_address_civic_local_str = NULL;
+    }
+    if (s_address_street_local_str) {
+        free(s_address_street_local_str);
+        s_address_street_local_str = NULL;
+    }
+    if (s_address_suite_local_str) {
+        free(s_address_suite_local_str);
+        s_address_suite_local_str = NULL;
+    }
+    if (s_address_city_local_str) {
+        free(s_address_city_local_str);
+        s_address_city_local_str = NULL;
+    }
+    if (s_address_zip_local_str) {
+        free(s_address_zip_local_str);
+        s_address_zip_local_str = NULL;
+    }
+    if (fki_province_id_local_var) {
+        free(fki_province_id_local_var);
+        fki_province_id_local_var = NULL;
+    }
+    if (s_province_name_x_local_str) {
+        free(s_province_name_x_local_str);
+        s_province_name_x_local_str = NULL;
+    }
+    if (fki_country_id_local_var) {
+        free(fki_country_id_local_var);
+        fki_country_id_local_var = NULL;
+    }
+    if (s_country_name_x_local_str) {
+        free(s_country_name_x_local_str);
+        s_country_name_x_local_str = NULL;
+    }
     return NULL;
 
 }

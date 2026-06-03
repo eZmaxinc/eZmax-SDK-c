@@ -21,11 +21,11 @@ typedef struct ezsigntemplateglobal_response_t ezsigntemplateglobal_response_t;
 
 
 typedef struct ezsigntemplateglobal_response_t {
-    int pki_ezsigntemplateglobal_id; //numeric
-    int fki_ezsigntemplateglobaldocument_id; //numeric
-    int fki_module_id; //numeric
+    int *pki_ezsigntemplateglobal_id; //numeric
+    int *fki_ezsigntemplateglobaldocument_id; //numeric
+    int *fki_module_id; //numeric
     char *s_module_name_x; // string
-    int fki_language_id; //numeric
+    int *fki_language_id; //numeric
     char *s_language_name_x; // string
     ezmax_api_definition__full_field_e_ezsigntemplateglobal_module__e e_ezsigntemplateglobal_module; //referenced enum
     ezmax_api_definition__full_field_e_ezsigntemplateglobal_supplier__e e_ezsigntemplateglobal_supplier; //referenced enum
@@ -36,11 +36,11 @@ typedef struct ezsigntemplateglobal_response_t {
 } ezsigntemplateglobal_response_t;
 
 __attribute__((deprecated)) ezsigntemplateglobal_response_t *ezsigntemplateglobal_response_create(
-    int pki_ezsigntemplateglobal_id,
-    int fki_ezsigntemplateglobaldocument_id,
-    int fki_module_id,
+    int *pki_ezsigntemplateglobal_id,
+    int *fki_ezsigntemplateglobaldocument_id,
+    int *fki_module_id,
     char *s_module_name_x,
-    int fki_language_id,
+    int *fki_language_id,
     char *s_language_name_x,
     ezmax_api_definition__full_field_e_ezsigntemplateglobal_module__e e_ezsigntemplateglobal_module,
     ezmax_api_definition__full_field_e_ezsigntemplateglobal_supplier__e e_ezsigntemplateglobal_supplier,

@@ -14,11 +14,11 @@ static broker_get_autocomplete_v2_response_t *broker_get_autocomplete_v2_respons
     if (!broker_get_autocomplete_v2_response_local_var) {
         return NULL;
     }
+    memset(broker_get_autocomplete_v2_response_local_var, 0, sizeof(broker_get_autocomplete_v2_response_t));
+    broker_get_autocomplete_v2_response_local_var->_library_owned = 1;
     broker_get_autocomplete_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     broker_get_autocomplete_v2_response_local_var->obj_debug = obj_debug;
     broker_get_autocomplete_v2_response_local_var->m_payload = m_payload;
-
-    broker_get_autocomplete_v2_response_local_var->_library_owned = 1;
     return broker_get_autocomplete_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) broker_get_autocomplete_v2_response_t *broker_get_au
     common_response_obj_debug_t *obj_debug,
     broker_get_autocomplete_v2_response_m_payload_t *m_payload
     ) {
-    return broker_get_autocomplete_v2_response_create_internal (
+    broker_get_autocomplete_v2_response_t *result = broker_get_autocomplete_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void broker_get_autocomplete_v2_response_free(broker_get_autocomplete_v2_response_t *broker_get_autocomplete_v2_response) {
@@ -156,11 +159,16 @@ broker_get_autocomplete_v2_response_t *broker_get_autocomplete_v2_response_parse
     m_payload_local_nonprim = broker_get_autocomplete_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     broker_get_autocomplete_v2_response_local_var = broker_get_autocomplete_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!broker_get_autocomplete_v2_response_local_var) {
+        goto end;
+    }
 
     return broker_get_autocomplete_v2_response_local_var;
 end:

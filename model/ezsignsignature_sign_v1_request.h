@@ -29,8 +29,8 @@ ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMAT
 
 
 typedef struct ezsignsignature_sign_v1_request_t {
-    int fki_ezsignsigningreason_id; //numeric
-    int fki_font_id; //numeric
+    int *fki_ezsignsigningreason_id; //numeric
+    int *fki_font_id; //numeric
     char *d_ezsignsignature_creditcardamount; // string
     char *s_value; // string
     ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_e e_attachments_confirmation_decision; //enum
@@ -38,14 +38,14 @@ typedef struct ezsignsignature_sign_v1_request_t {
     char *s_svg; // string
     list_t *a_obj_file; //nonprimitive container
     struct custom_creditcard_request_t *obj_creditcard; //model
-    int b_is_automatic; //boolean
+    int *b_is_automatic; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsignature_sign_v1_request_t;
 
 __attribute__((deprecated)) ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_create(
-    int fki_ezsignsigningreason_id,
-    int fki_font_id,
+    int *fki_ezsignsigningreason_id,
+    int *fki_font_id,
     char *d_ezsignsignature_creditcardamount,
     char *s_value,
     ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_e e_attachments_confirmation_decision,
@@ -53,7 +53,7 @@ __attribute__((deprecated)) ezsignsignature_sign_v1_request_t *ezsignsignature_s
     char *s_svg,
     list_t *a_obj_file,
     custom_creditcard_request_t *obj_creditcard,
-    int b_is_automatic
+    int *b_is_automatic
 );
 
 void ezsignsignature_sign_v1_request_free(ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request);

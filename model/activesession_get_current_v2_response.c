@@ -14,11 +14,11 @@ static activesession_get_current_v2_response_t *activesession_get_current_v2_res
     if (!activesession_get_current_v2_response_local_var) {
         return NULL;
     }
+    memset(activesession_get_current_v2_response_local_var, 0, sizeof(activesession_get_current_v2_response_t));
+    activesession_get_current_v2_response_local_var->_library_owned = 1;
     activesession_get_current_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     activesession_get_current_v2_response_local_var->obj_debug = obj_debug;
     activesession_get_current_v2_response_local_var->m_payload = m_payload;
-
-    activesession_get_current_v2_response_local_var->_library_owned = 1;
     return activesession_get_current_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) activesession_get_current_v2_response_t *activesessi
     common_response_obj_debug_t *obj_debug,
     activesession_get_current_v2_response_m_payload_t *m_payload
     ) {
-    return activesession_get_current_v2_response_create_internal (
+    activesession_get_current_v2_response_t *result = activesession_get_current_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void activesession_get_current_v2_response_free(activesession_get_current_v2_response_t *activesession_get_current_v2_response) {
@@ -156,11 +159,16 @@ activesession_get_current_v2_response_t *activesession_get_current_v2_response_p
     m_payload_local_nonprim = activesession_get_current_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     activesession_get_current_v2_response_local_var = activesession_get_current_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!activesession_get_current_v2_response_local_var) {
+        goto end;
+    }
 
     return activesession_get_current_v2_response_local_var;
 end:

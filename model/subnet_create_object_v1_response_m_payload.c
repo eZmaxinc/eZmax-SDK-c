@@ -12,18 +12,21 @@ static subnet_create_object_v1_response_m_payload_t *subnet_create_object_v1_res
     if (!subnet_create_object_v1_response_m_payload_local_var) {
         return NULL;
     }
-    subnet_create_object_v1_response_m_payload_local_var->a_pki_subnet_id = a_pki_subnet_id;
-
+    memset(subnet_create_object_v1_response_m_payload_local_var, 0, sizeof(subnet_create_object_v1_response_m_payload_t));
     subnet_create_object_v1_response_m_payload_local_var->_library_owned = 1;
+    subnet_create_object_v1_response_m_payload_local_var->a_pki_subnet_id = a_pki_subnet_id;
     return subnet_create_object_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) subnet_create_object_v1_response_m_payload_t *subnet_create_object_v1_response_m_payload_create(
     list_t *a_pki_subnet_id
     ) {
-    return subnet_create_object_v1_response_m_payload_create_internal (
+    subnet_create_object_v1_response_m_payload_t *result = subnet_create_object_v1_response_m_payload_create_internal (
         a_pki_subnet_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void subnet_create_object_v1_response_m_payload_free(subnet_create_object_v1_response_m_payload_t *subnet_create_object_v1_response_m_payload) {
@@ -112,9 +115,14 @@ subnet_create_object_v1_response_m_payload_t *subnet_create_object_v1_response_m
     }
 
 
+
     subnet_create_object_v1_response_m_payload_local_var = subnet_create_object_v1_response_m_payload_create_internal (
         a_pki_subnet_idList
         );
+
+    if (!subnet_create_object_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return subnet_create_object_v1_response_m_payload_local_var;
 end:

@@ -8,8 +8,12 @@
 #include "../model/common_response_error.h"
 #include "../model/ezsignfoldertype_create_object_v3_request.h"
 #include "../model/ezsignfoldertype_create_object_v3_response.h"
+#include "../model/ezsignfoldertype_create_object_v4_request.h"
+#include "../model/ezsignfoldertype_create_object_v4_response.h"
 #include "../model/ezsignfoldertype_edit_object_v3_request.h"
 #include "../model/ezsignfoldertype_edit_object_v3_response.h"
+#include "../model/ezsignfoldertype_edit_object_v4_request.h"
+#include "../model/ezsignfoldertype_edit_object_v4_response.h"
 #include "../model/ezsignfoldertype_get_autocomplete_v2_response.h"
 #include "../model/ezsignfoldertype_get_list_v1_response.h"
 #include "../model/ezsignfoldertype_get_object_v2_response.h"
@@ -40,12 +44,28 @@ ezsignfoldertype_create_object_v3_response_t*
 ObjectEzsignfoldertypeAPI_ezsignfoldertypeCreateObjectV3(apiClient_t *apiClient, ezsignfoldertype_create_object_v3_request_t *ezsignfoldertype_create_object_v3_request);
 
 
+// Create a new Ezsignfoldertype
+//
+// The endpoint allows to create one or many elements at once.
+//
+ezsignfoldertype_create_object_v4_response_t*
+ObjectEzsignfoldertypeAPI_ezsignfoldertypeCreateObjectV4(apiClient_t *apiClient, ezsignfoldertype_create_object_v4_request_t *ezsignfoldertype_create_object_v4_request);
+
+
 // Edit an existing Ezsignfoldertype
 //
 // 
 //
 ezsignfoldertype_edit_object_v3_response_t*
 ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV3(apiClient_t *apiClient, int *pkiEzsignfoldertypeID, ezsignfoldertype_edit_object_v3_request_t *ezsignfoldertype_edit_object_v3_request);
+
+
+// Edit an existing Ezsignfoldertype
+//
+// 
+//
+ezsignfoldertype_edit_object_v4_response_t*
+ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV4(apiClient_t *apiClient, int *pkiEzsignfoldertypeID, ezsignfoldertype_edit_object_v4_request_t *ezsignfoldertype_edit_object_v4_request);
 
 
 // Retrieve Ezsignfoldertypes and IDs

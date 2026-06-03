@@ -12,18 +12,21 @@ static ezsigndiscussion_create_object_v1_response_m_payload_t *ezsigndiscussion_
     if (!ezsigndiscussion_create_object_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsigndiscussion_create_object_v1_response_m_payload_local_var->a_pki_ezsigndiscussion_id = a_pki_ezsigndiscussion_id;
-
+    memset(ezsigndiscussion_create_object_v1_response_m_payload_local_var, 0, sizeof(ezsigndiscussion_create_object_v1_response_m_payload_t));
     ezsigndiscussion_create_object_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsigndiscussion_create_object_v1_response_m_payload_local_var->a_pki_ezsigndiscussion_id = a_pki_ezsigndiscussion_id;
     return ezsigndiscussion_create_object_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsigndiscussion_create_object_v1_response_m_payload_t *ezsigndiscussion_create_object_v1_response_m_payload_create(
     list_t *a_pki_ezsigndiscussion_id
     ) {
-    return ezsigndiscussion_create_object_v1_response_m_payload_create_internal (
+    ezsigndiscussion_create_object_v1_response_m_payload_t *result = ezsigndiscussion_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsigndiscussion_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigndiscussion_create_object_v1_response_m_payload_free(ezsigndiscussion_create_object_v1_response_m_payload_t *ezsigndiscussion_create_object_v1_response_m_payload) {
@@ -112,9 +115,14 @@ ezsigndiscussion_create_object_v1_response_m_payload_t *ezsigndiscussion_create_
     }
 
 
+
     ezsigndiscussion_create_object_v1_response_m_payload_local_var = ezsigndiscussion_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsigndiscussion_idList
         );
+
+    if (!ezsigndiscussion_create_object_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsigndiscussion_create_object_v1_response_m_payload_local_var;
 end:

@@ -15,12 +15,12 @@ static scim_user_t *scim_user_create_internal(
     if (!scim_user_local_var) {
         return NULL;
     }
+    memset(scim_user_local_var, 0, sizeof(scim_user_t));
+    scim_user_local_var->_library_owned = 1;
     scim_user_local_var->id = id;
     scim_user_local_var->user_name = user_name;
     scim_user_local_var->display_name = display_name;
     scim_user_local_var->emails = emails;
-
-    scim_user_local_var->_library_owned = 1;
     return scim_user_local_var;
 }
 
@@ -30,12 +30,15 @@ __attribute__((deprecated)) scim_user_t *scim_user_create(
     char *display_name,
     list_t *emails
     ) {
-    return scim_user_create_internal (
+    scim_user_t *result = scim_user_create_internal (
         id,
         user_name,
         display_name,
         emails
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void scim_user_free(scim_user_t *scim_user) {
@@ -128,6 +131,12 @@ scim_user_t *scim_user_parseFromJSON(cJSON *scim_userJSON){
 
     scim_user_t *scim_user_local_var = NULL;
 
+    char *id_local_str = NULL;
+
+    char *user_name_local_str = NULL;
+
+    char *display_name_local_str = NULL;
+
     // define the local list for scim_user->emails
     list_t *emailsList = NULL;
 
@@ -195,15 +204,35 @@ scim_user_t *scim_user_parseFromJSON(cJSON *scim_userJSON){
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (user_name && !cJSON_IsNull(user_name)) user_name_local_str = strdup(user_name->valuestring);
+    if (display_name && !cJSON_IsNull(display_name)) display_name_local_str = strdup(display_name->valuestring);
+
     scim_user_local_var = scim_user_create_internal (
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
-        strdup(user_name->valuestring),
-        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
+        id_local_str,
+        user_name_local_str,
+        display_name_local_str,
         emails ? emailsList : NULL
         );
 
+    if (!scim_user_local_var) {
+        goto end;
+    }
+
     return scim_user_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (user_name_local_str) {
+        free(user_name_local_str);
+        user_name_local_str = NULL;
+    }
+    if (display_name_local_str) {
+        free(display_name_local_str);
+        display_name_local_str = NULL;
+    }
     if (emailsList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, emailsList) {

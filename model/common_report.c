@@ -7,31 +7,40 @@
 
 static common_report_t *common_report_create_internal(
     list_t *a_obj_reportsection,
-    int b_report_paginate,
+    int *b_report_paginate,
     char *s_report_title
     ) {
     common_report_t *common_report_local_var = malloc(sizeof(common_report_t));
     if (!common_report_local_var) {
         return NULL;
     }
+    memset(common_report_local_var, 0, sizeof(common_report_t));
+    common_report_local_var->_library_owned = 1;
     common_report_local_var->a_obj_reportsection = a_obj_reportsection;
     common_report_local_var->b_report_paginate = b_report_paginate;
     common_report_local_var->s_report_title = s_report_title;
-
-    common_report_local_var->_library_owned = 1;
     return common_report_local_var;
 }
 
 __attribute__((deprecated)) common_report_t *common_report_create(
     list_t *a_obj_reportsection,
-    int b_report_paginate,
+    int *b_report_paginate,
     char *s_report_title
     ) {
-    return common_report_create_internal (
+    int *b_report_paginate_copy = NULL;
+    if (b_report_paginate) {
+        b_report_paginate_copy = malloc(sizeof(int));
+        if (b_report_paginate_copy) *b_report_paginate_copy = *b_report_paginate;
+    }
+    common_report_t *result = common_report_create_internal (
         a_obj_reportsection,
-        b_report_paginate,
+        b_report_paginate_copy,
         s_report_title
         );
+    if (!result) {
+        free(b_report_paginate_copy);
+    }
+    return result;
 }
 
 void common_report_free(common_report_t *common_report) {
@@ -49,6 +58,10 @@ void common_report_free(common_report_t *common_report) {
         }
         list_freeList(common_report->a_obj_reportsection);
         common_report->a_obj_reportsection = NULL;
+    }
+    if (common_report->b_report_paginate) {
+        free(common_report->b_report_paginate);
+        common_report->b_report_paginate = NULL;
     }
     if (common_report->s_report_title) {
         free(common_report->s_report_title);
@@ -83,7 +96,7 @@ cJSON *common_report_convertToJSON(common_report_t *common_report) {
 
     // common_report->b_report_paginate
     if(common_report->b_report_paginate) {
-    if(cJSON_AddBoolToObject(item, "bReportPaginate", common_report->b_report_paginate) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bReportPaginate", *common_report->b_report_paginate) == NULL) {
     goto fail; //Bool
     }
     }
@@ -110,6 +123,11 @@ common_report_t *common_report_parseFromJSON(cJSON *common_reportJSON){
 
     // define the local list for common_report->a_obj_reportsection
     list_t *a_obj_reportsectionList = NULL;
+
+    // define the local variable for common_report->b_report_paginate
+    int *b_report_paginate_local_var = NULL;
+
+    char *s_report_title_local_str = NULL;
 
     // common_report->a_obj_reportsection
     cJSON *a_obj_reportsection = cJSON_GetObjectItemCaseSensitive(common_reportJSON, "a_objReportsection");
@@ -148,6 +166,12 @@ common_report_t *common_report_parseFromJSON(cJSON *common_reportJSON){
     {
     goto end; //Bool
     }
+    b_report_paginate_local_var = malloc(sizeof(int));
+    if(!b_report_paginate_local_var)
+    {
+        goto end;
+    }
+    *b_report_paginate_local_var = b_report_paginate->valueint;
     }
 
     // common_report->s_report_title
@@ -163,11 +187,17 @@ common_report_t *common_report_parseFromJSON(cJSON *common_reportJSON){
     }
 
 
+    if (s_report_title && !cJSON_IsNull(s_report_title)) s_report_title_local_str = strdup(s_report_title->valuestring);
+
     common_report_local_var = common_report_create_internal (
         a_obj_reportsectionList,
-        b_report_paginate ? b_report_paginate->valueint : 0,
-        s_report_title && !cJSON_IsNull(s_report_title) ? strdup(s_report_title->valuestring) : NULL
+        b_report_paginate_local_var,
+        s_report_title_local_str
         );
+
+    if (!common_report_local_var) {
+        goto end;
+    }
 
     return common_report_local_var;
 end:
@@ -179,6 +209,14 @@ end:
         }
         list_freeList(a_obj_reportsectionList);
         a_obj_reportsectionList = NULL;
+    }
+    if (b_report_paginate_local_var) {
+        free(b_report_paginate_local_var);
+        b_report_paginate_local_var = NULL;
+    }
+    if (s_report_title_local_str) {
+        free(s_report_title_local_str);
+        s_report_title_local_str = NULL;
     }
     return NULL;
 

@@ -12,18 +12,21 @@ static permission_edit_object_v1_request_t *permission_edit_object_v1_request_cr
     if (!permission_edit_object_v1_request_local_var) {
         return NULL;
     }
-    permission_edit_object_v1_request_local_var->obj_permission = obj_permission;
-
+    memset(permission_edit_object_v1_request_local_var, 0, sizeof(permission_edit_object_v1_request_t));
     permission_edit_object_v1_request_local_var->_library_owned = 1;
+    permission_edit_object_v1_request_local_var->obj_permission = obj_permission;
     return permission_edit_object_v1_request_local_var;
 }
 
 __attribute__((deprecated)) permission_edit_object_v1_request_t *permission_edit_object_v1_request_create(
     permission_request_compound_t *obj_permission
     ) {
-    return permission_edit_object_v1_request_create_internal (
+    permission_edit_object_v1_request_t *result = permission_edit_object_v1_request_create_internal (
         obj_permission
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void permission_edit_object_v1_request_free(permission_edit_object_v1_request_t *permission_edit_object_v1_request) {
@@ -86,9 +89,14 @@ permission_edit_object_v1_request_t *permission_edit_object_v1_request_parseFrom
     obj_permission_local_nonprim = permission_request_compound_parseFromJSON(obj_permission); //nonprimitive
 
 
+
     permission_edit_object_v1_request_local_var = permission_edit_object_v1_request_create_internal (
         obj_permission_local_nonprim
         );
+
+    if (!permission_edit_object_v1_request_local_var) {
+        goto end;
+    }
 
     return permission_edit_object_v1_request_local_var;
 end:

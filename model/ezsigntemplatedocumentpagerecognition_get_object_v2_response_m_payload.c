@@ -12,18 +12,21 @@ static ezsigntemplatedocumentpagerecognition_get_object_v2_response_m_payload_t 
     if (!ezsigntemplatedocumentpagerecognition_get_object_v2_response_m_payload_local_var) {
         return NULL;
     }
-    ezsigntemplatedocumentpagerecognition_get_object_v2_response_m_payload_local_var->obj_ezsigntemplatedocumentpagerecognition = obj_ezsigntemplatedocumentpagerecognition;
-
+    memset(ezsigntemplatedocumentpagerecognition_get_object_v2_response_m_payload_local_var, 0, sizeof(ezsigntemplatedocumentpagerecognition_get_object_v2_response_m_payload_t));
     ezsigntemplatedocumentpagerecognition_get_object_v2_response_m_payload_local_var->_library_owned = 1;
+    ezsigntemplatedocumentpagerecognition_get_object_v2_response_m_payload_local_var->obj_ezsigntemplatedocumentpagerecognition = obj_ezsigntemplatedocumentpagerecognition;
     return ezsigntemplatedocumentpagerecognition_get_object_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplatedocumentpagerecognition_get_object_v2_response_m_payload_t *ezsigntemplatedocumentpagerecognition_get_object_v2_response_m_payload_create(
     ezsigntemplatedocumentpagerecognition_response_compound_t *obj_ezsigntemplatedocumentpagerecognition
     ) {
-    return ezsigntemplatedocumentpagerecognition_get_object_v2_response_m_payload_create_internal (
+    ezsigntemplatedocumentpagerecognition_get_object_v2_response_m_payload_t *result = ezsigntemplatedocumentpagerecognition_get_object_v2_response_m_payload_create_internal (
         obj_ezsigntemplatedocumentpagerecognition
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatedocumentpagerecognition_get_object_v2_response_m_payload_free(ezsigntemplatedocumentpagerecognition_get_object_v2_response_m_payload_t *ezsigntemplatedocumentpagerecognition_get_object_v2_response_m_payload) {
@@ -86,9 +89,14 @@ ezsigntemplatedocumentpagerecognition_get_object_v2_response_m_payload_t *ezsign
     obj_ezsigntemplatedocumentpagerecognition_local_nonprim = ezsigntemplatedocumentpagerecognition_response_compound_parseFromJSON(obj_ezsigntemplatedocumentpagerecognition); //nonprimitive
 
 
+
     ezsigntemplatedocumentpagerecognition_get_object_v2_response_m_payload_local_var = ezsigntemplatedocumentpagerecognition_get_object_v2_response_m_payload_create_internal (
         obj_ezsigntemplatedocumentpagerecognition_local_nonprim
         );
+
+    if (!ezsigntemplatedocumentpagerecognition_get_object_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatedocumentpagerecognition_get_object_v2_response_m_payload_local_var;
 end:

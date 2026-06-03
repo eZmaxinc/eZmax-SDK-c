@@ -6,32 +6,47 @@
 
 
 static inscriptionchecklist_autocomplete_element_response_t *inscriptionchecklist_autocomplete_element_response_create_internal(
-    int pki_inscriptionchecklist_id,
+    int *pki_inscriptionchecklist_id,
     char *s_inscriptionchecklistelement_name_x,
-    int b_inscriptionchecklist_isactive
+    int *b_inscriptionchecklist_isactive
     ) {
     inscriptionchecklist_autocomplete_element_response_t *inscriptionchecklist_autocomplete_element_response_local_var = malloc(sizeof(inscriptionchecklist_autocomplete_element_response_t));
     if (!inscriptionchecklist_autocomplete_element_response_local_var) {
         return NULL;
     }
+    memset(inscriptionchecklist_autocomplete_element_response_local_var, 0, sizeof(inscriptionchecklist_autocomplete_element_response_t));
+    inscriptionchecklist_autocomplete_element_response_local_var->_library_owned = 1;
     inscriptionchecklist_autocomplete_element_response_local_var->pki_inscriptionchecklist_id = pki_inscriptionchecklist_id;
     inscriptionchecklist_autocomplete_element_response_local_var->s_inscriptionchecklistelement_name_x = s_inscriptionchecklistelement_name_x;
     inscriptionchecklist_autocomplete_element_response_local_var->b_inscriptionchecklist_isactive = b_inscriptionchecklist_isactive;
-
-    inscriptionchecklist_autocomplete_element_response_local_var->_library_owned = 1;
     return inscriptionchecklist_autocomplete_element_response_local_var;
 }
 
 __attribute__((deprecated)) inscriptionchecklist_autocomplete_element_response_t *inscriptionchecklist_autocomplete_element_response_create(
-    int pki_inscriptionchecklist_id,
+    int *pki_inscriptionchecklist_id,
     char *s_inscriptionchecklistelement_name_x,
-    int b_inscriptionchecklist_isactive
+    int *b_inscriptionchecklist_isactive
     ) {
-    return inscriptionchecklist_autocomplete_element_response_create_internal (
-        pki_inscriptionchecklist_id,
+    int *pki_inscriptionchecklist_id_copy = NULL;
+    if (pki_inscriptionchecklist_id) {
+        pki_inscriptionchecklist_id_copy = malloc(sizeof(int));
+        if (pki_inscriptionchecklist_id_copy) *pki_inscriptionchecklist_id_copy = *pki_inscriptionchecklist_id;
+    }
+    int *b_inscriptionchecklist_isactive_copy = NULL;
+    if (b_inscriptionchecklist_isactive) {
+        b_inscriptionchecklist_isactive_copy = malloc(sizeof(int));
+        if (b_inscriptionchecklist_isactive_copy) *b_inscriptionchecklist_isactive_copy = *b_inscriptionchecklist_isactive;
+    }
+    inscriptionchecklist_autocomplete_element_response_t *result = inscriptionchecklist_autocomplete_element_response_create_internal (
+        pki_inscriptionchecklist_id_copy,
         s_inscriptionchecklistelement_name_x,
-        b_inscriptionchecklist_isactive
+        b_inscriptionchecklist_isactive_copy
         );
+    if (!result) {
+        free(pki_inscriptionchecklist_id_copy);
+        free(b_inscriptionchecklist_isactive_copy);
+    }
+    return result;
 }
 
 void inscriptionchecklist_autocomplete_element_response_free(inscriptionchecklist_autocomplete_element_response_t *inscriptionchecklist_autocomplete_element_response) {
@@ -43,9 +58,17 @@ void inscriptionchecklist_autocomplete_element_response_free(inscriptionchecklis
         return ;
     }
     listEntry_t *listEntry;
+    if (inscriptionchecklist_autocomplete_element_response->pki_inscriptionchecklist_id) {
+        free(inscriptionchecklist_autocomplete_element_response->pki_inscriptionchecklist_id);
+        inscriptionchecklist_autocomplete_element_response->pki_inscriptionchecklist_id = NULL;
+    }
     if (inscriptionchecklist_autocomplete_element_response->s_inscriptionchecklistelement_name_x) {
         free(inscriptionchecklist_autocomplete_element_response->s_inscriptionchecklistelement_name_x);
         inscriptionchecklist_autocomplete_element_response->s_inscriptionchecklistelement_name_x = NULL;
+    }
+    if (inscriptionchecklist_autocomplete_element_response->b_inscriptionchecklist_isactive) {
+        free(inscriptionchecklist_autocomplete_element_response->b_inscriptionchecklist_isactive);
+        inscriptionchecklist_autocomplete_element_response->b_inscriptionchecklist_isactive = NULL;
     }
     free(inscriptionchecklist_autocomplete_element_response);
 }
@@ -57,7 +80,7 @@ cJSON *inscriptionchecklist_autocomplete_element_response_convertToJSON(inscript
     if (!inscriptionchecklist_autocomplete_element_response->pki_inscriptionchecklist_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiInscriptionchecklistID", inscriptionchecklist_autocomplete_element_response->pki_inscriptionchecklist_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiInscriptionchecklistID", *inscriptionchecklist_autocomplete_element_response->pki_inscriptionchecklist_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -75,7 +98,7 @@ cJSON *inscriptionchecklist_autocomplete_element_response_convertToJSON(inscript
     if (!inscriptionchecklist_autocomplete_element_response->b_inscriptionchecklist_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bInscriptionchecklistIsactive", inscriptionchecklist_autocomplete_element_response->b_inscriptionchecklist_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bInscriptionchecklistIsactive", *inscriptionchecklist_autocomplete_element_response->b_inscriptionchecklist_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -91,6 +114,14 @@ inscriptionchecklist_autocomplete_element_response_t *inscriptionchecklist_autoc
 
     inscriptionchecklist_autocomplete_element_response_t *inscriptionchecklist_autocomplete_element_response_local_var = NULL;
 
+    // define the local variable for inscriptionchecklist_autocomplete_element_response->pki_inscriptionchecklist_id
+    int *pki_inscriptionchecklist_id_local_var = NULL;
+
+    char *s_inscriptionchecklistelement_name_x_local_str = NULL;
+
+    // define the local variable for inscriptionchecklist_autocomplete_element_response->b_inscriptionchecklist_isactive
+    int *b_inscriptionchecklist_isactive_local_var = NULL;
+
     // inscriptionchecklist_autocomplete_element_response->pki_inscriptionchecklist_id
     cJSON *pki_inscriptionchecklist_id = cJSON_GetObjectItemCaseSensitive(inscriptionchecklist_autocomplete_element_responseJSON, "pkiInscriptionchecklistID");
     if (cJSON_IsNull(pki_inscriptionchecklist_id)) {
@@ -105,6 +136,12 @@ inscriptionchecklist_autocomplete_element_response_t *inscriptionchecklist_autoc
     {
     goto end; //Numeric
     }
+    pki_inscriptionchecklist_id_local_var = malloc(sizeof(int));
+    if(!pki_inscriptionchecklist_id_local_var)
+    {
+        goto end;
+    }
+    *pki_inscriptionchecklist_id_local_var = pki_inscriptionchecklist_id->valuedouble;
 
     // inscriptionchecklist_autocomplete_element_response->s_inscriptionchecklistelement_name_x
     cJSON *s_inscriptionchecklistelement_name_x = cJSON_GetObjectItemCaseSensitive(inscriptionchecklist_autocomplete_element_responseJSON, "sInscriptionchecklistelementNameX");
@@ -135,16 +172,40 @@ inscriptionchecklist_autocomplete_element_response_t *inscriptionchecklist_autoc
     {
     goto end; //Bool
     }
+    b_inscriptionchecklist_isactive_local_var = malloc(sizeof(int));
+    if(!b_inscriptionchecklist_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_inscriptionchecklist_isactive_local_var = b_inscriptionchecklist_isactive->valueint;
 
+
+    if (s_inscriptionchecklistelement_name_x && !cJSON_IsNull(s_inscriptionchecklistelement_name_x)) s_inscriptionchecklistelement_name_x_local_str = strdup(s_inscriptionchecklistelement_name_x->valuestring);
 
     inscriptionchecklist_autocomplete_element_response_local_var = inscriptionchecklist_autocomplete_element_response_create_internal (
-        pki_inscriptionchecklist_id->valuedouble,
-        strdup(s_inscriptionchecklistelement_name_x->valuestring),
-        b_inscriptionchecklist_isactive->valueint
+        pki_inscriptionchecklist_id_local_var,
+        s_inscriptionchecklistelement_name_x_local_str,
+        b_inscriptionchecklist_isactive_local_var
         );
+
+    if (!inscriptionchecklist_autocomplete_element_response_local_var) {
+        goto end;
+    }
 
     return inscriptionchecklist_autocomplete_element_response_local_var;
 end:
+    if (pki_inscriptionchecklist_id_local_var) {
+        free(pki_inscriptionchecklist_id_local_var);
+        pki_inscriptionchecklist_id_local_var = NULL;
+    }
+    if (s_inscriptionchecklistelement_name_x_local_str) {
+        free(s_inscriptionchecklistelement_name_x_local_str);
+        s_inscriptionchecklistelement_name_x_local_str = NULL;
+    }
+    if (b_inscriptionchecklist_isactive_local_var) {
+        free(b_inscriptionchecklist_isactive_local_var);
+        b_inscriptionchecklist_isactive_local_var = NULL;
+    }
     return NULL;
 
 }

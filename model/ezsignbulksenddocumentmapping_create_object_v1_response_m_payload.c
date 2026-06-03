@@ -12,18 +12,21 @@ static ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_t *ezsi
     if (!ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_local_var->a_pki_ezsignbulksenddocumentmapping_id = a_pki_ezsignbulksenddocumentmapping_id;
-
+    memset(ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_local_var, 0, sizeof(ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_t));
     ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_local_var->a_pki_ezsignbulksenddocumentmapping_id = a_pki_ezsignbulksenddocumentmapping_id;
     return ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_t *ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_create(
     list_t *a_pki_ezsignbulksenddocumentmapping_id
     ) {
-    return ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_create_internal (
+    ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_t *result = ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsignbulksenddocumentmapping_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_free(ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_t *ezsignbulksenddocumentmapping_create_object_v1_response_m_payload) {
@@ -112,9 +115,14 @@ ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_t *ezsignbulks
     }
 
 
+
     ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_local_var = ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsignbulksenddocumentmapping_idList
         );
+
+    if (!ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_local_var;
 end:

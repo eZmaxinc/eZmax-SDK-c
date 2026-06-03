@@ -20,9 +20,9 @@ typedef struct scim_user_list_t scim_user_list_t;
 
 
 typedef struct scim_user_list_t {
-    int total_results; //numeric
-    int items_per_page; //numeric
-    int start_index; //numeric
+    int *total_results; //numeric
+    int *items_per_page; //numeric
+    int *start_index; //numeric
     list_t *schemas; //primitive container
     list_t *resources; //nonprimitive container
 
@@ -30,9 +30,9 @@ typedef struct scim_user_list_t {
 } scim_user_list_t;
 
 __attribute__((deprecated)) scim_user_list_t *scim_user_list_create(
-    int total_results,
-    int items_per_page,
-    int start_index,
+    int *total_results,
+    int *items_per_page,
+    int *start_index,
     list_t *schemas,
     list_t *resources
 );

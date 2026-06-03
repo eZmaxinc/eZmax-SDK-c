@@ -19,16 +19,16 @@ typedef struct website_response_compound_t website_response_compound_t;
 
 
 typedef struct website_response_compound_t {
-    int pki_website_id; //numeric
-    int fki_websitetype_id; //numeric
+    int *pki_website_id; //numeric
+    int *fki_websitetype_id; //numeric
     char *s_website_address; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } website_response_compound_t;
 
 __attribute__((deprecated)) website_response_compound_t *website_response_compound_create(
-    int pki_website_id,
-    int fki_websitetype_id,
+    int *pki_website_id,
+    int *fki_websitetype_id,
     char *s_website_address
 );
 

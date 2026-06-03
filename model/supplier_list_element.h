@@ -19,12 +19,12 @@ typedef struct supplier_list_element_t supplier_list_element_t;
 
 
 typedef struct supplier_list_element_t {
-    int pki_supplier_id; //numeric
-    int fki_paymentmethod_id; //numeric
+    int *pki_supplier_id; //numeric
+    int *fki_paymentmethod_id; //numeric
     char *s_supplier_name; // string
     char *s_supplier_code; // string
     char *s_supplier_account; // string
-    int b_supplier_isactive; //boolean
+    int *b_supplier_isactive; //boolean
     char *s_phone_e164; // string
     char *s_email_address; // string
     char *s_address_civic; // string
@@ -32,7 +32,9 @@ typedef struct supplier_list_element_t {
     char *s_address_suite; // string
     char *s_address_city; // string
     char *s_address_zip; // string
+    int *fki_province_id; //numeric
     char *s_province_name_x; // string
+    int *fki_country_id; //numeric
     char *s_country_name_x; // string
     char *s_paymentmethod_description_x; // string
     char *s_electronicfundstransferbankaccount_transit; // string
@@ -45,12 +47,12 @@ typedef struct supplier_list_element_t {
 } supplier_list_element_t;
 
 __attribute__((deprecated)) supplier_list_element_t *supplier_list_element_create(
-    int pki_supplier_id,
-    int fki_paymentmethod_id,
+    int *pki_supplier_id,
+    int *fki_paymentmethod_id,
     char *s_supplier_name,
     char *s_supplier_code,
     char *s_supplier_account,
-    int b_supplier_isactive,
+    int *b_supplier_isactive,
     char *s_phone_e164,
     char *s_email_address,
     char *s_address_civic,
@@ -58,7 +60,9 @@ __attribute__((deprecated)) supplier_list_element_t *supplier_list_element_creat
     char *s_address_suite,
     char *s_address_city,
     char *s_address_zip,
+    int *fki_province_id,
     char *s_province_name_x,
+    int *fki_country_id,
     char *s_country_name_x,
     char *s_paymentmethod_description_x,
     char *s_electronicfundstransferbankaccount_transit,

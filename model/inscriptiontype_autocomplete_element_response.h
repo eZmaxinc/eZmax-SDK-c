@@ -19,14 +19,14 @@ typedef struct inscriptiontype_autocomplete_element_response_t inscriptiontype_a
 
 
 typedef struct inscriptiontype_autocomplete_element_response_t {
-    int pki_inscriptiontype_id; //numeric
+    int *pki_inscriptiontype_id; //numeric
     char *s_inscriptiontype_name_x; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } inscriptiontype_autocomplete_element_response_t;
 
 __attribute__((deprecated)) inscriptiontype_autocomplete_element_response_t *inscriptiontype_autocomplete_element_response_create(
-    int pki_inscriptiontype_id,
+    int *pki_inscriptiontype_id,
     char *s_inscriptiontype_name_x
 );
 

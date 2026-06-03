@@ -21,11 +21,11 @@ typedef struct domain_response_compound_t domain_response_compound_t;
 
 
 typedef struct domain_response_compound_t {
-    int pki_domain_id; //numeric
+    int *pki_domain_id; //numeric
     char *s_domain_name; // string
-    int b_domain_validdkim; //boolean
-    int b_domain_validmailfrom; //boolean
-    int b_domain_validcustomer; //boolean
+    int *b_domain_validdkim; //boolean
+    int *b_domain_validmailfrom; //boolean
+    int *b_domain_validcustomer; //boolean
     struct common_audit_t *obj_audit; //model
     list_t *a_obj_dnsrecord; //nonprimitive container
 
@@ -33,11 +33,11 @@ typedef struct domain_response_compound_t {
 } domain_response_compound_t;
 
 __attribute__((deprecated)) domain_response_compound_t *domain_response_compound_create(
-    int pki_domain_id,
+    int *pki_domain_id,
     char *s_domain_name,
-    int b_domain_validdkim,
-    int b_domain_validmailfrom,
-    int b_domain_validcustomer,
+    int *b_domain_validdkim,
+    int *b_domain_validmailfrom,
+    int *b_domain_validcustomer,
     common_audit_t *obj_audit,
     list_t *a_obj_dnsrecord
 );

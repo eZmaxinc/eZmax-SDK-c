@@ -6,18 +6,20 @@
 
 
 static permission_response_t *permission_response_create_internal(
-    int pki_permission_id,
-    int fki_user_id,
-    int fki_apikey_id,
-    int fki_usergroup_id,
-    int fki_company_id,
-    int fki_modulesection_id,
+    int *pki_permission_id,
+    int *fki_user_id,
+    int *fki_apikey_id,
+    int *fki_usergroup_id,
+    int *fki_company_id,
+    int *fki_modulesection_id,
     char *s_company_name_x
     ) {
     permission_response_t *permission_response_local_var = malloc(sizeof(permission_response_t));
     if (!permission_response_local_var) {
         return NULL;
     }
+    memset(permission_response_local_var, 0, sizeof(permission_response_t));
+    permission_response_local_var->_library_owned = 1;
     permission_response_local_var->pki_permission_id = pki_permission_id;
     permission_response_local_var->fki_user_id = fki_user_id;
     permission_response_local_var->fki_apikey_id = fki_apikey_id;
@@ -25,29 +27,66 @@ static permission_response_t *permission_response_create_internal(
     permission_response_local_var->fki_company_id = fki_company_id;
     permission_response_local_var->fki_modulesection_id = fki_modulesection_id;
     permission_response_local_var->s_company_name_x = s_company_name_x;
-
-    permission_response_local_var->_library_owned = 1;
     return permission_response_local_var;
 }
 
 __attribute__((deprecated)) permission_response_t *permission_response_create(
-    int pki_permission_id,
-    int fki_user_id,
-    int fki_apikey_id,
-    int fki_usergroup_id,
-    int fki_company_id,
-    int fki_modulesection_id,
+    int *pki_permission_id,
+    int *fki_user_id,
+    int *fki_apikey_id,
+    int *fki_usergroup_id,
+    int *fki_company_id,
+    int *fki_modulesection_id,
     char *s_company_name_x
     ) {
-    return permission_response_create_internal (
-        pki_permission_id,
-        fki_user_id,
-        fki_apikey_id,
-        fki_usergroup_id,
-        fki_company_id,
-        fki_modulesection_id,
+    int *pki_permission_id_copy = NULL;
+    if (pki_permission_id) {
+        pki_permission_id_copy = malloc(sizeof(int));
+        if (pki_permission_id_copy) *pki_permission_id_copy = *pki_permission_id;
+    }
+    int *fki_user_id_copy = NULL;
+    if (fki_user_id) {
+        fki_user_id_copy = malloc(sizeof(int));
+        if (fki_user_id_copy) *fki_user_id_copy = *fki_user_id;
+    }
+    int *fki_apikey_id_copy = NULL;
+    if (fki_apikey_id) {
+        fki_apikey_id_copy = malloc(sizeof(int));
+        if (fki_apikey_id_copy) *fki_apikey_id_copy = *fki_apikey_id;
+    }
+    int *fki_usergroup_id_copy = NULL;
+    if (fki_usergroup_id) {
+        fki_usergroup_id_copy = malloc(sizeof(int));
+        if (fki_usergroup_id_copy) *fki_usergroup_id_copy = *fki_usergroup_id;
+    }
+    int *fki_company_id_copy = NULL;
+    if (fki_company_id) {
+        fki_company_id_copy = malloc(sizeof(int));
+        if (fki_company_id_copy) *fki_company_id_copy = *fki_company_id;
+    }
+    int *fki_modulesection_id_copy = NULL;
+    if (fki_modulesection_id) {
+        fki_modulesection_id_copy = malloc(sizeof(int));
+        if (fki_modulesection_id_copy) *fki_modulesection_id_copy = *fki_modulesection_id;
+    }
+    permission_response_t *result = permission_response_create_internal (
+        pki_permission_id_copy,
+        fki_user_id_copy,
+        fki_apikey_id_copy,
+        fki_usergroup_id_copy,
+        fki_company_id_copy,
+        fki_modulesection_id_copy,
         s_company_name_x
         );
+    if (!result) {
+        free(pki_permission_id_copy);
+        free(fki_user_id_copy);
+        free(fki_apikey_id_copy);
+        free(fki_usergroup_id_copy);
+        free(fki_company_id_copy);
+        free(fki_modulesection_id_copy);
+    }
+    return result;
 }
 
 void permission_response_free(permission_response_t *permission_response) {
@@ -59,6 +98,30 @@ void permission_response_free(permission_response_t *permission_response) {
         return ;
     }
     listEntry_t *listEntry;
+    if (permission_response->pki_permission_id) {
+        free(permission_response->pki_permission_id);
+        permission_response->pki_permission_id = NULL;
+    }
+    if (permission_response->fki_user_id) {
+        free(permission_response->fki_user_id);
+        permission_response->fki_user_id = NULL;
+    }
+    if (permission_response->fki_apikey_id) {
+        free(permission_response->fki_apikey_id);
+        permission_response->fki_apikey_id = NULL;
+    }
+    if (permission_response->fki_usergroup_id) {
+        free(permission_response->fki_usergroup_id);
+        permission_response->fki_usergroup_id = NULL;
+    }
+    if (permission_response->fki_company_id) {
+        free(permission_response->fki_company_id);
+        permission_response->fki_company_id = NULL;
+    }
+    if (permission_response->fki_modulesection_id) {
+        free(permission_response->fki_modulesection_id);
+        permission_response->fki_modulesection_id = NULL;
+    }
     if (permission_response->s_company_name_x) {
         free(permission_response->s_company_name_x);
         permission_response->s_company_name_x = NULL;
@@ -73,14 +136,14 @@ cJSON *permission_response_convertToJSON(permission_response_t *permission_respo
     if (!permission_response->pki_permission_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiPermissionID", permission_response->pki_permission_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiPermissionID", *permission_response->pki_permission_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // permission_response->fki_user_id
     if(permission_response->fki_user_id) {
-    if(cJSON_AddNumberToObject(item, "fkiUserID", permission_response->fki_user_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiUserID", *permission_response->fki_user_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -88,7 +151,7 @@ cJSON *permission_response_convertToJSON(permission_response_t *permission_respo
 
     // permission_response->fki_apikey_id
     if(permission_response->fki_apikey_id) {
-    if(cJSON_AddNumberToObject(item, "fkiApikeyID", permission_response->fki_apikey_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiApikeyID", *permission_response->fki_apikey_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -96,7 +159,7 @@ cJSON *permission_response_convertToJSON(permission_response_t *permission_respo
 
     // permission_response->fki_usergroup_id
     if(permission_response->fki_usergroup_id) {
-    if(cJSON_AddNumberToObject(item, "fkiUsergroupID", permission_response->fki_usergroup_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiUsergroupID", *permission_response->fki_usergroup_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -104,7 +167,7 @@ cJSON *permission_response_convertToJSON(permission_response_t *permission_respo
 
     // permission_response->fki_company_id
     if(permission_response->fki_company_id) {
-    if(cJSON_AddNumberToObject(item, "fkiCompanyID", permission_response->fki_company_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiCompanyID", *permission_response->fki_company_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -114,7 +177,7 @@ cJSON *permission_response_convertToJSON(permission_response_t *permission_respo
     if (!permission_response->fki_modulesection_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiModulesectionID", permission_response->fki_modulesection_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiModulesectionID", *permission_response->fki_modulesection_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -138,6 +201,26 @@ permission_response_t *permission_response_parseFromJSON(cJSON *permission_respo
 
     permission_response_t *permission_response_local_var = NULL;
 
+    // define the local variable for permission_response->pki_permission_id
+    int *pki_permission_id_local_var = NULL;
+
+    // define the local variable for permission_response->fki_user_id
+    int *fki_user_id_local_var = NULL;
+
+    // define the local variable for permission_response->fki_apikey_id
+    int *fki_apikey_id_local_var = NULL;
+
+    // define the local variable for permission_response->fki_usergroup_id
+    int *fki_usergroup_id_local_var = NULL;
+
+    // define the local variable for permission_response->fki_company_id
+    int *fki_company_id_local_var = NULL;
+
+    // define the local variable for permission_response->fki_modulesection_id
+    int *fki_modulesection_id_local_var = NULL;
+
+    char *s_company_name_x_local_str = NULL;
+
     // permission_response->pki_permission_id
     cJSON *pki_permission_id = cJSON_GetObjectItemCaseSensitive(permission_responseJSON, "pkiPermissionID");
     if (cJSON_IsNull(pki_permission_id)) {
@@ -152,6 +235,12 @@ permission_response_t *permission_response_parseFromJSON(cJSON *permission_respo
     {
     goto end; //Numeric
     }
+    pki_permission_id_local_var = malloc(sizeof(int));
+    if(!pki_permission_id_local_var)
+    {
+        goto end;
+    }
+    *pki_permission_id_local_var = pki_permission_id->valuedouble;
 
     // permission_response->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(permission_responseJSON, "fkiUserID");
@@ -163,6 +252,12 @@ permission_response_t *permission_response_parseFromJSON(cJSON *permission_respo
     {
     goto end; //Numeric
     }
+    fki_user_id_local_var = malloc(sizeof(int));
+    if(!fki_user_id_local_var)
+    {
+        goto end;
+    }
+    *fki_user_id_local_var = fki_user_id->valuedouble;
     }
 
     // permission_response->fki_apikey_id
@@ -175,6 +270,12 @@ permission_response_t *permission_response_parseFromJSON(cJSON *permission_respo
     {
     goto end; //Numeric
     }
+    fki_apikey_id_local_var = malloc(sizeof(int));
+    if(!fki_apikey_id_local_var)
+    {
+        goto end;
+    }
+    *fki_apikey_id_local_var = fki_apikey_id->valuedouble;
     }
 
     // permission_response->fki_usergroup_id
@@ -187,6 +288,12 @@ permission_response_t *permission_response_parseFromJSON(cJSON *permission_respo
     {
     goto end; //Numeric
     }
+    fki_usergroup_id_local_var = malloc(sizeof(int));
+    if(!fki_usergroup_id_local_var)
+    {
+        goto end;
+    }
+    *fki_usergroup_id_local_var = fki_usergroup_id->valuedouble;
     }
 
     // permission_response->fki_company_id
@@ -199,6 +306,12 @@ permission_response_t *permission_response_parseFromJSON(cJSON *permission_respo
     {
     goto end; //Numeric
     }
+    fki_company_id_local_var = malloc(sizeof(int));
+    if(!fki_company_id_local_var)
+    {
+        goto end;
+    }
+    *fki_company_id_local_var = fki_company_id->valuedouble;
     }
 
     // permission_response->fki_modulesection_id
@@ -215,6 +328,12 @@ permission_response_t *permission_response_parseFromJSON(cJSON *permission_respo
     {
     goto end; //Numeric
     }
+    fki_modulesection_id_local_var = malloc(sizeof(int));
+    if(!fki_modulesection_id_local_var)
+    {
+        goto end;
+    }
+    *fki_modulesection_id_local_var = fki_modulesection_id->valuedouble;
 
     // permission_response->s_company_name_x
     cJSON *s_company_name_x = cJSON_GetObjectItemCaseSensitive(permission_responseJSON, "sCompanyNameX");
@@ -229,18 +348,52 @@ permission_response_t *permission_response_parseFromJSON(cJSON *permission_respo
     }
 
 
+    if (s_company_name_x && !cJSON_IsNull(s_company_name_x)) s_company_name_x_local_str = strdup(s_company_name_x->valuestring);
+
     permission_response_local_var = permission_response_create_internal (
-        pki_permission_id->valuedouble,
-        fki_user_id ? fki_user_id->valuedouble : 0,
-        fki_apikey_id ? fki_apikey_id->valuedouble : 0,
-        fki_usergroup_id ? fki_usergroup_id->valuedouble : 0,
-        fki_company_id ? fki_company_id->valuedouble : 0,
-        fki_modulesection_id->valuedouble,
-        s_company_name_x && !cJSON_IsNull(s_company_name_x) ? strdup(s_company_name_x->valuestring) : NULL
+        pki_permission_id_local_var,
+        fki_user_id_local_var,
+        fki_apikey_id_local_var,
+        fki_usergroup_id_local_var,
+        fki_company_id_local_var,
+        fki_modulesection_id_local_var,
+        s_company_name_x_local_str
         );
+
+    if (!permission_response_local_var) {
+        goto end;
+    }
 
     return permission_response_local_var;
 end:
+    if (pki_permission_id_local_var) {
+        free(pki_permission_id_local_var);
+        pki_permission_id_local_var = NULL;
+    }
+    if (fki_user_id_local_var) {
+        free(fki_user_id_local_var);
+        fki_user_id_local_var = NULL;
+    }
+    if (fki_apikey_id_local_var) {
+        free(fki_apikey_id_local_var);
+        fki_apikey_id_local_var = NULL;
+    }
+    if (fki_usergroup_id_local_var) {
+        free(fki_usergroup_id_local_var);
+        fki_usergroup_id_local_var = NULL;
+    }
+    if (fki_company_id_local_var) {
+        free(fki_company_id_local_var);
+        fki_company_id_local_var = NULL;
+    }
+    if (fki_modulesection_id_local_var) {
+        free(fki_modulesection_id_local_var);
+        fki_modulesection_id_local_var = NULL;
+    }
+    if (s_company_name_x_local_str) {
+        free(s_company_name_x_local_str);
+        s_company_name_x_local_str = NULL;
+    }
     return NULL;
 
 }

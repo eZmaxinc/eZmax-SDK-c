@@ -12,18 +12,21 @@ static attachment_get_attachmentlogs_v1_response_m_payload_t *attachment_get_att
     if (!attachment_get_attachmentlogs_v1_response_m_payload_local_var) {
         return NULL;
     }
-    attachment_get_attachmentlogs_v1_response_m_payload_local_var->a_obj_attachmentlog = a_obj_attachmentlog;
-
+    memset(attachment_get_attachmentlogs_v1_response_m_payload_local_var, 0, sizeof(attachment_get_attachmentlogs_v1_response_m_payload_t));
     attachment_get_attachmentlogs_v1_response_m_payload_local_var->_library_owned = 1;
+    attachment_get_attachmentlogs_v1_response_m_payload_local_var->a_obj_attachmentlog = a_obj_attachmentlog;
     return attachment_get_attachmentlogs_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) attachment_get_attachmentlogs_v1_response_m_payload_t *attachment_get_attachmentlogs_v1_response_m_payload_create(
     list_t *a_obj_attachmentlog
     ) {
-    return attachment_get_attachmentlogs_v1_response_m_payload_create_internal (
+    attachment_get_attachmentlogs_v1_response_m_payload_t *result = attachment_get_attachmentlogs_v1_response_m_payload_create_internal (
         a_obj_attachmentlog
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void attachment_get_attachmentlogs_v1_response_m_payload_free(attachment_get_attachmentlogs_v1_response_m_payload_t *attachment_get_attachmentlogs_v1_response_m_payload) {
@@ -111,9 +114,14 @@ attachment_get_attachmentlogs_v1_response_m_payload_t *attachment_get_attachment
     }
 
 
+
     attachment_get_attachmentlogs_v1_response_m_payload_local_var = attachment_get_attachmentlogs_v1_response_m_payload_create_internal (
         a_obj_attachmentlogList
         );
+
+    if (!attachment_get_attachmentlogs_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return attachment_get_attachmentlogs_v1_response_m_payload_local_var;
 end:

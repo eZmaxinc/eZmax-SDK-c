@@ -20,8 +20,8 @@ typedef struct otherincome_list_element_t otherincome_list_element_t;
 
 
 typedef struct otherincome_list_element_t {
-    int pki_otherincome_id; //numeric
-    int fki_otherincometype_id; //numeric
+    int *pki_otherincome_id; //numeric
+    int *fki_otherincometype_id; //numeric
     char *s_otherincometype_description_x; // string
     char *s_otherincome_description; // string
     ezmax_api_definition__full_field_e_otherincome_remunerationtype__e e_otherincome_remunerationtype; //referenced enum
@@ -29,14 +29,14 @@ typedef struct otherincome_list_element_t {
     char *d_otherincome_remunerationtaxes; // string
     char *d_otherincome_remunerationtotal; // string
     char *dt_otherincome_paid; // string
-    int b_otherincome_isactive; //boolean
+    int *b_otherincome_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } otherincome_list_element_t;
 
 __attribute__((deprecated)) otherincome_list_element_t *otherincome_list_element_create(
-    int pki_otherincome_id,
-    int fki_otherincometype_id,
+    int *pki_otherincome_id,
+    int *fki_otherincometype_id,
     char *s_otherincometype_description_x,
     char *s_otherincome_description,
     ezmax_api_definition__full_field_e_otherincome_remunerationtype__e e_otherincome_remunerationtype,
@@ -44,7 +44,7 @@ __attribute__((deprecated)) otherincome_list_element_t *otherincome_list_element
     char *d_otherincome_remunerationtaxes,
     char *d_otherincome_remunerationtotal,
     char *dt_otherincome_paid,
-    int b_otherincome_isactive
+    int *b_otherincome_isactive
 );
 
 void otherincome_list_element_free(otherincome_list_element_t *otherincome_list_element);

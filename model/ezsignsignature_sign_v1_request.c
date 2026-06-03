@@ -23,8 +23,8 @@ ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMAT
 }
 
 static ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_create_internal(
-    int fki_ezsignsigningreason_id,
-    int fki_font_id,
+    int *fki_ezsignsigningreason_id,
+    int *fki_font_id,
     char *d_ezsignsignature_creditcardamount,
     char *s_value,
     ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_e e_attachments_confirmation_decision,
@@ -32,12 +32,14 @@ static ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_create
     char *s_svg,
     list_t *a_obj_file,
     custom_creditcard_request_t *obj_creditcard,
-    int b_is_automatic
+    int *b_is_automatic
     ) {
     ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_local_var = malloc(sizeof(ezsignsignature_sign_v1_request_t));
     if (!ezsignsignature_sign_v1_request_local_var) {
         return NULL;
     }
+    memset(ezsignsignature_sign_v1_request_local_var, 0, sizeof(ezsignsignature_sign_v1_request_t));
+    ezsignsignature_sign_v1_request_local_var->_library_owned = 1;
     ezsignsignature_sign_v1_request_local_var->fki_ezsignsigningreason_id = fki_ezsignsigningreason_id;
     ezsignsignature_sign_v1_request_local_var->fki_font_id = fki_font_id;
     ezsignsignature_sign_v1_request_local_var->d_ezsignsignature_creditcardamount = d_ezsignsignature_creditcardamount;
@@ -48,14 +50,12 @@ static ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_create
     ezsignsignature_sign_v1_request_local_var->a_obj_file = a_obj_file;
     ezsignsignature_sign_v1_request_local_var->obj_creditcard = obj_creditcard;
     ezsignsignature_sign_v1_request_local_var->b_is_automatic = b_is_automatic;
-
-    ezsignsignature_sign_v1_request_local_var->_library_owned = 1;
     return ezsignsignature_sign_v1_request_local_var;
 }
 
 __attribute__((deprecated)) ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_create(
-    int fki_ezsignsigningreason_id,
-    int fki_font_id,
+    int *fki_ezsignsigningreason_id,
+    int *fki_font_id,
     char *d_ezsignsignature_creditcardamount,
     char *s_value,
     ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_e e_attachments_confirmation_decision,
@@ -63,11 +63,26 @@ __attribute__((deprecated)) ezsignsignature_sign_v1_request_t *ezsignsignature_s
     char *s_svg,
     list_t *a_obj_file,
     custom_creditcard_request_t *obj_creditcard,
-    int b_is_automatic
+    int *b_is_automatic
     ) {
-    return ezsignsignature_sign_v1_request_create_internal (
-        fki_ezsignsigningreason_id,
-        fki_font_id,
+    int *fki_ezsignsigningreason_id_copy = NULL;
+    if (fki_ezsignsigningreason_id) {
+        fki_ezsignsigningreason_id_copy = malloc(sizeof(int));
+        if (fki_ezsignsigningreason_id_copy) *fki_ezsignsigningreason_id_copy = *fki_ezsignsigningreason_id;
+    }
+    int *fki_font_id_copy = NULL;
+    if (fki_font_id) {
+        fki_font_id_copy = malloc(sizeof(int));
+        if (fki_font_id_copy) *fki_font_id_copy = *fki_font_id;
+    }
+    int *b_is_automatic_copy = NULL;
+    if (b_is_automatic) {
+        b_is_automatic_copy = malloc(sizeof(int));
+        if (b_is_automatic_copy) *b_is_automatic_copy = *b_is_automatic;
+    }
+    ezsignsignature_sign_v1_request_t *result = ezsignsignature_sign_v1_request_create_internal (
+        fki_ezsignsigningreason_id_copy,
+        fki_font_id_copy,
         d_ezsignsignature_creditcardamount,
         s_value,
         e_attachments_confirmation_decision,
@@ -75,8 +90,14 @@ __attribute__((deprecated)) ezsignsignature_sign_v1_request_t *ezsignsignature_s
         s_svg,
         a_obj_file,
         obj_creditcard,
-        b_is_automatic
+        b_is_automatic_copy
         );
+    if (!result) {
+        free(fki_ezsignsigningreason_id_copy);
+        free(fki_font_id_copy);
+        free(b_is_automatic_copy);
+    }
+    return result;
 }
 
 void ezsignsignature_sign_v1_request_free(ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request) {
@@ -88,6 +109,14 @@ void ezsignsignature_sign_v1_request_free(ezsignsignature_sign_v1_request_t *ezs
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignsignature_sign_v1_request->fki_ezsignsigningreason_id) {
+        free(ezsignsignature_sign_v1_request->fki_ezsignsigningreason_id);
+        ezsignsignature_sign_v1_request->fki_ezsignsigningreason_id = NULL;
+    }
+    if (ezsignsignature_sign_v1_request->fki_font_id) {
+        free(ezsignsignature_sign_v1_request->fki_font_id);
+        ezsignsignature_sign_v1_request->fki_font_id = NULL;
+    }
     if (ezsignsignature_sign_v1_request->d_ezsignsignature_creditcardamount) {
         free(ezsignsignature_sign_v1_request->d_ezsignsignature_creditcardamount);
         ezsignsignature_sign_v1_request->d_ezsignsignature_creditcardamount = NULL;
@@ -115,6 +144,10 @@ void ezsignsignature_sign_v1_request_free(ezsignsignature_sign_v1_request_t *ezs
         custom_creditcard_request_free(ezsignsignature_sign_v1_request->obj_creditcard);
         ezsignsignature_sign_v1_request->obj_creditcard = NULL;
     }
+    if (ezsignsignature_sign_v1_request->b_is_automatic) {
+        free(ezsignsignature_sign_v1_request->b_is_automatic);
+        ezsignsignature_sign_v1_request->b_is_automatic = NULL;
+    }
     free(ezsignsignature_sign_v1_request);
 }
 
@@ -123,7 +156,7 @@ cJSON *ezsignsignature_sign_v1_request_convertToJSON(ezsignsignature_sign_v1_req
 
     // ezsignsignature_sign_v1_request->fki_ezsignsigningreason_id
     if(ezsignsignature_sign_v1_request->fki_ezsignsigningreason_id) {
-    if(cJSON_AddNumberToObject(item, "fkiEzsignsigningreasonID", ezsignsignature_sign_v1_request->fki_ezsignsigningreason_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsignsigningreasonID", *ezsignsignature_sign_v1_request->fki_ezsignsigningreason_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -131,7 +164,7 @@ cJSON *ezsignsignature_sign_v1_request_convertToJSON(ezsignsignature_sign_v1_req
 
     // ezsignsignature_sign_v1_request->fki_font_id
     if(ezsignsignature_sign_v1_request->fki_font_id) {
-    if(cJSON_AddNumberToObject(item, "fkiFontID", ezsignsignature_sign_v1_request->fki_font_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiFontID", *ezsignsignature_sign_v1_request->fki_font_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -215,7 +248,7 @@ cJSON *ezsignsignature_sign_v1_request_convertToJSON(ezsignsignature_sign_v1_req
     if (!ezsignsignature_sign_v1_request->b_is_automatic) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bIsAutomatic", ezsignsignature_sign_v1_request->b_is_automatic) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bIsAutomatic", *ezsignsignature_sign_v1_request->b_is_automatic) == NULL) {
     goto fail; //Bool
     }
 
@@ -231,11 +264,28 @@ ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_parseFromJSON
 
     ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_local_var = NULL;
 
+    // define the local variable for ezsignsignature_sign_v1_request->fki_ezsignsigningreason_id
+    int *fki_ezsignsigningreason_id_local_var = NULL;
+
+    // define the local variable for ezsignsignature_sign_v1_request->fki_font_id
+    int *fki_font_id_local_var = NULL;
+
+    char *d_ezsignsignature_creditcardamount_local_str = NULL;
+
+    char *s_value_local_str = NULL;
+
+    char *s_attachments_refusal_reason_local_str = NULL;
+
+    char *s_svg_local_str = NULL;
+
     // define the local list for ezsignsignature_sign_v1_request->a_obj_file
     list_t *a_obj_fileList = NULL;
 
     // define the local variable for ezsignsignature_sign_v1_request->obj_creditcard
     custom_creditcard_request_t *obj_creditcard_local_nonprim = NULL;
+
+    // define the local variable for ezsignsignature_sign_v1_request->b_is_automatic
+    int *b_is_automatic_local_var = NULL;
 
     // ezsignsignature_sign_v1_request->fki_ezsignsigningreason_id
     cJSON *fki_ezsignsigningreason_id = cJSON_GetObjectItemCaseSensitive(ezsignsignature_sign_v1_requestJSON, "fkiEzsignsigningreasonID");
@@ -247,6 +297,12 @@ ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_parseFromJSON
     {
     goto end; //Numeric
     }
+    fki_ezsignsigningreason_id_local_var = malloc(sizeof(int));
+    if(!fki_ezsignsigningreason_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezsignsigningreason_id_local_var = fki_ezsignsigningreason_id->valuedouble;
     }
 
     // ezsignsignature_sign_v1_request->fki_font_id
@@ -259,6 +315,12 @@ ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_parseFromJSON
     {
     goto end; //Numeric
     }
+    fki_font_id_local_var = malloc(sizeof(int));
+    if(!fki_font_id_local_var)
+    {
+        goto end;
+    }
+    *fki_font_id_local_var = fki_font_id->valuedouble;
     }
 
     // ezsignsignature_sign_v1_request->d_ezsignsignature_creditcardamount
@@ -370,23 +432,62 @@ ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_parseFromJSON
     {
     goto end; //Bool
     }
+    b_is_automatic_local_var = malloc(sizeof(int));
+    if(!b_is_automatic_local_var)
+    {
+        goto end;
+    }
+    *b_is_automatic_local_var = b_is_automatic->valueint;
 
+
+    if (d_ezsignsignature_creditcardamount && !cJSON_IsNull(d_ezsignsignature_creditcardamount)) d_ezsignsignature_creditcardamount_local_str = strdup(d_ezsignsignature_creditcardamount->valuestring);
+    if (s_value && !cJSON_IsNull(s_value)) s_value_local_str = strdup(s_value->valuestring);
+    if (s_attachments_refusal_reason && !cJSON_IsNull(s_attachments_refusal_reason)) s_attachments_refusal_reason_local_str = strdup(s_attachments_refusal_reason->valuestring);
+    if (s_svg && !cJSON_IsNull(s_svg)) s_svg_local_str = strdup(s_svg->valuestring);
 
     ezsignsignature_sign_v1_request_local_var = ezsignsignature_sign_v1_request_create_internal (
-        fki_ezsignsigningreason_id ? fki_ezsignsigningreason_id->valuedouble : 0,
-        fki_font_id ? fki_font_id->valuedouble : 0,
-        d_ezsignsignature_creditcardamount && !cJSON_IsNull(d_ezsignsignature_creditcardamount) ? strdup(d_ezsignsignature_creditcardamount->valuestring) : NULL,
-        s_value && !cJSON_IsNull(s_value) ? strdup(s_value->valuestring) : NULL,
+        fki_ezsignsigningreason_id_local_var,
+        fki_font_id_local_var,
+        d_ezsignsignature_creditcardamount_local_str,
+        s_value_local_str,
         e_attachments_confirmation_decision ? e_attachments_confirmation_decisionVariable : ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_NULL,
-        s_attachments_refusal_reason && !cJSON_IsNull(s_attachments_refusal_reason) ? strdup(s_attachments_refusal_reason->valuestring) : NULL,
-        s_svg && !cJSON_IsNull(s_svg) ? strdup(s_svg->valuestring) : NULL,
+        s_attachments_refusal_reason_local_str,
+        s_svg_local_str,
         a_obj_file ? a_obj_fileList : NULL,
         obj_creditcard ? obj_creditcard_local_nonprim : NULL,
-        b_is_automatic->valueint
+        b_is_automatic_local_var
         );
+
+    if (!ezsignsignature_sign_v1_request_local_var) {
+        goto end;
+    }
 
     return ezsignsignature_sign_v1_request_local_var;
 end:
+    if (fki_ezsignsigningreason_id_local_var) {
+        free(fki_ezsignsigningreason_id_local_var);
+        fki_ezsignsigningreason_id_local_var = NULL;
+    }
+    if (fki_font_id_local_var) {
+        free(fki_font_id_local_var);
+        fki_font_id_local_var = NULL;
+    }
+    if (d_ezsignsignature_creditcardamount_local_str) {
+        free(d_ezsignsignature_creditcardamount_local_str);
+        d_ezsignsignature_creditcardamount_local_str = NULL;
+    }
+    if (s_value_local_str) {
+        free(s_value_local_str);
+        s_value_local_str = NULL;
+    }
+    if (s_attachments_refusal_reason_local_str) {
+        free(s_attachments_refusal_reason_local_str);
+        s_attachments_refusal_reason_local_str = NULL;
+    }
+    if (s_svg_local_str) {
+        free(s_svg_local_str);
+        s_svg_local_str = NULL;
+    }
     if (a_obj_fileList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_fileList) {
@@ -399,6 +500,10 @@ end:
     if (obj_creditcard_local_nonprim) {
         custom_creditcard_request_free(obj_creditcard_local_nonprim);
         obj_creditcard_local_nonprim = NULL;
+    }
+    if (b_is_automatic_local_var) {
+        free(b_is_automatic_local_var);
+        b_is_automatic_local_var = NULL;
     }
     return NULL;
 

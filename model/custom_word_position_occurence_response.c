@@ -6,32 +6,53 @@
 
 
 static custom_word_position_occurence_response_t *custom_word_position_occurence_response_create_internal(
-    int i_page,
-    int i_x,
-    int i_y
+    int *i_page,
+    int *i_x,
+    int *i_y
     ) {
     custom_word_position_occurence_response_t *custom_word_position_occurence_response_local_var = malloc(sizeof(custom_word_position_occurence_response_t));
     if (!custom_word_position_occurence_response_local_var) {
         return NULL;
     }
+    memset(custom_word_position_occurence_response_local_var, 0, sizeof(custom_word_position_occurence_response_t));
+    custom_word_position_occurence_response_local_var->_library_owned = 1;
     custom_word_position_occurence_response_local_var->i_page = i_page;
     custom_word_position_occurence_response_local_var->i_x = i_x;
     custom_word_position_occurence_response_local_var->i_y = i_y;
-
-    custom_word_position_occurence_response_local_var->_library_owned = 1;
     return custom_word_position_occurence_response_local_var;
 }
 
 __attribute__((deprecated)) custom_word_position_occurence_response_t *custom_word_position_occurence_response_create(
-    int i_page,
-    int i_x,
-    int i_y
+    int *i_page,
+    int *i_x,
+    int *i_y
     ) {
-    return custom_word_position_occurence_response_create_internal (
-        i_page,
-        i_x,
-        i_y
+    int *i_page_copy = NULL;
+    if (i_page) {
+        i_page_copy = malloc(sizeof(int));
+        if (i_page_copy) *i_page_copy = *i_page;
+    }
+    int *i_x_copy = NULL;
+    if (i_x) {
+        i_x_copy = malloc(sizeof(int));
+        if (i_x_copy) *i_x_copy = *i_x;
+    }
+    int *i_y_copy = NULL;
+    if (i_y) {
+        i_y_copy = malloc(sizeof(int));
+        if (i_y_copy) *i_y_copy = *i_y;
+    }
+    custom_word_position_occurence_response_t *result = custom_word_position_occurence_response_create_internal (
+        i_page_copy,
+        i_x_copy,
+        i_y_copy
         );
+    if (!result) {
+        free(i_page_copy);
+        free(i_x_copy);
+        free(i_y_copy);
+    }
+    return result;
 }
 
 void custom_word_position_occurence_response_free(custom_word_position_occurence_response_t *custom_word_position_occurence_response) {
@@ -43,6 +64,18 @@ void custom_word_position_occurence_response_free(custom_word_position_occurence
         return ;
     }
     listEntry_t *listEntry;
+    if (custom_word_position_occurence_response->i_page) {
+        free(custom_word_position_occurence_response->i_page);
+        custom_word_position_occurence_response->i_page = NULL;
+    }
+    if (custom_word_position_occurence_response->i_x) {
+        free(custom_word_position_occurence_response->i_x);
+        custom_word_position_occurence_response->i_x = NULL;
+    }
+    if (custom_word_position_occurence_response->i_y) {
+        free(custom_word_position_occurence_response->i_y);
+        custom_word_position_occurence_response->i_y = NULL;
+    }
     free(custom_word_position_occurence_response);
 }
 
@@ -51,7 +84,7 @@ cJSON *custom_word_position_occurence_response_convertToJSON(custom_word_positio
 
     // custom_word_position_occurence_response->i_page
     if(custom_word_position_occurence_response->i_page) {
-    if(cJSON_AddNumberToObject(item, "iPage", custom_word_position_occurence_response->i_page) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iPage", *custom_word_position_occurence_response->i_page) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -59,7 +92,7 @@ cJSON *custom_word_position_occurence_response_convertToJSON(custom_word_positio
 
     // custom_word_position_occurence_response->i_x
     if(custom_word_position_occurence_response->i_x) {
-    if(cJSON_AddNumberToObject(item, "iX", custom_word_position_occurence_response->i_x) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iX", *custom_word_position_occurence_response->i_x) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -67,7 +100,7 @@ cJSON *custom_word_position_occurence_response_convertToJSON(custom_word_positio
 
     // custom_word_position_occurence_response->i_y
     if(custom_word_position_occurence_response->i_y) {
-    if(cJSON_AddNumberToObject(item, "iY", custom_word_position_occurence_response->i_y) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iY", *custom_word_position_occurence_response->i_y) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -84,6 +117,15 @@ custom_word_position_occurence_response_t *custom_word_position_occurence_respon
 
     custom_word_position_occurence_response_t *custom_word_position_occurence_response_local_var = NULL;
 
+    // define the local variable for custom_word_position_occurence_response->i_page
+    int *i_page_local_var = NULL;
+
+    // define the local variable for custom_word_position_occurence_response->i_x
+    int *i_x_local_var = NULL;
+
+    // define the local variable for custom_word_position_occurence_response->i_y
+    int *i_y_local_var = NULL;
+
     // custom_word_position_occurence_response->i_page
     cJSON *i_page = cJSON_GetObjectItemCaseSensitive(custom_word_position_occurence_responseJSON, "iPage");
     if (cJSON_IsNull(i_page)) {
@@ -94,6 +136,12 @@ custom_word_position_occurence_response_t *custom_word_position_occurence_respon
     {
     goto end; //Numeric
     }
+    i_page_local_var = malloc(sizeof(int));
+    if(!i_page_local_var)
+    {
+        goto end;
+    }
+    *i_page_local_var = i_page->valuedouble;
     }
 
     // custom_word_position_occurence_response->i_x
@@ -106,6 +154,12 @@ custom_word_position_occurence_response_t *custom_word_position_occurence_respon
     {
     goto end; //Numeric
     }
+    i_x_local_var = malloc(sizeof(int));
+    if(!i_x_local_var)
+    {
+        goto end;
+    }
+    *i_x_local_var = i_x->valuedouble;
     }
 
     // custom_word_position_occurence_response->i_y
@@ -118,17 +172,40 @@ custom_word_position_occurence_response_t *custom_word_position_occurence_respon
     {
     goto end; //Numeric
     }
+    i_y_local_var = malloc(sizeof(int));
+    if(!i_y_local_var)
+    {
+        goto end;
+    }
+    *i_y_local_var = i_y->valuedouble;
     }
 
 
+
     custom_word_position_occurence_response_local_var = custom_word_position_occurence_response_create_internal (
-        i_page ? i_page->valuedouble : 0,
-        i_x ? i_x->valuedouble : 0,
-        i_y ? i_y->valuedouble : 0
+        i_page_local_var,
+        i_x_local_var,
+        i_y_local_var
         );
+
+    if (!custom_word_position_occurence_response_local_var) {
+        goto end;
+    }
 
     return custom_word_position_occurence_response_local_var;
 end:
+    if (i_page_local_var) {
+        free(i_page_local_var);
+        i_page_local_var = NULL;
+    }
+    if (i_x_local_var) {
+        free(i_x_local_var);
+        i_x_local_var = NULL;
+    }
+    if (i_y_local_var) {
+        free(i_y_local_var);
+        i_y_local_var = NULL;
+    }
     return NULL;
 
 }

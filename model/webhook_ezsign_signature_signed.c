@@ -14,11 +14,11 @@ static webhook_ezsign_signature_signed_t *webhook_ezsign_signature_signed_create
     if (!webhook_ezsign_signature_signed_local_var) {
         return NULL;
     }
+    memset(webhook_ezsign_signature_signed_local_var, 0, sizeof(webhook_ezsign_signature_signed_t));
+    webhook_ezsign_signature_signed_local_var->_library_owned = 1;
     webhook_ezsign_signature_signed_local_var->obj_webhook = obj_webhook;
     webhook_ezsign_signature_signed_local_var->a_obj_attempt = a_obj_attempt;
     webhook_ezsign_signature_signed_local_var->obj_ezsignsignature = obj_ezsignsignature;
-
-    webhook_ezsign_signature_signed_local_var->_library_owned = 1;
     return webhook_ezsign_signature_signed_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) webhook_ezsign_signature_signed_t *webhook_ezsign_si
     list_t *a_obj_attempt,
     ezsignsignature_response_t *obj_ezsignsignature
     ) {
-    return webhook_ezsign_signature_signed_create_internal (
+    webhook_ezsign_signature_signed_t *result = webhook_ezsign_signature_signed_create_internal (
         obj_webhook,
         a_obj_attempt,
         obj_ezsignsignature
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void webhook_ezsign_signature_signed_free(webhook_ezsign_signature_signed_t *webhook_ezsign_signature_signed) {
@@ -185,11 +188,16 @@ webhook_ezsign_signature_signed_t *webhook_ezsign_signature_signed_parseFromJSON
     obj_ezsignsignature_local_nonprim = ezsignsignature_response_parseFromJSON(obj_ezsignsignature); //nonprimitive
 
 
+
     webhook_ezsign_signature_signed_local_var = webhook_ezsign_signature_signed_create_internal (
         obj_webhook_local_nonprim,
         a_obj_attemptList,
         obj_ezsignsignature_local_nonprim
         );
+
+    if (!webhook_ezsign_signature_signed_local_var) {
+        goto end;
+    }
 
     return webhook_ezsign_signature_signed_local_var;
 end:

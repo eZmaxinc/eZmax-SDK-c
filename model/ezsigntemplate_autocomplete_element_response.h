@@ -22,8 +22,8 @@ typedef struct ezsigntemplate_autocomplete_element_response_t ezsigntemplate_aut
 typedef struct ezsigntemplate_autocomplete_element_response_t {
     ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel; //referenced enum
     char *s_ezsigntemplate_description; // string
-    int pki_ezsigntemplate_id; //numeric
-    int b_ezsigntemplate_isactive; //boolean
+    int *pki_ezsigntemplate_id; //numeric
+    int *b_ezsigntemplate_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplate_autocomplete_element_response_t;
@@ -31,8 +31,8 @@ typedef struct ezsigntemplate_autocomplete_element_response_t {
 __attribute__((deprecated)) ezsigntemplate_autocomplete_element_response_t *ezsigntemplate_autocomplete_element_response_create(
     ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel,
     char *s_ezsigntemplate_description,
-    int pki_ezsigntemplate_id,
-    int b_ezsigntemplate_isactive
+    int *pki_ezsigntemplate_id,
+    int *b_ezsigntemplate_isactive
 );
 
 void ezsigntemplate_autocomplete_element_response_free(ezsigntemplate_autocomplete_element_response_t *ezsigntemplate_autocomplete_element_response);

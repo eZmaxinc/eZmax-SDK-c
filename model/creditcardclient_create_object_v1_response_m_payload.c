@@ -12,18 +12,21 @@ static creditcardclient_create_object_v1_response_m_payload_t *creditcardclient_
     if (!creditcardclient_create_object_v1_response_m_payload_local_var) {
         return NULL;
     }
-    creditcardclient_create_object_v1_response_m_payload_local_var->a_pki_creditcardclient_id = a_pki_creditcardclient_id;
-
+    memset(creditcardclient_create_object_v1_response_m_payload_local_var, 0, sizeof(creditcardclient_create_object_v1_response_m_payload_t));
     creditcardclient_create_object_v1_response_m_payload_local_var->_library_owned = 1;
+    creditcardclient_create_object_v1_response_m_payload_local_var->a_pki_creditcardclient_id = a_pki_creditcardclient_id;
     return creditcardclient_create_object_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) creditcardclient_create_object_v1_response_m_payload_t *creditcardclient_create_object_v1_response_m_payload_create(
     list_t *a_pki_creditcardclient_id
     ) {
-    return creditcardclient_create_object_v1_response_m_payload_create_internal (
+    creditcardclient_create_object_v1_response_m_payload_t *result = creditcardclient_create_object_v1_response_m_payload_create_internal (
         a_pki_creditcardclient_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void creditcardclient_create_object_v1_response_m_payload_free(creditcardclient_create_object_v1_response_m_payload_t *creditcardclient_create_object_v1_response_m_payload) {
@@ -112,9 +115,14 @@ creditcardclient_create_object_v1_response_m_payload_t *creditcardclient_create_
     }
 
 
+
     creditcardclient_create_object_v1_response_m_payload_local_var = creditcardclient_create_object_v1_response_m_payload_create_internal (
         a_pki_creditcardclient_idList
         );
+
+    if (!creditcardclient_create_object_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return creditcardclient_create_object_v1_response_m_payload_local_var;
 end:

@@ -13,10 +13,10 @@ static billingentityinternal_edit_object_v1_response_t *billingentityinternal_ed
     if (!billingentityinternal_edit_object_v1_response_local_var) {
         return NULL;
     }
+    memset(billingentityinternal_edit_object_v1_response_local_var, 0, sizeof(billingentityinternal_edit_object_v1_response_t));
+    billingentityinternal_edit_object_v1_response_local_var->_library_owned = 1;
     billingentityinternal_edit_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     billingentityinternal_edit_object_v1_response_local_var->obj_debug = obj_debug;
-
-    billingentityinternal_edit_object_v1_response_local_var->_library_owned = 1;
     return billingentityinternal_edit_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) billingentityinternal_edit_object_v1_response_t *bil
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return billingentityinternal_edit_object_v1_response_create_internal (
+    billingentityinternal_edit_object_v1_response_t *result = billingentityinternal_edit_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void billingentityinternal_edit_object_v1_response_free(billingentityinternal_edit_object_v1_response_t *billingentityinternal_edit_object_v1_response) {
@@ -119,10 +122,15 @@ billingentityinternal_edit_object_v1_response_t *billingentityinternal_edit_obje
     }
 
 
+
     billingentityinternal_edit_object_v1_response_local_var = billingentityinternal_edit_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!billingentityinternal_edit_object_v1_response_local_var) {
+        goto end;
+    }
 
     return billingentityinternal_edit_object_v1_response_local_var;
 end:

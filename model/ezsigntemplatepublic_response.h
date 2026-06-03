@@ -21,20 +21,20 @@ typedef struct ezsigntemplatepublic_response_t ezsigntemplatepublic_response_t;
 
 
 typedef struct ezsigntemplatepublic_response_t {
-    int pki_ezsigntemplatepublic_id; //numeric
-    int fki_ezsignfoldertype_id; //numeric
+    int *pki_ezsigntemplatepublic_id; //numeric
+    int *fki_ezsignfoldertype_id; //numeric
     char *s_ezsignfoldertype_name_x; // string
-    int fki_userlogintype_id; //numeric
+    int *fki_userlogintype_id; //numeric
     char *s_userlogintype_description_x; // string
-    int fki_ezsigntemplate_id; //numeric
-    int fki_ezsigntemplatepackage_id; //numeric
+    int *fki_ezsigntemplate_id; //numeric
+    int *fki_ezsigntemplatepackage_id; //numeric
     char *s_ezsigntemplatepublic_description; // string
     char *s_ezsigntemplatepublic_referenceid; // string
-    int b_ezsigntemplatepublic_isactive; //boolean
+    int *b_ezsigntemplatepublic_isactive; //boolean
     char *t_ezsigntemplatepublic_note; // string
     ezmax_api_definition__full_field_e_ezsigntemplatepublic_limittype__e e_ezsigntemplatepublic_limittype; //referenced enum
-    int i_ezsigntemplatepublic_limit; //numeric
-    int i_ezsigntemplatepublic_limitexceeded; //numeric
+    int *i_ezsigntemplatepublic_limit; //numeric
+    int *i_ezsigntemplatepublic_limitexceeded; //numeric
     char *dt_ezsigntemplatepublic_limitexceededsince; // string
     char *s_ezsigntemplatepublic_url; // string
     char *s_ezsigntemplatepublic_ezsigntemplatedescription; // string
@@ -44,20 +44,20 @@ typedef struct ezsigntemplatepublic_response_t {
 } ezsigntemplatepublic_response_t;
 
 __attribute__((deprecated)) ezsigntemplatepublic_response_t *ezsigntemplatepublic_response_create(
-    int pki_ezsigntemplatepublic_id,
-    int fki_ezsignfoldertype_id,
+    int *pki_ezsigntemplatepublic_id,
+    int *fki_ezsignfoldertype_id,
     char *s_ezsignfoldertype_name_x,
-    int fki_userlogintype_id,
+    int *fki_userlogintype_id,
     char *s_userlogintype_description_x,
-    int fki_ezsigntemplate_id,
-    int fki_ezsigntemplatepackage_id,
+    int *fki_ezsigntemplate_id,
+    int *fki_ezsigntemplatepackage_id,
     char *s_ezsigntemplatepublic_description,
     char *s_ezsigntemplatepublic_referenceid,
-    int b_ezsigntemplatepublic_isactive,
+    int *b_ezsigntemplatepublic_isactive,
     char *t_ezsigntemplatepublic_note,
     ezmax_api_definition__full_field_e_ezsigntemplatepublic_limittype__e e_ezsigntemplatepublic_limittype,
-    int i_ezsigntemplatepublic_limit,
-    int i_ezsigntemplatepublic_limitexceeded,
+    int *i_ezsigntemplatepublic_limit,
+    int *i_ezsigntemplatepublic_limitexceeded,
     char *dt_ezsigntemplatepublic_limitexceededsince,
     char *s_ezsigntemplatepublic_url,
     char *s_ezsigntemplatepublic_ezsigntemplatedescription,

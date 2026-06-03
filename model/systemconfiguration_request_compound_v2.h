@@ -23,35 +23,35 @@ typedef struct systemconfiguration_request_compound_v2_t systemconfiguration_req
 
 
 typedef struct systemconfiguration_request_compound_v2_t {
-    int pki_systemconfiguration_id; //numeric
-    int fki_branding_id; //numeric
+    int *pki_systemconfiguration_id; //numeric
+    int *fki_branding_id; //numeric
     ezmax_api_definition__full_field_e_systemconfiguration_newexternaluseraction__e e_systemconfiguration_newexternaluseraction; //referenced enum
     ezmax_api_definition__full_field_e_systemconfiguration_language1__e e_systemconfiguration_language1; //referenced enum
     ezmax_api_definition__full_field_e_systemconfiguration_language2__e e_systemconfiguration_language2; //referenced enum
     ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__e e_systemconfiguration_ezsignofficeplan; //referenced enum
-    int b_systemconfiguration_ezsignpaidbyoffice; //boolean
-    int b_systemconfiguration_ezsignpersonnal; //boolean
-    int b_systemconfiguration_sspr; //boolean
+    int *b_systemconfiguration_ezsignpaidbyoffice; //boolean
+    int *b_systemconfiguration_ezsignpersonnal; //boolean
+    int *b_systemconfiguration_sspr; //boolean
     char *dt_systemconfiguration_readonlyexpirationstart; // string
     char *dt_systemconfiguration_readonlyexpirationend; // string
-    int i_systemconfiguration_ezsignreminderhoursend; //numeric
+    int *i_systemconfiguration_ezsignreminderhoursend; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } systemconfiguration_request_compound_v2_t;
 
 __attribute__((deprecated)) systemconfiguration_request_compound_v2_t *systemconfiguration_request_compound_v2_create(
-    int pki_systemconfiguration_id,
-    int fki_branding_id,
+    int *pki_systemconfiguration_id,
+    int *fki_branding_id,
     ezmax_api_definition__full_field_e_systemconfiguration_newexternaluseraction__e e_systemconfiguration_newexternaluseraction,
     ezmax_api_definition__full_field_e_systemconfiguration_language1__e e_systemconfiguration_language1,
     ezmax_api_definition__full_field_e_systemconfiguration_language2__e e_systemconfiguration_language2,
     ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__e e_systemconfiguration_ezsignofficeplan,
-    int b_systemconfiguration_ezsignpaidbyoffice,
-    int b_systemconfiguration_ezsignpersonnal,
-    int b_systemconfiguration_sspr,
+    int *b_systemconfiguration_ezsignpaidbyoffice,
+    int *b_systemconfiguration_ezsignpersonnal,
+    int *b_systemconfiguration_sspr,
     char *dt_systemconfiguration_readonlyexpirationstart,
     char *dt_systemconfiguration_readonlyexpirationend,
-    int i_systemconfiguration_ezsignreminderhoursend
+    int *i_systemconfiguration_ezsignreminderhoursend
 );
 
 void systemconfiguration_request_compound_v2_free(systemconfiguration_request_compound_v2_t *systemconfiguration_request_compound_v2);

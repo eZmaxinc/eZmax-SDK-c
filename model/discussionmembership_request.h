@@ -19,22 +19,22 @@ typedef struct discussionmembership_request_t discussionmembership_request_t;
 
 
 typedef struct discussionmembership_request_t {
-    int pki_discussionmembership_id; //numeric
-    int fki_discussion_id; //numeric
-    int fki_user_id; //numeric
-    int fki_usergroup_id; //numeric
-    int fki_modulesection_id; //numeric
+    int *pki_discussionmembership_id; //numeric
+    int *fki_discussion_id; //numeric
+    int *fki_user_id; //numeric
+    int *fki_usergroup_id; //numeric
+    int *fki_modulesection_id; //numeric
     char *dt_discussionmembership_joined; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } discussionmembership_request_t;
 
 __attribute__((deprecated)) discussionmembership_request_t *discussionmembership_request_create(
-    int pki_discussionmembership_id,
-    int fki_discussion_id,
-    int fki_user_id,
-    int fki_usergroup_id,
-    int fki_modulesection_id,
+    int *pki_discussionmembership_id,
+    int *fki_discussion_id,
+    int *fki_user_id,
+    int *fki_usergroup_id,
+    int *fki_modulesection_id,
     char *dt_discussionmembership_joined
 );
 

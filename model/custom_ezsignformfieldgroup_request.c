@@ -6,7 +6,7 @@
 
 
 static custom_ezsignformfieldgroup_request_t *custom_ezsignformfieldgroup_request_create_internal(
-    int pki_ezsignformfieldgroup_id,
+    int *pki_ezsignformfieldgroup_id,
     char *s_ezsignformfieldgroup_label,
     list_t *a_obj_ezsignformfield
     ) {
@@ -14,24 +14,33 @@ static custom_ezsignformfieldgroup_request_t *custom_ezsignformfieldgroup_reques
     if (!custom_ezsignformfieldgroup_request_local_var) {
         return NULL;
     }
+    memset(custom_ezsignformfieldgroup_request_local_var, 0, sizeof(custom_ezsignformfieldgroup_request_t));
+    custom_ezsignformfieldgroup_request_local_var->_library_owned = 1;
     custom_ezsignformfieldgroup_request_local_var->pki_ezsignformfieldgroup_id = pki_ezsignformfieldgroup_id;
     custom_ezsignformfieldgroup_request_local_var->s_ezsignformfieldgroup_label = s_ezsignformfieldgroup_label;
     custom_ezsignformfieldgroup_request_local_var->a_obj_ezsignformfield = a_obj_ezsignformfield;
-
-    custom_ezsignformfieldgroup_request_local_var->_library_owned = 1;
     return custom_ezsignformfieldgroup_request_local_var;
 }
 
 __attribute__((deprecated)) custom_ezsignformfieldgroup_request_t *custom_ezsignformfieldgroup_request_create(
-    int pki_ezsignformfieldgroup_id,
+    int *pki_ezsignformfieldgroup_id,
     char *s_ezsignformfieldgroup_label,
     list_t *a_obj_ezsignformfield
     ) {
-    return custom_ezsignformfieldgroup_request_create_internal (
-        pki_ezsignformfieldgroup_id,
+    int *pki_ezsignformfieldgroup_id_copy = NULL;
+    if (pki_ezsignformfieldgroup_id) {
+        pki_ezsignformfieldgroup_id_copy = malloc(sizeof(int));
+        if (pki_ezsignformfieldgroup_id_copy) *pki_ezsignformfieldgroup_id_copy = *pki_ezsignformfieldgroup_id;
+    }
+    custom_ezsignformfieldgroup_request_t *result = custom_ezsignformfieldgroup_request_create_internal (
+        pki_ezsignformfieldgroup_id_copy,
         s_ezsignformfieldgroup_label,
         a_obj_ezsignformfield
         );
+    if (!result) {
+        free(pki_ezsignformfieldgroup_id_copy);
+    }
+    return result;
 }
 
 void custom_ezsignformfieldgroup_request_free(custom_ezsignformfieldgroup_request_t *custom_ezsignformfieldgroup_request) {
@@ -43,6 +52,10 @@ void custom_ezsignformfieldgroup_request_free(custom_ezsignformfieldgroup_reques
         return ;
     }
     listEntry_t *listEntry;
+    if (custom_ezsignformfieldgroup_request->pki_ezsignformfieldgroup_id) {
+        free(custom_ezsignformfieldgroup_request->pki_ezsignformfieldgroup_id);
+        custom_ezsignformfieldgroup_request->pki_ezsignformfieldgroup_id = NULL;
+    }
     if (custom_ezsignformfieldgroup_request->s_ezsignformfieldgroup_label) {
         free(custom_ezsignformfieldgroup_request->s_ezsignformfieldgroup_label);
         custom_ezsignformfieldgroup_request->s_ezsignformfieldgroup_label = NULL;
@@ -62,7 +75,7 @@ cJSON *custom_ezsignformfieldgroup_request_convertToJSON(custom_ezsignformfieldg
 
     // custom_ezsignformfieldgroup_request->pki_ezsignformfieldgroup_id
     if(custom_ezsignformfieldgroup_request->pki_ezsignformfieldgroup_id) {
-    if(cJSON_AddNumberToObject(item, "pkiEzsignformfieldgroupID", custom_ezsignformfieldgroup_request->pki_ezsignformfieldgroup_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzsignformfieldgroupID", *custom_ezsignformfieldgroup_request->pki_ezsignformfieldgroup_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -108,6 +121,11 @@ custom_ezsignformfieldgroup_request_t *custom_ezsignformfieldgroup_request_parse
 
     custom_ezsignformfieldgroup_request_t *custom_ezsignformfieldgroup_request_local_var = NULL;
 
+    // define the local variable for custom_ezsignformfieldgroup_request->pki_ezsignformfieldgroup_id
+    int *pki_ezsignformfieldgroup_id_local_var = NULL;
+
+    char *s_ezsignformfieldgroup_label_local_str = NULL;
+
     // define the local list for custom_ezsignformfieldgroup_request->a_obj_ezsignformfield
     list_t *a_obj_ezsignformfieldList = NULL;
 
@@ -121,6 +139,12 @@ custom_ezsignformfieldgroup_request_t *custom_ezsignformfieldgroup_request_parse
     {
     goto end; //Numeric
     }
+    pki_ezsignformfieldgroup_id_local_var = malloc(sizeof(int));
+    if(!pki_ezsignformfieldgroup_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezsignformfieldgroup_id_local_var = pki_ezsignformfieldgroup_id->valuedouble;
     }
 
     // custom_ezsignformfieldgroup_request->s_ezsignformfieldgroup_label
@@ -163,14 +187,28 @@ custom_ezsignformfieldgroup_request_t *custom_ezsignformfieldgroup_request_parse
     }
 
 
+    if (s_ezsignformfieldgroup_label && !cJSON_IsNull(s_ezsignformfieldgroup_label)) s_ezsignformfieldgroup_label_local_str = strdup(s_ezsignformfieldgroup_label->valuestring);
+
     custom_ezsignformfieldgroup_request_local_var = custom_ezsignformfieldgroup_request_create_internal (
-        pki_ezsignformfieldgroup_id ? pki_ezsignformfieldgroup_id->valuedouble : 0,
-        s_ezsignformfieldgroup_label && !cJSON_IsNull(s_ezsignformfieldgroup_label) ? strdup(s_ezsignformfieldgroup_label->valuestring) : NULL,
+        pki_ezsignformfieldgroup_id_local_var,
+        s_ezsignformfieldgroup_label_local_str,
         a_obj_ezsignformfieldList
         );
 
+    if (!custom_ezsignformfieldgroup_request_local_var) {
+        goto end;
+    }
+
     return custom_ezsignformfieldgroup_request_local_var;
 end:
+    if (pki_ezsignformfieldgroup_id_local_var) {
+        free(pki_ezsignformfieldgroup_id_local_var);
+        pki_ezsignformfieldgroup_id_local_var = NULL;
+    }
+    if (s_ezsignformfieldgroup_label_local_str) {
+        free(s_ezsignformfieldgroup_label_local_str);
+        s_ezsignformfieldgroup_label_local_str = NULL;
+    }
     if (a_obj_ezsignformfieldList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsignformfieldList) {

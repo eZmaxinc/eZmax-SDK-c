@@ -12,18 +12,21 @@ static otherincometype_get_autocomplete_v2_response_m_payload_t *otherincometype
     if (!otherincometype_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    otherincometype_get_autocomplete_v2_response_m_payload_local_var->a_obj_otherincometype = a_obj_otherincometype;
-
+    memset(otherincometype_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(otherincometype_get_autocomplete_v2_response_m_payload_t));
     otherincometype_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    otherincometype_get_autocomplete_v2_response_m_payload_local_var->a_obj_otherincometype = a_obj_otherincometype;
     return otherincometype_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) otherincometype_get_autocomplete_v2_response_m_payload_t *otherincometype_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_otherincometype
     ) {
-    return otherincometype_get_autocomplete_v2_response_m_payload_create_internal (
+    otherincometype_get_autocomplete_v2_response_m_payload_t *result = otherincometype_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_otherincometype
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void otherincometype_get_autocomplete_v2_response_m_payload_free(otherincometype_get_autocomplete_v2_response_m_payload_t *otherincometype_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ otherincometype_get_autocomplete_v2_response_m_payload_t *otherincometype_get_au
     }
 
 
+
     otherincometype_get_autocomplete_v2_response_m_payload_local_var = otherincometype_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_otherincometypeList
         );
+
+    if (!otherincometype_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return otherincometype_get_autocomplete_v2_response_m_payload_local_var;
 end:

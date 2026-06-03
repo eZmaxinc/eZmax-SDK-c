@@ -14,11 +14,11 @@ static supplier_get_list_v1_response_t *supplier_get_list_v1_response_create_int
     if (!supplier_get_list_v1_response_local_var) {
         return NULL;
     }
+    memset(supplier_get_list_v1_response_local_var, 0, sizeof(supplier_get_list_v1_response_t));
+    supplier_get_list_v1_response_local_var->_library_owned = 1;
     supplier_get_list_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     supplier_get_list_v1_response_local_var->obj_debug = obj_debug;
     supplier_get_list_v1_response_local_var->m_payload = m_payload;
-
-    supplier_get_list_v1_response_local_var->_library_owned = 1;
     return supplier_get_list_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) supplier_get_list_v1_response_t *supplier_get_list_v
     common_response_obj_debug_t *obj_debug,
     supplier_get_list_v1_response_m_payload_t *m_payload
     ) {
-    return supplier_get_list_v1_response_create_internal (
+    supplier_get_list_v1_response_t *result = supplier_get_list_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void supplier_get_list_v1_response_free(supplier_get_list_v1_response_t *supplier_get_list_v1_response) {
@@ -156,11 +159,16 @@ supplier_get_list_v1_response_t *supplier_get_list_v1_response_parseFromJSON(cJS
     m_payload_local_nonprim = supplier_get_list_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     supplier_get_list_v1_response_local_var = supplier_get_list_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!supplier_get_list_v1_response_local_var) {
+        goto end;
+    }
 
     return supplier_get_list_v1_response_local_var;
 end:

@@ -12,18 +12,21 @@ static creditcardclient_create_object_v1_request_t *creditcardclient_create_obje
     if (!creditcardclient_create_object_v1_request_local_var) {
         return NULL;
     }
-    creditcardclient_create_object_v1_request_local_var->a_obj_creditcardclient = a_obj_creditcardclient;
-
+    memset(creditcardclient_create_object_v1_request_local_var, 0, sizeof(creditcardclient_create_object_v1_request_t));
     creditcardclient_create_object_v1_request_local_var->_library_owned = 1;
+    creditcardclient_create_object_v1_request_local_var->a_obj_creditcardclient = a_obj_creditcardclient;
     return creditcardclient_create_object_v1_request_local_var;
 }
 
 __attribute__((deprecated)) creditcardclient_create_object_v1_request_t *creditcardclient_create_object_v1_request_create(
     list_t *a_obj_creditcardclient
     ) {
-    return creditcardclient_create_object_v1_request_create_internal (
+    creditcardclient_create_object_v1_request_t *result = creditcardclient_create_object_v1_request_create_internal (
         a_obj_creditcardclient
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void creditcardclient_create_object_v1_request_free(creditcardclient_create_object_v1_request_t *creditcardclient_create_object_v1_request) {
@@ -111,9 +114,14 @@ creditcardclient_create_object_v1_request_t *creditcardclient_create_object_v1_r
     }
 
 
+
     creditcardclient_create_object_v1_request_local_var = creditcardclient_create_object_v1_request_create_internal (
         a_obj_creditcardclientList
         );
+
+    if (!creditcardclient_create_object_v1_request_local_var) {
+        goto end;
+    }
 
     return creditcardclient_create_object_v1_request_local_var;
 end:

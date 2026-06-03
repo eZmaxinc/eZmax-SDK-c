@@ -6,9 +6,9 @@
 
 
 static scim_user_list_t *scim_user_list_create_internal(
-    int total_results,
-    int items_per_page,
-    int start_index,
+    int *total_results,
+    int *items_per_page,
+    int *start_index,
     list_t *schemas,
     list_t *resources
     ) {
@@ -16,30 +16,51 @@ static scim_user_list_t *scim_user_list_create_internal(
     if (!scim_user_list_local_var) {
         return NULL;
     }
+    memset(scim_user_list_local_var, 0, sizeof(scim_user_list_t));
+    scim_user_list_local_var->_library_owned = 1;
     scim_user_list_local_var->total_results = total_results;
     scim_user_list_local_var->items_per_page = items_per_page;
     scim_user_list_local_var->start_index = start_index;
     scim_user_list_local_var->schemas = schemas;
     scim_user_list_local_var->resources = resources;
-
-    scim_user_list_local_var->_library_owned = 1;
     return scim_user_list_local_var;
 }
 
 __attribute__((deprecated)) scim_user_list_t *scim_user_list_create(
-    int total_results,
-    int items_per_page,
-    int start_index,
+    int *total_results,
+    int *items_per_page,
+    int *start_index,
     list_t *schemas,
     list_t *resources
     ) {
-    return scim_user_list_create_internal (
-        total_results,
-        items_per_page,
-        start_index,
+    int *total_results_copy = NULL;
+    if (total_results) {
+        total_results_copy = malloc(sizeof(int));
+        if (total_results_copy) *total_results_copy = *total_results;
+    }
+    int *items_per_page_copy = NULL;
+    if (items_per_page) {
+        items_per_page_copy = malloc(sizeof(int));
+        if (items_per_page_copy) *items_per_page_copy = *items_per_page;
+    }
+    int *start_index_copy = NULL;
+    if (start_index) {
+        start_index_copy = malloc(sizeof(int));
+        if (start_index_copy) *start_index_copy = *start_index;
+    }
+    scim_user_list_t *result = scim_user_list_create_internal (
+        total_results_copy,
+        items_per_page_copy,
+        start_index_copy,
         schemas,
         resources
         );
+    if (!result) {
+        free(total_results_copy);
+        free(items_per_page_copy);
+        free(start_index_copy);
+    }
+    return result;
 }
 
 void scim_user_list_free(scim_user_list_t *scim_user_list) {
@@ -51,6 +72,18 @@ void scim_user_list_free(scim_user_list_t *scim_user_list) {
         return ;
     }
     listEntry_t *listEntry;
+    if (scim_user_list->total_results) {
+        free(scim_user_list->total_results);
+        scim_user_list->total_results = NULL;
+    }
+    if (scim_user_list->items_per_page) {
+        free(scim_user_list->items_per_page);
+        scim_user_list->items_per_page = NULL;
+    }
+    if (scim_user_list->start_index) {
+        free(scim_user_list->start_index);
+        scim_user_list->start_index = NULL;
+    }
     if (scim_user_list->schemas) {
         list_ForEach(listEntry, scim_user_list->schemas) {
             free(listEntry->data);
@@ -73,7 +106,7 @@ cJSON *scim_user_list_convertToJSON(scim_user_list_t *scim_user_list) {
 
     // scim_user_list->total_results
     if(scim_user_list->total_results) {
-    if(cJSON_AddNumberToObject(item, "totalResults", scim_user_list->total_results) == NULL) {
+    if(cJSON_AddNumberToObject(item, "totalResults", *scim_user_list->total_results) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -81,7 +114,7 @@ cJSON *scim_user_list_convertToJSON(scim_user_list_t *scim_user_list) {
 
     // scim_user_list->items_per_page
     if(scim_user_list->items_per_page) {
-    if(cJSON_AddNumberToObject(item, "itemsPerPage", scim_user_list->items_per_page) == NULL) {
+    if(cJSON_AddNumberToObject(item, "itemsPerPage", *scim_user_list->items_per_page) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -89,7 +122,7 @@ cJSON *scim_user_list_convertToJSON(scim_user_list_t *scim_user_list) {
 
     // scim_user_list->start_index
     if(scim_user_list->start_index) {
-    if(cJSON_AddNumberToObject(item, "startIndex", scim_user_list->start_index) == NULL) {
+    if(cJSON_AddNumberToObject(item, "startIndex", *scim_user_list->start_index) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -143,6 +176,15 @@ scim_user_list_t *scim_user_list_parseFromJSON(cJSON *scim_user_listJSON){
 
     scim_user_list_t *scim_user_list_local_var = NULL;
 
+    // define the local variable for scim_user_list->total_results
+    int *total_results_local_var = NULL;
+
+    // define the local variable for scim_user_list->items_per_page
+    int *items_per_page_local_var = NULL;
+
+    // define the local variable for scim_user_list->start_index
+    int *start_index_local_var = NULL;
+
     // define the local list for scim_user_list->schemas
     list_t *schemasList = NULL;
 
@@ -159,6 +201,12 @@ scim_user_list_t *scim_user_list_parseFromJSON(cJSON *scim_user_listJSON){
     {
     goto end; //Numeric
     }
+    total_results_local_var = malloc(sizeof(int));
+    if(!total_results_local_var)
+    {
+        goto end;
+    }
+    *total_results_local_var = total_results->valuedouble;
     }
 
     // scim_user_list->items_per_page
@@ -171,6 +219,12 @@ scim_user_list_t *scim_user_list_parseFromJSON(cJSON *scim_user_listJSON){
     {
     goto end; //Numeric
     }
+    items_per_page_local_var = malloc(sizeof(int));
+    if(!items_per_page_local_var)
+    {
+        goto end;
+    }
+    *items_per_page_local_var = items_per_page->valuedouble;
     }
 
     // scim_user_list->start_index
@@ -183,6 +237,12 @@ scim_user_list_t *scim_user_list_parseFromJSON(cJSON *scim_user_listJSON){
     {
     goto end; //Numeric
     }
+    start_index_local_var = malloc(sizeof(int));
+    if(!start_index_local_var)
+    {
+        goto end;
+    }
+    *start_index_local_var = start_index->valuedouble;
     }
 
     // scim_user_list->schemas
@@ -232,16 +292,33 @@ scim_user_list_t *scim_user_list_parseFromJSON(cJSON *scim_user_listJSON){
     }
 
 
+
     scim_user_list_local_var = scim_user_list_create_internal (
-        total_results ? total_results->valuedouble : 0,
-        items_per_page ? items_per_page->valuedouble : 0,
-        start_index ? start_index->valuedouble : 0,
+        total_results_local_var,
+        items_per_page_local_var,
+        start_index_local_var,
         schemas ? schemasList : NULL,
         resources ? resourcesList : NULL
         );
 
+    if (!scim_user_list_local_var) {
+        goto end;
+    }
+
     return scim_user_list_local_var;
 end:
+    if (total_results_local_var) {
+        free(total_results_local_var);
+        total_results_local_var = NULL;
+    }
+    if (items_per_page_local_var) {
+        free(items_per_page_local_var);
+        items_per_page_local_var = NULL;
+    }
+    if (start_index_local_var) {
+        free(start_index_local_var);
+        start_index_local_var = NULL;
+    }
     if (schemasList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, schemasList) {

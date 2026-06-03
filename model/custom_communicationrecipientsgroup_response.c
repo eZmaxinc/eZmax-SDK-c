@@ -13,10 +13,10 @@ static custom_communicationrecipientsgroup_response_t *custom_communicationrecip
     if (!custom_communicationrecipientsgroup_response_local_var) {
         return NULL;
     }
+    memset(custom_communicationrecipientsgroup_response_local_var, 0, sizeof(custom_communicationrecipientsgroup_response_t));
+    custom_communicationrecipientsgroup_response_local_var->_library_owned = 1;
     custom_communicationrecipientsgroup_response_local_var->s_communicationrecipientsgroup_label = s_communicationrecipientsgroup_label;
     custom_communicationrecipientsgroup_response_local_var->a_obj_communicationrecipientsrecipient = a_obj_communicationrecipientsrecipient;
-
-    custom_communicationrecipientsgroup_response_local_var->_library_owned = 1;
     return custom_communicationrecipientsgroup_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) custom_communicationrecipientsgroup_response_t *cust
     char *s_communicationrecipientsgroup_label,
     list_t *a_obj_communicationrecipientsrecipient
     ) {
-    return custom_communicationrecipientsgroup_response_create_internal (
+    custom_communicationrecipientsgroup_response_t *result = custom_communicationrecipientsgroup_response_create_internal (
         s_communicationrecipientsgroup_label,
         a_obj_communicationrecipientsrecipient
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void custom_communicationrecipientsgroup_response_free(custom_communicationrecipientsgroup_response_t *custom_communicationrecipientsgroup_response) {
@@ -97,6 +100,8 @@ custom_communicationrecipientsgroup_response_t *custom_communicationrecipientsgr
 
     custom_communicationrecipientsgroup_response_t *custom_communicationrecipientsgroup_response_local_var = NULL;
 
+    char *s_communicationrecipientsgroup_label_local_str = NULL;
+
     // define the local list for custom_communicationrecipientsgroup_response->a_obj_communicationrecipientsrecipient
     list_t *a_obj_communicationrecipientsrecipientList = NULL;
 
@@ -143,13 +148,23 @@ custom_communicationrecipientsgroup_response_t *custom_communicationrecipientsgr
     }
 
 
+    if (s_communicationrecipientsgroup_label && !cJSON_IsNull(s_communicationrecipientsgroup_label)) s_communicationrecipientsgroup_label_local_str = strdup(s_communicationrecipientsgroup_label->valuestring);
+
     custom_communicationrecipientsgroup_response_local_var = custom_communicationrecipientsgroup_response_create_internal (
-        strdup(s_communicationrecipientsgroup_label->valuestring),
+        s_communicationrecipientsgroup_label_local_str,
         a_obj_communicationrecipientsrecipientList
         );
 
+    if (!custom_communicationrecipientsgroup_response_local_var) {
+        goto end;
+    }
+
     return custom_communicationrecipientsgroup_response_local_var;
 end:
+    if (s_communicationrecipientsgroup_label_local_str) {
+        free(s_communicationrecipientsgroup_label_local_str);
+        s_communicationrecipientsgroup_label_local_str = NULL;
+    }
     if (a_obj_communicationrecipientsrecipientList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_communicationrecipientsrecipientList) {

@@ -12,18 +12,21 @@ static ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload
     if (!ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_local_var->a_pki_ezsignsignergroupmembership_id = a_pki_ezsignsignergroupmembership_id;
-
+    memset(ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_local_var, 0, sizeof(ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_t));
     ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_local_var->a_pki_ezsignsignergroupmembership_id = a_pki_ezsignsignergroupmembership_id;
     return ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_t *ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_create(
     list_t *a_pki_ezsignsignergroupmembership_id
     ) {
-    return ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_create_internal (
+    ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_t *result = ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_create_internal (
         a_pki_ezsignsignergroupmembership_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_free(ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_t *ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload) {
@@ -112,9 +115,14 @@ ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_t *ezs
     }
 
 
+
     ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_local_var = ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_create_internal (
         a_pki_ezsignsignergroupmembership_idList
         );
+
+    if (!ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_local_var;
 end:

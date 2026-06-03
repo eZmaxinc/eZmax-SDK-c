@@ -12,18 +12,21 @@ static ezsigndocument_decline_to_sign_v1_request_t *ezsigndocument_decline_to_si
     if (!ezsigndocument_decline_to_sign_v1_request_local_var) {
         return NULL;
     }
-    ezsigndocument_decline_to_sign_v1_request_local_var->s_reason = s_reason;
-
+    memset(ezsigndocument_decline_to_sign_v1_request_local_var, 0, sizeof(ezsigndocument_decline_to_sign_v1_request_t));
     ezsigndocument_decline_to_sign_v1_request_local_var->_library_owned = 1;
+    ezsigndocument_decline_to_sign_v1_request_local_var->s_reason = s_reason;
     return ezsigndocument_decline_to_sign_v1_request_local_var;
 }
 
 __attribute__((deprecated)) ezsigndocument_decline_to_sign_v1_request_t *ezsigndocument_decline_to_sign_v1_request_create(
     char *s_reason
     ) {
-    return ezsigndocument_decline_to_sign_v1_request_create_internal (
+    ezsigndocument_decline_to_sign_v1_request_t *result = ezsigndocument_decline_to_sign_v1_request_create_internal (
         s_reason
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigndocument_decline_to_sign_v1_request_free(ezsigndocument_decline_to_sign_v1_request_t *ezsigndocument_decline_to_sign_v1_request) {
@@ -65,6 +68,8 @@ ezsigndocument_decline_to_sign_v1_request_t *ezsigndocument_decline_to_sign_v1_r
 
     ezsigndocument_decline_to_sign_v1_request_t *ezsigndocument_decline_to_sign_v1_request_local_var = NULL;
 
+    char *s_reason_local_str = NULL;
+
     // ezsigndocument_decline_to_sign_v1_request->s_reason
     cJSON *s_reason = cJSON_GetObjectItemCaseSensitive(ezsigndocument_decline_to_sign_v1_requestJSON, "sReason");
     if (cJSON_IsNull(s_reason)) {
@@ -81,12 +86,22 @@ ezsigndocument_decline_to_sign_v1_request_t *ezsigndocument_decline_to_sign_v1_r
     }
 
 
+    if (s_reason && !cJSON_IsNull(s_reason)) s_reason_local_str = strdup(s_reason->valuestring);
+
     ezsigndocument_decline_to_sign_v1_request_local_var = ezsigndocument_decline_to_sign_v1_request_create_internal (
-        strdup(s_reason->valuestring)
+        s_reason_local_str
         );
+
+    if (!ezsigndocument_decline_to_sign_v1_request_local_var) {
+        goto end;
+    }
 
     return ezsigndocument_decline_to_sign_v1_request_local_var;
 end:
+    if (s_reason_local_str) {
+        free(s_reason_local_str);
+        s_reason_local_str = NULL;
+    }
     return NULL;
 
 }

@@ -13,10 +13,10 @@ static ezsigndocument_request_patch_t *ezsigndocument_request_patch_create_inter
     if (!ezsigndocument_request_patch_local_var) {
         return NULL;
     }
+    memset(ezsigndocument_request_patch_local_var, 0, sizeof(ezsigndocument_request_patch_t));
+    ezsigndocument_request_patch_local_var->_library_owned = 1;
     ezsigndocument_request_patch_local_var->dt_ezsigndocument_duedate = dt_ezsigndocument_duedate;
     ezsigndocument_request_patch_local_var->s_ezsigndocument_name = s_ezsigndocument_name;
-
-    ezsigndocument_request_patch_local_var->_library_owned = 1;
     return ezsigndocument_request_patch_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) ezsigndocument_request_patch_t *ezsigndocument_reque
     char *dt_ezsigndocument_duedate,
     char *s_ezsigndocument_name
     ) {
-    return ezsigndocument_request_patch_create_internal (
+    ezsigndocument_request_patch_t *result = ezsigndocument_request_patch_create_internal (
         dt_ezsigndocument_duedate,
         s_ezsigndocument_name
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigndocument_request_patch_free(ezsigndocument_request_patch_t *ezsigndocument_request_patch) {
@@ -80,6 +83,10 @@ ezsigndocument_request_patch_t *ezsigndocument_request_patch_parseFromJSON(cJSON
 
     ezsigndocument_request_patch_t *ezsigndocument_request_patch_local_var = NULL;
 
+    char *dt_ezsigndocument_duedate_local_str = NULL;
+
+    char *s_ezsigndocument_name_local_str = NULL;
+
     // ezsigndocument_request_patch->dt_ezsigndocument_duedate
     cJSON *dt_ezsigndocument_duedate = cJSON_GetObjectItemCaseSensitive(ezsigndocument_request_patchJSON, "dtEzsigndocumentDuedate");
     if (cJSON_IsNull(dt_ezsigndocument_duedate)) {
@@ -105,13 +112,28 @@ ezsigndocument_request_patch_t *ezsigndocument_request_patch_parseFromJSON(cJSON
     }
 
 
+    if (dt_ezsigndocument_duedate && !cJSON_IsNull(dt_ezsigndocument_duedate)) dt_ezsigndocument_duedate_local_str = strdup(dt_ezsigndocument_duedate->valuestring);
+    if (s_ezsigndocument_name && !cJSON_IsNull(s_ezsigndocument_name)) s_ezsigndocument_name_local_str = strdup(s_ezsigndocument_name->valuestring);
+
     ezsigndocument_request_patch_local_var = ezsigndocument_request_patch_create_internal (
-        dt_ezsigndocument_duedate && !cJSON_IsNull(dt_ezsigndocument_duedate) ? strdup(dt_ezsigndocument_duedate->valuestring) : NULL,
-        s_ezsigndocument_name && !cJSON_IsNull(s_ezsigndocument_name) ? strdup(s_ezsigndocument_name->valuestring) : NULL
+        dt_ezsigndocument_duedate_local_str,
+        s_ezsigndocument_name_local_str
         );
+
+    if (!ezsigndocument_request_patch_local_var) {
+        goto end;
+    }
 
     return ezsigndocument_request_patch_local_var;
 end:
+    if (dt_ezsigndocument_duedate_local_str) {
+        free(dt_ezsigndocument_duedate_local_str);
+        dt_ezsigndocument_duedate_local_str = NULL;
+    }
+    if (s_ezsigndocument_name_local_str) {
+        free(s_ezsigndocument_name_local_str);
+        s_ezsigndocument_name_local_str = NULL;
+    }
     return NULL;
 
 }

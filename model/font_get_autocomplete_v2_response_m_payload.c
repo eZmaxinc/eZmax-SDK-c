@@ -12,18 +12,21 @@ static font_get_autocomplete_v2_response_m_payload_t *font_get_autocomplete_v2_r
     if (!font_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    font_get_autocomplete_v2_response_m_payload_local_var->a_obj_font = a_obj_font;
-
+    memset(font_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(font_get_autocomplete_v2_response_m_payload_t));
     font_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    font_get_autocomplete_v2_response_m_payload_local_var->a_obj_font = a_obj_font;
     return font_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) font_get_autocomplete_v2_response_m_payload_t *font_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_font
     ) {
-    return font_get_autocomplete_v2_response_m_payload_create_internal (
+    font_get_autocomplete_v2_response_m_payload_t *result = font_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_font
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void font_get_autocomplete_v2_response_m_payload_free(font_get_autocomplete_v2_response_m_payload_t *font_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ font_get_autocomplete_v2_response_m_payload_t *font_get_autocomplete_v2_response
     }
 
 
+
     font_get_autocomplete_v2_response_m_payload_local_var = font_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_fontList
         );
+
+    if (!font_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return font_get_autocomplete_v2_response_m_payload_local_var;
 end:

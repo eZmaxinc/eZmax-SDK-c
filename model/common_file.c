@@ -32,12 +32,12 @@ static common_file_t *common_file_create_internal(
     if (!common_file_local_var) {
         return NULL;
     }
+    memset(common_file_local_var, 0, sizeof(common_file_t));
+    common_file_local_var->_library_owned = 1;
     common_file_local_var->s_file_name = s_file_name;
     common_file_local_var->s_file_url = s_file_url;
     common_file_local_var->s_file_base64 = s_file_base64;
     common_file_local_var->e_file_source = e_file_source;
-
-    common_file_local_var->_library_owned = 1;
     return common_file_local_var;
 }
 
@@ -47,12 +47,15 @@ __attribute__((deprecated)) common_file_t *common_file_create(
     char *s_file_base64,
     ezmax_api_definition__full_common_file_EFILESOURCE_e e_file_source
     ) {
-    return common_file_create_internal (
+    common_file_t *result = common_file_create_internal (
         s_file_name,
         s_file_url,
         s_file_base64,
         e_file_source
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void common_file_free(common_file_t *common_file) {
@@ -128,6 +131,12 @@ common_file_t *common_file_parseFromJSON(cJSON *common_fileJSON){
 
     common_file_t *common_file_local_var = NULL;
 
+    char *s_file_name_local_str = NULL;
+
+    char *s_file_url_local_str = NULL;
+
+    char *s_file_base64_local_str = NULL;
+
     // common_file->s_file_name
     cJSON *s_file_name = cJSON_GetObjectItemCaseSensitive(common_fileJSON, "sFileName");
     if (cJSON_IsNull(s_file_name)) {
@@ -185,15 +194,35 @@ common_file_t *common_file_parseFromJSON(cJSON *common_fileJSON){
     e_file_sourceVariable = common_file_e_file_source_FromString(e_file_source->valuestring);
 
 
+    if (s_file_name && !cJSON_IsNull(s_file_name)) s_file_name_local_str = strdup(s_file_name->valuestring);
+    if (s_file_url && !cJSON_IsNull(s_file_url)) s_file_url_local_str = strdup(s_file_url->valuestring);
+    if (s_file_base64) s_file_base64_local_str = strdup(s_file_base64->valuestring);
+
     common_file_local_var = common_file_create_internal (
-        strdup(s_file_name->valuestring),
-        s_file_url && !cJSON_IsNull(s_file_url) ? strdup(s_file_url->valuestring) : NULL,
-        s_file_base64 ? strdup(s_file_base64->valuestring) : NULL,
+        s_file_name_local_str,
+        s_file_url_local_str,
+        s_file_base64_local_str,
         e_file_sourceVariable
         );
 
+    if (!common_file_local_var) {
+        goto end;
+    }
+
     return common_file_local_var;
 end:
+    if (s_file_name_local_str) {
+        free(s_file_name_local_str);
+        s_file_name_local_str = NULL;
+    }
+    if (s_file_url_local_str) {
+        free(s_file_url_local_str);
+        s_file_url_local_str = NULL;
+    }
+    if (s_file_base64_local_str) {
+        free(s_file_base64_local_str);
+        s_file_base64_local_str = NULL;
+    }
     return NULL;
 
 }

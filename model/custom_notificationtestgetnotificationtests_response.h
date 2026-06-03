@@ -21,25 +21,25 @@ typedef struct custom_notificationtestgetnotificationtests_response_t custom_not
 
 
 typedef struct custom_notificationtestgetnotificationtests_response_t {
-    int pki_notificationtest_id; //numeric
+    int *pki_notificationtest_id; //numeric
     struct multilingual_notificationtest_name_t *obj_notificationtest_name; //model
-    int fki_notificationsubsection_id; //numeric
+    int *fki_notificationsubsection_id; //numeric
     char *s_notificationtest_function; // string
     char *s_notificationtest_name_x; // string
     ezmax_api_definition__full_field_e_notificationpreference_status__e e_notificationpreference_status; //referenced enum
-    int i_notificationtest; //numeric
+    int *i_notificationtest; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } custom_notificationtestgetnotificationtests_response_t;
 
 __attribute__((deprecated)) custom_notificationtestgetnotificationtests_response_t *custom_notificationtestgetnotificationtests_response_create(
-    int pki_notificationtest_id,
+    int *pki_notificationtest_id,
     multilingual_notificationtest_name_t *obj_notificationtest_name,
-    int fki_notificationsubsection_id,
+    int *fki_notificationsubsection_id,
     char *s_notificationtest_function,
     char *s_notificationtest_name_x,
     ezmax_api_definition__full_field_e_notificationpreference_status__e e_notificationpreference_status,
-    int i_notificationtest
+    int *i_notificationtest
 );
 
 void custom_notificationtestgetnotificationtests_response_free(custom_notificationtestgetnotificationtests_response_t *custom_notificationtestgetnotificationtests_response);

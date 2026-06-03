@@ -12,18 +12,21 @@ static inscriptiontemp_get_communication_list_v1_response_m_payload_t *inscripti
     if (!inscriptiontemp_get_communication_list_v1_response_m_payload_local_var) {
         return NULL;
     }
-    inscriptiontemp_get_communication_list_v1_response_m_payload_local_var->a_obj_communication = a_obj_communication;
-
+    memset(inscriptiontemp_get_communication_list_v1_response_m_payload_local_var, 0, sizeof(inscriptiontemp_get_communication_list_v1_response_m_payload_t));
     inscriptiontemp_get_communication_list_v1_response_m_payload_local_var->_library_owned = 1;
+    inscriptiontemp_get_communication_list_v1_response_m_payload_local_var->a_obj_communication = a_obj_communication;
     return inscriptiontemp_get_communication_list_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) inscriptiontemp_get_communication_list_v1_response_m_payload_t *inscriptiontemp_get_communication_list_v1_response_m_payload_create(
     list_t *a_obj_communication
     ) {
-    return inscriptiontemp_get_communication_list_v1_response_m_payload_create_internal (
+    inscriptiontemp_get_communication_list_v1_response_m_payload_t *result = inscriptiontemp_get_communication_list_v1_response_m_payload_create_internal (
         a_obj_communication
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void inscriptiontemp_get_communication_list_v1_response_m_payload_free(inscriptiontemp_get_communication_list_v1_response_m_payload_t *inscriptiontemp_get_communication_list_v1_response_m_payload) {
@@ -111,9 +114,14 @@ inscriptiontemp_get_communication_list_v1_response_m_payload_t *inscriptiontemp_
     }
 
 
+
     inscriptiontemp_get_communication_list_v1_response_m_payload_local_var = inscriptiontemp_get_communication_list_v1_response_m_payload_create_internal (
         a_obj_communicationList
         );
+
+    if (!inscriptiontemp_get_communication_list_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return inscriptiontemp_get_communication_list_v1_response_m_payload_local_var;
 end:

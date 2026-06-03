@@ -8,34 +8,49 @@
 static user_autocomplete_element_response_t *user_autocomplete_element_response_create_internal(
     ezmax_api_definition__full_field_e_user_type__e e_user_type,
     char *s_user_name,
-    int pki_user_id,
-    int b_user_isactive
+    int *pki_user_id,
+    int *b_user_isactive
     ) {
     user_autocomplete_element_response_t *user_autocomplete_element_response_local_var = malloc(sizeof(user_autocomplete_element_response_t));
     if (!user_autocomplete_element_response_local_var) {
         return NULL;
     }
+    memset(user_autocomplete_element_response_local_var, 0, sizeof(user_autocomplete_element_response_t));
+    user_autocomplete_element_response_local_var->_library_owned = 1;
     user_autocomplete_element_response_local_var->e_user_type = e_user_type;
     user_autocomplete_element_response_local_var->s_user_name = s_user_name;
     user_autocomplete_element_response_local_var->pki_user_id = pki_user_id;
     user_autocomplete_element_response_local_var->b_user_isactive = b_user_isactive;
-
-    user_autocomplete_element_response_local_var->_library_owned = 1;
     return user_autocomplete_element_response_local_var;
 }
 
 __attribute__((deprecated)) user_autocomplete_element_response_t *user_autocomplete_element_response_create(
     ezmax_api_definition__full_field_e_user_type__e e_user_type,
     char *s_user_name,
-    int pki_user_id,
-    int b_user_isactive
+    int *pki_user_id,
+    int *b_user_isactive
     ) {
-    return user_autocomplete_element_response_create_internal (
+    int *pki_user_id_copy = NULL;
+    if (pki_user_id) {
+        pki_user_id_copy = malloc(sizeof(int));
+        if (pki_user_id_copy) *pki_user_id_copy = *pki_user_id;
+    }
+    int *b_user_isactive_copy = NULL;
+    if (b_user_isactive) {
+        b_user_isactive_copy = malloc(sizeof(int));
+        if (b_user_isactive_copy) *b_user_isactive_copy = *b_user_isactive;
+    }
+    user_autocomplete_element_response_t *result = user_autocomplete_element_response_create_internal (
         e_user_type,
         s_user_name,
-        pki_user_id,
-        b_user_isactive
+        pki_user_id_copy,
+        b_user_isactive_copy
         );
+    if (!result) {
+        free(pki_user_id_copy);
+        free(b_user_isactive_copy);
+    }
+    return result;
 }
 
 void user_autocomplete_element_response_free(user_autocomplete_element_response_t *user_autocomplete_element_response) {
@@ -50,6 +65,14 @@ void user_autocomplete_element_response_free(user_autocomplete_element_response_
     if (user_autocomplete_element_response->s_user_name) {
         free(user_autocomplete_element_response->s_user_name);
         user_autocomplete_element_response->s_user_name = NULL;
+    }
+    if (user_autocomplete_element_response->pki_user_id) {
+        free(user_autocomplete_element_response->pki_user_id);
+        user_autocomplete_element_response->pki_user_id = NULL;
+    }
+    if (user_autocomplete_element_response->b_user_isactive) {
+        free(user_autocomplete_element_response->b_user_isactive);
+        user_autocomplete_element_response->b_user_isactive = NULL;
     }
     free(user_autocomplete_element_response);
 }
@@ -84,7 +107,7 @@ cJSON *user_autocomplete_element_response_convertToJSON(user_autocomplete_elemen
     if (!user_autocomplete_element_response->pki_user_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiUserID", user_autocomplete_element_response->pki_user_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiUserID", *user_autocomplete_element_response->pki_user_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -93,7 +116,7 @@ cJSON *user_autocomplete_element_response_convertToJSON(user_autocomplete_elemen
     if (!user_autocomplete_element_response->b_user_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bUserIsactive", user_autocomplete_element_response->b_user_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bUserIsactive", *user_autocomplete_element_response->b_user_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -111,6 +134,14 @@ user_autocomplete_element_response_t *user_autocomplete_element_response_parseFr
 
     // define the local variable for user_autocomplete_element_response->e_user_type
     ezmax_api_definition__full_field_e_user_type__e e_user_type_local_nonprim = 0;
+
+    char *s_user_name_local_str = NULL;
+
+    // define the local variable for user_autocomplete_element_response->pki_user_id
+    int *pki_user_id_local_var = NULL;
+
+    // define the local variable for user_autocomplete_element_response->b_user_isactive
+    int *b_user_isactive_local_var = NULL;
 
     // user_autocomplete_element_response->e_user_type
     cJSON *e_user_type = cJSON_GetObjectItemCaseSensitive(user_autocomplete_element_responseJSON, "eUserType");
@@ -153,6 +184,12 @@ user_autocomplete_element_response_t *user_autocomplete_element_response_parseFr
     {
     goto end; //Numeric
     }
+    pki_user_id_local_var = malloc(sizeof(int));
+    if(!pki_user_id_local_var)
+    {
+        goto end;
+    }
+    *pki_user_id_local_var = pki_user_id->valuedouble;
 
     // user_autocomplete_element_response->b_user_isactive
     cJSON *b_user_isactive = cJSON_GetObjectItemCaseSensitive(user_autocomplete_element_responseJSON, "bUserIsactive");
@@ -168,19 +205,43 @@ user_autocomplete_element_response_t *user_autocomplete_element_response_parseFr
     {
     goto end; //Bool
     }
+    b_user_isactive_local_var = malloc(sizeof(int));
+    if(!b_user_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_user_isactive_local_var = b_user_isactive->valueint;
 
+
+    if (s_user_name && !cJSON_IsNull(s_user_name)) s_user_name_local_str = strdup(s_user_name->valuestring);
 
     user_autocomplete_element_response_local_var = user_autocomplete_element_response_create_internal (
         e_user_type_local_nonprim,
-        strdup(s_user_name->valuestring),
-        pki_user_id->valuedouble,
-        b_user_isactive->valueint
+        s_user_name_local_str,
+        pki_user_id_local_var,
+        b_user_isactive_local_var
         );
+
+    if (!user_autocomplete_element_response_local_var) {
+        goto end;
+    }
 
     return user_autocomplete_element_response_local_var;
 end:
     if (e_user_type_local_nonprim) {
         e_user_type_local_nonprim = 0;
+    }
+    if (s_user_name_local_str) {
+        free(s_user_name_local_str);
+        s_user_name_local_str = NULL;
+    }
+    if (pki_user_id_local_var) {
+        free(pki_user_id_local_var);
+        pki_user_id_local_var = NULL;
+    }
+    if (b_user_isactive_local_var) {
+        free(b_user_isactive_local_var);
+        b_user_isactive_local_var = NULL;
     }
     return NULL;
 

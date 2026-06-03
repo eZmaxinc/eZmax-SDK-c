@@ -13,10 +13,10 @@ static ezsignfolder_create_object_v1_request_t *ezsignfolder_create_object_v1_re
     if (!ezsignfolder_create_object_v1_request_local_var) {
         return NULL;
     }
+    memset(ezsignfolder_create_object_v1_request_local_var, 0, sizeof(ezsignfolder_create_object_v1_request_t));
+    ezsignfolder_create_object_v1_request_local_var->_library_owned = 1;
     ezsignfolder_create_object_v1_request_local_var->obj_ezsignfolder = obj_ezsignfolder;
     ezsignfolder_create_object_v1_request_local_var->obj_ezsignfolder_compound = obj_ezsignfolder_compound;
-
-    ezsignfolder_create_object_v1_request_local_var->_library_owned = 1;
     return ezsignfolder_create_object_v1_request_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) ezsignfolder_create_object_v1_request_t *ezsignfolde
     ezsignfolder_request_t *obj_ezsignfolder,
     ezsignfolder_request_compound_t *obj_ezsignfolder_compound
     ) {
-    return ezsignfolder_create_object_v1_request_create_internal (
+    ezsignfolder_create_object_v1_request_t *result = ezsignfolder_create_object_v1_request_create_internal (
         obj_ezsignfolder,
         obj_ezsignfolder_compound
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignfolder_create_object_v1_request_free(ezsignfolder_create_object_v1_request_t *ezsignfolder_create_object_v1_request) {
@@ -115,10 +118,15 @@ ezsignfolder_create_object_v1_request_t *ezsignfolder_create_object_v1_request_p
     }
 
 
+
     ezsignfolder_create_object_v1_request_local_var = ezsignfolder_create_object_v1_request_create_internal (
         obj_ezsignfolder ? obj_ezsignfolder_local_nonprim : NULL,
         obj_ezsignfolder_compound ? obj_ezsignfolder_compound_local_nonprim : NULL
         );
+
+    if (!ezsignfolder_create_object_v1_request_local_var) {
+        goto end;
+    }
 
     return ezsignfolder_create_object_v1_request_local_var;
 end:

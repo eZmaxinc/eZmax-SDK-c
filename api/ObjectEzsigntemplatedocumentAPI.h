@@ -9,6 +9,8 @@
 #include "../model/common_response_error_s_temporary_file_url.h"
 #include "../model/ezsigntemplatedocument_create_object_v1_request.h"
 #include "../model/ezsigntemplatedocument_create_object_v1_response.h"
+#include "../model/ezsigntemplatedocument_edit_ezsigntemplateannotations_v1_request.h"
+#include "../model/ezsigntemplatedocument_edit_ezsigntemplateannotations_v1_response.h"
 #include "../model/ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_request.h"
 #include "../model/ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response.h"
 #include "../model/ezsigntemplatedocument_edit_ezsigntemplateformfieldgroups_v1_request.h"
@@ -22,6 +24,7 @@
 #include "../model/ezsigntemplatedocument_extract_text_v1_request.h"
 #include "../model/ezsigntemplatedocument_extract_text_v1_response.h"
 #include "../model/ezsigntemplatedocument_flatten_v1_response.h"
+#include "../model/ezsigntemplatedocument_get_ezsigntemplateannotations_v1_response.h"
 #include "../model/ezsigntemplatedocument_get_ezsigntemplatedocumentpagerecognitions_v1_response.h"
 #include "../model/ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response.h"
 #include "../model/ezsigntemplatedocument_get_ezsigntemplateformfieldgroups_v1_response.h"
@@ -48,6 +51,14 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentCreateObjectV1(apiClient_t
 //
 void
 ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentDownloadV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID);
+
+
+// Edit multiple Ezsigntemplateannotations
+//
+// Using this endpoint, you can edit multiple Ezsigntemplateannotations at the same time.
+//
+ezsigntemplatedocument_edit_ezsigntemplateannotations_v1_response_t*
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditEzsigntemplateannotationsV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_edit_ezsigntemplateannotations_v1_request_t *ezsigntemplatedocument_edit_ezsigntemplateannotations_v1_request);
 
 
 // Edit multiple Ezsigntemplatedocumentpagerecognitions
@@ -104,6 +115,14 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentExtractTextV1(apiClient_t 
 //
 ezsigntemplatedocument_flatten_v1_response_t*
 ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentFlattenV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, object_t *body);
+
+
+// Retrieve an existing Ezsigntemplatedocument's Ezsigntemplateannotations
+//
+// 
+//
+ezsigntemplatedocument_get_ezsigntemplateannotations_v1_response_t*
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplateannotationsV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID);
 
 
 // Retrieve an existing Ezsigntemplatedocument's Ezsigntemplatedocumentpagerecognitions

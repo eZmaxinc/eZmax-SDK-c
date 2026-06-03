@@ -20,16 +20,16 @@ typedef struct font_autocomplete_element_response_t font_autocomplete_element_re
 
 typedef struct font_autocomplete_element_response_t {
     char *s_font_name; // string
-    int pki_font_id; //numeric
-    int b_font_isactive; //boolean
+    int *pki_font_id; //numeric
+    int *b_font_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } font_autocomplete_element_response_t;
 
 __attribute__((deprecated)) font_autocomplete_element_response_t *font_autocomplete_element_response_create(
     char *s_font_name,
-    int pki_font_id,
-    int b_font_isactive
+    int *pki_font_id,
+    int *b_font_isactive
 );
 
 void font_autocomplete_element_response_free(font_autocomplete_element_response_t *font_autocomplete_element_response);

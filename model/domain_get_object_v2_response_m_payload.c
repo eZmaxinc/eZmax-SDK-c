@@ -12,18 +12,21 @@ static domain_get_object_v2_response_m_payload_t *domain_get_object_v2_response_
     if (!domain_get_object_v2_response_m_payload_local_var) {
         return NULL;
     }
-    domain_get_object_v2_response_m_payload_local_var->obj_domain = obj_domain;
-
+    memset(domain_get_object_v2_response_m_payload_local_var, 0, sizeof(domain_get_object_v2_response_m_payload_t));
     domain_get_object_v2_response_m_payload_local_var->_library_owned = 1;
+    domain_get_object_v2_response_m_payload_local_var->obj_domain = obj_domain;
     return domain_get_object_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) domain_get_object_v2_response_m_payload_t *domain_get_object_v2_response_m_payload_create(
     domain_response_compound_t *obj_domain
     ) {
-    return domain_get_object_v2_response_m_payload_create_internal (
+    domain_get_object_v2_response_m_payload_t *result = domain_get_object_v2_response_m_payload_create_internal (
         obj_domain
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void domain_get_object_v2_response_m_payload_free(domain_get_object_v2_response_m_payload_t *domain_get_object_v2_response_m_payload) {
@@ -86,9 +89,14 @@ domain_get_object_v2_response_m_payload_t *domain_get_object_v2_response_m_paylo
     obj_domain_local_nonprim = domain_response_compound_parseFromJSON(obj_domain); //nonprimitive
 
 
+
     domain_get_object_v2_response_m_payload_local_var = domain_get_object_v2_response_m_payload_create_internal (
         obj_domain_local_nonprim
         );
+
+    if (!domain_get_object_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return domain_get_object_v2_response_m_payload_local_var;
 end:

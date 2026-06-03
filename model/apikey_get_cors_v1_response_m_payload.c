@@ -12,18 +12,21 @@ static apikey_get_cors_v1_response_m_payload_t *apikey_get_cors_v1_response_m_pa
     if (!apikey_get_cors_v1_response_m_payload_local_var) {
         return NULL;
     }
-    apikey_get_cors_v1_response_m_payload_local_var->a_obj_cors = a_obj_cors;
-
+    memset(apikey_get_cors_v1_response_m_payload_local_var, 0, sizeof(apikey_get_cors_v1_response_m_payload_t));
     apikey_get_cors_v1_response_m_payload_local_var->_library_owned = 1;
+    apikey_get_cors_v1_response_m_payload_local_var->a_obj_cors = a_obj_cors;
     return apikey_get_cors_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) apikey_get_cors_v1_response_m_payload_t *apikey_get_cors_v1_response_m_payload_create(
     list_t *a_obj_cors
     ) {
-    return apikey_get_cors_v1_response_m_payload_create_internal (
+    apikey_get_cors_v1_response_m_payload_t *result = apikey_get_cors_v1_response_m_payload_create_internal (
         a_obj_cors
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void apikey_get_cors_v1_response_m_payload_free(apikey_get_cors_v1_response_m_payload_t *apikey_get_cors_v1_response_m_payload) {
@@ -111,9 +114,14 @@ apikey_get_cors_v1_response_m_payload_t *apikey_get_cors_v1_response_m_payload_p
     }
 
 
+
     apikey_get_cors_v1_response_m_payload_local_var = apikey_get_cors_v1_response_m_payload_create_internal (
         a_obj_corsList
         );
+
+    if (!apikey_get_cors_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return apikey_get_cors_v1_response_m_payload_local_var;
 end:

@@ -13,10 +13,10 @@ static paymentgateway_edit_object_v1_response_t *paymentgateway_edit_object_v1_r
     if (!paymentgateway_edit_object_v1_response_local_var) {
         return NULL;
     }
+    memset(paymentgateway_edit_object_v1_response_local_var, 0, sizeof(paymentgateway_edit_object_v1_response_t));
+    paymentgateway_edit_object_v1_response_local_var->_library_owned = 1;
     paymentgateway_edit_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     paymentgateway_edit_object_v1_response_local_var->obj_debug = obj_debug;
-
-    paymentgateway_edit_object_v1_response_local_var->_library_owned = 1;
     return paymentgateway_edit_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) paymentgateway_edit_object_v1_response_t *paymentgat
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return paymentgateway_edit_object_v1_response_create_internal (
+    paymentgateway_edit_object_v1_response_t *result = paymentgateway_edit_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void paymentgateway_edit_object_v1_response_free(paymentgateway_edit_object_v1_response_t *paymentgateway_edit_object_v1_response) {
@@ -119,10 +122,15 @@ paymentgateway_edit_object_v1_response_t *paymentgateway_edit_object_v1_response
     }
 
 
+
     paymentgateway_edit_object_v1_response_local_var = paymentgateway_edit_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!paymentgateway_edit_object_v1_response_local_var) {
+        goto end;
+    }
 
     return paymentgateway_edit_object_v1_response_local_var;
 end:

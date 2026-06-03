@@ -24,35 +24,50 @@ ezmax_api_definition__full_custom_create_ezsignelements_positioned_by_word_reque
 
 static custom_create_ezsignelements_positioned_by_word_request_t *custom_create_ezsignelements_positioned_by_word_request_create_internal(
     char *s_createezsignelementspositionedbyword_pattern,
-    int i_createezsignelementspositionedbyword_offsetx,
-    int i_createezsignelementspositionedbyword_offsety,
+    int *i_createezsignelementspositionedbyword_offsetx,
+    int *i_createezsignelementspositionedbyword_offsety,
     ezmax_api_definition__full_custom_create_ezsignelements_positioned_by_word_request_ECREATEEZSIGNELEMENTSPOSITIONEDBYWORDOCCURANCE_e e_createezsignelementspositionedbyword_occurance
     ) {
     custom_create_ezsignelements_positioned_by_word_request_t *custom_create_ezsignelements_positioned_by_word_request_local_var = malloc(sizeof(custom_create_ezsignelements_positioned_by_word_request_t));
     if (!custom_create_ezsignelements_positioned_by_word_request_local_var) {
         return NULL;
     }
+    memset(custom_create_ezsignelements_positioned_by_word_request_local_var, 0, sizeof(custom_create_ezsignelements_positioned_by_word_request_t));
+    custom_create_ezsignelements_positioned_by_word_request_local_var->_library_owned = 1;
     custom_create_ezsignelements_positioned_by_word_request_local_var->s_createezsignelementspositionedbyword_pattern = s_createezsignelementspositionedbyword_pattern;
     custom_create_ezsignelements_positioned_by_word_request_local_var->i_createezsignelementspositionedbyword_offsetx = i_createezsignelementspositionedbyword_offsetx;
     custom_create_ezsignelements_positioned_by_word_request_local_var->i_createezsignelementspositionedbyword_offsety = i_createezsignelementspositionedbyword_offsety;
     custom_create_ezsignelements_positioned_by_word_request_local_var->e_createezsignelementspositionedbyword_occurance = e_createezsignelementspositionedbyword_occurance;
-
-    custom_create_ezsignelements_positioned_by_word_request_local_var->_library_owned = 1;
     return custom_create_ezsignelements_positioned_by_word_request_local_var;
 }
 
 __attribute__((deprecated)) custom_create_ezsignelements_positioned_by_word_request_t *custom_create_ezsignelements_positioned_by_word_request_create(
     char *s_createezsignelementspositionedbyword_pattern,
-    int i_createezsignelementspositionedbyword_offsetx,
-    int i_createezsignelementspositionedbyword_offsety,
+    int *i_createezsignelementspositionedbyword_offsetx,
+    int *i_createezsignelementspositionedbyword_offsety,
     ezmax_api_definition__full_custom_create_ezsignelements_positioned_by_word_request_ECREATEEZSIGNELEMENTSPOSITIONEDBYWORDOCCURANCE_e e_createezsignelementspositionedbyword_occurance
     ) {
-    return custom_create_ezsignelements_positioned_by_word_request_create_internal (
+    int *i_createezsignelementspositionedbyword_offsetx_copy = NULL;
+    if (i_createezsignelementspositionedbyword_offsetx) {
+        i_createezsignelementspositionedbyword_offsetx_copy = malloc(sizeof(int));
+        if (i_createezsignelementspositionedbyword_offsetx_copy) *i_createezsignelementspositionedbyword_offsetx_copy = *i_createezsignelementspositionedbyword_offsetx;
+    }
+    int *i_createezsignelementspositionedbyword_offsety_copy = NULL;
+    if (i_createezsignelementspositionedbyword_offsety) {
+        i_createezsignelementspositionedbyword_offsety_copy = malloc(sizeof(int));
+        if (i_createezsignelementspositionedbyword_offsety_copy) *i_createezsignelementspositionedbyword_offsety_copy = *i_createezsignelementspositionedbyword_offsety;
+    }
+    custom_create_ezsignelements_positioned_by_word_request_t *result = custom_create_ezsignelements_positioned_by_word_request_create_internal (
         s_createezsignelementspositionedbyword_pattern,
-        i_createezsignelementspositionedbyword_offsetx,
-        i_createezsignelementspositionedbyword_offsety,
+        i_createezsignelementspositionedbyword_offsetx_copy,
+        i_createezsignelementspositionedbyword_offsety_copy,
         e_createezsignelementspositionedbyword_occurance
         );
+    if (!result) {
+        free(i_createezsignelementspositionedbyword_offsetx_copy);
+        free(i_createezsignelementspositionedbyword_offsety_copy);
+    }
+    return result;
 }
 
 void custom_create_ezsignelements_positioned_by_word_request_free(custom_create_ezsignelements_positioned_by_word_request_t *custom_create_ezsignelements_positioned_by_word_request) {
@@ -67,6 +82,14 @@ void custom_create_ezsignelements_positioned_by_word_request_free(custom_create_
     if (custom_create_ezsignelements_positioned_by_word_request->s_createezsignelementspositionedbyword_pattern) {
         free(custom_create_ezsignelements_positioned_by_word_request->s_createezsignelementspositionedbyword_pattern);
         custom_create_ezsignelements_positioned_by_word_request->s_createezsignelementspositionedbyword_pattern = NULL;
+    }
+    if (custom_create_ezsignelements_positioned_by_word_request->i_createezsignelementspositionedbyword_offsetx) {
+        free(custom_create_ezsignelements_positioned_by_word_request->i_createezsignelementspositionedbyword_offsetx);
+        custom_create_ezsignelements_positioned_by_word_request->i_createezsignelementspositionedbyword_offsetx = NULL;
+    }
+    if (custom_create_ezsignelements_positioned_by_word_request->i_createezsignelementspositionedbyword_offsety) {
+        free(custom_create_ezsignelements_positioned_by_word_request->i_createezsignelementspositionedbyword_offsety);
+        custom_create_ezsignelements_positioned_by_word_request->i_createezsignelementspositionedbyword_offsety = NULL;
     }
     free(custom_create_ezsignelements_positioned_by_word_request);
 }
@@ -87,7 +110,7 @@ cJSON *custom_create_ezsignelements_positioned_by_word_request_convertToJSON(cus
     if (!custom_create_ezsignelements_positioned_by_word_request->i_createezsignelementspositionedbyword_offsetx) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iCreateezsignelementspositionedbywordOffsetx", custom_create_ezsignelements_positioned_by_word_request->i_createezsignelementspositionedbyword_offsetx) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iCreateezsignelementspositionedbywordOffsetx", *custom_create_ezsignelements_positioned_by_word_request->i_createezsignelementspositionedbyword_offsetx) == NULL) {
     goto fail; //Numeric
     }
 
@@ -96,7 +119,7 @@ cJSON *custom_create_ezsignelements_positioned_by_word_request_convertToJSON(cus
     if (!custom_create_ezsignelements_positioned_by_word_request->i_createezsignelementspositionedbyword_offsety) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iCreateezsignelementspositionedbywordOffsety", custom_create_ezsignelements_positioned_by_word_request->i_createezsignelementspositionedbyword_offsety) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iCreateezsignelementspositionedbywordOffsety", *custom_create_ezsignelements_positioned_by_word_request->i_createezsignelementspositionedbyword_offsety) == NULL) {
     goto fail; //Numeric
     }
 
@@ -121,6 +144,14 @@ fail:
 custom_create_ezsignelements_positioned_by_word_request_t *custom_create_ezsignelements_positioned_by_word_request_parseFromJSON(cJSON *custom_create_ezsignelements_positioned_by_word_requestJSON){
 
     custom_create_ezsignelements_positioned_by_word_request_t *custom_create_ezsignelements_positioned_by_word_request_local_var = NULL;
+
+    char *s_createezsignelementspositionedbyword_pattern_local_str = NULL;
+
+    // define the local variable for custom_create_ezsignelements_positioned_by_word_request->i_createezsignelementspositionedbyword_offsetx
+    int *i_createezsignelementspositionedbyword_offsetx_local_var = NULL;
+
+    // define the local variable for custom_create_ezsignelements_positioned_by_word_request->i_createezsignelementspositionedbyword_offsety
+    int *i_createezsignelementspositionedbyword_offsety_local_var = NULL;
 
     // custom_create_ezsignelements_positioned_by_word_request->s_createezsignelementspositionedbyword_pattern
     cJSON *s_createezsignelementspositionedbyword_pattern = cJSON_GetObjectItemCaseSensitive(custom_create_ezsignelements_positioned_by_word_requestJSON, "sCreateezsignelementspositionedbywordPattern");
@@ -151,6 +182,12 @@ custom_create_ezsignelements_positioned_by_word_request_t *custom_create_ezsigne
     {
     goto end; //Numeric
     }
+    i_createezsignelementspositionedbyword_offsetx_local_var = malloc(sizeof(int));
+    if(!i_createezsignelementspositionedbyword_offsetx_local_var)
+    {
+        goto end;
+    }
+    *i_createezsignelementspositionedbyword_offsetx_local_var = i_createezsignelementspositionedbyword_offsetx->valuedouble;
 
     // custom_create_ezsignelements_positioned_by_word_request->i_createezsignelementspositionedbyword_offsety
     cJSON *i_createezsignelementspositionedbyword_offsety = cJSON_GetObjectItemCaseSensitive(custom_create_ezsignelements_positioned_by_word_requestJSON, "iCreateezsignelementspositionedbywordOffsety");
@@ -166,6 +203,12 @@ custom_create_ezsignelements_positioned_by_word_request_t *custom_create_ezsigne
     {
     goto end; //Numeric
     }
+    i_createezsignelementspositionedbyword_offsety_local_var = malloc(sizeof(int));
+    if(!i_createezsignelementspositionedbyword_offsety_local_var)
+    {
+        goto end;
+    }
+    *i_createezsignelementspositionedbyword_offsety_local_var = i_createezsignelementspositionedbyword_offsety->valuedouble;
 
     // custom_create_ezsignelements_positioned_by_word_request->e_createezsignelementspositionedbyword_occurance
     cJSON *e_createezsignelementspositionedbyword_occurance = cJSON_GetObjectItemCaseSensitive(custom_create_ezsignelements_positioned_by_word_requestJSON, "eCreateezsignelementspositionedbywordOccurance");
@@ -185,15 +228,33 @@ custom_create_ezsignelements_positioned_by_word_request_t *custom_create_ezsigne
     e_createezsignelementspositionedbyword_occuranceVariable = custom_create_ezsignelements_positioned_by_word_request_e_createezsignelementspositionedbyword_occurance_FromString(e_createezsignelementspositionedbyword_occurance->valuestring);
 
 
+    if (s_createezsignelementspositionedbyword_pattern && !cJSON_IsNull(s_createezsignelementspositionedbyword_pattern)) s_createezsignelementspositionedbyword_pattern_local_str = strdup(s_createezsignelementspositionedbyword_pattern->valuestring);
+
     custom_create_ezsignelements_positioned_by_word_request_local_var = custom_create_ezsignelements_positioned_by_word_request_create_internal (
-        strdup(s_createezsignelementspositionedbyword_pattern->valuestring),
-        i_createezsignelementspositionedbyword_offsetx->valuedouble,
-        i_createezsignelementspositionedbyword_offsety->valuedouble,
+        s_createezsignelementspositionedbyword_pattern_local_str,
+        i_createezsignelementspositionedbyword_offsetx_local_var,
+        i_createezsignelementspositionedbyword_offsety_local_var,
         e_createezsignelementspositionedbyword_occuranceVariable
         );
 
+    if (!custom_create_ezsignelements_positioned_by_word_request_local_var) {
+        goto end;
+    }
+
     return custom_create_ezsignelements_positioned_by_word_request_local_var;
 end:
+    if (s_createezsignelementspositionedbyword_pattern_local_str) {
+        free(s_createezsignelementspositionedbyword_pattern_local_str);
+        s_createezsignelementspositionedbyword_pattern_local_str = NULL;
+    }
+    if (i_createezsignelementspositionedbyword_offsetx_local_var) {
+        free(i_createezsignelementspositionedbyword_offsetx_local_var);
+        i_createezsignelementspositionedbyword_offsetx_local_var = NULL;
+    }
+    if (i_createezsignelementspositionedbyword_offsety_local_var) {
+        free(i_createezsignelementspositionedbyword_offsety_local_var);
+        i_createezsignelementspositionedbyword_offsety_local_var = NULL;
+    }
     return NULL;
 
 }

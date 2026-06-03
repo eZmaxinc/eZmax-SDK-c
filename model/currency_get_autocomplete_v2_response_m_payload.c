@@ -12,18 +12,21 @@ static currency_get_autocomplete_v2_response_m_payload_t *currency_get_autocompl
     if (!currency_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    currency_get_autocomplete_v2_response_m_payload_local_var->a_obj_currency = a_obj_currency;
-
+    memset(currency_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(currency_get_autocomplete_v2_response_m_payload_t));
     currency_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    currency_get_autocomplete_v2_response_m_payload_local_var->a_obj_currency = a_obj_currency;
     return currency_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) currency_get_autocomplete_v2_response_m_payload_t *currency_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_currency
     ) {
-    return currency_get_autocomplete_v2_response_m_payload_create_internal (
+    currency_get_autocomplete_v2_response_m_payload_t *result = currency_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_currency
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void currency_get_autocomplete_v2_response_m_payload_free(currency_get_autocomplete_v2_response_m_payload_t *currency_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ currency_get_autocomplete_v2_response_m_payload_t *currency_get_autocomplete_v2_
     }
 
 
+
     currency_get_autocomplete_v2_response_m_payload_local_var = currency_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_currencyList
         );
+
+    if (!currency_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return currency_get_autocomplete_v2_response_m_payload_local_var;
 end:

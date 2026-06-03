@@ -20,23 +20,23 @@ typedef struct paymentterm_list_element_t paymentterm_list_element_t;
 
 
 typedef struct paymentterm_list_element_t {
-    int pki_paymentterm_id; //numeric
+    int *pki_paymentterm_id; //numeric
     char *s_paymentterm_code; // string
     ezmax_api_definition__full_field_e_paymentterm_type__e e_paymentterm_type; //referenced enum
-    int i_paymentterm_day; //numeric
+    int *i_paymentterm_day; //numeric
     char *s_paymentterm_description_x; // string
-    int b_paymentterm_isactive; //boolean
+    int *b_paymentterm_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } paymentterm_list_element_t;
 
 __attribute__((deprecated)) paymentterm_list_element_t *paymentterm_list_element_create(
-    int pki_paymentterm_id,
+    int *pki_paymentterm_id,
     char *s_paymentterm_code,
     ezmax_api_definition__full_field_e_paymentterm_type__e e_paymentterm_type,
-    int i_paymentterm_day,
+    int *i_paymentterm_day,
     char *s_paymentterm_description_x,
-    int b_paymentterm_isactive
+    int *b_paymentterm_isactive
 );
 
 void paymentterm_list_element_free(paymentterm_list_element_t *paymentterm_list_element);

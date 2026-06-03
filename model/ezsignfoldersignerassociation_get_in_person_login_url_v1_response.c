@@ -14,11 +14,11 @@ static ezsignfoldersignerassociation_get_in_person_login_url_v1_response_t *ezsi
     if (!ezsignfoldersignerassociation_get_in_person_login_url_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsignfoldersignerassociation_get_in_person_login_url_v1_response_local_var, 0, sizeof(ezsignfoldersignerassociation_get_in_person_login_url_v1_response_t));
+    ezsignfoldersignerassociation_get_in_person_login_url_v1_response_local_var->_library_owned = 1;
     ezsignfoldersignerassociation_get_in_person_login_url_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsignfoldersignerassociation_get_in_person_login_url_v1_response_local_var->obj_debug = obj_debug;
     ezsignfoldersignerassociation_get_in_person_login_url_v1_response_local_var->m_payload = m_payload;
-
-    ezsignfoldersignerassociation_get_in_person_login_url_v1_response_local_var->_library_owned = 1;
     return ezsignfoldersignerassociation_get_in_person_login_url_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) ezsignfoldersignerassociation_get_in_person_login_ur
     common_response_obj_debug_t *obj_debug,
     ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_t *m_payload
     ) {
-    return ezsignfoldersignerassociation_get_in_person_login_url_v1_response_create_internal (
+    ezsignfoldersignerassociation_get_in_person_login_url_v1_response_t *result = ezsignfoldersignerassociation_get_in_person_login_url_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignfoldersignerassociation_get_in_person_login_url_v1_response_free(ezsignfoldersignerassociation_get_in_person_login_url_v1_response_t *ezsignfoldersignerassociation_get_in_person_login_url_v1_response) {
@@ -156,11 +159,16 @@ ezsignfoldersignerassociation_get_in_person_login_url_v1_response_t *ezsignfolde
     m_payload_local_nonprim = ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     ezsignfoldersignerassociation_get_in_person_login_url_v1_response_local_var = ezsignfoldersignerassociation_get_in_person_login_url_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!ezsignfoldersignerassociation_get_in_person_login_url_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsignfoldersignerassociation_get_in_person_login_url_v1_response_local_var;
 end:

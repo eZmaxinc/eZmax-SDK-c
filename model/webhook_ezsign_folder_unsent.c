@@ -14,11 +14,11 @@ static webhook_ezsign_folder_unsent_t *webhook_ezsign_folder_unsent_create_inter
     if (!webhook_ezsign_folder_unsent_local_var) {
         return NULL;
     }
+    memset(webhook_ezsign_folder_unsent_local_var, 0, sizeof(webhook_ezsign_folder_unsent_t));
+    webhook_ezsign_folder_unsent_local_var->_library_owned = 1;
     webhook_ezsign_folder_unsent_local_var->obj_webhook = obj_webhook;
     webhook_ezsign_folder_unsent_local_var->a_obj_attempt = a_obj_attempt;
     webhook_ezsign_folder_unsent_local_var->obj_ezsignfolder = obj_ezsignfolder;
-
-    webhook_ezsign_folder_unsent_local_var->_library_owned = 1;
     return webhook_ezsign_folder_unsent_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) webhook_ezsign_folder_unsent_t *webhook_ezsign_folde
     list_t *a_obj_attempt,
     ezsignfolder_response_t *obj_ezsignfolder
     ) {
-    return webhook_ezsign_folder_unsent_create_internal (
+    webhook_ezsign_folder_unsent_t *result = webhook_ezsign_folder_unsent_create_internal (
         obj_webhook,
         a_obj_attempt,
         obj_ezsignfolder
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void webhook_ezsign_folder_unsent_free(webhook_ezsign_folder_unsent_t *webhook_ezsign_folder_unsent) {
@@ -185,11 +188,16 @@ webhook_ezsign_folder_unsent_t *webhook_ezsign_folder_unsent_parseFromJSON(cJSON
     obj_ezsignfolder_local_nonprim = ezsignfolder_response_parseFromJSON(obj_ezsignfolder); //nonprimitive
 
 
+
     webhook_ezsign_folder_unsent_local_var = webhook_ezsign_folder_unsent_create_internal (
         obj_webhook_local_nonprim,
         a_obj_attemptList,
         obj_ezsignfolder_local_nonprim
         );
+
+    if (!webhook_ezsign_folder_unsent_local_var) {
+        goto end;
+    }
 
     return webhook_ezsign_folder_unsent_local_var;
 end:

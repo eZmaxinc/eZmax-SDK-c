@@ -13,10 +13,10 @@ static ezmaxcustomeruser_patch_object_v1_response_t *ezmaxcustomeruser_patch_obj
     if (!ezmaxcustomeruser_patch_object_v1_response_local_var) {
         return NULL;
     }
+    memset(ezmaxcustomeruser_patch_object_v1_response_local_var, 0, sizeof(ezmaxcustomeruser_patch_object_v1_response_t));
+    ezmaxcustomeruser_patch_object_v1_response_local_var->_library_owned = 1;
     ezmaxcustomeruser_patch_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezmaxcustomeruser_patch_object_v1_response_local_var->obj_debug = obj_debug;
-
-    ezmaxcustomeruser_patch_object_v1_response_local_var->_library_owned = 1;
     return ezmaxcustomeruser_patch_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) ezmaxcustomeruser_patch_object_v1_response_t *ezmaxc
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return ezmaxcustomeruser_patch_object_v1_response_create_internal (
+    ezmaxcustomeruser_patch_object_v1_response_t *result = ezmaxcustomeruser_patch_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezmaxcustomeruser_patch_object_v1_response_free(ezmaxcustomeruser_patch_object_v1_response_t *ezmaxcustomeruser_patch_object_v1_response) {
@@ -119,10 +122,15 @@ ezmaxcustomeruser_patch_object_v1_response_t *ezmaxcustomeruser_patch_object_v1_
     }
 
 
+
     ezmaxcustomeruser_patch_object_v1_response_local_var = ezmaxcustomeruser_patch_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!ezmaxcustomeruser_patch_object_v1_response_local_var) {
+        goto end;
+    }
 
     return ezmaxcustomeruser_patch_object_v1_response_local_var;
 end:

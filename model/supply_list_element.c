@@ -6,15 +6,15 @@
 
 
 static supply_list_element_t *supply_list_element_create_internal(
-    int pki_supply_id,
-    int fki_glaccount_id,
-    int fki_glaccountcontainer_id,
-    int fki_variableexpense_id,
+    int *pki_supply_id,
+    int *fki_glaccount_id,
+    int *fki_glaccountcontainer_id,
+    int *fki_variableexpense_id,
     char *s_supply_code,
     char *s_supply_description_x,
     char *d_supply_unitprice,
-    int b_supply_isactive,
-    int b_supply_variableprice,
+    int *b_supply_isactive,
+    int *b_supply_variableprice,
     char *s_glaccount_description_x,
     char *s_glaccountcontainer_longdescription_x,
     char *s_variableexpense_description_x
@@ -23,6 +23,8 @@ static supply_list_element_t *supply_list_element_create_internal(
     if (!supply_list_element_local_var) {
         return NULL;
     }
+    memset(supply_list_element_local_var, 0, sizeof(supply_list_element_t));
+    supply_list_element_local_var->_library_owned = 1;
     supply_list_element_local_var->pki_supply_id = pki_supply_id;
     supply_list_element_local_var->fki_glaccount_id = fki_glaccount_id;
     supply_list_element_local_var->fki_glaccountcontainer_id = fki_glaccountcontainer_id;
@@ -35,39 +37,76 @@ static supply_list_element_t *supply_list_element_create_internal(
     supply_list_element_local_var->s_glaccount_description_x = s_glaccount_description_x;
     supply_list_element_local_var->s_glaccountcontainer_longdescription_x = s_glaccountcontainer_longdescription_x;
     supply_list_element_local_var->s_variableexpense_description_x = s_variableexpense_description_x;
-
-    supply_list_element_local_var->_library_owned = 1;
     return supply_list_element_local_var;
 }
 
 __attribute__((deprecated)) supply_list_element_t *supply_list_element_create(
-    int pki_supply_id,
-    int fki_glaccount_id,
-    int fki_glaccountcontainer_id,
-    int fki_variableexpense_id,
+    int *pki_supply_id,
+    int *fki_glaccount_id,
+    int *fki_glaccountcontainer_id,
+    int *fki_variableexpense_id,
     char *s_supply_code,
     char *s_supply_description_x,
     char *d_supply_unitprice,
-    int b_supply_isactive,
-    int b_supply_variableprice,
+    int *b_supply_isactive,
+    int *b_supply_variableprice,
     char *s_glaccount_description_x,
     char *s_glaccountcontainer_longdescription_x,
     char *s_variableexpense_description_x
     ) {
-    return supply_list_element_create_internal (
-        pki_supply_id,
-        fki_glaccount_id,
-        fki_glaccountcontainer_id,
-        fki_variableexpense_id,
+    int *pki_supply_id_copy = NULL;
+    if (pki_supply_id) {
+        pki_supply_id_copy = malloc(sizeof(int));
+        if (pki_supply_id_copy) *pki_supply_id_copy = *pki_supply_id;
+    }
+    int *fki_glaccount_id_copy = NULL;
+    if (fki_glaccount_id) {
+        fki_glaccount_id_copy = malloc(sizeof(int));
+        if (fki_glaccount_id_copy) *fki_glaccount_id_copy = *fki_glaccount_id;
+    }
+    int *fki_glaccountcontainer_id_copy = NULL;
+    if (fki_glaccountcontainer_id) {
+        fki_glaccountcontainer_id_copy = malloc(sizeof(int));
+        if (fki_glaccountcontainer_id_copy) *fki_glaccountcontainer_id_copy = *fki_glaccountcontainer_id;
+    }
+    int *fki_variableexpense_id_copy = NULL;
+    if (fki_variableexpense_id) {
+        fki_variableexpense_id_copy = malloc(sizeof(int));
+        if (fki_variableexpense_id_copy) *fki_variableexpense_id_copy = *fki_variableexpense_id;
+    }
+    int *b_supply_isactive_copy = NULL;
+    if (b_supply_isactive) {
+        b_supply_isactive_copy = malloc(sizeof(int));
+        if (b_supply_isactive_copy) *b_supply_isactive_copy = *b_supply_isactive;
+    }
+    int *b_supply_variableprice_copy = NULL;
+    if (b_supply_variableprice) {
+        b_supply_variableprice_copy = malloc(sizeof(int));
+        if (b_supply_variableprice_copy) *b_supply_variableprice_copy = *b_supply_variableprice;
+    }
+    supply_list_element_t *result = supply_list_element_create_internal (
+        pki_supply_id_copy,
+        fki_glaccount_id_copy,
+        fki_glaccountcontainer_id_copy,
+        fki_variableexpense_id_copy,
         s_supply_code,
         s_supply_description_x,
         d_supply_unitprice,
-        b_supply_isactive,
-        b_supply_variableprice,
+        b_supply_isactive_copy,
+        b_supply_variableprice_copy,
         s_glaccount_description_x,
         s_glaccountcontainer_longdescription_x,
         s_variableexpense_description_x
         );
+    if (!result) {
+        free(pki_supply_id_copy);
+        free(fki_glaccount_id_copy);
+        free(fki_glaccountcontainer_id_copy);
+        free(fki_variableexpense_id_copy);
+        free(b_supply_isactive_copy);
+        free(b_supply_variableprice_copy);
+    }
+    return result;
 }
 
 void supply_list_element_free(supply_list_element_t *supply_list_element) {
@@ -79,6 +118,22 @@ void supply_list_element_free(supply_list_element_t *supply_list_element) {
         return ;
     }
     listEntry_t *listEntry;
+    if (supply_list_element->pki_supply_id) {
+        free(supply_list_element->pki_supply_id);
+        supply_list_element->pki_supply_id = NULL;
+    }
+    if (supply_list_element->fki_glaccount_id) {
+        free(supply_list_element->fki_glaccount_id);
+        supply_list_element->fki_glaccount_id = NULL;
+    }
+    if (supply_list_element->fki_glaccountcontainer_id) {
+        free(supply_list_element->fki_glaccountcontainer_id);
+        supply_list_element->fki_glaccountcontainer_id = NULL;
+    }
+    if (supply_list_element->fki_variableexpense_id) {
+        free(supply_list_element->fki_variableexpense_id);
+        supply_list_element->fki_variableexpense_id = NULL;
+    }
     if (supply_list_element->s_supply_code) {
         free(supply_list_element->s_supply_code);
         supply_list_element->s_supply_code = NULL;
@@ -90,6 +145,14 @@ void supply_list_element_free(supply_list_element_t *supply_list_element) {
     if (supply_list_element->d_supply_unitprice) {
         free(supply_list_element->d_supply_unitprice);
         supply_list_element->d_supply_unitprice = NULL;
+    }
+    if (supply_list_element->b_supply_isactive) {
+        free(supply_list_element->b_supply_isactive);
+        supply_list_element->b_supply_isactive = NULL;
+    }
+    if (supply_list_element->b_supply_variableprice) {
+        free(supply_list_element->b_supply_variableprice);
+        supply_list_element->b_supply_variableprice = NULL;
     }
     if (supply_list_element->s_glaccount_description_x) {
         free(supply_list_element->s_glaccount_description_x);
@@ -113,14 +176,14 @@ cJSON *supply_list_element_convertToJSON(supply_list_element_t *supply_list_elem
     if (!supply_list_element->pki_supply_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiSupplyID", supply_list_element->pki_supply_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiSupplyID", *supply_list_element->pki_supply_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // supply_list_element->fki_glaccount_id
     if(supply_list_element->fki_glaccount_id) {
-    if(cJSON_AddNumberToObject(item, "fkiGlaccountID", supply_list_element->fki_glaccount_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiGlaccountID", *supply_list_element->fki_glaccount_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -128,7 +191,7 @@ cJSON *supply_list_element_convertToJSON(supply_list_element_t *supply_list_elem
 
     // supply_list_element->fki_glaccountcontainer_id
     if(supply_list_element->fki_glaccountcontainer_id) {
-    if(cJSON_AddNumberToObject(item, "fkiGlaccountcontainerID", supply_list_element->fki_glaccountcontainer_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiGlaccountcontainerID", *supply_list_element->fki_glaccountcontainer_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -138,7 +201,7 @@ cJSON *supply_list_element_convertToJSON(supply_list_element_t *supply_list_elem
     if (!supply_list_element->fki_variableexpense_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiVariableexpenseID", supply_list_element->fki_variableexpense_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiVariableexpenseID", *supply_list_element->fki_variableexpense_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -174,7 +237,7 @@ cJSON *supply_list_element_convertToJSON(supply_list_element_t *supply_list_elem
     if (!supply_list_element->b_supply_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bSupplyIsactive", supply_list_element->b_supply_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bSupplyIsactive", *supply_list_element->b_supply_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -183,7 +246,7 @@ cJSON *supply_list_element_convertToJSON(supply_list_element_t *supply_list_elem
     if (!supply_list_element->b_supply_variableprice) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bSupplyVariableprice", supply_list_element->b_supply_variableprice) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bSupplyVariableprice", *supply_list_element->b_supply_variableprice) == NULL) {
     goto fail; //Bool
     }
 
@@ -223,6 +286,36 @@ supply_list_element_t *supply_list_element_parseFromJSON(cJSON *supply_list_elem
 
     supply_list_element_t *supply_list_element_local_var = NULL;
 
+    // define the local variable for supply_list_element->pki_supply_id
+    int *pki_supply_id_local_var = NULL;
+
+    // define the local variable for supply_list_element->fki_glaccount_id
+    int *fki_glaccount_id_local_var = NULL;
+
+    // define the local variable for supply_list_element->fki_glaccountcontainer_id
+    int *fki_glaccountcontainer_id_local_var = NULL;
+
+    // define the local variable for supply_list_element->fki_variableexpense_id
+    int *fki_variableexpense_id_local_var = NULL;
+
+    char *s_supply_code_local_str = NULL;
+
+    char *s_supply_description_x_local_str = NULL;
+
+    char *d_supply_unitprice_local_str = NULL;
+
+    // define the local variable for supply_list_element->b_supply_isactive
+    int *b_supply_isactive_local_var = NULL;
+
+    // define the local variable for supply_list_element->b_supply_variableprice
+    int *b_supply_variableprice_local_var = NULL;
+
+    char *s_glaccount_description_x_local_str = NULL;
+
+    char *s_glaccountcontainer_longdescription_x_local_str = NULL;
+
+    char *s_variableexpense_description_x_local_str = NULL;
+
     // supply_list_element->pki_supply_id
     cJSON *pki_supply_id = cJSON_GetObjectItemCaseSensitive(supply_list_elementJSON, "pkiSupplyID");
     if (cJSON_IsNull(pki_supply_id)) {
@@ -237,6 +330,12 @@ supply_list_element_t *supply_list_element_parseFromJSON(cJSON *supply_list_elem
     {
     goto end; //Numeric
     }
+    pki_supply_id_local_var = malloc(sizeof(int));
+    if(!pki_supply_id_local_var)
+    {
+        goto end;
+    }
+    *pki_supply_id_local_var = pki_supply_id->valuedouble;
 
     // supply_list_element->fki_glaccount_id
     cJSON *fki_glaccount_id = cJSON_GetObjectItemCaseSensitive(supply_list_elementJSON, "fkiGlaccountID");
@@ -248,6 +347,12 @@ supply_list_element_t *supply_list_element_parseFromJSON(cJSON *supply_list_elem
     {
     goto end; //Numeric
     }
+    fki_glaccount_id_local_var = malloc(sizeof(int));
+    if(!fki_glaccount_id_local_var)
+    {
+        goto end;
+    }
+    *fki_glaccount_id_local_var = fki_glaccount_id->valuedouble;
     }
 
     // supply_list_element->fki_glaccountcontainer_id
@@ -260,6 +365,12 @@ supply_list_element_t *supply_list_element_parseFromJSON(cJSON *supply_list_elem
     {
     goto end; //Numeric
     }
+    fki_glaccountcontainer_id_local_var = malloc(sizeof(int));
+    if(!fki_glaccountcontainer_id_local_var)
+    {
+        goto end;
+    }
+    *fki_glaccountcontainer_id_local_var = fki_glaccountcontainer_id->valuedouble;
     }
 
     // supply_list_element->fki_variableexpense_id
@@ -276,6 +387,12 @@ supply_list_element_t *supply_list_element_parseFromJSON(cJSON *supply_list_elem
     {
     goto end; //Numeric
     }
+    fki_variableexpense_id_local_var = malloc(sizeof(int));
+    if(!fki_variableexpense_id_local_var)
+    {
+        goto end;
+    }
+    *fki_variableexpense_id_local_var = fki_variableexpense_id->valuedouble;
 
     // supply_list_element->s_supply_code
     cJSON *s_supply_code = cJSON_GetObjectItemCaseSensitive(supply_list_elementJSON, "sSupplyCode");
@@ -336,6 +453,12 @@ supply_list_element_t *supply_list_element_parseFromJSON(cJSON *supply_list_elem
     {
     goto end; //Bool
     }
+    b_supply_isactive_local_var = malloc(sizeof(int));
+    if(!b_supply_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_supply_isactive_local_var = b_supply_isactive->valueint;
 
     // supply_list_element->b_supply_variableprice
     cJSON *b_supply_variableprice = cJSON_GetObjectItemCaseSensitive(supply_list_elementJSON, "bSupplyVariableprice");
@@ -351,6 +474,12 @@ supply_list_element_t *supply_list_element_parseFromJSON(cJSON *supply_list_elem
     {
     goto end; //Bool
     }
+    b_supply_variableprice_local_var = malloc(sizeof(int));
+    if(!b_supply_variableprice_local_var)
+    {
+        goto end;
+    }
+    *b_supply_variableprice_local_var = b_supply_variableprice->valueint;
 
     // supply_list_element->s_glaccount_description_x
     cJSON *s_glaccount_description_x = cJSON_GetObjectItemCaseSensitive(supply_list_elementJSON, "sGlaccountDescriptionX");
@@ -389,23 +518,82 @@ supply_list_element_t *supply_list_element_parseFromJSON(cJSON *supply_list_elem
     }
 
 
+    if (s_supply_code && !cJSON_IsNull(s_supply_code)) s_supply_code_local_str = strdup(s_supply_code->valuestring);
+    if (s_supply_description_x && !cJSON_IsNull(s_supply_description_x)) s_supply_description_x_local_str = strdup(s_supply_description_x->valuestring);
+    if (d_supply_unitprice && !cJSON_IsNull(d_supply_unitprice)) d_supply_unitprice_local_str = strdup(d_supply_unitprice->valuestring);
+    if (s_glaccount_description_x && !cJSON_IsNull(s_glaccount_description_x)) s_glaccount_description_x_local_str = strdup(s_glaccount_description_x->valuestring);
+    if (s_glaccountcontainer_longdescription_x && !cJSON_IsNull(s_glaccountcontainer_longdescription_x)) s_glaccountcontainer_longdescription_x_local_str = strdup(s_glaccountcontainer_longdescription_x->valuestring);
+    if (s_variableexpense_description_x && !cJSON_IsNull(s_variableexpense_description_x)) s_variableexpense_description_x_local_str = strdup(s_variableexpense_description_x->valuestring);
+
     supply_list_element_local_var = supply_list_element_create_internal (
-        pki_supply_id->valuedouble,
-        fki_glaccount_id ? fki_glaccount_id->valuedouble : 0,
-        fki_glaccountcontainer_id ? fki_glaccountcontainer_id->valuedouble : 0,
-        fki_variableexpense_id->valuedouble,
-        strdup(s_supply_code->valuestring),
-        strdup(s_supply_description_x->valuestring),
-        strdup(d_supply_unitprice->valuestring),
-        b_supply_isactive->valueint,
-        b_supply_variableprice->valueint,
-        s_glaccount_description_x && !cJSON_IsNull(s_glaccount_description_x) ? strdup(s_glaccount_description_x->valuestring) : NULL,
-        s_glaccountcontainer_longdescription_x && !cJSON_IsNull(s_glaccountcontainer_longdescription_x) ? strdup(s_glaccountcontainer_longdescription_x->valuestring) : NULL,
-        s_variableexpense_description_x && !cJSON_IsNull(s_variableexpense_description_x) ? strdup(s_variableexpense_description_x->valuestring) : NULL
+        pki_supply_id_local_var,
+        fki_glaccount_id_local_var,
+        fki_glaccountcontainer_id_local_var,
+        fki_variableexpense_id_local_var,
+        s_supply_code_local_str,
+        s_supply_description_x_local_str,
+        d_supply_unitprice_local_str,
+        b_supply_isactive_local_var,
+        b_supply_variableprice_local_var,
+        s_glaccount_description_x_local_str,
+        s_glaccountcontainer_longdescription_x_local_str,
+        s_variableexpense_description_x_local_str
         );
+
+    if (!supply_list_element_local_var) {
+        goto end;
+    }
 
     return supply_list_element_local_var;
 end:
+    if (pki_supply_id_local_var) {
+        free(pki_supply_id_local_var);
+        pki_supply_id_local_var = NULL;
+    }
+    if (fki_glaccount_id_local_var) {
+        free(fki_glaccount_id_local_var);
+        fki_glaccount_id_local_var = NULL;
+    }
+    if (fki_glaccountcontainer_id_local_var) {
+        free(fki_glaccountcontainer_id_local_var);
+        fki_glaccountcontainer_id_local_var = NULL;
+    }
+    if (fki_variableexpense_id_local_var) {
+        free(fki_variableexpense_id_local_var);
+        fki_variableexpense_id_local_var = NULL;
+    }
+    if (s_supply_code_local_str) {
+        free(s_supply_code_local_str);
+        s_supply_code_local_str = NULL;
+    }
+    if (s_supply_description_x_local_str) {
+        free(s_supply_description_x_local_str);
+        s_supply_description_x_local_str = NULL;
+    }
+    if (d_supply_unitprice_local_str) {
+        free(d_supply_unitprice_local_str);
+        d_supply_unitprice_local_str = NULL;
+    }
+    if (b_supply_isactive_local_var) {
+        free(b_supply_isactive_local_var);
+        b_supply_isactive_local_var = NULL;
+    }
+    if (b_supply_variableprice_local_var) {
+        free(b_supply_variableprice_local_var);
+        b_supply_variableprice_local_var = NULL;
+    }
+    if (s_glaccount_description_x_local_str) {
+        free(s_glaccount_description_x_local_str);
+        s_glaccount_description_x_local_str = NULL;
+    }
+    if (s_glaccountcontainer_longdescription_x_local_str) {
+        free(s_glaccountcontainer_longdescription_x_local_str);
+        s_glaccountcontainer_longdescription_x_local_str = NULL;
+    }
+    if (s_variableexpense_description_x_local_str) {
+        free(s_variableexpense_description_x_local_str);
+        s_variableexpense_description_x_local_str = NULL;
+    }
     return NULL;
 
 }

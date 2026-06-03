@@ -6,8 +6,8 @@
 
 
 static phone_request_compound_t *phone_request_compound_create_internal(
-    int pki_phone_id,
-    int fki_phonetype_id,
+    int *pki_phone_id,
+    int *fki_phonetype_id,
     ezmax_api_definition__full_field_e_phone_type__e e_phone_type,
     char *s_phone_region,
     char *s_phone_exchange,
@@ -20,6 +20,8 @@ static phone_request_compound_t *phone_request_compound_create_internal(
     if (!phone_request_compound_local_var) {
         return NULL;
     }
+    memset(phone_request_compound_local_var, 0, sizeof(phone_request_compound_t));
+    phone_request_compound_local_var->_library_owned = 1;
     phone_request_compound_local_var->pki_phone_id = pki_phone_id;
     phone_request_compound_local_var->fki_phonetype_id = fki_phonetype_id;
     phone_request_compound_local_var->e_phone_type = e_phone_type;
@@ -29,14 +31,12 @@ static phone_request_compound_t *phone_request_compound_create_internal(
     phone_request_compound_local_var->s_phone_international = s_phone_international;
     phone_request_compound_local_var->s_phone_extension = s_phone_extension;
     phone_request_compound_local_var->s_phone_e164 = s_phone_e164;
-
-    phone_request_compound_local_var->_library_owned = 1;
     return phone_request_compound_local_var;
 }
 
 __attribute__((deprecated)) phone_request_compound_t *phone_request_compound_create(
-    int pki_phone_id,
-    int fki_phonetype_id,
+    int *pki_phone_id,
+    int *fki_phonetype_id,
     ezmax_api_definition__full_field_e_phone_type__e e_phone_type,
     char *s_phone_region,
     char *s_phone_exchange,
@@ -45,9 +45,19 @@ __attribute__((deprecated)) phone_request_compound_t *phone_request_compound_cre
     char *s_phone_extension,
     char *s_phone_e164
     ) {
-    return phone_request_compound_create_internal (
-        pki_phone_id,
-        fki_phonetype_id,
+    int *pki_phone_id_copy = NULL;
+    if (pki_phone_id) {
+        pki_phone_id_copy = malloc(sizeof(int));
+        if (pki_phone_id_copy) *pki_phone_id_copy = *pki_phone_id;
+    }
+    int *fki_phonetype_id_copy = NULL;
+    if (fki_phonetype_id) {
+        fki_phonetype_id_copy = malloc(sizeof(int));
+        if (fki_phonetype_id_copy) *fki_phonetype_id_copy = *fki_phonetype_id;
+    }
+    phone_request_compound_t *result = phone_request_compound_create_internal (
+        pki_phone_id_copy,
+        fki_phonetype_id_copy,
         e_phone_type,
         s_phone_region,
         s_phone_exchange,
@@ -56,6 +66,11 @@ __attribute__((deprecated)) phone_request_compound_t *phone_request_compound_cre
         s_phone_extension,
         s_phone_e164
         );
+    if (!result) {
+        free(pki_phone_id_copy);
+        free(fki_phonetype_id_copy);
+    }
+    return result;
 }
 
 void phone_request_compound_free(phone_request_compound_t *phone_request_compound) {
@@ -67,6 +82,14 @@ void phone_request_compound_free(phone_request_compound_t *phone_request_compoun
         return ;
     }
     listEntry_t *listEntry;
+    if (phone_request_compound->pki_phone_id) {
+        free(phone_request_compound->pki_phone_id);
+        phone_request_compound->pki_phone_id = NULL;
+    }
+    if (phone_request_compound->fki_phonetype_id) {
+        free(phone_request_compound->fki_phonetype_id);
+        phone_request_compound->fki_phonetype_id = NULL;
+    }
     if (phone_request_compound->s_phone_region) {
         free(phone_request_compound->s_phone_region);
         phone_request_compound->s_phone_region = NULL;
@@ -99,7 +122,7 @@ cJSON *phone_request_compound_convertToJSON(phone_request_compound_t *phone_requ
 
     // phone_request_compound->pki_phone_id
     if(phone_request_compound->pki_phone_id) {
-    if(cJSON_AddNumberToObject(item, "pkiPhoneID", phone_request_compound->pki_phone_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiPhoneID", *phone_request_compound->pki_phone_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -109,7 +132,7 @@ cJSON *phone_request_compound_convertToJSON(phone_request_compound_t *phone_requ
     if (!phone_request_compound->fki_phonetype_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiPhonetypeID", phone_request_compound->fki_phonetype_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiPhonetypeID", *phone_request_compound->fki_phonetype_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -186,8 +209,26 @@ phone_request_compound_t *phone_request_compound_parseFromJSON(cJSON *phone_requ
 
     phone_request_compound_t *phone_request_compound_local_var = NULL;
 
+    // define the local variable for phone_request_compound->pki_phone_id
+    int *pki_phone_id_local_var = NULL;
+
+    // define the local variable for phone_request_compound->fki_phonetype_id
+    int *fki_phonetype_id_local_var = NULL;
+
     // define the local variable for phone_request_compound->e_phone_type
     ezmax_api_definition__full_field_e_phone_type__e e_phone_type_local_nonprim = 0;
+
+    char *s_phone_region_local_str = NULL;
+
+    char *s_phone_exchange_local_str = NULL;
+
+    char *s_phone_number_local_str = NULL;
+
+    char *s_phone_international_local_str = NULL;
+
+    char *s_phone_extension_local_str = NULL;
+
+    char *s_phone_e164_local_str = NULL;
 
     // phone_request_compound->pki_phone_id
     cJSON *pki_phone_id = cJSON_GetObjectItemCaseSensitive(phone_request_compoundJSON, "pkiPhoneID");
@@ -199,6 +240,12 @@ phone_request_compound_t *phone_request_compound_parseFromJSON(cJSON *phone_requ
     {
     goto end; //Numeric
     }
+    pki_phone_id_local_var = malloc(sizeof(int));
+    if(!pki_phone_id_local_var)
+    {
+        goto end;
+    }
+    *pki_phone_id_local_var = pki_phone_id->valuedouble;
     }
 
     // phone_request_compound->fki_phonetype_id
@@ -215,6 +262,12 @@ phone_request_compound_t *phone_request_compound_parseFromJSON(cJSON *phone_requ
     {
     goto end; //Numeric
     }
+    fki_phonetype_id_local_var = malloc(sizeof(int));
+    if(!fki_phonetype_id_local_var)
+    {
+        goto end;
+    }
+    *fki_phonetype_id_local_var = fki_phonetype_id->valuedouble;
 
     // phone_request_compound->e_phone_type
     cJSON *e_phone_type = cJSON_GetObjectItemCaseSensitive(phone_request_compoundJSON, "ePhoneType");
@@ -298,22 +351,65 @@ phone_request_compound_t *phone_request_compound_parseFromJSON(cJSON *phone_requ
     }
 
 
+    if (s_phone_region && !cJSON_IsNull(s_phone_region)) s_phone_region_local_str = strdup(s_phone_region->valuestring);
+    if (s_phone_exchange && !cJSON_IsNull(s_phone_exchange)) s_phone_exchange_local_str = strdup(s_phone_exchange->valuestring);
+    if (s_phone_number && !cJSON_IsNull(s_phone_number)) s_phone_number_local_str = strdup(s_phone_number->valuestring);
+    if (s_phone_international && !cJSON_IsNull(s_phone_international)) s_phone_international_local_str = strdup(s_phone_international->valuestring);
+    if (s_phone_extension && !cJSON_IsNull(s_phone_extension)) s_phone_extension_local_str = strdup(s_phone_extension->valuestring);
+    if (s_phone_e164 && !cJSON_IsNull(s_phone_e164)) s_phone_e164_local_str = strdup(s_phone_e164->valuestring);
+
     phone_request_compound_local_var = phone_request_compound_create_internal (
-        pki_phone_id ? pki_phone_id->valuedouble : 0,
-        fki_phonetype_id->valuedouble,
+        pki_phone_id_local_var,
+        fki_phonetype_id_local_var,
         e_phone_type ? e_phone_type_local_nonprim : 0,
-        s_phone_region && !cJSON_IsNull(s_phone_region) ? strdup(s_phone_region->valuestring) : NULL,
-        s_phone_exchange && !cJSON_IsNull(s_phone_exchange) ? strdup(s_phone_exchange->valuestring) : NULL,
-        s_phone_number && !cJSON_IsNull(s_phone_number) ? strdup(s_phone_number->valuestring) : NULL,
-        s_phone_international && !cJSON_IsNull(s_phone_international) ? strdup(s_phone_international->valuestring) : NULL,
-        s_phone_extension && !cJSON_IsNull(s_phone_extension) ? strdup(s_phone_extension->valuestring) : NULL,
-        s_phone_e164 && !cJSON_IsNull(s_phone_e164) ? strdup(s_phone_e164->valuestring) : NULL
+        s_phone_region_local_str,
+        s_phone_exchange_local_str,
+        s_phone_number_local_str,
+        s_phone_international_local_str,
+        s_phone_extension_local_str,
+        s_phone_e164_local_str
         );
+
+    if (!phone_request_compound_local_var) {
+        goto end;
+    }
 
     return phone_request_compound_local_var;
 end:
+    if (pki_phone_id_local_var) {
+        free(pki_phone_id_local_var);
+        pki_phone_id_local_var = NULL;
+    }
+    if (fki_phonetype_id_local_var) {
+        free(fki_phonetype_id_local_var);
+        fki_phonetype_id_local_var = NULL;
+    }
     if (e_phone_type_local_nonprim) {
         e_phone_type_local_nonprim = 0;
+    }
+    if (s_phone_region_local_str) {
+        free(s_phone_region_local_str);
+        s_phone_region_local_str = NULL;
+    }
+    if (s_phone_exchange_local_str) {
+        free(s_phone_exchange_local_str);
+        s_phone_exchange_local_str = NULL;
+    }
+    if (s_phone_number_local_str) {
+        free(s_phone_number_local_str);
+        s_phone_number_local_str = NULL;
+    }
+    if (s_phone_international_local_str) {
+        free(s_phone_international_local_str);
+        s_phone_international_local_str = NULL;
+    }
+    if (s_phone_extension_local_str) {
+        free(s_phone_extension_local_str);
+        s_phone_extension_local_str = NULL;
+    }
+    if (s_phone_e164_local_str) {
+        free(s_phone_e164_local_str);
+        s_phone_e164_local_str = NULL;
     }
     return NULL;
 

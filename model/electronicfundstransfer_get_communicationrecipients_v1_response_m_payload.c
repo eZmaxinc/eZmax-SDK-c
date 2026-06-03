@@ -12,18 +12,21 @@ static electronicfundstransfer_get_communicationrecipients_v1_response_m_payload
     if (!electronicfundstransfer_get_communicationrecipients_v1_response_m_payload_local_var) {
         return NULL;
     }
-    electronicfundstransfer_get_communicationrecipients_v1_response_m_payload_local_var->a_obj_communicationrecipientsgroup = a_obj_communicationrecipientsgroup;
-
+    memset(electronicfundstransfer_get_communicationrecipients_v1_response_m_payload_local_var, 0, sizeof(electronicfundstransfer_get_communicationrecipients_v1_response_m_payload_t));
     electronicfundstransfer_get_communicationrecipients_v1_response_m_payload_local_var->_library_owned = 1;
+    electronicfundstransfer_get_communicationrecipients_v1_response_m_payload_local_var->a_obj_communicationrecipientsgroup = a_obj_communicationrecipientsgroup;
     return electronicfundstransfer_get_communicationrecipients_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) electronicfundstransfer_get_communicationrecipients_v1_response_m_payload_t *electronicfundstransfer_get_communicationrecipients_v1_response_m_payload_create(
     list_t *a_obj_communicationrecipientsgroup
     ) {
-    return electronicfundstransfer_get_communicationrecipients_v1_response_m_payload_create_internal (
+    electronicfundstransfer_get_communicationrecipients_v1_response_m_payload_t *result = electronicfundstransfer_get_communicationrecipients_v1_response_m_payload_create_internal (
         a_obj_communicationrecipientsgroup
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void electronicfundstransfer_get_communicationrecipients_v1_response_m_payload_free(electronicfundstransfer_get_communicationrecipients_v1_response_m_payload_t *electronicfundstransfer_get_communicationrecipients_v1_response_m_payload) {
@@ -111,9 +114,14 @@ electronicfundstransfer_get_communicationrecipients_v1_response_m_payload_t *ele
     }
 
 
+
     electronicfundstransfer_get_communicationrecipients_v1_response_m_payload_local_var = electronicfundstransfer_get_communicationrecipients_v1_response_m_payload_create_internal (
         a_obj_communicationrecipientsgroupList
         );
+
+    if (!electronicfundstransfer_get_communicationrecipients_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return electronicfundstransfer_get_communicationrecipients_v1_response_m_payload_local_var;
 end:

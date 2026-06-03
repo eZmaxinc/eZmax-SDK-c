@@ -13,10 +13,10 @@ static multilingual_variableexpense_description_t *multilingual_variableexpense_
     if (!multilingual_variableexpense_description_local_var) {
         return NULL;
     }
+    memset(multilingual_variableexpense_description_local_var, 0, sizeof(multilingual_variableexpense_description_t));
+    multilingual_variableexpense_description_local_var->_library_owned = 1;
     multilingual_variableexpense_description_local_var->s_variableexpense_description1 = s_variableexpense_description1;
     multilingual_variableexpense_description_local_var->s_variableexpense_description2 = s_variableexpense_description2;
-
-    multilingual_variableexpense_description_local_var->_library_owned = 1;
     return multilingual_variableexpense_description_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) multilingual_variableexpense_description_t *multilin
     char *s_variableexpense_description1,
     char *s_variableexpense_description2
     ) {
-    return multilingual_variableexpense_description_create_internal (
+    multilingual_variableexpense_description_t *result = multilingual_variableexpense_description_create_internal (
         s_variableexpense_description1,
         s_variableexpense_description2
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void multilingual_variableexpense_description_free(multilingual_variableexpense_description_t *multilingual_variableexpense_description) {
@@ -80,6 +83,10 @@ multilingual_variableexpense_description_t *multilingual_variableexpense_descrip
 
     multilingual_variableexpense_description_t *multilingual_variableexpense_description_local_var = NULL;
 
+    char *s_variableexpense_description1_local_str = NULL;
+
+    char *s_variableexpense_description2_local_str = NULL;
+
     // multilingual_variableexpense_description->s_variableexpense_description1
     cJSON *s_variableexpense_description1 = cJSON_GetObjectItemCaseSensitive(multilingual_variableexpense_descriptionJSON, "sVariableexpenseDescription1");
     if (cJSON_IsNull(s_variableexpense_description1)) {
@@ -105,13 +112,28 @@ multilingual_variableexpense_description_t *multilingual_variableexpense_descrip
     }
 
 
+    if (s_variableexpense_description1 && !cJSON_IsNull(s_variableexpense_description1)) s_variableexpense_description1_local_str = strdup(s_variableexpense_description1->valuestring);
+    if (s_variableexpense_description2 && !cJSON_IsNull(s_variableexpense_description2)) s_variableexpense_description2_local_str = strdup(s_variableexpense_description2->valuestring);
+
     multilingual_variableexpense_description_local_var = multilingual_variableexpense_description_create_internal (
-        s_variableexpense_description1 && !cJSON_IsNull(s_variableexpense_description1) ? strdup(s_variableexpense_description1->valuestring) : NULL,
-        s_variableexpense_description2 && !cJSON_IsNull(s_variableexpense_description2) ? strdup(s_variableexpense_description2->valuestring) : NULL
+        s_variableexpense_description1_local_str,
+        s_variableexpense_description2_local_str
         );
+
+    if (!multilingual_variableexpense_description_local_var) {
+        goto end;
+    }
 
     return multilingual_variableexpense_description_local_var;
 end:
+    if (s_variableexpense_description1_local_str) {
+        free(s_variableexpense_description1_local_str);
+        s_variableexpense_description1_local_str = NULL;
+    }
+    if (s_variableexpense_description2_local_str) {
+        free(s_variableexpense_description2_local_str);
+        s_variableexpense_description2_local_str = NULL;
+    }
     return NULL;
 
 }

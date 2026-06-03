@@ -6,12 +6,12 @@
 
 
 static custom_communication_list_element_response_t *custom_communication_list_element_response_create_internal(
-    int pki_communication_id,
+    int *pki_communication_id,
     char *dt_created_date,
     ezmax_api_definition__full_computed_e_communication_direction__e e_communication_direction,
     ezmax_api_definition__full_field_e_communication_importance__e e_communication_importance,
     ezmax_api_definition__full_field_e_communication_type__e e_communication_type,
-    int i_communicationrecipient_count,
+    int *i_communicationrecipient_count,
     char *s_communication_subject,
     char *s_communication_sender,
     char *s_communication_recipient
@@ -20,6 +20,8 @@ static custom_communication_list_element_response_t *custom_communication_list_e
     if (!custom_communication_list_element_response_local_var) {
         return NULL;
     }
+    memset(custom_communication_list_element_response_local_var, 0, sizeof(custom_communication_list_element_response_t));
+    custom_communication_list_element_response_local_var->_library_owned = 1;
     custom_communication_list_element_response_local_var->pki_communication_id = pki_communication_id;
     custom_communication_list_element_response_local_var->dt_created_date = dt_created_date;
     custom_communication_list_element_response_local_var->e_communication_direction = e_communication_direction;
@@ -29,33 +31,46 @@ static custom_communication_list_element_response_t *custom_communication_list_e
     custom_communication_list_element_response_local_var->s_communication_subject = s_communication_subject;
     custom_communication_list_element_response_local_var->s_communication_sender = s_communication_sender;
     custom_communication_list_element_response_local_var->s_communication_recipient = s_communication_recipient;
-
-    custom_communication_list_element_response_local_var->_library_owned = 1;
     return custom_communication_list_element_response_local_var;
 }
 
 __attribute__((deprecated)) custom_communication_list_element_response_t *custom_communication_list_element_response_create(
-    int pki_communication_id,
+    int *pki_communication_id,
     char *dt_created_date,
     ezmax_api_definition__full_computed_e_communication_direction__e e_communication_direction,
     ezmax_api_definition__full_field_e_communication_importance__e e_communication_importance,
     ezmax_api_definition__full_field_e_communication_type__e e_communication_type,
-    int i_communicationrecipient_count,
+    int *i_communicationrecipient_count,
     char *s_communication_subject,
     char *s_communication_sender,
     char *s_communication_recipient
     ) {
-    return custom_communication_list_element_response_create_internal (
-        pki_communication_id,
+    int *pki_communication_id_copy = NULL;
+    if (pki_communication_id) {
+        pki_communication_id_copy = malloc(sizeof(int));
+        if (pki_communication_id_copy) *pki_communication_id_copy = *pki_communication_id;
+    }
+    int *i_communicationrecipient_count_copy = NULL;
+    if (i_communicationrecipient_count) {
+        i_communicationrecipient_count_copy = malloc(sizeof(int));
+        if (i_communicationrecipient_count_copy) *i_communicationrecipient_count_copy = *i_communicationrecipient_count;
+    }
+    custom_communication_list_element_response_t *result = custom_communication_list_element_response_create_internal (
+        pki_communication_id_copy,
         dt_created_date,
         e_communication_direction,
         e_communication_importance,
         e_communication_type,
-        i_communicationrecipient_count,
+        i_communicationrecipient_count_copy,
         s_communication_subject,
         s_communication_sender,
         s_communication_recipient
         );
+    if (!result) {
+        free(pki_communication_id_copy);
+        free(i_communicationrecipient_count_copy);
+    }
+    return result;
 }
 
 void custom_communication_list_element_response_free(custom_communication_list_element_response_t *custom_communication_list_element_response) {
@@ -67,9 +82,17 @@ void custom_communication_list_element_response_free(custom_communication_list_e
         return ;
     }
     listEntry_t *listEntry;
+    if (custom_communication_list_element_response->pki_communication_id) {
+        free(custom_communication_list_element_response->pki_communication_id);
+        custom_communication_list_element_response->pki_communication_id = NULL;
+    }
     if (custom_communication_list_element_response->dt_created_date) {
         free(custom_communication_list_element_response->dt_created_date);
         custom_communication_list_element_response->dt_created_date = NULL;
+    }
+    if (custom_communication_list_element_response->i_communicationrecipient_count) {
+        free(custom_communication_list_element_response->i_communicationrecipient_count);
+        custom_communication_list_element_response->i_communicationrecipient_count = NULL;
     }
     if (custom_communication_list_element_response->s_communication_subject) {
         free(custom_communication_list_element_response->s_communication_subject);
@@ -93,7 +116,7 @@ cJSON *custom_communication_list_element_response_convertToJSON(custom_communica
     if (!custom_communication_list_element_response->pki_communication_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiCommunicationID", custom_communication_list_element_response->pki_communication_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiCommunicationID", *custom_communication_list_element_response->pki_communication_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -153,7 +176,7 @@ cJSON *custom_communication_list_element_response_convertToJSON(custom_communica
     if (!custom_communication_list_element_response->i_communicationrecipient_count) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iCommunicationrecipientCount", custom_communication_list_element_response->i_communicationrecipient_count) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iCommunicationrecipientCount", *custom_communication_list_element_response->i_communicationrecipient_count) == NULL) {
     goto fail; //Numeric
     }
 
@@ -196,6 +219,11 @@ custom_communication_list_element_response_t *custom_communication_list_element_
 
     custom_communication_list_element_response_t *custom_communication_list_element_response_local_var = NULL;
 
+    // define the local variable for custom_communication_list_element_response->pki_communication_id
+    int *pki_communication_id_local_var = NULL;
+
+    char *dt_created_date_local_str = NULL;
+
     // define the local variable for custom_communication_list_element_response->e_communication_direction
     ezmax_api_definition__full_computed_e_communication_direction__e e_communication_direction_local_nonprim = 0;
 
@@ -204,6 +232,15 @@ custom_communication_list_element_response_t *custom_communication_list_element_
 
     // define the local variable for custom_communication_list_element_response->e_communication_type
     ezmax_api_definition__full_field_e_communication_type__e e_communication_type_local_nonprim = 0;
+
+    // define the local variable for custom_communication_list_element_response->i_communicationrecipient_count
+    int *i_communicationrecipient_count_local_var = NULL;
+
+    char *s_communication_subject_local_str = NULL;
+
+    char *s_communication_sender_local_str = NULL;
+
+    char *s_communication_recipient_local_str = NULL;
 
     // custom_communication_list_element_response->pki_communication_id
     cJSON *pki_communication_id = cJSON_GetObjectItemCaseSensitive(custom_communication_list_element_responseJSON, "pkiCommunicationID");
@@ -219,6 +256,12 @@ custom_communication_list_element_response_t *custom_communication_list_element_
     {
     goto end; //Numeric
     }
+    pki_communication_id_local_var = malloc(sizeof(int));
+    if(!pki_communication_id_local_var)
+    {
+        goto end;
+    }
+    *pki_communication_id_local_var = pki_communication_id->valuedouble;
 
     // custom_communication_list_element_response->dt_created_date
     cJSON *dt_created_date = cJSON_GetObjectItemCaseSensitive(custom_communication_list_element_responseJSON, "dtCreatedDate");
@@ -285,6 +328,12 @@ custom_communication_list_element_response_t *custom_communication_list_element_
     {
     goto end; //Numeric
     }
+    i_communicationrecipient_count_local_var = malloc(sizeof(int));
+    if(!i_communicationrecipient_count_local_var)
+    {
+        goto end;
+    }
+    *i_communicationrecipient_count_local_var = i_communicationrecipient_count->valuedouble;
 
     // custom_communication_list_element_response->s_communication_subject
     cJSON *s_communication_subject = cJSON_GetObjectItemCaseSensitive(custom_communication_list_element_responseJSON, "sCommunicationSubject");
@@ -332,20 +381,37 @@ custom_communication_list_element_response_t *custom_communication_list_element_
     }
 
 
+    if (dt_created_date && !cJSON_IsNull(dt_created_date)) dt_created_date_local_str = strdup(dt_created_date->valuestring);
+    if (s_communication_subject && !cJSON_IsNull(s_communication_subject)) s_communication_subject_local_str = strdup(s_communication_subject->valuestring);
+    if (s_communication_sender && !cJSON_IsNull(s_communication_sender)) s_communication_sender_local_str = strdup(s_communication_sender->valuestring);
+    if (s_communication_recipient && !cJSON_IsNull(s_communication_recipient)) s_communication_recipient_local_str = strdup(s_communication_recipient->valuestring);
+
     custom_communication_list_element_response_local_var = custom_communication_list_element_response_create_internal (
-        pki_communication_id->valuedouble,
-        strdup(dt_created_date->valuestring),
+        pki_communication_id_local_var,
+        dt_created_date_local_str,
         e_communication_direction_local_nonprim,
         e_communication_importance_local_nonprim,
         e_communication_type_local_nonprim,
-        i_communicationrecipient_count->valuedouble,
-        strdup(s_communication_subject->valuestring),
-        strdup(s_communication_sender->valuestring),
-        strdup(s_communication_recipient->valuestring)
+        i_communicationrecipient_count_local_var,
+        s_communication_subject_local_str,
+        s_communication_sender_local_str,
+        s_communication_recipient_local_str
         );
+
+    if (!custom_communication_list_element_response_local_var) {
+        goto end;
+    }
 
     return custom_communication_list_element_response_local_var;
 end:
+    if (pki_communication_id_local_var) {
+        free(pki_communication_id_local_var);
+        pki_communication_id_local_var = NULL;
+    }
+    if (dt_created_date_local_str) {
+        free(dt_created_date_local_str);
+        dt_created_date_local_str = NULL;
+    }
     if (e_communication_direction_local_nonprim) {
         e_communication_direction_local_nonprim = 0;
     }
@@ -354,6 +420,22 @@ end:
     }
     if (e_communication_type_local_nonprim) {
         e_communication_type_local_nonprim = 0;
+    }
+    if (i_communicationrecipient_count_local_var) {
+        free(i_communicationrecipient_count_local_var);
+        i_communicationrecipient_count_local_var = NULL;
+    }
+    if (s_communication_subject_local_str) {
+        free(s_communication_subject_local_str);
+        s_communication_subject_local_str = NULL;
+    }
+    if (s_communication_sender_local_str) {
+        free(s_communication_sender_local_str);
+        s_communication_sender_local_str = NULL;
+    }
+    if (s_communication_recipient_local_str) {
+        free(s_communication_recipient_local_str);
+        s_communication_recipient_local_str = NULL;
     }
     return NULL;
 

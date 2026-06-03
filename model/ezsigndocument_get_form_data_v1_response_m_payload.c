@@ -12,18 +12,21 @@ static ezsigndocument_get_form_data_v1_response_m_payload_t *ezsigndocument_get_
     if (!ezsigndocument_get_form_data_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsigndocument_get_form_data_v1_response_m_payload_local_var->obj_form_data_document = obj_form_data_document;
-
+    memset(ezsigndocument_get_form_data_v1_response_m_payload_local_var, 0, sizeof(ezsigndocument_get_form_data_v1_response_m_payload_t));
     ezsigndocument_get_form_data_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsigndocument_get_form_data_v1_response_m_payload_local_var->obj_form_data_document = obj_form_data_document;
     return ezsigndocument_get_form_data_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsigndocument_get_form_data_v1_response_m_payload_t *ezsigndocument_get_form_data_v1_response_m_payload_create(
     custom_form_data_document_response_t *obj_form_data_document
     ) {
-    return ezsigndocument_get_form_data_v1_response_m_payload_create_internal (
+    ezsigndocument_get_form_data_v1_response_m_payload_t *result = ezsigndocument_get_form_data_v1_response_m_payload_create_internal (
         obj_form_data_document
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigndocument_get_form_data_v1_response_m_payload_free(ezsigndocument_get_form_data_v1_response_m_payload_t *ezsigndocument_get_form_data_v1_response_m_payload) {
@@ -86,9 +89,14 @@ ezsigndocument_get_form_data_v1_response_m_payload_t *ezsigndocument_get_form_da
     obj_form_data_document_local_nonprim = custom_form_data_document_response_parseFromJSON(obj_form_data_document); //nonprimitive
 
 
+
     ezsigndocument_get_form_data_v1_response_m_payload_local_var = ezsigndocument_get_form_data_v1_response_m_payload_create_internal (
         obj_form_data_document_local_nonprim
         );
+
+    if (!ezsigndocument_get_form_data_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsigndocument_get_form_data_v1_response_m_payload_local_var;
 end:

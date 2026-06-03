@@ -19,8 +19,8 @@ typedef struct ezsignsignatureattachment_response_t ezsignsignatureattachment_re
 
 
 typedef struct ezsignsignatureattachment_response_t {
-    int pki_ezsignsignatureattachment_id; //numeric
-    int fki_ezsignsignature_id; //numeric
+    int *pki_ezsignsignatureattachment_id; //numeric
+    int *fki_ezsignsignature_id; //numeric
     char *bin_ezsignsignatureattachment_md5; // string
     char *s_ezsignsignatureattachment_name; // string
     char *s_download_url; // string
@@ -29,8 +29,8 @@ typedef struct ezsignsignatureattachment_response_t {
 } ezsignsignatureattachment_response_t;
 
 __attribute__((deprecated)) ezsignsignatureattachment_response_t *ezsignsignatureattachment_response_create(
-    int pki_ezsignsignatureattachment_id,
-    int fki_ezsignsignature_id,
+    int *pki_ezsignsignatureattachment_id,
+    int *fki_ezsignsignature_id,
     char *bin_ezsignsignatureattachment_md5,
     char *s_ezsignsignatureattachment_name,
     char *s_download_url

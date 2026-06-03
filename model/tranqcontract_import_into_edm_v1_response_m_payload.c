@@ -12,18 +12,21 @@ static tranqcontract_import_into_edm_v1_response_m_payload_t *tranqcontract_impo
     if (!tranqcontract_import_into_edm_v1_response_m_payload_local_var) {
         return NULL;
     }
-    tranqcontract_import_into_edm_v1_response_m_payload_local_var->a_obj_attachment = a_obj_attachment;
-
+    memset(tranqcontract_import_into_edm_v1_response_m_payload_local_var, 0, sizeof(tranqcontract_import_into_edm_v1_response_m_payload_t));
     tranqcontract_import_into_edm_v1_response_m_payload_local_var->_library_owned = 1;
+    tranqcontract_import_into_edm_v1_response_m_payload_local_var->a_obj_attachment = a_obj_attachment;
     return tranqcontract_import_into_edm_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) tranqcontract_import_into_edm_v1_response_m_payload_t *tranqcontract_import_into_edm_v1_response_m_payload_create(
     list_t *a_obj_attachment
     ) {
-    return tranqcontract_import_into_edm_v1_response_m_payload_create_internal (
+    tranqcontract_import_into_edm_v1_response_m_payload_t *result = tranqcontract_import_into_edm_v1_response_m_payload_create_internal (
         a_obj_attachment
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void tranqcontract_import_into_edm_v1_response_m_payload_free(tranqcontract_import_into_edm_v1_response_m_payload_t *tranqcontract_import_into_edm_v1_response_m_payload) {
@@ -111,9 +114,14 @@ tranqcontract_import_into_edm_v1_response_m_payload_t *tranqcontract_import_into
     }
 
 
+
     tranqcontract_import_into_edm_v1_response_m_payload_local_var = tranqcontract_import_into_edm_v1_response_m_payload_create_internal (
         a_obj_attachmentList
         );
+
+    if (!tranqcontract_import_into_edm_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return tranqcontract_import_into_edm_v1_response_m_payload_local_var;
 end:

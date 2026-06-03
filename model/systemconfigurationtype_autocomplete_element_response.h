@@ -19,17 +19,17 @@ typedef struct systemconfigurationtype_autocomplete_element_response_t systemcon
 
 
 typedef struct systemconfigurationtype_autocomplete_element_response_t {
-    int pki_systemconfigurationtype_id; //numeric
+    int *pki_systemconfigurationtype_id; //numeric
     char *s_systemconfigurationtype_description_x; // string
-    int b_systemconfigurationtype_isactive; //boolean
+    int *b_systemconfigurationtype_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } systemconfigurationtype_autocomplete_element_response_t;
 
 __attribute__((deprecated)) systemconfigurationtype_autocomplete_element_response_t *systemconfigurationtype_autocomplete_element_response_create(
-    int pki_systemconfigurationtype_id,
+    int *pki_systemconfigurationtype_id,
     char *s_systemconfigurationtype_description_x,
-    int b_systemconfigurationtype_isactive
+    int *b_systemconfigurationtype_isactive
 );
 
 void systemconfigurationtype_autocomplete_element_response_free(systemconfigurationtype_autocomplete_element_response_t *systemconfigurationtype_autocomplete_element_response);

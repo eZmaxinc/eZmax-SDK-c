@@ -14,11 +14,11 @@ static tranqcontract_import_into_edm_v1_response_t *tranqcontract_import_into_ed
     if (!tranqcontract_import_into_edm_v1_response_local_var) {
         return NULL;
     }
+    memset(tranqcontract_import_into_edm_v1_response_local_var, 0, sizeof(tranqcontract_import_into_edm_v1_response_t));
+    tranqcontract_import_into_edm_v1_response_local_var->_library_owned = 1;
     tranqcontract_import_into_edm_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     tranqcontract_import_into_edm_v1_response_local_var->obj_debug = obj_debug;
     tranqcontract_import_into_edm_v1_response_local_var->m_payload = m_payload;
-
-    tranqcontract_import_into_edm_v1_response_local_var->_library_owned = 1;
     return tranqcontract_import_into_edm_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) tranqcontract_import_into_edm_v1_response_t *tranqco
     common_response_obj_debug_t *obj_debug,
     tranqcontract_import_into_edm_v1_response_m_payload_t *m_payload
     ) {
-    return tranqcontract_import_into_edm_v1_response_create_internal (
+    tranqcontract_import_into_edm_v1_response_t *result = tranqcontract_import_into_edm_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void tranqcontract_import_into_edm_v1_response_free(tranqcontract_import_into_edm_v1_response_t *tranqcontract_import_into_edm_v1_response) {
@@ -156,11 +159,16 @@ tranqcontract_import_into_edm_v1_response_t *tranqcontract_import_into_edm_v1_re
     m_payload_local_nonprim = tranqcontract_import_into_edm_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     tranqcontract_import_into_edm_v1_response_local_var = tranqcontract_import_into_edm_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!tranqcontract_import_into_edm_v1_response_local_var) {
+        goto end;
+    }
 
     return tranqcontract_import_into_edm_v1_response_local_var;
 end:

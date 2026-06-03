@@ -6,32 +6,47 @@
 
 
 static supply_get_list_v1_response_m_payload_t *supply_get_list_v1_response_m_payload_create_internal(
-    int i_row_returned,
-    int i_row_filtered,
+    int *i_row_returned,
+    int *i_row_filtered,
     list_t *a_obj_supply
     ) {
     supply_get_list_v1_response_m_payload_t *supply_get_list_v1_response_m_payload_local_var = malloc(sizeof(supply_get_list_v1_response_m_payload_t));
     if (!supply_get_list_v1_response_m_payload_local_var) {
         return NULL;
     }
+    memset(supply_get_list_v1_response_m_payload_local_var, 0, sizeof(supply_get_list_v1_response_m_payload_t));
+    supply_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     supply_get_list_v1_response_m_payload_local_var->i_row_returned = i_row_returned;
     supply_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
     supply_get_list_v1_response_m_payload_local_var->a_obj_supply = a_obj_supply;
-
-    supply_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     return supply_get_list_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) supply_get_list_v1_response_m_payload_t *supply_get_list_v1_response_m_payload_create(
-    int i_row_returned,
-    int i_row_filtered,
+    int *i_row_returned,
+    int *i_row_filtered,
     list_t *a_obj_supply
     ) {
-    return supply_get_list_v1_response_m_payload_create_internal (
-        i_row_returned,
-        i_row_filtered,
+    int *i_row_returned_copy = NULL;
+    if (i_row_returned) {
+        i_row_returned_copy = malloc(sizeof(int));
+        if (i_row_returned_copy) *i_row_returned_copy = *i_row_returned;
+    }
+    int *i_row_filtered_copy = NULL;
+    if (i_row_filtered) {
+        i_row_filtered_copy = malloc(sizeof(int));
+        if (i_row_filtered_copy) *i_row_filtered_copy = *i_row_filtered;
+    }
+    supply_get_list_v1_response_m_payload_t *result = supply_get_list_v1_response_m_payload_create_internal (
+        i_row_returned_copy,
+        i_row_filtered_copy,
         a_obj_supply
         );
+    if (!result) {
+        free(i_row_returned_copy);
+        free(i_row_filtered_copy);
+    }
+    return result;
 }
 
 void supply_get_list_v1_response_m_payload_free(supply_get_list_v1_response_m_payload_t *supply_get_list_v1_response_m_payload) {
@@ -43,6 +58,14 @@ void supply_get_list_v1_response_m_payload_free(supply_get_list_v1_response_m_pa
         return ;
     }
     listEntry_t *listEntry;
+    if (supply_get_list_v1_response_m_payload->i_row_returned) {
+        free(supply_get_list_v1_response_m_payload->i_row_returned);
+        supply_get_list_v1_response_m_payload->i_row_returned = NULL;
+    }
+    if (supply_get_list_v1_response_m_payload->i_row_filtered) {
+        free(supply_get_list_v1_response_m_payload->i_row_filtered);
+        supply_get_list_v1_response_m_payload->i_row_filtered = NULL;
+    }
     if (supply_get_list_v1_response_m_payload->a_obj_supply) {
         list_ForEach(listEntry, supply_get_list_v1_response_m_payload->a_obj_supply) {
             supply_list_element_free(listEntry->data);
@@ -60,7 +83,7 @@ cJSON *supply_get_list_v1_response_m_payload_convertToJSON(supply_get_list_v1_re
     if (!supply_get_list_v1_response_m_payload->i_row_returned) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iRowReturned", supply_get_list_v1_response_m_payload->i_row_returned) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iRowReturned", *supply_get_list_v1_response_m_payload->i_row_returned) == NULL) {
     goto fail; //Numeric
     }
 
@@ -69,7 +92,7 @@ cJSON *supply_get_list_v1_response_m_payload_convertToJSON(supply_get_list_v1_re
     if (!supply_get_list_v1_response_m_payload->i_row_filtered) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iRowFiltered", supply_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iRowFiltered", *supply_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
     goto fail; //Numeric
     }
 
@@ -106,6 +129,12 @@ supply_get_list_v1_response_m_payload_t *supply_get_list_v1_response_m_payload_p
 
     supply_get_list_v1_response_m_payload_t *supply_get_list_v1_response_m_payload_local_var = NULL;
 
+    // define the local variable for supply_get_list_v1_response_m_payload->i_row_returned
+    int *i_row_returned_local_var = NULL;
+
+    // define the local variable for supply_get_list_v1_response_m_payload->i_row_filtered
+    int *i_row_filtered_local_var = NULL;
+
     // define the local list for supply_get_list_v1_response_m_payload->a_obj_supply
     list_t *a_obj_supplyList = NULL;
 
@@ -123,6 +152,12 @@ supply_get_list_v1_response_m_payload_t *supply_get_list_v1_response_m_payload_p
     {
     goto end; //Numeric
     }
+    i_row_returned_local_var = malloc(sizeof(int));
+    if(!i_row_returned_local_var)
+    {
+        goto end;
+    }
+    *i_row_returned_local_var = i_row_returned->valuedouble;
 
     // supply_get_list_v1_response_m_payload->i_row_filtered
     cJSON *i_row_filtered = cJSON_GetObjectItemCaseSensitive(supply_get_list_v1_response_m_payloadJSON, "iRowFiltered");
@@ -138,6 +173,12 @@ supply_get_list_v1_response_m_payload_t *supply_get_list_v1_response_m_payload_p
     {
     goto end; //Numeric
     }
+    i_row_filtered_local_var = malloc(sizeof(int));
+    if(!i_row_filtered_local_var)
+    {
+        goto end;
+    }
+    *i_row_filtered_local_var = i_row_filtered->valuedouble;
 
     // supply_get_list_v1_response_m_payload->a_obj_supply
     cJSON *a_obj_supply = cJSON_GetObjectItemCaseSensitive(supply_get_list_v1_response_m_payloadJSON, "a_objSupply");
@@ -167,14 +208,27 @@ supply_get_list_v1_response_m_payload_t *supply_get_list_v1_response_m_payload_p
     }
 
 
+
     supply_get_list_v1_response_m_payload_local_var = supply_get_list_v1_response_m_payload_create_internal (
-        i_row_returned->valuedouble,
-        i_row_filtered->valuedouble,
+        i_row_returned_local_var,
+        i_row_filtered_local_var,
         a_obj_supplyList
         );
 
+    if (!supply_get_list_v1_response_m_payload_local_var) {
+        goto end;
+    }
+
     return supply_get_list_v1_response_m_payload_local_var;
 end:
+    if (i_row_returned_local_var) {
+        free(i_row_returned_local_var);
+        i_row_returned_local_var = NULL;
+    }
+    if (i_row_filtered_local_var) {
+        free(i_row_filtered_local_var);
+        i_row_filtered_local_var = NULL;
+    }
     if (a_obj_supplyList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_supplyList) {

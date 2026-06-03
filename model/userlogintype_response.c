@@ -6,7 +6,7 @@
 
 
 static userlogintype_response_t *userlogintype_response_create_internal(
-    int pki_userlogintype_id,
+    int *pki_userlogintype_id,
     multilingual_userlogintype_description_t *obj_userlogintype_description,
     char *s_userlogintype_description_x
     ) {
@@ -14,24 +14,33 @@ static userlogintype_response_t *userlogintype_response_create_internal(
     if (!userlogintype_response_local_var) {
         return NULL;
     }
+    memset(userlogintype_response_local_var, 0, sizeof(userlogintype_response_t));
+    userlogintype_response_local_var->_library_owned = 1;
     userlogintype_response_local_var->pki_userlogintype_id = pki_userlogintype_id;
     userlogintype_response_local_var->obj_userlogintype_description = obj_userlogintype_description;
     userlogintype_response_local_var->s_userlogintype_description_x = s_userlogintype_description_x;
-
-    userlogintype_response_local_var->_library_owned = 1;
     return userlogintype_response_local_var;
 }
 
 __attribute__((deprecated)) userlogintype_response_t *userlogintype_response_create(
-    int pki_userlogintype_id,
+    int *pki_userlogintype_id,
     multilingual_userlogintype_description_t *obj_userlogintype_description,
     char *s_userlogintype_description_x
     ) {
-    return userlogintype_response_create_internal (
-        pki_userlogintype_id,
+    int *pki_userlogintype_id_copy = NULL;
+    if (pki_userlogintype_id) {
+        pki_userlogintype_id_copy = malloc(sizeof(int));
+        if (pki_userlogintype_id_copy) *pki_userlogintype_id_copy = *pki_userlogintype_id;
+    }
+    userlogintype_response_t *result = userlogintype_response_create_internal (
+        pki_userlogintype_id_copy,
         obj_userlogintype_description,
         s_userlogintype_description_x
         );
+    if (!result) {
+        free(pki_userlogintype_id_copy);
+    }
+    return result;
 }
 
 void userlogintype_response_free(userlogintype_response_t *userlogintype_response) {
@@ -43,6 +52,10 @@ void userlogintype_response_free(userlogintype_response_t *userlogintype_respons
         return ;
     }
     listEntry_t *listEntry;
+    if (userlogintype_response->pki_userlogintype_id) {
+        free(userlogintype_response->pki_userlogintype_id);
+        userlogintype_response->pki_userlogintype_id = NULL;
+    }
     if (userlogintype_response->obj_userlogintype_description) {
         multilingual_userlogintype_description_free(userlogintype_response->obj_userlogintype_description);
         userlogintype_response->obj_userlogintype_description = NULL;
@@ -61,7 +74,7 @@ cJSON *userlogintype_response_convertToJSON(userlogintype_response_t *userlogint
     if (!userlogintype_response->pki_userlogintype_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiUserlogintypeID", userlogintype_response->pki_userlogintype_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiUserlogintypeID", *userlogintype_response->pki_userlogintype_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -100,8 +113,13 @@ userlogintype_response_t *userlogintype_response_parseFromJSON(cJSON *userlogint
 
     userlogintype_response_t *userlogintype_response_local_var = NULL;
 
+    // define the local variable for userlogintype_response->pki_userlogintype_id
+    int *pki_userlogintype_id_local_var = NULL;
+
     // define the local variable for userlogintype_response->obj_userlogintype_description
     multilingual_userlogintype_description_t *obj_userlogintype_description_local_nonprim = NULL;
+
+    char *s_userlogintype_description_x_local_str = NULL;
 
     // userlogintype_response->pki_userlogintype_id
     cJSON *pki_userlogintype_id = cJSON_GetObjectItemCaseSensitive(userlogintype_responseJSON, "pkiUserlogintypeID");
@@ -117,6 +135,12 @@ userlogintype_response_t *userlogintype_response_parseFromJSON(cJSON *userlogint
     {
     goto end; //Numeric
     }
+    pki_userlogintype_id_local_var = malloc(sizeof(int));
+    if(!pki_userlogintype_id_local_var)
+    {
+        goto end;
+    }
+    *pki_userlogintype_id_local_var = pki_userlogintype_id->valuedouble;
 
     // userlogintype_response->obj_userlogintype_description
     cJSON *obj_userlogintype_description = cJSON_GetObjectItemCaseSensitive(userlogintype_responseJSON, "objUserlogintypeDescription");
@@ -146,17 +170,31 @@ userlogintype_response_t *userlogintype_response_parseFromJSON(cJSON *userlogint
     }
 
 
+    if (s_userlogintype_description_x && !cJSON_IsNull(s_userlogintype_description_x)) s_userlogintype_description_x_local_str = strdup(s_userlogintype_description_x->valuestring);
+
     userlogintype_response_local_var = userlogintype_response_create_internal (
-        pki_userlogintype_id->valuedouble,
+        pki_userlogintype_id_local_var,
         obj_userlogintype_description_local_nonprim,
-        strdup(s_userlogintype_description_x->valuestring)
+        s_userlogintype_description_x_local_str
         );
+
+    if (!userlogintype_response_local_var) {
+        goto end;
+    }
 
     return userlogintype_response_local_var;
 end:
+    if (pki_userlogintype_id_local_var) {
+        free(pki_userlogintype_id_local_var);
+        pki_userlogintype_id_local_var = NULL;
+    }
     if (obj_userlogintype_description_local_nonprim) {
         multilingual_userlogintype_description_free(obj_userlogintype_description_local_nonprim);
         obj_userlogintype_description_local_nonprim = NULL;
+    }
+    if (s_userlogintype_description_x_local_str) {
+        free(s_userlogintype_description_x_local_str);
+        s_userlogintype_description_x_local_str = NULL;
     }
     return NULL;
 

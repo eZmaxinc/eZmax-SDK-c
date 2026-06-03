@@ -13,10 +13,10 @@ static multilingual_paymentgateway_description_t *multilingual_paymentgateway_de
     if (!multilingual_paymentgateway_description_local_var) {
         return NULL;
     }
+    memset(multilingual_paymentgateway_description_local_var, 0, sizeof(multilingual_paymentgateway_description_t));
+    multilingual_paymentgateway_description_local_var->_library_owned = 1;
     multilingual_paymentgateway_description_local_var->s_paymentgateway_description1 = s_paymentgateway_description1;
     multilingual_paymentgateway_description_local_var->s_paymentgateway_description2 = s_paymentgateway_description2;
-
-    multilingual_paymentgateway_description_local_var->_library_owned = 1;
     return multilingual_paymentgateway_description_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) multilingual_paymentgateway_description_t *multiling
     char *s_paymentgateway_description1,
     char *s_paymentgateway_description2
     ) {
-    return multilingual_paymentgateway_description_create_internal (
+    multilingual_paymentgateway_description_t *result = multilingual_paymentgateway_description_create_internal (
         s_paymentgateway_description1,
         s_paymentgateway_description2
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void multilingual_paymentgateway_description_free(multilingual_paymentgateway_description_t *multilingual_paymentgateway_description) {
@@ -80,6 +83,10 @@ multilingual_paymentgateway_description_t *multilingual_paymentgateway_descripti
 
     multilingual_paymentgateway_description_t *multilingual_paymentgateway_description_local_var = NULL;
 
+    char *s_paymentgateway_description1_local_str = NULL;
+
+    char *s_paymentgateway_description2_local_str = NULL;
+
     // multilingual_paymentgateway_description->s_paymentgateway_description1
     cJSON *s_paymentgateway_description1 = cJSON_GetObjectItemCaseSensitive(multilingual_paymentgateway_descriptionJSON, "sPaymentgatewayDescription1");
     if (cJSON_IsNull(s_paymentgateway_description1)) {
@@ -105,13 +112,28 @@ multilingual_paymentgateway_description_t *multilingual_paymentgateway_descripti
     }
 
 
+    if (s_paymentgateway_description1 && !cJSON_IsNull(s_paymentgateway_description1)) s_paymentgateway_description1_local_str = strdup(s_paymentgateway_description1->valuestring);
+    if (s_paymentgateway_description2 && !cJSON_IsNull(s_paymentgateway_description2)) s_paymentgateway_description2_local_str = strdup(s_paymentgateway_description2->valuestring);
+
     multilingual_paymentgateway_description_local_var = multilingual_paymentgateway_description_create_internal (
-        s_paymentgateway_description1 && !cJSON_IsNull(s_paymentgateway_description1) ? strdup(s_paymentgateway_description1->valuestring) : NULL,
-        s_paymentgateway_description2 && !cJSON_IsNull(s_paymentgateway_description2) ? strdup(s_paymentgateway_description2->valuestring) : NULL
+        s_paymentgateway_description1_local_str,
+        s_paymentgateway_description2_local_str
         );
+
+    if (!multilingual_paymentgateway_description_local_var) {
+        goto end;
+    }
 
     return multilingual_paymentgateway_description_local_var;
 end:
+    if (s_paymentgateway_description1_local_str) {
+        free(s_paymentgateway_description1_local_str);
+        s_paymentgateway_description1_local_str = NULL;
+    }
+    if (s_paymentgateway_description2_local_str) {
+        free(s_paymentgateway_description2_local_str);
+        s_paymentgateway_description2_local_str = NULL;
+    }
     return NULL;
 
 }

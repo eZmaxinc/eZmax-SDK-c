@@ -21,7 +21,7 @@ typedef struct ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response
 
 typedef struct ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_t {
     struct custom_branding_response_t *obj_branding; //model
-    int fki_userlogintype_id; //numeric
+    int *fki_userlogintype_id; //numeric
     list_t *a_s_ezsigntemplatesigner_description; //primitive container
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -29,7 +29,7 @@ typedef struct ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response
 
 __attribute__((deprecated)) ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_t *ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_create(
     custom_branding_response_t *obj_branding,
-    int fki_userlogintype_id,
+    int *fki_userlogintype_id,
     list_t *a_s_ezsigntemplatesigner_description
 );
 

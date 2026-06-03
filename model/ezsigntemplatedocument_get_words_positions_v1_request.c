@@ -24,31 +24,40 @@ ezmax_api_definition__full_ezsigntemplatedocument_get_words_positions_v1_request
 
 static ezsigntemplatedocument_get_words_positions_v1_request_t *ezsigntemplatedocument_get_words_positions_v1_request_create_internal(
     ezmax_api_definition__full_ezsigntemplatedocument_get_words_positions_v1_request_EGET_e e_get,
-    int b_word_case_sensitive,
+    int *b_word_case_sensitive,
     list_t *a_s_word
     ) {
     ezsigntemplatedocument_get_words_positions_v1_request_t *ezsigntemplatedocument_get_words_positions_v1_request_local_var = malloc(sizeof(ezsigntemplatedocument_get_words_positions_v1_request_t));
     if (!ezsigntemplatedocument_get_words_positions_v1_request_local_var) {
         return NULL;
     }
+    memset(ezsigntemplatedocument_get_words_positions_v1_request_local_var, 0, sizeof(ezsigntemplatedocument_get_words_positions_v1_request_t));
+    ezsigntemplatedocument_get_words_positions_v1_request_local_var->_library_owned = 1;
     ezsigntemplatedocument_get_words_positions_v1_request_local_var->e_get = e_get;
     ezsigntemplatedocument_get_words_positions_v1_request_local_var->b_word_case_sensitive = b_word_case_sensitive;
     ezsigntemplatedocument_get_words_positions_v1_request_local_var->a_s_word = a_s_word;
-
-    ezsigntemplatedocument_get_words_positions_v1_request_local_var->_library_owned = 1;
     return ezsigntemplatedocument_get_words_positions_v1_request_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplatedocument_get_words_positions_v1_request_t *ezsigntemplatedocument_get_words_positions_v1_request_create(
     ezmax_api_definition__full_ezsigntemplatedocument_get_words_positions_v1_request_EGET_e e_get,
-    int b_word_case_sensitive,
+    int *b_word_case_sensitive,
     list_t *a_s_word
     ) {
-    return ezsigntemplatedocument_get_words_positions_v1_request_create_internal (
+    int *b_word_case_sensitive_copy = NULL;
+    if (b_word_case_sensitive) {
+        b_word_case_sensitive_copy = malloc(sizeof(int));
+        if (b_word_case_sensitive_copy) *b_word_case_sensitive_copy = *b_word_case_sensitive;
+    }
+    ezsigntemplatedocument_get_words_positions_v1_request_t *result = ezsigntemplatedocument_get_words_positions_v1_request_create_internal (
         e_get,
-        b_word_case_sensitive,
+        b_word_case_sensitive_copy,
         a_s_word
         );
+    if (!result) {
+        free(b_word_case_sensitive_copy);
+    }
+    return result;
 }
 
 void ezsigntemplatedocument_get_words_positions_v1_request_free(ezsigntemplatedocument_get_words_positions_v1_request_t *ezsigntemplatedocument_get_words_positions_v1_request) {
@@ -60,6 +69,10 @@ void ezsigntemplatedocument_get_words_positions_v1_request_free(ezsigntemplatedo
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsigntemplatedocument_get_words_positions_v1_request->b_word_case_sensitive) {
+        free(ezsigntemplatedocument_get_words_positions_v1_request->b_word_case_sensitive);
+        ezsigntemplatedocument_get_words_positions_v1_request->b_word_case_sensitive = NULL;
+    }
     if (ezsigntemplatedocument_get_words_positions_v1_request->a_s_word) {
         list_ForEach(listEntry, ezsigntemplatedocument_get_words_positions_v1_request->a_s_word) {
             free(listEntry->data);
@@ -87,7 +100,7 @@ cJSON *ezsigntemplatedocument_get_words_positions_v1_request_convertToJSON(ezsig
     if (!ezsigntemplatedocument_get_words_positions_v1_request->b_word_case_sensitive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bWordCaseSensitive", ezsigntemplatedocument_get_words_positions_v1_request->b_word_case_sensitive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bWordCaseSensitive", *ezsigntemplatedocument_get_words_positions_v1_request->b_word_case_sensitive) == NULL) {
     goto fail; //Bool
     }
 
@@ -119,6 +132,9 @@ fail:
 ezsigntemplatedocument_get_words_positions_v1_request_t *ezsigntemplatedocument_get_words_positions_v1_request_parseFromJSON(cJSON *ezsigntemplatedocument_get_words_positions_v1_requestJSON){
 
     ezsigntemplatedocument_get_words_positions_v1_request_t *ezsigntemplatedocument_get_words_positions_v1_request_local_var = NULL;
+
+    // define the local variable for ezsigntemplatedocument_get_words_positions_v1_request->b_word_case_sensitive
+    int *b_word_case_sensitive_local_var = NULL;
 
     // define the local list for ezsigntemplatedocument_get_words_positions_v1_request->a_s_word
     list_t *a_s_wordList = NULL;
@@ -154,6 +170,12 @@ ezsigntemplatedocument_get_words_positions_v1_request_t *ezsigntemplatedocument_
     {
     goto end; //Bool
     }
+    b_word_case_sensitive_local_var = malloc(sizeof(int));
+    if(!b_word_case_sensitive_local_var)
+    {
+        goto end;
+    }
+    *b_word_case_sensitive_local_var = b_word_case_sensitive->valueint;
 
     // ezsigntemplatedocument_get_words_positions_v1_request->a_s_word
     cJSON *a_s_word = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_get_words_positions_v1_requestJSON, "a_sWord");
@@ -178,14 +200,23 @@ ezsigntemplatedocument_get_words_positions_v1_request_t *ezsigntemplatedocument_
     }
 
 
+
     ezsigntemplatedocument_get_words_positions_v1_request_local_var = ezsigntemplatedocument_get_words_positions_v1_request_create_internal (
         e_getVariable,
-        b_word_case_sensitive->valueint,
+        b_word_case_sensitive_local_var,
         a_s_word ? a_s_wordList : NULL
         );
 
+    if (!ezsigntemplatedocument_get_words_positions_v1_request_local_var) {
+        goto end;
+    }
+
     return ezsigntemplatedocument_get_words_positions_v1_request_local_var;
 end:
+    if (b_word_case_sensitive_local_var) {
+        free(b_word_case_sensitive_local_var);
+        b_word_case_sensitive_local_var = NULL;
+    }
     if (a_s_wordList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_s_wordList) {

@@ -19,15 +19,15 @@ typedef struct address_response_t address_response_t;
 
 
 typedef struct address_response_t {
-    int pki_address_id; //numeric
-    int fki_addresstype_id; //numeric
+    int *pki_address_id; //numeric
+    int *fki_addresstype_id; //numeric
     char *s_address_civic; // string
     char *s_address_street; // string
     char *s_address_suite; // string
     char *s_address_city; // string
-    int fki_province_id; //numeric
+    int *fki_province_id; //numeric
     char *s_province_name_x; // string
-    int fki_country_id; //numeric
+    int *fki_country_id; //numeric
     char *s_country_name_x; // string
     char *s_address_zip; // string
     char *f_address_longitude; // string
@@ -37,15 +37,15 @@ typedef struct address_response_t {
 } address_response_t;
 
 __attribute__((deprecated)) address_response_t *address_response_create(
-    int pki_address_id,
-    int fki_addresstype_id,
+    int *pki_address_id,
+    int *fki_addresstype_id,
     char *s_address_civic,
     char *s_address_street,
     char *s_address_suite,
     char *s_address_city,
-    int fki_province_id,
+    int *fki_province_id,
     char *s_province_name_x,
-    int fki_country_id,
+    int *fki_country_id,
     char *s_country_name_x,
     char *s_address_zip,
     char *f_address_longitude,

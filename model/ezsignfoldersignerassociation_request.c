@@ -6,44 +6,77 @@
 
 
 static ezsignfoldersignerassociation_request_t *ezsignfoldersignerassociation_request_create_internal(
-    int pki_ezsignfoldersignerassociation_id,
-    int fki_user_id,
-    int fki_ezsignsignergroup_id,
-    int fki_ezsignfolder_id,
-    int b_ezsignfoldersignerassociation_receivecopy,
+    int *pki_ezsignfoldersignerassociation_id,
+    int *fki_user_id,
+    int *fki_ezsignsignergroup_id,
+    int *fki_ezsignfolder_id,
+    int *b_ezsignfoldersignerassociation_receivecopy,
     char *t_ezsignfoldersignerassociation_message
     ) {
     ezsignfoldersignerassociation_request_t *ezsignfoldersignerassociation_request_local_var = malloc(sizeof(ezsignfoldersignerassociation_request_t));
     if (!ezsignfoldersignerassociation_request_local_var) {
         return NULL;
     }
+    memset(ezsignfoldersignerassociation_request_local_var, 0, sizeof(ezsignfoldersignerassociation_request_t));
+    ezsignfoldersignerassociation_request_local_var->_library_owned = 1;
     ezsignfoldersignerassociation_request_local_var->pki_ezsignfoldersignerassociation_id = pki_ezsignfoldersignerassociation_id;
     ezsignfoldersignerassociation_request_local_var->fki_user_id = fki_user_id;
     ezsignfoldersignerassociation_request_local_var->fki_ezsignsignergroup_id = fki_ezsignsignergroup_id;
     ezsignfoldersignerassociation_request_local_var->fki_ezsignfolder_id = fki_ezsignfolder_id;
     ezsignfoldersignerassociation_request_local_var->b_ezsignfoldersignerassociation_receivecopy = b_ezsignfoldersignerassociation_receivecopy;
     ezsignfoldersignerassociation_request_local_var->t_ezsignfoldersignerassociation_message = t_ezsignfoldersignerassociation_message;
-
-    ezsignfoldersignerassociation_request_local_var->_library_owned = 1;
     return ezsignfoldersignerassociation_request_local_var;
 }
 
 __attribute__((deprecated)) ezsignfoldersignerassociation_request_t *ezsignfoldersignerassociation_request_create(
-    int pki_ezsignfoldersignerassociation_id,
-    int fki_user_id,
-    int fki_ezsignsignergroup_id,
-    int fki_ezsignfolder_id,
-    int b_ezsignfoldersignerassociation_receivecopy,
+    int *pki_ezsignfoldersignerassociation_id,
+    int *fki_user_id,
+    int *fki_ezsignsignergroup_id,
+    int *fki_ezsignfolder_id,
+    int *b_ezsignfoldersignerassociation_receivecopy,
     char *t_ezsignfoldersignerassociation_message
     ) {
-    return ezsignfoldersignerassociation_request_create_internal (
-        pki_ezsignfoldersignerassociation_id,
-        fki_user_id,
-        fki_ezsignsignergroup_id,
-        fki_ezsignfolder_id,
-        b_ezsignfoldersignerassociation_receivecopy,
+    int *pki_ezsignfoldersignerassociation_id_copy = NULL;
+    if (pki_ezsignfoldersignerassociation_id) {
+        pki_ezsignfoldersignerassociation_id_copy = malloc(sizeof(int));
+        if (pki_ezsignfoldersignerassociation_id_copy) *pki_ezsignfoldersignerassociation_id_copy = *pki_ezsignfoldersignerassociation_id;
+    }
+    int *fki_user_id_copy = NULL;
+    if (fki_user_id) {
+        fki_user_id_copy = malloc(sizeof(int));
+        if (fki_user_id_copy) *fki_user_id_copy = *fki_user_id;
+    }
+    int *fki_ezsignsignergroup_id_copy = NULL;
+    if (fki_ezsignsignergroup_id) {
+        fki_ezsignsignergroup_id_copy = malloc(sizeof(int));
+        if (fki_ezsignsignergroup_id_copy) *fki_ezsignsignergroup_id_copy = *fki_ezsignsignergroup_id;
+    }
+    int *fki_ezsignfolder_id_copy = NULL;
+    if (fki_ezsignfolder_id) {
+        fki_ezsignfolder_id_copy = malloc(sizeof(int));
+        if (fki_ezsignfolder_id_copy) *fki_ezsignfolder_id_copy = *fki_ezsignfolder_id;
+    }
+    int *b_ezsignfoldersignerassociation_receivecopy_copy = NULL;
+    if (b_ezsignfoldersignerassociation_receivecopy) {
+        b_ezsignfoldersignerassociation_receivecopy_copy = malloc(sizeof(int));
+        if (b_ezsignfoldersignerassociation_receivecopy_copy) *b_ezsignfoldersignerassociation_receivecopy_copy = *b_ezsignfoldersignerassociation_receivecopy;
+    }
+    ezsignfoldersignerassociation_request_t *result = ezsignfoldersignerassociation_request_create_internal (
+        pki_ezsignfoldersignerassociation_id_copy,
+        fki_user_id_copy,
+        fki_ezsignsignergroup_id_copy,
+        fki_ezsignfolder_id_copy,
+        b_ezsignfoldersignerassociation_receivecopy_copy,
         t_ezsignfoldersignerassociation_message
         );
+    if (!result) {
+        free(pki_ezsignfoldersignerassociation_id_copy);
+        free(fki_user_id_copy);
+        free(fki_ezsignsignergroup_id_copy);
+        free(fki_ezsignfolder_id_copy);
+        free(b_ezsignfoldersignerassociation_receivecopy_copy);
+    }
+    return result;
 }
 
 void ezsignfoldersignerassociation_request_free(ezsignfoldersignerassociation_request_t *ezsignfoldersignerassociation_request) {
@@ -55,6 +88,26 @@ void ezsignfoldersignerassociation_request_free(ezsignfoldersignerassociation_re
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignfoldersignerassociation_request->pki_ezsignfoldersignerassociation_id) {
+        free(ezsignfoldersignerassociation_request->pki_ezsignfoldersignerassociation_id);
+        ezsignfoldersignerassociation_request->pki_ezsignfoldersignerassociation_id = NULL;
+    }
+    if (ezsignfoldersignerassociation_request->fki_user_id) {
+        free(ezsignfoldersignerassociation_request->fki_user_id);
+        ezsignfoldersignerassociation_request->fki_user_id = NULL;
+    }
+    if (ezsignfoldersignerassociation_request->fki_ezsignsignergroup_id) {
+        free(ezsignfoldersignerassociation_request->fki_ezsignsignergroup_id);
+        ezsignfoldersignerassociation_request->fki_ezsignsignergroup_id = NULL;
+    }
+    if (ezsignfoldersignerassociation_request->fki_ezsignfolder_id) {
+        free(ezsignfoldersignerassociation_request->fki_ezsignfolder_id);
+        ezsignfoldersignerassociation_request->fki_ezsignfolder_id = NULL;
+    }
+    if (ezsignfoldersignerassociation_request->b_ezsignfoldersignerassociation_receivecopy) {
+        free(ezsignfoldersignerassociation_request->b_ezsignfoldersignerassociation_receivecopy);
+        ezsignfoldersignerassociation_request->b_ezsignfoldersignerassociation_receivecopy = NULL;
+    }
     if (ezsignfoldersignerassociation_request->t_ezsignfoldersignerassociation_message) {
         free(ezsignfoldersignerassociation_request->t_ezsignfoldersignerassociation_message);
         ezsignfoldersignerassociation_request->t_ezsignfoldersignerassociation_message = NULL;
@@ -67,7 +120,7 @@ cJSON *ezsignfoldersignerassociation_request_convertToJSON(ezsignfoldersignerass
 
     // ezsignfoldersignerassociation_request->pki_ezsignfoldersignerassociation_id
     if(ezsignfoldersignerassociation_request->pki_ezsignfoldersignerassociation_id) {
-    if(cJSON_AddNumberToObject(item, "pkiEzsignfoldersignerassociationID", ezsignfoldersignerassociation_request->pki_ezsignfoldersignerassociation_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzsignfoldersignerassociationID", *ezsignfoldersignerassociation_request->pki_ezsignfoldersignerassociation_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -75,7 +128,7 @@ cJSON *ezsignfoldersignerassociation_request_convertToJSON(ezsignfoldersignerass
 
     // ezsignfoldersignerassociation_request->fki_user_id
     if(ezsignfoldersignerassociation_request->fki_user_id) {
-    if(cJSON_AddNumberToObject(item, "fkiUserID", ezsignfoldersignerassociation_request->fki_user_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiUserID", *ezsignfoldersignerassociation_request->fki_user_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -83,7 +136,7 @@ cJSON *ezsignfoldersignerassociation_request_convertToJSON(ezsignfoldersignerass
 
     // ezsignfoldersignerassociation_request->fki_ezsignsignergroup_id
     if(ezsignfoldersignerassociation_request->fki_ezsignsignergroup_id) {
-    if(cJSON_AddNumberToObject(item, "fkiEzsignsignergroupID", ezsignfoldersignerassociation_request->fki_ezsignsignergroup_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsignsignergroupID", *ezsignfoldersignerassociation_request->fki_ezsignsignergroup_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -93,14 +146,14 @@ cJSON *ezsignfoldersignerassociation_request_convertToJSON(ezsignfoldersignerass
     if (!ezsignfoldersignerassociation_request->fki_ezsignfolder_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiEzsignfolderID", ezsignfoldersignerassociation_request->fki_ezsignfolder_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsignfolderID", *ezsignfoldersignerassociation_request->fki_ezsignfolder_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // ezsignfoldersignerassociation_request->b_ezsignfoldersignerassociation_receivecopy
     if(ezsignfoldersignerassociation_request->b_ezsignfoldersignerassociation_receivecopy) {
-    if(cJSON_AddBoolToObject(item, "bEzsignfoldersignerassociationReceivecopy", ezsignfoldersignerassociation_request->b_ezsignfoldersignerassociation_receivecopy) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldersignerassociationReceivecopy", *ezsignfoldersignerassociation_request->b_ezsignfoldersignerassociation_receivecopy) == NULL) {
     goto fail; //Bool
     }
     }
@@ -125,6 +178,23 @@ ezsignfoldersignerassociation_request_t *ezsignfoldersignerassociation_request_p
 
     ezsignfoldersignerassociation_request_t *ezsignfoldersignerassociation_request_local_var = NULL;
 
+    // define the local variable for ezsignfoldersignerassociation_request->pki_ezsignfoldersignerassociation_id
+    int *pki_ezsignfoldersignerassociation_id_local_var = NULL;
+
+    // define the local variable for ezsignfoldersignerassociation_request->fki_user_id
+    int *fki_user_id_local_var = NULL;
+
+    // define the local variable for ezsignfoldersignerassociation_request->fki_ezsignsignergroup_id
+    int *fki_ezsignsignergroup_id_local_var = NULL;
+
+    // define the local variable for ezsignfoldersignerassociation_request->fki_ezsignfolder_id
+    int *fki_ezsignfolder_id_local_var = NULL;
+
+    // define the local variable for ezsignfoldersignerassociation_request->b_ezsignfoldersignerassociation_receivecopy
+    int *b_ezsignfoldersignerassociation_receivecopy_local_var = NULL;
+
+    char *t_ezsignfoldersignerassociation_message_local_str = NULL;
+
     // ezsignfoldersignerassociation_request->pki_ezsignfoldersignerassociation_id
     cJSON *pki_ezsignfoldersignerassociation_id = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_requestJSON, "pkiEzsignfoldersignerassociationID");
     if (cJSON_IsNull(pki_ezsignfoldersignerassociation_id)) {
@@ -135,6 +205,12 @@ ezsignfoldersignerassociation_request_t *ezsignfoldersignerassociation_request_p
     {
     goto end; //Numeric
     }
+    pki_ezsignfoldersignerassociation_id_local_var = malloc(sizeof(int));
+    if(!pki_ezsignfoldersignerassociation_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezsignfoldersignerassociation_id_local_var = pki_ezsignfoldersignerassociation_id->valuedouble;
     }
 
     // ezsignfoldersignerassociation_request->fki_user_id
@@ -147,6 +223,12 @@ ezsignfoldersignerassociation_request_t *ezsignfoldersignerassociation_request_p
     {
     goto end; //Numeric
     }
+    fki_user_id_local_var = malloc(sizeof(int));
+    if(!fki_user_id_local_var)
+    {
+        goto end;
+    }
+    *fki_user_id_local_var = fki_user_id->valuedouble;
     }
 
     // ezsignfoldersignerassociation_request->fki_ezsignsignergroup_id
@@ -159,6 +241,12 @@ ezsignfoldersignerassociation_request_t *ezsignfoldersignerassociation_request_p
     {
     goto end; //Numeric
     }
+    fki_ezsignsignergroup_id_local_var = malloc(sizeof(int));
+    if(!fki_ezsignsignergroup_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezsignsignergroup_id_local_var = fki_ezsignsignergroup_id->valuedouble;
     }
 
     // ezsignfoldersignerassociation_request->fki_ezsignfolder_id
@@ -175,6 +263,12 @@ ezsignfoldersignerassociation_request_t *ezsignfoldersignerassociation_request_p
     {
     goto end; //Numeric
     }
+    fki_ezsignfolder_id_local_var = malloc(sizeof(int));
+    if(!fki_ezsignfolder_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezsignfolder_id_local_var = fki_ezsignfolder_id->valuedouble;
 
     // ezsignfoldersignerassociation_request->b_ezsignfoldersignerassociation_receivecopy
     cJSON *b_ezsignfoldersignerassociation_receivecopy = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_requestJSON, "bEzsignfoldersignerassociationReceivecopy");
@@ -186,6 +280,12 @@ ezsignfoldersignerassociation_request_t *ezsignfoldersignerassociation_request_p
     {
     goto end; //Bool
     }
+    b_ezsignfoldersignerassociation_receivecopy_local_var = malloc(sizeof(int));
+    if(!b_ezsignfoldersignerassociation_receivecopy_local_var)
+    {
+        goto end;
+    }
+    *b_ezsignfoldersignerassociation_receivecopy_local_var = b_ezsignfoldersignerassociation_receivecopy->valueint;
     }
 
     // ezsignfoldersignerassociation_request->t_ezsignfoldersignerassociation_message
@@ -201,17 +301,47 @@ ezsignfoldersignerassociation_request_t *ezsignfoldersignerassociation_request_p
     }
 
 
+    if (t_ezsignfoldersignerassociation_message && !cJSON_IsNull(t_ezsignfoldersignerassociation_message)) t_ezsignfoldersignerassociation_message_local_str = strdup(t_ezsignfoldersignerassociation_message->valuestring);
+
     ezsignfoldersignerassociation_request_local_var = ezsignfoldersignerassociation_request_create_internal (
-        pki_ezsignfoldersignerassociation_id ? pki_ezsignfoldersignerassociation_id->valuedouble : 0,
-        fki_user_id ? fki_user_id->valuedouble : 0,
-        fki_ezsignsignergroup_id ? fki_ezsignsignergroup_id->valuedouble : 0,
-        fki_ezsignfolder_id->valuedouble,
-        b_ezsignfoldersignerassociation_receivecopy ? b_ezsignfoldersignerassociation_receivecopy->valueint : 0,
-        t_ezsignfoldersignerassociation_message && !cJSON_IsNull(t_ezsignfoldersignerassociation_message) ? strdup(t_ezsignfoldersignerassociation_message->valuestring) : NULL
+        pki_ezsignfoldersignerassociation_id_local_var,
+        fki_user_id_local_var,
+        fki_ezsignsignergroup_id_local_var,
+        fki_ezsignfolder_id_local_var,
+        b_ezsignfoldersignerassociation_receivecopy_local_var,
+        t_ezsignfoldersignerassociation_message_local_str
         );
+
+    if (!ezsignfoldersignerassociation_request_local_var) {
+        goto end;
+    }
 
     return ezsignfoldersignerassociation_request_local_var;
 end:
+    if (pki_ezsignfoldersignerassociation_id_local_var) {
+        free(pki_ezsignfoldersignerassociation_id_local_var);
+        pki_ezsignfoldersignerassociation_id_local_var = NULL;
+    }
+    if (fki_user_id_local_var) {
+        free(fki_user_id_local_var);
+        fki_user_id_local_var = NULL;
+    }
+    if (fki_ezsignsignergroup_id_local_var) {
+        free(fki_ezsignsignergroup_id_local_var);
+        fki_ezsignsignergroup_id_local_var = NULL;
+    }
+    if (fki_ezsignfolder_id_local_var) {
+        free(fki_ezsignfolder_id_local_var);
+        fki_ezsignfolder_id_local_var = NULL;
+    }
+    if (b_ezsignfoldersignerassociation_receivecopy_local_var) {
+        free(b_ezsignfoldersignerassociation_receivecopy_local_var);
+        b_ezsignfoldersignerassociation_receivecopy_local_var = NULL;
+    }
+    if (t_ezsignfoldersignerassociation_message_local_str) {
+        free(t_ezsignfoldersignerassociation_message_local_str);
+        t_ezsignfoldersignerassociation_message_local_str = NULL;
+    }
     return NULL;
 
 }

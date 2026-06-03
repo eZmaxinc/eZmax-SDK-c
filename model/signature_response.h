@@ -19,8 +19,8 @@ typedef struct signature_response_t signature_response_t;
 
 
 typedef struct signature_response_t {
-    int pki_signature_id; //numeric
-    int fki_font_id; //numeric
+    int *pki_signature_id; //numeric
+    int *fki_font_id; //numeric
     char *s_signature_url; // string
     char *s_signature_urlinitials; // string
 
@@ -28,8 +28,8 @@ typedef struct signature_response_t {
 } signature_response_t;
 
 __attribute__((deprecated)) signature_response_t *signature_response_create(
-    int pki_signature_id,
-    int fki_font_id,
+    int *pki_signature_id,
+    int *fki_font_id,
     char *s_signature_url,
     char *s_signature_urlinitials
 );

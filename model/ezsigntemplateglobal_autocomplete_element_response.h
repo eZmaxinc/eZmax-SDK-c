@@ -19,17 +19,17 @@ typedef struct ezsigntemplateglobal_autocomplete_element_response_t ezsigntempla
 
 
 typedef struct ezsigntemplateglobal_autocomplete_element_response_t {
-    int pki_ezsigntemplateglobal_id; //numeric
+    int *pki_ezsigntemplateglobal_id; //numeric
     char *s_ezsigntemplateglobal_description; // string
-    int b_ezsigntemplateglobal_isactive; //boolean
+    int *b_ezsigntemplateglobal_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplateglobal_autocomplete_element_response_t;
 
 __attribute__((deprecated)) ezsigntemplateglobal_autocomplete_element_response_t *ezsigntemplateglobal_autocomplete_element_response_create(
-    int pki_ezsigntemplateglobal_id,
+    int *pki_ezsigntemplateglobal_id,
     char *s_ezsigntemplateglobal_description,
-    int b_ezsigntemplateglobal_isactive
+    int *b_ezsigntemplateglobal_isactive
 );
 
 void ezsigntemplateglobal_autocomplete_element_response_free(ezsigntemplateglobal_autocomplete_element_response_t *ezsigntemplateglobal_autocomplete_element_response);

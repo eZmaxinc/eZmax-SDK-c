@@ -14,11 +14,11 @@ static creditcardtype_get_autocomplete_v2_response_t *creditcardtype_get_autocom
     if (!creditcardtype_get_autocomplete_v2_response_local_var) {
         return NULL;
     }
+    memset(creditcardtype_get_autocomplete_v2_response_local_var, 0, sizeof(creditcardtype_get_autocomplete_v2_response_t));
+    creditcardtype_get_autocomplete_v2_response_local_var->_library_owned = 1;
     creditcardtype_get_autocomplete_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     creditcardtype_get_autocomplete_v2_response_local_var->obj_debug = obj_debug;
     creditcardtype_get_autocomplete_v2_response_local_var->m_payload = m_payload;
-
-    creditcardtype_get_autocomplete_v2_response_local_var->_library_owned = 1;
     return creditcardtype_get_autocomplete_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) creditcardtype_get_autocomplete_v2_response_t *credi
     common_response_obj_debug_t *obj_debug,
     creditcardtype_get_autocomplete_v2_response_m_payload_t *m_payload
     ) {
-    return creditcardtype_get_autocomplete_v2_response_create_internal (
+    creditcardtype_get_autocomplete_v2_response_t *result = creditcardtype_get_autocomplete_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void creditcardtype_get_autocomplete_v2_response_free(creditcardtype_get_autocomplete_v2_response_t *creditcardtype_get_autocomplete_v2_response) {
@@ -156,11 +159,16 @@ creditcardtype_get_autocomplete_v2_response_t *creditcardtype_get_autocomplete_v
     m_payload_local_nonprim = creditcardtype_get_autocomplete_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     creditcardtype_get_autocomplete_v2_response_local_var = creditcardtype_get_autocomplete_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!creditcardtype_get_autocomplete_v2_response_local_var) {
+        goto end;
+    }
 
     return creditcardtype_get_autocomplete_v2_response_local_var;
 end:

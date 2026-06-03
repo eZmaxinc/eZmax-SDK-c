@@ -19,9 +19,9 @@ typedef struct usergroupexternalmembership_response_compound_t usergroupexternal
 
 
 typedef struct usergroupexternalmembership_response_compound_t {
-    int pki_usergroupexternalmembership_id; //numeric
-    int fki_usergroupexternal_id; //numeric
-    int fki_user_id; //numeric
+    int *pki_usergroupexternalmembership_id; //numeric
+    int *fki_usergroupexternal_id; //numeric
+    int *fki_user_id; //numeric
     char *s_user_firstname; // string
     char *s_user_lastname; // string
     char *s_user_loginname; // string
@@ -32,9 +32,9 @@ typedef struct usergroupexternalmembership_response_compound_t {
 } usergroupexternalmembership_response_compound_t;
 
 __attribute__((deprecated)) usergroupexternalmembership_response_compound_t *usergroupexternalmembership_response_compound_create(
-    int pki_usergroupexternalmembership_id,
-    int fki_usergroupexternal_id,
-    int fki_user_id,
+    int *pki_usergroupexternalmembership_id,
+    int *fki_usergroupexternal_id,
+    int *fki_user_id,
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_user_loginname,

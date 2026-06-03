@@ -14,11 +14,11 @@ static ezsigntemplate_copy_v1_response_t *ezsigntemplate_copy_v1_response_create
     if (!ezsigntemplate_copy_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsigntemplate_copy_v1_response_local_var, 0, sizeof(ezsigntemplate_copy_v1_response_t));
+    ezsigntemplate_copy_v1_response_local_var->_library_owned = 1;
     ezsigntemplate_copy_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsigntemplate_copy_v1_response_local_var->obj_debug = obj_debug;
     ezsigntemplate_copy_v1_response_local_var->m_payload = m_payload;
-
-    ezsigntemplate_copy_v1_response_local_var->_library_owned = 1;
     return ezsigntemplate_copy_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) ezsigntemplate_copy_v1_response_t *ezsigntemplate_co
     common_response_obj_debug_t *obj_debug,
     ezsigntemplate_copy_v1_response_m_payload_t *m_payload
     ) {
-    return ezsigntemplate_copy_v1_response_create_internal (
+    ezsigntemplate_copy_v1_response_t *result = ezsigntemplate_copy_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplate_copy_v1_response_free(ezsigntemplate_copy_v1_response_t *ezsigntemplate_copy_v1_response) {
@@ -156,11 +159,16 @@ ezsigntemplate_copy_v1_response_t *ezsigntemplate_copy_v1_response_parseFromJSON
     m_payload_local_nonprim = ezsigntemplate_copy_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     ezsigntemplate_copy_v1_response_local_var = ezsigntemplate_copy_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!ezsigntemplate_copy_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsigntemplate_copy_v1_response_local_var;
 end:

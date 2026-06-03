@@ -20,9 +20,9 @@ typedef struct ezmaxinvoicingsummaryexternal_response_compound_t ezmaxinvoicings
 
 
 typedef struct ezmaxinvoicingsummaryexternal_response_compound_t {
-    int pki_ezmaxinvoicingsummaryexternal_id; //numeric
-    int fki_ezmaxinvoicing_id; //numeric
-    int fki_billingentityexternal_id; //numeric
+    int *pki_ezmaxinvoicingsummaryexternal_id; //numeric
+    int *fki_ezmaxinvoicing_id; //numeric
+    int *fki_billingentityexternal_id; //numeric
     char *s_billingentityexternal_description; // string
     char *s_ezmaxinvoicingsummaryexternal_description; // string
     list_t *a_obj_ezmaxinvoicingsummaryexternaldetail; //nonprimitive container
@@ -31,9 +31,9 @@ typedef struct ezmaxinvoicingsummaryexternal_response_compound_t {
 } ezmaxinvoicingsummaryexternal_response_compound_t;
 
 __attribute__((deprecated)) ezmaxinvoicingsummaryexternal_response_compound_t *ezmaxinvoicingsummaryexternal_response_compound_create(
-    int pki_ezmaxinvoicingsummaryexternal_id,
-    int fki_ezmaxinvoicing_id,
-    int fki_billingentityexternal_id,
+    int *pki_ezmaxinvoicingsummaryexternal_id,
+    int *fki_ezmaxinvoicing_id,
+    int *fki_billingentityexternal_id,
     char *s_billingentityexternal_description,
     char *s_ezmaxinvoicingsummaryexternal_description,
     list_t *a_obj_ezmaxinvoicingsummaryexternaldetail

@@ -13,10 +13,10 @@ static cors_delete_object_v1_response_t *cors_delete_object_v1_response_create_i
     if (!cors_delete_object_v1_response_local_var) {
         return NULL;
     }
+    memset(cors_delete_object_v1_response_local_var, 0, sizeof(cors_delete_object_v1_response_t));
+    cors_delete_object_v1_response_local_var->_library_owned = 1;
     cors_delete_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     cors_delete_object_v1_response_local_var->obj_debug = obj_debug;
-
-    cors_delete_object_v1_response_local_var->_library_owned = 1;
     return cors_delete_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) cors_delete_object_v1_response_t *cors_delete_object
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return cors_delete_object_v1_response_create_internal (
+    cors_delete_object_v1_response_t *result = cors_delete_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void cors_delete_object_v1_response_free(cors_delete_object_v1_response_t *cors_delete_object_v1_response) {
@@ -119,10 +122,15 @@ cors_delete_object_v1_response_t *cors_delete_object_v1_response_parseFromJSON(c
     }
 
 
+
     cors_delete_object_v1_response_local_var = cors_delete_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!cors_delete_object_v1_response_local_var) {
+        goto end;
+    }
 
     return cors_delete_object_v1_response_local_var;
 end:

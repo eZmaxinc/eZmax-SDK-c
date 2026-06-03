@@ -20,7 +20,7 @@ typedef struct ezsignfolder_import_ezsigntemplatepackage_v2_request_t ezsignfold
 
 
 typedef struct ezsignfolder_import_ezsigntemplatepackage_v2_request_t {
-    int fki_ezsigntemplatepackage_id; //numeric
+    int *fki_ezsigntemplatepackage_id; //numeric
     char *dt_ezsigndocument_duedate; // string
     list_t *a_obj_import_ezsigntemplatepackage_relation; //nonprimitive container
 
@@ -28,7 +28,7 @@ typedef struct ezsignfolder_import_ezsigntemplatepackage_v2_request_t {
 } ezsignfolder_import_ezsigntemplatepackage_v2_request_t;
 
 __attribute__((deprecated)) ezsignfolder_import_ezsigntemplatepackage_v2_request_t *ezsignfolder_import_ezsigntemplatepackage_v2_request_create(
-    int fki_ezsigntemplatepackage_id,
+    int *fki_ezsigntemplatepackage_id,
     char *dt_ezsigndocument_duedate,
     list_t *a_obj_import_ezsigntemplatepackage_relation
 );

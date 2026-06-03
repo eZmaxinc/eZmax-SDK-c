@@ -14,11 +14,11 @@ static ezsigndiscussion_get_object_v2_response_t *ezsigndiscussion_get_object_v2
     if (!ezsigndiscussion_get_object_v2_response_local_var) {
         return NULL;
     }
+    memset(ezsigndiscussion_get_object_v2_response_local_var, 0, sizeof(ezsigndiscussion_get_object_v2_response_t));
+    ezsigndiscussion_get_object_v2_response_local_var->_library_owned = 1;
     ezsigndiscussion_get_object_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsigndiscussion_get_object_v2_response_local_var->obj_debug = obj_debug;
     ezsigndiscussion_get_object_v2_response_local_var->m_payload = m_payload;
-
-    ezsigndiscussion_get_object_v2_response_local_var->_library_owned = 1;
     return ezsigndiscussion_get_object_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) ezsigndiscussion_get_object_v2_response_t *ezsigndis
     common_response_obj_debug_t *obj_debug,
     ezsigndiscussion_get_object_v2_response_m_payload_t *m_payload
     ) {
-    return ezsigndiscussion_get_object_v2_response_create_internal (
+    ezsigndiscussion_get_object_v2_response_t *result = ezsigndiscussion_get_object_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigndiscussion_get_object_v2_response_free(ezsigndiscussion_get_object_v2_response_t *ezsigndiscussion_get_object_v2_response) {
@@ -156,11 +159,16 @@ ezsigndiscussion_get_object_v2_response_t *ezsigndiscussion_get_object_v2_respon
     m_payload_local_nonprim = ezsigndiscussion_get_object_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     ezsigndiscussion_get_object_v2_response_local_var = ezsigndiscussion_get_object_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!ezsigndiscussion_get_object_v2_response_local_var) {
+        goto end;
+    }
 
     return ezsigndiscussion_get_object_v2_response_local_var;
 end:

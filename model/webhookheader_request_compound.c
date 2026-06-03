@@ -6,7 +6,7 @@
 
 
 static webhookheader_request_compound_t *webhookheader_request_compound_create_internal(
-    int pki_webhookheader_id,
+    int *pki_webhookheader_id,
     char *s_webhookheader_name,
     char *s_webhookheader_value
     ) {
@@ -14,24 +14,33 @@ static webhookheader_request_compound_t *webhookheader_request_compound_create_i
     if (!webhookheader_request_compound_local_var) {
         return NULL;
     }
+    memset(webhookheader_request_compound_local_var, 0, sizeof(webhookheader_request_compound_t));
+    webhookheader_request_compound_local_var->_library_owned = 1;
     webhookheader_request_compound_local_var->pki_webhookheader_id = pki_webhookheader_id;
     webhookheader_request_compound_local_var->s_webhookheader_name = s_webhookheader_name;
     webhookheader_request_compound_local_var->s_webhookheader_value = s_webhookheader_value;
-
-    webhookheader_request_compound_local_var->_library_owned = 1;
     return webhookheader_request_compound_local_var;
 }
 
 __attribute__((deprecated)) webhookheader_request_compound_t *webhookheader_request_compound_create(
-    int pki_webhookheader_id,
+    int *pki_webhookheader_id,
     char *s_webhookheader_name,
     char *s_webhookheader_value
     ) {
-    return webhookheader_request_compound_create_internal (
-        pki_webhookheader_id,
+    int *pki_webhookheader_id_copy = NULL;
+    if (pki_webhookheader_id) {
+        pki_webhookheader_id_copy = malloc(sizeof(int));
+        if (pki_webhookheader_id_copy) *pki_webhookheader_id_copy = *pki_webhookheader_id;
+    }
+    webhookheader_request_compound_t *result = webhookheader_request_compound_create_internal (
+        pki_webhookheader_id_copy,
         s_webhookheader_name,
         s_webhookheader_value
         );
+    if (!result) {
+        free(pki_webhookheader_id_copy);
+    }
+    return result;
 }
 
 void webhookheader_request_compound_free(webhookheader_request_compound_t *webhookheader_request_compound) {
@@ -43,6 +52,10 @@ void webhookheader_request_compound_free(webhookheader_request_compound_t *webho
         return ;
     }
     listEntry_t *listEntry;
+    if (webhookheader_request_compound->pki_webhookheader_id) {
+        free(webhookheader_request_compound->pki_webhookheader_id);
+        webhookheader_request_compound->pki_webhookheader_id = NULL;
+    }
     if (webhookheader_request_compound->s_webhookheader_name) {
         free(webhookheader_request_compound->s_webhookheader_name);
         webhookheader_request_compound->s_webhookheader_name = NULL;
@@ -59,7 +72,7 @@ cJSON *webhookheader_request_compound_convertToJSON(webhookheader_request_compou
 
     // webhookheader_request_compound->pki_webhookheader_id
     if(webhookheader_request_compound->pki_webhookheader_id) {
-    if(cJSON_AddNumberToObject(item, "pkiWebhookheaderID", webhookheader_request_compound->pki_webhookheader_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiWebhookheaderID", *webhookheader_request_compound->pki_webhookheader_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -94,6 +107,13 @@ webhookheader_request_compound_t *webhookheader_request_compound_parseFromJSON(c
 
     webhookheader_request_compound_t *webhookheader_request_compound_local_var = NULL;
 
+    // define the local variable for webhookheader_request_compound->pki_webhookheader_id
+    int *pki_webhookheader_id_local_var = NULL;
+
+    char *s_webhookheader_name_local_str = NULL;
+
+    char *s_webhookheader_value_local_str = NULL;
+
     // webhookheader_request_compound->pki_webhookheader_id
     cJSON *pki_webhookheader_id = cJSON_GetObjectItemCaseSensitive(webhookheader_request_compoundJSON, "pkiWebhookheaderID");
     if (cJSON_IsNull(pki_webhookheader_id)) {
@@ -104,6 +124,12 @@ webhookheader_request_compound_t *webhookheader_request_compound_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    pki_webhookheader_id_local_var = malloc(sizeof(int));
+    if(!pki_webhookheader_id_local_var)
+    {
+        goto end;
+    }
+    *pki_webhookheader_id_local_var = pki_webhookheader_id->valuedouble;
     }
 
     // webhookheader_request_compound->s_webhookheader_name
@@ -137,14 +163,33 @@ webhookheader_request_compound_t *webhookheader_request_compound_parseFromJSON(c
     }
 
 
+    if (s_webhookheader_name && !cJSON_IsNull(s_webhookheader_name)) s_webhookheader_name_local_str = strdup(s_webhookheader_name->valuestring);
+    if (s_webhookheader_value && !cJSON_IsNull(s_webhookheader_value)) s_webhookheader_value_local_str = strdup(s_webhookheader_value->valuestring);
+
     webhookheader_request_compound_local_var = webhookheader_request_compound_create_internal (
-        pki_webhookheader_id ? pki_webhookheader_id->valuedouble : 0,
-        strdup(s_webhookheader_name->valuestring),
-        strdup(s_webhookheader_value->valuestring)
+        pki_webhookheader_id_local_var,
+        s_webhookheader_name_local_str,
+        s_webhookheader_value_local_str
         );
+
+    if (!webhookheader_request_compound_local_var) {
+        goto end;
+    }
 
     return webhookheader_request_compound_local_var;
 end:
+    if (pki_webhookheader_id_local_var) {
+        free(pki_webhookheader_id_local_var);
+        pki_webhookheader_id_local_var = NULL;
+    }
+    if (s_webhookheader_name_local_str) {
+        free(s_webhookheader_name_local_str);
+        s_webhookheader_name_local_str = NULL;
+    }
+    if (s_webhookheader_value_local_str) {
+        free(s_webhookheader_value_local_str);
+        s_webhookheader_value_local_str = NULL;
+    }
     return NULL;
 
 }

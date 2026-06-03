@@ -21,7 +21,7 @@ typedef struct ezsignsigner_request_compound_contact_t ezsignsigner_request_comp
 typedef struct ezsignsigner_request_compound_contact_t {
     char *s_contact_firstname; // string
     char *s_contact_lastname; // string
-    int fki_language_id; //numeric
+    int *fki_language_id; //numeric
     char *s_email_address; // string
     char *s_phone_e164; // string
     char *s_phone_extension; // string
@@ -35,7 +35,7 @@ typedef struct ezsignsigner_request_compound_contact_t {
 __attribute__((deprecated)) ezsignsigner_request_compound_contact_t *ezsignsigner_request_compound_contact_create(
     char *s_contact_firstname,
     char *s_contact_lastname,
-    int fki_language_id,
+    int *fki_language_id,
     char *s_email_address,
     char *s_phone_e164,
     char *s_phone_extension,

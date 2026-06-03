@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **fki_font_id_formfield** | **int** | The unique ID of the Font | [optional] 
 **fki_font_id_signature** | **int** | The unique ID of the Font | [optional] 
 **fki_pdfalevel_id_convert** | **int** | The unique ID of the Pdfalevel | [optional] 
+**e_ezsignfoldertype_signaturedatedisplay** | **field_e_ezsignfoldertype_signaturedatedisplay_t \*** |  | 
+**s_ezsignfoldertype_signaturedatecustomformat** | **char \*** | The custom date format to use  You can use the codes below and they will be replaced at signature time. Text values like month and day names will be rendered in the proper language. Other text will be left as-is.  The codes examples below are based on the following datetime: Thursday, January 6, 2022 at 08:07:09 EST  For example, the format \&quot;Signature date: {MM}/{DD}/{YYYY} {hh}:{mm}\&quot; would become \&quot;Signature date: 01/06/2022 08:07\&quot;  **Year**  | Code | Example | | - | - | | {YYYY} | 2022 | | {YY} | 22 |  **Month**  | Code | Example | | - | - | | {MonthCapitalize} | Janvier | | {Month} | janvier | | {MM} | 01 | | {M} | 1 |  **Day**  | Code | Example | | - | - | | {DayCapitalize} | Jeudi | | {Day} | jeudi | | {DD} | 06 | | {D} | 6 |  **Hour**  | Code | Example | | - | - | | {hh} | 08 |  **Minute**  | Code | Example | | - | - | | {mm} | 07 |  **Second**  | Code | Example | | - | - | | {ss} | 09 |        **Timezone**  | Code | Example | | - | - | | {Z} | EST |       **Time**  | Code | Example | | - | - | | {Time} | 08:07:09 |   | {TimeZ} | 08:07:09 EST |     **Date**  | Code | Example | | - | - | | {Date} | 2022-01-06 |   | {DateText} | 1er Janvier 2022 |  **Full**  | Code | Example | | - | - | | {DateTime} | 2022-01-06 08:07:09 |   | {DateTimeZ} | 2022-01-06 08:07:09 EST |  | [optional] 
 **e_ezsignfoldertype_documentdependency** | **field_e_ezsignfoldertype_documentdependency_t \*** |  | [optional] 
 **s_branding_description_x** | **char \*** | The Description of the Branding in the language of the requester | 
 **s_billingentityinternal_description_x** | **char \*** | The description of the Billingentityinternal in the language of the requester | [optional] 
@@ -24,7 +26,7 @@ Name | Type | Description | Notes
 **e_ezsignfoldertype_documentmerge** | **field_e_ezsignfoldertype_documentmerge_t \*** |  | [optional] 
 **i_ezsignfoldertype_fontsizeannotation** | **int** | Font size for annotations | [optional] 
 **i_ezsignfoldertype_fontsizeformfield** | **int** | Font size for form fields | [optional] 
-**i_ezsignfoldertype_sendreminderfirstdays** | **int** | The number of days before the the first reminder sending | [optional] 
+**i_ezsignfoldertype_sendreminderfirstdays** | **int** | The number of days before the first reminder sending | [optional] 
 **i_ezsignfoldertype_sendreminderotherdays** | **int** | The number of days after the first reminder sending | [optional] 
 **i_ezsignfoldertype_archivaldays** | **int** | The number of days before the archival of Ezsignfolders created using this Ezsignfoldertype | 
 **e_ezsignfoldertype_disposal** | **field_e_ezsignfoldertype_disposal_t \*** |  | 
@@ -40,6 +42,10 @@ Name | Type | Description | Notes
 **b_ezsignfoldertype_reassignezsignsigner** | **int** | Wheter if Reassignment of signature is allowed by a signatory to another signatory or not | [optional] 
 **b_ezsignfoldertype_reassignuser** | **int** | Wheter if Reassignment of signature is allowed by a user to a signatory or another user or not | [optional] 
 **b_ezsignfoldertype_reassigngroup** | **int** | Wheter if Reassignment of signatures of the groups to which the user belongs is authorized by a user to himself | [optional] 
+**b_ezsignfoldertype_senddocumentmergetoemail** | **int** | Whether we send the merged documents in the email to external recipient | [optional] 
+**b_ezsignfoldertype_senddocumentmergetoezsignsigner** | **int** | Whether we send the merged documents in the email to Ezsignsigner | [optional] 
+**b_ezsignfoldertype_senddocumentmergetoreceivealldocument** | **int** | Whether we send the merged documents in the email to user and Ezsignsigner who receive all documents. | [optional] 
+**b_ezsignfoldertype_senddocumentmergetouser** | **int** | Whether we send the merged documents in the email to User | [optional] 
 **b_ezsignfoldertype_sendsignedtoezsignsigner** | **int** | Whether we send an email to Ezsignsigner  when document is completed | [optional] 
 **b_ezsignfoldertype_sendsignedtouser** | **int** | Whether we send an email to User who signed when document is completed | [optional] 
 **b_ezsignfoldertype_sendattachmentezsignsigner** | **int** | Whether we send the Ezsigndocument in the email to Ezsignsigner | [optional] 

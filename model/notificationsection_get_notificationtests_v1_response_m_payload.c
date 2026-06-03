@@ -12,18 +12,21 @@ static notificationsection_get_notificationtests_v1_response_m_payload_t *notifi
     if (!notificationsection_get_notificationtests_v1_response_m_payload_local_var) {
         return NULL;
     }
-    notificationsection_get_notificationtests_v1_response_m_payload_local_var->a_obj_notificationsubsection = a_obj_notificationsubsection;
-
+    memset(notificationsection_get_notificationtests_v1_response_m_payload_local_var, 0, sizeof(notificationsection_get_notificationtests_v1_response_m_payload_t));
     notificationsection_get_notificationtests_v1_response_m_payload_local_var->_library_owned = 1;
+    notificationsection_get_notificationtests_v1_response_m_payload_local_var->a_obj_notificationsubsection = a_obj_notificationsubsection;
     return notificationsection_get_notificationtests_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) notificationsection_get_notificationtests_v1_response_m_payload_t *notificationsection_get_notificationtests_v1_response_m_payload_create(
     list_t *a_obj_notificationsubsection
     ) {
-    return notificationsection_get_notificationtests_v1_response_m_payload_create_internal (
+    notificationsection_get_notificationtests_v1_response_m_payload_t *result = notificationsection_get_notificationtests_v1_response_m_payload_create_internal (
         a_obj_notificationsubsection
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void notificationsection_get_notificationtests_v1_response_m_payload_free(notificationsection_get_notificationtests_v1_response_m_payload_t *notificationsection_get_notificationtests_v1_response_m_payload) {
@@ -111,9 +114,14 @@ notificationsection_get_notificationtests_v1_response_m_payload_t *notifications
     }
 
 
+
     notificationsection_get_notificationtests_v1_response_m_payload_local_var = notificationsection_get_notificationtests_v1_response_m_payload_create_internal (
         a_obj_notificationsubsectionList
         );
+
+    if (!notificationsection_get_notificationtests_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return notificationsection_get_notificationtests_v1_response_m_payload_local_var;
 end:

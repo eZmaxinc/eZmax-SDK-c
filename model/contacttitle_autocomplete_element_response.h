@@ -19,14 +19,14 @@ typedef struct contacttitle_autocomplete_element_response_t contacttitle_autocom
 
 
 typedef struct contacttitle_autocomplete_element_response_t {
-    int pki_contacttitle_id; //numeric
+    int *pki_contacttitle_id; //numeric
     char *s_contacttitle_name_x; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } contacttitle_autocomplete_element_response_t;
 
 __attribute__((deprecated)) contacttitle_autocomplete_element_response_t *contacttitle_autocomplete_element_response_create(
-    int pki_contacttitle_id,
+    int *pki_contacttitle_id,
     char *s_contacttitle_name_x
 );
 

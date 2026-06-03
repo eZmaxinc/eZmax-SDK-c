@@ -6,28 +6,37 @@
 
 
 static discussionmessage_request_patch_t *discussionmessage_request_patch_create_internal(
-    int fki_discussionmembership_id_actionrequired,
+    int *fki_discussionmembership_id_actionrequired,
     char *t_discussionmessage_content
     ) {
     discussionmessage_request_patch_t *discussionmessage_request_patch_local_var = malloc(sizeof(discussionmessage_request_patch_t));
     if (!discussionmessage_request_patch_local_var) {
         return NULL;
     }
+    memset(discussionmessage_request_patch_local_var, 0, sizeof(discussionmessage_request_patch_t));
+    discussionmessage_request_patch_local_var->_library_owned = 1;
     discussionmessage_request_patch_local_var->fki_discussionmembership_id_actionrequired = fki_discussionmembership_id_actionrequired;
     discussionmessage_request_patch_local_var->t_discussionmessage_content = t_discussionmessage_content;
-
-    discussionmessage_request_patch_local_var->_library_owned = 1;
     return discussionmessage_request_patch_local_var;
 }
 
 __attribute__((deprecated)) discussionmessage_request_patch_t *discussionmessage_request_patch_create(
-    int fki_discussionmembership_id_actionrequired,
+    int *fki_discussionmembership_id_actionrequired,
     char *t_discussionmessage_content
     ) {
-    return discussionmessage_request_patch_create_internal (
-        fki_discussionmembership_id_actionrequired,
+    int *fki_discussionmembership_id_actionrequired_copy = NULL;
+    if (fki_discussionmembership_id_actionrequired) {
+        fki_discussionmembership_id_actionrequired_copy = malloc(sizeof(int));
+        if (fki_discussionmembership_id_actionrequired_copy) *fki_discussionmembership_id_actionrequired_copy = *fki_discussionmembership_id_actionrequired;
+    }
+    discussionmessage_request_patch_t *result = discussionmessage_request_patch_create_internal (
+        fki_discussionmembership_id_actionrequired_copy,
         t_discussionmessage_content
         );
+    if (!result) {
+        free(fki_discussionmembership_id_actionrequired_copy);
+    }
+    return result;
 }
 
 void discussionmessage_request_patch_free(discussionmessage_request_patch_t *discussionmessage_request_patch) {
@@ -39,6 +48,10 @@ void discussionmessage_request_patch_free(discussionmessage_request_patch_t *dis
         return ;
     }
     listEntry_t *listEntry;
+    if (discussionmessage_request_patch->fki_discussionmembership_id_actionrequired) {
+        free(discussionmessage_request_patch->fki_discussionmembership_id_actionrequired);
+        discussionmessage_request_patch->fki_discussionmembership_id_actionrequired = NULL;
+    }
     if (discussionmessage_request_patch->t_discussionmessage_content) {
         free(discussionmessage_request_patch->t_discussionmessage_content);
         discussionmessage_request_patch->t_discussionmessage_content = NULL;
@@ -51,7 +64,7 @@ cJSON *discussionmessage_request_patch_convertToJSON(discussionmessage_request_p
 
     // discussionmessage_request_patch->fki_discussionmembership_id_actionrequired
     if(discussionmessage_request_patch->fki_discussionmembership_id_actionrequired) {
-    if(cJSON_AddNumberToObject(item, "fkiDiscussionmembershipIDActionrequired", discussionmessage_request_patch->fki_discussionmembership_id_actionrequired) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiDiscussionmembershipIDActionrequired", *discussionmessage_request_patch->fki_discussionmembership_id_actionrequired) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -76,6 +89,11 @@ discussionmessage_request_patch_t *discussionmessage_request_patch_parseFromJSON
 
     discussionmessage_request_patch_t *discussionmessage_request_patch_local_var = NULL;
 
+    // define the local variable for discussionmessage_request_patch->fki_discussionmembership_id_actionrequired
+    int *fki_discussionmembership_id_actionrequired_local_var = NULL;
+
+    char *t_discussionmessage_content_local_str = NULL;
+
     // discussionmessage_request_patch->fki_discussionmembership_id_actionrequired
     cJSON *fki_discussionmembership_id_actionrequired = cJSON_GetObjectItemCaseSensitive(discussionmessage_request_patchJSON, "fkiDiscussionmembershipIDActionrequired");
     if (cJSON_IsNull(fki_discussionmembership_id_actionrequired)) {
@@ -86,6 +104,12 @@ discussionmessage_request_patch_t *discussionmessage_request_patch_parseFromJSON
     {
     goto end; //Numeric
     }
+    fki_discussionmembership_id_actionrequired_local_var = malloc(sizeof(int));
+    if(!fki_discussionmembership_id_actionrequired_local_var)
+    {
+        goto end;
+    }
+    *fki_discussionmembership_id_actionrequired_local_var = fki_discussionmembership_id_actionrequired->valuedouble;
     }
 
     // discussionmessage_request_patch->t_discussionmessage_content
@@ -101,13 +125,27 @@ discussionmessage_request_patch_t *discussionmessage_request_patch_parseFromJSON
     }
 
 
+    if (t_discussionmessage_content && !cJSON_IsNull(t_discussionmessage_content)) t_discussionmessage_content_local_str = strdup(t_discussionmessage_content->valuestring);
+
     discussionmessage_request_patch_local_var = discussionmessage_request_patch_create_internal (
-        fki_discussionmembership_id_actionrequired ? fki_discussionmembership_id_actionrequired->valuedouble : 0,
-        t_discussionmessage_content && !cJSON_IsNull(t_discussionmessage_content) ? strdup(t_discussionmessage_content->valuestring) : NULL
+        fki_discussionmembership_id_actionrequired_local_var,
+        t_discussionmessage_content_local_str
         );
+
+    if (!discussionmessage_request_patch_local_var) {
+        goto end;
+    }
 
     return discussionmessage_request_patch_local_var;
 end:
+    if (fki_discussionmembership_id_actionrequired_local_var) {
+        free(fki_discussionmembership_id_actionrequired_local_var);
+        fki_discussionmembership_id_actionrequired_local_var = NULL;
+    }
+    if (t_discussionmessage_content_local_str) {
+        free(t_discussionmessage_content_local_str);
+        t_discussionmessage_content_local_str = NULL;
+    }
     return NULL;
 
 }

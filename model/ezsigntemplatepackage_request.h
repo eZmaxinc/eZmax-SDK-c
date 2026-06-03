@@ -19,25 +19,25 @@ typedef struct ezsigntemplatepackage_request_t ezsigntemplatepackage_request_t;
 
 
 typedef struct ezsigntemplatepackage_request_t {
-    int pki_ezsigntemplatepackage_id; //numeric
-    int fki_ezsignfoldertype_id; //numeric
-    int fki_ezdoctemplatedocument_id; //numeric
-    int fki_language_id; //numeric
+    int *pki_ezsigntemplatepackage_id; //numeric
+    int *fki_ezsignfoldertype_id; //numeric
+    int *fki_ezdoctemplatedocument_id; //numeric
+    int *fki_language_id; //numeric
     char *s_ezsigntemplatepackage_description; // string
-    int b_ezsigntemplatepackage_adminonly; //boolean
-    int b_ezsigntemplatepackage_isactive; //boolean
+    int *b_ezsigntemplatepackage_adminonly; //boolean
+    int *b_ezsigntemplatepackage_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatepackage_request_t;
 
 __attribute__((deprecated)) ezsigntemplatepackage_request_t *ezsigntemplatepackage_request_create(
-    int pki_ezsigntemplatepackage_id,
-    int fki_ezsignfoldertype_id,
-    int fki_ezdoctemplatedocument_id,
-    int fki_language_id,
+    int *pki_ezsigntemplatepackage_id,
+    int *fki_ezsignfoldertype_id,
+    int *fki_ezdoctemplatedocument_id,
+    int *fki_language_id,
     char *s_ezsigntemplatepackage_description,
-    int b_ezsigntemplatepackage_adminonly,
-    int b_ezsigntemplatepackage_isactive
+    int *b_ezsigntemplatepackage_adminonly,
+    int *b_ezsigntemplatepackage_isactive
 );
 
 void ezsigntemplatepackage_request_free(ezsigntemplatepackage_request_t *ezsigntemplatepackage_request);

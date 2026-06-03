@@ -12,18 +12,21 @@ static ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_m_payload_
     if (!ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_m_payload_local_var->a_obj_ezsignsignergroupmembership = a_obj_ezsignsignergroupmembership;
-
+    memset(ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_m_payload_local_var, 0, sizeof(ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_m_payload_t));
     ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_m_payload_local_var->a_obj_ezsignsignergroupmembership = a_obj_ezsignsignergroupmembership;
     return ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_m_payload_t *ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_m_payload_create(
     list_t *a_obj_ezsignsignergroupmembership
     ) {
-    return ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_m_payload_create_internal (
+    ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_m_payload_t *result = ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_m_payload_create_internal (
         a_obj_ezsignsignergroupmembership
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_m_payload_free(ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_m_payload_t *ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_m_payload) {
@@ -111,9 +114,14 @@ ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_m_payload_t *ezsi
     }
 
 
+
     ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_m_payload_local_var = ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_m_payload_create_internal (
         a_obj_ezsignsignergroupmembershipList
         );
+
+    if (!ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_m_payload_local_var;
 end:

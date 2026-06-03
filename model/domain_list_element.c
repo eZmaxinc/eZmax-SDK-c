@@ -6,28 +6,37 @@
 
 
 static domain_list_element_t *domain_list_element_create_internal(
-    int pki_domain_id,
+    int *pki_domain_id,
     char *s_domain_name
     ) {
     domain_list_element_t *domain_list_element_local_var = malloc(sizeof(domain_list_element_t));
     if (!domain_list_element_local_var) {
         return NULL;
     }
+    memset(domain_list_element_local_var, 0, sizeof(domain_list_element_t));
+    domain_list_element_local_var->_library_owned = 1;
     domain_list_element_local_var->pki_domain_id = pki_domain_id;
     domain_list_element_local_var->s_domain_name = s_domain_name;
-
-    domain_list_element_local_var->_library_owned = 1;
     return domain_list_element_local_var;
 }
 
 __attribute__((deprecated)) domain_list_element_t *domain_list_element_create(
-    int pki_domain_id,
+    int *pki_domain_id,
     char *s_domain_name
     ) {
-    return domain_list_element_create_internal (
-        pki_domain_id,
+    int *pki_domain_id_copy = NULL;
+    if (pki_domain_id) {
+        pki_domain_id_copy = malloc(sizeof(int));
+        if (pki_domain_id_copy) *pki_domain_id_copy = *pki_domain_id;
+    }
+    domain_list_element_t *result = domain_list_element_create_internal (
+        pki_domain_id_copy,
         s_domain_name
         );
+    if (!result) {
+        free(pki_domain_id_copy);
+    }
+    return result;
 }
 
 void domain_list_element_free(domain_list_element_t *domain_list_element) {
@@ -39,6 +48,10 @@ void domain_list_element_free(domain_list_element_t *domain_list_element) {
         return ;
     }
     listEntry_t *listEntry;
+    if (domain_list_element->pki_domain_id) {
+        free(domain_list_element->pki_domain_id);
+        domain_list_element->pki_domain_id = NULL;
+    }
     if (domain_list_element->s_domain_name) {
         free(domain_list_element->s_domain_name);
         domain_list_element->s_domain_name = NULL;
@@ -53,7 +66,7 @@ cJSON *domain_list_element_convertToJSON(domain_list_element_t *domain_list_elem
     if (!domain_list_element->pki_domain_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiDomainID", domain_list_element->pki_domain_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiDomainID", *domain_list_element->pki_domain_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -78,6 +91,11 @@ domain_list_element_t *domain_list_element_parseFromJSON(cJSON *domain_list_elem
 
     domain_list_element_t *domain_list_element_local_var = NULL;
 
+    // define the local variable for domain_list_element->pki_domain_id
+    int *pki_domain_id_local_var = NULL;
+
+    char *s_domain_name_local_str = NULL;
+
     // domain_list_element->pki_domain_id
     cJSON *pki_domain_id = cJSON_GetObjectItemCaseSensitive(domain_list_elementJSON, "pkiDomainID");
     if (cJSON_IsNull(pki_domain_id)) {
@@ -92,6 +110,12 @@ domain_list_element_t *domain_list_element_parseFromJSON(cJSON *domain_list_elem
     {
     goto end; //Numeric
     }
+    pki_domain_id_local_var = malloc(sizeof(int));
+    if(!pki_domain_id_local_var)
+    {
+        goto end;
+    }
+    *pki_domain_id_local_var = pki_domain_id->valuedouble;
 
     // domain_list_element->s_domain_name
     cJSON *s_domain_name = cJSON_GetObjectItemCaseSensitive(domain_list_elementJSON, "sDomainName");
@@ -109,13 +133,27 @@ domain_list_element_t *domain_list_element_parseFromJSON(cJSON *domain_list_elem
     }
 
 
+    if (s_domain_name && !cJSON_IsNull(s_domain_name)) s_domain_name_local_str = strdup(s_domain_name->valuestring);
+
     domain_list_element_local_var = domain_list_element_create_internal (
-        pki_domain_id->valuedouble,
-        strdup(s_domain_name->valuestring)
+        pki_domain_id_local_var,
+        s_domain_name_local_str
         );
+
+    if (!domain_list_element_local_var) {
+        goto end;
+    }
 
     return domain_list_element_local_var;
 end:
+    if (pki_domain_id_local_var) {
+        free(pki_domain_id_local_var);
+        pki_domain_id_local_var = NULL;
+    }
+    if (s_domain_name_local_str) {
+        free(s_domain_name_local_str);
+        s_domain_name_local_str = NULL;
+    }
     return NULL;
 
 }

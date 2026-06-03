@@ -6,28 +6,28 @@
 
 
 static broker_list_element_t *broker_list_element_create_internal(
-    int pki_broker_id,
-    int fki_department_id,
+    int *pki_broker_id,
+    int *fki_department_id,
     char *s_department_name_x,
-    int fki_brokertype_id,
+    int *fki_brokertype_id,
     char *s_brokertype_name_x,
     char *s_broker_code,
     char *s_realestateboardnumber_number,
-    int i_agent_bannernumber,
+    int *i_agent_bannernumber,
     char *s_language_name_x,
-    int i_broker_photocopiercode,
-    int i_broker_longdistancecode,
+    int *i_broker_photocopiercode,
+    int *i_broker_longdistancecode,
     char *s_broker_name,
     char *s_broker_realestateassociationlicense,
     char *dt_broker_hiredate,
     char *dt_broker_leavedate,
-    int b_broker_tranquillit,
-    int b_broker_residentiallicense,
-    int b_broker_commerciallicense,
-    int b_broker_mortgagelicense,
-    int b_broker_paidbyofficetranquillit,
+    int *b_broker_tranquillit,
+    int *b_broker_residentiallicense,
+    int *b_broker_commerciallicense,
+    int *b_broker_mortgagelicense,
+    int *b_broker_paidbyofficetranquillit,
     char *dt_broker_fintraccertification,
-    int b_broker_isactive,
+    int *b_broker_isactive,
     char *s_contact_firstname,
     char *s_contact_lastname,
     char *dt_contact_birthdate,
@@ -38,13 +38,17 @@ static broker_list_element_t *broker_list_element_create_internal(
     char *s_address_suite,
     char *s_address_city,
     char *s_address_zip,
+    int *fki_province_id,
     char *s_province_name_x,
+    int *fki_country_id,
     char *s_country_name_x
     ) {
     broker_list_element_t *broker_list_element_local_var = malloc(sizeof(broker_list_element_t));
     if (!broker_list_element_local_var) {
         return NULL;
     }
+    memset(broker_list_element_local_var, 0, sizeof(broker_list_element_t));
+    broker_list_element_local_var->_library_owned = 1;
     broker_list_element_local_var->pki_broker_id = pki_broker_id;
     broker_list_element_local_var->fki_department_id = fki_department_id;
     broker_list_element_local_var->s_department_name_x = s_department_name_x;
@@ -77,36 +81,36 @@ static broker_list_element_t *broker_list_element_create_internal(
     broker_list_element_local_var->s_address_suite = s_address_suite;
     broker_list_element_local_var->s_address_city = s_address_city;
     broker_list_element_local_var->s_address_zip = s_address_zip;
+    broker_list_element_local_var->fki_province_id = fki_province_id;
     broker_list_element_local_var->s_province_name_x = s_province_name_x;
+    broker_list_element_local_var->fki_country_id = fki_country_id;
     broker_list_element_local_var->s_country_name_x = s_country_name_x;
-
-    broker_list_element_local_var->_library_owned = 1;
     return broker_list_element_local_var;
 }
 
 __attribute__((deprecated)) broker_list_element_t *broker_list_element_create(
-    int pki_broker_id,
-    int fki_department_id,
+    int *pki_broker_id,
+    int *fki_department_id,
     char *s_department_name_x,
-    int fki_brokertype_id,
+    int *fki_brokertype_id,
     char *s_brokertype_name_x,
     char *s_broker_code,
     char *s_realestateboardnumber_number,
-    int i_agent_bannernumber,
+    int *i_agent_bannernumber,
     char *s_language_name_x,
-    int i_broker_photocopiercode,
-    int i_broker_longdistancecode,
+    int *i_broker_photocopiercode,
+    int *i_broker_longdistancecode,
     char *s_broker_name,
     char *s_broker_realestateassociationlicense,
     char *dt_broker_hiredate,
     char *dt_broker_leavedate,
-    int b_broker_tranquillit,
-    int b_broker_residentiallicense,
-    int b_broker_commerciallicense,
-    int b_broker_mortgagelicense,
-    int b_broker_paidbyofficetranquillit,
+    int *b_broker_tranquillit,
+    int *b_broker_residentiallicense,
+    int *b_broker_commerciallicense,
+    int *b_broker_mortgagelicense,
+    int *b_broker_paidbyofficetranquillit,
     char *dt_broker_fintraccertification,
-    int b_broker_isactive,
+    int *b_broker_isactive,
     char *s_contact_firstname,
     char *s_contact_lastname,
     char *dt_contact_birthdate,
@@ -117,32 +121,104 @@ __attribute__((deprecated)) broker_list_element_t *broker_list_element_create(
     char *s_address_suite,
     char *s_address_city,
     char *s_address_zip,
+    int *fki_province_id,
     char *s_province_name_x,
+    int *fki_country_id,
     char *s_country_name_x
     ) {
-    return broker_list_element_create_internal (
-        pki_broker_id,
-        fki_department_id,
+    int *pki_broker_id_copy = NULL;
+    if (pki_broker_id) {
+        pki_broker_id_copy = malloc(sizeof(int));
+        if (pki_broker_id_copy) *pki_broker_id_copy = *pki_broker_id;
+    }
+    int *fki_department_id_copy = NULL;
+    if (fki_department_id) {
+        fki_department_id_copy = malloc(sizeof(int));
+        if (fki_department_id_copy) *fki_department_id_copy = *fki_department_id;
+    }
+    int *fki_brokertype_id_copy = NULL;
+    if (fki_brokertype_id) {
+        fki_brokertype_id_copy = malloc(sizeof(int));
+        if (fki_brokertype_id_copy) *fki_brokertype_id_copy = *fki_brokertype_id;
+    }
+    int *i_agent_bannernumber_copy = NULL;
+    if (i_agent_bannernumber) {
+        i_agent_bannernumber_copy = malloc(sizeof(int));
+        if (i_agent_bannernumber_copy) *i_agent_bannernumber_copy = *i_agent_bannernumber;
+    }
+    int *i_broker_photocopiercode_copy = NULL;
+    if (i_broker_photocopiercode) {
+        i_broker_photocopiercode_copy = malloc(sizeof(int));
+        if (i_broker_photocopiercode_copy) *i_broker_photocopiercode_copy = *i_broker_photocopiercode;
+    }
+    int *i_broker_longdistancecode_copy = NULL;
+    if (i_broker_longdistancecode) {
+        i_broker_longdistancecode_copy = malloc(sizeof(int));
+        if (i_broker_longdistancecode_copy) *i_broker_longdistancecode_copy = *i_broker_longdistancecode;
+    }
+    int *b_broker_tranquillit_copy = NULL;
+    if (b_broker_tranquillit) {
+        b_broker_tranquillit_copy = malloc(sizeof(int));
+        if (b_broker_tranquillit_copy) *b_broker_tranquillit_copy = *b_broker_tranquillit;
+    }
+    int *b_broker_residentiallicense_copy = NULL;
+    if (b_broker_residentiallicense) {
+        b_broker_residentiallicense_copy = malloc(sizeof(int));
+        if (b_broker_residentiallicense_copy) *b_broker_residentiallicense_copy = *b_broker_residentiallicense;
+    }
+    int *b_broker_commerciallicense_copy = NULL;
+    if (b_broker_commerciallicense) {
+        b_broker_commerciallicense_copy = malloc(sizeof(int));
+        if (b_broker_commerciallicense_copy) *b_broker_commerciallicense_copy = *b_broker_commerciallicense;
+    }
+    int *b_broker_mortgagelicense_copy = NULL;
+    if (b_broker_mortgagelicense) {
+        b_broker_mortgagelicense_copy = malloc(sizeof(int));
+        if (b_broker_mortgagelicense_copy) *b_broker_mortgagelicense_copy = *b_broker_mortgagelicense;
+    }
+    int *b_broker_paidbyofficetranquillit_copy = NULL;
+    if (b_broker_paidbyofficetranquillit) {
+        b_broker_paidbyofficetranquillit_copy = malloc(sizeof(int));
+        if (b_broker_paidbyofficetranquillit_copy) *b_broker_paidbyofficetranquillit_copy = *b_broker_paidbyofficetranquillit;
+    }
+    int *b_broker_isactive_copy = NULL;
+    if (b_broker_isactive) {
+        b_broker_isactive_copy = malloc(sizeof(int));
+        if (b_broker_isactive_copy) *b_broker_isactive_copy = *b_broker_isactive;
+    }
+    int *fki_province_id_copy = NULL;
+    if (fki_province_id) {
+        fki_province_id_copy = malloc(sizeof(int));
+        if (fki_province_id_copy) *fki_province_id_copy = *fki_province_id;
+    }
+    int *fki_country_id_copy = NULL;
+    if (fki_country_id) {
+        fki_country_id_copy = malloc(sizeof(int));
+        if (fki_country_id_copy) *fki_country_id_copy = *fki_country_id;
+    }
+    broker_list_element_t *result = broker_list_element_create_internal (
+        pki_broker_id_copy,
+        fki_department_id_copy,
         s_department_name_x,
-        fki_brokertype_id,
+        fki_brokertype_id_copy,
         s_brokertype_name_x,
         s_broker_code,
         s_realestateboardnumber_number,
-        i_agent_bannernumber,
+        i_agent_bannernumber_copy,
         s_language_name_x,
-        i_broker_photocopiercode,
-        i_broker_longdistancecode,
+        i_broker_photocopiercode_copy,
+        i_broker_longdistancecode_copy,
         s_broker_name,
         s_broker_realestateassociationlicense,
         dt_broker_hiredate,
         dt_broker_leavedate,
-        b_broker_tranquillit,
-        b_broker_residentiallicense,
-        b_broker_commerciallicense,
-        b_broker_mortgagelicense,
-        b_broker_paidbyofficetranquillit,
+        b_broker_tranquillit_copy,
+        b_broker_residentiallicense_copy,
+        b_broker_commerciallicense_copy,
+        b_broker_mortgagelicense_copy,
+        b_broker_paidbyofficetranquillit_copy,
         dt_broker_fintraccertification,
-        b_broker_isactive,
+        b_broker_isactive_copy,
         s_contact_firstname,
         s_contact_lastname,
         dt_contact_birthdate,
@@ -153,9 +229,28 @@ __attribute__((deprecated)) broker_list_element_t *broker_list_element_create(
         s_address_suite,
         s_address_city,
         s_address_zip,
+        fki_province_id_copy,
         s_province_name_x,
+        fki_country_id_copy,
         s_country_name_x
         );
+    if (!result) {
+        free(pki_broker_id_copy);
+        free(fki_department_id_copy);
+        free(fki_brokertype_id_copy);
+        free(i_agent_bannernumber_copy);
+        free(i_broker_photocopiercode_copy);
+        free(i_broker_longdistancecode_copy);
+        free(b_broker_tranquillit_copy);
+        free(b_broker_residentiallicense_copy);
+        free(b_broker_commerciallicense_copy);
+        free(b_broker_mortgagelicense_copy);
+        free(b_broker_paidbyofficetranquillit_copy);
+        free(b_broker_isactive_copy);
+        free(fki_province_id_copy);
+        free(fki_country_id_copy);
+    }
+    return result;
 }
 
 void broker_list_element_free(broker_list_element_t *broker_list_element) {
@@ -167,9 +262,21 @@ void broker_list_element_free(broker_list_element_t *broker_list_element) {
         return ;
     }
     listEntry_t *listEntry;
+    if (broker_list_element->pki_broker_id) {
+        free(broker_list_element->pki_broker_id);
+        broker_list_element->pki_broker_id = NULL;
+    }
+    if (broker_list_element->fki_department_id) {
+        free(broker_list_element->fki_department_id);
+        broker_list_element->fki_department_id = NULL;
+    }
     if (broker_list_element->s_department_name_x) {
         free(broker_list_element->s_department_name_x);
         broker_list_element->s_department_name_x = NULL;
+    }
+    if (broker_list_element->fki_brokertype_id) {
+        free(broker_list_element->fki_brokertype_id);
+        broker_list_element->fki_brokertype_id = NULL;
     }
     if (broker_list_element->s_brokertype_name_x) {
         free(broker_list_element->s_brokertype_name_x);
@@ -183,9 +290,21 @@ void broker_list_element_free(broker_list_element_t *broker_list_element) {
         free(broker_list_element->s_realestateboardnumber_number);
         broker_list_element->s_realestateboardnumber_number = NULL;
     }
+    if (broker_list_element->i_agent_bannernumber) {
+        free(broker_list_element->i_agent_bannernumber);
+        broker_list_element->i_agent_bannernumber = NULL;
+    }
     if (broker_list_element->s_language_name_x) {
         free(broker_list_element->s_language_name_x);
         broker_list_element->s_language_name_x = NULL;
+    }
+    if (broker_list_element->i_broker_photocopiercode) {
+        free(broker_list_element->i_broker_photocopiercode);
+        broker_list_element->i_broker_photocopiercode = NULL;
+    }
+    if (broker_list_element->i_broker_longdistancecode) {
+        free(broker_list_element->i_broker_longdistancecode);
+        broker_list_element->i_broker_longdistancecode = NULL;
     }
     if (broker_list_element->s_broker_name) {
         free(broker_list_element->s_broker_name);
@@ -203,9 +322,33 @@ void broker_list_element_free(broker_list_element_t *broker_list_element) {
         free(broker_list_element->dt_broker_leavedate);
         broker_list_element->dt_broker_leavedate = NULL;
     }
+    if (broker_list_element->b_broker_tranquillit) {
+        free(broker_list_element->b_broker_tranquillit);
+        broker_list_element->b_broker_tranquillit = NULL;
+    }
+    if (broker_list_element->b_broker_residentiallicense) {
+        free(broker_list_element->b_broker_residentiallicense);
+        broker_list_element->b_broker_residentiallicense = NULL;
+    }
+    if (broker_list_element->b_broker_commerciallicense) {
+        free(broker_list_element->b_broker_commerciallicense);
+        broker_list_element->b_broker_commerciallicense = NULL;
+    }
+    if (broker_list_element->b_broker_mortgagelicense) {
+        free(broker_list_element->b_broker_mortgagelicense);
+        broker_list_element->b_broker_mortgagelicense = NULL;
+    }
+    if (broker_list_element->b_broker_paidbyofficetranquillit) {
+        free(broker_list_element->b_broker_paidbyofficetranquillit);
+        broker_list_element->b_broker_paidbyofficetranquillit = NULL;
+    }
     if (broker_list_element->dt_broker_fintraccertification) {
         free(broker_list_element->dt_broker_fintraccertification);
         broker_list_element->dt_broker_fintraccertification = NULL;
+    }
+    if (broker_list_element->b_broker_isactive) {
+        free(broker_list_element->b_broker_isactive);
+        broker_list_element->b_broker_isactive = NULL;
     }
     if (broker_list_element->s_contact_firstname) {
         free(broker_list_element->s_contact_firstname);
@@ -247,9 +390,17 @@ void broker_list_element_free(broker_list_element_t *broker_list_element) {
         free(broker_list_element->s_address_zip);
         broker_list_element->s_address_zip = NULL;
     }
+    if (broker_list_element->fki_province_id) {
+        free(broker_list_element->fki_province_id);
+        broker_list_element->fki_province_id = NULL;
+    }
     if (broker_list_element->s_province_name_x) {
         free(broker_list_element->s_province_name_x);
         broker_list_element->s_province_name_x = NULL;
+    }
+    if (broker_list_element->fki_country_id) {
+        free(broker_list_element->fki_country_id);
+        broker_list_element->fki_country_id = NULL;
     }
     if (broker_list_element->s_country_name_x) {
         free(broker_list_element->s_country_name_x);
@@ -265,7 +416,7 @@ cJSON *broker_list_element_convertToJSON(broker_list_element_t *broker_list_elem
     if (!broker_list_element->pki_broker_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiBrokerID", broker_list_element->pki_broker_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiBrokerID", *broker_list_element->pki_broker_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -274,7 +425,7 @@ cJSON *broker_list_element_convertToJSON(broker_list_element_t *broker_list_elem
     if (!broker_list_element->fki_department_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiDepartmentID", broker_list_element->fki_department_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiDepartmentID", *broker_list_element->fki_department_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -291,7 +442,7 @@ cJSON *broker_list_element_convertToJSON(broker_list_element_t *broker_list_elem
     if (!broker_list_element->fki_brokertype_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiBrokertypeID", broker_list_element->fki_brokertype_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiBrokertypeID", *broker_list_element->fki_brokertype_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -324,7 +475,7 @@ cJSON *broker_list_element_convertToJSON(broker_list_element_t *broker_list_elem
 
     // broker_list_element->i_agent_bannernumber
     if(broker_list_element->i_agent_bannernumber) {
-    if(cJSON_AddNumberToObject(item, "iAgentBannernumber", broker_list_element->i_agent_bannernumber) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iAgentBannernumber", *broker_list_element->i_agent_bannernumber) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -342,7 +493,7 @@ cJSON *broker_list_element_convertToJSON(broker_list_element_t *broker_list_elem
     if (!broker_list_element->i_broker_photocopiercode) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iBrokerPhotocopiercode", broker_list_element->i_broker_photocopiercode) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iBrokerPhotocopiercode", *broker_list_element->i_broker_photocopiercode) == NULL) {
     goto fail; //Numeric
     }
 
@@ -351,7 +502,7 @@ cJSON *broker_list_element_convertToJSON(broker_list_element_t *broker_list_elem
     if (!broker_list_element->i_broker_longdistancecode) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iBrokerLongdistancecode", broker_list_element->i_broker_longdistancecode) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iBrokerLongdistancecode", *broker_list_element->i_broker_longdistancecode) == NULL) {
     goto fail; //Numeric
     }
 
@@ -393,7 +544,7 @@ cJSON *broker_list_element_convertToJSON(broker_list_element_t *broker_list_elem
 
     // broker_list_element->b_broker_tranquillit
     if(broker_list_element->b_broker_tranquillit) {
-    if(cJSON_AddBoolToObject(item, "bBrokerTranquillit", broker_list_element->b_broker_tranquillit) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bBrokerTranquillit", *broker_list_element->b_broker_tranquillit) == NULL) {
     goto fail; //Bool
     }
     }
@@ -403,7 +554,7 @@ cJSON *broker_list_element_convertToJSON(broker_list_element_t *broker_list_elem
     if (!broker_list_element->b_broker_residentiallicense) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bBrokerResidentiallicense", broker_list_element->b_broker_residentiallicense) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bBrokerResidentiallicense", *broker_list_element->b_broker_residentiallicense) == NULL) {
     goto fail; //Bool
     }
 
@@ -412,7 +563,7 @@ cJSON *broker_list_element_convertToJSON(broker_list_element_t *broker_list_elem
     if (!broker_list_element->b_broker_commerciallicense) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bBrokerCommerciallicense", broker_list_element->b_broker_commerciallicense) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bBrokerCommerciallicense", *broker_list_element->b_broker_commerciallicense) == NULL) {
     goto fail; //Bool
     }
 
@@ -421,7 +572,7 @@ cJSON *broker_list_element_convertToJSON(broker_list_element_t *broker_list_elem
     if (!broker_list_element->b_broker_mortgagelicense) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bBrokerMortgagelicense", broker_list_element->b_broker_mortgagelicense) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bBrokerMortgagelicense", *broker_list_element->b_broker_mortgagelicense) == NULL) {
     goto fail; //Bool
     }
 
@@ -430,7 +581,7 @@ cJSON *broker_list_element_convertToJSON(broker_list_element_t *broker_list_elem
     if (!broker_list_element->b_broker_paidbyofficetranquillit) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bBrokerPaidbyofficetranquillit", broker_list_element->b_broker_paidbyofficetranquillit) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bBrokerPaidbyofficetranquillit", *broker_list_element->b_broker_paidbyofficetranquillit) == NULL) {
     goto fail; //Bool
     }
 
@@ -447,7 +598,7 @@ cJSON *broker_list_element_convertToJSON(broker_list_element_t *broker_list_elem
     if (!broker_list_element->b_broker_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bBrokerIsactive", broker_list_element->b_broker_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bBrokerIsactive", *broker_list_element->b_broker_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -532,10 +683,26 @@ cJSON *broker_list_element_convertToJSON(broker_list_element_t *broker_list_elem
     }
 
 
+    // broker_list_element->fki_province_id
+    if(broker_list_element->fki_province_id) {
+    if(cJSON_AddNumberToObject(item, "fkiProvinceID", *broker_list_element->fki_province_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
     // broker_list_element->s_province_name_x
     if(broker_list_element->s_province_name_x) {
     if(cJSON_AddStringToObject(item, "sProvinceNameX", broker_list_element->s_province_name_x) == NULL) {
     goto fail; //String
+    }
+    }
+
+
+    // broker_list_element->fki_country_id
+    if(broker_list_element->fki_country_id) {
+    if(cJSON_AddNumberToObject(item, "fkiCountryID", *broker_list_element->fki_country_id) == NULL) {
+    goto fail; //Numeric
     }
     }
 
@@ -559,6 +726,92 @@ broker_list_element_t *broker_list_element_parseFromJSON(cJSON *broker_list_elem
 
     broker_list_element_t *broker_list_element_local_var = NULL;
 
+    // define the local variable for broker_list_element->pki_broker_id
+    int *pki_broker_id_local_var = NULL;
+
+    // define the local variable for broker_list_element->fki_department_id
+    int *fki_department_id_local_var = NULL;
+
+    char *s_department_name_x_local_str = NULL;
+
+    // define the local variable for broker_list_element->fki_brokertype_id
+    int *fki_brokertype_id_local_var = NULL;
+
+    char *s_brokertype_name_x_local_str = NULL;
+
+    char *s_broker_code_local_str = NULL;
+
+    char *s_realestateboardnumber_number_local_str = NULL;
+
+    // define the local variable for broker_list_element->i_agent_bannernumber
+    int *i_agent_bannernumber_local_var = NULL;
+
+    char *s_language_name_x_local_str = NULL;
+
+    // define the local variable for broker_list_element->i_broker_photocopiercode
+    int *i_broker_photocopiercode_local_var = NULL;
+
+    // define the local variable for broker_list_element->i_broker_longdistancecode
+    int *i_broker_longdistancecode_local_var = NULL;
+
+    char *s_broker_name_local_str = NULL;
+
+    char *s_broker_realestateassociationlicense_local_str = NULL;
+
+    char *dt_broker_hiredate_local_str = NULL;
+
+    char *dt_broker_leavedate_local_str = NULL;
+
+    // define the local variable for broker_list_element->b_broker_tranquillit
+    int *b_broker_tranquillit_local_var = NULL;
+
+    // define the local variable for broker_list_element->b_broker_residentiallicense
+    int *b_broker_residentiallicense_local_var = NULL;
+
+    // define the local variable for broker_list_element->b_broker_commerciallicense
+    int *b_broker_commerciallicense_local_var = NULL;
+
+    // define the local variable for broker_list_element->b_broker_mortgagelicense
+    int *b_broker_mortgagelicense_local_var = NULL;
+
+    // define the local variable for broker_list_element->b_broker_paidbyofficetranquillit
+    int *b_broker_paidbyofficetranquillit_local_var = NULL;
+
+    char *dt_broker_fintraccertification_local_str = NULL;
+
+    // define the local variable for broker_list_element->b_broker_isactive
+    int *b_broker_isactive_local_var = NULL;
+
+    char *s_contact_firstname_local_str = NULL;
+
+    char *s_contact_lastname_local_str = NULL;
+
+    char *dt_contact_birthdate_local_str = NULL;
+
+    char *s_email_address_local_str = NULL;
+
+    char *s_phone_e164_local_str = NULL;
+
+    char *s_address_civic_local_str = NULL;
+
+    char *s_address_street_local_str = NULL;
+
+    char *s_address_suite_local_str = NULL;
+
+    char *s_address_city_local_str = NULL;
+
+    char *s_address_zip_local_str = NULL;
+
+    // define the local variable for broker_list_element->fki_province_id
+    int *fki_province_id_local_var = NULL;
+
+    char *s_province_name_x_local_str = NULL;
+
+    // define the local variable for broker_list_element->fki_country_id
+    int *fki_country_id_local_var = NULL;
+
+    char *s_country_name_x_local_str = NULL;
+
     // broker_list_element->pki_broker_id
     cJSON *pki_broker_id = cJSON_GetObjectItemCaseSensitive(broker_list_elementJSON, "pkiBrokerID");
     if (cJSON_IsNull(pki_broker_id)) {
@@ -573,6 +826,12 @@ broker_list_element_t *broker_list_element_parseFromJSON(cJSON *broker_list_elem
     {
     goto end; //Numeric
     }
+    pki_broker_id_local_var = malloc(sizeof(int));
+    if(!pki_broker_id_local_var)
+    {
+        goto end;
+    }
+    *pki_broker_id_local_var = pki_broker_id->valuedouble;
 
     // broker_list_element->fki_department_id
     cJSON *fki_department_id = cJSON_GetObjectItemCaseSensitive(broker_list_elementJSON, "fkiDepartmentID");
@@ -588,6 +847,12 @@ broker_list_element_t *broker_list_element_parseFromJSON(cJSON *broker_list_elem
     {
     goto end; //Numeric
     }
+    fki_department_id_local_var = malloc(sizeof(int));
+    if(!fki_department_id_local_var)
+    {
+        goto end;
+    }
+    *fki_department_id_local_var = fki_department_id->valuedouble;
 
     // broker_list_element->s_department_name_x
     cJSON *s_department_name_x = cJSON_GetObjectItemCaseSensitive(broker_list_elementJSON, "sDepartmentNameX");
@@ -615,6 +880,12 @@ broker_list_element_t *broker_list_element_parseFromJSON(cJSON *broker_list_elem
     {
     goto end; //Numeric
     }
+    fki_brokertype_id_local_var = malloc(sizeof(int));
+    if(!fki_brokertype_id_local_var)
+    {
+        goto end;
+    }
+    *fki_brokertype_id_local_var = fki_brokertype_id->valuedouble;
 
     // broker_list_element->s_brokertype_name_x
     cJSON *s_brokertype_name_x = cJSON_GetObjectItemCaseSensitive(broker_list_elementJSON, "sBrokertypeNameX");
@@ -668,6 +939,12 @@ broker_list_element_t *broker_list_element_parseFromJSON(cJSON *broker_list_elem
     {
     goto end; //Numeric
     }
+    i_agent_bannernumber_local_var = malloc(sizeof(int));
+    if(!i_agent_bannernumber_local_var)
+    {
+        goto end;
+    }
+    *i_agent_bannernumber_local_var = i_agent_bannernumber->valuedouble;
     }
 
     // broker_list_element->s_language_name_x
@@ -696,6 +973,12 @@ broker_list_element_t *broker_list_element_parseFromJSON(cJSON *broker_list_elem
     {
     goto end; //Numeric
     }
+    i_broker_photocopiercode_local_var = malloc(sizeof(int));
+    if(!i_broker_photocopiercode_local_var)
+    {
+        goto end;
+    }
+    *i_broker_photocopiercode_local_var = i_broker_photocopiercode->valuedouble;
 
     // broker_list_element->i_broker_longdistancecode
     cJSON *i_broker_longdistancecode = cJSON_GetObjectItemCaseSensitive(broker_list_elementJSON, "iBrokerLongdistancecode");
@@ -711,6 +994,12 @@ broker_list_element_t *broker_list_element_parseFromJSON(cJSON *broker_list_elem
     {
     goto end; //Numeric
     }
+    i_broker_longdistancecode_local_var = malloc(sizeof(int));
+    if(!i_broker_longdistancecode_local_var)
+    {
+        goto end;
+    }
+    *i_broker_longdistancecode_local_var = i_broker_longdistancecode->valuedouble;
 
     // broker_list_element->s_broker_name
     cJSON *s_broker_name = cJSON_GetObjectItemCaseSensitive(broker_list_elementJSON, "sBrokerName");
@@ -779,6 +1068,12 @@ broker_list_element_t *broker_list_element_parseFromJSON(cJSON *broker_list_elem
     {
     goto end; //Bool
     }
+    b_broker_tranquillit_local_var = malloc(sizeof(int));
+    if(!b_broker_tranquillit_local_var)
+    {
+        goto end;
+    }
+    *b_broker_tranquillit_local_var = b_broker_tranquillit->valueint;
     }
 
     // broker_list_element->b_broker_residentiallicense
@@ -795,6 +1090,12 @@ broker_list_element_t *broker_list_element_parseFromJSON(cJSON *broker_list_elem
     {
     goto end; //Bool
     }
+    b_broker_residentiallicense_local_var = malloc(sizeof(int));
+    if(!b_broker_residentiallicense_local_var)
+    {
+        goto end;
+    }
+    *b_broker_residentiallicense_local_var = b_broker_residentiallicense->valueint;
 
     // broker_list_element->b_broker_commerciallicense
     cJSON *b_broker_commerciallicense = cJSON_GetObjectItemCaseSensitive(broker_list_elementJSON, "bBrokerCommerciallicense");
@@ -810,6 +1111,12 @@ broker_list_element_t *broker_list_element_parseFromJSON(cJSON *broker_list_elem
     {
     goto end; //Bool
     }
+    b_broker_commerciallicense_local_var = malloc(sizeof(int));
+    if(!b_broker_commerciallicense_local_var)
+    {
+        goto end;
+    }
+    *b_broker_commerciallicense_local_var = b_broker_commerciallicense->valueint;
 
     // broker_list_element->b_broker_mortgagelicense
     cJSON *b_broker_mortgagelicense = cJSON_GetObjectItemCaseSensitive(broker_list_elementJSON, "bBrokerMortgagelicense");
@@ -825,6 +1132,12 @@ broker_list_element_t *broker_list_element_parseFromJSON(cJSON *broker_list_elem
     {
     goto end; //Bool
     }
+    b_broker_mortgagelicense_local_var = malloc(sizeof(int));
+    if(!b_broker_mortgagelicense_local_var)
+    {
+        goto end;
+    }
+    *b_broker_mortgagelicense_local_var = b_broker_mortgagelicense->valueint;
 
     // broker_list_element->b_broker_paidbyofficetranquillit
     cJSON *b_broker_paidbyofficetranquillit = cJSON_GetObjectItemCaseSensitive(broker_list_elementJSON, "bBrokerPaidbyofficetranquillit");
@@ -840,6 +1153,12 @@ broker_list_element_t *broker_list_element_parseFromJSON(cJSON *broker_list_elem
     {
     goto end; //Bool
     }
+    b_broker_paidbyofficetranquillit_local_var = malloc(sizeof(int));
+    if(!b_broker_paidbyofficetranquillit_local_var)
+    {
+        goto end;
+    }
+    *b_broker_paidbyofficetranquillit_local_var = b_broker_paidbyofficetranquillit->valueint;
 
     // broker_list_element->dt_broker_fintraccertification
     cJSON *dt_broker_fintraccertification = cJSON_GetObjectItemCaseSensitive(broker_list_elementJSON, "dtBrokerFintraccertification");
@@ -867,6 +1186,12 @@ broker_list_element_t *broker_list_element_parseFromJSON(cJSON *broker_list_elem
     {
     goto end; //Bool
     }
+    b_broker_isactive_local_var = malloc(sizeof(int));
+    if(!b_broker_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_broker_isactive_local_var = b_broker_isactive->valueint;
 
     // broker_list_element->s_contact_firstname
     cJSON *s_contact_firstname = cJSON_GetObjectItemCaseSensitive(broker_list_elementJSON, "sContactFirstname");
@@ -988,6 +1313,24 @@ broker_list_element_t *broker_list_element_parseFromJSON(cJSON *broker_list_elem
     }
     }
 
+    // broker_list_element->fki_province_id
+    cJSON *fki_province_id = cJSON_GetObjectItemCaseSensitive(broker_list_elementJSON, "fkiProvinceID");
+    if (cJSON_IsNull(fki_province_id)) {
+        fki_province_id = NULL;
+    }
+    if (fki_province_id) { 
+    if(!cJSON_IsNumber(fki_province_id))
+    {
+    goto end; //Numeric
+    }
+    fki_province_id_local_var = malloc(sizeof(int));
+    if(!fki_province_id_local_var)
+    {
+        goto end;
+    }
+    *fki_province_id_local_var = fki_province_id->valuedouble;
+    }
+
     // broker_list_element->s_province_name_x
     cJSON *s_province_name_x = cJSON_GetObjectItemCaseSensitive(broker_list_elementJSON, "sProvinceNameX");
     if (cJSON_IsNull(s_province_name_x)) {
@@ -998,6 +1341,24 @@ broker_list_element_t *broker_list_element_parseFromJSON(cJSON *broker_list_elem
     {
     goto end; //String
     }
+    }
+
+    // broker_list_element->fki_country_id
+    cJSON *fki_country_id = cJSON_GetObjectItemCaseSensitive(broker_list_elementJSON, "fkiCountryID");
+    if (cJSON_IsNull(fki_country_id)) {
+        fki_country_id = NULL;
+    }
+    if (fki_country_id) { 
+    if(!cJSON_IsNumber(fki_country_id))
+    {
+    goto end; //Numeric
+    }
+    fki_country_id_local_var = malloc(sizeof(int));
+    if(!fki_country_id_local_var)
+    {
+        goto end;
+    }
+    *fki_country_id_local_var = fki_country_id->valuedouble;
     }
 
     // broker_list_element->s_country_name_x
@@ -1013,45 +1374,218 @@ broker_list_element_t *broker_list_element_parseFromJSON(cJSON *broker_list_elem
     }
 
 
+    if (s_department_name_x && !cJSON_IsNull(s_department_name_x)) s_department_name_x_local_str = strdup(s_department_name_x->valuestring);
+    if (s_brokertype_name_x && !cJSON_IsNull(s_brokertype_name_x)) s_brokertype_name_x_local_str = strdup(s_brokertype_name_x->valuestring);
+    if (s_broker_code && !cJSON_IsNull(s_broker_code)) s_broker_code_local_str = strdup(s_broker_code->valuestring);
+    if (s_realestateboardnumber_number && !cJSON_IsNull(s_realestateboardnumber_number)) s_realestateboardnumber_number_local_str = strdup(s_realestateboardnumber_number->valuestring);
+    if (s_language_name_x && !cJSON_IsNull(s_language_name_x)) s_language_name_x_local_str = strdup(s_language_name_x->valuestring);
+    if (s_broker_name && !cJSON_IsNull(s_broker_name)) s_broker_name_local_str = strdup(s_broker_name->valuestring);
+    if (s_broker_realestateassociationlicense && !cJSON_IsNull(s_broker_realestateassociationlicense)) s_broker_realestateassociationlicense_local_str = strdup(s_broker_realestateassociationlicense->valuestring);
+    if (dt_broker_hiredate && !cJSON_IsNull(dt_broker_hiredate)) dt_broker_hiredate_local_str = strdup(dt_broker_hiredate->valuestring);
+    if (dt_broker_leavedate && !cJSON_IsNull(dt_broker_leavedate)) dt_broker_leavedate_local_str = strdup(dt_broker_leavedate->valuestring);
+    if (dt_broker_fintraccertification && !cJSON_IsNull(dt_broker_fintraccertification)) dt_broker_fintraccertification_local_str = strdup(dt_broker_fintraccertification->valuestring);
+    if (s_contact_firstname && !cJSON_IsNull(s_contact_firstname)) s_contact_firstname_local_str = strdup(s_contact_firstname->valuestring);
+    if (s_contact_lastname && !cJSON_IsNull(s_contact_lastname)) s_contact_lastname_local_str = strdup(s_contact_lastname->valuestring);
+    if (dt_contact_birthdate && !cJSON_IsNull(dt_contact_birthdate)) dt_contact_birthdate_local_str = strdup(dt_contact_birthdate->valuestring);
+    if (s_email_address && !cJSON_IsNull(s_email_address)) s_email_address_local_str = strdup(s_email_address->valuestring);
+    if (s_phone_e164 && !cJSON_IsNull(s_phone_e164)) s_phone_e164_local_str = strdup(s_phone_e164->valuestring);
+    if (s_address_civic && !cJSON_IsNull(s_address_civic)) s_address_civic_local_str = strdup(s_address_civic->valuestring);
+    if (s_address_street && !cJSON_IsNull(s_address_street)) s_address_street_local_str = strdup(s_address_street->valuestring);
+    if (s_address_suite && !cJSON_IsNull(s_address_suite)) s_address_suite_local_str = strdup(s_address_suite->valuestring);
+    if (s_address_city && !cJSON_IsNull(s_address_city)) s_address_city_local_str = strdup(s_address_city->valuestring);
+    if (s_address_zip && !cJSON_IsNull(s_address_zip)) s_address_zip_local_str = strdup(s_address_zip->valuestring);
+    if (s_province_name_x && !cJSON_IsNull(s_province_name_x)) s_province_name_x_local_str = strdup(s_province_name_x->valuestring);
+    if (s_country_name_x && !cJSON_IsNull(s_country_name_x)) s_country_name_x_local_str = strdup(s_country_name_x->valuestring);
+
     broker_list_element_local_var = broker_list_element_create_internal (
-        pki_broker_id->valuedouble,
-        fki_department_id->valuedouble,
-        s_department_name_x && !cJSON_IsNull(s_department_name_x) ? strdup(s_department_name_x->valuestring) : NULL,
-        fki_brokertype_id->valuedouble,
-        strdup(s_brokertype_name_x->valuestring),
-        strdup(s_broker_code->valuestring),
-        s_realestateboardnumber_number && !cJSON_IsNull(s_realestateboardnumber_number) ? strdup(s_realestateboardnumber_number->valuestring) : NULL,
-        i_agent_bannernumber ? i_agent_bannernumber->valuedouble : 0,
-        s_language_name_x && !cJSON_IsNull(s_language_name_x) ? strdup(s_language_name_x->valuestring) : NULL,
-        i_broker_photocopiercode->valuedouble,
-        i_broker_longdistancecode->valuedouble,
-        strdup(s_broker_name->valuestring),
-        strdup(s_broker_realestateassociationlicense->valuestring),
-        strdup(dt_broker_hiredate->valuestring),
-        dt_broker_leavedate && !cJSON_IsNull(dt_broker_leavedate) ? strdup(dt_broker_leavedate->valuestring) : NULL,
-        b_broker_tranquillit ? b_broker_tranquillit->valueint : 0,
-        b_broker_residentiallicense->valueint,
-        b_broker_commerciallicense->valueint,
-        b_broker_mortgagelicense->valueint,
-        b_broker_paidbyofficetranquillit->valueint,
-        dt_broker_fintraccertification && !cJSON_IsNull(dt_broker_fintraccertification) ? strdup(dt_broker_fintraccertification->valuestring) : NULL,
-        b_broker_isactive->valueint,
-        s_contact_firstname && !cJSON_IsNull(s_contact_firstname) ? strdup(s_contact_firstname->valuestring) : NULL,
-        s_contact_lastname && !cJSON_IsNull(s_contact_lastname) ? strdup(s_contact_lastname->valuestring) : NULL,
-        dt_contact_birthdate && !cJSON_IsNull(dt_contact_birthdate) ? strdup(dt_contact_birthdate->valuestring) : NULL,
-        s_email_address && !cJSON_IsNull(s_email_address) ? strdup(s_email_address->valuestring) : NULL,
-        s_phone_e164 && !cJSON_IsNull(s_phone_e164) ? strdup(s_phone_e164->valuestring) : NULL,
-        s_address_civic && !cJSON_IsNull(s_address_civic) ? strdup(s_address_civic->valuestring) : NULL,
-        s_address_street && !cJSON_IsNull(s_address_street) ? strdup(s_address_street->valuestring) : NULL,
-        s_address_suite && !cJSON_IsNull(s_address_suite) ? strdup(s_address_suite->valuestring) : NULL,
-        s_address_city && !cJSON_IsNull(s_address_city) ? strdup(s_address_city->valuestring) : NULL,
-        s_address_zip && !cJSON_IsNull(s_address_zip) ? strdup(s_address_zip->valuestring) : NULL,
-        s_province_name_x && !cJSON_IsNull(s_province_name_x) ? strdup(s_province_name_x->valuestring) : NULL,
-        s_country_name_x && !cJSON_IsNull(s_country_name_x) ? strdup(s_country_name_x->valuestring) : NULL
+        pki_broker_id_local_var,
+        fki_department_id_local_var,
+        s_department_name_x_local_str,
+        fki_brokertype_id_local_var,
+        s_brokertype_name_x_local_str,
+        s_broker_code_local_str,
+        s_realestateboardnumber_number_local_str,
+        i_agent_bannernumber_local_var,
+        s_language_name_x_local_str,
+        i_broker_photocopiercode_local_var,
+        i_broker_longdistancecode_local_var,
+        s_broker_name_local_str,
+        s_broker_realestateassociationlicense_local_str,
+        dt_broker_hiredate_local_str,
+        dt_broker_leavedate_local_str,
+        b_broker_tranquillit_local_var,
+        b_broker_residentiallicense_local_var,
+        b_broker_commerciallicense_local_var,
+        b_broker_mortgagelicense_local_var,
+        b_broker_paidbyofficetranquillit_local_var,
+        dt_broker_fintraccertification_local_str,
+        b_broker_isactive_local_var,
+        s_contact_firstname_local_str,
+        s_contact_lastname_local_str,
+        dt_contact_birthdate_local_str,
+        s_email_address_local_str,
+        s_phone_e164_local_str,
+        s_address_civic_local_str,
+        s_address_street_local_str,
+        s_address_suite_local_str,
+        s_address_city_local_str,
+        s_address_zip_local_str,
+        fki_province_id_local_var,
+        s_province_name_x_local_str,
+        fki_country_id_local_var,
+        s_country_name_x_local_str
         );
+
+    if (!broker_list_element_local_var) {
+        goto end;
+    }
 
     return broker_list_element_local_var;
 end:
+    if (pki_broker_id_local_var) {
+        free(pki_broker_id_local_var);
+        pki_broker_id_local_var = NULL;
+    }
+    if (fki_department_id_local_var) {
+        free(fki_department_id_local_var);
+        fki_department_id_local_var = NULL;
+    }
+    if (s_department_name_x_local_str) {
+        free(s_department_name_x_local_str);
+        s_department_name_x_local_str = NULL;
+    }
+    if (fki_brokertype_id_local_var) {
+        free(fki_brokertype_id_local_var);
+        fki_brokertype_id_local_var = NULL;
+    }
+    if (s_brokertype_name_x_local_str) {
+        free(s_brokertype_name_x_local_str);
+        s_brokertype_name_x_local_str = NULL;
+    }
+    if (s_broker_code_local_str) {
+        free(s_broker_code_local_str);
+        s_broker_code_local_str = NULL;
+    }
+    if (s_realestateboardnumber_number_local_str) {
+        free(s_realestateboardnumber_number_local_str);
+        s_realestateboardnumber_number_local_str = NULL;
+    }
+    if (i_agent_bannernumber_local_var) {
+        free(i_agent_bannernumber_local_var);
+        i_agent_bannernumber_local_var = NULL;
+    }
+    if (s_language_name_x_local_str) {
+        free(s_language_name_x_local_str);
+        s_language_name_x_local_str = NULL;
+    }
+    if (i_broker_photocopiercode_local_var) {
+        free(i_broker_photocopiercode_local_var);
+        i_broker_photocopiercode_local_var = NULL;
+    }
+    if (i_broker_longdistancecode_local_var) {
+        free(i_broker_longdistancecode_local_var);
+        i_broker_longdistancecode_local_var = NULL;
+    }
+    if (s_broker_name_local_str) {
+        free(s_broker_name_local_str);
+        s_broker_name_local_str = NULL;
+    }
+    if (s_broker_realestateassociationlicense_local_str) {
+        free(s_broker_realestateassociationlicense_local_str);
+        s_broker_realestateassociationlicense_local_str = NULL;
+    }
+    if (dt_broker_hiredate_local_str) {
+        free(dt_broker_hiredate_local_str);
+        dt_broker_hiredate_local_str = NULL;
+    }
+    if (dt_broker_leavedate_local_str) {
+        free(dt_broker_leavedate_local_str);
+        dt_broker_leavedate_local_str = NULL;
+    }
+    if (b_broker_tranquillit_local_var) {
+        free(b_broker_tranquillit_local_var);
+        b_broker_tranquillit_local_var = NULL;
+    }
+    if (b_broker_residentiallicense_local_var) {
+        free(b_broker_residentiallicense_local_var);
+        b_broker_residentiallicense_local_var = NULL;
+    }
+    if (b_broker_commerciallicense_local_var) {
+        free(b_broker_commerciallicense_local_var);
+        b_broker_commerciallicense_local_var = NULL;
+    }
+    if (b_broker_mortgagelicense_local_var) {
+        free(b_broker_mortgagelicense_local_var);
+        b_broker_mortgagelicense_local_var = NULL;
+    }
+    if (b_broker_paidbyofficetranquillit_local_var) {
+        free(b_broker_paidbyofficetranquillit_local_var);
+        b_broker_paidbyofficetranquillit_local_var = NULL;
+    }
+    if (dt_broker_fintraccertification_local_str) {
+        free(dt_broker_fintraccertification_local_str);
+        dt_broker_fintraccertification_local_str = NULL;
+    }
+    if (b_broker_isactive_local_var) {
+        free(b_broker_isactive_local_var);
+        b_broker_isactive_local_var = NULL;
+    }
+    if (s_contact_firstname_local_str) {
+        free(s_contact_firstname_local_str);
+        s_contact_firstname_local_str = NULL;
+    }
+    if (s_contact_lastname_local_str) {
+        free(s_contact_lastname_local_str);
+        s_contact_lastname_local_str = NULL;
+    }
+    if (dt_contact_birthdate_local_str) {
+        free(dt_contact_birthdate_local_str);
+        dt_contact_birthdate_local_str = NULL;
+    }
+    if (s_email_address_local_str) {
+        free(s_email_address_local_str);
+        s_email_address_local_str = NULL;
+    }
+    if (s_phone_e164_local_str) {
+        free(s_phone_e164_local_str);
+        s_phone_e164_local_str = NULL;
+    }
+    if (s_address_civic_local_str) {
+        free(s_address_civic_local_str);
+        s_address_civic_local_str = NULL;
+    }
+    if (s_address_street_local_str) {
+        free(s_address_street_local_str);
+        s_address_street_local_str = NULL;
+    }
+    if (s_address_suite_local_str) {
+        free(s_address_suite_local_str);
+        s_address_suite_local_str = NULL;
+    }
+    if (s_address_city_local_str) {
+        free(s_address_city_local_str);
+        s_address_city_local_str = NULL;
+    }
+    if (s_address_zip_local_str) {
+        free(s_address_zip_local_str);
+        s_address_zip_local_str = NULL;
+    }
+    if (fki_province_id_local_var) {
+        free(fki_province_id_local_var);
+        fki_province_id_local_var = NULL;
+    }
+    if (s_province_name_x_local_str) {
+        free(s_province_name_x_local_str);
+        s_province_name_x_local_str = NULL;
+    }
+    if (fki_country_id_local_var) {
+        free(fki_country_id_local_var);
+        fki_country_id_local_var = NULL;
+    }
+    if (s_country_name_x_local_str) {
+        free(s_country_name_x_local_str);
+        s_country_name_x_local_str = NULL;
+    }
     return NULL;
 
 }

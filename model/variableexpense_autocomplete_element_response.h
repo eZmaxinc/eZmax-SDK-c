@@ -20,16 +20,16 @@ typedef struct variableexpense_autocomplete_element_response_t variableexpense_a
 
 typedef struct variableexpense_autocomplete_element_response_t {
     char *s_variableexpense_description_x; // string
-    int pki_variableexpense_id; //numeric
-    int b_variableexpense_isactive; //boolean
+    int *pki_variableexpense_id; //numeric
+    int *b_variableexpense_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } variableexpense_autocomplete_element_response_t;
 
 __attribute__((deprecated)) variableexpense_autocomplete_element_response_t *variableexpense_autocomplete_element_response_create(
     char *s_variableexpense_description_x,
-    int pki_variableexpense_id,
-    int b_variableexpense_isactive
+    int *pki_variableexpense_id,
+    int *b_variableexpense_isactive
 );
 
 void variableexpense_autocomplete_element_response_free(variableexpense_autocomplete_element_response_t *variableexpense_autocomplete_element_response);

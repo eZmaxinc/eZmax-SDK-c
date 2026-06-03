@@ -6,32 +6,47 @@
 
 
 static otherincometype_autocomplete_element_response_t *otherincometype_autocomplete_element_response_create_internal(
-    int pki_otherincometype_id,
+    int *pki_otherincometype_id,
     char *s_otherincometype_description_x,
-    int b_otherincometype_isactive
+    int *b_otherincometype_isactive
     ) {
     otherincometype_autocomplete_element_response_t *otherincometype_autocomplete_element_response_local_var = malloc(sizeof(otherincometype_autocomplete_element_response_t));
     if (!otherincometype_autocomplete_element_response_local_var) {
         return NULL;
     }
+    memset(otherincometype_autocomplete_element_response_local_var, 0, sizeof(otherincometype_autocomplete_element_response_t));
+    otherincometype_autocomplete_element_response_local_var->_library_owned = 1;
     otherincometype_autocomplete_element_response_local_var->pki_otherincometype_id = pki_otherincometype_id;
     otherincometype_autocomplete_element_response_local_var->s_otherincometype_description_x = s_otherincometype_description_x;
     otherincometype_autocomplete_element_response_local_var->b_otherincometype_isactive = b_otherincometype_isactive;
-
-    otherincometype_autocomplete_element_response_local_var->_library_owned = 1;
     return otherincometype_autocomplete_element_response_local_var;
 }
 
 __attribute__((deprecated)) otherincometype_autocomplete_element_response_t *otherincometype_autocomplete_element_response_create(
-    int pki_otherincometype_id,
+    int *pki_otherincometype_id,
     char *s_otherincometype_description_x,
-    int b_otherincometype_isactive
+    int *b_otherincometype_isactive
     ) {
-    return otherincometype_autocomplete_element_response_create_internal (
-        pki_otherincometype_id,
+    int *pki_otherincometype_id_copy = NULL;
+    if (pki_otherincometype_id) {
+        pki_otherincometype_id_copy = malloc(sizeof(int));
+        if (pki_otherincometype_id_copy) *pki_otherincometype_id_copy = *pki_otherincometype_id;
+    }
+    int *b_otherincometype_isactive_copy = NULL;
+    if (b_otherincometype_isactive) {
+        b_otherincometype_isactive_copy = malloc(sizeof(int));
+        if (b_otherincometype_isactive_copy) *b_otherincometype_isactive_copy = *b_otherincometype_isactive;
+    }
+    otherincometype_autocomplete_element_response_t *result = otherincometype_autocomplete_element_response_create_internal (
+        pki_otherincometype_id_copy,
         s_otherincometype_description_x,
-        b_otherincometype_isactive
+        b_otherincometype_isactive_copy
         );
+    if (!result) {
+        free(pki_otherincometype_id_copy);
+        free(b_otherincometype_isactive_copy);
+    }
+    return result;
 }
 
 void otherincometype_autocomplete_element_response_free(otherincometype_autocomplete_element_response_t *otherincometype_autocomplete_element_response) {
@@ -43,9 +58,17 @@ void otherincometype_autocomplete_element_response_free(otherincometype_autocomp
         return ;
     }
     listEntry_t *listEntry;
+    if (otherincometype_autocomplete_element_response->pki_otherincometype_id) {
+        free(otherincometype_autocomplete_element_response->pki_otherincometype_id);
+        otherincometype_autocomplete_element_response->pki_otherincometype_id = NULL;
+    }
     if (otherincometype_autocomplete_element_response->s_otherincometype_description_x) {
         free(otherincometype_autocomplete_element_response->s_otherincometype_description_x);
         otherincometype_autocomplete_element_response->s_otherincometype_description_x = NULL;
+    }
+    if (otherincometype_autocomplete_element_response->b_otherincometype_isactive) {
+        free(otherincometype_autocomplete_element_response->b_otherincometype_isactive);
+        otherincometype_autocomplete_element_response->b_otherincometype_isactive = NULL;
     }
     free(otherincometype_autocomplete_element_response);
 }
@@ -57,7 +80,7 @@ cJSON *otherincometype_autocomplete_element_response_convertToJSON(otherincomety
     if (!otherincometype_autocomplete_element_response->pki_otherincometype_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiOtherincometypeID", otherincometype_autocomplete_element_response->pki_otherincometype_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiOtherincometypeID", *otherincometype_autocomplete_element_response->pki_otherincometype_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -75,7 +98,7 @@ cJSON *otherincometype_autocomplete_element_response_convertToJSON(otherincomety
     if (!otherincometype_autocomplete_element_response->b_otherincometype_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bOtherincometypeIsactive", otherincometype_autocomplete_element_response->b_otherincometype_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bOtherincometypeIsactive", *otherincometype_autocomplete_element_response->b_otherincometype_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -91,6 +114,14 @@ otherincometype_autocomplete_element_response_t *otherincometype_autocomplete_el
 
     otherincometype_autocomplete_element_response_t *otherincometype_autocomplete_element_response_local_var = NULL;
 
+    // define the local variable for otherincometype_autocomplete_element_response->pki_otherincometype_id
+    int *pki_otherincometype_id_local_var = NULL;
+
+    char *s_otherincometype_description_x_local_str = NULL;
+
+    // define the local variable for otherincometype_autocomplete_element_response->b_otherincometype_isactive
+    int *b_otherincometype_isactive_local_var = NULL;
+
     // otherincometype_autocomplete_element_response->pki_otherincometype_id
     cJSON *pki_otherincometype_id = cJSON_GetObjectItemCaseSensitive(otherincometype_autocomplete_element_responseJSON, "pkiOtherincometypeID");
     if (cJSON_IsNull(pki_otherincometype_id)) {
@@ -105,6 +136,12 @@ otherincometype_autocomplete_element_response_t *otherincometype_autocomplete_el
     {
     goto end; //Numeric
     }
+    pki_otherincometype_id_local_var = malloc(sizeof(int));
+    if(!pki_otherincometype_id_local_var)
+    {
+        goto end;
+    }
+    *pki_otherincometype_id_local_var = pki_otherincometype_id->valuedouble;
 
     // otherincometype_autocomplete_element_response->s_otherincometype_description_x
     cJSON *s_otherincometype_description_x = cJSON_GetObjectItemCaseSensitive(otherincometype_autocomplete_element_responseJSON, "sOtherincometypeDescriptionX");
@@ -135,16 +172,40 @@ otherincometype_autocomplete_element_response_t *otherincometype_autocomplete_el
     {
     goto end; //Bool
     }
+    b_otherincometype_isactive_local_var = malloc(sizeof(int));
+    if(!b_otherincometype_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_otherincometype_isactive_local_var = b_otherincometype_isactive->valueint;
 
+
+    if (s_otherincometype_description_x && !cJSON_IsNull(s_otherincometype_description_x)) s_otherincometype_description_x_local_str = strdup(s_otherincometype_description_x->valuestring);
 
     otherincometype_autocomplete_element_response_local_var = otherincometype_autocomplete_element_response_create_internal (
-        pki_otherincometype_id->valuedouble,
-        strdup(s_otherincometype_description_x->valuestring),
-        b_otherincometype_isactive->valueint
+        pki_otherincometype_id_local_var,
+        s_otherincometype_description_x_local_str,
+        b_otherincometype_isactive_local_var
         );
+
+    if (!otherincometype_autocomplete_element_response_local_var) {
+        goto end;
+    }
 
     return otherincometype_autocomplete_element_response_local_var;
 end:
+    if (pki_otherincometype_id_local_var) {
+        free(pki_otherincometype_id_local_var);
+        pki_otherincometype_id_local_var = NULL;
+    }
+    if (s_otherincometype_description_x_local_str) {
+        free(s_otherincometype_description_x_local_str);
+        s_otherincometype_description_x_local_str = NULL;
+    }
+    if (b_otherincometype_isactive_local_var) {
+        free(b_otherincometype_isactive_local_var);
+        b_otherincometype_isactive_local_var = NULL;
+    }
     return NULL;
 
 }

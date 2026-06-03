@@ -19,17 +19,17 @@ typedef struct scim_service_provider_config_bulk_t scim_service_provider_config_
 
 
 typedef struct scim_service_provider_config_bulk_t {
-    int supported; //boolean
-    int max_operations; //numeric
-    int max_payload_size; //numeric
+    int *supported; //boolean
+    int *max_operations; //numeric
+    int *max_payload_size; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } scim_service_provider_config_bulk_t;
 
 __attribute__((deprecated)) scim_service_provider_config_bulk_t *scim_service_provider_config_bulk_create(
-    int supported,
-    int max_operations,
-    int max_payload_size
+    int *supported,
+    int *max_operations,
+    int *max_payload_size
 );
 
 void scim_service_provider_config_bulk_free(scim_service_provider_config_bulk_t *scim_service_provider_config_bulk);

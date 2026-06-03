@@ -19,17 +19,17 @@ typedef struct otherincometype_autocomplete_element_response_t otherincometype_a
 
 
 typedef struct otherincometype_autocomplete_element_response_t {
-    int pki_otherincometype_id; //numeric
+    int *pki_otherincometype_id; //numeric
     char *s_otherincometype_description_x; // string
-    int b_otherincometype_isactive; //boolean
+    int *b_otherincometype_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } otherincometype_autocomplete_element_response_t;
 
 __attribute__((deprecated)) otherincometype_autocomplete_element_response_t *otherincometype_autocomplete_element_response_create(
-    int pki_otherincometype_id,
+    int *pki_otherincometype_id,
     char *s_otherincometype_description_x,
-    int b_otherincometype_isactive
+    int *b_otherincometype_isactive
 );
 
 void otherincometype_autocomplete_element_response_free(otherincometype_autocomplete_element_response_t *otherincometype_autocomplete_element_response);

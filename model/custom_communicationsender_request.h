@@ -19,21 +19,21 @@ typedef struct custom_communicationsender_request_t custom_communicationsender_r
 
 
 typedef struct custom_communicationsender_request_t {
-    int fki_agent_id; //numeric
-    int fki_broker_id; //numeric
-    int fki_mailboxshared_id; //numeric
-    int fki_phonelineshared_id; //numeric
-    int fki_user_id; //numeric
+    int *fki_agent_id; //numeric
+    int *fki_broker_id; //numeric
+    int *fki_mailboxshared_id; //numeric
+    int *fki_phonelineshared_id; //numeric
+    int *fki_user_id; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } custom_communicationsender_request_t;
 
 __attribute__((deprecated)) custom_communicationsender_request_t *custom_communicationsender_request_create(
-    int fki_agent_id,
-    int fki_broker_id,
-    int fki_mailboxshared_id,
-    int fki_phonelineshared_id,
-    int fki_user_id
+    int *fki_agent_id,
+    int *fki_broker_id,
+    int *fki_mailboxshared_id,
+    int *fki_phonelineshared_id,
+    int *fki_user_id
 );
 
 void custom_communicationsender_request_free(custom_communicationsender_request_t *custom_communicationsender_request);

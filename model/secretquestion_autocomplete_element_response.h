@@ -20,16 +20,16 @@ typedef struct secretquestion_autocomplete_element_response_t secretquestion_aut
 
 typedef struct secretquestion_autocomplete_element_response_t {
     char *s_secretquestion_text_x; // string
-    int pki_secretquestion_id; //numeric
-    int b_secretquestion_isactive; //boolean
+    int *pki_secretquestion_id; //numeric
+    int *b_secretquestion_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } secretquestion_autocomplete_element_response_t;
 
 __attribute__((deprecated)) secretquestion_autocomplete_element_response_t *secretquestion_autocomplete_element_response_create(
     char *s_secretquestion_text_x,
-    int pki_secretquestion_id,
-    int b_secretquestion_isactive
+    int *pki_secretquestion_id,
+    int *b_secretquestion_isactive
 );
 
 void secretquestion_autocomplete_element_response_free(secretquestion_autocomplete_element_response_t *secretquestion_autocomplete_element_response);

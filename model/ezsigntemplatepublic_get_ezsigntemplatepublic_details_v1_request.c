@@ -13,10 +13,10 @@ static ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_t *ezsig
     if (!ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_local_var) {
         return NULL;
     }
+    memset(ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_local_var, 0, sizeof(ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_t));
+    ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_local_var->_library_owned = 1;
     ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_local_var->pks_ezmaxcustomer_code = pks_ezmaxcustomer_code;
     ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_local_var->s_ezsigntemplatepublic_referenceid = s_ezsigntemplatepublic_referenceid;
-
-    ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_local_var->_library_owned = 1;
     return ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) ezsigntemplatepublic_get_ezsigntemplatepublic_detail
     char *pks_ezmaxcustomer_code,
     char *s_ezsigntemplatepublic_referenceid
     ) {
-    return ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_create_internal (
+    ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_t *result = ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_create_internal (
         pks_ezmaxcustomer_code,
         s_ezsigntemplatepublic_referenceid
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_free(ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_t *ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request) {
@@ -82,6 +85,10 @@ ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_t *ezsigntempla
 
     ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_t *ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_local_var = NULL;
 
+    char *pks_ezmaxcustomer_code_local_str = NULL;
+
+    char *s_ezsigntemplatepublic_referenceid_local_str = NULL;
+
     // ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request->pks_ezmaxcustomer_code
     cJSON *pks_ezmaxcustomer_code = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_requestJSON, "pksEzmaxcustomerCode");
     if (cJSON_IsNull(pks_ezmaxcustomer_code)) {
@@ -113,13 +120,28 @@ ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_t *ezsigntempla
     }
 
 
+    if (pks_ezmaxcustomer_code && !cJSON_IsNull(pks_ezmaxcustomer_code)) pks_ezmaxcustomer_code_local_str = strdup(pks_ezmaxcustomer_code->valuestring);
+    if (s_ezsigntemplatepublic_referenceid && !cJSON_IsNull(s_ezsigntemplatepublic_referenceid)) s_ezsigntemplatepublic_referenceid_local_str = strdup(s_ezsigntemplatepublic_referenceid->valuestring);
+
     ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_local_var = ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_create_internal (
-        strdup(pks_ezmaxcustomer_code->valuestring),
-        strdup(s_ezsigntemplatepublic_referenceid->valuestring)
+        pks_ezmaxcustomer_code_local_str,
+        s_ezsigntemplatepublic_referenceid_local_str
         );
+
+    if (!ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_local_var;
 end:
+    if (pks_ezmaxcustomer_code_local_str) {
+        free(pks_ezmaxcustomer_code_local_str);
+        pks_ezmaxcustomer_code_local_str = NULL;
+    }
+    if (s_ezsigntemplatepublic_referenceid_local_str) {
+        free(s_ezsigntemplatepublic_referenceid_local_str);
+        s_ezsigntemplatepublic_referenceid_local_str = NULL;
+    }
     return NULL;
 
 }

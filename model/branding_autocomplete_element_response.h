@@ -20,16 +20,16 @@ typedef struct branding_autocomplete_element_response_t branding_autocomplete_el
 
 typedef struct branding_autocomplete_element_response_t {
     char *s_branding_description_x; // string
-    int pki_branding_id; //numeric
-    int b_branding_isactive; //boolean
+    int *pki_branding_id; //numeric
+    int *b_branding_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } branding_autocomplete_element_response_t;
 
 __attribute__((deprecated)) branding_autocomplete_element_response_t *branding_autocomplete_element_response_create(
     char *s_branding_description_x,
-    int pki_branding_id,
-    int b_branding_isactive
+    int *pki_branding_id,
+    int *b_branding_isactive
 );
 
 void branding_autocomplete_element_response_free(branding_autocomplete_element_response_t *branding_autocomplete_element_response);

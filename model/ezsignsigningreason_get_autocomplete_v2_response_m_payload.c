@@ -12,18 +12,21 @@ static ezsignsigningreason_get_autocomplete_v2_response_m_payload_t *ezsignsigni
     if (!ezsignsigningreason_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    ezsignsigningreason_get_autocomplete_v2_response_m_payload_local_var->a_obj_ezsignsigningreason = a_obj_ezsignsigningreason;
-
+    memset(ezsignsigningreason_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(ezsignsigningreason_get_autocomplete_v2_response_m_payload_t));
     ezsignsigningreason_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    ezsignsigningreason_get_autocomplete_v2_response_m_payload_local_var->a_obj_ezsignsigningreason = a_obj_ezsignsigningreason;
     return ezsignsigningreason_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsignsigningreason_get_autocomplete_v2_response_m_payload_t *ezsignsigningreason_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_ezsignsigningreason
     ) {
-    return ezsignsigningreason_get_autocomplete_v2_response_m_payload_create_internal (
+    ezsignsigningreason_get_autocomplete_v2_response_m_payload_t *result = ezsignsigningreason_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_ezsignsigningreason
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignsigningreason_get_autocomplete_v2_response_m_payload_free(ezsignsigningreason_get_autocomplete_v2_response_m_payload_t *ezsignsigningreason_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ ezsignsigningreason_get_autocomplete_v2_response_m_payload_t *ezsignsigningreaso
     }
 
 
+
     ezsignsigningreason_get_autocomplete_v2_response_m_payload_local_var = ezsignsigningreason_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_ezsignsigningreasonList
         );
+
+    if (!ezsignsigningreason_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsignsigningreason_get_autocomplete_v2_response_m_payload_local_var;
 end:

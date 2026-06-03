@@ -22,12 +22,12 @@ typedef struct custom_communication_list_element_response_t custom_communication
 
 
 typedef struct custom_communication_list_element_response_t {
-    int pki_communication_id; //numeric
+    int *pki_communication_id; //numeric
     char *dt_created_date; // string
     ezmax_api_definition__full_computed_e_communication_direction__e e_communication_direction; //referenced enum
     ezmax_api_definition__full_field_e_communication_importance__e e_communication_importance; //referenced enum
     ezmax_api_definition__full_field_e_communication_type__e e_communication_type; //referenced enum
-    int i_communicationrecipient_count; //numeric
+    int *i_communicationrecipient_count; //numeric
     char *s_communication_subject; // string
     char *s_communication_sender; // string
     char *s_communication_recipient; // string
@@ -36,12 +36,12 @@ typedef struct custom_communication_list_element_response_t {
 } custom_communication_list_element_response_t;
 
 __attribute__((deprecated)) custom_communication_list_element_response_t *custom_communication_list_element_response_create(
-    int pki_communication_id,
+    int *pki_communication_id,
     char *dt_created_date,
     ezmax_api_definition__full_computed_e_communication_direction__e e_communication_direction,
     ezmax_api_definition__full_field_e_communication_importance__e e_communication_importance,
     ezmax_api_definition__full_field_e_communication_type__e e_communication_type,
-    int i_communicationrecipient_count,
+    int *i_communicationrecipient_count,
     char *s_communication_subject,
     char *s_communication_sender,
     char *s_communication_recipient

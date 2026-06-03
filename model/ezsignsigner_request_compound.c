@@ -23,9 +23,9 @@ ezmax_api_definition__full_ezsignsigner_request_compound_EEZSIGNSIGNERLOGINTYPE_
 }
 
 static ezsignsigner_request_compound_t *ezsignsigner_request_compound_create_internal(
-    int fki_userlogintype_id,
-    int fki_taxassignment_id,
-    int fki_secretquestion_id,
+    int *fki_userlogintype_id,
+    int *fki_taxassignment_id,
+    int *fki_secretquestion_id,
     ezmax_api_definition__full_ezsignsigner_request_compound_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigner_logintype,
     char *s_ezsignsigner_secretanswer,
     ezsignsigner_request_compound_contact_t *obj_contact
@@ -34,33 +34,54 @@ static ezsignsigner_request_compound_t *ezsignsigner_request_compound_create_int
     if (!ezsignsigner_request_compound_local_var) {
         return NULL;
     }
+    memset(ezsignsigner_request_compound_local_var, 0, sizeof(ezsignsigner_request_compound_t));
+    ezsignsigner_request_compound_local_var->_library_owned = 1;
     ezsignsigner_request_compound_local_var->fki_userlogintype_id = fki_userlogintype_id;
     ezsignsigner_request_compound_local_var->fki_taxassignment_id = fki_taxassignment_id;
     ezsignsigner_request_compound_local_var->fki_secretquestion_id = fki_secretquestion_id;
     ezsignsigner_request_compound_local_var->e_ezsignsigner_logintype = e_ezsignsigner_logintype;
     ezsignsigner_request_compound_local_var->s_ezsignsigner_secretanswer = s_ezsignsigner_secretanswer;
     ezsignsigner_request_compound_local_var->obj_contact = obj_contact;
-
-    ezsignsigner_request_compound_local_var->_library_owned = 1;
     return ezsignsigner_request_compound_local_var;
 }
 
 __attribute__((deprecated)) ezsignsigner_request_compound_t *ezsignsigner_request_compound_create(
-    int fki_userlogintype_id,
-    int fki_taxassignment_id,
-    int fki_secretquestion_id,
+    int *fki_userlogintype_id,
+    int *fki_taxassignment_id,
+    int *fki_secretquestion_id,
     ezmax_api_definition__full_ezsignsigner_request_compound_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigner_logintype,
     char *s_ezsignsigner_secretanswer,
     ezsignsigner_request_compound_contact_t *obj_contact
     ) {
-    return ezsignsigner_request_compound_create_internal (
-        fki_userlogintype_id,
-        fki_taxassignment_id,
-        fki_secretquestion_id,
+    int *fki_userlogintype_id_copy = NULL;
+    if (fki_userlogintype_id) {
+        fki_userlogintype_id_copy = malloc(sizeof(int));
+        if (fki_userlogintype_id_copy) *fki_userlogintype_id_copy = *fki_userlogintype_id;
+    }
+    int *fki_taxassignment_id_copy = NULL;
+    if (fki_taxassignment_id) {
+        fki_taxassignment_id_copy = malloc(sizeof(int));
+        if (fki_taxassignment_id_copy) *fki_taxassignment_id_copy = *fki_taxassignment_id;
+    }
+    int *fki_secretquestion_id_copy = NULL;
+    if (fki_secretquestion_id) {
+        fki_secretquestion_id_copy = malloc(sizeof(int));
+        if (fki_secretquestion_id_copy) *fki_secretquestion_id_copy = *fki_secretquestion_id;
+    }
+    ezsignsigner_request_compound_t *result = ezsignsigner_request_compound_create_internal (
+        fki_userlogintype_id_copy,
+        fki_taxassignment_id_copy,
+        fki_secretquestion_id_copy,
         e_ezsignsigner_logintype,
         s_ezsignsigner_secretanswer,
         obj_contact
         );
+    if (!result) {
+        free(fki_userlogintype_id_copy);
+        free(fki_taxassignment_id_copy);
+        free(fki_secretquestion_id_copy);
+    }
+    return result;
 }
 
 void ezsignsigner_request_compound_free(ezsignsigner_request_compound_t *ezsignsigner_request_compound) {
@@ -72,6 +93,18 @@ void ezsignsigner_request_compound_free(ezsignsigner_request_compound_t *ezsigns
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignsigner_request_compound->fki_userlogintype_id) {
+        free(ezsignsigner_request_compound->fki_userlogintype_id);
+        ezsignsigner_request_compound->fki_userlogintype_id = NULL;
+    }
+    if (ezsignsigner_request_compound->fki_taxassignment_id) {
+        free(ezsignsigner_request_compound->fki_taxassignment_id);
+        ezsignsigner_request_compound->fki_taxassignment_id = NULL;
+    }
+    if (ezsignsigner_request_compound->fki_secretquestion_id) {
+        free(ezsignsigner_request_compound->fki_secretquestion_id);
+        ezsignsigner_request_compound->fki_secretquestion_id = NULL;
+    }
     if (ezsignsigner_request_compound->s_ezsignsigner_secretanswer) {
         free(ezsignsigner_request_compound->s_ezsignsigner_secretanswer);
         ezsignsigner_request_compound->s_ezsignsigner_secretanswer = NULL;
@@ -88,7 +121,7 @@ cJSON *ezsignsigner_request_compound_convertToJSON(ezsignsigner_request_compound
 
     // ezsignsigner_request_compound->fki_userlogintype_id
     if(ezsignsigner_request_compound->fki_userlogintype_id) {
-    if(cJSON_AddNumberToObject(item, "fkiUserlogintypeID", ezsignsigner_request_compound->fki_userlogintype_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiUserlogintypeID", *ezsignsigner_request_compound->fki_userlogintype_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -98,14 +131,14 @@ cJSON *ezsignsigner_request_compound_convertToJSON(ezsignsigner_request_compound
     if (!ezsignsigner_request_compound->fki_taxassignment_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiTaxassignmentID", ezsignsigner_request_compound->fki_taxassignment_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiTaxassignmentID", *ezsignsigner_request_compound->fki_taxassignment_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // ezsignsigner_request_compound->fki_secretquestion_id
     if(ezsignsigner_request_compound->fki_secretquestion_id) {
-    if(cJSON_AddNumberToObject(item, "fkiSecretquestionID", ezsignsigner_request_compound->fki_secretquestion_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiSecretquestionID", *ezsignsigner_request_compound->fki_secretquestion_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -153,6 +186,17 @@ ezsignsigner_request_compound_t *ezsignsigner_request_compound_parseFromJSON(cJS
 
     ezsignsigner_request_compound_t *ezsignsigner_request_compound_local_var = NULL;
 
+    // define the local variable for ezsignsigner_request_compound->fki_userlogintype_id
+    int *fki_userlogintype_id_local_var = NULL;
+
+    // define the local variable for ezsignsigner_request_compound->fki_taxassignment_id
+    int *fki_taxassignment_id_local_var = NULL;
+
+    // define the local variable for ezsignsigner_request_compound->fki_secretquestion_id
+    int *fki_secretquestion_id_local_var = NULL;
+
+    char *s_ezsignsigner_secretanswer_local_str = NULL;
+
     // define the local variable for ezsignsigner_request_compound->obj_contact
     ezsignsigner_request_compound_contact_t *obj_contact_local_nonprim = NULL;
 
@@ -166,6 +210,12 @@ ezsignsigner_request_compound_t *ezsignsigner_request_compound_parseFromJSON(cJS
     {
     goto end; //Numeric
     }
+    fki_userlogintype_id_local_var = malloc(sizeof(int));
+    if(!fki_userlogintype_id_local_var)
+    {
+        goto end;
+    }
+    *fki_userlogintype_id_local_var = fki_userlogintype_id->valuedouble;
     }
 
     // ezsignsigner_request_compound->fki_taxassignment_id
@@ -182,6 +232,12 @@ ezsignsigner_request_compound_t *ezsignsigner_request_compound_parseFromJSON(cJS
     {
     goto end; //Numeric
     }
+    fki_taxassignment_id_local_var = malloc(sizeof(int));
+    if(!fki_taxassignment_id_local_var)
+    {
+        goto end;
+    }
+    *fki_taxassignment_id_local_var = fki_taxassignment_id->valuedouble;
 
     // ezsignsigner_request_compound->fki_secretquestion_id
     cJSON *fki_secretquestion_id = cJSON_GetObjectItemCaseSensitive(ezsignsigner_request_compoundJSON, "fkiSecretquestionID");
@@ -193,6 +249,12 @@ ezsignsigner_request_compound_t *ezsignsigner_request_compound_parseFromJSON(cJS
     {
     goto end; //Numeric
     }
+    fki_secretquestion_id_local_var = malloc(sizeof(int));
+    if(!fki_secretquestion_id_local_var)
+    {
+        goto end;
+    }
+    *fki_secretquestion_id_local_var = fki_secretquestion_id->valuedouble;
     }
 
     // ezsignsigner_request_compound->e_ezsignsigner_logintype
@@ -234,17 +296,39 @@ ezsignsigner_request_compound_t *ezsignsigner_request_compound_parseFromJSON(cJS
     obj_contact_local_nonprim = ezsignsigner_request_compound_contact_parseFromJSON(obj_contact); //nonprimitive
 
 
+    if (s_ezsignsigner_secretanswer && !cJSON_IsNull(s_ezsignsigner_secretanswer)) s_ezsignsigner_secretanswer_local_str = strdup(s_ezsignsigner_secretanswer->valuestring);
+
     ezsignsigner_request_compound_local_var = ezsignsigner_request_compound_create_internal (
-        fki_userlogintype_id ? fki_userlogintype_id->valuedouble : 0,
-        fki_taxassignment_id->valuedouble,
-        fki_secretquestion_id ? fki_secretquestion_id->valuedouble : 0,
+        fki_userlogintype_id_local_var,
+        fki_taxassignment_id_local_var,
+        fki_secretquestion_id_local_var,
         e_ezsignsigner_logintype ? e_ezsignsigner_logintypeVariable : ezmax_api_definition__full_ezsignsigner_request_compound_EEZSIGNSIGNERLOGINTYPE_NULL,
-        s_ezsignsigner_secretanswer && !cJSON_IsNull(s_ezsignsigner_secretanswer) ? strdup(s_ezsignsigner_secretanswer->valuestring) : NULL,
+        s_ezsignsigner_secretanswer_local_str,
         obj_contact_local_nonprim
         );
 
+    if (!ezsignsigner_request_compound_local_var) {
+        goto end;
+    }
+
     return ezsignsigner_request_compound_local_var;
 end:
+    if (fki_userlogintype_id_local_var) {
+        free(fki_userlogintype_id_local_var);
+        fki_userlogintype_id_local_var = NULL;
+    }
+    if (fki_taxassignment_id_local_var) {
+        free(fki_taxassignment_id_local_var);
+        fki_taxassignment_id_local_var = NULL;
+    }
+    if (fki_secretquestion_id_local_var) {
+        free(fki_secretquestion_id_local_var);
+        fki_secretquestion_id_local_var = NULL;
+    }
+    if (s_ezsignsigner_secretanswer_local_str) {
+        free(s_ezsignsigner_secretanswer_local_str);
+        s_ezsignsigner_secretanswer_local_str = NULL;
+    }
     if (obj_contact_local_nonprim) {
         ezsignsigner_request_compound_contact_free(obj_contact_local_nonprim);
         obj_contact_local_nonprim = NULL;

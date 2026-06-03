@@ -20,7 +20,7 @@ typedef struct custom_notificationtestgetelements_response_t custom_notification
 
 
 typedef struct custom_notificationtestgetelements_response_t {
-    int pki_notificationtest_id; //numeric
+    int *pki_notificationtest_id; //numeric
     char *s_notificationtest_function; // string
     list_t *a_s_variableobject_property; //primitive container
     list_t *a_obj_variableobject; //primitive container
@@ -29,7 +29,7 @@ typedef struct custom_notificationtestgetelements_response_t {
 } custom_notificationtestgetelements_response_t;
 
 __attribute__((deprecated)) custom_notificationtestgetelements_response_t *custom_notificationtestgetelements_response_create(
-    int pki_notificationtest_id,
+    int *pki_notificationtest_id,
     char *s_notificationtest_function,
     list_t *a_s_variableobject_property,
     list_t *a_obj_variableobject

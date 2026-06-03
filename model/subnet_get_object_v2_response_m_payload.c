@@ -12,18 +12,21 @@ static subnet_get_object_v2_response_m_payload_t *subnet_get_object_v2_response_
     if (!subnet_get_object_v2_response_m_payload_local_var) {
         return NULL;
     }
-    subnet_get_object_v2_response_m_payload_local_var->obj_subnet = obj_subnet;
-
+    memset(subnet_get_object_v2_response_m_payload_local_var, 0, sizeof(subnet_get_object_v2_response_m_payload_t));
     subnet_get_object_v2_response_m_payload_local_var->_library_owned = 1;
+    subnet_get_object_v2_response_m_payload_local_var->obj_subnet = obj_subnet;
     return subnet_get_object_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) subnet_get_object_v2_response_m_payload_t *subnet_get_object_v2_response_m_payload_create(
     subnet_response_compound_t *obj_subnet
     ) {
-    return subnet_get_object_v2_response_m_payload_create_internal (
+    subnet_get_object_v2_response_m_payload_t *result = subnet_get_object_v2_response_m_payload_create_internal (
         obj_subnet
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void subnet_get_object_v2_response_m_payload_free(subnet_get_object_v2_response_m_payload_t *subnet_get_object_v2_response_m_payload) {
@@ -86,9 +89,14 @@ subnet_get_object_v2_response_m_payload_t *subnet_get_object_v2_response_m_paylo
     obj_subnet_local_nonprim = subnet_response_compound_parseFromJSON(obj_subnet); //nonprimitive
 
 
+
     subnet_get_object_v2_response_m_payload_local_var = subnet_get_object_v2_response_m_payload_create_internal (
         obj_subnet_local_nonprim
         );
+
+    if (!subnet_get_object_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return subnet_get_object_v2_response_m_payload_local_var;
 end:

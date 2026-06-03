@@ -6,8 +6,8 @@
 
 
 static attachmentlog_response_t *attachmentlog_response_create_internal(
-    int fki_attachment_id,
-    int fki_user_id,
+    int *fki_attachment_id,
+    int *fki_user_id,
     char *dt_attachmentlog_datetime,
     ezmax_api_definition__full_field_e_attachmentlog_type__e e_attachmentlog_type,
     char *s_attachmentlog_detail
@@ -16,30 +16,45 @@ static attachmentlog_response_t *attachmentlog_response_create_internal(
     if (!attachmentlog_response_local_var) {
         return NULL;
     }
+    memset(attachmentlog_response_local_var, 0, sizeof(attachmentlog_response_t));
+    attachmentlog_response_local_var->_library_owned = 1;
     attachmentlog_response_local_var->fki_attachment_id = fki_attachment_id;
     attachmentlog_response_local_var->fki_user_id = fki_user_id;
     attachmentlog_response_local_var->dt_attachmentlog_datetime = dt_attachmentlog_datetime;
     attachmentlog_response_local_var->e_attachmentlog_type = e_attachmentlog_type;
     attachmentlog_response_local_var->s_attachmentlog_detail = s_attachmentlog_detail;
-
-    attachmentlog_response_local_var->_library_owned = 1;
     return attachmentlog_response_local_var;
 }
 
 __attribute__((deprecated)) attachmentlog_response_t *attachmentlog_response_create(
-    int fki_attachment_id,
-    int fki_user_id,
+    int *fki_attachment_id,
+    int *fki_user_id,
     char *dt_attachmentlog_datetime,
     ezmax_api_definition__full_field_e_attachmentlog_type__e e_attachmentlog_type,
     char *s_attachmentlog_detail
     ) {
-    return attachmentlog_response_create_internal (
-        fki_attachment_id,
-        fki_user_id,
+    int *fki_attachment_id_copy = NULL;
+    if (fki_attachment_id) {
+        fki_attachment_id_copy = malloc(sizeof(int));
+        if (fki_attachment_id_copy) *fki_attachment_id_copy = *fki_attachment_id;
+    }
+    int *fki_user_id_copy = NULL;
+    if (fki_user_id) {
+        fki_user_id_copy = malloc(sizeof(int));
+        if (fki_user_id_copy) *fki_user_id_copy = *fki_user_id;
+    }
+    attachmentlog_response_t *result = attachmentlog_response_create_internal (
+        fki_attachment_id_copy,
+        fki_user_id_copy,
         dt_attachmentlog_datetime,
         e_attachmentlog_type,
         s_attachmentlog_detail
         );
+    if (!result) {
+        free(fki_attachment_id_copy);
+        free(fki_user_id_copy);
+    }
+    return result;
 }
 
 void attachmentlog_response_free(attachmentlog_response_t *attachmentlog_response) {
@@ -51,6 +66,14 @@ void attachmentlog_response_free(attachmentlog_response_t *attachmentlog_respons
         return ;
     }
     listEntry_t *listEntry;
+    if (attachmentlog_response->fki_attachment_id) {
+        free(attachmentlog_response->fki_attachment_id);
+        attachmentlog_response->fki_attachment_id = NULL;
+    }
+    if (attachmentlog_response->fki_user_id) {
+        free(attachmentlog_response->fki_user_id);
+        attachmentlog_response->fki_user_id = NULL;
+    }
     if (attachmentlog_response->dt_attachmentlog_datetime) {
         free(attachmentlog_response->dt_attachmentlog_datetime);
         attachmentlog_response->dt_attachmentlog_datetime = NULL;
@@ -69,7 +92,7 @@ cJSON *attachmentlog_response_convertToJSON(attachmentlog_response_t *attachment
     if (!attachmentlog_response->fki_attachment_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiAttachmentID", attachmentlog_response->fki_attachment_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiAttachmentID", *attachmentlog_response->fki_attachment_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -78,7 +101,7 @@ cJSON *attachmentlog_response_convertToJSON(attachmentlog_response_t *attachment
     if (!attachmentlog_response->fki_user_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiUserID", attachmentlog_response->fki_user_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiUserID", *attachmentlog_response->fki_user_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -125,8 +148,18 @@ attachmentlog_response_t *attachmentlog_response_parseFromJSON(cJSON *attachment
 
     attachmentlog_response_t *attachmentlog_response_local_var = NULL;
 
+    // define the local variable for attachmentlog_response->fki_attachment_id
+    int *fki_attachment_id_local_var = NULL;
+
+    // define the local variable for attachmentlog_response->fki_user_id
+    int *fki_user_id_local_var = NULL;
+
+    char *dt_attachmentlog_datetime_local_str = NULL;
+
     // define the local variable for attachmentlog_response->e_attachmentlog_type
     ezmax_api_definition__full_field_e_attachmentlog_type__e e_attachmentlog_type_local_nonprim = 0;
+
+    char *s_attachmentlog_detail_local_str = NULL;
 
     // attachmentlog_response->fki_attachment_id
     cJSON *fki_attachment_id = cJSON_GetObjectItemCaseSensitive(attachmentlog_responseJSON, "fkiAttachmentID");
@@ -142,6 +175,12 @@ attachmentlog_response_t *attachmentlog_response_parseFromJSON(cJSON *attachment
     {
     goto end; //Numeric
     }
+    fki_attachment_id_local_var = malloc(sizeof(int));
+    if(!fki_attachment_id_local_var)
+    {
+        goto end;
+    }
+    *fki_attachment_id_local_var = fki_attachment_id->valuedouble;
 
     // attachmentlog_response->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(attachmentlog_responseJSON, "fkiUserID");
@@ -157,6 +196,12 @@ attachmentlog_response_t *attachmentlog_response_parseFromJSON(cJSON *attachment
     {
     goto end; //Numeric
     }
+    fki_user_id_local_var = malloc(sizeof(int));
+    if(!fki_user_id_local_var)
+    {
+        goto end;
+    }
+    *fki_user_id_local_var = fki_user_id->valuedouble;
 
     // attachmentlog_response->dt_attachmentlog_datetime
     cJSON *dt_attachmentlog_datetime = cJSON_GetObjectItemCaseSensitive(attachmentlog_responseJSON, "dtAttachmentlogDatetime");
@@ -198,18 +243,41 @@ attachmentlog_response_t *attachmentlog_response_parseFromJSON(cJSON *attachment
     }
 
 
+    if (dt_attachmentlog_datetime && !cJSON_IsNull(dt_attachmentlog_datetime)) dt_attachmentlog_datetime_local_str = strdup(dt_attachmentlog_datetime->valuestring);
+    if (s_attachmentlog_detail && !cJSON_IsNull(s_attachmentlog_detail)) s_attachmentlog_detail_local_str = strdup(s_attachmentlog_detail->valuestring);
+
     attachmentlog_response_local_var = attachmentlog_response_create_internal (
-        fki_attachment_id->valuedouble,
-        fki_user_id->valuedouble,
-        strdup(dt_attachmentlog_datetime->valuestring),
+        fki_attachment_id_local_var,
+        fki_user_id_local_var,
+        dt_attachmentlog_datetime_local_str,
         e_attachmentlog_type_local_nonprim,
-        s_attachmentlog_detail && !cJSON_IsNull(s_attachmentlog_detail) ? strdup(s_attachmentlog_detail->valuestring) : NULL
+        s_attachmentlog_detail_local_str
         );
+
+    if (!attachmentlog_response_local_var) {
+        goto end;
+    }
 
     return attachmentlog_response_local_var;
 end:
+    if (fki_attachment_id_local_var) {
+        free(fki_attachment_id_local_var);
+        fki_attachment_id_local_var = NULL;
+    }
+    if (fki_user_id_local_var) {
+        free(fki_user_id_local_var);
+        fki_user_id_local_var = NULL;
+    }
+    if (dt_attachmentlog_datetime_local_str) {
+        free(dt_attachmentlog_datetime_local_str);
+        dt_attachmentlog_datetime_local_str = NULL;
+    }
     if (e_attachmentlog_type_local_nonprim) {
         e_attachmentlog_type_local_nonprim = 0;
+    }
+    if (s_attachmentlog_detail_local_str) {
+        free(s_attachmentlog_detail_local_str);
+        s_attachmentlog_detail_local_str = NULL;
     }
     return NULL;
 

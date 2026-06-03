@@ -20,8 +20,8 @@ typedef struct contact_request_compound_t contact_request_compound_t;
 
 
 typedef struct contact_request_compound_t {
-    int fki_contacttitle_id; //numeric
-    int fki_language_id; //numeric
+    int *fki_contacttitle_id; //numeric
+    int *fki_language_id; //numeric
     char *s_contact_firstname; // string
     char *s_contact_lastname; // string
     char *s_contact_company; // string
@@ -32,8 +32,8 @@ typedef struct contact_request_compound_t {
 } contact_request_compound_t;
 
 __attribute__((deprecated)) contact_request_compound_t *contact_request_compound_create(
-    int fki_contacttitle_id,
-    int fki_language_id,
+    int *fki_contacttitle_id,
+    int *fki_language_id,
     char *s_contact_firstname,
     char *s_contact_lastname,
     char *s_contact_company,

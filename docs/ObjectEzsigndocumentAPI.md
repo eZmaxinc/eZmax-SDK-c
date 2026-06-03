@@ -6,7 +6,9 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/applyezsigntemplate | Apply an Ezsigntemplate to the Ezsigndocument
 [**ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV2**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV2) | **POST** /2/object/ezsigndocument/{pkiEzsigndocumentID}/applyEzsigntemplate | Apply an Ezsigntemplate to the Ezsigndocument
+[**ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV3**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV3) | **POST** /3/object/ezsigndocument/{pkiEzsigndocumentID}/applyEzsigntemplate | Apply an Ezsigntemplate to the Ezsigndocument
 [**ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateglobalV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateglobalV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/applyEzsigntemplateglobal | Apply an Ezsigntemplateglobal to the Ezsigndocument
+[**ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateglobalV2**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateglobalV2) | **POST** /2/object/ezsigndocument/{pkiEzsigndocumentID}/applyEzsigntemplateglobal | Apply an Ezsigntemplateglobal to the Ezsigndocument
 [**ObjectEzsigndocumentAPI_ezsigndocumentCreateEzsignelementsPositionedByWordV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentCreateEzsignelementsPositionedByWordV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/createEzsignelementsPositionedByWord | Create multiple Ezsignsignatures/Ezsignformfieldgroups
 [**ObjectEzsigndocumentAPI_ezsigndocumentCreateEzsignelementsPositionedByWordV2**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentCreateEzsignelementsPositionedByWordV2) | **POST** /2/object/ezsigndocument/{pkiEzsigndocumentID}/createEzsignelementsPositionedByWord | Create multiple Ezsignsignatures/Ezsignformfieldgroups
 [**ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV1) | **POST** /1/object/ezsigndocument | Create a new Ezsigndocument
@@ -113,6 +115,38 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV3**
+```c
+// Apply an Ezsigntemplate to the Ezsigndocument
+//
+// This endpoint applies a predefined template to the ezsign document. This allows to automatically apply all the form and signature fields on a document in a single step.  The document must not already have fields otherwise an error will be returned.
+//
+ezsigndocument_apply_ezsigntemplate_v3_response_t* ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV3(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_apply_ezsigntemplate_v3_request_t *ezsigndocument_apply_ezsigntemplate_v3_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsigndocumentID** | **int \*** |  | 
+**ezsigndocument_apply_ezsigntemplate_v3_request** | **[ezsigndocument_apply_ezsigntemplate_v3_request_t](ezsigndocument_apply_ezsigntemplate_v3_request.md) \*** |  | 
+
+### Return type
+
+[ezsigndocument_apply_ezsigntemplate_v3_response_t](ezsigndocument_apply_ezsigntemplate_v3_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateglobalV1**
 ```c
 // Apply an Ezsigntemplateglobal to the Ezsigndocument
@@ -132,6 +166,38 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsigndocument_apply_ezsigntemplateglobal_v1_response_t](ezsigndocument_apply_ezsigntemplateglobal_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateglobalV2**
+```c
+// Apply an Ezsigntemplateglobal to the Ezsigndocument
+//
+// This endpoint applies a predefined template to the ezsign document. This allows to automatically apply all the form and signature fields on a document in a single step.  The document must not already have fields otherwise an error will be returned.
+//
+ezsigndocument_apply_ezsigntemplateglobal_v2_response_t* ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateglobalV2(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_apply_ezsigntemplateglobal_v2_request_t *ezsigndocument_apply_ezsigntemplateglobal_v2_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsigndocumentID** | **int \*** |  | 
+**ezsigndocument_apply_ezsigntemplateglobal_v2_request** | **[ezsigndocument_apply_ezsigntemplateglobal_v2_request_t](ezsigndocument_apply_ezsigntemplateglobal_v2_request.md) \*** |  | 
+
+### Return type
+
+[ezsigndocument_apply_ezsigntemplateglobal_v2_response_t](ezsigndocument_apply_ezsigntemplateglobal_v2_response.md) *
 
 
 ### Authorization

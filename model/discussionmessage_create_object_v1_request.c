@@ -12,18 +12,21 @@ static discussionmessage_create_object_v1_request_t *discussionmessage_create_ob
     if (!discussionmessage_create_object_v1_request_local_var) {
         return NULL;
     }
-    discussionmessage_create_object_v1_request_local_var->a_obj_discussionmessage = a_obj_discussionmessage;
-
+    memset(discussionmessage_create_object_v1_request_local_var, 0, sizeof(discussionmessage_create_object_v1_request_t));
     discussionmessage_create_object_v1_request_local_var->_library_owned = 1;
+    discussionmessage_create_object_v1_request_local_var->a_obj_discussionmessage = a_obj_discussionmessage;
     return discussionmessage_create_object_v1_request_local_var;
 }
 
 __attribute__((deprecated)) discussionmessage_create_object_v1_request_t *discussionmessage_create_object_v1_request_create(
     list_t *a_obj_discussionmessage
     ) {
-    return discussionmessage_create_object_v1_request_create_internal (
+    discussionmessage_create_object_v1_request_t *result = discussionmessage_create_object_v1_request_create_internal (
         a_obj_discussionmessage
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void discussionmessage_create_object_v1_request_free(discussionmessage_create_object_v1_request_t *discussionmessage_create_object_v1_request) {
@@ -111,9 +114,14 @@ discussionmessage_create_object_v1_request_t *discussionmessage_create_object_v1
     }
 
 
+
     discussionmessage_create_object_v1_request_local_var = discussionmessage_create_object_v1_request_create_internal (
         a_obj_discussionmessageList
         );
+
+    if (!discussionmessage_create_object_v1_request_local_var) {
+        goto end;
+    }
 
     return discussionmessage_create_object_v1_request_local_var;
 end:

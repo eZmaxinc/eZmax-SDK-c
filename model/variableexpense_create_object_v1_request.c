@@ -12,18 +12,21 @@ static variableexpense_create_object_v1_request_t *variableexpense_create_object
     if (!variableexpense_create_object_v1_request_local_var) {
         return NULL;
     }
-    variableexpense_create_object_v1_request_local_var->a_obj_variableexpense = a_obj_variableexpense;
-
+    memset(variableexpense_create_object_v1_request_local_var, 0, sizeof(variableexpense_create_object_v1_request_t));
     variableexpense_create_object_v1_request_local_var->_library_owned = 1;
+    variableexpense_create_object_v1_request_local_var->a_obj_variableexpense = a_obj_variableexpense;
     return variableexpense_create_object_v1_request_local_var;
 }
 
 __attribute__((deprecated)) variableexpense_create_object_v1_request_t *variableexpense_create_object_v1_request_create(
     list_t *a_obj_variableexpense
     ) {
-    return variableexpense_create_object_v1_request_create_internal (
+    variableexpense_create_object_v1_request_t *result = variableexpense_create_object_v1_request_create_internal (
         a_obj_variableexpense
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void variableexpense_create_object_v1_request_free(variableexpense_create_object_v1_request_t *variableexpense_create_object_v1_request) {
@@ -111,9 +114,14 @@ variableexpense_create_object_v1_request_t *variableexpense_create_object_v1_req
     }
 
 
+
     variableexpense_create_object_v1_request_local_var = variableexpense_create_object_v1_request_create_internal (
         a_obj_variableexpenseList
         );
+
+    if (!variableexpense_create_object_v1_request_local_var) {
+        goto end;
+    }
 
     return variableexpense_create_object_v1_request_local_var;
 end:

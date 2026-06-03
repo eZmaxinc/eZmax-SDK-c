@@ -8,34 +8,49 @@
 static department_autocomplete_element_response_t *department_autocomplete_element_response_create_internal(
     char *s_company_name_x,
     char *s_department_name_x,
-    int pki_department_id,
-    int b_department_isactive
+    int *pki_department_id,
+    int *b_department_isactive
     ) {
     department_autocomplete_element_response_t *department_autocomplete_element_response_local_var = malloc(sizeof(department_autocomplete_element_response_t));
     if (!department_autocomplete_element_response_local_var) {
         return NULL;
     }
+    memset(department_autocomplete_element_response_local_var, 0, sizeof(department_autocomplete_element_response_t));
+    department_autocomplete_element_response_local_var->_library_owned = 1;
     department_autocomplete_element_response_local_var->s_company_name_x = s_company_name_x;
     department_autocomplete_element_response_local_var->s_department_name_x = s_department_name_x;
     department_autocomplete_element_response_local_var->pki_department_id = pki_department_id;
     department_autocomplete_element_response_local_var->b_department_isactive = b_department_isactive;
-
-    department_autocomplete_element_response_local_var->_library_owned = 1;
     return department_autocomplete_element_response_local_var;
 }
 
 __attribute__((deprecated)) department_autocomplete_element_response_t *department_autocomplete_element_response_create(
     char *s_company_name_x,
     char *s_department_name_x,
-    int pki_department_id,
-    int b_department_isactive
+    int *pki_department_id,
+    int *b_department_isactive
     ) {
-    return department_autocomplete_element_response_create_internal (
+    int *pki_department_id_copy = NULL;
+    if (pki_department_id) {
+        pki_department_id_copy = malloc(sizeof(int));
+        if (pki_department_id_copy) *pki_department_id_copy = *pki_department_id;
+    }
+    int *b_department_isactive_copy = NULL;
+    if (b_department_isactive) {
+        b_department_isactive_copy = malloc(sizeof(int));
+        if (b_department_isactive_copy) *b_department_isactive_copy = *b_department_isactive;
+    }
+    department_autocomplete_element_response_t *result = department_autocomplete_element_response_create_internal (
         s_company_name_x,
         s_department_name_x,
-        pki_department_id,
-        b_department_isactive
+        pki_department_id_copy,
+        b_department_isactive_copy
         );
+    if (!result) {
+        free(pki_department_id_copy);
+        free(b_department_isactive_copy);
+    }
+    return result;
 }
 
 void department_autocomplete_element_response_free(department_autocomplete_element_response_t *department_autocomplete_element_response) {
@@ -54,6 +69,14 @@ void department_autocomplete_element_response_free(department_autocomplete_eleme
     if (department_autocomplete_element_response->s_department_name_x) {
         free(department_autocomplete_element_response->s_department_name_x);
         department_autocomplete_element_response->s_department_name_x = NULL;
+    }
+    if (department_autocomplete_element_response->pki_department_id) {
+        free(department_autocomplete_element_response->pki_department_id);
+        department_autocomplete_element_response->pki_department_id = NULL;
+    }
+    if (department_autocomplete_element_response->b_department_isactive) {
+        free(department_autocomplete_element_response->b_department_isactive);
+        department_autocomplete_element_response->b_department_isactive = NULL;
     }
     free(department_autocomplete_element_response);
 }
@@ -83,7 +106,7 @@ cJSON *department_autocomplete_element_response_convertToJSON(department_autocom
     if (!department_autocomplete_element_response->pki_department_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiDepartmentID", department_autocomplete_element_response->pki_department_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiDepartmentID", *department_autocomplete_element_response->pki_department_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -92,7 +115,7 @@ cJSON *department_autocomplete_element_response_convertToJSON(department_autocom
     if (!department_autocomplete_element_response->b_department_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bDepartmentIsactive", department_autocomplete_element_response->b_department_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bDepartmentIsactive", *department_autocomplete_element_response->b_department_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -107,6 +130,16 @@ fail:
 department_autocomplete_element_response_t *department_autocomplete_element_response_parseFromJSON(cJSON *department_autocomplete_element_responseJSON){
 
     department_autocomplete_element_response_t *department_autocomplete_element_response_local_var = NULL;
+
+    char *s_company_name_x_local_str = NULL;
+
+    char *s_department_name_x_local_str = NULL;
+
+    // define the local variable for department_autocomplete_element_response->pki_department_id
+    int *pki_department_id_local_var = NULL;
+
+    // define the local variable for department_autocomplete_element_response->b_department_isactive
+    int *b_department_isactive_local_var = NULL;
 
     // department_autocomplete_element_response->s_company_name_x
     cJSON *s_company_name_x = cJSON_GetObjectItemCaseSensitive(department_autocomplete_element_responseJSON, "sCompanyNameX");
@@ -152,6 +185,12 @@ department_autocomplete_element_response_t *department_autocomplete_element_resp
     {
     goto end; //Numeric
     }
+    pki_department_id_local_var = malloc(sizeof(int));
+    if(!pki_department_id_local_var)
+    {
+        goto end;
+    }
+    *pki_department_id_local_var = pki_department_id->valuedouble;
 
     // department_autocomplete_element_response->b_department_isactive
     cJSON *b_department_isactive = cJSON_GetObjectItemCaseSensitive(department_autocomplete_element_responseJSON, "bDepartmentIsactive");
@@ -167,17 +206,46 @@ department_autocomplete_element_response_t *department_autocomplete_element_resp
     {
     goto end; //Bool
     }
+    b_department_isactive_local_var = malloc(sizeof(int));
+    if(!b_department_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_department_isactive_local_var = b_department_isactive->valueint;
 
+
+    if (s_company_name_x && !cJSON_IsNull(s_company_name_x)) s_company_name_x_local_str = strdup(s_company_name_x->valuestring);
+    if (s_department_name_x && !cJSON_IsNull(s_department_name_x)) s_department_name_x_local_str = strdup(s_department_name_x->valuestring);
 
     department_autocomplete_element_response_local_var = department_autocomplete_element_response_create_internal (
-        strdup(s_company_name_x->valuestring),
-        strdup(s_department_name_x->valuestring),
-        pki_department_id->valuedouble,
-        b_department_isactive->valueint
+        s_company_name_x_local_str,
+        s_department_name_x_local_str,
+        pki_department_id_local_var,
+        b_department_isactive_local_var
         );
+
+    if (!department_autocomplete_element_response_local_var) {
+        goto end;
+    }
 
     return department_autocomplete_element_response_local_var;
 end:
+    if (s_company_name_x_local_str) {
+        free(s_company_name_x_local_str);
+        s_company_name_x_local_str = NULL;
+    }
+    if (s_department_name_x_local_str) {
+        free(s_department_name_x_local_str);
+        s_department_name_x_local_str = NULL;
+    }
+    if (pki_department_id_local_var) {
+        free(pki_department_id_local_var);
+        pki_department_id_local_var = NULL;
+    }
+    if (b_department_isactive_local_var) {
+        free(b_department_isactive_local_var);
+        b_department_isactive_local_var = NULL;
+    }
     return NULL;
 
 }

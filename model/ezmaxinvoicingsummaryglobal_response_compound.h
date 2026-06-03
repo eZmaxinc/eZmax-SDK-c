@@ -20,13 +20,13 @@ typedef struct ezmaxinvoicingsummaryglobal_response_compound_t ezmaxinvoicingsum
 
 
 typedef struct ezmaxinvoicingsummaryglobal_response_compound_t {
-    int pki_ezmaxinvoicingsummaryglobal_id; //numeric
-    int fki_ezmaxinvoicing_id; //numeric
-    int fki_ezmaxproduct_id; //numeric
+    int *pki_ezmaxinvoicingsummaryglobal_id; //numeric
+    int *fki_ezmaxinvoicing_id; //numeric
+    int *fki_ezmaxproduct_id; //numeric
     char *s_ezmaxproduct_description_x; // string
     char *dt_ezmaxinvoicingsummaryglobal_start; // string
     char *dt_ezmaxinvoicingsummaryglobal_end; // string
-    int i_ezmaxinvoicingsummaryglobal_days; //numeric
+    int *i_ezmaxinvoicingsummaryglobal_days; //numeric
     char *d_ezmaxinvoicingsummaryglobal_countreal; // string
     char *d_ezmaxinvoicingsummaryglobal_countbilled; // string
     char *d_ezmaxinvoicingsummaryglobal_subtotal; // string
@@ -37,7 +37,7 @@ typedef struct ezmaxinvoicingsummaryglobal_response_compound_t {
     char *d_ezmaxinvoicingsummaryglobal_representative; // string
     char *d_ezmaxinvoicingsummaryglobal_partner; // string
     char *d_ezmaxinvoicingsummaryglobal_net; // string
-    int b_ezmaxinvoicingsummaryglobal_adjustment; //boolean
+    int *b_ezmaxinvoicingsummaryglobal_adjustment; //boolean
     char *t_ezmaxproduct_help_x; // string
     list_t *a_obj_ezmaxinvoicingcommission; //nonprimitive container
 
@@ -45,13 +45,13 @@ typedef struct ezmaxinvoicingsummaryglobal_response_compound_t {
 } ezmaxinvoicingsummaryglobal_response_compound_t;
 
 __attribute__((deprecated)) ezmaxinvoicingsummaryglobal_response_compound_t *ezmaxinvoicingsummaryglobal_response_compound_create(
-    int pki_ezmaxinvoicingsummaryglobal_id,
-    int fki_ezmaxinvoicing_id,
-    int fki_ezmaxproduct_id,
+    int *pki_ezmaxinvoicingsummaryglobal_id,
+    int *fki_ezmaxinvoicing_id,
+    int *fki_ezmaxproduct_id,
     char *s_ezmaxproduct_description_x,
     char *dt_ezmaxinvoicingsummaryglobal_start,
     char *dt_ezmaxinvoicingsummaryglobal_end,
-    int i_ezmaxinvoicingsummaryglobal_days,
+    int *i_ezmaxinvoicingsummaryglobal_days,
     char *d_ezmaxinvoicingsummaryglobal_countreal,
     char *d_ezmaxinvoicingsummaryglobal_countbilled,
     char *d_ezmaxinvoicingsummaryglobal_subtotal,
@@ -62,7 +62,7 @@ __attribute__((deprecated)) ezmaxinvoicingsummaryglobal_response_compound_t *ezm
     char *d_ezmaxinvoicingsummaryglobal_representative,
     char *d_ezmaxinvoicingsummaryglobal_partner,
     char *d_ezmaxinvoicingsummaryglobal_net,
-    int b_ezmaxinvoicingsummaryglobal_adjustment,
+    int *b_ezmaxinvoicingsummaryglobal_adjustment,
     char *t_ezmaxproduct_help_x,
     list_t *a_obj_ezmaxinvoicingcommission
 );

@@ -14,11 +14,11 @@ static country_get_autocomplete_v2_response_t *country_get_autocomplete_v2_respo
     if (!country_get_autocomplete_v2_response_local_var) {
         return NULL;
     }
+    memset(country_get_autocomplete_v2_response_local_var, 0, sizeof(country_get_autocomplete_v2_response_t));
+    country_get_autocomplete_v2_response_local_var->_library_owned = 1;
     country_get_autocomplete_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     country_get_autocomplete_v2_response_local_var->obj_debug = obj_debug;
     country_get_autocomplete_v2_response_local_var->m_payload = m_payload;
-
-    country_get_autocomplete_v2_response_local_var->_library_owned = 1;
     return country_get_autocomplete_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) country_get_autocomplete_v2_response_t *country_get_
     common_response_obj_debug_t *obj_debug,
     country_get_autocomplete_v2_response_m_payload_t *m_payload
     ) {
-    return country_get_autocomplete_v2_response_create_internal (
+    country_get_autocomplete_v2_response_t *result = country_get_autocomplete_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void country_get_autocomplete_v2_response_free(country_get_autocomplete_v2_response_t *country_get_autocomplete_v2_response) {
@@ -156,11 +159,16 @@ country_get_autocomplete_v2_response_t *country_get_autocomplete_v2_response_par
     m_payload_local_nonprim = country_get_autocomplete_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     country_get_autocomplete_v2_response_local_var = country_get_autocomplete_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!country_get_autocomplete_v2_response_local_var) {
+        goto end;
+    }
 
     return country_get_autocomplete_v2_response_local_var;
 end:

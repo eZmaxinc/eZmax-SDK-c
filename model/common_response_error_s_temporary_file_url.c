@@ -15,12 +15,12 @@ static common_response_error_s_temporary_file_url_t *common_response_error_s_tem
     if (!common_response_error_s_temporary_file_url_local_var) {
         return NULL;
     }
+    memset(common_response_error_s_temporary_file_url_local_var, 0, sizeof(common_response_error_s_temporary_file_url_t));
+    common_response_error_s_temporary_file_url_local_var->_library_owned = 1;
     common_response_error_s_temporary_file_url_local_var->s_error_message = s_error_message;
     common_response_error_s_temporary_file_url_local_var->e_error_code = e_error_code;
     common_response_error_s_temporary_file_url_local_var->a_s_error_messagedetail = a_s_error_messagedetail;
     common_response_error_s_temporary_file_url_local_var->s_temporary_file_url = s_temporary_file_url;
-
-    common_response_error_s_temporary_file_url_local_var->_library_owned = 1;
     return common_response_error_s_temporary_file_url_local_var;
 }
 
@@ -30,12 +30,15 @@ __attribute__((deprecated)) common_response_error_s_temporary_file_url_t *common
     list_t *a_s_error_messagedetail,
     char *s_temporary_file_url
     ) {
-    return common_response_error_s_temporary_file_url_create_internal (
+    common_response_error_s_temporary_file_url_t *result = common_response_error_s_temporary_file_url_create_internal (
         s_error_message,
         e_error_code,
         a_s_error_messagedetail,
         s_temporary_file_url
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void common_response_error_s_temporary_file_url_free(common_response_error_s_temporary_file_url_t *common_response_error_s_temporary_file_url) {
@@ -127,11 +130,15 @@ common_response_error_s_temporary_file_url_t *common_response_error_s_temporary_
 
     common_response_error_s_temporary_file_url_t *common_response_error_s_temporary_file_url_local_var = NULL;
 
+    char *s_error_message_local_str = NULL;
+
     // define the local variable for common_response_error_s_temporary_file_url->e_error_code
     ezmax_api_definition__full_field_e_error_code__e e_error_code_local_nonprim = 0;
 
     // define the local list for common_response_error_s_temporary_file_url->a_s_error_messagedetail
     list_t *a_s_error_messagedetailList = NULL;
+
+    char *s_temporary_file_url_local_str = NULL;
 
     // common_response_error_s_temporary_file_url->s_error_message
     cJSON *s_error_message = cJSON_GetObjectItemCaseSensitive(common_response_error_s_temporary_file_urlJSON, "sErrorMessage");
@@ -195,15 +202,26 @@ common_response_error_s_temporary_file_url_t *common_response_error_s_temporary_
     }
 
 
+    if (s_error_message && !cJSON_IsNull(s_error_message)) s_error_message_local_str = strdup(s_error_message->valuestring);
+    if (s_temporary_file_url && !cJSON_IsNull(s_temporary_file_url)) s_temporary_file_url_local_str = strdup(s_temporary_file_url->valuestring);
+
     common_response_error_s_temporary_file_url_local_var = common_response_error_s_temporary_file_url_create_internal (
-        strdup(s_error_message->valuestring),
+        s_error_message_local_str,
         e_error_code_local_nonprim,
         a_s_error_messagedetail ? a_s_error_messagedetailList : NULL,
-        s_temporary_file_url && !cJSON_IsNull(s_temporary_file_url) ? strdup(s_temporary_file_url->valuestring) : NULL
+        s_temporary_file_url_local_str
         );
+
+    if (!common_response_error_s_temporary_file_url_local_var) {
+        goto end;
+    }
 
     return common_response_error_s_temporary_file_url_local_var;
 end:
+    if (s_error_message_local_str) {
+        free(s_error_message_local_str);
+        s_error_message_local_str = NULL;
+    }
     if (e_error_code_local_nonprim) {
         e_error_code_local_nonprim = 0;
     }
@@ -215,6 +233,10 @@ end:
         }
         list_freeList(a_s_error_messagedetailList);
         a_s_error_messagedetailList = NULL;
+    }
+    if (s_temporary_file_url_local_str) {
+        free(s_temporary_file_url_local_str);
+        s_temporary_file_url_local_str = NULL;
     }
     return NULL;
 

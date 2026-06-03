@@ -14,11 +14,11 @@ static common_reportgroup_parameter_t *common_reportgroup_parameter_create_inter
     if (!common_reportgroup_parameter_local_var) {
         return NULL;
     }
+    memset(common_reportgroup_parameter_local_var, 0, sizeof(common_reportgroup_parameter_t));
+    common_reportgroup_parameter_local_var->_library_owned = 1;
     common_reportgroup_parameter_local_var->s_reportgroup_parameter_name = s_reportgroup_parameter_name;
     common_reportgroup_parameter_local_var->s_reportgroup_parameter_value = s_reportgroup_parameter_value;
     common_reportgroup_parameter_local_var->a_s_reportgroup_parameter_value = a_s_reportgroup_parameter_value;
-
-    common_reportgroup_parameter_local_var->_library_owned = 1;
     return common_reportgroup_parameter_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) common_reportgroup_parameter_t *common_reportgroup_p
     char *s_reportgroup_parameter_value,
     list_t *a_s_reportgroup_parameter_value
     ) {
-    return common_reportgroup_parameter_create_internal (
+    common_reportgroup_parameter_t *result = common_reportgroup_parameter_create_internal (
         s_reportgroup_parameter_name,
         s_reportgroup_parameter_value,
         a_s_reportgroup_parameter_value
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void common_reportgroup_parameter_free(common_reportgroup_parameter_t *common_reportgroup_parameter) {
@@ -109,6 +112,10 @@ common_reportgroup_parameter_t *common_reportgroup_parameter_parseFromJSON(cJSON
 
     common_reportgroup_parameter_t *common_reportgroup_parameter_local_var = NULL;
 
+    char *s_reportgroup_parameter_name_local_str = NULL;
+
+    char *s_reportgroup_parameter_value_local_str = NULL;
+
     // define the local list for common_reportgroup_parameter->a_s_reportgroup_parameter_value
     list_t *a_s_reportgroup_parameter_valueList = NULL;
 
@@ -162,14 +169,29 @@ common_reportgroup_parameter_t *common_reportgroup_parameter_parseFromJSON(cJSON
     }
 
 
+    if (s_reportgroup_parameter_name && !cJSON_IsNull(s_reportgroup_parameter_name)) s_reportgroup_parameter_name_local_str = strdup(s_reportgroup_parameter_name->valuestring);
+    if (s_reportgroup_parameter_value && !cJSON_IsNull(s_reportgroup_parameter_value)) s_reportgroup_parameter_value_local_str = strdup(s_reportgroup_parameter_value->valuestring);
+
     common_reportgroup_parameter_local_var = common_reportgroup_parameter_create_internal (
-        strdup(s_reportgroup_parameter_name->valuestring),
-        s_reportgroup_parameter_value && !cJSON_IsNull(s_reportgroup_parameter_value) ? strdup(s_reportgroup_parameter_value->valuestring) : NULL,
+        s_reportgroup_parameter_name_local_str,
+        s_reportgroup_parameter_value_local_str,
         a_s_reportgroup_parameter_value ? a_s_reportgroup_parameter_valueList : NULL
         );
 
+    if (!common_reportgroup_parameter_local_var) {
+        goto end;
+    }
+
     return common_reportgroup_parameter_local_var;
 end:
+    if (s_reportgroup_parameter_name_local_str) {
+        free(s_reportgroup_parameter_name_local_str);
+        s_reportgroup_parameter_name_local_str = NULL;
+    }
+    if (s_reportgroup_parameter_value_local_str) {
+        free(s_reportgroup_parameter_value_local_str);
+        s_reportgroup_parameter_value_local_str = NULL;
+    }
     if (a_s_reportgroup_parameter_valueList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_s_reportgroup_parameter_valueList) {

@@ -14,11 +14,11 @@ static common_response_filter_t *common_response_filter_create_internal(
     if (!common_response_filter_local_var) {
         return NULL;
     }
+    memset(common_response_filter_local_var, 0, sizeof(common_response_filter_t));
+    common_response_filter_local_var->_library_owned = 1;
     common_response_filter_local_var->a_auto_type = a_auto_type;
     common_response_filter_local_var->a_auto_type_having = a_auto_type_having;
     common_response_filter_local_var->a_enum = a_enum;
-
-    common_response_filter_local_var->_library_owned = 1;
     return common_response_filter_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) common_response_filter_t *common_response_filter_cre
     list_t* a_auto_type_having,
     list_t* a_enum
     ) {
-    return common_response_filter_create_internal (
+    common_response_filter_t *result = common_response_filter_create_internal (
         a_auto_type,
         a_auto_type_having,
         a_enum
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void common_response_filter_free(common_response_filter_t *common_response_filter) {
@@ -235,11 +238,16 @@ common_response_filter_t *common_response_filter_parseFromJSON(cJSON *common_res
     }
 
 
+
     common_response_filter_local_var = common_response_filter_create_internal (
         a_auto_type ? a_auto_typeList : NULL,
         a_auto_type_having ? a_auto_type_havingList : NULL,
         a_enum ? a_enumList : NULL
         );
+
+    if (!common_response_filter_local_var) {
+        goto end;
+    }
 
     return common_response_filter_local_var;
 end:

@@ -13,10 +13,10 @@ static custom_word_position_word_response_t *custom_word_position_word_response_
     if (!custom_word_position_word_response_local_var) {
         return NULL;
     }
+    memset(custom_word_position_word_response_local_var, 0, sizeof(custom_word_position_word_response_t));
+    custom_word_position_word_response_local_var->_library_owned = 1;
     custom_word_position_word_response_local_var->s_word = s_word;
     custom_word_position_word_response_local_var->a_obj_word_position_occurence = a_obj_word_position_occurence;
-
-    custom_word_position_word_response_local_var->_library_owned = 1;
     return custom_word_position_word_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) custom_word_position_word_response_t *custom_word_po
     char *s_word,
     list_t *a_obj_word_position_occurence
     ) {
-    return custom_word_position_word_response_create_internal (
+    custom_word_position_word_response_t *result = custom_word_position_word_response_create_internal (
         s_word,
         a_obj_word_position_occurence
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void custom_word_position_word_response_free(custom_word_position_word_response_t *custom_word_position_word_response) {
@@ -97,6 +100,8 @@ custom_word_position_word_response_t *custom_word_position_word_response_parseFr
 
     custom_word_position_word_response_t *custom_word_position_word_response_local_var = NULL;
 
+    char *s_word_local_str = NULL;
+
     // define the local list for custom_word_position_word_response->a_obj_word_position_occurence
     list_t *a_obj_word_position_occurenceList = NULL;
 
@@ -143,13 +148,23 @@ custom_word_position_word_response_t *custom_word_position_word_response_parseFr
     }
 
 
+    if (s_word && !cJSON_IsNull(s_word)) s_word_local_str = strdup(s_word->valuestring);
+
     custom_word_position_word_response_local_var = custom_word_position_word_response_create_internal (
-        strdup(s_word->valuestring),
+        s_word_local_str,
         a_obj_word_position_occurenceList
         );
 
+    if (!custom_word_position_word_response_local_var) {
+        goto end;
+    }
+
     return custom_word_position_word_response_local_var;
 end:
+    if (s_word_local_str) {
+        free(s_word_local_str);
+        s_word_local_str = NULL;
+    }
     if (a_obj_word_position_occurenceList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_word_position_occurenceList) {

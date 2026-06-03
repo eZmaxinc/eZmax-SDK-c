@@ -12,18 +12,21 @@ static ezsignfoldersignerassociation_create_object_v2_request_t *ezsignfoldersig
     if (!ezsignfoldersignerassociation_create_object_v2_request_local_var) {
         return NULL;
     }
-    ezsignfoldersignerassociation_create_object_v2_request_local_var->a_obj_ezsignfoldersignerassociation = a_obj_ezsignfoldersignerassociation;
-
+    memset(ezsignfoldersignerassociation_create_object_v2_request_local_var, 0, sizeof(ezsignfoldersignerassociation_create_object_v2_request_t));
     ezsignfoldersignerassociation_create_object_v2_request_local_var->_library_owned = 1;
+    ezsignfoldersignerassociation_create_object_v2_request_local_var->a_obj_ezsignfoldersignerassociation = a_obj_ezsignfoldersignerassociation;
     return ezsignfoldersignerassociation_create_object_v2_request_local_var;
 }
 
 __attribute__((deprecated)) ezsignfoldersignerassociation_create_object_v2_request_t *ezsignfoldersignerassociation_create_object_v2_request_create(
     list_t *a_obj_ezsignfoldersignerassociation
     ) {
-    return ezsignfoldersignerassociation_create_object_v2_request_create_internal (
+    ezsignfoldersignerassociation_create_object_v2_request_t *result = ezsignfoldersignerassociation_create_object_v2_request_create_internal (
         a_obj_ezsignfoldersignerassociation
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignfoldersignerassociation_create_object_v2_request_free(ezsignfoldersignerassociation_create_object_v2_request_t *ezsignfoldersignerassociation_create_object_v2_request) {
@@ -111,9 +114,14 @@ ezsignfoldersignerassociation_create_object_v2_request_t *ezsignfoldersignerasso
     }
 
 
+
     ezsignfoldersignerassociation_create_object_v2_request_local_var = ezsignfoldersignerassociation_create_object_v2_request_create_internal (
         a_obj_ezsignfoldersignerassociationList
         );
+
+    if (!ezsignfoldersignerassociation_create_object_v2_request_local_var) {
+        goto end;
+    }
 
     return ezsignfoldersignerassociation_create_object_v2_request_local_var;
 end:

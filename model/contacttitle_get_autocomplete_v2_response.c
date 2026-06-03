@@ -14,11 +14,11 @@ static contacttitle_get_autocomplete_v2_response_t *contacttitle_get_autocomplet
     if (!contacttitle_get_autocomplete_v2_response_local_var) {
         return NULL;
     }
+    memset(contacttitle_get_autocomplete_v2_response_local_var, 0, sizeof(contacttitle_get_autocomplete_v2_response_t));
+    contacttitle_get_autocomplete_v2_response_local_var->_library_owned = 1;
     contacttitle_get_autocomplete_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     contacttitle_get_autocomplete_v2_response_local_var->obj_debug = obj_debug;
     contacttitle_get_autocomplete_v2_response_local_var->m_payload = m_payload;
-
-    contacttitle_get_autocomplete_v2_response_local_var->_library_owned = 1;
     return contacttitle_get_autocomplete_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) contacttitle_get_autocomplete_v2_response_t *contact
     common_response_obj_debug_t *obj_debug,
     contacttitle_get_autocomplete_v2_response_m_payload_t *m_payload
     ) {
-    return contacttitle_get_autocomplete_v2_response_create_internal (
+    contacttitle_get_autocomplete_v2_response_t *result = contacttitle_get_autocomplete_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void contacttitle_get_autocomplete_v2_response_free(contacttitle_get_autocomplete_v2_response_t *contacttitle_get_autocomplete_v2_response) {
@@ -156,11 +159,16 @@ contacttitle_get_autocomplete_v2_response_t *contacttitle_get_autocomplete_v2_re
     m_payload_local_nonprim = contacttitle_get_autocomplete_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     contacttitle_get_autocomplete_v2_response_local_var = contacttitle_get_autocomplete_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!contacttitle_get_autocomplete_v2_response_local_var) {
+        goto end;
+    }
 
     return contacttitle_get_autocomplete_v2_response_local_var;
 end:

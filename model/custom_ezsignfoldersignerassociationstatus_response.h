@@ -20,7 +20,7 @@ typedef struct custom_ezsignfoldersignerassociationstatus_response_t custom_ezsi
 
 
 typedef struct custom_ezsignfoldersignerassociationstatus_response_t {
-    int fki_ezsignfoldersignerassociation_id; //numeric
+    int *fki_ezsignfoldersignerassociation_id; //numeric
     char *s_ezsignfoldersignerassociationstatus_lastname; // string
     char *s_ezsignfoldersignerassociationstatus_firstname; // string
     char *s_ezsignfoldersignerassociationstatus_description_x; // string
@@ -30,7 +30,7 @@ typedef struct custom_ezsignfoldersignerassociationstatus_response_t {
 } custom_ezsignfoldersignerassociationstatus_response_t;
 
 __attribute__((deprecated)) custom_ezsignfoldersignerassociationstatus_response_t *custom_ezsignfoldersignerassociationstatus_response_create(
-    int fki_ezsignfoldersignerassociation_id,
+    int *fki_ezsignfoldersignerassociation_id,
     char *s_ezsignfoldersignerassociationstatus_lastname,
     char *s_ezsignfoldersignerassociationstatus_firstname,
     char *s_ezsignfoldersignerassociationstatus_description_x,

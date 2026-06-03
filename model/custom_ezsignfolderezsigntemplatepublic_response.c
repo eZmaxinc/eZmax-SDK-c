@@ -6,18 +6,20 @@
 
 
 static custom_ezsignfolderezsigntemplatepublic_response_t *custom_ezsignfolderezsigntemplatepublic_response_create_internal(
-    int pki_ezsignfolder_id,
+    int *pki_ezsignfolder_id,
     char *s_ezsignfolder_description,
     ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step,
-    int i_ezsignfolder_signaturetotal,
-    int i_ezsignfolder_formfieldtotal,
-    int i_ezsignfolder_signaturesigned,
+    int *i_ezsignfolder_signaturetotal,
+    int *i_ezsignfolder_formfieldtotal,
+    int *i_ezsignfolder_signaturesigned,
     list_t *a_obj_ezsignfolderezsigntemplatepublic_signer
     ) {
     custom_ezsignfolderezsigntemplatepublic_response_t *custom_ezsignfolderezsigntemplatepublic_response_local_var = malloc(sizeof(custom_ezsignfolderezsigntemplatepublic_response_t));
     if (!custom_ezsignfolderezsigntemplatepublic_response_local_var) {
         return NULL;
     }
+    memset(custom_ezsignfolderezsigntemplatepublic_response_local_var, 0, sizeof(custom_ezsignfolderezsigntemplatepublic_response_t));
+    custom_ezsignfolderezsigntemplatepublic_response_local_var->_library_owned = 1;
     custom_ezsignfolderezsigntemplatepublic_response_local_var->pki_ezsignfolder_id = pki_ezsignfolder_id;
     custom_ezsignfolderezsigntemplatepublic_response_local_var->s_ezsignfolder_description = s_ezsignfolder_description;
     custom_ezsignfolderezsigntemplatepublic_response_local_var->e_ezsignfolder_step = e_ezsignfolder_step;
@@ -25,29 +27,54 @@ static custom_ezsignfolderezsigntemplatepublic_response_t *custom_ezsignfolderez
     custom_ezsignfolderezsigntemplatepublic_response_local_var->i_ezsignfolder_formfieldtotal = i_ezsignfolder_formfieldtotal;
     custom_ezsignfolderezsigntemplatepublic_response_local_var->i_ezsignfolder_signaturesigned = i_ezsignfolder_signaturesigned;
     custom_ezsignfolderezsigntemplatepublic_response_local_var->a_obj_ezsignfolderezsigntemplatepublic_signer = a_obj_ezsignfolderezsigntemplatepublic_signer;
-
-    custom_ezsignfolderezsigntemplatepublic_response_local_var->_library_owned = 1;
     return custom_ezsignfolderezsigntemplatepublic_response_local_var;
 }
 
 __attribute__((deprecated)) custom_ezsignfolderezsigntemplatepublic_response_t *custom_ezsignfolderezsigntemplatepublic_response_create(
-    int pki_ezsignfolder_id,
+    int *pki_ezsignfolder_id,
     char *s_ezsignfolder_description,
     ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step,
-    int i_ezsignfolder_signaturetotal,
-    int i_ezsignfolder_formfieldtotal,
-    int i_ezsignfolder_signaturesigned,
+    int *i_ezsignfolder_signaturetotal,
+    int *i_ezsignfolder_formfieldtotal,
+    int *i_ezsignfolder_signaturesigned,
     list_t *a_obj_ezsignfolderezsigntemplatepublic_signer
     ) {
-    return custom_ezsignfolderezsigntemplatepublic_response_create_internal (
-        pki_ezsignfolder_id,
+    int *pki_ezsignfolder_id_copy = NULL;
+    if (pki_ezsignfolder_id) {
+        pki_ezsignfolder_id_copy = malloc(sizeof(int));
+        if (pki_ezsignfolder_id_copy) *pki_ezsignfolder_id_copy = *pki_ezsignfolder_id;
+    }
+    int *i_ezsignfolder_signaturetotal_copy = NULL;
+    if (i_ezsignfolder_signaturetotal) {
+        i_ezsignfolder_signaturetotal_copy = malloc(sizeof(int));
+        if (i_ezsignfolder_signaturetotal_copy) *i_ezsignfolder_signaturetotal_copy = *i_ezsignfolder_signaturetotal;
+    }
+    int *i_ezsignfolder_formfieldtotal_copy = NULL;
+    if (i_ezsignfolder_formfieldtotal) {
+        i_ezsignfolder_formfieldtotal_copy = malloc(sizeof(int));
+        if (i_ezsignfolder_formfieldtotal_copy) *i_ezsignfolder_formfieldtotal_copy = *i_ezsignfolder_formfieldtotal;
+    }
+    int *i_ezsignfolder_signaturesigned_copy = NULL;
+    if (i_ezsignfolder_signaturesigned) {
+        i_ezsignfolder_signaturesigned_copy = malloc(sizeof(int));
+        if (i_ezsignfolder_signaturesigned_copy) *i_ezsignfolder_signaturesigned_copy = *i_ezsignfolder_signaturesigned;
+    }
+    custom_ezsignfolderezsigntemplatepublic_response_t *result = custom_ezsignfolderezsigntemplatepublic_response_create_internal (
+        pki_ezsignfolder_id_copy,
         s_ezsignfolder_description,
         e_ezsignfolder_step,
-        i_ezsignfolder_signaturetotal,
-        i_ezsignfolder_formfieldtotal,
-        i_ezsignfolder_signaturesigned,
+        i_ezsignfolder_signaturetotal_copy,
+        i_ezsignfolder_formfieldtotal_copy,
+        i_ezsignfolder_signaturesigned_copy,
         a_obj_ezsignfolderezsigntemplatepublic_signer
         );
+    if (!result) {
+        free(pki_ezsignfolder_id_copy);
+        free(i_ezsignfolder_signaturetotal_copy);
+        free(i_ezsignfolder_formfieldtotal_copy);
+        free(i_ezsignfolder_signaturesigned_copy);
+    }
+    return result;
 }
 
 void custom_ezsignfolderezsigntemplatepublic_response_free(custom_ezsignfolderezsigntemplatepublic_response_t *custom_ezsignfolderezsigntemplatepublic_response) {
@@ -59,9 +86,25 @@ void custom_ezsignfolderezsigntemplatepublic_response_free(custom_ezsignfolderez
         return ;
     }
     listEntry_t *listEntry;
+    if (custom_ezsignfolderezsigntemplatepublic_response->pki_ezsignfolder_id) {
+        free(custom_ezsignfolderezsigntemplatepublic_response->pki_ezsignfolder_id);
+        custom_ezsignfolderezsigntemplatepublic_response->pki_ezsignfolder_id = NULL;
+    }
     if (custom_ezsignfolderezsigntemplatepublic_response->s_ezsignfolder_description) {
         free(custom_ezsignfolderezsigntemplatepublic_response->s_ezsignfolder_description);
         custom_ezsignfolderezsigntemplatepublic_response->s_ezsignfolder_description = NULL;
+    }
+    if (custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_signaturetotal) {
+        free(custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_signaturetotal);
+        custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_signaturetotal = NULL;
+    }
+    if (custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_formfieldtotal) {
+        free(custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_formfieldtotal);
+        custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_formfieldtotal = NULL;
+    }
+    if (custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_signaturesigned) {
+        free(custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_signaturesigned);
+        custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_signaturesigned = NULL;
     }
     if (custom_ezsignfolderezsigntemplatepublic_response->a_obj_ezsignfolderezsigntemplatepublic_signer) {
         list_ForEach(listEntry, custom_ezsignfolderezsigntemplatepublic_response->a_obj_ezsignfolderezsigntemplatepublic_signer) {
@@ -80,7 +123,7 @@ cJSON *custom_ezsignfolderezsigntemplatepublic_response_convertToJSON(custom_ezs
     if (!custom_ezsignfolderezsigntemplatepublic_response->pki_ezsignfolder_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiEzsignfolderID", custom_ezsignfolderezsigntemplatepublic_response->pki_ezsignfolder_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzsignfolderID", *custom_ezsignfolderezsigntemplatepublic_response->pki_ezsignfolder_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -112,7 +155,7 @@ cJSON *custom_ezsignfolderezsigntemplatepublic_response_convertToJSON(custom_ezs
     if (!custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_signaturetotal) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iEzsignfolderSignaturetotal", custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_signaturetotal) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iEzsignfolderSignaturetotal", *custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_signaturetotal) == NULL) {
     goto fail; //Numeric
     }
 
@@ -121,7 +164,7 @@ cJSON *custom_ezsignfolderezsigntemplatepublic_response_convertToJSON(custom_ezs
     if (!custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_formfieldtotal) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iEzsignfolderFormfieldtotal", custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_formfieldtotal) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iEzsignfolderFormfieldtotal", *custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_formfieldtotal) == NULL) {
     goto fail; //Numeric
     }
 
@@ -130,7 +173,7 @@ cJSON *custom_ezsignfolderezsigntemplatepublic_response_convertToJSON(custom_ezs
     if (!custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_signaturesigned) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iEzsignfolderSignaturesigned", custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_signaturesigned) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iEzsignfolderSignaturesigned", *custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_signaturesigned) == NULL) {
     goto fail; //Numeric
     }
 
@@ -166,8 +209,22 @@ custom_ezsignfolderezsigntemplatepublic_response_t *custom_ezsignfolderezsigntem
 
     custom_ezsignfolderezsigntemplatepublic_response_t *custom_ezsignfolderezsigntemplatepublic_response_local_var = NULL;
 
+    // define the local variable for custom_ezsignfolderezsigntemplatepublic_response->pki_ezsignfolder_id
+    int *pki_ezsignfolder_id_local_var = NULL;
+
+    char *s_ezsignfolder_description_local_str = NULL;
+
     // define the local variable for custom_ezsignfolderezsigntemplatepublic_response->e_ezsignfolder_step
     ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step_local_nonprim = 0;
+
+    // define the local variable for custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_signaturetotal
+    int *i_ezsignfolder_signaturetotal_local_var = NULL;
+
+    // define the local variable for custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_formfieldtotal
+    int *i_ezsignfolder_formfieldtotal_local_var = NULL;
+
+    // define the local variable for custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_signaturesigned
+    int *i_ezsignfolder_signaturesigned_local_var = NULL;
 
     // define the local list for custom_ezsignfolderezsigntemplatepublic_response->a_obj_ezsignfolderezsigntemplatepublic_signer
     list_t *a_obj_ezsignfolderezsigntemplatepublic_signerList = NULL;
@@ -186,6 +243,12 @@ custom_ezsignfolderezsigntemplatepublic_response_t *custom_ezsignfolderezsigntem
     {
     goto end; //Numeric
     }
+    pki_ezsignfolder_id_local_var = malloc(sizeof(int));
+    if(!pki_ezsignfolder_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezsignfolder_id_local_var = pki_ezsignfolder_id->valuedouble;
 
     // custom_ezsignfolderezsigntemplatepublic_response->s_ezsignfolder_description
     cJSON *s_ezsignfolder_description = cJSON_GetObjectItemCaseSensitive(custom_ezsignfolderezsigntemplatepublic_responseJSON, "sEzsignfolderDescription");
@@ -228,6 +291,12 @@ custom_ezsignfolderezsigntemplatepublic_response_t *custom_ezsignfolderezsigntem
     {
     goto end; //Numeric
     }
+    i_ezsignfolder_signaturetotal_local_var = malloc(sizeof(int));
+    if(!i_ezsignfolder_signaturetotal_local_var)
+    {
+        goto end;
+    }
+    *i_ezsignfolder_signaturetotal_local_var = i_ezsignfolder_signaturetotal->valuedouble;
 
     // custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_formfieldtotal
     cJSON *i_ezsignfolder_formfieldtotal = cJSON_GetObjectItemCaseSensitive(custom_ezsignfolderezsigntemplatepublic_responseJSON, "iEzsignfolderFormfieldtotal");
@@ -243,6 +312,12 @@ custom_ezsignfolderezsigntemplatepublic_response_t *custom_ezsignfolderezsigntem
     {
     goto end; //Numeric
     }
+    i_ezsignfolder_formfieldtotal_local_var = malloc(sizeof(int));
+    if(!i_ezsignfolder_formfieldtotal_local_var)
+    {
+        goto end;
+    }
+    *i_ezsignfolder_formfieldtotal_local_var = i_ezsignfolder_formfieldtotal->valuedouble;
 
     // custom_ezsignfolderezsigntemplatepublic_response->i_ezsignfolder_signaturesigned
     cJSON *i_ezsignfolder_signaturesigned = cJSON_GetObjectItemCaseSensitive(custom_ezsignfolderezsigntemplatepublic_responseJSON, "iEzsignfolderSignaturesigned");
@@ -258,6 +333,12 @@ custom_ezsignfolderezsigntemplatepublic_response_t *custom_ezsignfolderezsigntem
     {
     goto end; //Numeric
     }
+    i_ezsignfolder_signaturesigned_local_var = malloc(sizeof(int));
+    if(!i_ezsignfolder_signaturesigned_local_var)
+    {
+        goto end;
+    }
+    *i_ezsignfolder_signaturesigned_local_var = i_ezsignfolder_signaturesigned->valuedouble;
 
     // custom_ezsignfolderezsigntemplatepublic_response->a_obj_ezsignfolderezsigntemplatepublic_signer
     cJSON *a_obj_ezsignfolderezsigntemplatepublic_signer = cJSON_GetObjectItemCaseSensitive(custom_ezsignfolderezsigntemplatepublic_responseJSON, "a_objEzsignfolderezsigntemplatepublicSigner");
@@ -284,20 +365,46 @@ custom_ezsignfolderezsigntemplatepublic_response_t *custom_ezsignfolderezsigntem
     }
 
 
+    if (s_ezsignfolder_description && !cJSON_IsNull(s_ezsignfolder_description)) s_ezsignfolder_description_local_str = strdup(s_ezsignfolder_description->valuestring);
+
     custom_ezsignfolderezsigntemplatepublic_response_local_var = custom_ezsignfolderezsigntemplatepublic_response_create_internal (
-        pki_ezsignfolder_id->valuedouble,
-        strdup(s_ezsignfolder_description->valuestring),
+        pki_ezsignfolder_id_local_var,
+        s_ezsignfolder_description_local_str,
         e_ezsignfolder_step_local_nonprim,
-        i_ezsignfolder_signaturetotal->valuedouble,
-        i_ezsignfolder_formfieldtotal->valuedouble,
-        i_ezsignfolder_signaturesigned->valuedouble,
+        i_ezsignfolder_signaturetotal_local_var,
+        i_ezsignfolder_formfieldtotal_local_var,
+        i_ezsignfolder_signaturesigned_local_var,
         a_obj_ezsignfolderezsigntemplatepublic_signer ? a_obj_ezsignfolderezsigntemplatepublic_signerList : NULL
         );
 
+    if (!custom_ezsignfolderezsigntemplatepublic_response_local_var) {
+        goto end;
+    }
+
     return custom_ezsignfolderezsigntemplatepublic_response_local_var;
 end:
+    if (pki_ezsignfolder_id_local_var) {
+        free(pki_ezsignfolder_id_local_var);
+        pki_ezsignfolder_id_local_var = NULL;
+    }
+    if (s_ezsignfolder_description_local_str) {
+        free(s_ezsignfolder_description_local_str);
+        s_ezsignfolder_description_local_str = NULL;
+    }
     if (e_ezsignfolder_step_local_nonprim) {
         e_ezsignfolder_step_local_nonprim = 0;
+    }
+    if (i_ezsignfolder_signaturetotal_local_var) {
+        free(i_ezsignfolder_signaturetotal_local_var);
+        i_ezsignfolder_signaturetotal_local_var = NULL;
+    }
+    if (i_ezsignfolder_formfieldtotal_local_var) {
+        free(i_ezsignfolder_formfieldtotal_local_var);
+        i_ezsignfolder_formfieldtotal_local_var = NULL;
+    }
+    if (i_ezsignfolder_signaturesigned_local_var) {
+        free(i_ezsignfolder_signaturesigned_local_var);
+        i_ezsignfolder_signaturesigned_local_var = NULL;
     }
     if (a_obj_ezsignfolderezsigntemplatepublic_signerList) {
         listEntry_t *listEntry = NULL;

@@ -6,28 +6,37 @@
 
 
 static custom_branding_response_t *custom_branding_response_create_internal(
-    int i_branding_color,
+    int *i_branding_color,
     char *s_branding_logointerfaceurl
     ) {
     custom_branding_response_t *custom_branding_response_local_var = malloc(sizeof(custom_branding_response_t));
     if (!custom_branding_response_local_var) {
         return NULL;
     }
+    memset(custom_branding_response_local_var, 0, sizeof(custom_branding_response_t));
+    custom_branding_response_local_var->_library_owned = 1;
     custom_branding_response_local_var->i_branding_color = i_branding_color;
     custom_branding_response_local_var->s_branding_logointerfaceurl = s_branding_logointerfaceurl;
-
-    custom_branding_response_local_var->_library_owned = 1;
     return custom_branding_response_local_var;
 }
 
 __attribute__((deprecated)) custom_branding_response_t *custom_branding_response_create(
-    int i_branding_color,
+    int *i_branding_color,
     char *s_branding_logointerfaceurl
     ) {
-    return custom_branding_response_create_internal (
-        i_branding_color,
+    int *i_branding_color_copy = NULL;
+    if (i_branding_color) {
+        i_branding_color_copy = malloc(sizeof(int));
+        if (i_branding_color_copy) *i_branding_color_copy = *i_branding_color;
+    }
+    custom_branding_response_t *result = custom_branding_response_create_internal (
+        i_branding_color_copy,
         s_branding_logointerfaceurl
         );
+    if (!result) {
+        free(i_branding_color_copy);
+    }
+    return result;
 }
 
 void custom_branding_response_free(custom_branding_response_t *custom_branding_response) {
@@ -39,6 +48,10 @@ void custom_branding_response_free(custom_branding_response_t *custom_branding_r
         return ;
     }
     listEntry_t *listEntry;
+    if (custom_branding_response->i_branding_color) {
+        free(custom_branding_response->i_branding_color);
+        custom_branding_response->i_branding_color = NULL;
+    }
     if (custom_branding_response->s_branding_logointerfaceurl) {
         free(custom_branding_response->s_branding_logointerfaceurl);
         custom_branding_response->s_branding_logointerfaceurl = NULL;
@@ -53,7 +66,7 @@ cJSON *custom_branding_response_convertToJSON(custom_branding_response_t *custom
     if (!custom_branding_response->i_branding_color) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iBrandingColor", custom_branding_response->i_branding_color) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iBrandingColor", *custom_branding_response->i_branding_color) == NULL) {
     goto fail; //Numeric
     }
 
@@ -78,6 +91,11 @@ custom_branding_response_t *custom_branding_response_parseFromJSON(cJSON *custom
 
     custom_branding_response_t *custom_branding_response_local_var = NULL;
 
+    // define the local variable for custom_branding_response->i_branding_color
+    int *i_branding_color_local_var = NULL;
+
+    char *s_branding_logointerfaceurl_local_str = NULL;
+
     // custom_branding_response->i_branding_color
     cJSON *i_branding_color = cJSON_GetObjectItemCaseSensitive(custom_branding_responseJSON, "iBrandingColor");
     if (cJSON_IsNull(i_branding_color)) {
@@ -92,6 +110,12 @@ custom_branding_response_t *custom_branding_response_parseFromJSON(cJSON *custom
     {
     goto end; //Numeric
     }
+    i_branding_color_local_var = malloc(sizeof(int));
+    if(!i_branding_color_local_var)
+    {
+        goto end;
+    }
+    *i_branding_color_local_var = i_branding_color->valuedouble;
 
     // custom_branding_response->s_branding_logointerfaceurl
     cJSON *s_branding_logointerfaceurl = cJSON_GetObjectItemCaseSensitive(custom_branding_responseJSON, "sBrandingLogointerfaceurl");
@@ -109,13 +133,27 @@ custom_branding_response_t *custom_branding_response_parseFromJSON(cJSON *custom
     }
 
 
+    if (s_branding_logointerfaceurl && !cJSON_IsNull(s_branding_logointerfaceurl)) s_branding_logointerfaceurl_local_str = strdup(s_branding_logointerfaceurl->valuestring);
+
     custom_branding_response_local_var = custom_branding_response_create_internal (
-        i_branding_color->valuedouble,
-        strdup(s_branding_logointerfaceurl->valuestring)
+        i_branding_color_local_var,
+        s_branding_logointerfaceurl_local_str
         );
+
+    if (!custom_branding_response_local_var) {
+        goto end;
+    }
 
     return custom_branding_response_local_var;
 end:
+    if (i_branding_color_local_var) {
+        free(i_branding_color_local_var);
+        i_branding_color_local_var = NULL;
+    }
+    if (s_branding_logointerfaceurl_local_str) {
+        free(s_branding_logointerfaceurl_local_str);
+        s_branding_logointerfaceurl_local_str = NULL;
+    }
     return NULL;
 
 }

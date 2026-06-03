@@ -12,18 +12,21 @@ static ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_t *ez
     if (!ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_local_var->a_obj_ezsignsignatureattachment = a_obj_ezsignsignatureattachment;
-
+    memset(ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_local_var, 0, sizeof(ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_t));
     ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_local_var->a_obj_ezsignsignatureattachment = a_obj_ezsignsignatureattachment;
     return ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_t *ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_create(
     list_t *a_obj_ezsignsignatureattachment
     ) {
-    return ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_create_internal (
+    ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_t *result = ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_create_internal (
         a_obj_ezsignsignatureattachment
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_free(ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_t *ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload) {
@@ -111,9 +114,14 @@ ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_t *ezsignsig
     }
 
 
+
     ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_local_var = ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_create_internal (
         a_obj_ezsignsignatureattachmentList
         );
+
+    if (!ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_local_var;
 end:

@@ -12,18 +12,21 @@ static ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_t *ezsign
     if (!ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_local_var->a_pki_ezsignformfieldgroup_id = a_pki_ezsignformfieldgroup_id;
-
+    memset(ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_local_var, 0, sizeof(ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_t));
     ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_local_var->a_pki_ezsignformfieldgroup_id = a_pki_ezsignformfieldgroup_id;
     return ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_t *ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_create(
     list_t *a_pki_ezsignformfieldgroup_id
     ) {
-    return ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_create_internal (
+    ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_t *result = ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_create_internal (
         a_pki_ezsignformfieldgroup_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_free(ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_t *ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload) {
@@ -112,9 +115,14 @@ ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_t *ezsigndocumen
     }
 
 
+
     ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_local_var = ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_create_internal (
         a_pki_ezsignformfieldgroup_idList
         );
+
+    if (!ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_local_var;
 end:

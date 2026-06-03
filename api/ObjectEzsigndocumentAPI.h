@@ -12,8 +12,12 @@
 #include "../model/ezsigndocument_apply_ezsigntemplate_v1_response.h"
 #include "../model/ezsigndocument_apply_ezsigntemplate_v2_request.h"
 #include "../model/ezsigndocument_apply_ezsigntemplate_v2_response.h"
+#include "../model/ezsigndocument_apply_ezsigntemplate_v3_request.h"
+#include "../model/ezsigndocument_apply_ezsigntemplate_v3_response.h"
 #include "../model/ezsigndocument_apply_ezsigntemplateglobal_v1_request.h"
 #include "../model/ezsigndocument_apply_ezsigntemplateglobal_v1_response.h"
+#include "../model/ezsigndocument_apply_ezsigntemplateglobal_v2_request.h"
+#include "../model/ezsigndocument_apply_ezsigntemplateglobal_v2_response.h"
 #include "../model/ezsigndocument_create_ezsignelements_positioned_by_word_v1_request.h"
 #include "../model/ezsigndocument_create_ezsignelements_positioned_by_word_v1_response.h"
 #include "../model/ezsigndocument_create_ezsignelements_positioned_by_word_v2_request.h"
@@ -93,12 +97,28 @@ ezsigndocument_apply_ezsigntemplate_v2_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV2(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_apply_ezsigntemplate_v2_request_t *ezsigndocument_apply_ezsigntemplate_v2_request);
 
 
+// Apply an Ezsigntemplate to the Ezsigndocument
+//
+// This endpoint applies a predefined template to the ezsign document. This allows to automatically apply all the form and signature fields on a document in a single step.  The document must not already have fields otherwise an error will be returned.
+//
+ezsigndocument_apply_ezsigntemplate_v3_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV3(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_apply_ezsigntemplate_v3_request_t *ezsigndocument_apply_ezsigntemplate_v3_request);
+
+
 // Apply an Ezsigntemplateglobal to the Ezsigndocument
 //
 // This endpoint applies a predefined template to the ezsign document. This allows to automatically apply all the form and signature fields on a document in a single step.  The document must not already have fields otherwise an error will be returned.
 //
 ezsigndocument_apply_ezsigntemplateglobal_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateglobalV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_apply_ezsigntemplateglobal_v1_request_t *ezsigndocument_apply_ezsigntemplateglobal_v1_request);
+
+
+// Apply an Ezsigntemplateglobal to the Ezsigndocument
+//
+// This endpoint applies a predefined template to the ezsign document. This allows to automatically apply all the form and signature fields on a document in a single step.  The document must not already have fields otherwise an error will be returned.
+//
+ezsigndocument_apply_ezsigntemplateglobal_v2_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateglobalV2(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_apply_ezsigntemplateglobal_v2_request_t *ezsigndocument_apply_ezsigntemplateglobal_v2_request);
 
 
 // Create multiple Ezsignsignatures/Ezsignformfieldgroups

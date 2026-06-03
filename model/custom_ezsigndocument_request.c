@@ -6,28 +6,37 @@
 
 
 static custom_ezsigndocument_request_t *custom_ezsigndocument_request_create_internal(
-    int pki_ezsigndocument_id,
+    int *pki_ezsigndocument_id,
     list_t *a_obj_ezsigndocumentdependency
     ) {
     custom_ezsigndocument_request_t *custom_ezsigndocument_request_local_var = malloc(sizeof(custom_ezsigndocument_request_t));
     if (!custom_ezsigndocument_request_local_var) {
         return NULL;
     }
+    memset(custom_ezsigndocument_request_local_var, 0, sizeof(custom_ezsigndocument_request_t));
+    custom_ezsigndocument_request_local_var->_library_owned = 1;
     custom_ezsigndocument_request_local_var->pki_ezsigndocument_id = pki_ezsigndocument_id;
     custom_ezsigndocument_request_local_var->a_obj_ezsigndocumentdependency = a_obj_ezsigndocumentdependency;
-
-    custom_ezsigndocument_request_local_var->_library_owned = 1;
     return custom_ezsigndocument_request_local_var;
 }
 
 __attribute__((deprecated)) custom_ezsigndocument_request_t *custom_ezsigndocument_request_create(
-    int pki_ezsigndocument_id,
+    int *pki_ezsigndocument_id,
     list_t *a_obj_ezsigndocumentdependency
     ) {
-    return custom_ezsigndocument_request_create_internal (
-        pki_ezsigndocument_id,
+    int *pki_ezsigndocument_id_copy = NULL;
+    if (pki_ezsigndocument_id) {
+        pki_ezsigndocument_id_copy = malloc(sizeof(int));
+        if (pki_ezsigndocument_id_copy) *pki_ezsigndocument_id_copy = *pki_ezsigndocument_id;
+    }
+    custom_ezsigndocument_request_t *result = custom_ezsigndocument_request_create_internal (
+        pki_ezsigndocument_id_copy,
         a_obj_ezsigndocumentdependency
         );
+    if (!result) {
+        free(pki_ezsigndocument_id_copy);
+    }
+    return result;
 }
 
 void custom_ezsigndocument_request_free(custom_ezsigndocument_request_t *custom_ezsigndocument_request) {
@@ -39,6 +48,10 @@ void custom_ezsigndocument_request_free(custom_ezsigndocument_request_t *custom_
         return ;
     }
     listEntry_t *listEntry;
+    if (custom_ezsigndocument_request->pki_ezsigndocument_id) {
+        free(custom_ezsigndocument_request->pki_ezsigndocument_id);
+        custom_ezsigndocument_request->pki_ezsigndocument_id = NULL;
+    }
     if (custom_ezsigndocument_request->a_obj_ezsigndocumentdependency) {
         list_ForEach(listEntry, custom_ezsigndocument_request->a_obj_ezsigndocumentdependency) {
             ezsigndocumentdependency_request_compound_free(listEntry->data);
@@ -56,7 +69,7 @@ cJSON *custom_ezsigndocument_request_convertToJSON(custom_ezsigndocument_request
     if (!custom_ezsigndocument_request->pki_ezsigndocument_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiEzsigndocumentID", custom_ezsigndocument_request->pki_ezsigndocument_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzsigndocumentID", *custom_ezsigndocument_request->pki_ezsigndocument_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -93,6 +106,9 @@ custom_ezsigndocument_request_t *custom_ezsigndocument_request_parseFromJSON(cJS
 
     custom_ezsigndocument_request_t *custom_ezsigndocument_request_local_var = NULL;
 
+    // define the local variable for custom_ezsigndocument_request->pki_ezsigndocument_id
+    int *pki_ezsigndocument_id_local_var = NULL;
+
     // define the local list for custom_ezsigndocument_request->a_obj_ezsigndocumentdependency
     list_t *a_obj_ezsigndocumentdependencyList = NULL;
 
@@ -110,6 +126,12 @@ custom_ezsigndocument_request_t *custom_ezsigndocument_request_parseFromJSON(cJS
     {
     goto end; //Numeric
     }
+    pki_ezsigndocument_id_local_var = malloc(sizeof(int));
+    if(!pki_ezsigndocument_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezsigndocument_id_local_var = pki_ezsigndocument_id->valuedouble;
 
     // custom_ezsigndocument_request->a_obj_ezsigndocumentdependency
     cJSON *a_obj_ezsigndocumentdependency = cJSON_GetObjectItemCaseSensitive(custom_ezsigndocument_requestJSON, "a_objEzsigndocumentdependency");
@@ -139,13 +161,22 @@ custom_ezsigndocument_request_t *custom_ezsigndocument_request_parseFromJSON(cJS
     }
 
 
+
     custom_ezsigndocument_request_local_var = custom_ezsigndocument_request_create_internal (
-        pki_ezsigndocument_id->valuedouble,
+        pki_ezsigndocument_id_local_var,
         a_obj_ezsigndocumentdependencyList
         );
 
+    if (!custom_ezsigndocument_request_local_var) {
+        goto end;
+    }
+
     return custom_ezsigndocument_request_local_var;
 end:
+    if (pki_ezsigndocument_id_local_var) {
+        free(pki_ezsigndocument_id_local_var);
+        pki_ezsigndocument_id_local_var = NULL;
+    }
     if (a_obj_ezsigndocumentdependencyList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsigndocumentdependencyList) {

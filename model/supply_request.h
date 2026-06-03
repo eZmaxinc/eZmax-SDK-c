@@ -20,29 +20,29 @@ typedef struct supply_request_t supply_request_t;
 
 
 typedef struct supply_request_t {
-    int pki_supply_id; //numeric
-    int fki_glaccount_id; //numeric
-    int fki_glaccountcontainer_id; //numeric
-    int fki_variableexpense_id; //numeric
+    int *pki_supply_id; //numeric
+    int *fki_glaccount_id; //numeric
+    int *fki_glaccountcontainer_id; //numeric
+    int *fki_variableexpense_id; //numeric
     char *s_supply_code; // string
     struct multilingual_supply_description_t *obj_supply_description; //model
     char *d_supply_unitprice; // string
-    int b_supply_isactive; //boolean
-    int b_supply_variableprice; //boolean
+    int *b_supply_isactive; //boolean
+    int *b_supply_variableprice; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } supply_request_t;
 
 __attribute__((deprecated)) supply_request_t *supply_request_create(
-    int pki_supply_id,
-    int fki_glaccount_id,
-    int fki_glaccountcontainer_id,
-    int fki_variableexpense_id,
+    int *pki_supply_id,
+    int *fki_glaccount_id,
+    int *fki_glaccountcontainer_id,
+    int *fki_variableexpense_id,
     char *s_supply_code,
     multilingual_supply_description_t *obj_supply_description,
     char *d_supply_unitprice,
-    int b_supply_isactive,
-    int b_supply_variableprice
+    int *b_supply_isactive,
+    int *b_supply_variableprice
 );
 
 void supply_request_free(supply_request_t *supply_request);

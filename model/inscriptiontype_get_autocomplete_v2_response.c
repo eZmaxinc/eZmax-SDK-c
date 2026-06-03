@@ -14,11 +14,11 @@ static inscriptiontype_get_autocomplete_v2_response_t *inscriptiontype_get_autoc
     if (!inscriptiontype_get_autocomplete_v2_response_local_var) {
         return NULL;
     }
+    memset(inscriptiontype_get_autocomplete_v2_response_local_var, 0, sizeof(inscriptiontype_get_autocomplete_v2_response_t));
+    inscriptiontype_get_autocomplete_v2_response_local_var->_library_owned = 1;
     inscriptiontype_get_autocomplete_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     inscriptiontype_get_autocomplete_v2_response_local_var->obj_debug = obj_debug;
     inscriptiontype_get_autocomplete_v2_response_local_var->m_payload = m_payload;
-
-    inscriptiontype_get_autocomplete_v2_response_local_var->_library_owned = 1;
     return inscriptiontype_get_autocomplete_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) inscriptiontype_get_autocomplete_v2_response_t *insc
     common_response_obj_debug_t *obj_debug,
     inscriptiontype_get_autocomplete_v2_response_m_payload_t *m_payload
     ) {
-    return inscriptiontype_get_autocomplete_v2_response_create_internal (
+    inscriptiontype_get_autocomplete_v2_response_t *result = inscriptiontype_get_autocomplete_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void inscriptiontype_get_autocomplete_v2_response_free(inscriptiontype_get_autocomplete_v2_response_t *inscriptiontype_get_autocomplete_v2_response) {
@@ -156,11 +159,16 @@ inscriptiontype_get_autocomplete_v2_response_t *inscriptiontype_get_autocomplete
     m_payload_local_nonprim = inscriptiontype_get_autocomplete_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     inscriptiontype_get_autocomplete_v2_response_local_var = inscriptiontype_get_autocomplete_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!inscriptiontype_get_autocomplete_v2_response_local_var) {
+        goto end;
+    }
 
     return inscriptiontype_get_autocomplete_v2_response_local_var;
 end:

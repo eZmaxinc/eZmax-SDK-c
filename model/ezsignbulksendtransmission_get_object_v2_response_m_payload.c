@@ -12,18 +12,21 @@ static ezsignbulksendtransmission_get_object_v2_response_m_payload_t *ezsignbulk
     if (!ezsignbulksendtransmission_get_object_v2_response_m_payload_local_var) {
         return NULL;
     }
-    ezsignbulksendtransmission_get_object_v2_response_m_payload_local_var->obj_ezsignbulksendtransmission = obj_ezsignbulksendtransmission;
-
+    memset(ezsignbulksendtransmission_get_object_v2_response_m_payload_local_var, 0, sizeof(ezsignbulksendtransmission_get_object_v2_response_m_payload_t));
     ezsignbulksendtransmission_get_object_v2_response_m_payload_local_var->_library_owned = 1;
+    ezsignbulksendtransmission_get_object_v2_response_m_payload_local_var->obj_ezsignbulksendtransmission = obj_ezsignbulksendtransmission;
     return ezsignbulksendtransmission_get_object_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsignbulksendtransmission_get_object_v2_response_m_payload_t *ezsignbulksendtransmission_get_object_v2_response_m_payload_create(
     ezsignbulksendtransmission_response_compound_t *obj_ezsignbulksendtransmission
     ) {
-    return ezsignbulksendtransmission_get_object_v2_response_m_payload_create_internal (
+    ezsignbulksendtransmission_get_object_v2_response_m_payload_t *result = ezsignbulksendtransmission_get_object_v2_response_m_payload_create_internal (
         obj_ezsignbulksendtransmission
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignbulksendtransmission_get_object_v2_response_m_payload_free(ezsignbulksendtransmission_get_object_v2_response_m_payload_t *ezsignbulksendtransmission_get_object_v2_response_m_payload) {
@@ -86,9 +89,14 @@ ezsignbulksendtransmission_get_object_v2_response_m_payload_t *ezsignbulksendtra
     obj_ezsignbulksendtransmission_local_nonprim = ezsignbulksendtransmission_response_compound_parseFromJSON(obj_ezsignbulksendtransmission); //nonprimitive
 
 
+
     ezsignbulksendtransmission_get_object_v2_response_m_payload_local_var = ezsignbulksendtransmission_get_object_v2_response_m_payload_create_internal (
         obj_ezsignbulksendtransmission_local_nonprim
         );
+
+    if (!ezsignbulksendtransmission_get_object_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsignbulksendtransmission_get_object_v2_response_m_payload_local_var;
 end:

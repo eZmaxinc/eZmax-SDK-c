@@ -27,9 +27,9 @@ ezmax_api_definition__full_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_e ezsigns
 
 
 typedef struct ezsignsigner_request_t {
-    int fki_userlogintype_id; //numeric
-    int fki_taxassignment_id; //numeric
-    int fki_secretquestion_id; //numeric
+    int *fki_userlogintype_id; //numeric
+    int *fki_taxassignment_id; //numeric
+    int *fki_secretquestion_id; //numeric
     ezmax_api_definition__full_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigner_logintype; //enum
     char *s_ezsignsigner_secretanswer; // string
 
@@ -37,9 +37,9 @@ typedef struct ezsignsigner_request_t {
 } ezsignsigner_request_t;
 
 __attribute__((deprecated)) ezsignsigner_request_t *ezsignsigner_request_create(
-    int fki_userlogintype_id,
-    int fki_taxassignment_id,
-    int fki_secretquestion_id,
+    int *fki_userlogintype_id,
+    int *fki_taxassignment_id,
+    int *fki_secretquestion_id,
     ezmax_api_definition__full_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigner_logintype,
     char *s_ezsignsigner_secretanswer
 );

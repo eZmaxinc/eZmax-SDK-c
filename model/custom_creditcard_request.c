@@ -14,11 +14,11 @@ static custom_creditcard_request_t *custom_creditcard_request_create_internal(
     if (!custom_creditcard_request_local_var) {
         return NULL;
     }
+    memset(custom_creditcard_request_local_var, 0, sizeof(custom_creditcard_request_t));
+    custom_creditcard_request_local_var->_library_owned = 1;
     custom_creditcard_request_local_var->fks_creditcardtoken_id = fks_creditcardtoken_id;
     custom_creditcard_request_local_var->s_creditcard_cvv = s_creditcard_cvv;
     custom_creditcard_request_local_var->obj_creditcarddetail = obj_creditcarddetail;
-
-    custom_creditcard_request_local_var->_library_owned = 1;
     return custom_creditcard_request_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) custom_creditcard_request_t *custom_creditcard_reque
     char *s_creditcard_cvv,
     creditcarddetail_request_t *obj_creditcarddetail
     ) {
-    return custom_creditcard_request_create_internal (
+    custom_creditcard_request_t *result = custom_creditcard_request_create_internal (
         fks_creditcardtoken_id,
         s_creditcard_cvv,
         obj_creditcarddetail
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void custom_creditcard_request_free(custom_creditcard_request_t *custom_creditcard_request) {
@@ -104,6 +107,10 @@ custom_creditcard_request_t *custom_creditcard_request_parseFromJSON(cJSON *cust
 
     custom_creditcard_request_t *custom_creditcard_request_local_var = NULL;
 
+    char *fks_creditcardtoken_id_local_str = NULL;
+
+    char *s_creditcard_cvv_local_str = NULL;
+
     // define the local variable for custom_creditcard_request->obj_creditcarddetail
     creditcarddetail_request_t *obj_creditcarddetail_local_nonprim = NULL;
 
@@ -150,14 +157,29 @@ custom_creditcard_request_t *custom_creditcard_request_parseFromJSON(cJSON *cust
     obj_creditcarddetail_local_nonprim = creditcarddetail_request_parseFromJSON(obj_creditcarddetail); //nonprimitive
 
 
+    if (fks_creditcardtoken_id && !cJSON_IsNull(fks_creditcardtoken_id)) fks_creditcardtoken_id_local_str = strdup(fks_creditcardtoken_id->valuestring);
+    if (s_creditcard_cvv && !cJSON_IsNull(s_creditcard_cvv)) s_creditcard_cvv_local_str = strdup(s_creditcard_cvv->valuestring);
+
     custom_creditcard_request_local_var = custom_creditcard_request_create_internal (
-        strdup(fks_creditcardtoken_id->valuestring),
-        strdup(s_creditcard_cvv->valuestring),
+        fks_creditcardtoken_id_local_str,
+        s_creditcard_cvv_local_str,
         obj_creditcarddetail_local_nonprim
         );
 
+    if (!custom_creditcard_request_local_var) {
+        goto end;
+    }
+
     return custom_creditcard_request_local_var;
 end:
+    if (fks_creditcardtoken_id_local_str) {
+        free(fks_creditcardtoken_id_local_str);
+        fks_creditcardtoken_id_local_str = NULL;
+    }
+    if (s_creditcard_cvv_local_str) {
+        free(s_creditcard_cvv_local_str);
+        s_creditcard_cvv_local_str = NULL;
+    }
     if (obj_creditcarddetail_local_nonprim) {
         creditcarddetail_request_free(obj_creditcarddetail_local_nonprim);
         obj_creditcarddetail_local_nonprim = NULL;

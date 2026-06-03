@@ -15,12 +15,12 @@ static common_reportgroup_t *common_reportgroup_create_internal(
     if (!common_reportgroup_local_var) {
         return NULL;
     }
+    memset(common_reportgroup_local_var, 0, sizeof(common_reportgroup_t));
+    common_reportgroup_local_var->_library_owned = 1;
     common_reportgroup_local_var->a_obj_report = a_obj_report;
     common_reportgroup_local_var->a_obj_reportcellstyle_custom = a_obj_reportcellstyle_custom;
     common_reportgroup_local_var->a_obj_reportgroup_parameter = a_obj_reportgroup_parameter;
     common_reportgroup_local_var->s_reportgroup_filename = s_reportgroup_filename;
-
-    common_reportgroup_local_var->_library_owned = 1;
     return common_reportgroup_local_var;
 }
 
@@ -30,12 +30,15 @@ __attribute__((deprecated)) common_reportgroup_t *common_reportgroup_create(
     list_t *a_obj_reportgroup_parameter,
     char *s_reportgroup_filename
     ) {
-    return common_reportgroup_create_internal (
+    common_reportgroup_t *result = common_reportgroup_create_internal (
         a_obj_report,
         a_obj_reportcellstyle_custom,
         a_obj_reportgroup_parameter,
         s_reportgroup_filename
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void common_reportgroup_free(common_reportgroup_t *common_reportgroup) {
@@ -170,6 +173,8 @@ common_reportgroup_t *common_reportgroup_parseFromJSON(cJSON *common_reportgroup
     // define the local list for common_reportgroup->a_obj_reportgroup_parameter
     list_t *a_obj_reportgroup_parameterList = NULL;
 
+    char *s_reportgroup_filename_local_str = NULL;
+
     // common_reportgroup->a_obj_report
     cJSON *a_obj_report = cJSON_GetObjectItemCaseSensitive(common_reportgroupJSON, "a_objReport");
     if (cJSON_IsNull(a_obj_report)) {
@@ -267,12 +272,18 @@ common_reportgroup_t *common_reportgroup_parseFromJSON(cJSON *common_reportgroup
     }
 
 
+    if (s_reportgroup_filename && !cJSON_IsNull(s_reportgroup_filename)) s_reportgroup_filename_local_str = strdup(s_reportgroup_filename->valuestring);
+
     common_reportgroup_local_var = common_reportgroup_create_internal (
         a_obj_reportList,
         a_obj_reportcellstyle_customList,
         a_obj_reportgroup_parameterList,
-        strdup(s_reportgroup_filename->valuestring)
+        s_reportgroup_filename_local_str
         );
+
+    if (!common_reportgroup_local_var) {
+        goto end;
+    }
 
     return common_reportgroup_local_var;
 end:
@@ -302,6 +313,10 @@ end:
         }
         list_freeList(a_obj_reportgroup_parameterList);
         a_obj_reportgroup_parameterList = NULL;
+    }
+    if (s_reportgroup_filename_local_str) {
+        free(s_reportgroup_filename_local_str);
+        s_reportgroup_filename_local_str = NULL;
     }
     return NULL;
 

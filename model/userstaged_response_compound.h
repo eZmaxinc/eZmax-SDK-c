@@ -19,8 +19,8 @@ typedef struct userstaged_response_compound_t userstaged_response_compound_t;
 
 
 typedef struct userstaged_response_compound_t {
-    int pki_userstaged_id; //numeric
-    int fki_email_id; //numeric
+    int *pki_userstaged_id; //numeric
+    int *fki_email_id; //numeric
     char *s_email_address; // string
     char *s_userstaged_firstname; // string
     char *s_userstaged_lastname; // string
@@ -30,8 +30,8 @@ typedef struct userstaged_response_compound_t {
 } userstaged_response_compound_t;
 
 __attribute__((deprecated)) userstaged_response_compound_t *userstaged_response_compound_create(
-    int pki_userstaged_id,
-    int fki_email_id,
+    int *pki_userstaged_id,
+    int *fki_email_id,
     char *s_email_address,
     char *s_userstaged_firstname,
     char *s_userstaged_lastname,

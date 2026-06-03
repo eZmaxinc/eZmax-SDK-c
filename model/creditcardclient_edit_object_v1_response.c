@@ -13,10 +13,10 @@ static creditcardclient_edit_object_v1_response_t *creditcardclient_edit_object_
     if (!creditcardclient_edit_object_v1_response_local_var) {
         return NULL;
     }
+    memset(creditcardclient_edit_object_v1_response_local_var, 0, sizeof(creditcardclient_edit_object_v1_response_t));
+    creditcardclient_edit_object_v1_response_local_var->_library_owned = 1;
     creditcardclient_edit_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     creditcardclient_edit_object_v1_response_local_var->obj_debug = obj_debug;
-
-    creditcardclient_edit_object_v1_response_local_var->_library_owned = 1;
     return creditcardclient_edit_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) creditcardclient_edit_object_v1_response_t *creditca
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return creditcardclient_edit_object_v1_response_create_internal (
+    creditcardclient_edit_object_v1_response_t *result = creditcardclient_edit_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void creditcardclient_edit_object_v1_response_free(creditcardclient_edit_object_v1_response_t *creditcardclient_edit_object_v1_response) {
@@ -119,10 +122,15 @@ creditcardclient_edit_object_v1_response_t *creditcardclient_edit_object_v1_resp
     }
 
 
+
     creditcardclient_edit_object_v1_response_local_var = creditcardclient_edit_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!creditcardclient_edit_object_v1_response_local_var) {
+        goto end;
+    }
 
     return creditcardclient_edit_object_v1_response_local_var;
 end:

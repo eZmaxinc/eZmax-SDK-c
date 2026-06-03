@@ -24,11 +24,11 @@ typedef struct contactinformations_response_compound_t contactinformations_respo
 
 
 typedef struct contactinformations_response_compound_t {
-    int pki_contactinformations_id; //numeric
-    int fki_address_id_default; //numeric
-    int fki_phone_id_default; //numeric
-    int fki_email_id_default; //numeric
-    int fki_website_id_default; //numeric
+    int *pki_contactinformations_id; //numeric
+    int *fki_address_id_default; //numeric
+    int *fki_phone_id_default; //numeric
+    int *fki_email_id_default; //numeric
+    int *fki_website_id_default; //numeric
     ezmax_api_definition__full_field_e_contactinformations_type__e e_contactinformations_type; //referenced enum
     char *s_contactinformations_url; // string
     struct address_response_compound_t *obj_address_default; //model
@@ -44,11 +44,11 @@ typedef struct contactinformations_response_compound_t {
 } contactinformations_response_compound_t;
 
 __attribute__((deprecated)) contactinformations_response_compound_t *contactinformations_response_compound_create(
-    int pki_contactinformations_id,
-    int fki_address_id_default,
-    int fki_phone_id_default,
-    int fki_email_id_default,
-    int fki_website_id_default,
+    int *pki_contactinformations_id,
+    int *fki_address_id_default,
+    int *fki_phone_id_default,
+    int *fki_email_id_default,
+    int *fki_website_id_default,
     ezmax_api_definition__full_field_e_contactinformations_type__e e_contactinformations_type,
     char *s_contactinformations_url,
     address_response_compound_t *obj_address_default,

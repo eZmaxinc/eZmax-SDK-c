@@ -21,7 +21,7 @@ typedef struct usergroup_request_compound_t usergroup_request_compound_t;
 
 
 typedef struct usergroup_request_compound_t {
-    int pki_usergroup_id; //numeric
+    int *pki_usergroup_id; //numeric
     struct email_request_t *obj_email; //model
     struct multilingual_usergroup_name_t *obj_usergroup_name; //model
 
@@ -29,7 +29,7 @@ typedef struct usergroup_request_compound_t {
 } usergroup_request_compound_t;
 
 __attribute__((deprecated)) usergroup_request_compound_t *usergroup_request_compound_create(
-    int pki_usergroup_id,
+    int *pki_usergroup_id,
     email_request_t *obj_email,
     multilingual_usergroup_name_t *obj_usergroup_name
 );

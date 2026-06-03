@@ -19,23 +19,23 @@ typedef struct custom_ezmaxinvoicing_ezsignfolder_response_t custom_ezmaxinvoici
 
 
 typedef struct custom_ezmaxinvoicing_ezsignfolder_response_t {
-    int fki_ezsignfolder_id; //numeric
-    int fki_billingentityinternal_id; //numeric
+    int *fki_ezsignfolder_id; //numeric
+    int *fki_billingentityinternal_id; //numeric
     char *s_ezsignfolder_description; // string
-    int b_ezsigntsarequirement_billable; //boolean
-    int b_ezsignfolder_mfaused; //boolean
-    int b_ezsignfolder_allowed; //boolean
+    int *b_ezsigntsarequirement_billable; //boolean
+    int *b_ezsignfolder_mfaused; //boolean
+    int *b_ezsignfolder_allowed; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } custom_ezmaxinvoicing_ezsignfolder_response_t;
 
 __attribute__((deprecated)) custom_ezmaxinvoicing_ezsignfolder_response_t *custom_ezmaxinvoicing_ezsignfolder_response_create(
-    int fki_ezsignfolder_id,
-    int fki_billingentityinternal_id,
+    int *fki_ezsignfolder_id,
+    int *fki_billingentityinternal_id,
     char *s_ezsignfolder_description,
-    int b_ezsigntsarequirement_billable,
-    int b_ezsignfolder_mfaused,
-    int b_ezsignfolder_allowed
+    int *b_ezsigntsarequirement_billable,
+    int *b_ezsignfolder_mfaused,
+    int *b_ezsignfolder_allowed
 );
 
 void custom_ezmaxinvoicing_ezsignfolder_response_free(custom_ezmaxinvoicing_ezsignfolder_response_t *custom_ezmaxinvoicing_ezsignfolder_response);

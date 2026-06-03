@@ -12,18 +12,21 @@ static ezsigntemplatepackagemembership_create_object_v1_request_t *ezsigntemplat
     if (!ezsigntemplatepackagemembership_create_object_v1_request_local_var) {
         return NULL;
     }
-    ezsigntemplatepackagemembership_create_object_v1_request_local_var->a_obj_ezsigntemplatepackagemembership = a_obj_ezsigntemplatepackagemembership;
-
+    memset(ezsigntemplatepackagemembership_create_object_v1_request_local_var, 0, sizeof(ezsigntemplatepackagemembership_create_object_v1_request_t));
     ezsigntemplatepackagemembership_create_object_v1_request_local_var->_library_owned = 1;
+    ezsigntemplatepackagemembership_create_object_v1_request_local_var->a_obj_ezsigntemplatepackagemembership = a_obj_ezsigntemplatepackagemembership;
     return ezsigntemplatepackagemembership_create_object_v1_request_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplatepackagemembership_create_object_v1_request_t *ezsigntemplatepackagemembership_create_object_v1_request_create(
     list_t *a_obj_ezsigntemplatepackagemembership
     ) {
-    return ezsigntemplatepackagemembership_create_object_v1_request_create_internal (
+    ezsigntemplatepackagemembership_create_object_v1_request_t *result = ezsigntemplatepackagemembership_create_object_v1_request_create_internal (
         a_obj_ezsigntemplatepackagemembership
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatepackagemembership_create_object_v1_request_free(ezsigntemplatepackagemembership_create_object_v1_request_t *ezsigntemplatepackagemembership_create_object_v1_request) {
@@ -111,9 +114,14 @@ ezsigntemplatepackagemembership_create_object_v1_request_t *ezsigntemplatepackag
     }
 
 
+
     ezsigntemplatepackagemembership_create_object_v1_request_local_var = ezsigntemplatepackagemembership_create_object_v1_request_create_internal (
         a_obj_ezsigntemplatepackagemembershipList
         );
+
+    if (!ezsigntemplatepackagemembership_create_object_v1_request_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatepackagemembership_create_object_v1_request_local_var;
 end:

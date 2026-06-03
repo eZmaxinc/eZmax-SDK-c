@@ -6,32 +6,47 @@
 
 
 static buyercontract_get_list_v1_response_m_payload_t *buyercontract_get_list_v1_response_m_payload_create_internal(
-    int i_row_returned,
-    int i_row_filtered,
+    int *i_row_returned,
+    int *i_row_filtered,
     list_t *a_obj_buyercontract
     ) {
     buyercontract_get_list_v1_response_m_payload_t *buyercontract_get_list_v1_response_m_payload_local_var = malloc(sizeof(buyercontract_get_list_v1_response_m_payload_t));
     if (!buyercontract_get_list_v1_response_m_payload_local_var) {
         return NULL;
     }
+    memset(buyercontract_get_list_v1_response_m_payload_local_var, 0, sizeof(buyercontract_get_list_v1_response_m_payload_t));
+    buyercontract_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     buyercontract_get_list_v1_response_m_payload_local_var->i_row_returned = i_row_returned;
     buyercontract_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
     buyercontract_get_list_v1_response_m_payload_local_var->a_obj_buyercontract = a_obj_buyercontract;
-
-    buyercontract_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     return buyercontract_get_list_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) buyercontract_get_list_v1_response_m_payload_t *buyercontract_get_list_v1_response_m_payload_create(
-    int i_row_returned,
-    int i_row_filtered,
+    int *i_row_returned,
+    int *i_row_filtered,
     list_t *a_obj_buyercontract
     ) {
-    return buyercontract_get_list_v1_response_m_payload_create_internal (
-        i_row_returned,
-        i_row_filtered,
+    int *i_row_returned_copy = NULL;
+    if (i_row_returned) {
+        i_row_returned_copy = malloc(sizeof(int));
+        if (i_row_returned_copy) *i_row_returned_copy = *i_row_returned;
+    }
+    int *i_row_filtered_copy = NULL;
+    if (i_row_filtered) {
+        i_row_filtered_copy = malloc(sizeof(int));
+        if (i_row_filtered_copy) *i_row_filtered_copy = *i_row_filtered;
+    }
+    buyercontract_get_list_v1_response_m_payload_t *result = buyercontract_get_list_v1_response_m_payload_create_internal (
+        i_row_returned_copy,
+        i_row_filtered_copy,
         a_obj_buyercontract
         );
+    if (!result) {
+        free(i_row_returned_copy);
+        free(i_row_filtered_copy);
+    }
+    return result;
 }
 
 void buyercontract_get_list_v1_response_m_payload_free(buyercontract_get_list_v1_response_m_payload_t *buyercontract_get_list_v1_response_m_payload) {
@@ -43,6 +58,14 @@ void buyercontract_get_list_v1_response_m_payload_free(buyercontract_get_list_v1
         return ;
     }
     listEntry_t *listEntry;
+    if (buyercontract_get_list_v1_response_m_payload->i_row_returned) {
+        free(buyercontract_get_list_v1_response_m_payload->i_row_returned);
+        buyercontract_get_list_v1_response_m_payload->i_row_returned = NULL;
+    }
+    if (buyercontract_get_list_v1_response_m_payload->i_row_filtered) {
+        free(buyercontract_get_list_v1_response_m_payload->i_row_filtered);
+        buyercontract_get_list_v1_response_m_payload->i_row_filtered = NULL;
+    }
     if (buyercontract_get_list_v1_response_m_payload->a_obj_buyercontract) {
         list_ForEach(listEntry, buyercontract_get_list_v1_response_m_payload->a_obj_buyercontract) {
             buyercontract_list_element_free(listEntry->data);
@@ -60,7 +83,7 @@ cJSON *buyercontract_get_list_v1_response_m_payload_convertToJSON(buyercontract_
     if (!buyercontract_get_list_v1_response_m_payload->i_row_returned) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iRowReturned", buyercontract_get_list_v1_response_m_payload->i_row_returned) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iRowReturned", *buyercontract_get_list_v1_response_m_payload->i_row_returned) == NULL) {
     goto fail; //Numeric
     }
 
@@ -69,7 +92,7 @@ cJSON *buyercontract_get_list_v1_response_m_payload_convertToJSON(buyercontract_
     if (!buyercontract_get_list_v1_response_m_payload->i_row_filtered) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iRowFiltered", buyercontract_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iRowFiltered", *buyercontract_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
     goto fail; //Numeric
     }
 
@@ -106,6 +129,12 @@ buyercontract_get_list_v1_response_m_payload_t *buyercontract_get_list_v1_respon
 
     buyercontract_get_list_v1_response_m_payload_t *buyercontract_get_list_v1_response_m_payload_local_var = NULL;
 
+    // define the local variable for buyercontract_get_list_v1_response_m_payload->i_row_returned
+    int *i_row_returned_local_var = NULL;
+
+    // define the local variable for buyercontract_get_list_v1_response_m_payload->i_row_filtered
+    int *i_row_filtered_local_var = NULL;
+
     // define the local list for buyercontract_get_list_v1_response_m_payload->a_obj_buyercontract
     list_t *a_obj_buyercontractList = NULL;
 
@@ -123,6 +152,12 @@ buyercontract_get_list_v1_response_m_payload_t *buyercontract_get_list_v1_respon
     {
     goto end; //Numeric
     }
+    i_row_returned_local_var = malloc(sizeof(int));
+    if(!i_row_returned_local_var)
+    {
+        goto end;
+    }
+    *i_row_returned_local_var = i_row_returned->valuedouble;
 
     // buyercontract_get_list_v1_response_m_payload->i_row_filtered
     cJSON *i_row_filtered = cJSON_GetObjectItemCaseSensitive(buyercontract_get_list_v1_response_m_payloadJSON, "iRowFiltered");
@@ -138,6 +173,12 @@ buyercontract_get_list_v1_response_m_payload_t *buyercontract_get_list_v1_respon
     {
     goto end; //Numeric
     }
+    i_row_filtered_local_var = malloc(sizeof(int));
+    if(!i_row_filtered_local_var)
+    {
+        goto end;
+    }
+    *i_row_filtered_local_var = i_row_filtered->valuedouble;
 
     // buyercontract_get_list_v1_response_m_payload->a_obj_buyercontract
     cJSON *a_obj_buyercontract = cJSON_GetObjectItemCaseSensitive(buyercontract_get_list_v1_response_m_payloadJSON, "a_objBuyercontract");
@@ -167,14 +208,27 @@ buyercontract_get_list_v1_response_m_payload_t *buyercontract_get_list_v1_respon
     }
 
 
+
     buyercontract_get_list_v1_response_m_payload_local_var = buyercontract_get_list_v1_response_m_payload_create_internal (
-        i_row_returned->valuedouble,
-        i_row_filtered->valuedouble,
+        i_row_returned_local_var,
+        i_row_filtered_local_var,
         a_obj_buyercontractList
         );
 
+    if (!buyercontract_get_list_v1_response_m_payload_local_var) {
+        goto end;
+    }
+
     return buyercontract_get_list_v1_response_m_payload_local_var;
 end:
+    if (i_row_returned_local_var) {
+        free(i_row_returned_local_var);
+        i_row_returned_local_var = NULL;
+    }
+    if (i_row_filtered_local_var) {
+        free(i_row_filtered_local_var);
+        i_row_filtered_local_var = NULL;
+    }
     if (a_obj_buyercontractList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_buyercontractList) {

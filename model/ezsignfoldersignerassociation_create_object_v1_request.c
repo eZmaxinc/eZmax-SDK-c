@@ -13,10 +13,10 @@ static ezsignfoldersignerassociation_create_object_v1_request_t *ezsignfoldersig
     if (!ezsignfoldersignerassociation_create_object_v1_request_local_var) {
         return NULL;
     }
+    memset(ezsignfoldersignerassociation_create_object_v1_request_local_var, 0, sizeof(ezsignfoldersignerassociation_create_object_v1_request_t));
+    ezsignfoldersignerassociation_create_object_v1_request_local_var->_library_owned = 1;
     ezsignfoldersignerassociation_create_object_v1_request_local_var->obj_ezsignfoldersignerassociation = obj_ezsignfoldersignerassociation;
     ezsignfoldersignerassociation_create_object_v1_request_local_var->obj_ezsignfoldersignerassociation_compound = obj_ezsignfoldersignerassociation_compound;
-
-    ezsignfoldersignerassociation_create_object_v1_request_local_var->_library_owned = 1;
     return ezsignfoldersignerassociation_create_object_v1_request_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) ezsignfoldersignerassociation_create_object_v1_reque
     ezsignfoldersignerassociation_request_t *obj_ezsignfoldersignerassociation,
     ezsignfoldersignerassociation_request_compound_t *obj_ezsignfoldersignerassociation_compound
     ) {
-    return ezsignfoldersignerassociation_create_object_v1_request_create_internal (
+    ezsignfoldersignerassociation_create_object_v1_request_t *result = ezsignfoldersignerassociation_create_object_v1_request_create_internal (
         obj_ezsignfoldersignerassociation,
         obj_ezsignfoldersignerassociation_compound
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignfoldersignerassociation_create_object_v1_request_free(ezsignfoldersignerassociation_create_object_v1_request_t *ezsignfoldersignerassociation_create_object_v1_request) {
@@ -115,10 +118,15 @@ ezsignfoldersignerassociation_create_object_v1_request_t *ezsignfoldersignerasso
     }
 
 
+
     ezsignfoldersignerassociation_create_object_v1_request_local_var = ezsignfoldersignerassociation_create_object_v1_request_create_internal (
         obj_ezsignfoldersignerassociation ? obj_ezsignfoldersignerassociation_local_nonprim : NULL,
         obj_ezsignfoldersignerassociation_compound ? obj_ezsignfoldersignerassociation_compound_local_nonprim : NULL
         );
+
+    if (!ezsignfoldersignerassociation_create_object_v1_request_local_var) {
+        goto end;
+    }
 
     return ezsignfoldersignerassociation_create_object_v1_request_local_var;
 end:

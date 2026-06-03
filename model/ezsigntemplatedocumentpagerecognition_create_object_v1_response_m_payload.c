@@ -12,18 +12,21 @@ static ezsigntemplatedocumentpagerecognition_create_object_v1_response_m_payload
     if (!ezsigntemplatedocumentpagerecognition_create_object_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsigntemplatedocumentpagerecognition_create_object_v1_response_m_payload_local_var->a_pki_ezsigntemplatedocumentpagerecognition_id = a_pki_ezsigntemplatedocumentpagerecognition_id;
-
+    memset(ezsigntemplatedocumentpagerecognition_create_object_v1_response_m_payload_local_var, 0, sizeof(ezsigntemplatedocumentpagerecognition_create_object_v1_response_m_payload_t));
     ezsigntemplatedocumentpagerecognition_create_object_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsigntemplatedocumentpagerecognition_create_object_v1_response_m_payload_local_var->a_pki_ezsigntemplatedocumentpagerecognition_id = a_pki_ezsigntemplatedocumentpagerecognition_id;
     return ezsigntemplatedocumentpagerecognition_create_object_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplatedocumentpagerecognition_create_object_v1_response_m_payload_t *ezsigntemplatedocumentpagerecognition_create_object_v1_response_m_payload_create(
     list_t *a_pki_ezsigntemplatedocumentpagerecognition_id
     ) {
-    return ezsigntemplatedocumentpagerecognition_create_object_v1_response_m_payload_create_internal (
+    ezsigntemplatedocumentpagerecognition_create_object_v1_response_m_payload_t *result = ezsigntemplatedocumentpagerecognition_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsigntemplatedocumentpagerecognition_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatedocumentpagerecognition_create_object_v1_response_m_payload_free(ezsigntemplatedocumentpagerecognition_create_object_v1_response_m_payload_t *ezsigntemplatedocumentpagerecognition_create_object_v1_response_m_payload) {
@@ -112,9 +115,14 @@ ezsigntemplatedocumentpagerecognition_create_object_v1_response_m_payload_t *ezs
     }
 
 
+
     ezsigntemplatedocumentpagerecognition_create_object_v1_response_m_payload_local_var = ezsigntemplatedocumentpagerecognition_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsigntemplatedocumentpagerecognition_idList
         );
+
+    if (!ezsigntemplatedocumentpagerecognition_create_object_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatedocumentpagerecognition_create_object_v1_response_m_payload_local_var;
 end:

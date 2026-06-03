@@ -12,18 +12,21 @@ static permission_create_object_v1_response_m_payload_t *permission_create_objec
     if (!permission_create_object_v1_response_m_payload_local_var) {
         return NULL;
     }
-    permission_create_object_v1_response_m_payload_local_var->a_pki_permission_id = a_pki_permission_id;
-
+    memset(permission_create_object_v1_response_m_payload_local_var, 0, sizeof(permission_create_object_v1_response_m_payload_t));
     permission_create_object_v1_response_m_payload_local_var->_library_owned = 1;
+    permission_create_object_v1_response_m_payload_local_var->a_pki_permission_id = a_pki_permission_id;
     return permission_create_object_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) permission_create_object_v1_response_m_payload_t *permission_create_object_v1_response_m_payload_create(
     list_t *a_pki_permission_id
     ) {
-    return permission_create_object_v1_response_m_payload_create_internal (
+    permission_create_object_v1_response_m_payload_t *result = permission_create_object_v1_response_m_payload_create_internal (
         a_pki_permission_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void permission_create_object_v1_response_m_payload_free(permission_create_object_v1_response_m_payload_t *permission_create_object_v1_response_m_payload) {
@@ -112,9 +115,14 @@ permission_create_object_v1_response_m_payload_t *permission_create_object_v1_re
     }
 
 
+
     permission_create_object_v1_response_m_payload_local_var = permission_create_object_v1_response_m_payload_create_internal (
         a_pki_permission_idList
         );
+
+    if (!permission_create_object_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return permission_create_object_v1_response_m_payload_local_var;
 end:

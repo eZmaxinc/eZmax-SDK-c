@@ -6,36 +6,57 @@
 
 
 static ezsignsignaturecustomdate_request_v2_t *ezsignsignaturecustomdate_request_v2_create_internal(
-    int pki_ezsignsignaturecustomdate_id,
-    int i_ezsignsignaturecustomdate_offsetx,
-    int i_ezsignsignaturecustomdate_offsety,
+    int *pki_ezsignsignaturecustomdate_id,
+    int *i_ezsignsignaturecustomdate_offsetx,
+    int *i_ezsignsignaturecustomdate_offsety,
     char *s_ezsignsignaturecustomdate_format
     ) {
     ezsignsignaturecustomdate_request_v2_t *ezsignsignaturecustomdate_request_v2_local_var = malloc(sizeof(ezsignsignaturecustomdate_request_v2_t));
     if (!ezsignsignaturecustomdate_request_v2_local_var) {
         return NULL;
     }
+    memset(ezsignsignaturecustomdate_request_v2_local_var, 0, sizeof(ezsignsignaturecustomdate_request_v2_t));
+    ezsignsignaturecustomdate_request_v2_local_var->_library_owned = 1;
     ezsignsignaturecustomdate_request_v2_local_var->pki_ezsignsignaturecustomdate_id = pki_ezsignsignaturecustomdate_id;
     ezsignsignaturecustomdate_request_v2_local_var->i_ezsignsignaturecustomdate_offsetx = i_ezsignsignaturecustomdate_offsetx;
     ezsignsignaturecustomdate_request_v2_local_var->i_ezsignsignaturecustomdate_offsety = i_ezsignsignaturecustomdate_offsety;
     ezsignsignaturecustomdate_request_v2_local_var->s_ezsignsignaturecustomdate_format = s_ezsignsignaturecustomdate_format;
-
-    ezsignsignaturecustomdate_request_v2_local_var->_library_owned = 1;
     return ezsignsignaturecustomdate_request_v2_local_var;
 }
 
 __attribute__((deprecated)) ezsignsignaturecustomdate_request_v2_t *ezsignsignaturecustomdate_request_v2_create(
-    int pki_ezsignsignaturecustomdate_id,
-    int i_ezsignsignaturecustomdate_offsetx,
-    int i_ezsignsignaturecustomdate_offsety,
+    int *pki_ezsignsignaturecustomdate_id,
+    int *i_ezsignsignaturecustomdate_offsetx,
+    int *i_ezsignsignaturecustomdate_offsety,
     char *s_ezsignsignaturecustomdate_format
     ) {
-    return ezsignsignaturecustomdate_request_v2_create_internal (
-        pki_ezsignsignaturecustomdate_id,
-        i_ezsignsignaturecustomdate_offsetx,
-        i_ezsignsignaturecustomdate_offsety,
+    int *pki_ezsignsignaturecustomdate_id_copy = NULL;
+    if (pki_ezsignsignaturecustomdate_id) {
+        pki_ezsignsignaturecustomdate_id_copy = malloc(sizeof(int));
+        if (pki_ezsignsignaturecustomdate_id_copy) *pki_ezsignsignaturecustomdate_id_copy = *pki_ezsignsignaturecustomdate_id;
+    }
+    int *i_ezsignsignaturecustomdate_offsetx_copy = NULL;
+    if (i_ezsignsignaturecustomdate_offsetx) {
+        i_ezsignsignaturecustomdate_offsetx_copy = malloc(sizeof(int));
+        if (i_ezsignsignaturecustomdate_offsetx_copy) *i_ezsignsignaturecustomdate_offsetx_copy = *i_ezsignsignaturecustomdate_offsetx;
+    }
+    int *i_ezsignsignaturecustomdate_offsety_copy = NULL;
+    if (i_ezsignsignaturecustomdate_offsety) {
+        i_ezsignsignaturecustomdate_offsety_copy = malloc(sizeof(int));
+        if (i_ezsignsignaturecustomdate_offsety_copy) *i_ezsignsignaturecustomdate_offsety_copy = *i_ezsignsignaturecustomdate_offsety;
+    }
+    ezsignsignaturecustomdate_request_v2_t *result = ezsignsignaturecustomdate_request_v2_create_internal (
+        pki_ezsignsignaturecustomdate_id_copy,
+        i_ezsignsignaturecustomdate_offsetx_copy,
+        i_ezsignsignaturecustomdate_offsety_copy,
         s_ezsignsignaturecustomdate_format
         );
+    if (!result) {
+        free(pki_ezsignsignaturecustomdate_id_copy);
+        free(i_ezsignsignaturecustomdate_offsetx_copy);
+        free(i_ezsignsignaturecustomdate_offsety_copy);
+    }
+    return result;
 }
 
 void ezsignsignaturecustomdate_request_v2_free(ezsignsignaturecustomdate_request_v2_t *ezsignsignaturecustomdate_request_v2) {
@@ -47,6 +68,18 @@ void ezsignsignaturecustomdate_request_v2_free(ezsignsignaturecustomdate_request
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignsignaturecustomdate_request_v2->pki_ezsignsignaturecustomdate_id) {
+        free(ezsignsignaturecustomdate_request_v2->pki_ezsignsignaturecustomdate_id);
+        ezsignsignaturecustomdate_request_v2->pki_ezsignsignaturecustomdate_id = NULL;
+    }
+    if (ezsignsignaturecustomdate_request_v2->i_ezsignsignaturecustomdate_offsetx) {
+        free(ezsignsignaturecustomdate_request_v2->i_ezsignsignaturecustomdate_offsetx);
+        ezsignsignaturecustomdate_request_v2->i_ezsignsignaturecustomdate_offsetx = NULL;
+    }
+    if (ezsignsignaturecustomdate_request_v2->i_ezsignsignaturecustomdate_offsety) {
+        free(ezsignsignaturecustomdate_request_v2->i_ezsignsignaturecustomdate_offsety);
+        ezsignsignaturecustomdate_request_v2->i_ezsignsignaturecustomdate_offsety = NULL;
+    }
     if (ezsignsignaturecustomdate_request_v2->s_ezsignsignaturecustomdate_format) {
         free(ezsignsignaturecustomdate_request_v2->s_ezsignsignaturecustomdate_format);
         ezsignsignaturecustomdate_request_v2->s_ezsignsignaturecustomdate_format = NULL;
@@ -59,7 +92,7 @@ cJSON *ezsignsignaturecustomdate_request_v2_convertToJSON(ezsignsignaturecustomd
 
     // ezsignsignaturecustomdate_request_v2->pki_ezsignsignaturecustomdate_id
     if(ezsignsignaturecustomdate_request_v2->pki_ezsignsignaturecustomdate_id) {
-    if(cJSON_AddNumberToObject(item, "pkiEzsignsignaturecustomdateID", ezsignsignaturecustomdate_request_v2->pki_ezsignsignaturecustomdate_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzsignsignaturecustomdateID", *ezsignsignaturecustomdate_request_v2->pki_ezsignsignaturecustomdate_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -69,7 +102,7 @@ cJSON *ezsignsignaturecustomdate_request_v2_convertToJSON(ezsignsignaturecustomd
     if (!ezsignsignaturecustomdate_request_v2->i_ezsignsignaturecustomdate_offsetx) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iEzsignsignaturecustomdateOffsetx", ezsignsignaturecustomdate_request_v2->i_ezsignsignaturecustomdate_offsetx) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iEzsignsignaturecustomdateOffsetx", *ezsignsignaturecustomdate_request_v2->i_ezsignsignaturecustomdate_offsetx) == NULL) {
     goto fail; //Numeric
     }
 
@@ -78,7 +111,7 @@ cJSON *ezsignsignaturecustomdate_request_v2_convertToJSON(ezsignsignaturecustomd
     if (!ezsignsignaturecustomdate_request_v2->i_ezsignsignaturecustomdate_offsety) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iEzsignsignaturecustomdateOffsety", ezsignsignaturecustomdate_request_v2->i_ezsignsignaturecustomdate_offsety) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iEzsignsignaturecustomdateOffsety", *ezsignsignaturecustomdate_request_v2->i_ezsignsignaturecustomdate_offsety) == NULL) {
     goto fail; //Numeric
     }
 
@@ -103,6 +136,17 @@ ezsignsignaturecustomdate_request_v2_t *ezsignsignaturecustomdate_request_v2_par
 
     ezsignsignaturecustomdate_request_v2_t *ezsignsignaturecustomdate_request_v2_local_var = NULL;
 
+    // define the local variable for ezsignsignaturecustomdate_request_v2->pki_ezsignsignaturecustomdate_id
+    int *pki_ezsignsignaturecustomdate_id_local_var = NULL;
+
+    // define the local variable for ezsignsignaturecustomdate_request_v2->i_ezsignsignaturecustomdate_offsetx
+    int *i_ezsignsignaturecustomdate_offsetx_local_var = NULL;
+
+    // define the local variable for ezsignsignaturecustomdate_request_v2->i_ezsignsignaturecustomdate_offsety
+    int *i_ezsignsignaturecustomdate_offsety_local_var = NULL;
+
+    char *s_ezsignsignaturecustomdate_format_local_str = NULL;
+
     // ezsignsignaturecustomdate_request_v2->pki_ezsignsignaturecustomdate_id
     cJSON *pki_ezsignsignaturecustomdate_id = cJSON_GetObjectItemCaseSensitive(ezsignsignaturecustomdate_request_v2JSON, "pkiEzsignsignaturecustomdateID");
     if (cJSON_IsNull(pki_ezsignsignaturecustomdate_id)) {
@@ -113,6 +157,12 @@ ezsignsignaturecustomdate_request_v2_t *ezsignsignaturecustomdate_request_v2_par
     {
     goto end; //Numeric
     }
+    pki_ezsignsignaturecustomdate_id_local_var = malloc(sizeof(int));
+    if(!pki_ezsignsignaturecustomdate_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezsignsignaturecustomdate_id_local_var = pki_ezsignsignaturecustomdate_id->valuedouble;
     }
 
     // ezsignsignaturecustomdate_request_v2->i_ezsignsignaturecustomdate_offsetx
@@ -129,6 +179,12 @@ ezsignsignaturecustomdate_request_v2_t *ezsignsignaturecustomdate_request_v2_par
     {
     goto end; //Numeric
     }
+    i_ezsignsignaturecustomdate_offsetx_local_var = malloc(sizeof(int));
+    if(!i_ezsignsignaturecustomdate_offsetx_local_var)
+    {
+        goto end;
+    }
+    *i_ezsignsignaturecustomdate_offsetx_local_var = i_ezsignsignaturecustomdate_offsetx->valuedouble;
 
     // ezsignsignaturecustomdate_request_v2->i_ezsignsignaturecustomdate_offsety
     cJSON *i_ezsignsignaturecustomdate_offsety = cJSON_GetObjectItemCaseSensitive(ezsignsignaturecustomdate_request_v2JSON, "iEzsignsignaturecustomdateOffsety");
@@ -144,6 +200,12 @@ ezsignsignaturecustomdate_request_v2_t *ezsignsignaturecustomdate_request_v2_par
     {
     goto end; //Numeric
     }
+    i_ezsignsignaturecustomdate_offsety_local_var = malloc(sizeof(int));
+    if(!i_ezsignsignaturecustomdate_offsety_local_var)
+    {
+        goto end;
+    }
+    *i_ezsignsignaturecustomdate_offsety_local_var = i_ezsignsignaturecustomdate_offsety->valuedouble;
 
     // ezsignsignaturecustomdate_request_v2->s_ezsignsignaturecustomdate_format
     cJSON *s_ezsignsignaturecustomdate_format = cJSON_GetObjectItemCaseSensitive(ezsignsignaturecustomdate_request_v2JSON, "sEzsignsignaturecustomdateFormat");
@@ -161,15 +223,37 @@ ezsignsignaturecustomdate_request_v2_t *ezsignsignaturecustomdate_request_v2_par
     }
 
 
+    if (s_ezsignsignaturecustomdate_format && !cJSON_IsNull(s_ezsignsignaturecustomdate_format)) s_ezsignsignaturecustomdate_format_local_str = strdup(s_ezsignsignaturecustomdate_format->valuestring);
+
     ezsignsignaturecustomdate_request_v2_local_var = ezsignsignaturecustomdate_request_v2_create_internal (
-        pki_ezsignsignaturecustomdate_id ? pki_ezsignsignaturecustomdate_id->valuedouble : 0,
-        i_ezsignsignaturecustomdate_offsetx->valuedouble,
-        i_ezsignsignaturecustomdate_offsety->valuedouble,
-        strdup(s_ezsignsignaturecustomdate_format->valuestring)
+        pki_ezsignsignaturecustomdate_id_local_var,
+        i_ezsignsignaturecustomdate_offsetx_local_var,
+        i_ezsignsignaturecustomdate_offsety_local_var,
+        s_ezsignsignaturecustomdate_format_local_str
         );
+
+    if (!ezsignsignaturecustomdate_request_v2_local_var) {
+        goto end;
+    }
 
     return ezsignsignaturecustomdate_request_v2_local_var;
 end:
+    if (pki_ezsignsignaturecustomdate_id_local_var) {
+        free(pki_ezsignsignaturecustomdate_id_local_var);
+        pki_ezsignsignaturecustomdate_id_local_var = NULL;
+    }
+    if (i_ezsignsignaturecustomdate_offsetx_local_var) {
+        free(i_ezsignsignaturecustomdate_offsetx_local_var);
+        i_ezsignsignaturecustomdate_offsetx_local_var = NULL;
+    }
+    if (i_ezsignsignaturecustomdate_offsety_local_var) {
+        free(i_ezsignsignaturecustomdate_offsety_local_var);
+        i_ezsignsignaturecustomdate_offsety_local_var = NULL;
+    }
+    if (s_ezsignsignaturecustomdate_format_local_str) {
+        free(s_ezsignsignaturecustomdate_format_local_str);
+        s_ezsignsignaturecustomdate_format_local_str = NULL;
+    }
     return NULL;
 
 }

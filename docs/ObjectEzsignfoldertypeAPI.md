@@ -5,7 +5,9 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectEzsignfoldertypeAPI_ezsignfoldertypeCreateObjectV3**](ObjectEzsignfoldertypeAPI.md#ObjectEzsignfoldertypeAPI_ezsignfoldertypeCreateObjectV3) | **POST** /3/object/ezsignfoldertype | Create a new Ezsignfoldertype
+[**ObjectEzsignfoldertypeAPI_ezsignfoldertypeCreateObjectV4**](ObjectEzsignfoldertypeAPI.md#ObjectEzsignfoldertypeAPI_ezsignfoldertypeCreateObjectV4) | **POST** /4/object/ezsignfoldertype | Create a new Ezsignfoldertype
 [**ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV3**](ObjectEzsignfoldertypeAPI.md#ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV3) | **PUT** /3/object/ezsignfoldertype/{pkiEzsignfoldertypeID} | Edit an existing Ezsignfoldertype
+[**ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV4**](ObjectEzsignfoldertypeAPI.md#ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV4) | **PUT** /4/object/ezsignfoldertype/{pkiEzsignfoldertypeID} | Edit an existing Ezsignfoldertype
 [**ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV2**](ObjectEzsignfoldertypeAPI.md#ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV2) | **GET** /2/object/ezsignfoldertype/getAutocomplete/{sSelector} | Retrieve Ezsignfoldertypes and IDs
 [**ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1**](ObjectEzsignfoldertypeAPI.md#ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1) | **GET** /1/object/ezsignfoldertype/getList | Retrieve Ezsignfoldertype list
 [**ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetObjectV2**](ObjectEzsignfoldertypeAPI.md#ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetObjectV2) | **GET** /2/object/ezsignfoldertype/{pkiEzsignfoldertypeID} | Retrieve an existing Ezsignfoldertype
@@ -43,6 +45,37 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **ObjectEzsignfoldertypeAPI_ezsignfoldertypeCreateObjectV4**
+```c
+// Create a new Ezsignfoldertype
+//
+// The endpoint allows to create one or many elements at once.
+//
+ezsignfoldertype_create_object_v4_response_t* ObjectEzsignfoldertypeAPI_ezsignfoldertypeCreateObjectV4(apiClient_t *apiClient, ezsignfoldertype_create_object_v4_request_t *ezsignfoldertype_create_object_v4_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**ezsignfoldertype_create_object_v4_request** | **[ezsignfoldertype_create_object_v4_request_t](ezsignfoldertype_create_object_v4_request.md) \*** |  | 
+
+### Return type
+
+[ezsignfoldertype_create_object_v4_response_t](ezsignfoldertype_create_object_v4_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV3**
 ```c
 // Edit an existing Ezsignfoldertype
@@ -62,6 +95,38 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsignfoldertype_edit_object_v3_response_t](ezsignfoldertype_edit_object_v3_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV4**
+```c
+// Edit an existing Ezsignfoldertype
+//
+// 
+//
+ezsignfoldertype_edit_object_v4_response_t* ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV4(apiClient_t *apiClient, int *pkiEzsignfoldertypeID, ezsignfoldertype_edit_object_v4_request_t *ezsignfoldertype_edit_object_v4_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsignfoldertypeID** | **int \*** |  | 
+**ezsignfoldertype_edit_object_v4_request** | **[ezsignfoldertype_edit_object_v4_request_t](ezsignfoldertype_edit_object_v4_request.md) \*** |  | 
+
+### Return type
+
+[ezsignfoldertype_edit_object_v4_response_t](ezsignfoldertype_edit_object_v4_response.md) *
 
 
 ### Authorization

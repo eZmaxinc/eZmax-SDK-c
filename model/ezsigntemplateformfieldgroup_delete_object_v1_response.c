@@ -13,10 +13,10 @@ static ezsigntemplateformfieldgroup_delete_object_v1_response_t *ezsigntemplatef
     if (!ezsigntemplateformfieldgroup_delete_object_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsigntemplateformfieldgroup_delete_object_v1_response_local_var, 0, sizeof(ezsigntemplateformfieldgroup_delete_object_v1_response_t));
+    ezsigntemplateformfieldgroup_delete_object_v1_response_local_var->_library_owned = 1;
     ezsigntemplateformfieldgroup_delete_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsigntemplateformfieldgroup_delete_object_v1_response_local_var->obj_debug = obj_debug;
-
-    ezsigntemplateformfieldgroup_delete_object_v1_response_local_var->_library_owned = 1;
     return ezsigntemplateformfieldgroup_delete_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) ezsigntemplateformfieldgroup_delete_object_v1_respon
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return ezsigntemplateformfieldgroup_delete_object_v1_response_create_internal (
+    ezsigntemplateformfieldgroup_delete_object_v1_response_t *result = ezsigntemplateformfieldgroup_delete_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplateformfieldgroup_delete_object_v1_response_free(ezsigntemplateformfieldgroup_delete_object_v1_response_t *ezsigntemplateformfieldgroup_delete_object_v1_response) {
@@ -119,10 +122,15 @@ ezsigntemplateformfieldgroup_delete_object_v1_response_t *ezsigntemplateformfiel
     }
 
 
+
     ezsigntemplateformfieldgroup_delete_object_v1_response_local_var = ezsigntemplateformfieldgroup_delete_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!ezsigntemplateformfieldgroup_delete_object_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsigntemplateformfieldgroup_delete_object_v1_response_local_var;
 end:

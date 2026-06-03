@@ -12,18 +12,21 @@ static ezsigntemplatedocument_request_patch_t *ezsigntemplatedocument_request_pa
     if (!ezsigntemplatedocument_request_patch_local_var) {
         return NULL;
     }
-    ezsigntemplatedocument_request_patch_local_var->s_ezsigntemplatedocument_name = s_ezsigntemplatedocument_name;
-
+    memset(ezsigntemplatedocument_request_patch_local_var, 0, sizeof(ezsigntemplatedocument_request_patch_t));
     ezsigntemplatedocument_request_patch_local_var->_library_owned = 1;
+    ezsigntemplatedocument_request_patch_local_var->s_ezsigntemplatedocument_name = s_ezsigntemplatedocument_name;
     return ezsigntemplatedocument_request_patch_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplatedocument_request_patch_t *ezsigntemplatedocument_request_patch_create(
     char *s_ezsigntemplatedocument_name
     ) {
-    return ezsigntemplatedocument_request_patch_create_internal (
+    ezsigntemplatedocument_request_patch_t *result = ezsigntemplatedocument_request_patch_create_internal (
         s_ezsigntemplatedocument_name
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatedocument_request_patch_free(ezsigntemplatedocument_request_patch_t *ezsigntemplatedocument_request_patch) {
@@ -64,6 +67,8 @@ ezsigntemplatedocument_request_patch_t *ezsigntemplatedocument_request_patch_par
 
     ezsigntemplatedocument_request_patch_t *ezsigntemplatedocument_request_patch_local_var = NULL;
 
+    char *s_ezsigntemplatedocument_name_local_str = NULL;
+
     // ezsigntemplatedocument_request_patch->s_ezsigntemplatedocument_name
     cJSON *s_ezsigntemplatedocument_name = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_request_patchJSON, "sEzsigntemplatedocumentName");
     if (cJSON_IsNull(s_ezsigntemplatedocument_name)) {
@@ -77,12 +82,22 @@ ezsigntemplatedocument_request_patch_t *ezsigntemplatedocument_request_patch_par
     }
 
 
+    if (s_ezsigntemplatedocument_name && !cJSON_IsNull(s_ezsigntemplatedocument_name)) s_ezsigntemplatedocument_name_local_str = strdup(s_ezsigntemplatedocument_name->valuestring);
+
     ezsigntemplatedocument_request_patch_local_var = ezsigntemplatedocument_request_patch_create_internal (
-        s_ezsigntemplatedocument_name && !cJSON_IsNull(s_ezsigntemplatedocument_name) ? strdup(s_ezsigntemplatedocument_name->valuestring) : NULL
+        s_ezsigntemplatedocument_name_local_str
         );
+
+    if (!ezsigntemplatedocument_request_patch_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatedocument_request_patch_local_var;
 end:
+    if (s_ezsigntemplatedocument_name_local_str) {
+        free(s_ezsigntemplatedocument_name_local_str);
+        s_ezsigntemplatedocument_name_local_str = NULL;
+    }
     return NULL;
 
 }

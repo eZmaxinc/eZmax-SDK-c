@@ -12,18 +12,21 @@ static ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_t
     if (!ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_local_var) {
         return NULL;
     }
-    ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_local_var->s_embedded_url = s_embedded_url;
-
+    memset(ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_local_var, 0, sizeof(ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_t));
     ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_local_var->_library_owned = 1;
+    ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_local_var->s_embedded_url = s_embedded_url;
     return ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_t *ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_create(
     char *s_embedded_url
     ) {
-    return ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_create_internal (
+    ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_t *result = ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_create_internal (
         s_embedded_url
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_free(ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_t *ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload) {
@@ -65,6 +68,8 @@ ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_t *ezsig
 
     ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_t *ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_local_var = NULL;
 
+    char *s_embedded_url_local_str = NULL;
+
     // ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload->s_embedded_url
     cJSON *s_embedded_url = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payloadJSON, "sEmbeddedUrl");
     if (cJSON_IsNull(s_embedded_url)) {
@@ -81,12 +86,22 @@ ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_t *ezsig
     }
 
 
+    if (s_embedded_url && !cJSON_IsNull(s_embedded_url)) s_embedded_url_local_str = strdup(s_embedded_url->valuestring);
+
     ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_local_var = ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_create_internal (
-        strdup(s_embedded_url->valuestring)
+        s_embedded_url_local_str
         );
+
+    if (!ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload_local_var;
 end:
+    if (s_embedded_url_local_str) {
+        free(s_embedded_url_local_str);
+        s_embedded_url_local_str = NULL;
+    }
     return NULL;
 
 }

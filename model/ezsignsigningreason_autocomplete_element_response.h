@@ -19,17 +19,17 @@ typedef struct ezsignsigningreason_autocomplete_element_response_t ezsignsigning
 
 
 typedef struct ezsignsigningreason_autocomplete_element_response_t {
-    int pki_ezsignsigningreason_id; //numeric
+    int *pki_ezsignsigningreason_id; //numeric
     char *s_ezsignsigningreason_description_x; // string
-    int b_ezsignsigningreason_isactive; //boolean
+    int *b_ezsignsigningreason_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsigningreason_autocomplete_element_response_t;
 
 __attribute__((deprecated)) ezsignsigningreason_autocomplete_element_response_t *ezsignsigningreason_autocomplete_element_response_create(
-    int pki_ezsignsigningreason_id,
+    int *pki_ezsignsigningreason_id,
     char *s_ezsignsigningreason_description_x,
-    int b_ezsignsigningreason_isactive
+    int *b_ezsignsigningreason_isactive
 );
 
 void ezsignsigningreason_autocomplete_element_response_free(ezsignsigningreason_autocomplete_element_response_t *ezsignsigningreason_autocomplete_element_response);

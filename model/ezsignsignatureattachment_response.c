@@ -6,8 +6,8 @@
 
 
 static ezsignsignatureattachment_response_t *ezsignsignatureattachment_response_create_internal(
-    int pki_ezsignsignatureattachment_id,
-    int fki_ezsignsignature_id,
+    int *pki_ezsignsignatureattachment_id,
+    int *fki_ezsignsignature_id,
     char *bin_ezsignsignatureattachment_md5,
     char *s_ezsignsignatureattachment_name,
     char *s_download_url
@@ -16,30 +16,45 @@ static ezsignsignatureattachment_response_t *ezsignsignatureattachment_response_
     if (!ezsignsignatureattachment_response_local_var) {
         return NULL;
     }
+    memset(ezsignsignatureattachment_response_local_var, 0, sizeof(ezsignsignatureattachment_response_t));
+    ezsignsignatureattachment_response_local_var->_library_owned = 1;
     ezsignsignatureattachment_response_local_var->pki_ezsignsignatureattachment_id = pki_ezsignsignatureattachment_id;
     ezsignsignatureattachment_response_local_var->fki_ezsignsignature_id = fki_ezsignsignature_id;
     ezsignsignatureattachment_response_local_var->bin_ezsignsignatureattachment_md5 = bin_ezsignsignatureattachment_md5;
     ezsignsignatureattachment_response_local_var->s_ezsignsignatureattachment_name = s_ezsignsignatureattachment_name;
     ezsignsignatureattachment_response_local_var->s_download_url = s_download_url;
-
-    ezsignsignatureattachment_response_local_var->_library_owned = 1;
     return ezsignsignatureattachment_response_local_var;
 }
 
 __attribute__((deprecated)) ezsignsignatureattachment_response_t *ezsignsignatureattachment_response_create(
-    int pki_ezsignsignatureattachment_id,
-    int fki_ezsignsignature_id,
+    int *pki_ezsignsignatureattachment_id,
+    int *fki_ezsignsignature_id,
     char *bin_ezsignsignatureattachment_md5,
     char *s_ezsignsignatureattachment_name,
     char *s_download_url
     ) {
-    return ezsignsignatureattachment_response_create_internal (
-        pki_ezsignsignatureattachment_id,
-        fki_ezsignsignature_id,
+    int *pki_ezsignsignatureattachment_id_copy = NULL;
+    if (pki_ezsignsignatureattachment_id) {
+        pki_ezsignsignatureattachment_id_copy = malloc(sizeof(int));
+        if (pki_ezsignsignatureattachment_id_copy) *pki_ezsignsignatureattachment_id_copy = *pki_ezsignsignatureattachment_id;
+    }
+    int *fki_ezsignsignature_id_copy = NULL;
+    if (fki_ezsignsignature_id) {
+        fki_ezsignsignature_id_copy = malloc(sizeof(int));
+        if (fki_ezsignsignature_id_copy) *fki_ezsignsignature_id_copy = *fki_ezsignsignature_id;
+    }
+    ezsignsignatureattachment_response_t *result = ezsignsignatureattachment_response_create_internal (
+        pki_ezsignsignatureattachment_id_copy,
+        fki_ezsignsignature_id_copy,
         bin_ezsignsignatureattachment_md5,
         s_ezsignsignatureattachment_name,
         s_download_url
         );
+    if (!result) {
+        free(pki_ezsignsignatureattachment_id_copy);
+        free(fki_ezsignsignature_id_copy);
+    }
+    return result;
 }
 
 void ezsignsignatureattachment_response_free(ezsignsignatureattachment_response_t *ezsignsignatureattachment_response) {
@@ -51,6 +66,14 @@ void ezsignsignatureattachment_response_free(ezsignsignatureattachment_response_
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignsignatureattachment_response->pki_ezsignsignatureattachment_id) {
+        free(ezsignsignatureattachment_response->pki_ezsignsignatureattachment_id);
+        ezsignsignatureattachment_response->pki_ezsignsignatureattachment_id = NULL;
+    }
+    if (ezsignsignatureattachment_response->fki_ezsignsignature_id) {
+        free(ezsignsignatureattachment_response->fki_ezsignsignature_id);
+        ezsignsignatureattachment_response->fki_ezsignsignature_id = NULL;
+    }
     if (ezsignsignatureattachment_response->bin_ezsignsignatureattachment_md5) {
         free(ezsignsignatureattachment_response->bin_ezsignsignatureattachment_md5);
         ezsignsignatureattachment_response->bin_ezsignsignatureattachment_md5 = NULL;
@@ -73,7 +96,7 @@ cJSON *ezsignsignatureattachment_response_convertToJSON(ezsignsignatureattachmen
     if (!ezsignsignatureattachment_response->pki_ezsignsignatureattachment_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiEzsignsignatureattachmentID", ezsignsignatureattachment_response->pki_ezsignsignatureattachment_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzsignsignatureattachmentID", *ezsignsignatureattachment_response->pki_ezsignsignatureattachment_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -82,7 +105,7 @@ cJSON *ezsignsignatureattachment_response_convertToJSON(ezsignsignatureattachmen
     if (!ezsignsignatureattachment_response->fki_ezsignsignature_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiEzsignsignatureID", ezsignsignatureattachment_response->fki_ezsignsignature_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsignsignatureID", *ezsignsignatureattachment_response->fki_ezsignsignature_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -125,6 +148,18 @@ ezsignsignatureattachment_response_t *ezsignsignatureattachment_response_parseFr
 
     ezsignsignatureattachment_response_t *ezsignsignatureattachment_response_local_var = NULL;
 
+    // define the local variable for ezsignsignatureattachment_response->pki_ezsignsignatureattachment_id
+    int *pki_ezsignsignatureattachment_id_local_var = NULL;
+
+    // define the local variable for ezsignsignatureattachment_response->fki_ezsignsignature_id
+    int *fki_ezsignsignature_id_local_var = NULL;
+
+    char *bin_ezsignsignatureattachment_md5_local_str = NULL;
+
+    char *s_ezsignsignatureattachment_name_local_str = NULL;
+
+    char *s_download_url_local_str = NULL;
+
     // ezsignsignatureattachment_response->pki_ezsignsignatureattachment_id
     cJSON *pki_ezsignsignatureattachment_id = cJSON_GetObjectItemCaseSensitive(ezsignsignatureattachment_responseJSON, "pkiEzsignsignatureattachmentID");
     if (cJSON_IsNull(pki_ezsignsignatureattachment_id)) {
@@ -139,6 +174,12 @@ ezsignsignatureattachment_response_t *ezsignsignatureattachment_response_parseFr
     {
     goto end; //Numeric
     }
+    pki_ezsignsignatureattachment_id_local_var = malloc(sizeof(int));
+    if(!pki_ezsignsignatureattachment_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezsignsignatureattachment_id_local_var = pki_ezsignsignatureattachment_id->valuedouble;
 
     // ezsignsignatureattachment_response->fki_ezsignsignature_id
     cJSON *fki_ezsignsignature_id = cJSON_GetObjectItemCaseSensitive(ezsignsignatureattachment_responseJSON, "fkiEzsignsignatureID");
@@ -154,6 +195,12 @@ ezsignsignatureattachment_response_t *ezsignsignatureattachment_response_parseFr
     {
     goto end; //Numeric
     }
+    fki_ezsignsignature_id_local_var = malloc(sizeof(int));
+    if(!fki_ezsignsignature_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezsignsignature_id_local_var = fki_ezsignsignature_id->valuedouble;
 
     // ezsignsignatureattachment_response->bin_ezsignsignatureattachment_md5
     cJSON *bin_ezsignsignatureattachment_md5 = cJSON_GetObjectItemCaseSensitive(ezsignsignatureattachment_responseJSON, "binEzsignsignatureattachmentMD5");
@@ -201,16 +248,44 @@ ezsignsignatureattachment_response_t *ezsignsignatureattachment_response_parseFr
     }
 
 
+    if (bin_ezsignsignatureattachment_md5 && !cJSON_IsNull(bin_ezsignsignatureattachment_md5)) bin_ezsignsignatureattachment_md5_local_str = strdup(bin_ezsignsignatureattachment_md5->valuestring);
+    if (s_ezsignsignatureattachment_name && !cJSON_IsNull(s_ezsignsignatureattachment_name)) s_ezsignsignatureattachment_name_local_str = strdup(s_ezsignsignatureattachment_name->valuestring);
+    if (s_download_url && !cJSON_IsNull(s_download_url)) s_download_url_local_str = strdup(s_download_url->valuestring);
+
     ezsignsignatureattachment_response_local_var = ezsignsignatureattachment_response_create_internal (
-        pki_ezsignsignatureattachment_id->valuedouble,
-        fki_ezsignsignature_id->valuedouble,
-        strdup(bin_ezsignsignatureattachment_md5->valuestring),
-        strdup(s_ezsignsignatureattachment_name->valuestring),
-        strdup(s_download_url->valuestring)
+        pki_ezsignsignatureattachment_id_local_var,
+        fki_ezsignsignature_id_local_var,
+        bin_ezsignsignatureattachment_md5_local_str,
+        s_ezsignsignatureattachment_name_local_str,
+        s_download_url_local_str
         );
+
+    if (!ezsignsignatureattachment_response_local_var) {
+        goto end;
+    }
 
     return ezsignsignatureattachment_response_local_var;
 end:
+    if (pki_ezsignsignatureattachment_id_local_var) {
+        free(pki_ezsignsignatureattachment_id_local_var);
+        pki_ezsignsignatureattachment_id_local_var = NULL;
+    }
+    if (fki_ezsignsignature_id_local_var) {
+        free(fki_ezsignsignature_id_local_var);
+        fki_ezsignsignature_id_local_var = NULL;
+    }
+    if (bin_ezsignsignatureattachment_md5_local_str) {
+        free(bin_ezsignsignatureattachment_md5_local_str);
+        bin_ezsignsignatureattachment_md5_local_str = NULL;
+    }
+    if (s_ezsignsignatureattachment_name_local_str) {
+        free(s_ezsignsignatureattachment_name_local_str);
+        s_ezsignsignatureattachment_name_local_str = NULL;
+    }
+    if (s_download_url_local_str) {
+        free(s_download_url_local_str);
+        s_download_url_local_str = NULL;
+    }
     return NULL;
 
 }

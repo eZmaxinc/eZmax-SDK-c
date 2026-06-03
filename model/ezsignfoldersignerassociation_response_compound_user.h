@@ -20,8 +20,8 @@ typedef struct ezsignfoldersignerassociation_response_compound_user_t ezsignfold
 
 
 typedef struct ezsignfoldersignerassociation_response_compound_user_t {
-    int pki_user_id; //numeric
-    int fki_language_id; //numeric
+    int *pki_user_id; //numeric
+    int *fki_language_id; //numeric
     char *s_user_firstname; // string
     char *s_user_lastname; // string
     char *s_email_address; // string
@@ -31,8 +31,8 @@ typedef struct ezsignfoldersignerassociation_response_compound_user_t {
 } ezsignfoldersignerassociation_response_compound_user_t;
 
 __attribute__((deprecated)) ezsignfoldersignerassociation_response_compound_user_t *ezsignfoldersignerassociation_response_compound_user_create(
-    int pki_user_id,
-    int fki_language_id,
+    int *pki_user_id,
+    int *fki_language_id,
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_email_address,

@@ -12,18 +12,21 @@ static authenticationexternal_get_autocomplete_v2_response_m_payload_t *authenti
     if (!authenticationexternal_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    authenticationexternal_get_autocomplete_v2_response_m_payload_local_var->a_obj_authenticationexternal = a_obj_authenticationexternal;
-
+    memset(authenticationexternal_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(authenticationexternal_get_autocomplete_v2_response_m_payload_t));
     authenticationexternal_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    authenticationexternal_get_autocomplete_v2_response_m_payload_local_var->a_obj_authenticationexternal = a_obj_authenticationexternal;
     return authenticationexternal_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) authenticationexternal_get_autocomplete_v2_response_m_payload_t *authenticationexternal_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_authenticationexternal
     ) {
-    return authenticationexternal_get_autocomplete_v2_response_m_payload_create_internal (
+    authenticationexternal_get_autocomplete_v2_response_m_payload_t *result = authenticationexternal_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_authenticationexternal
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void authenticationexternal_get_autocomplete_v2_response_m_payload_free(authenticationexternal_get_autocomplete_v2_response_m_payload_t *authenticationexternal_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ authenticationexternal_get_autocomplete_v2_response_m_payload_t *authenticatione
     }
 
 
+
     authenticationexternal_get_autocomplete_v2_response_m_payload_local_var = authenticationexternal_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_authenticationexternalList
         );
+
+    if (!authenticationexternal_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return authenticationexternal_get_autocomplete_v2_response_m_payload_local_var;
 end:

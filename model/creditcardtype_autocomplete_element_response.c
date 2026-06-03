@@ -7,31 +7,40 @@
 
 static creditcardtype_autocomplete_element_response_t *creditcardtype_autocomplete_element_response_create_internal(
     char *s_creditcardtype_name,
-    int pki_creditcardtype_id,
+    int *pki_creditcardtype_id,
     ezmax_api_definition__full_field_e_creditcardtype_codename__e e_creditcardtype_codename
     ) {
     creditcardtype_autocomplete_element_response_t *creditcardtype_autocomplete_element_response_local_var = malloc(sizeof(creditcardtype_autocomplete_element_response_t));
     if (!creditcardtype_autocomplete_element_response_local_var) {
         return NULL;
     }
+    memset(creditcardtype_autocomplete_element_response_local_var, 0, sizeof(creditcardtype_autocomplete_element_response_t));
+    creditcardtype_autocomplete_element_response_local_var->_library_owned = 1;
     creditcardtype_autocomplete_element_response_local_var->s_creditcardtype_name = s_creditcardtype_name;
     creditcardtype_autocomplete_element_response_local_var->pki_creditcardtype_id = pki_creditcardtype_id;
     creditcardtype_autocomplete_element_response_local_var->e_creditcardtype_codename = e_creditcardtype_codename;
-
-    creditcardtype_autocomplete_element_response_local_var->_library_owned = 1;
     return creditcardtype_autocomplete_element_response_local_var;
 }
 
 __attribute__((deprecated)) creditcardtype_autocomplete_element_response_t *creditcardtype_autocomplete_element_response_create(
     char *s_creditcardtype_name,
-    int pki_creditcardtype_id,
+    int *pki_creditcardtype_id,
     ezmax_api_definition__full_field_e_creditcardtype_codename__e e_creditcardtype_codename
     ) {
-    return creditcardtype_autocomplete_element_response_create_internal (
+    int *pki_creditcardtype_id_copy = NULL;
+    if (pki_creditcardtype_id) {
+        pki_creditcardtype_id_copy = malloc(sizeof(int));
+        if (pki_creditcardtype_id_copy) *pki_creditcardtype_id_copy = *pki_creditcardtype_id;
+    }
+    creditcardtype_autocomplete_element_response_t *result = creditcardtype_autocomplete_element_response_create_internal (
         s_creditcardtype_name,
-        pki_creditcardtype_id,
+        pki_creditcardtype_id_copy,
         e_creditcardtype_codename
         );
+    if (!result) {
+        free(pki_creditcardtype_id_copy);
+    }
+    return result;
 }
 
 void creditcardtype_autocomplete_element_response_free(creditcardtype_autocomplete_element_response_t *creditcardtype_autocomplete_element_response) {
@@ -46,6 +55,10 @@ void creditcardtype_autocomplete_element_response_free(creditcardtype_autocomple
     if (creditcardtype_autocomplete_element_response->s_creditcardtype_name) {
         free(creditcardtype_autocomplete_element_response->s_creditcardtype_name);
         creditcardtype_autocomplete_element_response->s_creditcardtype_name = NULL;
+    }
+    if (creditcardtype_autocomplete_element_response->pki_creditcardtype_id) {
+        free(creditcardtype_autocomplete_element_response->pki_creditcardtype_id);
+        creditcardtype_autocomplete_element_response->pki_creditcardtype_id = NULL;
     }
     free(creditcardtype_autocomplete_element_response);
 }
@@ -66,7 +79,7 @@ cJSON *creditcardtype_autocomplete_element_response_convertToJSON(creditcardtype
     if (!creditcardtype_autocomplete_element_response->pki_creditcardtype_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiCreditcardtypeID", creditcardtype_autocomplete_element_response->pki_creditcardtype_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiCreditcardtypeID", *creditcardtype_autocomplete_element_response->pki_creditcardtype_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -95,6 +108,11 @@ fail:
 creditcardtype_autocomplete_element_response_t *creditcardtype_autocomplete_element_response_parseFromJSON(cJSON *creditcardtype_autocomplete_element_responseJSON){
 
     creditcardtype_autocomplete_element_response_t *creditcardtype_autocomplete_element_response_local_var = NULL;
+
+    char *s_creditcardtype_name_local_str = NULL;
+
+    // define the local variable for creditcardtype_autocomplete_element_response->pki_creditcardtype_id
+    int *pki_creditcardtype_id_local_var = NULL;
 
     // define the local variable for creditcardtype_autocomplete_element_response->e_creditcardtype_codename
     ezmax_api_definition__full_field_e_creditcardtype_codename__e e_creditcardtype_codename_local_nonprim = 0;
@@ -128,6 +146,12 @@ creditcardtype_autocomplete_element_response_t *creditcardtype_autocomplete_elem
     {
     goto end; //Numeric
     }
+    pki_creditcardtype_id_local_var = malloc(sizeof(int));
+    if(!pki_creditcardtype_id_local_var)
+    {
+        goto end;
+    }
+    *pki_creditcardtype_id_local_var = pki_creditcardtype_id->valuedouble;
 
     // creditcardtype_autocomplete_element_response->e_creditcardtype_codename
     cJSON *e_creditcardtype_codename = cJSON_GetObjectItemCaseSensitive(creditcardtype_autocomplete_element_responseJSON, "eCreditcardtypeCodename");
@@ -142,14 +166,28 @@ creditcardtype_autocomplete_element_response_t *creditcardtype_autocomplete_elem
     e_creditcardtype_codename_local_nonprim = field_e_creditcardtype_codename_parseFromJSON(e_creditcardtype_codename); //custom
 
 
+    if (s_creditcardtype_name && !cJSON_IsNull(s_creditcardtype_name)) s_creditcardtype_name_local_str = strdup(s_creditcardtype_name->valuestring);
+
     creditcardtype_autocomplete_element_response_local_var = creditcardtype_autocomplete_element_response_create_internal (
-        strdup(s_creditcardtype_name->valuestring),
-        pki_creditcardtype_id->valuedouble,
+        s_creditcardtype_name_local_str,
+        pki_creditcardtype_id_local_var,
         e_creditcardtype_codename_local_nonprim
         );
 
+    if (!creditcardtype_autocomplete_element_response_local_var) {
+        goto end;
+    }
+
     return creditcardtype_autocomplete_element_response_local_var;
 end:
+    if (s_creditcardtype_name_local_str) {
+        free(s_creditcardtype_name_local_str);
+        s_creditcardtype_name_local_str = NULL;
+    }
+    if (pki_creditcardtype_id_local_var) {
+        free(pki_creditcardtype_id_local_var);
+        pki_creditcardtype_id_local_var = NULL;
+    }
     if (e_creditcardtype_codename_local_nonprim) {
         e_creditcardtype_codename_local_nonprim = 0;
     }

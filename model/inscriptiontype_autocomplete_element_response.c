@@ -6,28 +6,37 @@
 
 
 static inscriptiontype_autocomplete_element_response_t *inscriptiontype_autocomplete_element_response_create_internal(
-    int pki_inscriptiontype_id,
+    int *pki_inscriptiontype_id,
     char *s_inscriptiontype_name_x
     ) {
     inscriptiontype_autocomplete_element_response_t *inscriptiontype_autocomplete_element_response_local_var = malloc(sizeof(inscriptiontype_autocomplete_element_response_t));
     if (!inscriptiontype_autocomplete_element_response_local_var) {
         return NULL;
     }
+    memset(inscriptiontype_autocomplete_element_response_local_var, 0, sizeof(inscriptiontype_autocomplete_element_response_t));
+    inscriptiontype_autocomplete_element_response_local_var->_library_owned = 1;
     inscriptiontype_autocomplete_element_response_local_var->pki_inscriptiontype_id = pki_inscriptiontype_id;
     inscriptiontype_autocomplete_element_response_local_var->s_inscriptiontype_name_x = s_inscriptiontype_name_x;
-
-    inscriptiontype_autocomplete_element_response_local_var->_library_owned = 1;
     return inscriptiontype_autocomplete_element_response_local_var;
 }
 
 __attribute__((deprecated)) inscriptiontype_autocomplete_element_response_t *inscriptiontype_autocomplete_element_response_create(
-    int pki_inscriptiontype_id,
+    int *pki_inscriptiontype_id,
     char *s_inscriptiontype_name_x
     ) {
-    return inscriptiontype_autocomplete_element_response_create_internal (
-        pki_inscriptiontype_id,
+    int *pki_inscriptiontype_id_copy = NULL;
+    if (pki_inscriptiontype_id) {
+        pki_inscriptiontype_id_copy = malloc(sizeof(int));
+        if (pki_inscriptiontype_id_copy) *pki_inscriptiontype_id_copy = *pki_inscriptiontype_id;
+    }
+    inscriptiontype_autocomplete_element_response_t *result = inscriptiontype_autocomplete_element_response_create_internal (
+        pki_inscriptiontype_id_copy,
         s_inscriptiontype_name_x
         );
+    if (!result) {
+        free(pki_inscriptiontype_id_copy);
+    }
+    return result;
 }
 
 void inscriptiontype_autocomplete_element_response_free(inscriptiontype_autocomplete_element_response_t *inscriptiontype_autocomplete_element_response) {
@@ -39,6 +48,10 @@ void inscriptiontype_autocomplete_element_response_free(inscriptiontype_autocomp
         return ;
     }
     listEntry_t *listEntry;
+    if (inscriptiontype_autocomplete_element_response->pki_inscriptiontype_id) {
+        free(inscriptiontype_autocomplete_element_response->pki_inscriptiontype_id);
+        inscriptiontype_autocomplete_element_response->pki_inscriptiontype_id = NULL;
+    }
     if (inscriptiontype_autocomplete_element_response->s_inscriptiontype_name_x) {
         free(inscriptiontype_autocomplete_element_response->s_inscriptiontype_name_x);
         inscriptiontype_autocomplete_element_response->s_inscriptiontype_name_x = NULL;
@@ -53,7 +66,7 @@ cJSON *inscriptiontype_autocomplete_element_response_convertToJSON(inscriptionty
     if (!inscriptiontype_autocomplete_element_response->pki_inscriptiontype_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiInscriptiontypeID", inscriptiontype_autocomplete_element_response->pki_inscriptiontype_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiInscriptiontypeID", *inscriptiontype_autocomplete_element_response->pki_inscriptiontype_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -78,6 +91,11 @@ inscriptiontype_autocomplete_element_response_t *inscriptiontype_autocomplete_el
 
     inscriptiontype_autocomplete_element_response_t *inscriptiontype_autocomplete_element_response_local_var = NULL;
 
+    // define the local variable for inscriptiontype_autocomplete_element_response->pki_inscriptiontype_id
+    int *pki_inscriptiontype_id_local_var = NULL;
+
+    char *s_inscriptiontype_name_x_local_str = NULL;
+
     // inscriptiontype_autocomplete_element_response->pki_inscriptiontype_id
     cJSON *pki_inscriptiontype_id = cJSON_GetObjectItemCaseSensitive(inscriptiontype_autocomplete_element_responseJSON, "pkiInscriptiontypeID");
     if (cJSON_IsNull(pki_inscriptiontype_id)) {
@@ -92,6 +110,12 @@ inscriptiontype_autocomplete_element_response_t *inscriptiontype_autocomplete_el
     {
     goto end; //Numeric
     }
+    pki_inscriptiontype_id_local_var = malloc(sizeof(int));
+    if(!pki_inscriptiontype_id_local_var)
+    {
+        goto end;
+    }
+    *pki_inscriptiontype_id_local_var = pki_inscriptiontype_id->valuedouble;
 
     // inscriptiontype_autocomplete_element_response->s_inscriptiontype_name_x
     cJSON *s_inscriptiontype_name_x = cJSON_GetObjectItemCaseSensitive(inscriptiontype_autocomplete_element_responseJSON, "sInscriptiontypeNameX");
@@ -109,13 +133,27 @@ inscriptiontype_autocomplete_element_response_t *inscriptiontype_autocomplete_el
     }
 
 
+    if (s_inscriptiontype_name_x && !cJSON_IsNull(s_inscriptiontype_name_x)) s_inscriptiontype_name_x_local_str = strdup(s_inscriptiontype_name_x->valuestring);
+
     inscriptiontype_autocomplete_element_response_local_var = inscriptiontype_autocomplete_element_response_create_internal (
-        pki_inscriptiontype_id->valuedouble,
-        strdup(s_inscriptiontype_name_x->valuestring)
+        pki_inscriptiontype_id_local_var,
+        s_inscriptiontype_name_x_local_str
         );
+
+    if (!inscriptiontype_autocomplete_element_response_local_var) {
+        goto end;
+    }
 
     return inscriptiontype_autocomplete_element_response_local_var;
 end:
+    if (pki_inscriptiontype_id_local_var) {
+        free(pki_inscriptiontype_id_local_var);
+        pki_inscriptiontype_id_local_var = NULL;
+    }
+    if (s_inscriptiontype_name_x_local_str) {
+        free(s_inscriptiontype_name_x_local_str);
+        s_inscriptiontype_name_x_local_str = NULL;
+    }
     return NULL;
 
 }

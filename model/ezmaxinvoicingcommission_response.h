@@ -19,26 +19,26 @@ typedef struct ezmaxinvoicingcommission_response_t ezmaxinvoicingcommission_resp
 
 
 typedef struct ezmaxinvoicingcommission_response_t {
-    int pki_ezmaxinvoicingcommission_id; //numeric
-    int fki_ezmaxinvoicingsummaryglobal_id; //numeric
-    int fki_ezmaxpartner_id; //numeric
-    int fki_ezmaxrepresentative_id; //numeric
+    int *pki_ezmaxinvoicingcommission_id; //numeric
+    int *fki_ezmaxinvoicingsummaryglobal_id; //numeric
+    int *fki_ezmaxpartner_id; //numeric
+    int *fki_ezmaxrepresentative_id; //numeric
     char *dt_ezmaxinvoicingcommission_start; // string
     char *dt_ezmaxinvoicingcommission_end; // string
-    int i_ezmaxinvoicingcommission_days; //numeric
+    int *i_ezmaxinvoicingcommission_days; //numeric
     char *d_ezmaxinvoicingcommission_amount; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezmaxinvoicingcommission_response_t;
 
 __attribute__((deprecated)) ezmaxinvoicingcommission_response_t *ezmaxinvoicingcommission_response_create(
-    int pki_ezmaxinvoicingcommission_id,
-    int fki_ezmaxinvoicingsummaryglobal_id,
-    int fki_ezmaxpartner_id,
-    int fki_ezmaxrepresentative_id,
+    int *pki_ezmaxinvoicingcommission_id,
+    int *fki_ezmaxinvoicingsummaryglobal_id,
+    int *fki_ezmaxpartner_id,
+    int *fki_ezmaxrepresentative_id,
     char *dt_ezmaxinvoicingcommission_start,
     char *dt_ezmaxinvoicingcommission_end,
-    int i_ezmaxinvoicingcommission_days,
+    int *i_ezmaxinvoicingcommission_days,
     char *d_ezmaxinvoicingcommission_amount
 );
 

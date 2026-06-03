@@ -6,8 +6,8 @@
 
 
 static creditcarddetail_request_t *creditcarddetail_request_create_internal(
-    int i_creditcarddetail_expirationmonth,
-    int i_creditcarddetail_expirationyear,
+    int *i_creditcarddetail_expirationmonth,
+    int *i_creditcarddetail_expirationyear,
     char *s_creditcarddetail_civic,
     char *s_creditcarddetail_street,
     char *s_creditcarddetail_zip
@@ -16,30 +16,45 @@ static creditcarddetail_request_t *creditcarddetail_request_create_internal(
     if (!creditcarddetail_request_local_var) {
         return NULL;
     }
+    memset(creditcarddetail_request_local_var, 0, sizeof(creditcarddetail_request_t));
+    creditcarddetail_request_local_var->_library_owned = 1;
     creditcarddetail_request_local_var->i_creditcarddetail_expirationmonth = i_creditcarddetail_expirationmonth;
     creditcarddetail_request_local_var->i_creditcarddetail_expirationyear = i_creditcarddetail_expirationyear;
     creditcarddetail_request_local_var->s_creditcarddetail_civic = s_creditcarddetail_civic;
     creditcarddetail_request_local_var->s_creditcarddetail_street = s_creditcarddetail_street;
     creditcarddetail_request_local_var->s_creditcarddetail_zip = s_creditcarddetail_zip;
-
-    creditcarddetail_request_local_var->_library_owned = 1;
     return creditcarddetail_request_local_var;
 }
 
 __attribute__((deprecated)) creditcarddetail_request_t *creditcarddetail_request_create(
-    int i_creditcarddetail_expirationmonth,
-    int i_creditcarddetail_expirationyear,
+    int *i_creditcarddetail_expirationmonth,
+    int *i_creditcarddetail_expirationyear,
     char *s_creditcarddetail_civic,
     char *s_creditcarddetail_street,
     char *s_creditcarddetail_zip
     ) {
-    return creditcarddetail_request_create_internal (
-        i_creditcarddetail_expirationmonth,
-        i_creditcarddetail_expirationyear,
+    int *i_creditcarddetail_expirationmonth_copy = NULL;
+    if (i_creditcarddetail_expirationmonth) {
+        i_creditcarddetail_expirationmonth_copy = malloc(sizeof(int));
+        if (i_creditcarddetail_expirationmonth_copy) *i_creditcarddetail_expirationmonth_copy = *i_creditcarddetail_expirationmonth;
+    }
+    int *i_creditcarddetail_expirationyear_copy = NULL;
+    if (i_creditcarddetail_expirationyear) {
+        i_creditcarddetail_expirationyear_copy = malloc(sizeof(int));
+        if (i_creditcarddetail_expirationyear_copy) *i_creditcarddetail_expirationyear_copy = *i_creditcarddetail_expirationyear;
+    }
+    creditcarddetail_request_t *result = creditcarddetail_request_create_internal (
+        i_creditcarddetail_expirationmonth_copy,
+        i_creditcarddetail_expirationyear_copy,
         s_creditcarddetail_civic,
         s_creditcarddetail_street,
         s_creditcarddetail_zip
         );
+    if (!result) {
+        free(i_creditcarddetail_expirationmonth_copy);
+        free(i_creditcarddetail_expirationyear_copy);
+    }
+    return result;
 }
 
 void creditcarddetail_request_free(creditcarddetail_request_t *creditcarddetail_request) {
@@ -51,6 +66,14 @@ void creditcarddetail_request_free(creditcarddetail_request_t *creditcarddetail_
         return ;
     }
     listEntry_t *listEntry;
+    if (creditcarddetail_request->i_creditcarddetail_expirationmonth) {
+        free(creditcarddetail_request->i_creditcarddetail_expirationmonth);
+        creditcarddetail_request->i_creditcarddetail_expirationmonth = NULL;
+    }
+    if (creditcarddetail_request->i_creditcarddetail_expirationyear) {
+        free(creditcarddetail_request->i_creditcarddetail_expirationyear);
+        creditcarddetail_request->i_creditcarddetail_expirationyear = NULL;
+    }
     if (creditcarddetail_request->s_creditcarddetail_civic) {
         free(creditcarddetail_request->s_creditcarddetail_civic);
         creditcarddetail_request->s_creditcarddetail_civic = NULL;
@@ -73,7 +96,7 @@ cJSON *creditcarddetail_request_convertToJSON(creditcarddetail_request_t *credit
     if (!creditcarddetail_request->i_creditcarddetail_expirationmonth) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iCreditcarddetailExpirationmonth", creditcarddetail_request->i_creditcarddetail_expirationmonth) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iCreditcarddetailExpirationmonth", *creditcarddetail_request->i_creditcarddetail_expirationmonth) == NULL) {
     goto fail; //Numeric
     }
 
@@ -82,7 +105,7 @@ cJSON *creditcarddetail_request_convertToJSON(creditcarddetail_request_t *credit
     if (!creditcarddetail_request->i_creditcarddetail_expirationyear) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iCreditcarddetailExpirationyear", creditcarddetail_request->i_creditcarddetail_expirationyear) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iCreditcarddetailExpirationyear", *creditcarddetail_request->i_creditcarddetail_expirationyear) == NULL) {
     goto fail; //Numeric
     }
 
@@ -125,6 +148,18 @@ creditcarddetail_request_t *creditcarddetail_request_parseFromJSON(cJSON *credit
 
     creditcarddetail_request_t *creditcarddetail_request_local_var = NULL;
 
+    // define the local variable for creditcarddetail_request->i_creditcarddetail_expirationmonth
+    int *i_creditcarddetail_expirationmonth_local_var = NULL;
+
+    // define the local variable for creditcarddetail_request->i_creditcarddetail_expirationyear
+    int *i_creditcarddetail_expirationyear_local_var = NULL;
+
+    char *s_creditcarddetail_civic_local_str = NULL;
+
+    char *s_creditcarddetail_street_local_str = NULL;
+
+    char *s_creditcarddetail_zip_local_str = NULL;
+
     // creditcarddetail_request->i_creditcarddetail_expirationmonth
     cJSON *i_creditcarddetail_expirationmonth = cJSON_GetObjectItemCaseSensitive(creditcarddetail_requestJSON, "iCreditcarddetailExpirationmonth");
     if (cJSON_IsNull(i_creditcarddetail_expirationmonth)) {
@@ -139,6 +174,12 @@ creditcarddetail_request_t *creditcarddetail_request_parseFromJSON(cJSON *credit
     {
     goto end; //Numeric
     }
+    i_creditcarddetail_expirationmonth_local_var = malloc(sizeof(int));
+    if(!i_creditcarddetail_expirationmonth_local_var)
+    {
+        goto end;
+    }
+    *i_creditcarddetail_expirationmonth_local_var = i_creditcarddetail_expirationmonth->valuedouble;
 
     // creditcarddetail_request->i_creditcarddetail_expirationyear
     cJSON *i_creditcarddetail_expirationyear = cJSON_GetObjectItemCaseSensitive(creditcarddetail_requestJSON, "iCreditcarddetailExpirationyear");
@@ -154,6 +195,12 @@ creditcarddetail_request_t *creditcarddetail_request_parseFromJSON(cJSON *credit
     {
     goto end; //Numeric
     }
+    i_creditcarddetail_expirationyear_local_var = malloc(sizeof(int));
+    if(!i_creditcarddetail_expirationyear_local_var)
+    {
+        goto end;
+    }
+    *i_creditcarddetail_expirationyear_local_var = i_creditcarddetail_expirationyear->valuedouble;
 
     // creditcarddetail_request->s_creditcarddetail_civic
     cJSON *s_creditcarddetail_civic = cJSON_GetObjectItemCaseSensitive(creditcarddetail_requestJSON, "sCreditcarddetailCivic");
@@ -201,16 +248,44 @@ creditcarddetail_request_t *creditcarddetail_request_parseFromJSON(cJSON *credit
     }
 
 
+    if (s_creditcarddetail_civic && !cJSON_IsNull(s_creditcarddetail_civic)) s_creditcarddetail_civic_local_str = strdup(s_creditcarddetail_civic->valuestring);
+    if (s_creditcarddetail_street && !cJSON_IsNull(s_creditcarddetail_street)) s_creditcarddetail_street_local_str = strdup(s_creditcarddetail_street->valuestring);
+    if (s_creditcarddetail_zip && !cJSON_IsNull(s_creditcarddetail_zip)) s_creditcarddetail_zip_local_str = strdup(s_creditcarddetail_zip->valuestring);
+
     creditcarddetail_request_local_var = creditcarddetail_request_create_internal (
-        i_creditcarddetail_expirationmonth->valuedouble,
-        i_creditcarddetail_expirationyear->valuedouble,
-        strdup(s_creditcarddetail_civic->valuestring),
-        strdup(s_creditcarddetail_street->valuestring),
-        strdup(s_creditcarddetail_zip->valuestring)
+        i_creditcarddetail_expirationmonth_local_var,
+        i_creditcarddetail_expirationyear_local_var,
+        s_creditcarddetail_civic_local_str,
+        s_creditcarddetail_street_local_str,
+        s_creditcarddetail_zip_local_str
         );
+
+    if (!creditcarddetail_request_local_var) {
+        goto end;
+    }
 
     return creditcarddetail_request_local_var;
 end:
+    if (i_creditcarddetail_expirationmonth_local_var) {
+        free(i_creditcarddetail_expirationmonth_local_var);
+        i_creditcarddetail_expirationmonth_local_var = NULL;
+    }
+    if (i_creditcarddetail_expirationyear_local_var) {
+        free(i_creditcarddetail_expirationyear_local_var);
+        i_creditcarddetail_expirationyear_local_var = NULL;
+    }
+    if (s_creditcarddetail_civic_local_str) {
+        free(s_creditcarddetail_civic_local_str);
+        s_creditcarddetail_civic_local_str = NULL;
+    }
+    if (s_creditcarddetail_street_local_str) {
+        free(s_creditcarddetail_street_local_str);
+        s_creditcarddetail_street_local_str = NULL;
+    }
+    if (s_creditcarddetail_zip_local_str) {
+        free(s_creditcarddetail_zip_local_str);
+        s_creditcarddetail_zip_local_str = NULL;
+    }
     return NULL;
 
 }

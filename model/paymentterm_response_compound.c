@@ -6,18 +6,20 @@
 
 
 static paymentterm_response_compound_t *paymentterm_response_compound_create_internal(
-    int pki_paymentterm_id,
+    int *pki_paymentterm_id,
     char *s_paymentterm_code,
     ezmax_api_definition__full_field_e_paymentterm_type__e e_paymentterm_type,
-    int i_paymentterm_day,
+    int *i_paymentterm_day,
     multilingual_paymentterm_description_t *obj_paymentterm_description,
-    int b_paymentterm_isactive,
+    int *b_paymentterm_isactive,
     common_audit_t *obj_audit
     ) {
     paymentterm_response_compound_t *paymentterm_response_compound_local_var = malloc(sizeof(paymentterm_response_compound_t));
     if (!paymentterm_response_compound_local_var) {
         return NULL;
     }
+    memset(paymentterm_response_compound_local_var, 0, sizeof(paymentterm_response_compound_t));
+    paymentterm_response_compound_local_var->_library_owned = 1;
     paymentterm_response_compound_local_var->pki_paymentterm_id = pki_paymentterm_id;
     paymentterm_response_compound_local_var->s_paymentterm_code = s_paymentterm_code;
     paymentterm_response_compound_local_var->e_paymentterm_type = e_paymentterm_type;
@@ -25,29 +27,48 @@ static paymentterm_response_compound_t *paymentterm_response_compound_create_int
     paymentterm_response_compound_local_var->obj_paymentterm_description = obj_paymentterm_description;
     paymentterm_response_compound_local_var->b_paymentterm_isactive = b_paymentterm_isactive;
     paymentterm_response_compound_local_var->obj_audit = obj_audit;
-
-    paymentterm_response_compound_local_var->_library_owned = 1;
     return paymentterm_response_compound_local_var;
 }
 
 __attribute__((deprecated)) paymentterm_response_compound_t *paymentterm_response_compound_create(
-    int pki_paymentterm_id,
+    int *pki_paymentterm_id,
     char *s_paymentterm_code,
     ezmax_api_definition__full_field_e_paymentterm_type__e e_paymentterm_type,
-    int i_paymentterm_day,
+    int *i_paymentterm_day,
     multilingual_paymentterm_description_t *obj_paymentterm_description,
-    int b_paymentterm_isactive,
+    int *b_paymentterm_isactive,
     common_audit_t *obj_audit
     ) {
-    return paymentterm_response_compound_create_internal (
-        pki_paymentterm_id,
+    int *pki_paymentterm_id_copy = NULL;
+    if (pki_paymentterm_id) {
+        pki_paymentterm_id_copy = malloc(sizeof(int));
+        if (pki_paymentterm_id_copy) *pki_paymentterm_id_copy = *pki_paymentterm_id;
+    }
+    int *i_paymentterm_day_copy = NULL;
+    if (i_paymentterm_day) {
+        i_paymentterm_day_copy = malloc(sizeof(int));
+        if (i_paymentterm_day_copy) *i_paymentterm_day_copy = *i_paymentterm_day;
+    }
+    int *b_paymentterm_isactive_copy = NULL;
+    if (b_paymentterm_isactive) {
+        b_paymentterm_isactive_copy = malloc(sizeof(int));
+        if (b_paymentterm_isactive_copy) *b_paymentterm_isactive_copy = *b_paymentterm_isactive;
+    }
+    paymentterm_response_compound_t *result = paymentterm_response_compound_create_internal (
+        pki_paymentterm_id_copy,
         s_paymentterm_code,
         e_paymentterm_type,
-        i_paymentterm_day,
+        i_paymentterm_day_copy,
         obj_paymentterm_description,
-        b_paymentterm_isactive,
+        b_paymentterm_isactive_copy,
         obj_audit
         );
+    if (!result) {
+        free(pki_paymentterm_id_copy);
+        free(i_paymentterm_day_copy);
+        free(b_paymentterm_isactive_copy);
+    }
+    return result;
 }
 
 void paymentterm_response_compound_free(paymentterm_response_compound_t *paymentterm_response_compound) {
@@ -59,13 +80,25 @@ void paymentterm_response_compound_free(paymentterm_response_compound_t *payment
         return ;
     }
     listEntry_t *listEntry;
+    if (paymentterm_response_compound->pki_paymentterm_id) {
+        free(paymentterm_response_compound->pki_paymentterm_id);
+        paymentterm_response_compound->pki_paymentterm_id = NULL;
+    }
     if (paymentterm_response_compound->s_paymentterm_code) {
         free(paymentterm_response_compound->s_paymentterm_code);
         paymentterm_response_compound->s_paymentterm_code = NULL;
     }
+    if (paymentterm_response_compound->i_paymentterm_day) {
+        free(paymentterm_response_compound->i_paymentterm_day);
+        paymentterm_response_compound->i_paymentterm_day = NULL;
+    }
     if (paymentterm_response_compound->obj_paymentterm_description) {
         multilingual_paymentterm_description_free(paymentterm_response_compound->obj_paymentterm_description);
         paymentterm_response_compound->obj_paymentterm_description = NULL;
+    }
+    if (paymentterm_response_compound->b_paymentterm_isactive) {
+        free(paymentterm_response_compound->b_paymentterm_isactive);
+        paymentterm_response_compound->b_paymentterm_isactive = NULL;
     }
     if (paymentterm_response_compound->obj_audit) {
         common_audit_free(paymentterm_response_compound->obj_audit);
@@ -81,7 +114,7 @@ cJSON *paymentterm_response_compound_convertToJSON(paymentterm_response_compound
     if (!paymentterm_response_compound->pki_paymentterm_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiPaymenttermID", paymentterm_response_compound->pki_paymentterm_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiPaymenttermID", *paymentterm_response_compound->pki_paymentterm_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -113,7 +146,7 @@ cJSON *paymentterm_response_compound_convertToJSON(paymentterm_response_compound
     if (!paymentterm_response_compound->i_paymentterm_day) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iPaymenttermDay", paymentterm_response_compound->i_paymentterm_day) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iPaymenttermDay", *paymentterm_response_compound->i_paymentterm_day) == NULL) {
     goto fail; //Numeric
     }
 
@@ -136,7 +169,7 @@ cJSON *paymentterm_response_compound_convertToJSON(paymentterm_response_compound
     if (!paymentterm_response_compound->b_paymentterm_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bPaymenttermIsactive", paymentterm_response_compound->b_paymentterm_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bPaymenttermIsactive", *paymentterm_response_compound->b_paymentterm_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -166,11 +199,22 @@ paymentterm_response_compound_t *paymentterm_response_compound_parseFromJSON(cJS
 
     paymentterm_response_compound_t *paymentterm_response_compound_local_var = NULL;
 
+    // define the local variable for paymentterm_response_compound->pki_paymentterm_id
+    int *pki_paymentterm_id_local_var = NULL;
+
+    char *s_paymentterm_code_local_str = NULL;
+
     // define the local variable for paymentterm_response_compound->e_paymentterm_type
     ezmax_api_definition__full_field_e_paymentterm_type__e e_paymentterm_type_local_nonprim = 0;
 
+    // define the local variable for paymentterm_response_compound->i_paymentterm_day
+    int *i_paymentterm_day_local_var = NULL;
+
     // define the local variable for paymentterm_response_compound->obj_paymentterm_description
     multilingual_paymentterm_description_t *obj_paymentterm_description_local_nonprim = NULL;
+
+    // define the local variable for paymentterm_response_compound->b_paymentterm_isactive
+    int *b_paymentterm_isactive_local_var = NULL;
 
     // define the local variable for paymentterm_response_compound->obj_audit
     common_audit_t *obj_audit_local_nonprim = NULL;
@@ -189,6 +233,12 @@ paymentterm_response_compound_t *paymentterm_response_compound_parseFromJSON(cJS
     {
     goto end; //Numeric
     }
+    pki_paymentterm_id_local_var = malloc(sizeof(int));
+    if(!pki_paymentterm_id_local_var)
+    {
+        goto end;
+    }
+    *pki_paymentterm_id_local_var = pki_paymentterm_id->valuedouble;
 
     // paymentterm_response_compound->s_paymentterm_code
     cJSON *s_paymentterm_code = cJSON_GetObjectItemCaseSensitive(paymentterm_response_compoundJSON, "sPaymenttermCode");
@@ -231,6 +281,12 @@ paymentterm_response_compound_t *paymentterm_response_compound_parseFromJSON(cJS
     {
     goto end; //Numeric
     }
+    i_paymentterm_day_local_var = malloc(sizeof(int));
+    if(!i_paymentterm_day_local_var)
+    {
+        goto end;
+    }
+    *i_paymentterm_day_local_var = i_paymentterm_day->valuedouble;
 
     // paymentterm_response_compound->obj_paymentterm_description
     cJSON *obj_paymentterm_description = cJSON_GetObjectItemCaseSensitive(paymentterm_response_compoundJSON, "objPaymenttermDescription");
@@ -258,6 +314,12 @@ paymentterm_response_compound_t *paymentterm_response_compound_parseFromJSON(cJS
     {
     goto end; //Bool
     }
+    b_paymentterm_isactive_local_var = malloc(sizeof(int));
+    if(!b_paymentterm_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_paymentterm_isactive_local_var = b_paymentterm_isactive->valueint;
 
     // paymentterm_response_compound->obj_audit
     cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(paymentterm_response_compoundJSON, "objAudit");
@@ -272,24 +334,46 @@ paymentterm_response_compound_t *paymentterm_response_compound_parseFromJSON(cJS
     obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
 
 
+    if (s_paymentterm_code && !cJSON_IsNull(s_paymentterm_code)) s_paymentterm_code_local_str = strdup(s_paymentterm_code->valuestring);
+
     paymentterm_response_compound_local_var = paymentterm_response_compound_create_internal (
-        pki_paymentterm_id->valuedouble,
-        strdup(s_paymentterm_code->valuestring),
+        pki_paymentterm_id_local_var,
+        s_paymentterm_code_local_str,
         e_paymentterm_type_local_nonprim,
-        i_paymentterm_day->valuedouble,
+        i_paymentterm_day_local_var,
         obj_paymentterm_description_local_nonprim,
-        b_paymentterm_isactive->valueint,
+        b_paymentterm_isactive_local_var,
         obj_audit_local_nonprim
         );
 
+    if (!paymentterm_response_compound_local_var) {
+        goto end;
+    }
+
     return paymentterm_response_compound_local_var;
 end:
+    if (pki_paymentterm_id_local_var) {
+        free(pki_paymentterm_id_local_var);
+        pki_paymentterm_id_local_var = NULL;
+    }
+    if (s_paymentterm_code_local_str) {
+        free(s_paymentterm_code_local_str);
+        s_paymentterm_code_local_str = NULL;
+    }
     if (e_paymentterm_type_local_nonprim) {
         e_paymentterm_type_local_nonprim = 0;
+    }
+    if (i_paymentterm_day_local_var) {
+        free(i_paymentterm_day_local_var);
+        i_paymentterm_day_local_var = NULL;
     }
     if (obj_paymentterm_description_local_nonprim) {
         multilingual_paymentterm_description_free(obj_paymentterm_description_local_nonprim);
         obj_paymentterm_description_local_nonprim = NULL;
+    }
+    if (b_paymentterm_isactive_local_var) {
+        free(b_paymentterm_isactive_local_var);
+        b_paymentterm_isactive_local_var = NULL;
     }
     if (obj_audit_local_nonprim) {
         common_audit_free(obj_audit_local_nonprim);

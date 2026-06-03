@@ -21,7 +21,7 @@ typedef struct creditcardtype_autocomplete_element_response_t creditcardtype_aut
 
 typedef struct creditcardtype_autocomplete_element_response_t {
     char *s_creditcardtype_name; // string
-    int pki_creditcardtype_id; //numeric
+    int *pki_creditcardtype_id; //numeric
     ezmax_api_definition__full_field_e_creditcardtype_codename__e e_creditcardtype_codename; //referenced enum
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -29,7 +29,7 @@ typedef struct creditcardtype_autocomplete_element_response_t {
 
 __attribute__((deprecated)) creditcardtype_autocomplete_element_response_t *creditcardtype_autocomplete_element_response_create(
     char *s_creditcardtype_name,
-    int pki_creditcardtype_id,
+    int *pki_creditcardtype_id,
     ezmax_api_definition__full_field_e_creditcardtype_codename__e e_creditcardtype_codename
 );
 

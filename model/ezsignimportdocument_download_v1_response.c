@@ -14,11 +14,11 @@ static ezsignimportdocument_download_v1_response_t *ezsignimportdocument_downloa
     if (!ezsignimportdocument_download_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsignimportdocument_download_v1_response_local_var, 0, sizeof(ezsignimportdocument_download_v1_response_t));
+    ezsignimportdocument_download_v1_response_local_var->_library_owned = 1;
     ezsignimportdocument_download_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsignimportdocument_download_v1_response_local_var->obj_debug = obj_debug;
     ezsignimportdocument_download_v1_response_local_var->m_payload = m_payload;
-
-    ezsignimportdocument_download_v1_response_local_var->_library_owned = 1;
     return ezsignimportdocument_download_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) ezsignimportdocument_download_v1_response_t *ezsigni
     common_response_obj_debug_t *obj_debug,
     object_t *m_payload
     ) {
-    return ezsignimportdocument_download_v1_response_create_internal (
+    ezsignimportdocument_download_v1_response_t *result = ezsignimportdocument_download_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignimportdocument_download_v1_response_free(ezsignimportdocument_download_v1_response_t *ezsignimportdocument_download_v1_response) {
@@ -154,11 +157,16 @@ ezsignimportdocument_download_v1_response_t *ezsignimportdocument_download_v1_re
     m_payload_local_object = object_parseFromJSON(m_payload); //object
 
 
+
     ezsignimportdocument_download_v1_response_local_var = ezsignimportdocument_download_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_object
         );
+
+    if (!ezsignimportdocument_download_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsignimportdocument_download_v1_response_local_var;
 end:

@@ -12,18 +12,21 @@ static ezsigntemplatedocumentpagerecognition_edit_object_v1_request_t *ezsigntem
     if (!ezsigntemplatedocumentpagerecognition_edit_object_v1_request_local_var) {
         return NULL;
     }
-    ezsigntemplatedocumentpagerecognition_edit_object_v1_request_local_var->obj_ezsigntemplatedocumentpagerecognition = obj_ezsigntemplatedocumentpagerecognition;
-
+    memset(ezsigntemplatedocumentpagerecognition_edit_object_v1_request_local_var, 0, sizeof(ezsigntemplatedocumentpagerecognition_edit_object_v1_request_t));
     ezsigntemplatedocumentpagerecognition_edit_object_v1_request_local_var->_library_owned = 1;
+    ezsigntemplatedocumentpagerecognition_edit_object_v1_request_local_var->obj_ezsigntemplatedocumentpagerecognition = obj_ezsigntemplatedocumentpagerecognition;
     return ezsigntemplatedocumentpagerecognition_edit_object_v1_request_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplatedocumentpagerecognition_edit_object_v1_request_t *ezsigntemplatedocumentpagerecognition_edit_object_v1_request_create(
     ezsigntemplatedocumentpagerecognition_request_compound_t *obj_ezsigntemplatedocumentpagerecognition
     ) {
-    return ezsigntemplatedocumentpagerecognition_edit_object_v1_request_create_internal (
+    ezsigntemplatedocumentpagerecognition_edit_object_v1_request_t *result = ezsigntemplatedocumentpagerecognition_edit_object_v1_request_create_internal (
         obj_ezsigntemplatedocumentpagerecognition
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatedocumentpagerecognition_edit_object_v1_request_free(ezsigntemplatedocumentpagerecognition_edit_object_v1_request_t *ezsigntemplatedocumentpagerecognition_edit_object_v1_request) {
@@ -86,9 +89,14 @@ ezsigntemplatedocumentpagerecognition_edit_object_v1_request_t *ezsigntemplatedo
     obj_ezsigntemplatedocumentpagerecognition_local_nonprim = ezsigntemplatedocumentpagerecognition_request_compound_parseFromJSON(obj_ezsigntemplatedocumentpagerecognition); //nonprimitive
 
 
+
     ezsigntemplatedocumentpagerecognition_edit_object_v1_request_local_var = ezsigntemplatedocumentpagerecognition_edit_object_v1_request_create_internal (
         obj_ezsigntemplatedocumentpagerecognition_local_nonprim
         );
+
+    if (!ezsigntemplatedocumentpagerecognition_edit_object_v1_request_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatedocumentpagerecognition_edit_object_v1_request_local_var;
 end:

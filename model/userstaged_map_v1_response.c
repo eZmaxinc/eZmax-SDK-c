@@ -13,10 +13,10 @@ static userstaged_map_v1_response_t *userstaged_map_v1_response_create_internal(
     if (!userstaged_map_v1_response_local_var) {
         return NULL;
     }
+    memset(userstaged_map_v1_response_local_var, 0, sizeof(userstaged_map_v1_response_t));
+    userstaged_map_v1_response_local_var->_library_owned = 1;
     userstaged_map_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     userstaged_map_v1_response_local_var->obj_debug = obj_debug;
-
-    userstaged_map_v1_response_local_var->_library_owned = 1;
     return userstaged_map_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) userstaged_map_v1_response_t *userstaged_map_v1_resp
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return userstaged_map_v1_response_create_internal (
+    userstaged_map_v1_response_t *result = userstaged_map_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void userstaged_map_v1_response_free(userstaged_map_v1_response_t *userstaged_map_v1_response) {
@@ -119,10 +122,15 @@ userstaged_map_v1_response_t *userstaged_map_v1_response_parseFromJSON(cJSON *us
     }
 
 
+
     userstaged_map_v1_response_local_var = userstaged_map_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!userstaged_map_v1_response_local_var) {
+        goto end;
+    }
 
     return userstaged_map_v1_response_local_var;
 end:

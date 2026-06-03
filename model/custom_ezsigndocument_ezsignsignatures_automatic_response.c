@@ -6,7 +6,7 @@
 
 
 static custom_ezsigndocument_ezsignsignatures_automatic_response_t *custom_ezsigndocument_ezsignsignatures_automatic_response_create_internal(
-    int pki_ezsigndocument_id,
+    int *pki_ezsigndocument_id,
     char *s_ezsigndocument_name,
     list_t *a_obj_ezsignsignature
     ) {
@@ -14,24 +14,33 @@ static custom_ezsigndocument_ezsignsignatures_automatic_response_t *custom_ezsig
     if (!custom_ezsigndocument_ezsignsignatures_automatic_response_local_var) {
         return NULL;
     }
+    memset(custom_ezsigndocument_ezsignsignatures_automatic_response_local_var, 0, sizeof(custom_ezsigndocument_ezsignsignatures_automatic_response_t));
+    custom_ezsigndocument_ezsignsignatures_automatic_response_local_var->_library_owned = 1;
     custom_ezsigndocument_ezsignsignatures_automatic_response_local_var->pki_ezsigndocument_id = pki_ezsigndocument_id;
     custom_ezsigndocument_ezsignsignatures_automatic_response_local_var->s_ezsigndocument_name = s_ezsigndocument_name;
     custom_ezsigndocument_ezsignsignatures_automatic_response_local_var->a_obj_ezsignsignature = a_obj_ezsignsignature;
-
-    custom_ezsigndocument_ezsignsignatures_automatic_response_local_var->_library_owned = 1;
     return custom_ezsigndocument_ezsignsignatures_automatic_response_local_var;
 }
 
 __attribute__((deprecated)) custom_ezsigndocument_ezsignsignatures_automatic_response_t *custom_ezsigndocument_ezsignsignatures_automatic_response_create(
-    int pki_ezsigndocument_id,
+    int *pki_ezsigndocument_id,
     char *s_ezsigndocument_name,
     list_t *a_obj_ezsignsignature
     ) {
-    return custom_ezsigndocument_ezsignsignatures_automatic_response_create_internal (
-        pki_ezsigndocument_id,
+    int *pki_ezsigndocument_id_copy = NULL;
+    if (pki_ezsigndocument_id) {
+        pki_ezsigndocument_id_copy = malloc(sizeof(int));
+        if (pki_ezsigndocument_id_copy) *pki_ezsigndocument_id_copy = *pki_ezsigndocument_id;
+    }
+    custom_ezsigndocument_ezsignsignatures_automatic_response_t *result = custom_ezsigndocument_ezsignsignatures_automatic_response_create_internal (
+        pki_ezsigndocument_id_copy,
         s_ezsigndocument_name,
         a_obj_ezsignsignature
         );
+    if (!result) {
+        free(pki_ezsigndocument_id_copy);
+    }
+    return result;
 }
 
 void custom_ezsigndocument_ezsignsignatures_automatic_response_free(custom_ezsigndocument_ezsignsignatures_automatic_response_t *custom_ezsigndocument_ezsignsignatures_automatic_response) {
@@ -43,6 +52,10 @@ void custom_ezsigndocument_ezsignsignatures_automatic_response_free(custom_ezsig
         return ;
     }
     listEntry_t *listEntry;
+    if (custom_ezsigndocument_ezsignsignatures_automatic_response->pki_ezsigndocument_id) {
+        free(custom_ezsigndocument_ezsignsignatures_automatic_response->pki_ezsigndocument_id);
+        custom_ezsigndocument_ezsignsignatures_automatic_response->pki_ezsigndocument_id = NULL;
+    }
     if (custom_ezsigndocument_ezsignsignatures_automatic_response->s_ezsigndocument_name) {
         free(custom_ezsigndocument_ezsignsignatures_automatic_response->s_ezsigndocument_name);
         custom_ezsigndocument_ezsignsignatures_automatic_response->s_ezsigndocument_name = NULL;
@@ -64,7 +77,7 @@ cJSON *custom_ezsigndocument_ezsignsignatures_automatic_response_convertToJSON(c
     if (!custom_ezsigndocument_ezsignsignatures_automatic_response->pki_ezsigndocument_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiEzsigndocumentID", custom_ezsigndocument_ezsignsignatures_automatic_response->pki_ezsigndocument_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzsigndocumentID", *custom_ezsigndocument_ezsignsignatures_automatic_response->pki_ezsigndocument_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -110,6 +123,11 @@ custom_ezsigndocument_ezsignsignatures_automatic_response_t *custom_ezsigndocume
 
     custom_ezsigndocument_ezsignsignatures_automatic_response_t *custom_ezsigndocument_ezsignsignatures_automatic_response_local_var = NULL;
 
+    // define the local variable for custom_ezsigndocument_ezsignsignatures_automatic_response->pki_ezsigndocument_id
+    int *pki_ezsigndocument_id_local_var = NULL;
+
+    char *s_ezsigndocument_name_local_str = NULL;
+
     // define the local list for custom_ezsigndocument_ezsignsignatures_automatic_response->a_obj_ezsignsignature
     list_t *a_obj_ezsignsignatureList = NULL;
 
@@ -127,6 +145,12 @@ custom_ezsigndocument_ezsignsignatures_automatic_response_t *custom_ezsigndocume
     {
     goto end; //Numeric
     }
+    pki_ezsigndocument_id_local_var = malloc(sizeof(int));
+    if(!pki_ezsigndocument_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezsigndocument_id_local_var = pki_ezsigndocument_id->valuedouble;
 
     // custom_ezsigndocument_ezsignsignatures_automatic_response->s_ezsigndocument_name
     cJSON *s_ezsigndocument_name = cJSON_GetObjectItemCaseSensitive(custom_ezsigndocument_ezsignsignatures_automatic_responseJSON, "sEzsigndocumentName");
@@ -171,14 +195,28 @@ custom_ezsigndocument_ezsignsignatures_automatic_response_t *custom_ezsigndocume
     }
 
 
+    if (s_ezsigndocument_name && !cJSON_IsNull(s_ezsigndocument_name)) s_ezsigndocument_name_local_str = strdup(s_ezsigndocument_name->valuestring);
+
     custom_ezsigndocument_ezsignsignatures_automatic_response_local_var = custom_ezsigndocument_ezsignsignatures_automatic_response_create_internal (
-        pki_ezsigndocument_id->valuedouble,
-        strdup(s_ezsigndocument_name->valuestring),
+        pki_ezsigndocument_id_local_var,
+        s_ezsigndocument_name_local_str,
         a_obj_ezsignsignatureList
         );
 
+    if (!custom_ezsigndocument_ezsignsignatures_automatic_response_local_var) {
+        goto end;
+    }
+
     return custom_ezsigndocument_ezsignsignatures_automatic_response_local_var;
 end:
+    if (pki_ezsigndocument_id_local_var) {
+        free(pki_ezsigndocument_id_local_var);
+        pki_ezsigndocument_id_local_var = NULL;
+    }
+    if (s_ezsigndocument_name_local_str) {
+        free(s_ezsigndocument_name_local_str);
+        s_ezsigndocument_name_local_str = NULL;
+    }
     if (a_obj_ezsignsignatureList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsignsignatureList) {

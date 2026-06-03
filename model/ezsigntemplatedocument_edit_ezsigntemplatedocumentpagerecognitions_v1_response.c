@@ -14,11 +14,11 @@ static ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_res
     if (!ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_local_var, 0, sizeof(ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_t));
+    ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_local_var->_library_owned = 1;
     ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_local_var->obj_debug = obj_debug;
     ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_local_var->m_payload = m_payload;
-
-    ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_local_var->_library_owned = 1;
     return ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) ezsigntemplatedocument_edit_ezsigntemplatedocumentpa
     common_response_obj_debug_t *obj_debug,
     ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_m_payload_t *m_payload
     ) {
-    return ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_create_internal (
+    ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_t *result = ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_free(ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_t *ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response) {
@@ -156,11 +159,16 @@ ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_t
     m_payload_local_nonprim = ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_local_var = ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_local_var;
 end:

@@ -1,0 +1,32 @@
+/*
+ * field_e_ezmaxpartner_customdevelopment.h
+ *
+ * Whether the Ezmaxpartner offers custom development.
+ */
+
+#ifndef _field_e_ezmaxpartner_customdevelopment_H_
+#define _field_e_ezmaxpartner_customdevelopment_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_ezmaxpartner_customdevelopment_t field_e_ezmaxpartner_customdevelopment_t;
+
+
+// Enum  for field_e_ezmaxpartner_customdevelopment
+
+typedef enum { ezmax_api_definition__full_field_e_ezmaxpartner_customdevelopment__NULL = 0, ezmax_api_definition__full_field_e_ezmaxpartner_customdevelopment__, ezmax_api_definition__full_field_e_ezmaxpartner_customdevelopment__No, ezmax_api_definition__full_field_e_ezmaxpartner_customdevelopment__NotListed, ezmax_api_definition__full_field_e_ezmaxpartner_customdevelopment__Listed } ezmax_api_definition__full_field_e_ezmaxpartner_customdevelopment__e;
+
+char* field_e_ezmaxpartner_customdevelopment_field_e_ezmaxpartner_customdevelopment_ToString(ezmax_api_definition__full_field_e_ezmaxpartner_customdevelopment__e field_e_ezmaxpartner_customdevelopment);
+
+ezmax_api_definition__full_field_e_ezmaxpartner_customdevelopment__e field_e_ezmaxpartner_customdevelopment_field_e_ezmaxpartner_customdevelopment_FromString(char* field_e_ezmaxpartner_customdevelopment);
+
+cJSON *field_e_ezmaxpartner_customdevelopment_convertToJSON(ezmax_api_definition__full_field_e_ezmaxpartner_customdevelopment__e field_e_ezmaxpartner_customdevelopment);
+
+ezmax_api_definition__full_field_e_ezmaxpartner_customdevelopment__e field_e_ezmaxpartner_customdevelopment_parseFromJSON(cJSON *field_e_ezmaxpartner_customdevelopmentJSON);
+
+#endif /* _field_e_ezmaxpartner_customdevelopment_H_ */
+

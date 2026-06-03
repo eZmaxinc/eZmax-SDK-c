@@ -20,8 +20,8 @@ typedef struct signature_request_t signature_request_t;
 
 
 typedef struct signature_request_t {
-    int pki_signature_id; //numeric
-    int fki_font_id; //numeric
+    int *pki_signature_id; //numeric
+    int *fki_font_id; //numeric
     ezmax_api_definition__full_field_e_signature_preference__e e_signature_preference; //referenced enum
     char *t_signature_svg; // string
     char *t_signature_svginitials; // string
@@ -30,8 +30,8 @@ typedef struct signature_request_t {
 } signature_request_t;
 
 __attribute__((deprecated)) signature_request_t *signature_request_create(
-    int pki_signature_id,
-    int fki_font_id,
+    int *pki_signature_id,
+    int *fki_font_id,
     ezmax_api_definition__full_field_e_signature_preference__e e_signature_preference,
     char *t_signature_svg,
     char *t_signature_svginitials

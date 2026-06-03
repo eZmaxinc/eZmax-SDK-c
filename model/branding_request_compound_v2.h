@@ -22,31 +22,31 @@ typedef struct branding_request_compound_v2_t branding_request_compound_v2_t;
 
 
 typedef struct branding_request_compound_v2_t {
-    int pki_branding_id; //numeric
-    int fki_domain_id; //numeric
+    int *pki_branding_id; //numeric
+    int *fki_domain_id; //numeric
     struct multilingual_branding_description_t *obj_branding_description; //model
     ezmax_api_definition__full_field_e_branding_logo__e e_branding_logo; //referenced enum
     ezmax_api_definition__full_field_e_branding_alignlogo__e e_branding_alignlogo; //referenced enum
     char *s_branding_base64; //ByteArray
-    int i_branding_color; //numeric
+    int *i_branding_color; //numeric
     char *s_branding_name; // string
     char *s_email_address; // string
-    int b_branding_isactive; //boolean
+    int *b_branding_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } branding_request_compound_v2_t;
 
 __attribute__((deprecated)) branding_request_compound_v2_t *branding_request_compound_v2_create(
-    int pki_branding_id,
-    int fki_domain_id,
+    int *pki_branding_id,
+    int *fki_domain_id,
     multilingual_branding_description_t *obj_branding_description,
     ezmax_api_definition__full_field_e_branding_logo__e e_branding_logo,
     ezmax_api_definition__full_field_e_branding_alignlogo__e e_branding_alignlogo,
     char *s_branding_base64,
-    int i_branding_color,
+    int *i_branding_color,
     char *s_branding_name,
     char *s_email_address,
-    int b_branding_isactive
+    int *b_branding_isactive
 );
 
 void branding_request_compound_v2_free(branding_request_compound_v2_t *branding_request_compound_v2);

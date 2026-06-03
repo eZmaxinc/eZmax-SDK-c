@@ -19,11 +19,11 @@ typedef struct activesession_list_element_t activesession_list_element_t;
 
 
 typedef struct activesession_list_element_t {
-    int pki_activesession_id; //numeric
-    int fki_user_id; //numeric
-    int fki_computer_id; //numeric
-    int fki_company_id; //numeric
-    int fki_department_id; //numeric
+    int *pki_activesession_id; //numeric
+    int *fki_user_id; //numeric
+    int *fki_computer_id; //numeric
+    int *fki_company_id; //numeric
+    int *fki_department_id; //numeric
     char *s_company_name_x; // string
     char *s_department_name_x; // string
     char *s_activesession_loginname; // string
@@ -36,11 +36,11 @@ typedef struct activesession_list_element_t {
 } activesession_list_element_t;
 
 __attribute__((deprecated)) activesession_list_element_t *activesession_list_element_create(
-    int pki_activesession_id,
-    int fki_user_id,
-    int fki_computer_id,
-    int fki_company_id,
-    int fki_department_id,
+    int *pki_activesession_id,
+    int *fki_user_id,
+    int *fki_computer_id,
+    int *fki_company_id,
+    int *fki_department_id,
     char *s_company_name_x,
     char *s_department_name_x,
     char *s_activesession_loginname,

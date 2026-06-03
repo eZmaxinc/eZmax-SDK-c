@@ -13,10 +13,10 @@ static ezsignfoldersignerassociation_edit_object_v1_response_t *ezsignfoldersign
     if (!ezsignfoldersignerassociation_edit_object_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsignfoldersignerassociation_edit_object_v1_response_local_var, 0, sizeof(ezsignfoldersignerassociation_edit_object_v1_response_t));
+    ezsignfoldersignerassociation_edit_object_v1_response_local_var->_library_owned = 1;
     ezsignfoldersignerassociation_edit_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsignfoldersignerassociation_edit_object_v1_response_local_var->obj_debug = obj_debug;
-
-    ezsignfoldersignerassociation_edit_object_v1_response_local_var->_library_owned = 1;
     return ezsignfoldersignerassociation_edit_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) ezsignfoldersignerassociation_edit_object_v1_respons
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return ezsignfoldersignerassociation_edit_object_v1_response_create_internal (
+    ezsignfoldersignerassociation_edit_object_v1_response_t *result = ezsignfoldersignerassociation_edit_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignfoldersignerassociation_edit_object_v1_response_free(ezsignfoldersignerassociation_edit_object_v1_response_t *ezsignfoldersignerassociation_edit_object_v1_response) {
@@ -119,10 +122,15 @@ ezsignfoldersignerassociation_edit_object_v1_response_t *ezsignfoldersignerassoc
     }
 
 
+
     ezsignfoldersignerassociation_edit_object_v1_response_local_var = ezsignfoldersignerassociation_edit_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!ezsignfoldersignerassociation_edit_object_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsignfoldersignerassociation_edit_object_v1_response_local_var;
 end:

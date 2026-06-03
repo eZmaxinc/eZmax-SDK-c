@@ -12,18 +12,21 @@ static usergroup_create_object_v1_response_m_payload_t *usergroup_create_object_
     if (!usergroup_create_object_v1_response_m_payload_local_var) {
         return NULL;
     }
-    usergroup_create_object_v1_response_m_payload_local_var->a_pki_usergroup_id = a_pki_usergroup_id;
-
+    memset(usergroup_create_object_v1_response_m_payload_local_var, 0, sizeof(usergroup_create_object_v1_response_m_payload_t));
     usergroup_create_object_v1_response_m_payload_local_var->_library_owned = 1;
+    usergroup_create_object_v1_response_m_payload_local_var->a_pki_usergroup_id = a_pki_usergroup_id;
     return usergroup_create_object_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) usergroup_create_object_v1_response_m_payload_t *usergroup_create_object_v1_response_m_payload_create(
     list_t *a_pki_usergroup_id
     ) {
-    return usergroup_create_object_v1_response_m_payload_create_internal (
+    usergroup_create_object_v1_response_m_payload_t *result = usergroup_create_object_v1_response_m_payload_create_internal (
         a_pki_usergroup_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void usergroup_create_object_v1_response_m_payload_free(usergroup_create_object_v1_response_m_payload_t *usergroup_create_object_v1_response_m_payload) {
@@ -112,9 +115,14 @@ usergroup_create_object_v1_response_m_payload_t *usergroup_create_object_v1_resp
     }
 
 
+
     usergroup_create_object_v1_response_m_payload_local_var = usergroup_create_object_v1_response_m_payload_create_internal (
         a_pki_usergroup_idList
         );
+
+    if (!usergroup_create_object_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return usergroup_create_object_v1_response_m_payload_local_var;
 end:

@@ -19,33 +19,33 @@ typedef struct creditcardclient_list_element_t creditcardclient_list_element_t;
 
 
 typedef struct creditcardclient_list_element_t {
-    int pki_creditcardclient_id; //numeric
-    int fki_creditcarddetail_id; //numeric
-    int fki_creditcardtype_id; //numeric
-    int b_creditcardclientrelation_isdefault; //boolean
-    int b_creditcardclient_legacy; //boolean
+    int *pki_creditcardclient_id; //numeric
+    int *fki_creditcarddetail_id; //numeric
+    int *fki_creditcardtype_id; //numeric
+    int *b_creditcardclientrelation_isdefault; //boolean
+    int *b_creditcardclient_legacy; //boolean
     char *s_creditcardclient_description; // string
-    int b_creditcardclient_allowedcompanypayment; //boolean
-    int b_creditcardclient_allowedtranquillit; //boolean
-    int i_creditcarddetail_expirationmonth; //numeric
-    int i_creditcarddetail_expirationyear; //numeric
-    int i_creditcarddetail_lastdigits; //numeric
+    int *b_creditcardclient_allowedcompanypayment; //boolean
+    int *b_creditcardclient_allowedtranquillit; //boolean
+    int *i_creditcarddetail_expirationmonth; //numeric
+    int *i_creditcarddetail_expirationyear; //numeric
+    int *i_creditcarddetail_lastdigits; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } creditcardclient_list_element_t;
 
 __attribute__((deprecated)) creditcardclient_list_element_t *creditcardclient_list_element_create(
-    int pki_creditcardclient_id,
-    int fki_creditcarddetail_id,
-    int fki_creditcardtype_id,
-    int b_creditcardclientrelation_isdefault,
-    int b_creditcardclient_legacy,
+    int *pki_creditcardclient_id,
+    int *fki_creditcarddetail_id,
+    int *fki_creditcardtype_id,
+    int *b_creditcardclientrelation_isdefault,
+    int *b_creditcardclient_legacy,
     char *s_creditcardclient_description,
-    int b_creditcardclient_allowedcompanypayment,
-    int b_creditcardclient_allowedtranquillit,
-    int i_creditcarddetail_expirationmonth,
-    int i_creditcarddetail_expirationyear,
-    int i_creditcarddetail_lastdigits
+    int *b_creditcardclient_allowedcompanypayment,
+    int *b_creditcardclient_allowedtranquillit,
+    int *i_creditcarddetail_expirationmonth,
+    int *i_creditcarddetail_expirationyear,
+    int *i_creditcarddetail_lastdigits
 );
 
 void creditcardclient_list_element_free(creditcardclient_list_element_t *creditcardclient_list_element);

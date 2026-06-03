@@ -12,18 +12,21 @@ static branding_get_object_v3_response_m_payload_t *branding_get_object_v3_respo
     if (!branding_get_object_v3_response_m_payload_local_var) {
         return NULL;
     }
-    branding_get_object_v3_response_m_payload_local_var->obj_branding = obj_branding;
-
+    memset(branding_get_object_v3_response_m_payload_local_var, 0, sizeof(branding_get_object_v3_response_m_payload_t));
     branding_get_object_v3_response_m_payload_local_var->_library_owned = 1;
+    branding_get_object_v3_response_m_payload_local_var->obj_branding = obj_branding;
     return branding_get_object_v3_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) branding_get_object_v3_response_m_payload_t *branding_get_object_v3_response_m_payload_create(
     branding_response_compound_v3_t *obj_branding
     ) {
-    return branding_get_object_v3_response_m_payload_create_internal (
+    branding_get_object_v3_response_m_payload_t *result = branding_get_object_v3_response_m_payload_create_internal (
         obj_branding
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void branding_get_object_v3_response_m_payload_free(branding_get_object_v3_response_m_payload_t *branding_get_object_v3_response_m_payload) {
@@ -86,9 +89,14 @@ branding_get_object_v3_response_m_payload_t *branding_get_object_v3_response_m_p
     obj_branding_local_nonprim = branding_response_compound_v3_parseFromJSON(obj_branding); //nonprimitive
 
 
+
     branding_get_object_v3_response_m_payload_local_var = branding_get_object_v3_response_m_payload_create_internal (
         obj_branding_local_nonprim
         );
+
+    if (!branding_get_object_v3_response_m_payload_local_var) {
+        goto end;
+    }
 
     return branding_get_object_v3_response_m_payload_local_var;
 end:

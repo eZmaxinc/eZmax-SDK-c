@@ -14,11 +14,11 @@ static customer_get_object_v2_response_t *customer_get_object_v2_response_create
     if (!customer_get_object_v2_response_local_var) {
         return NULL;
     }
+    memset(customer_get_object_v2_response_local_var, 0, sizeof(customer_get_object_v2_response_t));
+    customer_get_object_v2_response_local_var->_library_owned = 1;
     customer_get_object_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     customer_get_object_v2_response_local_var->obj_debug = obj_debug;
     customer_get_object_v2_response_local_var->m_payload = m_payload;
-
-    customer_get_object_v2_response_local_var->_library_owned = 1;
     return customer_get_object_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) customer_get_object_v2_response_t *customer_get_obje
     common_response_obj_debug_t *obj_debug,
     customer_get_object_v2_response_m_payload_t *m_payload
     ) {
-    return customer_get_object_v2_response_create_internal (
+    customer_get_object_v2_response_t *result = customer_get_object_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void customer_get_object_v2_response_free(customer_get_object_v2_response_t *customer_get_object_v2_response) {
@@ -156,11 +159,16 @@ customer_get_object_v2_response_t *customer_get_object_v2_response_parseFromJSON
     m_payload_local_nonprim = customer_get_object_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     customer_get_object_v2_response_local_var = customer_get_object_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!customer_get_object_v2_response_local_var) {
+        goto end;
+    }
 
     return customer_get_object_v2_response_local_var;
 end:

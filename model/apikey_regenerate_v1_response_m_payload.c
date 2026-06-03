@@ -12,18 +12,21 @@ static apikey_regenerate_v1_response_m_payload_t *apikey_regenerate_v1_response_
     if (!apikey_regenerate_v1_response_m_payload_local_var) {
         return NULL;
     }
-    apikey_regenerate_v1_response_m_payload_local_var->obj_apikey = obj_apikey;
-
+    memset(apikey_regenerate_v1_response_m_payload_local_var, 0, sizeof(apikey_regenerate_v1_response_m_payload_t));
     apikey_regenerate_v1_response_m_payload_local_var->_library_owned = 1;
+    apikey_regenerate_v1_response_m_payload_local_var->obj_apikey = obj_apikey;
     return apikey_regenerate_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) apikey_regenerate_v1_response_m_payload_t *apikey_regenerate_v1_response_m_payload_create(
     apikey_response_compound_t *obj_apikey
     ) {
-    return apikey_regenerate_v1_response_m_payload_create_internal (
+    apikey_regenerate_v1_response_m_payload_t *result = apikey_regenerate_v1_response_m_payload_create_internal (
         obj_apikey
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void apikey_regenerate_v1_response_m_payload_free(apikey_regenerate_v1_response_m_payload_t *apikey_regenerate_v1_response_m_payload) {
@@ -86,9 +89,14 @@ apikey_regenerate_v1_response_m_payload_t *apikey_regenerate_v1_response_m_paylo
     obj_apikey_local_nonprim = apikey_response_compound_parseFromJSON(obj_apikey); //nonprimitive
 
 
+
     apikey_regenerate_v1_response_m_payload_local_var = apikey_regenerate_v1_response_m_payload_create_internal (
         obj_apikey_local_nonprim
         );
+
+    if (!apikey_regenerate_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return apikey_regenerate_v1_response_m_payload_local_var;
 end:

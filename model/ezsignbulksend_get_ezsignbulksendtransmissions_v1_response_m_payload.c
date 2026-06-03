@@ -12,18 +12,21 @@ static ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_t *e
     if (!ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_local_var->a_obj_ezsignbulksendtransmission = a_obj_ezsignbulksendtransmission;
-
+    memset(ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_local_var, 0, sizeof(ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_t));
     ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_local_var->a_obj_ezsignbulksendtransmission = a_obj_ezsignbulksendtransmission;
     return ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_t *ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_create(
     list_t *a_obj_ezsignbulksendtransmission
     ) {
-    return ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_create_internal (
+    ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_t *result = ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_create_internal (
         a_obj_ezsignbulksendtransmission
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_free(ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_t *ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload) {
@@ -111,9 +114,14 @@ ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_t *ezsignbu
     }
 
 
+
     ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_local_var = ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_create_internal (
         a_obj_ezsignbulksendtransmissionList
         );
+
+    if (!ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_local_var;
 end:

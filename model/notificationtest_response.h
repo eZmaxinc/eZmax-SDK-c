@@ -20,9 +20,9 @@ typedef struct notificationtest_response_t notificationtest_response_t;
 
 
 typedef struct notificationtest_response_t {
-    int pki_notificationtest_id; //numeric
+    int *pki_notificationtest_id; //numeric
     struct multilingual_notificationtest_name_t *obj_notificationtest_name; //model
-    int fki_notificationsubsection_id; //numeric
+    int *fki_notificationsubsection_id; //numeric
     char *s_notificationtest_function; // string
     char *s_notificationtest_name_x; // string
 
@@ -30,9 +30,9 @@ typedef struct notificationtest_response_t {
 } notificationtest_response_t;
 
 __attribute__((deprecated)) notificationtest_response_t *notificationtest_response_create(
-    int pki_notificationtest_id,
+    int *pki_notificationtest_id,
     multilingual_notificationtest_name_t *obj_notificationtest_name,
-    int fki_notificationsubsection_id,
+    int *fki_notificationsubsection_id,
     char *s_notificationtest_function,
     char *s_notificationtest_name_x
 );

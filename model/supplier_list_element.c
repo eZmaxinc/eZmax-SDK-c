@@ -6,12 +6,12 @@
 
 
 static supplier_list_element_t *supplier_list_element_create_internal(
-    int pki_supplier_id,
-    int fki_paymentmethod_id,
+    int *pki_supplier_id,
+    int *fki_paymentmethod_id,
     char *s_supplier_name,
     char *s_supplier_code,
     char *s_supplier_account,
-    int b_supplier_isactive,
+    int *b_supplier_isactive,
     char *s_phone_e164,
     char *s_email_address,
     char *s_address_civic,
@@ -19,7 +19,9 @@ static supplier_list_element_t *supplier_list_element_create_internal(
     char *s_address_suite,
     char *s_address_city,
     char *s_address_zip,
+    int *fki_province_id,
     char *s_province_name_x,
+    int *fki_country_id,
     char *s_country_name_x,
     char *s_paymentmethod_description_x,
     char *s_electronicfundstransferbankaccount_transit,
@@ -32,6 +34,8 @@ static supplier_list_element_t *supplier_list_element_create_internal(
     if (!supplier_list_element_local_var) {
         return NULL;
     }
+    memset(supplier_list_element_local_var, 0, sizeof(supplier_list_element_t));
+    supplier_list_element_local_var->_library_owned = 1;
     supplier_list_element_local_var->pki_supplier_id = pki_supplier_id;
     supplier_list_element_local_var->fki_paymentmethod_id = fki_paymentmethod_id;
     supplier_list_element_local_var->s_supplier_name = s_supplier_name;
@@ -45,7 +49,9 @@ static supplier_list_element_t *supplier_list_element_create_internal(
     supplier_list_element_local_var->s_address_suite = s_address_suite;
     supplier_list_element_local_var->s_address_city = s_address_city;
     supplier_list_element_local_var->s_address_zip = s_address_zip;
+    supplier_list_element_local_var->fki_province_id = fki_province_id;
     supplier_list_element_local_var->s_province_name_x = s_province_name_x;
+    supplier_list_element_local_var->fki_country_id = fki_country_id;
     supplier_list_element_local_var->s_country_name_x = s_country_name_x;
     supplier_list_element_local_var->s_paymentmethod_description_x = s_paymentmethod_description_x;
     supplier_list_element_local_var->s_electronicfundstransferbankaccount_transit = s_electronicfundstransferbankaccount_transit;
@@ -53,18 +59,16 @@ static supplier_list_element_t *supplier_list_element_create_internal(
     supplier_list_element_local_var->s_electronicfundstransferbankaccount_account = s_electronicfundstransferbankaccount_account;
     supplier_list_element_local_var->s_glaccountcontainer_longcode = s_glaccountcontainer_longcode;
     supplier_list_element_local_var->s_glaccountcontainer_longdescription_x = s_glaccountcontainer_longdescription_x;
-
-    supplier_list_element_local_var->_library_owned = 1;
     return supplier_list_element_local_var;
 }
 
 __attribute__((deprecated)) supplier_list_element_t *supplier_list_element_create(
-    int pki_supplier_id,
-    int fki_paymentmethod_id,
+    int *pki_supplier_id,
+    int *fki_paymentmethod_id,
     char *s_supplier_name,
     char *s_supplier_code,
     char *s_supplier_account,
-    int b_supplier_isactive,
+    int *b_supplier_isactive,
     char *s_phone_e164,
     char *s_email_address,
     char *s_address_civic,
@@ -72,7 +76,9 @@ __attribute__((deprecated)) supplier_list_element_t *supplier_list_element_creat
     char *s_address_suite,
     char *s_address_city,
     char *s_address_zip,
+    int *fki_province_id,
     char *s_province_name_x,
+    int *fki_country_id,
     char *s_country_name_x,
     char *s_paymentmethod_description_x,
     char *s_electronicfundstransferbankaccount_transit,
@@ -81,13 +87,38 @@ __attribute__((deprecated)) supplier_list_element_t *supplier_list_element_creat
     char *s_glaccountcontainer_longcode,
     char *s_glaccountcontainer_longdescription_x
     ) {
-    return supplier_list_element_create_internal (
-        pki_supplier_id,
-        fki_paymentmethod_id,
+    int *pki_supplier_id_copy = NULL;
+    if (pki_supplier_id) {
+        pki_supplier_id_copy = malloc(sizeof(int));
+        if (pki_supplier_id_copy) *pki_supplier_id_copy = *pki_supplier_id;
+    }
+    int *fki_paymentmethod_id_copy = NULL;
+    if (fki_paymentmethod_id) {
+        fki_paymentmethod_id_copy = malloc(sizeof(int));
+        if (fki_paymentmethod_id_copy) *fki_paymentmethod_id_copy = *fki_paymentmethod_id;
+    }
+    int *b_supplier_isactive_copy = NULL;
+    if (b_supplier_isactive) {
+        b_supplier_isactive_copy = malloc(sizeof(int));
+        if (b_supplier_isactive_copy) *b_supplier_isactive_copy = *b_supplier_isactive;
+    }
+    int *fki_province_id_copy = NULL;
+    if (fki_province_id) {
+        fki_province_id_copy = malloc(sizeof(int));
+        if (fki_province_id_copy) *fki_province_id_copy = *fki_province_id;
+    }
+    int *fki_country_id_copy = NULL;
+    if (fki_country_id) {
+        fki_country_id_copy = malloc(sizeof(int));
+        if (fki_country_id_copy) *fki_country_id_copy = *fki_country_id;
+    }
+    supplier_list_element_t *result = supplier_list_element_create_internal (
+        pki_supplier_id_copy,
+        fki_paymentmethod_id_copy,
         s_supplier_name,
         s_supplier_code,
         s_supplier_account,
-        b_supplier_isactive,
+        b_supplier_isactive_copy,
         s_phone_e164,
         s_email_address,
         s_address_civic,
@@ -95,7 +126,9 @@ __attribute__((deprecated)) supplier_list_element_t *supplier_list_element_creat
         s_address_suite,
         s_address_city,
         s_address_zip,
+        fki_province_id_copy,
         s_province_name_x,
+        fki_country_id_copy,
         s_country_name_x,
         s_paymentmethod_description_x,
         s_electronicfundstransferbankaccount_transit,
@@ -104,6 +137,14 @@ __attribute__((deprecated)) supplier_list_element_t *supplier_list_element_creat
         s_glaccountcontainer_longcode,
         s_glaccountcontainer_longdescription_x
         );
+    if (!result) {
+        free(pki_supplier_id_copy);
+        free(fki_paymentmethod_id_copy);
+        free(b_supplier_isactive_copy);
+        free(fki_province_id_copy);
+        free(fki_country_id_copy);
+    }
+    return result;
 }
 
 void supplier_list_element_free(supplier_list_element_t *supplier_list_element) {
@@ -115,6 +156,14 @@ void supplier_list_element_free(supplier_list_element_t *supplier_list_element) 
         return ;
     }
     listEntry_t *listEntry;
+    if (supplier_list_element->pki_supplier_id) {
+        free(supplier_list_element->pki_supplier_id);
+        supplier_list_element->pki_supplier_id = NULL;
+    }
+    if (supplier_list_element->fki_paymentmethod_id) {
+        free(supplier_list_element->fki_paymentmethod_id);
+        supplier_list_element->fki_paymentmethod_id = NULL;
+    }
     if (supplier_list_element->s_supplier_name) {
         free(supplier_list_element->s_supplier_name);
         supplier_list_element->s_supplier_name = NULL;
@@ -126,6 +175,10 @@ void supplier_list_element_free(supplier_list_element_t *supplier_list_element) 
     if (supplier_list_element->s_supplier_account) {
         free(supplier_list_element->s_supplier_account);
         supplier_list_element->s_supplier_account = NULL;
+    }
+    if (supplier_list_element->b_supplier_isactive) {
+        free(supplier_list_element->b_supplier_isactive);
+        supplier_list_element->b_supplier_isactive = NULL;
     }
     if (supplier_list_element->s_phone_e164) {
         free(supplier_list_element->s_phone_e164);
@@ -155,9 +208,17 @@ void supplier_list_element_free(supplier_list_element_t *supplier_list_element) 
         free(supplier_list_element->s_address_zip);
         supplier_list_element->s_address_zip = NULL;
     }
+    if (supplier_list_element->fki_province_id) {
+        free(supplier_list_element->fki_province_id);
+        supplier_list_element->fki_province_id = NULL;
+    }
     if (supplier_list_element->s_province_name_x) {
         free(supplier_list_element->s_province_name_x);
         supplier_list_element->s_province_name_x = NULL;
+    }
+    if (supplier_list_element->fki_country_id) {
+        free(supplier_list_element->fki_country_id);
+        supplier_list_element->fki_country_id = NULL;
     }
     if (supplier_list_element->s_country_name_x) {
         free(supplier_list_element->s_country_name_x);
@@ -197,14 +258,14 @@ cJSON *supplier_list_element_convertToJSON(supplier_list_element_t *supplier_lis
     if (!supplier_list_element->pki_supplier_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiSupplierID", supplier_list_element->pki_supplier_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiSupplierID", *supplier_list_element->pki_supplier_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // supplier_list_element->fki_paymentmethod_id
     if(supplier_list_element->fki_paymentmethod_id) {
-    if(cJSON_AddNumberToObject(item, "fkiPaymentmethodID", supplier_list_element->fki_paymentmethod_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiPaymentmethodID", *supplier_list_element->fki_paymentmethod_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -241,7 +302,7 @@ cJSON *supplier_list_element_convertToJSON(supplier_list_element_t *supplier_lis
     if (!supplier_list_element->b_supplier_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bSupplierIsactive", supplier_list_element->b_supplier_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bSupplierIsactive", *supplier_list_element->b_supplier_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -302,10 +363,26 @@ cJSON *supplier_list_element_convertToJSON(supplier_list_element_t *supplier_lis
     }
 
 
+    // supplier_list_element->fki_province_id
+    if(supplier_list_element->fki_province_id) {
+    if(cJSON_AddNumberToObject(item, "fkiProvinceID", *supplier_list_element->fki_province_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
     // supplier_list_element->s_province_name_x
     if(supplier_list_element->s_province_name_x) {
     if(cJSON_AddStringToObject(item, "sProvinceNameX", supplier_list_element->s_province_name_x) == NULL) {
     goto fail; //String
+    }
+    }
+
+
+    // supplier_list_element->fki_country_id
+    if(supplier_list_element->fki_country_id) {
+    if(cJSON_AddNumberToObject(item, "fkiCountryID", *supplier_list_element->fki_country_id) == NULL) {
+    goto fail; //Numeric
     }
     }
 
@@ -379,6 +456,57 @@ supplier_list_element_t *supplier_list_element_parseFromJSON(cJSON *supplier_lis
 
     supplier_list_element_t *supplier_list_element_local_var = NULL;
 
+    // define the local variable for supplier_list_element->pki_supplier_id
+    int *pki_supplier_id_local_var = NULL;
+
+    // define the local variable for supplier_list_element->fki_paymentmethod_id
+    int *fki_paymentmethod_id_local_var = NULL;
+
+    char *s_supplier_name_local_str = NULL;
+
+    char *s_supplier_code_local_str = NULL;
+
+    char *s_supplier_account_local_str = NULL;
+
+    // define the local variable for supplier_list_element->b_supplier_isactive
+    int *b_supplier_isactive_local_var = NULL;
+
+    char *s_phone_e164_local_str = NULL;
+
+    char *s_email_address_local_str = NULL;
+
+    char *s_address_civic_local_str = NULL;
+
+    char *s_address_street_local_str = NULL;
+
+    char *s_address_suite_local_str = NULL;
+
+    char *s_address_city_local_str = NULL;
+
+    char *s_address_zip_local_str = NULL;
+
+    // define the local variable for supplier_list_element->fki_province_id
+    int *fki_province_id_local_var = NULL;
+
+    char *s_province_name_x_local_str = NULL;
+
+    // define the local variable for supplier_list_element->fki_country_id
+    int *fki_country_id_local_var = NULL;
+
+    char *s_country_name_x_local_str = NULL;
+
+    char *s_paymentmethod_description_x_local_str = NULL;
+
+    char *s_electronicfundstransferbankaccount_transit_local_str = NULL;
+
+    char *s_electronicfundstransferbankaccount_institution_local_str = NULL;
+
+    char *s_electronicfundstransferbankaccount_account_local_str = NULL;
+
+    char *s_glaccountcontainer_longcode_local_str = NULL;
+
+    char *s_glaccountcontainer_longdescription_x_local_str = NULL;
+
     // supplier_list_element->pki_supplier_id
     cJSON *pki_supplier_id = cJSON_GetObjectItemCaseSensitive(supplier_list_elementJSON, "pkiSupplierID");
     if (cJSON_IsNull(pki_supplier_id)) {
@@ -393,6 +521,12 @@ supplier_list_element_t *supplier_list_element_parseFromJSON(cJSON *supplier_lis
     {
     goto end; //Numeric
     }
+    pki_supplier_id_local_var = malloc(sizeof(int));
+    if(!pki_supplier_id_local_var)
+    {
+        goto end;
+    }
+    *pki_supplier_id_local_var = pki_supplier_id->valuedouble;
 
     // supplier_list_element->fki_paymentmethod_id
     cJSON *fki_paymentmethod_id = cJSON_GetObjectItemCaseSensitive(supplier_list_elementJSON, "fkiPaymentmethodID");
@@ -404,6 +538,12 @@ supplier_list_element_t *supplier_list_element_parseFromJSON(cJSON *supplier_lis
     {
     goto end; //Numeric
     }
+    fki_paymentmethod_id_local_var = malloc(sizeof(int));
+    if(!fki_paymentmethod_id_local_var)
+    {
+        goto end;
+    }
+    *fki_paymentmethod_id_local_var = fki_paymentmethod_id->valuedouble;
     }
 
     // supplier_list_element->s_supplier_name
@@ -465,6 +605,12 @@ supplier_list_element_t *supplier_list_element_parseFromJSON(cJSON *supplier_lis
     {
     goto end; //Bool
     }
+    b_supplier_isactive_local_var = malloc(sizeof(int));
+    if(!b_supplier_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_supplier_isactive_local_var = b_supplier_isactive->valueint;
 
     // supplier_list_element->s_phone_e164
     cJSON *s_phone_e164 = cJSON_GetObjectItemCaseSensitive(supplier_list_elementJSON, "sPhoneE164");
@@ -550,6 +696,24 @@ supplier_list_element_t *supplier_list_element_parseFromJSON(cJSON *supplier_lis
     }
     }
 
+    // supplier_list_element->fki_province_id
+    cJSON *fki_province_id = cJSON_GetObjectItemCaseSensitive(supplier_list_elementJSON, "fkiProvinceID");
+    if (cJSON_IsNull(fki_province_id)) {
+        fki_province_id = NULL;
+    }
+    if (fki_province_id) { 
+    if(!cJSON_IsNumber(fki_province_id))
+    {
+    goto end; //Numeric
+    }
+    fki_province_id_local_var = malloc(sizeof(int));
+    if(!fki_province_id_local_var)
+    {
+        goto end;
+    }
+    *fki_province_id_local_var = fki_province_id->valuedouble;
+    }
+
     // supplier_list_element->s_province_name_x
     cJSON *s_province_name_x = cJSON_GetObjectItemCaseSensitive(supplier_list_elementJSON, "sProvinceNameX");
     if (cJSON_IsNull(s_province_name_x)) {
@@ -560,6 +724,24 @@ supplier_list_element_t *supplier_list_element_parseFromJSON(cJSON *supplier_lis
     {
     goto end; //String
     }
+    }
+
+    // supplier_list_element->fki_country_id
+    cJSON *fki_country_id = cJSON_GetObjectItemCaseSensitive(supplier_list_elementJSON, "fkiCountryID");
+    if (cJSON_IsNull(fki_country_id)) {
+        fki_country_id = NULL;
+    }
+    if (fki_country_id) { 
+    if(!cJSON_IsNumber(fki_country_id))
+    {
+    goto end; //Numeric
+    }
+    fki_country_id_local_var = malloc(sizeof(int));
+    if(!fki_country_id_local_var)
+    {
+        goto end;
+    }
+    *fki_country_id_local_var = fki_country_id->valuedouble;
     }
 
     // supplier_list_element->s_country_name_x
@@ -653,32 +835,149 @@ supplier_list_element_t *supplier_list_element_parseFromJSON(cJSON *supplier_lis
     }
 
 
+    if (s_supplier_name && !cJSON_IsNull(s_supplier_name)) s_supplier_name_local_str = strdup(s_supplier_name->valuestring);
+    if (s_supplier_code && !cJSON_IsNull(s_supplier_code)) s_supplier_code_local_str = strdup(s_supplier_code->valuestring);
+    if (s_supplier_account && !cJSON_IsNull(s_supplier_account)) s_supplier_account_local_str = strdup(s_supplier_account->valuestring);
+    if (s_phone_e164 && !cJSON_IsNull(s_phone_e164)) s_phone_e164_local_str = strdup(s_phone_e164->valuestring);
+    if (s_email_address && !cJSON_IsNull(s_email_address)) s_email_address_local_str = strdup(s_email_address->valuestring);
+    if (s_address_civic && !cJSON_IsNull(s_address_civic)) s_address_civic_local_str = strdup(s_address_civic->valuestring);
+    if (s_address_street && !cJSON_IsNull(s_address_street)) s_address_street_local_str = strdup(s_address_street->valuestring);
+    if (s_address_suite && !cJSON_IsNull(s_address_suite)) s_address_suite_local_str = strdup(s_address_suite->valuestring);
+    if (s_address_city && !cJSON_IsNull(s_address_city)) s_address_city_local_str = strdup(s_address_city->valuestring);
+    if (s_address_zip && !cJSON_IsNull(s_address_zip)) s_address_zip_local_str = strdup(s_address_zip->valuestring);
+    if (s_province_name_x && !cJSON_IsNull(s_province_name_x)) s_province_name_x_local_str = strdup(s_province_name_x->valuestring);
+    if (s_country_name_x && !cJSON_IsNull(s_country_name_x)) s_country_name_x_local_str = strdup(s_country_name_x->valuestring);
+    if (s_paymentmethod_description_x && !cJSON_IsNull(s_paymentmethod_description_x)) s_paymentmethod_description_x_local_str = strdup(s_paymentmethod_description_x->valuestring);
+    if (s_electronicfundstransferbankaccount_transit && !cJSON_IsNull(s_electronicfundstransferbankaccount_transit)) s_electronicfundstransferbankaccount_transit_local_str = strdup(s_electronicfundstransferbankaccount_transit->valuestring);
+    if (s_electronicfundstransferbankaccount_institution && !cJSON_IsNull(s_electronicfundstransferbankaccount_institution)) s_electronicfundstransferbankaccount_institution_local_str = strdup(s_electronicfundstransferbankaccount_institution->valuestring);
+    if (s_electronicfundstransferbankaccount_account && !cJSON_IsNull(s_electronicfundstransferbankaccount_account)) s_electronicfundstransferbankaccount_account_local_str = strdup(s_electronicfundstransferbankaccount_account->valuestring);
+    if (s_glaccountcontainer_longcode && !cJSON_IsNull(s_glaccountcontainer_longcode)) s_glaccountcontainer_longcode_local_str = strdup(s_glaccountcontainer_longcode->valuestring);
+    if (s_glaccountcontainer_longdescription_x && !cJSON_IsNull(s_glaccountcontainer_longdescription_x)) s_glaccountcontainer_longdescription_x_local_str = strdup(s_glaccountcontainer_longdescription_x->valuestring);
+
     supplier_list_element_local_var = supplier_list_element_create_internal (
-        pki_supplier_id->valuedouble,
-        fki_paymentmethod_id ? fki_paymentmethod_id->valuedouble : 0,
-        strdup(s_supplier_name->valuestring),
-        strdup(s_supplier_code->valuestring),
-        strdup(s_supplier_account->valuestring),
-        b_supplier_isactive->valueint,
-        s_phone_e164 && !cJSON_IsNull(s_phone_e164) ? strdup(s_phone_e164->valuestring) : NULL,
-        s_email_address && !cJSON_IsNull(s_email_address) ? strdup(s_email_address->valuestring) : NULL,
-        s_address_civic && !cJSON_IsNull(s_address_civic) ? strdup(s_address_civic->valuestring) : NULL,
-        s_address_street && !cJSON_IsNull(s_address_street) ? strdup(s_address_street->valuestring) : NULL,
-        s_address_suite && !cJSON_IsNull(s_address_suite) ? strdup(s_address_suite->valuestring) : NULL,
-        s_address_city && !cJSON_IsNull(s_address_city) ? strdup(s_address_city->valuestring) : NULL,
-        s_address_zip && !cJSON_IsNull(s_address_zip) ? strdup(s_address_zip->valuestring) : NULL,
-        s_province_name_x && !cJSON_IsNull(s_province_name_x) ? strdup(s_province_name_x->valuestring) : NULL,
-        s_country_name_x && !cJSON_IsNull(s_country_name_x) ? strdup(s_country_name_x->valuestring) : NULL,
-        s_paymentmethod_description_x && !cJSON_IsNull(s_paymentmethod_description_x) ? strdup(s_paymentmethod_description_x->valuestring) : NULL,
-        s_electronicfundstransferbankaccount_transit && !cJSON_IsNull(s_electronicfundstransferbankaccount_transit) ? strdup(s_electronicfundstransferbankaccount_transit->valuestring) : NULL,
-        s_electronicfundstransferbankaccount_institution && !cJSON_IsNull(s_electronicfundstransferbankaccount_institution) ? strdup(s_electronicfundstransferbankaccount_institution->valuestring) : NULL,
-        s_electronicfundstransferbankaccount_account && !cJSON_IsNull(s_electronicfundstransferbankaccount_account) ? strdup(s_electronicfundstransferbankaccount_account->valuestring) : NULL,
-        strdup(s_glaccountcontainer_longcode->valuestring),
-        strdup(s_glaccountcontainer_longdescription_x->valuestring)
+        pki_supplier_id_local_var,
+        fki_paymentmethod_id_local_var,
+        s_supplier_name_local_str,
+        s_supplier_code_local_str,
+        s_supplier_account_local_str,
+        b_supplier_isactive_local_var,
+        s_phone_e164_local_str,
+        s_email_address_local_str,
+        s_address_civic_local_str,
+        s_address_street_local_str,
+        s_address_suite_local_str,
+        s_address_city_local_str,
+        s_address_zip_local_str,
+        fki_province_id_local_var,
+        s_province_name_x_local_str,
+        fki_country_id_local_var,
+        s_country_name_x_local_str,
+        s_paymentmethod_description_x_local_str,
+        s_electronicfundstransferbankaccount_transit_local_str,
+        s_electronicfundstransferbankaccount_institution_local_str,
+        s_electronicfundstransferbankaccount_account_local_str,
+        s_glaccountcontainer_longcode_local_str,
+        s_glaccountcontainer_longdescription_x_local_str
         );
+
+    if (!supplier_list_element_local_var) {
+        goto end;
+    }
 
     return supplier_list_element_local_var;
 end:
+    if (pki_supplier_id_local_var) {
+        free(pki_supplier_id_local_var);
+        pki_supplier_id_local_var = NULL;
+    }
+    if (fki_paymentmethod_id_local_var) {
+        free(fki_paymentmethod_id_local_var);
+        fki_paymentmethod_id_local_var = NULL;
+    }
+    if (s_supplier_name_local_str) {
+        free(s_supplier_name_local_str);
+        s_supplier_name_local_str = NULL;
+    }
+    if (s_supplier_code_local_str) {
+        free(s_supplier_code_local_str);
+        s_supplier_code_local_str = NULL;
+    }
+    if (s_supplier_account_local_str) {
+        free(s_supplier_account_local_str);
+        s_supplier_account_local_str = NULL;
+    }
+    if (b_supplier_isactive_local_var) {
+        free(b_supplier_isactive_local_var);
+        b_supplier_isactive_local_var = NULL;
+    }
+    if (s_phone_e164_local_str) {
+        free(s_phone_e164_local_str);
+        s_phone_e164_local_str = NULL;
+    }
+    if (s_email_address_local_str) {
+        free(s_email_address_local_str);
+        s_email_address_local_str = NULL;
+    }
+    if (s_address_civic_local_str) {
+        free(s_address_civic_local_str);
+        s_address_civic_local_str = NULL;
+    }
+    if (s_address_street_local_str) {
+        free(s_address_street_local_str);
+        s_address_street_local_str = NULL;
+    }
+    if (s_address_suite_local_str) {
+        free(s_address_suite_local_str);
+        s_address_suite_local_str = NULL;
+    }
+    if (s_address_city_local_str) {
+        free(s_address_city_local_str);
+        s_address_city_local_str = NULL;
+    }
+    if (s_address_zip_local_str) {
+        free(s_address_zip_local_str);
+        s_address_zip_local_str = NULL;
+    }
+    if (fki_province_id_local_var) {
+        free(fki_province_id_local_var);
+        fki_province_id_local_var = NULL;
+    }
+    if (s_province_name_x_local_str) {
+        free(s_province_name_x_local_str);
+        s_province_name_x_local_str = NULL;
+    }
+    if (fki_country_id_local_var) {
+        free(fki_country_id_local_var);
+        fki_country_id_local_var = NULL;
+    }
+    if (s_country_name_x_local_str) {
+        free(s_country_name_x_local_str);
+        s_country_name_x_local_str = NULL;
+    }
+    if (s_paymentmethod_description_x_local_str) {
+        free(s_paymentmethod_description_x_local_str);
+        s_paymentmethod_description_x_local_str = NULL;
+    }
+    if (s_electronicfundstransferbankaccount_transit_local_str) {
+        free(s_electronicfundstransferbankaccount_transit_local_str);
+        s_electronicfundstransferbankaccount_transit_local_str = NULL;
+    }
+    if (s_electronicfundstransferbankaccount_institution_local_str) {
+        free(s_electronicfundstransferbankaccount_institution_local_str);
+        s_electronicfundstransferbankaccount_institution_local_str = NULL;
+    }
+    if (s_electronicfundstransferbankaccount_account_local_str) {
+        free(s_electronicfundstransferbankaccount_account_local_str);
+        s_electronicfundstransferbankaccount_account_local_str = NULL;
+    }
+    if (s_glaccountcontainer_longcode_local_str) {
+        free(s_glaccountcontainer_longcode_local_str);
+        s_glaccountcontainer_longcode_local_str = NULL;
+    }
+    if (s_glaccountcontainer_longdescription_x_local_str) {
+        free(s_glaccountcontainer_longdescription_x_local_str);
+        s_glaccountcontainer_longdescription_x_local_str = NULL;
+    }
     return NULL;
 
 }

@@ -13,10 +13,10 @@ static custom_apikey_t *custom_apikey_create_internal(
     if (!custom_apikey_local_var) {
         return NULL;
     }
+    memset(custom_apikey_local_var, 0, sizeof(custom_apikey_t));
+    custom_apikey_local_var->_library_owned = 1;
     custom_apikey_local_var->s_apikey_key = s_apikey_key;
     custom_apikey_local_var->s_apikey_secret = s_apikey_secret;
-
-    custom_apikey_local_var->_library_owned = 1;
     return custom_apikey_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) custom_apikey_t *custom_apikey_create(
     char *s_apikey_key,
     char *s_apikey_secret
     ) {
-    return custom_apikey_create_internal (
+    custom_apikey_t *result = custom_apikey_create_internal (
         s_apikey_key,
         s_apikey_secret
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void custom_apikey_free(custom_apikey_t *custom_apikey) {
@@ -82,6 +85,10 @@ custom_apikey_t *custom_apikey_parseFromJSON(cJSON *custom_apikeyJSON){
 
     custom_apikey_t *custom_apikey_local_var = NULL;
 
+    char *s_apikey_key_local_str = NULL;
+
+    char *s_apikey_secret_local_str = NULL;
+
     // custom_apikey->s_apikey_key
     cJSON *s_apikey_key = cJSON_GetObjectItemCaseSensitive(custom_apikeyJSON, "sApikeyKey");
     if (cJSON_IsNull(s_apikey_key)) {
@@ -113,13 +120,28 @@ custom_apikey_t *custom_apikey_parseFromJSON(cJSON *custom_apikeyJSON){
     }
 
 
+    if (s_apikey_key && !cJSON_IsNull(s_apikey_key)) s_apikey_key_local_str = strdup(s_apikey_key->valuestring);
+    if (s_apikey_secret && !cJSON_IsNull(s_apikey_secret)) s_apikey_secret_local_str = strdup(s_apikey_secret->valuestring);
+
     custom_apikey_local_var = custom_apikey_create_internal (
-        strdup(s_apikey_key->valuestring),
-        strdup(s_apikey_secret->valuestring)
+        s_apikey_key_local_str,
+        s_apikey_secret_local_str
         );
+
+    if (!custom_apikey_local_var) {
+        goto end;
+    }
 
     return custom_apikey_local_var;
 end:
+    if (s_apikey_key_local_str) {
+        free(s_apikey_key_local_str);
+        s_apikey_key_local_str = NULL;
+    }
+    if (s_apikey_secret_local_str) {
+        free(s_apikey_secret_local_str);
+        s_apikey_secret_local_str = NULL;
+    }
     return NULL;
 
 }

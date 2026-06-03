@@ -14,11 +14,11 @@ static ezsignsignergroupmembership_get_object_v2_response_t *ezsignsignergroupme
     if (!ezsignsignergroupmembership_get_object_v2_response_local_var) {
         return NULL;
     }
+    memset(ezsignsignergroupmembership_get_object_v2_response_local_var, 0, sizeof(ezsignsignergroupmembership_get_object_v2_response_t));
+    ezsignsignergroupmembership_get_object_v2_response_local_var->_library_owned = 1;
     ezsignsignergroupmembership_get_object_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsignsignergroupmembership_get_object_v2_response_local_var->obj_debug = obj_debug;
     ezsignsignergroupmembership_get_object_v2_response_local_var->m_payload = m_payload;
-
-    ezsignsignergroupmembership_get_object_v2_response_local_var->_library_owned = 1;
     return ezsignsignergroupmembership_get_object_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) ezsignsignergroupmembership_get_object_v2_response_t
     common_response_obj_debug_t *obj_debug,
     ezsignsignergroupmembership_get_object_v2_response_m_payload_t *m_payload
     ) {
-    return ezsignsignergroupmembership_get_object_v2_response_create_internal (
+    ezsignsignergroupmembership_get_object_v2_response_t *result = ezsignsignergroupmembership_get_object_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignsignergroupmembership_get_object_v2_response_free(ezsignsignergroupmembership_get_object_v2_response_t *ezsignsignergroupmembership_get_object_v2_response) {
@@ -156,11 +159,16 @@ ezsignsignergroupmembership_get_object_v2_response_t *ezsignsignergroupmembershi
     m_payload_local_nonprim = ezsignsignergroupmembership_get_object_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     ezsignsignergroupmembership_get_object_v2_response_local_var = ezsignsignergroupmembership_get_object_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!ezsignsignergroupmembership_get_object_v2_response_local_var) {
+        goto end;
+    }
 
     return ezsignsignergroupmembership_get_object_v2_response_local_var;
 end:

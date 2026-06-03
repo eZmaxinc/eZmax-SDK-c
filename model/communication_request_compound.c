@@ -23,16 +23,16 @@ ezmax_api_definition__full_communication_request_compound_ECOMMUNICATIONATTACHME
 }
 
 static communication_request_compound_t *communication_request_compound_create_internal(
-    int pki_communication_id,
+    int *pki_communication_id,
     ezmax_api_definition__full_field_e_communication_importance__e e_communication_importance,
     ezmax_api_definition__full_field_e_communication_type__e e_communication_type,
     custom_communicationsender_request_t *obj_communicationsender,
     char *s_communication_subject,
     char *t_communication_body,
-    int b_communication_private,
+    int *b_communication_private,
     ezmax_api_definition__full_communication_request_compound_ECOMMUNICATIONATTACHMENTTYPE_e e_communication_attachmenttype,
-    int i_communication_attachmentlinkexpiration,
-    int b_communication_readreceipt,
+    int *i_communication_attachmentlinkexpiration,
+    int *b_communication_readreceipt,
     list_t *a_obj_communicationattachment,
     list_t *a_obj_communicationrecipient,
     list_t *a_obj_communicationreference,
@@ -42,6 +42,8 @@ static communication_request_compound_t *communication_request_compound_create_i
     if (!communication_request_compound_local_var) {
         return NULL;
     }
+    memset(communication_request_compound_local_var, 0, sizeof(communication_request_compound_t));
+    communication_request_compound_local_var->_library_owned = 1;
     communication_request_compound_local_var->pki_communication_id = pki_communication_id;
     communication_request_compound_local_var->e_communication_importance = e_communication_importance;
     communication_request_compound_local_var->e_communication_type = e_communication_type;
@@ -56,43 +58,68 @@ static communication_request_compound_t *communication_request_compound_create_i
     communication_request_compound_local_var->a_obj_communicationrecipient = a_obj_communicationrecipient;
     communication_request_compound_local_var->a_obj_communicationreference = a_obj_communicationreference;
     communication_request_compound_local_var->a_obj_communicationexternalrecipient = a_obj_communicationexternalrecipient;
-
-    communication_request_compound_local_var->_library_owned = 1;
     return communication_request_compound_local_var;
 }
 
 __attribute__((deprecated)) communication_request_compound_t *communication_request_compound_create(
-    int pki_communication_id,
+    int *pki_communication_id,
     ezmax_api_definition__full_field_e_communication_importance__e e_communication_importance,
     ezmax_api_definition__full_field_e_communication_type__e e_communication_type,
     custom_communicationsender_request_t *obj_communicationsender,
     char *s_communication_subject,
     char *t_communication_body,
-    int b_communication_private,
+    int *b_communication_private,
     ezmax_api_definition__full_communication_request_compound_ECOMMUNICATIONATTACHMENTTYPE_e e_communication_attachmenttype,
-    int i_communication_attachmentlinkexpiration,
-    int b_communication_readreceipt,
+    int *i_communication_attachmentlinkexpiration,
+    int *b_communication_readreceipt,
     list_t *a_obj_communicationattachment,
     list_t *a_obj_communicationrecipient,
     list_t *a_obj_communicationreference,
     list_t *a_obj_communicationexternalrecipient
     ) {
-    return communication_request_compound_create_internal (
-        pki_communication_id,
+    int *pki_communication_id_copy = NULL;
+    if (pki_communication_id) {
+        pki_communication_id_copy = malloc(sizeof(int));
+        if (pki_communication_id_copy) *pki_communication_id_copy = *pki_communication_id;
+    }
+    int *b_communication_private_copy = NULL;
+    if (b_communication_private) {
+        b_communication_private_copy = malloc(sizeof(int));
+        if (b_communication_private_copy) *b_communication_private_copy = *b_communication_private;
+    }
+    int *i_communication_attachmentlinkexpiration_copy = NULL;
+    if (i_communication_attachmentlinkexpiration) {
+        i_communication_attachmentlinkexpiration_copy = malloc(sizeof(int));
+        if (i_communication_attachmentlinkexpiration_copy) *i_communication_attachmentlinkexpiration_copy = *i_communication_attachmentlinkexpiration;
+    }
+    int *b_communication_readreceipt_copy = NULL;
+    if (b_communication_readreceipt) {
+        b_communication_readreceipt_copy = malloc(sizeof(int));
+        if (b_communication_readreceipt_copy) *b_communication_readreceipt_copy = *b_communication_readreceipt;
+    }
+    communication_request_compound_t *result = communication_request_compound_create_internal (
+        pki_communication_id_copy,
         e_communication_importance,
         e_communication_type,
         obj_communicationsender,
         s_communication_subject,
         t_communication_body,
-        b_communication_private,
+        b_communication_private_copy,
         e_communication_attachmenttype,
-        i_communication_attachmentlinkexpiration,
-        b_communication_readreceipt,
+        i_communication_attachmentlinkexpiration_copy,
+        b_communication_readreceipt_copy,
         a_obj_communicationattachment,
         a_obj_communicationrecipient,
         a_obj_communicationreference,
         a_obj_communicationexternalrecipient
         );
+    if (!result) {
+        free(pki_communication_id_copy);
+        free(b_communication_private_copy);
+        free(i_communication_attachmentlinkexpiration_copy);
+        free(b_communication_readreceipt_copy);
+    }
+    return result;
 }
 
 void communication_request_compound_free(communication_request_compound_t *communication_request_compound) {
@@ -104,6 +131,10 @@ void communication_request_compound_free(communication_request_compound_t *commu
         return ;
     }
     listEntry_t *listEntry;
+    if (communication_request_compound->pki_communication_id) {
+        free(communication_request_compound->pki_communication_id);
+        communication_request_compound->pki_communication_id = NULL;
+    }
     if (communication_request_compound->obj_communicationsender) {
         custom_communicationsender_request_free(communication_request_compound->obj_communicationsender);
         communication_request_compound->obj_communicationsender = NULL;
@@ -115,6 +146,18 @@ void communication_request_compound_free(communication_request_compound_t *commu
     if (communication_request_compound->t_communication_body) {
         free(communication_request_compound->t_communication_body);
         communication_request_compound->t_communication_body = NULL;
+    }
+    if (communication_request_compound->b_communication_private) {
+        free(communication_request_compound->b_communication_private);
+        communication_request_compound->b_communication_private = NULL;
+    }
+    if (communication_request_compound->i_communication_attachmentlinkexpiration) {
+        free(communication_request_compound->i_communication_attachmentlinkexpiration);
+        communication_request_compound->i_communication_attachmentlinkexpiration = NULL;
+    }
+    if (communication_request_compound->b_communication_readreceipt) {
+        free(communication_request_compound->b_communication_readreceipt);
+        communication_request_compound->b_communication_readreceipt = NULL;
     }
     if (communication_request_compound->a_obj_communicationattachment) {
         list_ForEach(listEntry, communication_request_compound->a_obj_communicationattachment) {
@@ -152,7 +195,7 @@ cJSON *communication_request_compound_convertToJSON(communication_request_compou
 
     // communication_request_compound->pki_communication_id
     if(communication_request_compound->pki_communication_id) {
-    if(cJSON_AddNumberToObject(item, "pkiCommunicationID", communication_request_compound->pki_communication_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiCommunicationID", *communication_request_compound->pki_communication_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -219,7 +262,7 @@ cJSON *communication_request_compound_convertToJSON(communication_request_compou
     if (!communication_request_compound->b_communication_private) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bCommunicationPrivate", communication_request_compound->b_communication_private) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bCommunicationPrivate", *communication_request_compound->b_communication_private) == NULL) {
     goto fail; //Bool
     }
 
@@ -235,7 +278,7 @@ cJSON *communication_request_compound_convertToJSON(communication_request_compou
 
     // communication_request_compound->i_communication_attachmentlinkexpiration
     if(communication_request_compound->i_communication_attachmentlinkexpiration) {
-    if(cJSON_AddNumberToObject(item, "iCommunicationAttachmentlinkexpiration", communication_request_compound->i_communication_attachmentlinkexpiration) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iCommunicationAttachmentlinkexpiration", *communication_request_compound->i_communication_attachmentlinkexpiration) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -243,7 +286,7 @@ cJSON *communication_request_compound_convertToJSON(communication_request_compou
 
     // communication_request_compound->b_communication_readreceipt
     if(communication_request_compound->b_communication_readreceipt) {
-    if(cJSON_AddBoolToObject(item, "bCommunicationReadreceipt", communication_request_compound->b_communication_readreceipt) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bCommunicationReadreceipt", *communication_request_compound->b_communication_readreceipt) == NULL) {
     goto fail; //Bool
     }
     }
@@ -344,6 +387,9 @@ communication_request_compound_t *communication_request_compound_parseFromJSON(c
 
     communication_request_compound_t *communication_request_compound_local_var = NULL;
 
+    // define the local variable for communication_request_compound->pki_communication_id
+    int *pki_communication_id_local_var = NULL;
+
     // define the local variable for communication_request_compound->e_communication_importance
     ezmax_api_definition__full_field_e_communication_importance__e e_communication_importance_local_nonprim = 0;
 
@@ -352,6 +398,19 @@ communication_request_compound_t *communication_request_compound_parseFromJSON(c
 
     // define the local variable for communication_request_compound->obj_communicationsender
     custom_communicationsender_request_t *obj_communicationsender_local_nonprim = NULL;
+
+    char *s_communication_subject_local_str = NULL;
+
+    char *t_communication_body_local_str = NULL;
+
+    // define the local variable for communication_request_compound->b_communication_private
+    int *b_communication_private_local_var = NULL;
+
+    // define the local variable for communication_request_compound->i_communication_attachmentlinkexpiration
+    int *i_communication_attachmentlinkexpiration_local_var = NULL;
+
+    // define the local variable for communication_request_compound->b_communication_readreceipt
+    int *b_communication_readreceipt_local_var = NULL;
 
     // define the local list for communication_request_compound->a_obj_communicationattachment
     list_t *a_obj_communicationattachmentList = NULL;
@@ -375,6 +434,12 @@ communication_request_compound_t *communication_request_compound_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    pki_communication_id_local_var = malloc(sizeof(int));
+    if(!pki_communication_id_local_var)
+    {
+        goto end;
+    }
+    *pki_communication_id_local_var = pki_communication_id->valuedouble;
     }
 
     // communication_request_compound->e_communication_importance
@@ -448,6 +513,12 @@ communication_request_compound_t *communication_request_compound_parseFromJSON(c
     {
     goto end; //Bool
     }
+    b_communication_private_local_var = malloc(sizeof(int));
+    if(!b_communication_private_local_var)
+    {
+        goto end;
+    }
+    *b_communication_private_local_var = b_communication_private->valueint;
 
     // communication_request_compound->e_communication_attachmenttype
     cJSON *e_communication_attachmenttype = cJSON_GetObjectItemCaseSensitive(communication_request_compoundJSON, "eCommunicationAttachmenttype");
@@ -473,6 +544,12 @@ communication_request_compound_t *communication_request_compound_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    i_communication_attachmentlinkexpiration_local_var = malloc(sizeof(int));
+    if(!i_communication_attachmentlinkexpiration_local_var)
+    {
+        goto end;
+    }
+    *i_communication_attachmentlinkexpiration_local_var = i_communication_attachmentlinkexpiration->valuedouble;
     }
 
     // communication_request_compound->b_communication_readreceipt
@@ -485,6 +562,12 @@ communication_request_compound_t *communication_request_compound_parseFromJSON(c
     {
     goto end; //Bool
     }
+    b_communication_readreceipt_local_var = malloc(sizeof(int));
+    if(!b_communication_readreceipt_local_var)
+    {
+        goto end;
+    }
+    *b_communication_readreceipt_local_var = b_communication_readreceipt->valueint;
     }
 
     // communication_request_compound->a_obj_communicationattachment
@@ -596,25 +679,36 @@ communication_request_compound_t *communication_request_compound_parseFromJSON(c
     }
 
 
+    if (s_communication_subject && !cJSON_IsNull(s_communication_subject)) s_communication_subject_local_str = strdup(s_communication_subject->valuestring);
+    if (t_communication_body && !cJSON_IsNull(t_communication_body)) t_communication_body_local_str = strdup(t_communication_body->valuestring);
+
     communication_request_compound_local_var = communication_request_compound_create_internal (
-        pki_communication_id ? pki_communication_id->valuedouble : 0,
+        pki_communication_id_local_var,
         e_communication_importance ? e_communication_importance_local_nonprim : 0,
         e_communication_type_local_nonprim,
         obj_communicationsender ? obj_communicationsender_local_nonprim : NULL,
-        s_communication_subject && !cJSON_IsNull(s_communication_subject) ? strdup(s_communication_subject->valuestring) : NULL,
-        strdup(t_communication_body->valuestring),
-        b_communication_private->valueint,
+        s_communication_subject_local_str,
+        t_communication_body_local_str,
+        b_communication_private_local_var,
         e_communication_attachmenttype ? e_communication_attachmenttypeVariable : ezmax_api_definition__full_communication_request_compound_ECOMMUNICATIONATTACHMENTTYPE_NULL,
-        i_communication_attachmentlinkexpiration ? i_communication_attachmentlinkexpiration->valuedouble : 0,
-        b_communication_readreceipt ? b_communication_readreceipt->valueint : 0,
+        i_communication_attachmentlinkexpiration_local_var,
+        b_communication_readreceipt_local_var,
         a_obj_communicationattachmentList,
         a_obj_communicationrecipientList,
         a_obj_communicationreferenceList,
         a_obj_communicationexternalrecipientList
         );
 
+    if (!communication_request_compound_local_var) {
+        goto end;
+    }
+
     return communication_request_compound_local_var;
 end:
+    if (pki_communication_id_local_var) {
+        free(pki_communication_id_local_var);
+        pki_communication_id_local_var = NULL;
+    }
     if (e_communication_importance_local_nonprim) {
         e_communication_importance_local_nonprim = 0;
     }
@@ -624,6 +718,26 @@ end:
     if (obj_communicationsender_local_nonprim) {
         custom_communicationsender_request_free(obj_communicationsender_local_nonprim);
         obj_communicationsender_local_nonprim = NULL;
+    }
+    if (s_communication_subject_local_str) {
+        free(s_communication_subject_local_str);
+        s_communication_subject_local_str = NULL;
+    }
+    if (t_communication_body_local_str) {
+        free(t_communication_body_local_str);
+        t_communication_body_local_str = NULL;
+    }
+    if (b_communication_private_local_var) {
+        free(b_communication_private_local_var);
+        b_communication_private_local_var = NULL;
+    }
+    if (i_communication_attachmentlinkexpiration_local_var) {
+        free(i_communication_attachmentlinkexpiration_local_var);
+        i_communication_attachmentlinkexpiration_local_var = NULL;
+    }
+    if (b_communication_readreceipt_local_var) {
+        free(b_communication_readreceipt_local_var);
+        b_communication_readreceipt_local_var = NULL;
     }
     if (a_obj_communicationattachmentList) {
         listEntry_t *listEntry = NULL;

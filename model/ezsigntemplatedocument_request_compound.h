@@ -43,16 +43,16 @@ ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLA
 
 
 typedef struct ezsigntemplatedocument_request_compound_t {
-    int pki_ezsigntemplatedocument_id; //numeric
-    int fki_ezsigntemplate_id; //numeric
-    int fki_ezsigndocument_id; //numeric
-    int fki_ezsigntemplatesigner_id; //numeric
+    int *pki_ezsigntemplatedocument_id; //numeric
+    int *fki_ezsigntemplate_id; //numeric
+    int *fki_ezsigndocument_id; //numeric
+    int *fki_ezsigntemplatesigner_id; //numeric
     char *s_ezsigntemplatedocument_name; // string
     ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLATEDOCUMENTSOURCE_e e_ezsigntemplatedocument_source; //enum
     ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLATEDOCUMENTFORMAT_e e_ezsigntemplatedocument_format; //enum
     char *s_ezsigntemplatedocument_base64; //ByteArray
     char *s_ezsigntemplatedocument_url; // string
-    int b_ezsigntemplatedocument_forcerepair; //boolean
+    int *b_ezsigntemplatedocument_forcerepair; //boolean
     ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLATEDOCUMENTFORM_e e_ezsigntemplatedocument_form; //enum
     char *s_ezsigntemplatedocument_password; // string
 
@@ -60,16 +60,16 @@ typedef struct ezsigntemplatedocument_request_compound_t {
 } ezsigntemplatedocument_request_compound_t;
 
 __attribute__((deprecated)) ezsigntemplatedocument_request_compound_t *ezsigntemplatedocument_request_compound_create(
-    int pki_ezsigntemplatedocument_id,
-    int fki_ezsigntemplate_id,
-    int fki_ezsigndocument_id,
-    int fki_ezsigntemplatesigner_id,
+    int *pki_ezsigntemplatedocument_id,
+    int *fki_ezsigntemplate_id,
+    int *fki_ezsigndocument_id,
+    int *fki_ezsigntemplatesigner_id,
     char *s_ezsigntemplatedocument_name,
     ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLATEDOCUMENTSOURCE_e e_ezsigntemplatedocument_source,
     ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLATEDOCUMENTFORMAT_e e_ezsigntemplatedocument_format,
     char *s_ezsigntemplatedocument_base64,
     char *s_ezsigntemplatedocument_url,
-    int b_ezsigntemplatedocument_forcerepair,
+    int *b_ezsigntemplatedocument_forcerepair,
     ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLATEDOCUMENTFORM_e e_ezsigntemplatedocument_form,
     char *s_ezsigntemplatedocument_password
 );

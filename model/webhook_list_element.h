@@ -22,7 +22,7 @@ typedef struct webhook_list_element_t webhook_list_element_t;
 
 
 typedef struct webhook_list_element_t {
-    int pki_webhook_id; //numeric
+    int *pki_webhook_id; //numeric
     char *s_webhook_description; // string
     char *s_webhook_url; // string
     char *s_webhook_event; // string
@@ -30,14 +30,14 @@ typedef struct webhook_list_element_t {
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module; //referenced enum
     ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent; //referenced enum
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent; //referenced enum
-    int b_webhook_isactive; //boolean
-    int b_webhook_issigned; //boolean
+    int *b_webhook_isactive; //boolean
+    int *b_webhook_issigned; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } webhook_list_element_t;
 
 __attribute__((deprecated)) webhook_list_element_t *webhook_list_element_create(
-    int pki_webhook_id,
+    int *pki_webhook_id,
     char *s_webhook_description,
     char *s_webhook_url,
     char *s_webhook_event,
@@ -45,8 +45,8 @@ __attribute__((deprecated)) webhook_list_element_t *webhook_list_element_create(
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module,
     ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent,
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent,
-    int b_webhook_isactive,
-    int b_webhook_issigned
+    int *b_webhook_isactive,
+    int *b_webhook_issigned
 );
 
 void webhook_list_element_free(webhook_list_element_t *webhook_list_element);

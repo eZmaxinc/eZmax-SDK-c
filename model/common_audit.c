@@ -13,10 +13,10 @@ static common_audit_t *common_audit_create_internal(
     if (!common_audit_local_var) {
         return NULL;
     }
+    memset(common_audit_local_var, 0, sizeof(common_audit_t));
+    common_audit_local_var->_library_owned = 1;
     common_audit_local_var->obj_auditdetail_created = obj_auditdetail_created;
     common_audit_local_var->obj_auditdetail_modified = obj_auditdetail_modified;
-
-    common_audit_local_var->_library_owned = 1;
     return common_audit_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) common_audit_t *common_audit_create(
     common_auditdetail_t *obj_auditdetail_created,
     common_auditdetail_t *obj_auditdetail_modified
     ) {
-    return common_audit_create_internal (
+    common_audit_t *result = common_audit_create_internal (
         obj_auditdetail_created,
         obj_auditdetail_modified
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void common_audit_free(common_audit_t *common_audit) {
@@ -119,10 +122,15 @@ common_audit_t *common_audit_parseFromJSON(cJSON *common_auditJSON){
     }
 
 
+
     common_audit_local_var = common_audit_create_internal (
         obj_auditdetail_created_local_nonprim,
         obj_auditdetail_modified ? obj_auditdetail_modified_local_nonprim : NULL
         );
+
+    if (!common_audit_local_var) {
+        goto end;
+    }
 
     return common_audit_local_var;
 end:

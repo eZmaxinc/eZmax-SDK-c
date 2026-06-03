@@ -6,23 +6,25 @@
 
 
 static systemconfiguration_request_compound_v2_t *systemconfiguration_request_compound_v2_create_internal(
-    int pki_systemconfiguration_id,
-    int fki_branding_id,
+    int *pki_systemconfiguration_id,
+    int *fki_branding_id,
     ezmax_api_definition__full_field_e_systemconfiguration_newexternaluseraction__e e_systemconfiguration_newexternaluseraction,
     ezmax_api_definition__full_field_e_systemconfiguration_language1__e e_systemconfiguration_language1,
     ezmax_api_definition__full_field_e_systemconfiguration_language2__e e_systemconfiguration_language2,
     ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__e e_systemconfiguration_ezsignofficeplan,
-    int b_systemconfiguration_ezsignpaidbyoffice,
-    int b_systemconfiguration_ezsignpersonnal,
-    int b_systemconfiguration_sspr,
+    int *b_systemconfiguration_ezsignpaidbyoffice,
+    int *b_systemconfiguration_ezsignpersonnal,
+    int *b_systemconfiguration_sspr,
     char *dt_systemconfiguration_readonlyexpirationstart,
     char *dt_systemconfiguration_readonlyexpirationend,
-    int i_systemconfiguration_ezsignreminderhoursend
+    int *i_systemconfiguration_ezsignreminderhoursend
     ) {
     systemconfiguration_request_compound_v2_t *systemconfiguration_request_compound_v2_local_var = malloc(sizeof(systemconfiguration_request_compound_v2_t));
     if (!systemconfiguration_request_compound_v2_local_var) {
         return NULL;
     }
+    memset(systemconfiguration_request_compound_v2_local_var, 0, sizeof(systemconfiguration_request_compound_v2_t));
+    systemconfiguration_request_compound_v2_local_var->_library_owned = 1;
     systemconfiguration_request_compound_v2_local_var->pki_systemconfiguration_id = pki_systemconfiguration_id;
     systemconfiguration_request_compound_v2_local_var->fki_branding_id = fki_branding_id;
     systemconfiguration_request_compound_v2_local_var->e_systemconfiguration_newexternaluseraction = e_systemconfiguration_newexternaluseraction;
@@ -35,39 +37,76 @@ static systemconfiguration_request_compound_v2_t *systemconfiguration_request_co
     systemconfiguration_request_compound_v2_local_var->dt_systemconfiguration_readonlyexpirationstart = dt_systemconfiguration_readonlyexpirationstart;
     systemconfiguration_request_compound_v2_local_var->dt_systemconfiguration_readonlyexpirationend = dt_systemconfiguration_readonlyexpirationend;
     systemconfiguration_request_compound_v2_local_var->i_systemconfiguration_ezsignreminderhoursend = i_systemconfiguration_ezsignreminderhoursend;
-
-    systemconfiguration_request_compound_v2_local_var->_library_owned = 1;
     return systemconfiguration_request_compound_v2_local_var;
 }
 
 __attribute__((deprecated)) systemconfiguration_request_compound_v2_t *systemconfiguration_request_compound_v2_create(
-    int pki_systemconfiguration_id,
-    int fki_branding_id,
+    int *pki_systemconfiguration_id,
+    int *fki_branding_id,
     ezmax_api_definition__full_field_e_systemconfiguration_newexternaluseraction__e e_systemconfiguration_newexternaluseraction,
     ezmax_api_definition__full_field_e_systemconfiguration_language1__e e_systemconfiguration_language1,
     ezmax_api_definition__full_field_e_systemconfiguration_language2__e e_systemconfiguration_language2,
     ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__e e_systemconfiguration_ezsignofficeplan,
-    int b_systemconfiguration_ezsignpaidbyoffice,
-    int b_systemconfiguration_ezsignpersonnal,
-    int b_systemconfiguration_sspr,
+    int *b_systemconfiguration_ezsignpaidbyoffice,
+    int *b_systemconfiguration_ezsignpersonnal,
+    int *b_systemconfiguration_sspr,
     char *dt_systemconfiguration_readonlyexpirationstart,
     char *dt_systemconfiguration_readonlyexpirationend,
-    int i_systemconfiguration_ezsignreminderhoursend
+    int *i_systemconfiguration_ezsignreminderhoursend
     ) {
-    return systemconfiguration_request_compound_v2_create_internal (
-        pki_systemconfiguration_id,
-        fki_branding_id,
+    int *pki_systemconfiguration_id_copy = NULL;
+    if (pki_systemconfiguration_id) {
+        pki_systemconfiguration_id_copy = malloc(sizeof(int));
+        if (pki_systemconfiguration_id_copy) *pki_systemconfiguration_id_copy = *pki_systemconfiguration_id;
+    }
+    int *fki_branding_id_copy = NULL;
+    if (fki_branding_id) {
+        fki_branding_id_copy = malloc(sizeof(int));
+        if (fki_branding_id_copy) *fki_branding_id_copy = *fki_branding_id;
+    }
+    int *b_systemconfiguration_ezsignpaidbyoffice_copy = NULL;
+    if (b_systemconfiguration_ezsignpaidbyoffice) {
+        b_systemconfiguration_ezsignpaidbyoffice_copy = malloc(sizeof(int));
+        if (b_systemconfiguration_ezsignpaidbyoffice_copy) *b_systemconfiguration_ezsignpaidbyoffice_copy = *b_systemconfiguration_ezsignpaidbyoffice;
+    }
+    int *b_systemconfiguration_ezsignpersonnal_copy = NULL;
+    if (b_systemconfiguration_ezsignpersonnal) {
+        b_systemconfiguration_ezsignpersonnal_copy = malloc(sizeof(int));
+        if (b_systemconfiguration_ezsignpersonnal_copy) *b_systemconfiguration_ezsignpersonnal_copy = *b_systemconfiguration_ezsignpersonnal;
+    }
+    int *b_systemconfiguration_sspr_copy = NULL;
+    if (b_systemconfiguration_sspr) {
+        b_systemconfiguration_sspr_copy = malloc(sizeof(int));
+        if (b_systemconfiguration_sspr_copy) *b_systemconfiguration_sspr_copy = *b_systemconfiguration_sspr;
+    }
+    int *i_systemconfiguration_ezsignreminderhoursend_copy = NULL;
+    if (i_systemconfiguration_ezsignreminderhoursend) {
+        i_systemconfiguration_ezsignreminderhoursend_copy = malloc(sizeof(int));
+        if (i_systemconfiguration_ezsignreminderhoursend_copy) *i_systemconfiguration_ezsignreminderhoursend_copy = *i_systemconfiguration_ezsignreminderhoursend;
+    }
+    systemconfiguration_request_compound_v2_t *result = systemconfiguration_request_compound_v2_create_internal (
+        pki_systemconfiguration_id_copy,
+        fki_branding_id_copy,
         e_systemconfiguration_newexternaluseraction,
         e_systemconfiguration_language1,
         e_systemconfiguration_language2,
         e_systemconfiguration_ezsignofficeplan,
-        b_systemconfiguration_ezsignpaidbyoffice,
-        b_systemconfiguration_ezsignpersonnal,
-        b_systemconfiguration_sspr,
+        b_systemconfiguration_ezsignpaidbyoffice_copy,
+        b_systemconfiguration_ezsignpersonnal_copy,
+        b_systemconfiguration_sspr_copy,
         dt_systemconfiguration_readonlyexpirationstart,
         dt_systemconfiguration_readonlyexpirationend,
-        i_systemconfiguration_ezsignreminderhoursend
+        i_systemconfiguration_ezsignreminderhoursend_copy
         );
+    if (!result) {
+        free(pki_systemconfiguration_id_copy);
+        free(fki_branding_id_copy);
+        free(b_systemconfiguration_ezsignpaidbyoffice_copy);
+        free(b_systemconfiguration_ezsignpersonnal_copy);
+        free(b_systemconfiguration_sspr_copy);
+        free(i_systemconfiguration_ezsignreminderhoursend_copy);
+    }
+    return result;
 }
 
 void systemconfiguration_request_compound_v2_free(systemconfiguration_request_compound_v2_t *systemconfiguration_request_compound_v2) {
@@ -79,6 +118,26 @@ void systemconfiguration_request_compound_v2_free(systemconfiguration_request_co
         return ;
     }
     listEntry_t *listEntry;
+    if (systemconfiguration_request_compound_v2->pki_systemconfiguration_id) {
+        free(systemconfiguration_request_compound_v2->pki_systemconfiguration_id);
+        systemconfiguration_request_compound_v2->pki_systemconfiguration_id = NULL;
+    }
+    if (systemconfiguration_request_compound_v2->fki_branding_id) {
+        free(systemconfiguration_request_compound_v2->fki_branding_id);
+        systemconfiguration_request_compound_v2->fki_branding_id = NULL;
+    }
+    if (systemconfiguration_request_compound_v2->b_systemconfiguration_ezsignpaidbyoffice) {
+        free(systemconfiguration_request_compound_v2->b_systemconfiguration_ezsignpaidbyoffice);
+        systemconfiguration_request_compound_v2->b_systemconfiguration_ezsignpaidbyoffice = NULL;
+    }
+    if (systemconfiguration_request_compound_v2->b_systemconfiguration_ezsignpersonnal) {
+        free(systemconfiguration_request_compound_v2->b_systemconfiguration_ezsignpersonnal);
+        systemconfiguration_request_compound_v2->b_systemconfiguration_ezsignpersonnal = NULL;
+    }
+    if (systemconfiguration_request_compound_v2->b_systemconfiguration_sspr) {
+        free(systemconfiguration_request_compound_v2->b_systemconfiguration_sspr);
+        systemconfiguration_request_compound_v2->b_systemconfiguration_sspr = NULL;
+    }
     if (systemconfiguration_request_compound_v2->dt_systemconfiguration_readonlyexpirationstart) {
         free(systemconfiguration_request_compound_v2->dt_systemconfiguration_readonlyexpirationstart);
         systemconfiguration_request_compound_v2->dt_systemconfiguration_readonlyexpirationstart = NULL;
@@ -86,6 +145,10 @@ void systemconfiguration_request_compound_v2_free(systemconfiguration_request_co
     if (systemconfiguration_request_compound_v2->dt_systemconfiguration_readonlyexpirationend) {
         free(systemconfiguration_request_compound_v2->dt_systemconfiguration_readonlyexpirationend);
         systemconfiguration_request_compound_v2->dt_systemconfiguration_readonlyexpirationend = NULL;
+    }
+    if (systemconfiguration_request_compound_v2->i_systemconfiguration_ezsignreminderhoursend) {
+        free(systemconfiguration_request_compound_v2->i_systemconfiguration_ezsignreminderhoursend);
+        systemconfiguration_request_compound_v2->i_systemconfiguration_ezsignreminderhoursend = NULL;
     }
     free(systemconfiguration_request_compound_v2);
 }
@@ -95,7 +158,7 @@ cJSON *systemconfiguration_request_compound_v2_convertToJSON(systemconfiguration
 
     // systemconfiguration_request_compound_v2->pki_systemconfiguration_id
     if(systemconfiguration_request_compound_v2->pki_systemconfiguration_id) {
-    if(cJSON_AddNumberToObject(item, "pkiSystemconfigurationID", systemconfiguration_request_compound_v2->pki_systemconfiguration_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiSystemconfigurationID", *systemconfiguration_request_compound_v2->pki_systemconfiguration_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -103,7 +166,7 @@ cJSON *systemconfiguration_request_compound_v2_convertToJSON(systemconfiguration
 
     // systemconfiguration_request_compound_v2->fki_branding_id
     if(systemconfiguration_request_compound_v2->fki_branding_id) {
-    if(cJSON_AddNumberToObject(item, "fkiBrandingID", systemconfiguration_request_compound_v2->fki_branding_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiBrandingID", *systemconfiguration_request_compound_v2->fki_branding_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -166,7 +229,7 @@ cJSON *systemconfiguration_request_compound_v2_convertToJSON(systemconfiguration
 
     // systemconfiguration_request_compound_v2->b_systemconfiguration_ezsignpaidbyoffice
     if(systemconfiguration_request_compound_v2->b_systemconfiguration_ezsignpaidbyoffice) {
-    if(cJSON_AddBoolToObject(item, "bSystemconfigurationEzsignpaidbyoffice", systemconfiguration_request_compound_v2->b_systemconfiguration_ezsignpaidbyoffice) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bSystemconfigurationEzsignpaidbyoffice", *systemconfiguration_request_compound_v2->b_systemconfiguration_ezsignpaidbyoffice) == NULL) {
     goto fail; //Bool
     }
     }
@@ -176,7 +239,7 @@ cJSON *systemconfiguration_request_compound_v2_convertToJSON(systemconfiguration
     if (!systemconfiguration_request_compound_v2->b_systemconfiguration_ezsignpersonnal) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bSystemconfigurationEzsignpersonnal", systemconfiguration_request_compound_v2->b_systemconfiguration_ezsignpersonnal) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bSystemconfigurationEzsignpersonnal", *systemconfiguration_request_compound_v2->b_systemconfiguration_ezsignpersonnal) == NULL) {
     goto fail; //Bool
     }
 
@@ -185,7 +248,7 @@ cJSON *systemconfiguration_request_compound_v2_convertToJSON(systemconfiguration
     if (!systemconfiguration_request_compound_v2->b_systemconfiguration_sspr) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bSystemconfigurationSspr", systemconfiguration_request_compound_v2->b_systemconfiguration_sspr) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bSystemconfigurationSspr", *systemconfiguration_request_compound_v2->b_systemconfiguration_sspr) == NULL) {
     goto fail; //Bool
     }
 
@@ -210,7 +273,7 @@ cJSON *systemconfiguration_request_compound_v2_convertToJSON(systemconfiguration
     if (!systemconfiguration_request_compound_v2->i_systemconfiguration_ezsignreminderhoursend) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iSystemconfigurationEzsignreminderhoursend", systemconfiguration_request_compound_v2->i_systemconfiguration_ezsignreminderhoursend) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iSystemconfigurationEzsignreminderhoursend", *systemconfiguration_request_compound_v2->i_systemconfiguration_ezsignreminderhoursend) == NULL) {
     goto fail; //Numeric
     }
 
@@ -226,6 +289,12 @@ systemconfiguration_request_compound_v2_t *systemconfiguration_request_compound_
 
     systemconfiguration_request_compound_v2_t *systemconfiguration_request_compound_v2_local_var = NULL;
 
+    // define the local variable for systemconfiguration_request_compound_v2->pki_systemconfiguration_id
+    int *pki_systemconfiguration_id_local_var = NULL;
+
+    // define the local variable for systemconfiguration_request_compound_v2->fki_branding_id
+    int *fki_branding_id_local_var = NULL;
+
     // define the local variable for systemconfiguration_request_compound_v2->e_systemconfiguration_newexternaluseraction
     ezmax_api_definition__full_field_e_systemconfiguration_newexternaluseraction__e e_systemconfiguration_newexternaluseraction_local_nonprim = 0;
 
@@ -238,6 +307,22 @@ systemconfiguration_request_compound_v2_t *systemconfiguration_request_compound_
     // define the local variable for systemconfiguration_request_compound_v2->e_systemconfiguration_ezsignofficeplan
     ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__e e_systemconfiguration_ezsignofficeplan_local_nonprim = 0;
 
+    // define the local variable for systemconfiguration_request_compound_v2->b_systemconfiguration_ezsignpaidbyoffice
+    int *b_systemconfiguration_ezsignpaidbyoffice_local_var = NULL;
+
+    // define the local variable for systemconfiguration_request_compound_v2->b_systemconfiguration_ezsignpersonnal
+    int *b_systemconfiguration_ezsignpersonnal_local_var = NULL;
+
+    // define the local variable for systemconfiguration_request_compound_v2->b_systemconfiguration_sspr
+    int *b_systemconfiguration_sspr_local_var = NULL;
+
+    char *dt_systemconfiguration_readonlyexpirationstart_local_str = NULL;
+
+    char *dt_systemconfiguration_readonlyexpirationend_local_str = NULL;
+
+    // define the local variable for systemconfiguration_request_compound_v2->i_systemconfiguration_ezsignreminderhoursend
+    int *i_systemconfiguration_ezsignreminderhoursend_local_var = NULL;
+
     // systemconfiguration_request_compound_v2->pki_systemconfiguration_id
     cJSON *pki_systemconfiguration_id = cJSON_GetObjectItemCaseSensitive(systemconfiguration_request_compound_v2JSON, "pkiSystemconfigurationID");
     if (cJSON_IsNull(pki_systemconfiguration_id)) {
@@ -248,6 +333,12 @@ systemconfiguration_request_compound_v2_t *systemconfiguration_request_compound_
     {
     goto end; //Numeric
     }
+    pki_systemconfiguration_id_local_var = malloc(sizeof(int));
+    if(!pki_systemconfiguration_id_local_var)
+    {
+        goto end;
+    }
+    *pki_systemconfiguration_id_local_var = pki_systemconfiguration_id->valuedouble;
     }
 
     // systemconfiguration_request_compound_v2->fki_branding_id
@@ -260,6 +351,12 @@ systemconfiguration_request_compound_v2_t *systemconfiguration_request_compound_
     {
     goto end; //Numeric
     }
+    fki_branding_id_local_var = malloc(sizeof(int));
+    if(!fki_branding_id_local_var)
+    {
+        goto end;
+    }
+    *fki_branding_id_local_var = fki_branding_id->valuedouble;
     }
 
     // systemconfiguration_request_compound_v2->e_systemconfiguration_newexternaluseraction
@@ -317,6 +414,12 @@ systemconfiguration_request_compound_v2_t *systemconfiguration_request_compound_
     {
     goto end; //Bool
     }
+    b_systemconfiguration_ezsignpaidbyoffice_local_var = malloc(sizeof(int));
+    if(!b_systemconfiguration_ezsignpaidbyoffice_local_var)
+    {
+        goto end;
+    }
+    *b_systemconfiguration_ezsignpaidbyoffice_local_var = b_systemconfiguration_ezsignpaidbyoffice->valueint;
     }
 
     // systemconfiguration_request_compound_v2->b_systemconfiguration_ezsignpersonnal
@@ -333,6 +436,12 @@ systemconfiguration_request_compound_v2_t *systemconfiguration_request_compound_
     {
     goto end; //Bool
     }
+    b_systemconfiguration_ezsignpersonnal_local_var = malloc(sizeof(int));
+    if(!b_systemconfiguration_ezsignpersonnal_local_var)
+    {
+        goto end;
+    }
+    *b_systemconfiguration_ezsignpersonnal_local_var = b_systemconfiguration_ezsignpersonnal->valueint;
 
     // systemconfiguration_request_compound_v2->b_systemconfiguration_sspr
     cJSON *b_systemconfiguration_sspr = cJSON_GetObjectItemCaseSensitive(systemconfiguration_request_compound_v2JSON, "bSystemconfigurationSspr");
@@ -348,6 +457,12 @@ systemconfiguration_request_compound_v2_t *systemconfiguration_request_compound_
     {
     goto end; //Bool
     }
+    b_systemconfiguration_sspr_local_var = malloc(sizeof(int));
+    if(!b_systemconfiguration_sspr_local_var)
+    {
+        goto end;
+    }
+    *b_systemconfiguration_sspr_local_var = b_systemconfiguration_sspr->valueint;
 
     // systemconfiguration_request_compound_v2->dt_systemconfiguration_readonlyexpirationstart
     cJSON *dt_systemconfiguration_readonlyexpirationstart = cJSON_GetObjectItemCaseSensitive(systemconfiguration_request_compound_v2JSON, "dtSystemconfigurationReadonlyexpirationstart");
@@ -387,25 +502,46 @@ systemconfiguration_request_compound_v2_t *systemconfiguration_request_compound_
     {
     goto end; //Numeric
     }
+    i_systemconfiguration_ezsignreminderhoursend_local_var = malloc(sizeof(int));
+    if(!i_systemconfiguration_ezsignreminderhoursend_local_var)
+    {
+        goto end;
+    }
+    *i_systemconfiguration_ezsignreminderhoursend_local_var = i_systemconfiguration_ezsignreminderhoursend->valuedouble;
 
+
+    if (dt_systemconfiguration_readonlyexpirationstart && !cJSON_IsNull(dt_systemconfiguration_readonlyexpirationstart)) dt_systemconfiguration_readonlyexpirationstart_local_str = strdup(dt_systemconfiguration_readonlyexpirationstart->valuestring);
+    if (dt_systemconfiguration_readonlyexpirationend && !cJSON_IsNull(dt_systemconfiguration_readonlyexpirationend)) dt_systemconfiguration_readonlyexpirationend_local_str = strdup(dt_systemconfiguration_readonlyexpirationend->valuestring);
 
     systemconfiguration_request_compound_v2_local_var = systemconfiguration_request_compound_v2_create_internal (
-        pki_systemconfiguration_id ? pki_systemconfiguration_id->valuedouble : 0,
-        fki_branding_id ? fki_branding_id->valuedouble : 0,
+        pki_systemconfiguration_id_local_var,
+        fki_branding_id_local_var,
         e_systemconfiguration_newexternaluseraction_local_nonprim,
         e_systemconfiguration_language1_local_nonprim,
         e_systemconfiguration_language2_local_nonprim,
         e_systemconfiguration_ezsignofficeplan ? e_systemconfiguration_ezsignofficeplan_local_nonprim : 0,
-        b_systemconfiguration_ezsignpaidbyoffice ? b_systemconfiguration_ezsignpaidbyoffice->valueint : 0,
-        b_systemconfiguration_ezsignpersonnal->valueint,
-        b_systemconfiguration_sspr->valueint,
-        dt_systemconfiguration_readonlyexpirationstart && !cJSON_IsNull(dt_systemconfiguration_readonlyexpirationstart) ? strdup(dt_systemconfiguration_readonlyexpirationstart->valuestring) : NULL,
-        dt_systemconfiguration_readonlyexpirationend && !cJSON_IsNull(dt_systemconfiguration_readonlyexpirationend) ? strdup(dt_systemconfiguration_readonlyexpirationend->valuestring) : NULL,
-        i_systemconfiguration_ezsignreminderhoursend->valuedouble
+        b_systemconfiguration_ezsignpaidbyoffice_local_var,
+        b_systemconfiguration_ezsignpersonnal_local_var,
+        b_systemconfiguration_sspr_local_var,
+        dt_systemconfiguration_readonlyexpirationstart_local_str,
+        dt_systemconfiguration_readonlyexpirationend_local_str,
+        i_systemconfiguration_ezsignreminderhoursend_local_var
         );
+
+    if (!systemconfiguration_request_compound_v2_local_var) {
+        goto end;
+    }
 
     return systemconfiguration_request_compound_v2_local_var;
 end:
+    if (pki_systemconfiguration_id_local_var) {
+        free(pki_systemconfiguration_id_local_var);
+        pki_systemconfiguration_id_local_var = NULL;
+    }
+    if (fki_branding_id_local_var) {
+        free(fki_branding_id_local_var);
+        fki_branding_id_local_var = NULL;
+    }
     if (e_systemconfiguration_newexternaluseraction_local_nonprim) {
         e_systemconfiguration_newexternaluseraction_local_nonprim = 0;
     }
@@ -417,6 +553,30 @@ end:
     }
     if (e_systemconfiguration_ezsignofficeplan_local_nonprim) {
         e_systemconfiguration_ezsignofficeplan_local_nonprim = 0;
+    }
+    if (b_systemconfiguration_ezsignpaidbyoffice_local_var) {
+        free(b_systemconfiguration_ezsignpaidbyoffice_local_var);
+        b_systemconfiguration_ezsignpaidbyoffice_local_var = NULL;
+    }
+    if (b_systemconfiguration_ezsignpersonnal_local_var) {
+        free(b_systemconfiguration_ezsignpersonnal_local_var);
+        b_systemconfiguration_ezsignpersonnal_local_var = NULL;
+    }
+    if (b_systemconfiguration_sspr_local_var) {
+        free(b_systemconfiguration_sspr_local_var);
+        b_systemconfiguration_sspr_local_var = NULL;
+    }
+    if (dt_systemconfiguration_readonlyexpirationstart_local_str) {
+        free(dt_systemconfiguration_readonlyexpirationstart_local_str);
+        dt_systemconfiguration_readonlyexpirationstart_local_str = NULL;
+    }
+    if (dt_systemconfiguration_readonlyexpirationend_local_str) {
+        free(dt_systemconfiguration_readonlyexpirationend_local_str);
+        dt_systemconfiguration_readonlyexpirationend_local_str = NULL;
+    }
+    if (i_systemconfiguration_ezsignreminderhoursend_local_var) {
+        free(i_systemconfiguration_ezsignreminderhoursend_local_var);
+        i_systemconfiguration_ezsignreminderhoursend_local_var = NULL;
     }
     return NULL;
 

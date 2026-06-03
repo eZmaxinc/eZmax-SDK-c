@@ -12,18 +12,21 @@ static rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_t 
     if (!rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_local_var) {
         return NULL;
     }
-    rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_local_var->a_obj_communicationsenders = a_obj_communicationsenders;
-
+    memset(rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_local_var, 0, sizeof(rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_t));
     rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_local_var->_library_owned = 1;
+    rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_local_var->a_obj_communicationsenders = a_obj_communicationsenders;
     return rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_t *rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_create(
     list_t *a_obj_communicationsenders
     ) {
-    return rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_create_internal (
+    rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_t *result = rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_create_internal (
         a_obj_communicationsenders
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_free(rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_t *rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload) {
@@ -111,9 +114,14 @@ rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_t *reject
     }
 
 
+
     rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_local_var = rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_create_internal (
         a_obj_communicationsendersList
         );
+
+    if (!rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_local_var;
 end:

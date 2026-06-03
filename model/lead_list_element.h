@@ -20,12 +20,12 @@ typedef struct lead_list_element_t lead_list_element_t;
 
 
 typedef struct lead_list_element_t {
-    int pki_lead_id; //numeric
-    int fki_leadsource_id; //numeric
+    int *pki_lead_id; //numeric
+    int *fki_leadsource_id; //numeric
     char *s_leadsource_name_x; // string
     ezmax_api_definition__full_field_e_lead_status__e e_lead_status; //referenced enum
     char *dt_lead_expiration; // string
-    int b_lead_isactive; //boolean
+    int *b_lead_isactive; //boolean
     char *s_lead_code; // string
     char *s_lead_contacts; // string
 
@@ -33,12 +33,12 @@ typedef struct lead_list_element_t {
 } lead_list_element_t;
 
 __attribute__((deprecated)) lead_list_element_t *lead_list_element_create(
-    int pki_lead_id,
-    int fki_leadsource_id,
+    int *pki_lead_id,
+    int *fki_leadsource_id,
     char *s_leadsource_name_x,
     ezmax_api_definition__full_field_e_lead_status__e e_lead_status,
     char *dt_lead_expiration,
-    int b_lead_isactive,
+    int *b_lead_isactive,
     char *s_lead_code,
     char *s_lead_contacts
 );

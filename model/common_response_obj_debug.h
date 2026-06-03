@@ -22,8 +22,8 @@ typedef struct common_response_obj_debug_t common_response_obj_debug_t;
 typedef struct common_response_obj_debug_t {
     char *s_memory_usage; // string
     char *s_run_time; // string
-    int i_sql_selects; //numeric
-    int i_sql_queries; //numeric
+    int *i_sql_selects; //numeric
+    int *i_sql_queries; //numeric
     list_t *a_obj_sql_query; //nonprimitive container
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -32,8 +32,8 @@ typedef struct common_response_obj_debug_t {
 __attribute__((deprecated)) common_response_obj_debug_t *common_response_obj_debug_create(
     char *s_memory_usage,
     char *s_run_time,
-    int i_sql_selects,
-    int i_sql_queries,
+    int *i_sql_selects,
+    int *i_sql_queries,
     list_t *a_obj_sql_query
 );
 

@@ -12,18 +12,21 @@ static apikey_create_object_v2_request_t *apikey_create_object_v2_request_create
     if (!apikey_create_object_v2_request_local_var) {
         return NULL;
     }
-    apikey_create_object_v2_request_local_var->a_obj_apikey = a_obj_apikey;
-
+    memset(apikey_create_object_v2_request_local_var, 0, sizeof(apikey_create_object_v2_request_t));
     apikey_create_object_v2_request_local_var->_library_owned = 1;
+    apikey_create_object_v2_request_local_var->a_obj_apikey = a_obj_apikey;
     return apikey_create_object_v2_request_local_var;
 }
 
 __attribute__((deprecated)) apikey_create_object_v2_request_t *apikey_create_object_v2_request_create(
     list_t *a_obj_apikey
     ) {
-    return apikey_create_object_v2_request_create_internal (
+    apikey_create_object_v2_request_t *result = apikey_create_object_v2_request_create_internal (
         a_obj_apikey
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void apikey_create_object_v2_request_free(apikey_create_object_v2_request_t *apikey_create_object_v2_request) {
@@ -111,9 +114,14 @@ apikey_create_object_v2_request_t *apikey_create_object_v2_request_parseFromJSON
     }
 
 
+
     apikey_create_object_v2_request_local_var = apikey_create_object_v2_request_create_internal (
         a_obj_apikeyList
         );
+
+    if (!apikey_create_object_v2_request_local_var) {
+        goto end;
+    }
 
     return apikey_create_object_v2_request_local_var;
 end:

@@ -12,18 +12,21 @@ static ezsignbulksendsignermapping_create_object_v1_response_m_payload_t *ezsign
     if (!ezsignbulksendsignermapping_create_object_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsignbulksendsignermapping_create_object_v1_response_m_payload_local_var->a_pki_ezsignbulksendsignermapping_id = a_pki_ezsignbulksendsignermapping_id;
-
+    memset(ezsignbulksendsignermapping_create_object_v1_response_m_payload_local_var, 0, sizeof(ezsignbulksendsignermapping_create_object_v1_response_m_payload_t));
     ezsignbulksendsignermapping_create_object_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsignbulksendsignermapping_create_object_v1_response_m_payload_local_var->a_pki_ezsignbulksendsignermapping_id = a_pki_ezsignbulksendsignermapping_id;
     return ezsignbulksendsignermapping_create_object_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsignbulksendsignermapping_create_object_v1_response_m_payload_t *ezsignbulksendsignermapping_create_object_v1_response_m_payload_create(
     list_t *a_pki_ezsignbulksendsignermapping_id
     ) {
-    return ezsignbulksendsignermapping_create_object_v1_response_m_payload_create_internal (
+    ezsignbulksendsignermapping_create_object_v1_response_m_payload_t *result = ezsignbulksendsignermapping_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsignbulksendsignermapping_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignbulksendsignermapping_create_object_v1_response_m_payload_free(ezsignbulksendsignermapping_create_object_v1_response_m_payload_t *ezsignbulksendsignermapping_create_object_v1_response_m_payload) {
@@ -112,9 +115,14 @@ ezsignbulksendsignermapping_create_object_v1_response_m_payload_t *ezsignbulksen
     }
 
 
+
     ezsignbulksendsignermapping_create_object_v1_response_m_payload_local_var = ezsignbulksendsignermapping_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsignbulksendsignermapping_idList
         );
+
+    if (!ezsignbulksendsignermapping_create_object_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsignbulksendsignermapping_create_object_v1_response_m_payload_local_var;
 end:

@@ -12,18 +12,21 @@ static ezsignbulksendsignermapping_get_object_v2_response_m_payload_t *ezsignbul
     if (!ezsignbulksendsignermapping_get_object_v2_response_m_payload_local_var) {
         return NULL;
     }
-    ezsignbulksendsignermapping_get_object_v2_response_m_payload_local_var->obj_ezsignbulksendsignermapping = obj_ezsignbulksendsignermapping;
-
+    memset(ezsignbulksendsignermapping_get_object_v2_response_m_payload_local_var, 0, sizeof(ezsignbulksendsignermapping_get_object_v2_response_m_payload_t));
     ezsignbulksendsignermapping_get_object_v2_response_m_payload_local_var->_library_owned = 1;
+    ezsignbulksendsignermapping_get_object_v2_response_m_payload_local_var->obj_ezsignbulksendsignermapping = obj_ezsignbulksendsignermapping;
     return ezsignbulksendsignermapping_get_object_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsignbulksendsignermapping_get_object_v2_response_m_payload_t *ezsignbulksendsignermapping_get_object_v2_response_m_payload_create(
     ezsignbulksendsignermapping_response_compound_t *obj_ezsignbulksendsignermapping
     ) {
-    return ezsignbulksendsignermapping_get_object_v2_response_m_payload_create_internal (
+    ezsignbulksendsignermapping_get_object_v2_response_m_payload_t *result = ezsignbulksendsignermapping_get_object_v2_response_m_payload_create_internal (
         obj_ezsignbulksendsignermapping
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignbulksendsignermapping_get_object_v2_response_m_payload_free(ezsignbulksendsignermapping_get_object_v2_response_m_payload_t *ezsignbulksendsignermapping_get_object_v2_response_m_payload) {
@@ -86,9 +89,14 @@ ezsignbulksendsignermapping_get_object_v2_response_m_payload_t *ezsignbulksendsi
     obj_ezsignbulksendsignermapping_local_nonprim = ezsignbulksendsignermapping_response_compound_parseFromJSON(obj_ezsignbulksendsignermapping); //nonprimitive
 
 
+
     ezsignbulksendsignermapping_get_object_v2_response_m_payload_local_var = ezsignbulksendsignermapping_get_object_v2_response_m_payload_create_internal (
         obj_ezsignbulksendsignermapping_local_nonprim
         );
+
+    if (!ezsignbulksendsignermapping_get_object_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsignbulksendsignermapping_get_object_v2_response_m_payload_local_var;
 end:

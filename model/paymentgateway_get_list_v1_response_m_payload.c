@@ -6,32 +6,47 @@
 
 
 static paymentgateway_get_list_v1_response_m_payload_t *paymentgateway_get_list_v1_response_m_payload_create_internal(
-    int i_row_returned,
-    int i_row_filtered,
+    int *i_row_returned,
+    int *i_row_filtered,
     list_t *a_obj_paymentgateway
     ) {
     paymentgateway_get_list_v1_response_m_payload_t *paymentgateway_get_list_v1_response_m_payload_local_var = malloc(sizeof(paymentgateway_get_list_v1_response_m_payload_t));
     if (!paymentgateway_get_list_v1_response_m_payload_local_var) {
         return NULL;
     }
+    memset(paymentgateway_get_list_v1_response_m_payload_local_var, 0, sizeof(paymentgateway_get_list_v1_response_m_payload_t));
+    paymentgateway_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     paymentgateway_get_list_v1_response_m_payload_local_var->i_row_returned = i_row_returned;
     paymentgateway_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
     paymentgateway_get_list_v1_response_m_payload_local_var->a_obj_paymentgateway = a_obj_paymentgateway;
-
-    paymentgateway_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     return paymentgateway_get_list_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) paymentgateway_get_list_v1_response_m_payload_t *paymentgateway_get_list_v1_response_m_payload_create(
-    int i_row_returned,
-    int i_row_filtered,
+    int *i_row_returned,
+    int *i_row_filtered,
     list_t *a_obj_paymentgateway
     ) {
-    return paymentgateway_get_list_v1_response_m_payload_create_internal (
-        i_row_returned,
-        i_row_filtered,
+    int *i_row_returned_copy = NULL;
+    if (i_row_returned) {
+        i_row_returned_copy = malloc(sizeof(int));
+        if (i_row_returned_copy) *i_row_returned_copy = *i_row_returned;
+    }
+    int *i_row_filtered_copy = NULL;
+    if (i_row_filtered) {
+        i_row_filtered_copy = malloc(sizeof(int));
+        if (i_row_filtered_copy) *i_row_filtered_copy = *i_row_filtered;
+    }
+    paymentgateway_get_list_v1_response_m_payload_t *result = paymentgateway_get_list_v1_response_m_payload_create_internal (
+        i_row_returned_copy,
+        i_row_filtered_copy,
         a_obj_paymentgateway
         );
+    if (!result) {
+        free(i_row_returned_copy);
+        free(i_row_filtered_copy);
+    }
+    return result;
 }
 
 void paymentgateway_get_list_v1_response_m_payload_free(paymentgateway_get_list_v1_response_m_payload_t *paymentgateway_get_list_v1_response_m_payload) {
@@ -43,6 +58,14 @@ void paymentgateway_get_list_v1_response_m_payload_free(paymentgateway_get_list_
         return ;
     }
     listEntry_t *listEntry;
+    if (paymentgateway_get_list_v1_response_m_payload->i_row_returned) {
+        free(paymentgateway_get_list_v1_response_m_payload->i_row_returned);
+        paymentgateway_get_list_v1_response_m_payload->i_row_returned = NULL;
+    }
+    if (paymentgateway_get_list_v1_response_m_payload->i_row_filtered) {
+        free(paymentgateway_get_list_v1_response_m_payload->i_row_filtered);
+        paymentgateway_get_list_v1_response_m_payload->i_row_filtered = NULL;
+    }
     if (paymentgateway_get_list_v1_response_m_payload->a_obj_paymentgateway) {
         list_ForEach(listEntry, paymentgateway_get_list_v1_response_m_payload->a_obj_paymentgateway) {
             paymentgateway_list_element_free(listEntry->data);
@@ -60,7 +83,7 @@ cJSON *paymentgateway_get_list_v1_response_m_payload_convertToJSON(paymentgatewa
     if (!paymentgateway_get_list_v1_response_m_payload->i_row_returned) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iRowReturned", paymentgateway_get_list_v1_response_m_payload->i_row_returned) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iRowReturned", *paymentgateway_get_list_v1_response_m_payload->i_row_returned) == NULL) {
     goto fail; //Numeric
     }
 
@@ -69,7 +92,7 @@ cJSON *paymentgateway_get_list_v1_response_m_payload_convertToJSON(paymentgatewa
     if (!paymentgateway_get_list_v1_response_m_payload->i_row_filtered) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iRowFiltered", paymentgateway_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iRowFiltered", *paymentgateway_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
     goto fail; //Numeric
     }
 
@@ -106,6 +129,12 @@ paymentgateway_get_list_v1_response_m_payload_t *paymentgateway_get_list_v1_resp
 
     paymentgateway_get_list_v1_response_m_payload_t *paymentgateway_get_list_v1_response_m_payload_local_var = NULL;
 
+    // define the local variable for paymentgateway_get_list_v1_response_m_payload->i_row_returned
+    int *i_row_returned_local_var = NULL;
+
+    // define the local variable for paymentgateway_get_list_v1_response_m_payload->i_row_filtered
+    int *i_row_filtered_local_var = NULL;
+
     // define the local list for paymentgateway_get_list_v1_response_m_payload->a_obj_paymentgateway
     list_t *a_obj_paymentgatewayList = NULL;
 
@@ -123,6 +152,12 @@ paymentgateway_get_list_v1_response_m_payload_t *paymentgateway_get_list_v1_resp
     {
     goto end; //Numeric
     }
+    i_row_returned_local_var = malloc(sizeof(int));
+    if(!i_row_returned_local_var)
+    {
+        goto end;
+    }
+    *i_row_returned_local_var = i_row_returned->valuedouble;
 
     // paymentgateway_get_list_v1_response_m_payload->i_row_filtered
     cJSON *i_row_filtered = cJSON_GetObjectItemCaseSensitive(paymentgateway_get_list_v1_response_m_payloadJSON, "iRowFiltered");
@@ -138,6 +173,12 @@ paymentgateway_get_list_v1_response_m_payload_t *paymentgateway_get_list_v1_resp
     {
     goto end; //Numeric
     }
+    i_row_filtered_local_var = malloc(sizeof(int));
+    if(!i_row_filtered_local_var)
+    {
+        goto end;
+    }
+    *i_row_filtered_local_var = i_row_filtered->valuedouble;
 
     // paymentgateway_get_list_v1_response_m_payload->a_obj_paymentgateway
     cJSON *a_obj_paymentgateway = cJSON_GetObjectItemCaseSensitive(paymentgateway_get_list_v1_response_m_payloadJSON, "a_objPaymentgateway");
@@ -167,14 +208,27 @@ paymentgateway_get_list_v1_response_m_payload_t *paymentgateway_get_list_v1_resp
     }
 
 
+
     paymentgateway_get_list_v1_response_m_payload_local_var = paymentgateway_get_list_v1_response_m_payload_create_internal (
-        i_row_returned->valuedouble,
-        i_row_filtered->valuedouble,
+        i_row_returned_local_var,
+        i_row_filtered_local_var,
         a_obj_paymentgatewayList
         );
 
+    if (!paymentgateway_get_list_v1_response_m_payload_local_var) {
+        goto end;
+    }
+
     return paymentgateway_get_list_v1_response_m_payload_local_var;
 end:
+    if (i_row_returned_local_var) {
+        free(i_row_returned_local_var);
+        i_row_returned_local_var = NULL;
+    }
+    if (i_row_filtered_local_var) {
+        free(i_row_filtered_local_var);
+        i_row_filtered_local_var = NULL;
+    }
     if (a_obj_paymentgatewayList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_paymentgatewayList) {

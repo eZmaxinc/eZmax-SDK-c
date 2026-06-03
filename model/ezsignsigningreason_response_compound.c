@@ -6,32 +6,47 @@
 
 
 static ezsignsigningreason_response_compound_t *ezsignsigningreason_response_compound_create_internal(
-    int pki_ezsignsigningreason_id,
+    int *pki_ezsignsigningreason_id,
     multilingual_ezsignsigningreason_description_t *obj_ezsignsigningreason_description,
-    int b_ezsignsigningreason_isactive
+    int *b_ezsignsigningreason_isactive
     ) {
     ezsignsigningreason_response_compound_t *ezsignsigningreason_response_compound_local_var = malloc(sizeof(ezsignsigningreason_response_compound_t));
     if (!ezsignsigningreason_response_compound_local_var) {
         return NULL;
     }
+    memset(ezsignsigningreason_response_compound_local_var, 0, sizeof(ezsignsigningreason_response_compound_t));
+    ezsignsigningreason_response_compound_local_var->_library_owned = 1;
     ezsignsigningreason_response_compound_local_var->pki_ezsignsigningreason_id = pki_ezsignsigningreason_id;
     ezsignsigningreason_response_compound_local_var->obj_ezsignsigningreason_description = obj_ezsignsigningreason_description;
     ezsignsigningreason_response_compound_local_var->b_ezsignsigningreason_isactive = b_ezsignsigningreason_isactive;
-
-    ezsignsigningreason_response_compound_local_var->_library_owned = 1;
     return ezsignsigningreason_response_compound_local_var;
 }
 
 __attribute__((deprecated)) ezsignsigningreason_response_compound_t *ezsignsigningreason_response_compound_create(
-    int pki_ezsignsigningreason_id,
+    int *pki_ezsignsigningreason_id,
     multilingual_ezsignsigningreason_description_t *obj_ezsignsigningreason_description,
-    int b_ezsignsigningreason_isactive
+    int *b_ezsignsigningreason_isactive
     ) {
-    return ezsignsigningreason_response_compound_create_internal (
-        pki_ezsignsigningreason_id,
+    int *pki_ezsignsigningreason_id_copy = NULL;
+    if (pki_ezsignsigningreason_id) {
+        pki_ezsignsigningreason_id_copy = malloc(sizeof(int));
+        if (pki_ezsignsigningreason_id_copy) *pki_ezsignsigningreason_id_copy = *pki_ezsignsigningreason_id;
+    }
+    int *b_ezsignsigningreason_isactive_copy = NULL;
+    if (b_ezsignsigningreason_isactive) {
+        b_ezsignsigningreason_isactive_copy = malloc(sizeof(int));
+        if (b_ezsignsigningreason_isactive_copy) *b_ezsignsigningreason_isactive_copy = *b_ezsignsigningreason_isactive;
+    }
+    ezsignsigningreason_response_compound_t *result = ezsignsigningreason_response_compound_create_internal (
+        pki_ezsignsigningreason_id_copy,
         obj_ezsignsigningreason_description,
-        b_ezsignsigningreason_isactive
+        b_ezsignsigningreason_isactive_copy
         );
+    if (!result) {
+        free(pki_ezsignsigningreason_id_copy);
+        free(b_ezsignsigningreason_isactive_copy);
+    }
+    return result;
 }
 
 void ezsignsigningreason_response_compound_free(ezsignsigningreason_response_compound_t *ezsignsigningreason_response_compound) {
@@ -43,9 +58,17 @@ void ezsignsigningreason_response_compound_free(ezsignsigningreason_response_com
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignsigningreason_response_compound->pki_ezsignsigningreason_id) {
+        free(ezsignsigningreason_response_compound->pki_ezsignsigningreason_id);
+        ezsignsigningreason_response_compound->pki_ezsignsigningreason_id = NULL;
+    }
     if (ezsignsigningreason_response_compound->obj_ezsignsigningreason_description) {
         multilingual_ezsignsigningreason_description_free(ezsignsigningreason_response_compound->obj_ezsignsigningreason_description);
         ezsignsigningreason_response_compound->obj_ezsignsigningreason_description = NULL;
+    }
+    if (ezsignsigningreason_response_compound->b_ezsignsigningreason_isactive) {
+        free(ezsignsigningreason_response_compound->b_ezsignsigningreason_isactive);
+        ezsignsigningreason_response_compound->b_ezsignsigningreason_isactive = NULL;
     }
     free(ezsignsigningreason_response_compound);
 }
@@ -57,7 +80,7 @@ cJSON *ezsignsigningreason_response_compound_convertToJSON(ezsignsigningreason_r
     if (!ezsignsigningreason_response_compound->pki_ezsignsigningreason_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiEzsignsigningreasonID", ezsignsigningreason_response_compound->pki_ezsignsigningreason_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzsignsigningreasonID", *ezsignsigningreason_response_compound->pki_ezsignsigningreason_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -80,7 +103,7 @@ cJSON *ezsignsigningreason_response_compound_convertToJSON(ezsignsigningreason_r
     if (!ezsignsigningreason_response_compound->b_ezsignsigningreason_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bEzsignsigningreasonIsactive", ezsignsigningreason_response_compound->b_ezsignsigningreason_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bEzsignsigningreasonIsactive", *ezsignsigningreason_response_compound->b_ezsignsigningreason_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -96,8 +119,14 @@ ezsignsigningreason_response_compound_t *ezsignsigningreason_response_compound_p
 
     ezsignsigningreason_response_compound_t *ezsignsigningreason_response_compound_local_var = NULL;
 
+    // define the local variable for ezsignsigningreason_response_compound->pki_ezsignsigningreason_id
+    int *pki_ezsignsigningreason_id_local_var = NULL;
+
     // define the local variable for ezsignsigningreason_response_compound->obj_ezsignsigningreason_description
     multilingual_ezsignsigningreason_description_t *obj_ezsignsigningreason_description_local_nonprim = NULL;
+
+    // define the local variable for ezsignsigningreason_response_compound->b_ezsignsigningreason_isactive
+    int *b_ezsignsigningreason_isactive_local_var = NULL;
 
     // ezsignsigningreason_response_compound->pki_ezsignsigningreason_id
     cJSON *pki_ezsignsigningreason_id = cJSON_GetObjectItemCaseSensitive(ezsignsigningreason_response_compoundJSON, "pkiEzsignsigningreasonID");
@@ -113,6 +142,12 @@ ezsignsigningreason_response_compound_t *ezsignsigningreason_response_compound_p
     {
     goto end; //Numeric
     }
+    pki_ezsignsigningreason_id_local_var = malloc(sizeof(int));
+    if(!pki_ezsignsigningreason_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezsignsigningreason_id_local_var = pki_ezsignsigningreason_id->valuedouble;
 
     // ezsignsigningreason_response_compound->obj_ezsignsigningreason_description
     cJSON *obj_ezsignsigningreason_description = cJSON_GetObjectItemCaseSensitive(ezsignsigningreason_response_compoundJSON, "objEzsignsigningreasonDescription");
@@ -140,19 +175,38 @@ ezsignsigningreason_response_compound_t *ezsignsigningreason_response_compound_p
     {
     goto end; //Bool
     }
+    b_ezsignsigningreason_isactive_local_var = malloc(sizeof(int));
+    if(!b_ezsignsigningreason_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_ezsignsigningreason_isactive_local_var = b_ezsignsigningreason_isactive->valueint;
+
 
 
     ezsignsigningreason_response_compound_local_var = ezsignsigningreason_response_compound_create_internal (
-        pki_ezsignsigningreason_id->valuedouble,
+        pki_ezsignsigningreason_id_local_var,
         obj_ezsignsigningreason_description_local_nonprim,
-        b_ezsignsigningreason_isactive->valueint
+        b_ezsignsigningreason_isactive_local_var
         );
+
+    if (!ezsignsigningreason_response_compound_local_var) {
+        goto end;
+    }
 
     return ezsignsigningreason_response_compound_local_var;
 end:
+    if (pki_ezsignsigningreason_id_local_var) {
+        free(pki_ezsignsigningreason_id_local_var);
+        pki_ezsignsigningreason_id_local_var = NULL;
+    }
     if (obj_ezsignsigningreason_description_local_nonprim) {
         multilingual_ezsignsigningreason_description_free(obj_ezsignsigningreason_description_local_nonprim);
         obj_ezsignsigningreason_description_local_nonprim = NULL;
+    }
+    if (b_ezsignsigningreason_isactive_local_var) {
+        free(b_ezsignsigningreason_isactive_local_var);
+        b_ezsignsigningreason_isactive_local_var = NULL;
     }
     return NULL;
 

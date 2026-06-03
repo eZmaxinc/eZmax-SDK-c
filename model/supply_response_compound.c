@@ -6,15 +6,15 @@
 
 
 static supply_response_compound_t *supply_response_compound_create_internal(
-    int pki_supply_id,
-    int fki_glaccount_id,
-    int fki_glaccountcontainer_id,
-    int fki_variableexpense_id,
+    int *pki_supply_id,
+    int *fki_glaccount_id,
+    int *fki_glaccountcontainer_id,
+    int *fki_variableexpense_id,
     char *s_supply_code,
     multilingual_supply_description_t *obj_supply_description,
     char *d_supply_unitprice,
-    int b_supply_isactive,
-    int b_supply_variableprice,
+    int *b_supply_isactive,
+    int *b_supply_variableprice,
     char *s_glaccount_description_x,
     char *s_glaccountcontainer_longdescription_x,
     char *s_variableexpense_description_x
@@ -23,6 +23,8 @@ static supply_response_compound_t *supply_response_compound_create_internal(
     if (!supply_response_compound_local_var) {
         return NULL;
     }
+    memset(supply_response_compound_local_var, 0, sizeof(supply_response_compound_t));
+    supply_response_compound_local_var->_library_owned = 1;
     supply_response_compound_local_var->pki_supply_id = pki_supply_id;
     supply_response_compound_local_var->fki_glaccount_id = fki_glaccount_id;
     supply_response_compound_local_var->fki_glaccountcontainer_id = fki_glaccountcontainer_id;
@@ -35,39 +37,76 @@ static supply_response_compound_t *supply_response_compound_create_internal(
     supply_response_compound_local_var->s_glaccount_description_x = s_glaccount_description_x;
     supply_response_compound_local_var->s_glaccountcontainer_longdescription_x = s_glaccountcontainer_longdescription_x;
     supply_response_compound_local_var->s_variableexpense_description_x = s_variableexpense_description_x;
-
-    supply_response_compound_local_var->_library_owned = 1;
     return supply_response_compound_local_var;
 }
 
 __attribute__((deprecated)) supply_response_compound_t *supply_response_compound_create(
-    int pki_supply_id,
-    int fki_glaccount_id,
-    int fki_glaccountcontainer_id,
-    int fki_variableexpense_id,
+    int *pki_supply_id,
+    int *fki_glaccount_id,
+    int *fki_glaccountcontainer_id,
+    int *fki_variableexpense_id,
     char *s_supply_code,
     multilingual_supply_description_t *obj_supply_description,
     char *d_supply_unitprice,
-    int b_supply_isactive,
-    int b_supply_variableprice,
+    int *b_supply_isactive,
+    int *b_supply_variableprice,
     char *s_glaccount_description_x,
     char *s_glaccountcontainer_longdescription_x,
     char *s_variableexpense_description_x
     ) {
-    return supply_response_compound_create_internal (
-        pki_supply_id,
-        fki_glaccount_id,
-        fki_glaccountcontainer_id,
-        fki_variableexpense_id,
+    int *pki_supply_id_copy = NULL;
+    if (pki_supply_id) {
+        pki_supply_id_copy = malloc(sizeof(int));
+        if (pki_supply_id_copy) *pki_supply_id_copy = *pki_supply_id;
+    }
+    int *fki_glaccount_id_copy = NULL;
+    if (fki_glaccount_id) {
+        fki_glaccount_id_copy = malloc(sizeof(int));
+        if (fki_glaccount_id_copy) *fki_glaccount_id_copy = *fki_glaccount_id;
+    }
+    int *fki_glaccountcontainer_id_copy = NULL;
+    if (fki_glaccountcontainer_id) {
+        fki_glaccountcontainer_id_copy = malloc(sizeof(int));
+        if (fki_glaccountcontainer_id_copy) *fki_glaccountcontainer_id_copy = *fki_glaccountcontainer_id;
+    }
+    int *fki_variableexpense_id_copy = NULL;
+    if (fki_variableexpense_id) {
+        fki_variableexpense_id_copy = malloc(sizeof(int));
+        if (fki_variableexpense_id_copy) *fki_variableexpense_id_copy = *fki_variableexpense_id;
+    }
+    int *b_supply_isactive_copy = NULL;
+    if (b_supply_isactive) {
+        b_supply_isactive_copy = malloc(sizeof(int));
+        if (b_supply_isactive_copy) *b_supply_isactive_copy = *b_supply_isactive;
+    }
+    int *b_supply_variableprice_copy = NULL;
+    if (b_supply_variableprice) {
+        b_supply_variableprice_copy = malloc(sizeof(int));
+        if (b_supply_variableprice_copy) *b_supply_variableprice_copy = *b_supply_variableprice;
+    }
+    supply_response_compound_t *result = supply_response_compound_create_internal (
+        pki_supply_id_copy,
+        fki_glaccount_id_copy,
+        fki_glaccountcontainer_id_copy,
+        fki_variableexpense_id_copy,
         s_supply_code,
         obj_supply_description,
         d_supply_unitprice,
-        b_supply_isactive,
-        b_supply_variableprice,
+        b_supply_isactive_copy,
+        b_supply_variableprice_copy,
         s_glaccount_description_x,
         s_glaccountcontainer_longdescription_x,
         s_variableexpense_description_x
         );
+    if (!result) {
+        free(pki_supply_id_copy);
+        free(fki_glaccount_id_copy);
+        free(fki_glaccountcontainer_id_copy);
+        free(fki_variableexpense_id_copy);
+        free(b_supply_isactive_copy);
+        free(b_supply_variableprice_copy);
+    }
+    return result;
 }
 
 void supply_response_compound_free(supply_response_compound_t *supply_response_compound) {
@@ -79,6 +118,22 @@ void supply_response_compound_free(supply_response_compound_t *supply_response_c
         return ;
     }
     listEntry_t *listEntry;
+    if (supply_response_compound->pki_supply_id) {
+        free(supply_response_compound->pki_supply_id);
+        supply_response_compound->pki_supply_id = NULL;
+    }
+    if (supply_response_compound->fki_glaccount_id) {
+        free(supply_response_compound->fki_glaccount_id);
+        supply_response_compound->fki_glaccount_id = NULL;
+    }
+    if (supply_response_compound->fki_glaccountcontainer_id) {
+        free(supply_response_compound->fki_glaccountcontainer_id);
+        supply_response_compound->fki_glaccountcontainer_id = NULL;
+    }
+    if (supply_response_compound->fki_variableexpense_id) {
+        free(supply_response_compound->fki_variableexpense_id);
+        supply_response_compound->fki_variableexpense_id = NULL;
+    }
     if (supply_response_compound->s_supply_code) {
         free(supply_response_compound->s_supply_code);
         supply_response_compound->s_supply_code = NULL;
@@ -90,6 +145,14 @@ void supply_response_compound_free(supply_response_compound_t *supply_response_c
     if (supply_response_compound->d_supply_unitprice) {
         free(supply_response_compound->d_supply_unitprice);
         supply_response_compound->d_supply_unitprice = NULL;
+    }
+    if (supply_response_compound->b_supply_isactive) {
+        free(supply_response_compound->b_supply_isactive);
+        supply_response_compound->b_supply_isactive = NULL;
+    }
+    if (supply_response_compound->b_supply_variableprice) {
+        free(supply_response_compound->b_supply_variableprice);
+        supply_response_compound->b_supply_variableprice = NULL;
     }
     if (supply_response_compound->s_glaccount_description_x) {
         free(supply_response_compound->s_glaccount_description_x);
@@ -113,14 +176,14 @@ cJSON *supply_response_compound_convertToJSON(supply_response_compound_t *supply
     if (!supply_response_compound->pki_supply_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiSupplyID", supply_response_compound->pki_supply_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiSupplyID", *supply_response_compound->pki_supply_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // supply_response_compound->fki_glaccount_id
     if(supply_response_compound->fki_glaccount_id) {
-    if(cJSON_AddNumberToObject(item, "fkiGlaccountID", supply_response_compound->fki_glaccount_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiGlaccountID", *supply_response_compound->fki_glaccount_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -128,7 +191,7 @@ cJSON *supply_response_compound_convertToJSON(supply_response_compound_t *supply
 
     // supply_response_compound->fki_glaccountcontainer_id
     if(supply_response_compound->fki_glaccountcontainer_id) {
-    if(cJSON_AddNumberToObject(item, "fkiGlaccountcontainerID", supply_response_compound->fki_glaccountcontainer_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiGlaccountcontainerID", *supply_response_compound->fki_glaccountcontainer_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -138,7 +201,7 @@ cJSON *supply_response_compound_convertToJSON(supply_response_compound_t *supply
     if (!supply_response_compound->fki_variableexpense_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiVariableexpenseID", supply_response_compound->fki_variableexpense_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiVariableexpenseID", *supply_response_compound->fki_variableexpense_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -179,7 +242,7 @@ cJSON *supply_response_compound_convertToJSON(supply_response_compound_t *supply
     if (!supply_response_compound->b_supply_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bSupplyIsactive", supply_response_compound->b_supply_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bSupplyIsactive", *supply_response_compound->b_supply_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -188,7 +251,7 @@ cJSON *supply_response_compound_convertToJSON(supply_response_compound_t *supply
     if (!supply_response_compound->b_supply_variableprice) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bSupplyVariableprice", supply_response_compound->b_supply_variableprice) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bSupplyVariableprice", *supply_response_compound->b_supply_variableprice) == NULL) {
     goto fail; //Bool
     }
 
@@ -228,8 +291,36 @@ supply_response_compound_t *supply_response_compound_parseFromJSON(cJSON *supply
 
     supply_response_compound_t *supply_response_compound_local_var = NULL;
 
+    // define the local variable for supply_response_compound->pki_supply_id
+    int *pki_supply_id_local_var = NULL;
+
+    // define the local variable for supply_response_compound->fki_glaccount_id
+    int *fki_glaccount_id_local_var = NULL;
+
+    // define the local variable for supply_response_compound->fki_glaccountcontainer_id
+    int *fki_glaccountcontainer_id_local_var = NULL;
+
+    // define the local variable for supply_response_compound->fki_variableexpense_id
+    int *fki_variableexpense_id_local_var = NULL;
+
+    char *s_supply_code_local_str = NULL;
+
     // define the local variable for supply_response_compound->obj_supply_description
     multilingual_supply_description_t *obj_supply_description_local_nonprim = NULL;
+
+    char *d_supply_unitprice_local_str = NULL;
+
+    // define the local variable for supply_response_compound->b_supply_isactive
+    int *b_supply_isactive_local_var = NULL;
+
+    // define the local variable for supply_response_compound->b_supply_variableprice
+    int *b_supply_variableprice_local_var = NULL;
+
+    char *s_glaccount_description_x_local_str = NULL;
+
+    char *s_glaccountcontainer_longdescription_x_local_str = NULL;
+
+    char *s_variableexpense_description_x_local_str = NULL;
 
     // supply_response_compound->pki_supply_id
     cJSON *pki_supply_id = cJSON_GetObjectItemCaseSensitive(supply_response_compoundJSON, "pkiSupplyID");
@@ -245,6 +336,12 @@ supply_response_compound_t *supply_response_compound_parseFromJSON(cJSON *supply
     {
     goto end; //Numeric
     }
+    pki_supply_id_local_var = malloc(sizeof(int));
+    if(!pki_supply_id_local_var)
+    {
+        goto end;
+    }
+    *pki_supply_id_local_var = pki_supply_id->valuedouble;
 
     // supply_response_compound->fki_glaccount_id
     cJSON *fki_glaccount_id = cJSON_GetObjectItemCaseSensitive(supply_response_compoundJSON, "fkiGlaccountID");
@@ -256,6 +353,12 @@ supply_response_compound_t *supply_response_compound_parseFromJSON(cJSON *supply
     {
     goto end; //Numeric
     }
+    fki_glaccount_id_local_var = malloc(sizeof(int));
+    if(!fki_glaccount_id_local_var)
+    {
+        goto end;
+    }
+    *fki_glaccount_id_local_var = fki_glaccount_id->valuedouble;
     }
 
     // supply_response_compound->fki_glaccountcontainer_id
@@ -268,6 +371,12 @@ supply_response_compound_t *supply_response_compound_parseFromJSON(cJSON *supply
     {
     goto end; //Numeric
     }
+    fki_glaccountcontainer_id_local_var = malloc(sizeof(int));
+    if(!fki_glaccountcontainer_id_local_var)
+    {
+        goto end;
+    }
+    *fki_glaccountcontainer_id_local_var = fki_glaccountcontainer_id->valuedouble;
     }
 
     // supply_response_compound->fki_variableexpense_id
@@ -284,6 +393,12 @@ supply_response_compound_t *supply_response_compound_parseFromJSON(cJSON *supply
     {
     goto end; //Numeric
     }
+    fki_variableexpense_id_local_var = malloc(sizeof(int));
+    if(!fki_variableexpense_id_local_var)
+    {
+        goto end;
+    }
+    *fki_variableexpense_id_local_var = fki_variableexpense_id->valuedouble;
 
     // supply_response_compound->s_supply_code
     cJSON *s_supply_code = cJSON_GetObjectItemCaseSensitive(supply_response_compoundJSON, "sSupplyCode");
@@ -341,6 +456,12 @@ supply_response_compound_t *supply_response_compound_parseFromJSON(cJSON *supply
     {
     goto end; //Bool
     }
+    b_supply_isactive_local_var = malloc(sizeof(int));
+    if(!b_supply_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_supply_isactive_local_var = b_supply_isactive->valueint;
 
     // supply_response_compound->b_supply_variableprice
     cJSON *b_supply_variableprice = cJSON_GetObjectItemCaseSensitive(supply_response_compoundJSON, "bSupplyVariableprice");
@@ -356,6 +477,12 @@ supply_response_compound_t *supply_response_compound_parseFromJSON(cJSON *supply
     {
     goto end; //Bool
     }
+    b_supply_variableprice_local_var = malloc(sizeof(int));
+    if(!b_supply_variableprice_local_var)
+    {
+        goto end;
+    }
+    *b_supply_variableprice_local_var = b_supply_variableprice->valueint;
 
     // supply_response_compound->s_glaccount_description_x
     cJSON *s_glaccount_description_x = cJSON_GetObjectItemCaseSensitive(supply_response_compoundJSON, "sGlaccountDescriptionX");
@@ -394,26 +521,80 @@ supply_response_compound_t *supply_response_compound_parseFromJSON(cJSON *supply
     }
 
 
+    if (s_supply_code && !cJSON_IsNull(s_supply_code)) s_supply_code_local_str = strdup(s_supply_code->valuestring);
+    if (d_supply_unitprice && !cJSON_IsNull(d_supply_unitprice)) d_supply_unitprice_local_str = strdup(d_supply_unitprice->valuestring);
+    if (s_glaccount_description_x && !cJSON_IsNull(s_glaccount_description_x)) s_glaccount_description_x_local_str = strdup(s_glaccount_description_x->valuestring);
+    if (s_glaccountcontainer_longdescription_x && !cJSON_IsNull(s_glaccountcontainer_longdescription_x)) s_glaccountcontainer_longdescription_x_local_str = strdup(s_glaccountcontainer_longdescription_x->valuestring);
+    if (s_variableexpense_description_x && !cJSON_IsNull(s_variableexpense_description_x)) s_variableexpense_description_x_local_str = strdup(s_variableexpense_description_x->valuestring);
+
     supply_response_compound_local_var = supply_response_compound_create_internal (
-        pki_supply_id->valuedouble,
-        fki_glaccount_id ? fki_glaccount_id->valuedouble : 0,
-        fki_glaccountcontainer_id ? fki_glaccountcontainer_id->valuedouble : 0,
-        fki_variableexpense_id->valuedouble,
-        strdup(s_supply_code->valuestring),
+        pki_supply_id_local_var,
+        fki_glaccount_id_local_var,
+        fki_glaccountcontainer_id_local_var,
+        fki_variableexpense_id_local_var,
+        s_supply_code_local_str,
         obj_supply_description_local_nonprim,
-        strdup(d_supply_unitprice->valuestring),
-        b_supply_isactive->valueint,
-        b_supply_variableprice->valueint,
-        s_glaccount_description_x && !cJSON_IsNull(s_glaccount_description_x) ? strdup(s_glaccount_description_x->valuestring) : NULL,
-        s_glaccountcontainer_longdescription_x && !cJSON_IsNull(s_glaccountcontainer_longdescription_x) ? strdup(s_glaccountcontainer_longdescription_x->valuestring) : NULL,
-        s_variableexpense_description_x && !cJSON_IsNull(s_variableexpense_description_x) ? strdup(s_variableexpense_description_x->valuestring) : NULL
+        d_supply_unitprice_local_str,
+        b_supply_isactive_local_var,
+        b_supply_variableprice_local_var,
+        s_glaccount_description_x_local_str,
+        s_glaccountcontainer_longdescription_x_local_str,
+        s_variableexpense_description_x_local_str
         );
+
+    if (!supply_response_compound_local_var) {
+        goto end;
+    }
 
     return supply_response_compound_local_var;
 end:
+    if (pki_supply_id_local_var) {
+        free(pki_supply_id_local_var);
+        pki_supply_id_local_var = NULL;
+    }
+    if (fki_glaccount_id_local_var) {
+        free(fki_glaccount_id_local_var);
+        fki_glaccount_id_local_var = NULL;
+    }
+    if (fki_glaccountcontainer_id_local_var) {
+        free(fki_glaccountcontainer_id_local_var);
+        fki_glaccountcontainer_id_local_var = NULL;
+    }
+    if (fki_variableexpense_id_local_var) {
+        free(fki_variableexpense_id_local_var);
+        fki_variableexpense_id_local_var = NULL;
+    }
+    if (s_supply_code_local_str) {
+        free(s_supply_code_local_str);
+        s_supply_code_local_str = NULL;
+    }
     if (obj_supply_description_local_nonprim) {
         multilingual_supply_description_free(obj_supply_description_local_nonprim);
         obj_supply_description_local_nonprim = NULL;
+    }
+    if (d_supply_unitprice_local_str) {
+        free(d_supply_unitprice_local_str);
+        d_supply_unitprice_local_str = NULL;
+    }
+    if (b_supply_isactive_local_var) {
+        free(b_supply_isactive_local_var);
+        b_supply_isactive_local_var = NULL;
+    }
+    if (b_supply_variableprice_local_var) {
+        free(b_supply_variableprice_local_var);
+        b_supply_variableprice_local_var = NULL;
+    }
+    if (s_glaccount_description_x_local_str) {
+        free(s_glaccount_description_x_local_str);
+        s_glaccount_description_x_local_str = NULL;
+    }
+    if (s_glaccountcontainer_longdescription_x_local_str) {
+        free(s_glaccountcontainer_longdescription_x_local_str);
+        s_glaccountcontainer_longdescription_x_local_str = NULL;
+    }
+    if (s_variableexpense_description_x_local_str) {
+        free(s_variableexpense_description_x_local_str);
+        s_variableexpense_description_x_local_str = NULL;
     }
     return NULL;
 

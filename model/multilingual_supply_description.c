@@ -13,10 +13,10 @@ static multilingual_supply_description_t *multilingual_supply_description_create
     if (!multilingual_supply_description_local_var) {
         return NULL;
     }
+    memset(multilingual_supply_description_local_var, 0, sizeof(multilingual_supply_description_t));
+    multilingual_supply_description_local_var->_library_owned = 1;
     multilingual_supply_description_local_var->s_supply_description1 = s_supply_description1;
     multilingual_supply_description_local_var->s_supply_description2 = s_supply_description2;
-
-    multilingual_supply_description_local_var->_library_owned = 1;
     return multilingual_supply_description_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) multilingual_supply_description_t *multilingual_supp
     char *s_supply_description1,
     char *s_supply_description2
     ) {
-    return multilingual_supply_description_create_internal (
+    multilingual_supply_description_t *result = multilingual_supply_description_create_internal (
         s_supply_description1,
         s_supply_description2
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void multilingual_supply_description_free(multilingual_supply_description_t *multilingual_supply_description) {
@@ -80,6 +83,10 @@ multilingual_supply_description_t *multilingual_supply_description_parseFromJSON
 
     multilingual_supply_description_t *multilingual_supply_description_local_var = NULL;
 
+    char *s_supply_description1_local_str = NULL;
+
+    char *s_supply_description2_local_str = NULL;
+
     // multilingual_supply_description->s_supply_description1
     cJSON *s_supply_description1 = cJSON_GetObjectItemCaseSensitive(multilingual_supply_descriptionJSON, "sSupplyDescription1");
     if (cJSON_IsNull(s_supply_description1)) {
@@ -105,13 +112,28 @@ multilingual_supply_description_t *multilingual_supply_description_parseFromJSON
     }
 
 
+    if (s_supply_description1 && !cJSON_IsNull(s_supply_description1)) s_supply_description1_local_str = strdup(s_supply_description1->valuestring);
+    if (s_supply_description2 && !cJSON_IsNull(s_supply_description2)) s_supply_description2_local_str = strdup(s_supply_description2->valuestring);
+
     multilingual_supply_description_local_var = multilingual_supply_description_create_internal (
-        s_supply_description1 && !cJSON_IsNull(s_supply_description1) ? strdup(s_supply_description1->valuestring) : NULL,
-        s_supply_description2 && !cJSON_IsNull(s_supply_description2) ? strdup(s_supply_description2->valuestring) : NULL
+        s_supply_description1_local_str,
+        s_supply_description2_local_str
         );
+
+    if (!multilingual_supply_description_local_var) {
+        goto end;
+    }
 
     return multilingual_supply_description_local_var;
 end:
+    if (s_supply_description1_local_str) {
+        free(s_supply_description1_local_str);
+        s_supply_description1_local_str = NULL;
+    }
+    if (s_supply_description2_local_str) {
+        free(s_supply_description2_local_str);
+        s_supply_description2_local_str = NULL;
+    }
     return NULL;
 
 }

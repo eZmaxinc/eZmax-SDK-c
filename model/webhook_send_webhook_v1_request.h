@@ -25,11 +25,11 @@ typedef struct webhook_send_webhook_v1_request_t {
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module; //referenced enum
     ezmax_api_definition__full_custom_e_webhook_ezsignevent__e e_webhook_ezsignevent; //referenced enum
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent; //referenced enum
-    int fki_ezsignfolder_id; //numeric
-    int fki_ezsigndocument_id; //numeric
-    int fki_ezsignsigner_id; //numeric
-    int fki_user_id; //numeric
-    int fki_userstaged_id; //numeric
+    int *fki_ezsignfolder_id; //numeric
+    int *fki_ezsigndocument_id; //numeric
+    int *fki_ezsignsigner_id; //numeric
+    int *fki_user_id; //numeric
+    int *fki_userstaged_id; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } webhook_send_webhook_v1_request_t;
@@ -38,11 +38,11 @@ __attribute__((deprecated)) webhook_send_webhook_v1_request_t *webhook_send_webh
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module,
     ezmax_api_definition__full_custom_e_webhook_ezsignevent__e e_webhook_ezsignevent,
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent,
-    int fki_ezsignfolder_id,
-    int fki_ezsigndocument_id,
-    int fki_ezsignsigner_id,
-    int fki_user_id,
-    int fki_userstaged_id
+    int *fki_ezsignfolder_id,
+    int *fki_ezsigndocument_id,
+    int *fki_ezsignsigner_id,
+    int *fki_user_id,
+    int *fki_userstaged_id
 );
 
 void webhook_send_webhook_v1_request_free(webhook_send_webhook_v1_request_t *webhook_send_webhook_v1_request);

@@ -6,24 +6,33 @@
 
 
 static inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_t *inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_create_internal(
-    int i_communication_count
+    int *i_communication_count
     ) {
     inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_t *inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_local_var = malloc(sizeof(inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_t));
     if (!inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_local_var) {
         return NULL;
     }
-    inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_local_var->i_communication_count = i_communication_count;
-
+    memset(inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_local_var, 0, sizeof(inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_t));
     inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_local_var->_library_owned = 1;
+    inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_local_var->i_communication_count = i_communication_count;
     return inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_t *inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_create(
-    int i_communication_count
+    int *i_communication_count
     ) {
-    return inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_create_internal (
-        i_communication_count
+    int *i_communication_count_copy = NULL;
+    if (i_communication_count) {
+        i_communication_count_copy = malloc(sizeof(int));
+        if (i_communication_count_copy) *i_communication_count_copy = *i_communication_count;
+    }
+    inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_t *result = inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_create_internal (
+        i_communication_count_copy
         );
+    if (!result) {
+        free(i_communication_count_copy);
+    }
+    return result;
 }
 
 void inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_free(inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_t *inscriptionnotauthenticated_get_communication_count_v1_response_m_payload) {
@@ -35,6 +44,10 @@ void inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_f
         return ;
     }
     listEntry_t *listEntry;
+    if (inscriptionnotauthenticated_get_communication_count_v1_response_m_payload->i_communication_count) {
+        free(inscriptionnotauthenticated_get_communication_count_v1_response_m_payload->i_communication_count);
+        inscriptionnotauthenticated_get_communication_count_v1_response_m_payload->i_communication_count = NULL;
+    }
     free(inscriptionnotauthenticated_get_communication_count_v1_response_m_payload);
 }
 
@@ -45,7 +58,7 @@ cJSON *inscriptionnotauthenticated_get_communication_count_v1_response_m_payload
     if (!inscriptionnotauthenticated_get_communication_count_v1_response_m_payload->i_communication_count) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iCommunicationCount", inscriptionnotauthenticated_get_communication_count_v1_response_m_payload->i_communication_count) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iCommunicationCount", *inscriptionnotauthenticated_get_communication_count_v1_response_m_payload->i_communication_count) == NULL) {
     goto fail; //Numeric
     }
 
@@ -61,6 +74,9 @@ inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_t *ins
 
     inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_t *inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_local_var = NULL;
 
+    // define the local variable for inscriptionnotauthenticated_get_communication_count_v1_response_m_payload->i_communication_count
+    int *i_communication_count_local_var = NULL;
+
     // inscriptionnotauthenticated_get_communication_count_v1_response_m_payload->i_communication_count
     cJSON *i_communication_count = cJSON_GetObjectItemCaseSensitive(inscriptionnotauthenticated_get_communication_count_v1_response_m_payloadJSON, "iCommunicationCount");
     if (cJSON_IsNull(i_communication_count)) {
@@ -75,14 +91,29 @@ inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_t *ins
     {
     goto end; //Numeric
     }
+    i_communication_count_local_var = malloc(sizeof(int));
+    if(!i_communication_count_local_var)
+    {
+        goto end;
+    }
+    *i_communication_count_local_var = i_communication_count->valuedouble;
+
 
 
     inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_local_var = inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_create_internal (
-        i_communication_count->valuedouble
+        i_communication_count_local_var
         );
+
+    if (!inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_local_var;
 end:
+    if (i_communication_count_local_var) {
+        free(i_communication_count_local_var);
+        i_communication_count_local_var = NULL;
+    }
     return NULL;
 
 }

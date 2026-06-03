@@ -21,7 +21,7 @@ typedef struct billingentityinternal_response_compound_t billingentityinternal_r
 
 
 typedef struct billingentityinternal_response_compound_t {
-    int pki_billingentityinternal_id; //numeric
+    int *pki_billingentityinternal_id; //numeric
     struct multilingual_billingentityinternal_description_t *obj_billingentityinternal_description; //model
     list_t *a_obj_billingentityinternalproduct; //nonprimitive container
 
@@ -29,7 +29,7 @@ typedef struct billingentityinternal_response_compound_t {
 } billingentityinternal_response_compound_t;
 
 __attribute__((deprecated)) billingentityinternal_response_compound_t *billingentityinternal_response_compound_create(
-    int pki_billingentityinternal_id,
+    int *pki_billingentityinternal_id,
     multilingual_billingentityinternal_description_t *obj_billingentityinternal_description,
     list_t *a_obj_billingentityinternalproduct
 );

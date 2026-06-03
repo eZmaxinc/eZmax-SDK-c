@@ -12,18 +12,21 @@ static phonetype_get_autocomplete_v2_response_m_payload_t *phonetype_get_autocom
     if (!phonetype_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    phonetype_get_autocomplete_v2_response_m_payload_local_var->a_obj_phonetype = a_obj_phonetype;
-
+    memset(phonetype_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(phonetype_get_autocomplete_v2_response_m_payload_t));
     phonetype_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    phonetype_get_autocomplete_v2_response_m_payload_local_var->a_obj_phonetype = a_obj_phonetype;
     return phonetype_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) phonetype_get_autocomplete_v2_response_m_payload_t *phonetype_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_phonetype
     ) {
-    return phonetype_get_autocomplete_v2_response_m_payload_create_internal (
+    phonetype_get_autocomplete_v2_response_m_payload_t *result = phonetype_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_phonetype
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void phonetype_get_autocomplete_v2_response_m_payload_free(phonetype_get_autocomplete_v2_response_m_payload_t *phonetype_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ phonetype_get_autocomplete_v2_response_m_payload_t *phonetype_get_autocomplete_v
     }
 
 
+
     phonetype_get_autocomplete_v2_response_m_payload_local_var = phonetype_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_phonetypeList
         );
+
+    if (!phonetype_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return phonetype_get_autocomplete_v2_response_m_payload_local_var;
 end:

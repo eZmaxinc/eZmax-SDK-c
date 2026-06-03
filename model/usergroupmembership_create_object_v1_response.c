@@ -14,11 +14,11 @@ static usergroupmembership_create_object_v1_response_t *usergroupmembership_crea
     if (!usergroupmembership_create_object_v1_response_local_var) {
         return NULL;
     }
+    memset(usergroupmembership_create_object_v1_response_local_var, 0, sizeof(usergroupmembership_create_object_v1_response_t));
+    usergroupmembership_create_object_v1_response_local_var->_library_owned = 1;
     usergroupmembership_create_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     usergroupmembership_create_object_v1_response_local_var->obj_debug = obj_debug;
     usergroupmembership_create_object_v1_response_local_var->m_payload = m_payload;
-
-    usergroupmembership_create_object_v1_response_local_var->_library_owned = 1;
     return usergroupmembership_create_object_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) usergroupmembership_create_object_v1_response_t *use
     common_response_obj_debug_t *obj_debug,
     usergroupmembership_create_object_v1_response_m_payload_t *m_payload
     ) {
-    return usergroupmembership_create_object_v1_response_create_internal (
+    usergroupmembership_create_object_v1_response_t *result = usergroupmembership_create_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void usergroupmembership_create_object_v1_response_free(usergroupmembership_create_object_v1_response_t *usergroupmembership_create_object_v1_response) {
@@ -156,11 +159,16 @@ usergroupmembership_create_object_v1_response_t *usergroupmembership_create_obje
     m_payload_local_nonprim = usergroupmembership_create_object_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     usergroupmembership_create_object_v1_response_local_var = usergroupmembership_create_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!usergroupmembership_create_object_v1_response_local_var) {
+        goto end;
+    }
 
     return usergroupmembership_create_object_v1_response_local_var;
 end:

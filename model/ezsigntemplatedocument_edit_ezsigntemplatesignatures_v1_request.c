@@ -12,18 +12,21 @@ static ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_t *ezsign
     if (!ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_local_var) {
         return NULL;
     }
-    ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_local_var->a_obj_ezsigntemplatesignature = a_obj_ezsigntemplatesignature;
-
+    memset(ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_local_var, 0, sizeof(ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_t));
     ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_local_var->_library_owned = 1;
+    ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_local_var->a_obj_ezsigntemplatesignature = a_obj_ezsigntemplatesignature;
     return ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_t *ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_create(
     list_t *a_obj_ezsigntemplatesignature
     ) {
-    return ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_create_internal (
+    ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_t *result = ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_create_internal (
         a_obj_ezsigntemplatesignature
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_free(ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_t *ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request) {
@@ -111,9 +114,14 @@ ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_t *ezsigntemplat
     }
 
 
+
     ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_local_var = ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_create_internal (
         a_obj_ezsigntemplatesignatureList
         );
+
+    if (!ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_local_var;
 end:

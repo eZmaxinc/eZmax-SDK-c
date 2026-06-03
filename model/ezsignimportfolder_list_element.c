@@ -6,18 +6,20 @@
 
 
 static ezsignimportfolder_list_element_t *ezsignimportfolder_list_element_create_internal(
-    int pki_ezsignimportfolder_id,
+    int *pki_ezsignimportfolder_id,
     char *s_ezsignimportfolder_name,
     char *dt_created_date,
     char *dt_modified_date,
-    int i_total_ezsignimportdocument,
-    int i_total_ezsignimportdocument_not_imported,
+    int *i_total_ezsignimportdocument,
+    int *i_total_ezsignimportdocument_not_imported,
     ezmax_api_definition__full_computed_e_ezsignimportfolder_status__e e_ezsignimportfolder_status
     ) {
     ezsignimportfolder_list_element_t *ezsignimportfolder_list_element_local_var = malloc(sizeof(ezsignimportfolder_list_element_t));
     if (!ezsignimportfolder_list_element_local_var) {
         return NULL;
     }
+    memset(ezsignimportfolder_list_element_local_var, 0, sizeof(ezsignimportfolder_list_element_t));
+    ezsignimportfolder_list_element_local_var->_library_owned = 1;
     ezsignimportfolder_list_element_local_var->pki_ezsignimportfolder_id = pki_ezsignimportfolder_id;
     ezsignimportfolder_list_element_local_var->s_ezsignimportfolder_name = s_ezsignimportfolder_name;
     ezsignimportfolder_list_element_local_var->dt_created_date = dt_created_date;
@@ -25,29 +27,48 @@ static ezsignimportfolder_list_element_t *ezsignimportfolder_list_element_create
     ezsignimportfolder_list_element_local_var->i_total_ezsignimportdocument = i_total_ezsignimportdocument;
     ezsignimportfolder_list_element_local_var->i_total_ezsignimportdocument_not_imported = i_total_ezsignimportdocument_not_imported;
     ezsignimportfolder_list_element_local_var->e_ezsignimportfolder_status = e_ezsignimportfolder_status;
-
-    ezsignimportfolder_list_element_local_var->_library_owned = 1;
     return ezsignimportfolder_list_element_local_var;
 }
 
 __attribute__((deprecated)) ezsignimportfolder_list_element_t *ezsignimportfolder_list_element_create(
-    int pki_ezsignimportfolder_id,
+    int *pki_ezsignimportfolder_id,
     char *s_ezsignimportfolder_name,
     char *dt_created_date,
     char *dt_modified_date,
-    int i_total_ezsignimportdocument,
-    int i_total_ezsignimportdocument_not_imported,
+    int *i_total_ezsignimportdocument,
+    int *i_total_ezsignimportdocument_not_imported,
     ezmax_api_definition__full_computed_e_ezsignimportfolder_status__e e_ezsignimportfolder_status
     ) {
-    return ezsignimportfolder_list_element_create_internal (
-        pki_ezsignimportfolder_id,
+    int *pki_ezsignimportfolder_id_copy = NULL;
+    if (pki_ezsignimportfolder_id) {
+        pki_ezsignimportfolder_id_copy = malloc(sizeof(int));
+        if (pki_ezsignimportfolder_id_copy) *pki_ezsignimportfolder_id_copy = *pki_ezsignimportfolder_id;
+    }
+    int *i_total_ezsignimportdocument_copy = NULL;
+    if (i_total_ezsignimportdocument) {
+        i_total_ezsignimportdocument_copy = malloc(sizeof(int));
+        if (i_total_ezsignimportdocument_copy) *i_total_ezsignimportdocument_copy = *i_total_ezsignimportdocument;
+    }
+    int *i_total_ezsignimportdocument_not_imported_copy = NULL;
+    if (i_total_ezsignimportdocument_not_imported) {
+        i_total_ezsignimportdocument_not_imported_copy = malloc(sizeof(int));
+        if (i_total_ezsignimportdocument_not_imported_copy) *i_total_ezsignimportdocument_not_imported_copy = *i_total_ezsignimportdocument_not_imported;
+    }
+    ezsignimportfolder_list_element_t *result = ezsignimportfolder_list_element_create_internal (
+        pki_ezsignimportfolder_id_copy,
         s_ezsignimportfolder_name,
         dt_created_date,
         dt_modified_date,
-        i_total_ezsignimportdocument,
-        i_total_ezsignimportdocument_not_imported,
+        i_total_ezsignimportdocument_copy,
+        i_total_ezsignimportdocument_not_imported_copy,
         e_ezsignimportfolder_status
         );
+    if (!result) {
+        free(pki_ezsignimportfolder_id_copy);
+        free(i_total_ezsignimportdocument_copy);
+        free(i_total_ezsignimportdocument_not_imported_copy);
+    }
+    return result;
 }
 
 void ezsignimportfolder_list_element_free(ezsignimportfolder_list_element_t *ezsignimportfolder_list_element) {
@@ -59,6 +80,10 @@ void ezsignimportfolder_list_element_free(ezsignimportfolder_list_element_t *ezs
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignimportfolder_list_element->pki_ezsignimportfolder_id) {
+        free(ezsignimportfolder_list_element->pki_ezsignimportfolder_id);
+        ezsignimportfolder_list_element->pki_ezsignimportfolder_id = NULL;
+    }
     if (ezsignimportfolder_list_element->s_ezsignimportfolder_name) {
         free(ezsignimportfolder_list_element->s_ezsignimportfolder_name);
         ezsignimportfolder_list_element->s_ezsignimportfolder_name = NULL;
@@ -71,6 +96,14 @@ void ezsignimportfolder_list_element_free(ezsignimportfolder_list_element_t *ezs
         free(ezsignimportfolder_list_element->dt_modified_date);
         ezsignimportfolder_list_element->dt_modified_date = NULL;
     }
+    if (ezsignimportfolder_list_element->i_total_ezsignimportdocument) {
+        free(ezsignimportfolder_list_element->i_total_ezsignimportdocument);
+        ezsignimportfolder_list_element->i_total_ezsignimportdocument = NULL;
+    }
+    if (ezsignimportfolder_list_element->i_total_ezsignimportdocument_not_imported) {
+        free(ezsignimportfolder_list_element->i_total_ezsignimportdocument_not_imported);
+        ezsignimportfolder_list_element->i_total_ezsignimportdocument_not_imported = NULL;
+    }
     free(ezsignimportfolder_list_element);
 }
 
@@ -81,7 +114,7 @@ cJSON *ezsignimportfolder_list_element_convertToJSON(ezsignimportfolder_list_ele
     if (!ezsignimportfolder_list_element->pki_ezsignimportfolder_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiEzsignimportfolderID", ezsignimportfolder_list_element->pki_ezsignimportfolder_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzsignimportfolderID", *ezsignimportfolder_list_element->pki_ezsignimportfolder_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -113,7 +146,7 @@ cJSON *ezsignimportfolder_list_element_convertToJSON(ezsignimportfolder_list_ele
 
     // ezsignimportfolder_list_element->i_total_ezsignimportdocument
     if(ezsignimportfolder_list_element->i_total_ezsignimportdocument) {
-    if(cJSON_AddNumberToObject(item, "iTotalEzsignimportdocument", ezsignimportfolder_list_element->i_total_ezsignimportdocument) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iTotalEzsignimportdocument", *ezsignimportfolder_list_element->i_total_ezsignimportdocument) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -121,7 +154,7 @@ cJSON *ezsignimportfolder_list_element_convertToJSON(ezsignimportfolder_list_ele
 
     // ezsignimportfolder_list_element->i_total_ezsignimportdocument_not_imported
     if(ezsignimportfolder_list_element->i_total_ezsignimportdocument_not_imported) {
-    if(cJSON_AddNumberToObject(item, "iTotalEzsignimportdocumentNotImported", ezsignimportfolder_list_element->i_total_ezsignimportdocument_not_imported) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iTotalEzsignimportdocumentNotImported", *ezsignimportfolder_list_element->i_total_ezsignimportdocument_not_imported) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -151,6 +184,21 @@ ezsignimportfolder_list_element_t *ezsignimportfolder_list_element_parseFromJSON
 
     ezsignimportfolder_list_element_t *ezsignimportfolder_list_element_local_var = NULL;
 
+    // define the local variable for ezsignimportfolder_list_element->pki_ezsignimportfolder_id
+    int *pki_ezsignimportfolder_id_local_var = NULL;
+
+    char *s_ezsignimportfolder_name_local_str = NULL;
+
+    char *dt_created_date_local_str = NULL;
+
+    char *dt_modified_date_local_str = NULL;
+
+    // define the local variable for ezsignimportfolder_list_element->i_total_ezsignimportdocument
+    int *i_total_ezsignimportdocument_local_var = NULL;
+
+    // define the local variable for ezsignimportfolder_list_element->i_total_ezsignimportdocument_not_imported
+    int *i_total_ezsignimportdocument_not_imported_local_var = NULL;
+
     // define the local variable for ezsignimportfolder_list_element->e_ezsignimportfolder_status
     ezmax_api_definition__full_computed_e_ezsignimportfolder_status__e e_ezsignimportfolder_status_local_nonprim = 0;
 
@@ -168,6 +216,12 @@ ezsignimportfolder_list_element_t *ezsignimportfolder_list_element_parseFromJSON
     {
     goto end; //Numeric
     }
+    pki_ezsignimportfolder_id_local_var = malloc(sizeof(int));
+    if(!pki_ezsignimportfolder_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezsignimportfolder_id_local_var = pki_ezsignimportfolder_id->valuedouble;
 
     // ezsignimportfolder_list_element->s_ezsignimportfolder_name
     cJSON *s_ezsignimportfolder_name = cJSON_GetObjectItemCaseSensitive(ezsignimportfolder_list_elementJSON, "sEzsignimportfolderName");
@@ -218,6 +272,12 @@ ezsignimportfolder_list_element_t *ezsignimportfolder_list_element_parseFromJSON
     {
     goto end; //Numeric
     }
+    i_total_ezsignimportdocument_local_var = malloc(sizeof(int));
+    if(!i_total_ezsignimportdocument_local_var)
+    {
+        goto end;
+    }
+    *i_total_ezsignimportdocument_local_var = i_total_ezsignimportdocument->valuedouble;
     }
 
     // ezsignimportfolder_list_element->i_total_ezsignimportdocument_not_imported
@@ -230,6 +290,12 @@ ezsignimportfolder_list_element_t *ezsignimportfolder_list_element_parseFromJSON
     {
     goto end; //Numeric
     }
+    i_total_ezsignimportdocument_not_imported_local_var = malloc(sizeof(int));
+    if(!i_total_ezsignimportdocument_not_imported_local_var)
+    {
+        goto end;
+    }
+    *i_total_ezsignimportdocument_not_imported_local_var = i_total_ezsignimportdocument_not_imported->valuedouble;
     }
 
     // ezsignimportfolder_list_element->e_ezsignimportfolder_status
@@ -242,18 +308,50 @@ ezsignimportfolder_list_element_t *ezsignimportfolder_list_element_parseFromJSON
     }
 
 
+    if (s_ezsignimportfolder_name && !cJSON_IsNull(s_ezsignimportfolder_name)) s_ezsignimportfolder_name_local_str = strdup(s_ezsignimportfolder_name->valuestring);
+    if (dt_created_date && !cJSON_IsNull(dt_created_date)) dt_created_date_local_str = strdup(dt_created_date->valuestring);
+    if (dt_modified_date && !cJSON_IsNull(dt_modified_date)) dt_modified_date_local_str = strdup(dt_modified_date->valuestring);
+
     ezsignimportfolder_list_element_local_var = ezsignimportfolder_list_element_create_internal (
-        pki_ezsignimportfolder_id->valuedouble,
-        strdup(s_ezsignimportfolder_name->valuestring),
-        dt_created_date && !cJSON_IsNull(dt_created_date) ? strdup(dt_created_date->valuestring) : NULL,
-        dt_modified_date && !cJSON_IsNull(dt_modified_date) ? strdup(dt_modified_date->valuestring) : NULL,
-        i_total_ezsignimportdocument ? i_total_ezsignimportdocument->valuedouble : 0,
-        i_total_ezsignimportdocument_not_imported ? i_total_ezsignimportdocument_not_imported->valuedouble : 0,
+        pki_ezsignimportfolder_id_local_var,
+        s_ezsignimportfolder_name_local_str,
+        dt_created_date_local_str,
+        dt_modified_date_local_str,
+        i_total_ezsignimportdocument_local_var,
+        i_total_ezsignimportdocument_not_imported_local_var,
         e_ezsignimportfolder_status ? e_ezsignimportfolder_status_local_nonprim : 0
         );
 
+    if (!ezsignimportfolder_list_element_local_var) {
+        goto end;
+    }
+
     return ezsignimportfolder_list_element_local_var;
 end:
+    if (pki_ezsignimportfolder_id_local_var) {
+        free(pki_ezsignimportfolder_id_local_var);
+        pki_ezsignimportfolder_id_local_var = NULL;
+    }
+    if (s_ezsignimportfolder_name_local_str) {
+        free(s_ezsignimportfolder_name_local_str);
+        s_ezsignimportfolder_name_local_str = NULL;
+    }
+    if (dt_created_date_local_str) {
+        free(dt_created_date_local_str);
+        dt_created_date_local_str = NULL;
+    }
+    if (dt_modified_date_local_str) {
+        free(dt_modified_date_local_str);
+        dt_modified_date_local_str = NULL;
+    }
+    if (i_total_ezsignimportdocument_local_var) {
+        free(i_total_ezsignimportdocument_local_var);
+        i_total_ezsignimportdocument_local_var = NULL;
+    }
+    if (i_total_ezsignimportdocument_not_imported_local_var) {
+        free(i_total_ezsignimportdocument_not_imported_local_var);
+        i_total_ezsignimportdocument_not_imported_local_var = NULL;
+    }
     if (e_ezsignimportfolder_status_local_nonprim) {
         e_ezsignimportfolder_status_local_nonprim = 0;
     }

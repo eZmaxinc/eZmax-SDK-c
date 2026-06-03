@@ -19,10 +19,10 @@ typedef struct ezsignsigner_response_compound_contact_t ezsignsigner_response_co
 
 
 typedef struct ezsignsigner_response_compound_contact_t {
-    int pki_contact_id; //numeric
+    int *pki_contact_id; //numeric
     char *s_contact_firstname; // string
     char *s_contact_lastname; // string
-    int fki_language_id; //numeric
+    int *fki_language_id; //numeric
     char *s_email_address; // string
     char *s_phone_e164; // string
     char *s_phone_extension; // string
@@ -32,10 +32,10 @@ typedef struct ezsignsigner_response_compound_contact_t {
 } ezsignsigner_response_compound_contact_t;
 
 __attribute__((deprecated)) ezsignsigner_response_compound_contact_t *ezsignsigner_response_compound_contact_create(
-    int pki_contact_id,
+    int *pki_contact_id,
     char *s_contact_firstname,
     char *s_contact_lastname,
-    int fki_language_id,
+    int *fki_language_id,
     char *s_email_address,
     char *s_phone_e164,
     char *s_phone_extension,

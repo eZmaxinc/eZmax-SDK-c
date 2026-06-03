@@ -13,10 +13,10 @@ static multilingual_ezmaxcustomeruser_note_t *multilingual_ezmaxcustomeruser_not
     if (!multilingual_ezmaxcustomeruser_note_local_var) {
         return NULL;
     }
+    memset(multilingual_ezmaxcustomeruser_note_local_var, 0, sizeof(multilingual_ezmaxcustomeruser_note_t));
+    multilingual_ezmaxcustomeruser_note_local_var->_library_owned = 1;
     multilingual_ezmaxcustomeruser_note_local_var->t_ezmaxcustomeruser_note1 = t_ezmaxcustomeruser_note1;
     multilingual_ezmaxcustomeruser_note_local_var->t_ezmaxcustomeruser_note2 = t_ezmaxcustomeruser_note2;
-
-    multilingual_ezmaxcustomeruser_note_local_var->_library_owned = 1;
     return multilingual_ezmaxcustomeruser_note_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) multilingual_ezmaxcustomeruser_note_t *multilingual_
     char *t_ezmaxcustomeruser_note1,
     char *t_ezmaxcustomeruser_note2
     ) {
-    return multilingual_ezmaxcustomeruser_note_create_internal (
+    multilingual_ezmaxcustomeruser_note_t *result = multilingual_ezmaxcustomeruser_note_create_internal (
         t_ezmaxcustomeruser_note1,
         t_ezmaxcustomeruser_note2
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void multilingual_ezmaxcustomeruser_note_free(multilingual_ezmaxcustomeruser_note_t *multilingual_ezmaxcustomeruser_note) {
@@ -80,6 +83,10 @@ multilingual_ezmaxcustomeruser_note_t *multilingual_ezmaxcustomeruser_note_parse
 
     multilingual_ezmaxcustomeruser_note_t *multilingual_ezmaxcustomeruser_note_local_var = NULL;
 
+    char *t_ezmaxcustomeruser_note1_local_str = NULL;
+
+    char *t_ezmaxcustomeruser_note2_local_str = NULL;
+
     // multilingual_ezmaxcustomeruser_note->t_ezmaxcustomeruser_note1
     cJSON *t_ezmaxcustomeruser_note1 = cJSON_GetObjectItemCaseSensitive(multilingual_ezmaxcustomeruser_noteJSON, "tEzmaxcustomeruserNote1");
     if (cJSON_IsNull(t_ezmaxcustomeruser_note1)) {
@@ -105,13 +112,28 @@ multilingual_ezmaxcustomeruser_note_t *multilingual_ezmaxcustomeruser_note_parse
     }
 
 
+    if (t_ezmaxcustomeruser_note1 && !cJSON_IsNull(t_ezmaxcustomeruser_note1)) t_ezmaxcustomeruser_note1_local_str = strdup(t_ezmaxcustomeruser_note1->valuestring);
+    if (t_ezmaxcustomeruser_note2 && !cJSON_IsNull(t_ezmaxcustomeruser_note2)) t_ezmaxcustomeruser_note2_local_str = strdup(t_ezmaxcustomeruser_note2->valuestring);
+
     multilingual_ezmaxcustomeruser_note_local_var = multilingual_ezmaxcustomeruser_note_create_internal (
-        t_ezmaxcustomeruser_note1 && !cJSON_IsNull(t_ezmaxcustomeruser_note1) ? strdup(t_ezmaxcustomeruser_note1->valuestring) : NULL,
-        t_ezmaxcustomeruser_note2 && !cJSON_IsNull(t_ezmaxcustomeruser_note2) ? strdup(t_ezmaxcustomeruser_note2->valuestring) : NULL
+        t_ezmaxcustomeruser_note1_local_str,
+        t_ezmaxcustomeruser_note2_local_str
         );
+
+    if (!multilingual_ezmaxcustomeruser_note_local_var) {
+        goto end;
+    }
 
     return multilingual_ezmaxcustomeruser_note_local_var;
 end:
+    if (t_ezmaxcustomeruser_note1_local_str) {
+        free(t_ezmaxcustomeruser_note1_local_str);
+        t_ezmaxcustomeruser_note1_local_str = NULL;
+    }
+    if (t_ezmaxcustomeruser_note2_local_str) {
+        free(t_ezmaxcustomeruser_note2_local_str);
+        t_ezmaxcustomeruser_note2_local_str = NULL;
+    }
     return NULL;
 
 }

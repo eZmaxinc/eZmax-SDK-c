@@ -12,18 +12,21 @@ static ezsigntemplatepublic_get_forms_data_v1_response_m_payload_t *ezsigntempla
     if (!ezsigntemplatepublic_get_forms_data_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsigntemplatepublic_get_forms_data_v1_response_m_payload_local_var->a_obj_forms_data_folder = a_obj_forms_data_folder;
-
+    memset(ezsigntemplatepublic_get_forms_data_v1_response_m_payload_local_var, 0, sizeof(ezsigntemplatepublic_get_forms_data_v1_response_m_payload_t));
     ezsigntemplatepublic_get_forms_data_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsigntemplatepublic_get_forms_data_v1_response_m_payload_local_var->a_obj_forms_data_folder = a_obj_forms_data_folder;
     return ezsigntemplatepublic_get_forms_data_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplatepublic_get_forms_data_v1_response_m_payload_t *ezsigntemplatepublic_get_forms_data_v1_response_m_payload_create(
     list_t *a_obj_forms_data_folder
     ) {
-    return ezsigntemplatepublic_get_forms_data_v1_response_m_payload_create_internal (
+    ezsigntemplatepublic_get_forms_data_v1_response_m_payload_t *result = ezsigntemplatepublic_get_forms_data_v1_response_m_payload_create_internal (
         a_obj_forms_data_folder
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatepublic_get_forms_data_v1_response_m_payload_free(ezsigntemplatepublic_get_forms_data_v1_response_m_payload_t *ezsigntemplatepublic_get_forms_data_v1_response_m_payload) {
@@ -111,9 +114,14 @@ ezsigntemplatepublic_get_forms_data_v1_response_m_payload_t *ezsigntemplatepubli
     }
 
 
+
     ezsigntemplatepublic_get_forms_data_v1_response_m_payload_local_var = ezsigntemplatepublic_get_forms_data_v1_response_m_payload_create_internal (
         a_obj_forms_data_folderList
         );
+
+    if (!ezsigntemplatepublic_get_forms_data_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatepublic_get_forms_data_v1_response_m_payload_local_var;
 end:

@@ -12,18 +12,21 @@ static variableexpense_create_object_v1_response_m_payload_t *variableexpense_cr
     if (!variableexpense_create_object_v1_response_m_payload_local_var) {
         return NULL;
     }
-    variableexpense_create_object_v1_response_m_payload_local_var->a_pki_variableexpense_id = a_pki_variableexpense_id;
-
+    memset(variableexpense_create_object_v1_response_m_payload_local_var, 0, sizeof(variableexpense_create_object_v1_response_m_payload_t));
     variableexpense_create_object_v1_response_m_payload_local_var->_library_owned = 1;
+    variableexpense_create_object_v1_response_m_payload_local_var->a_pki_variableexpense_id = a_pki_variableexpense_id;
     return variableexpense_create_object_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) variableexpense_create_object_v1_response_m_payload_t *variableexpense_create_object_v1_response_m_payload_create(
     list_t *a_pki_variableexpense_id
     ) {
-    return variableexpense_create_object_v1_response_m_payload_create_internal (
+    variableexpense_create_object_v1_response_m_payload_t *result = variableexpense_create_object_v1_response_m_payload_create_internal (
         a_pki_variableexpense_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void variableexpense_create_object_v1_response_m_payload_free(variableexpense_create_object_v1_response_m_payload_t *variableexpense_create_object_v1_response_m_payload) {
@@ -112,9 +115,14 @@ variableexpense_create_object_v1_response_m_payload_t *variableexpense_create_ob
     }
 
 
+
     variableexpense_create_object_v1_response_m_payload_local_var = variableexpense_create_object_v1_response_m_payload_create_internal (
         a_pki_variableexpense_idList
         );
+
+    if (!variableexpense_create_object_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return variableexpense_create_object_v1_response_m_payload_local_var;
 end:

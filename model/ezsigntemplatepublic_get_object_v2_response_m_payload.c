@@ -12,18 +12,21 @@ static ezsigntemplatepublic_get_object_v2_response_m_payload_t *ezsigntemplatepu
     if (!ezsigntemplatepublic_get_object_v2_response_m_payload_local_var) {
         return NULL;
     }
-    ezsigntemplatepublic_get_object_v2_response_m_payload_local_var->obj_ezsigntemplatepublic = obj_ezsigntemplatepublic;
-
+    memset(ezsigntemplatepublic_get_object_v2_response_m_payload_local_var, 0, sizeof(ezsigntemplatepublic_get_object_v2_response_m_payload_t));
     ezsigntemplatepublic_get_object_v2_response_m_payload_local_var->_library_owned = 1;
+    ezsigntemplatepublic_get_object_v2_response_m_payload_local_var->obj_ezsigntemplatepublic = obj_ezsigntemplatepublic;
     return ezsigntemplatepublic_get_object_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplatepublic_get_object_v2_response_m_payload_t *ezsigntemplatepublic_get_object_v2_response_m_payload_create(
     ezsigntemplatepublic_response_compound_t *obj_ezsigntemplatepublic
     ) {
-    return ezsigntemplatepublic_get_object_v2_response_m_payload_create_internal (
+    ezsigntemplatepublic_get_object_v2_response_m_payload_t *result = ezsigntemplatepublic_get_object_v2_response_m_payload_create_internal (
         obj_ezsigntemplatepublic
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatepublic_get_object_v2_response_m_payload_free(ezsigntemplatepublic_get_object_v2_response_m_payload_t *ezsigntemplatepublic_get_object_v2_response_m_payload) {
@@ -86,9 +89,14 @@ ezsigntemplatepublic_get_object_v2_response_m_payload_t *ezsigntemplatepublic_ge
     obj_ezsigntemplatepublic_local_nonprim = ezsigntemplatepublic_response_compound_parseFromJSON(obj_ezsigntemplatepublic); //nonprimitive
 
 
+
     ezsigntemplatepublic_get_object_v2_response_m_payload_local_var = ezsigntemplatepublic_get_object_v2_response_m_payload_create_internal (
         obj_ezsigntemplatepublic_local_nonprim
         );
+
+    if (!ezsigntemplatepublic_get_object_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatepublic_get_object_v2_response_m_payload_local_var;
 end:

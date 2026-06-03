@@ -12,18 +12,21 @@ static systemconfiguration_edit_object_v2_request_t *systemconfiguration_edit_ob
     if (!systemconfiguration_edit_object_v2_request_local_var) {
         return NULL;
     }
-    systemconfiguration_edit_object_v2_request_local_var->obj_systemconfiguration = obj_systemconfiguration;
-
+    memset(systemconfiguration_edit_object_v2_request_local_var, 0, sizeof(systemconfiguration_edit_object_v2_request_t));
     systemconfiguration_edit_object_v2_request_local_var->_library_owned = 1;
+    systemconfiguration_edit_object_v2_request_local_var->obj_systemconfiguration = obj_systemconfiguration;
     return systemconfiguration_edit_object_v2_request_local_var;
 }
 
 __attribute__((deprecated)) systemconfiguration_edit_object_v2_request_t *systemconfiguration_edit_object_v2_request_create(
     systemconfiguration_request_compound_v2_t *obj_systemconfiguration
     ) {
-    return systemconfiguration_edit_object_v2_request_create_internal (
+    systemconfiguration_edit_object_v2_request_t *result = systemconfiguration_edit_object_v2_request_create_internal (
         obj_systemconfiguration
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void systemconfiguration_edit_object_v2_request_free(systemconfiguration_edit_object_v2_request_t *systemconfiguration_edit_object_v2_request) {
@@ -86,9 +89,14 @@ systemconfiguration_edit_object_v2_request_t *systemconfiguration_edit_object_v2
     obj_systemconfiguration_local_nonprim = systemconfiguration_request_compound_v2_parseFromJSON(obj_systemconfiguration); //nonprimitive
 
 
+
     systemconfiguration_edit_object_v2_request_local_var = systemconfiguration_edit_object_v2_request_create_internal (
         obj_systemconfiguration_local_nonprim
         );
+
+    if (!systemconfiguration_edit_object_v2_request_local_var) {
+        goto end;
+    }
 
     return systemconfiguration_edit_object_v2_request_local_var;
 end:

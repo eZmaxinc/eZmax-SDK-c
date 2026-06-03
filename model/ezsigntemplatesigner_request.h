@@ -20,12 +20,12 @@ typedef struct ezsigntemplatesigner_request_t ezsigntemplatesigner_request_t;
 
 
 typedef struct ezsigntemplatesigner_request_t {
-    int pki_ezsigntemplatesigner_id; //numeric
-    int fki_ezsigntemplate_id; //numeric
-    int fki_user_id; //numeric
-    int fki_usergroup_id; //numeric
-    int fki_ezdoctemplatedocument_id; //numeric
-    int b_ezsigntemplatesigner_receivecopy; //boolean
+    int *pki_ezsigntemplatesigner_id; //numeric
+    int *fki_ezsigntemplate_id; //numeric
+    int *fki_user_id; //numeric
+    int *fki_usergroup_id; //numeric
+    int *fki_ezdoctemplatedocument_id; //numeric
+    int *b_ezsigntemplatesigner_receivecopy; //boolean
     ezmax_api_definition__full_field_e_ezsigntemplatesigner_mapping__e e_ezsigntemplatesigner_mapping; //referenced enum
     char *s_ezsigntemplatesigner_description; // string
 
@@ -33,12 +33,12 @@ typedef struct ezsigntemplatesigner_request_t {
 } ezsigntemplatesigner_request_t;
 
 __attribute__((deprecated)) ezsigntemplatesigner_request_t *ezsigntemplatesigner_request_create(
-    int pki_ezsigntemplatesigner_id,
-    int fki_ezsigntemplate_id,
-    int fki_user_id,
-    int fki_usergroup_id,
-    int fki_ezdoctemplatedocument_id,
-    int b_ezsigntemplatesigner_receivecopy,
+    int *pki_ezsigntemplatesigner_id,
+    int *fki_ezsigntemplate_id,
+    int *fki_user_id,
+    int *fki_usergroup_id,
+    int *fki_ezdoctemplatedocument_id,
+    int *b_ezsigntemplatesigner_receivecopy,
     ezmax_api_definition__full_field_e_ezsigntemplatesigner_mapping__e e_ezsigntemplatesigner_mapping,
     char *s_ezsigntemplatesigner_description
 );

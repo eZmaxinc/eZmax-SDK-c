@@ -12,18 +12,21 @@ static paymentgateway_create_object_v1_response_m_payload_t *paymentgateway_crea
     if (!paymentgateway_create_object_v1_response_m_payload_local_var) {
         return NULL;
     }
-    paymentgateway_create_object_v1_response_m_payload_local_var->a_pki_paymentgateway_id = a_pki_paymentgateway_id;
-
+    memset(paymentgateway_create_object_v1_response_m_payload_local_var, 0, sizeof(paymentgateway_create_object_v1_response_m_payload_t));
     paymentgateway_create_object_v1_response_m_payload_local_var->_library_owned = 1;
+    paymentgateway_create_object_v1_response_m_payload_local_var->a_pki_paymentgateway_id = a_pki_paymentgateway_id;
     return paymentgateway_create_object_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) paymentgateway_create_object_v1_response_m_payload_t *paymentgateway_create_object_v1_response_m_payload_create(
     list_t *a_pki_paymentgateway_id
     ) {
-    return paymentgateway_create_object_v1_response_m_payload_create_internal (
+    paymentgateway_create_object_v1_response_m_payload_t *result = paymentgateway_create_object_v1_response_m_payload_create_internal (
         a_pki_paymentgateway_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void paymentgateway_create_object_v1_response_m_payload_free(paymentgateway_create_object_v1_response_m_payload_t *paymentgateway_create_object_v1_response_m_payload) {
@@ -112,9 +115,14 @@ paymentgateway_create_object_v1_response_m_payload_t *paymentgateway_create_obje
     }
 
 
+
     paymentgateway_create_object_v1_response_m_payload_local_var = paymentgateway_create_object_v1_response_m_payload_create_internal (
         a_pki_paymentgateway_idList
         );
+
+    if (!paymentgateway_create_object_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return paymentgateway_create_object_v1_response_m_payload_local_var;
 end:

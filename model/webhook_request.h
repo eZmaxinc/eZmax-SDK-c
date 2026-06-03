@@ -22,35 +22,35 @@ typedef struct webhook_request_t webhook_request_t;
 
 
 typedef struct webhook_request_t {
-    int pki_webhook_id; //numeric
-    int fki_authenticationexternal_id; //numeric
-    int fki_ezsignfoldertype_id; //numeric
+    int *pki_webhook_id; //numeric
+    int *fki_authenticationexternal_id; //numeric
+    int *fki_ezsignfoldertype_id; //numeric
     char *s_webhook_description; // string
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module; //referenced enum
     ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent; //referenced enum
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent; //referenced enum
     char *s_webhook_url; // string
     char *s_webhook_emailfailed; // string
-    int b_webhook_isactive; //boolean
-    int b_webhook_issigned; //boolean
-    int b_webhook_skipsslvalidation; //boolean
+    int *b_webhook_isactive; //boolean
+    int *b_webhook_issigned; //boolean
+    int *b_webhook_skipsslvalidation; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } webhook_request_t;
 
 __attribute__((deprecated)) webhook_request_t *webhook_request_create(
-    int pki_webhook_id,
-    int fki_authenticationexternal_id,
-    int fki_ezsignfoldertype_id,
+    int *pki_webhook_id,
+    int *fki_authenticationexternal_id,
+    int *fki_ezsignfoldertype_id,
     char *s_webhook_description,
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module,
     ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent,
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent,
     char *s_webhook_url,
     char *s_webhook_emailfailed,
-    int b_webhook_isactive,
-    int b_webhook_issigned,
-    int b_webhook_skipsslvalidation
+    int *b_webhook_isactive,
+    int *b_webhook_issigned,
+    int *b_webhook_skipsslvalidation
 );
 
 void webhook_request_free(webhook_request_t *webhook_request);

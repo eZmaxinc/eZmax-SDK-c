@@ -19,17 +19,17 @@ typedef struct supply_autocomplete_element_response_t supply_autocomplete_elemen
 
 
 typedef struct supply_autocomplete_element_response_t {
-    int pki_supply_id; //numeric
+    int *pki_supply_id; //numeric
     char *s_supply_description_x; // string
-    int b_supply_isactive; //boolean
+    int *b_supply_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } supply_autocomplete_element_response_t;
 
 __attribute__((deprecated)) supply_autocomplete_element_response_t *supply_autocomplete_element_response_create(
-    int pki_supply_id,
+    int *pki_supply_id,
     char *s_supply_description_x,
-    int b_supply_isactive
+    int *b_supply_isactive
 );
 
 void supply_autocomplete_element_response_free(supply_autocomplete_element_response_t *supply_autocomplete_element_response);

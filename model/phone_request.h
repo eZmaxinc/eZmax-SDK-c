@@ -20,8 +20,8 @@ typedef struct phone_request_t phone_request_t;
 
 
 typedef struct phone_request_t {
-    int pki_phone_id; //numeric
-    int fki_phonetype_id; //numeric
+    int *pki_phone_id; //numeric
+    int *fki_phonetype_id; //numeric
     ezmax_api_definition__full_field_e_phone_type__e e_phone_type; //referenced enum
     char *s_phone_region; // string
     char *s_phone_exchange; // string
@@ -34,8 +34,8 @@ typedef struct phone_request_t {
 } phone_request_t;
 
 __attribute__((deprecated)) phone_request_t *phone_request_create(
-    int pki_phone_id,
-    int fki_phonetype_id,
+    int *pki_phone_id,
+    int *fki_phonetype_id,
     ezmax_api_definition__full_field_e_phone_type__e e_phone_type,
     char *s_phone_region,
     char *s_phone_exchange,

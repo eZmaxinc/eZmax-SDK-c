@@ -19,32 +19,32 @@ typedef struct usergroupmembership_response_compound_t usergroupmembership_respo
 
 
 typedef struct usergroupmembership_response_compound_t {
-    int pki_usergroupmembership_id; //numeric
-    int fki_usergroup_id; //numeric
-    int fki_user_id; //numeric
-    int fki_usergroupexternal_id; //numeric
+    int *pki_usergroupmembership_id; //numeric
+    int *fki_usergroup_id; //numeric
+    int *fki_user_id; //numeric
+    int *fki_usergroupexternal_id; //numeric
     char *s_user_firstname; // string
     char *s_user_lastname; // string
     char *s_user_loginname; // string
     char *s_email_address; // string
     char *s_usergroup_name_x; // string
-    int b_user_isactive; //boolean
+    int *b_user_isactive; //boolean
     char *s_usergroupexternal_name; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } usergroupmembership_response_compound_t;
 
 __attribute__((deprecated)) usergroupmembership_response_compound_t *usergroupmembership_response_compound_create(
-    int pki_usergroupmembership_id,
-    int fki_usergroup_id,
-    int fki_user_id,
-    int fki_usergroupexternal_id,
+    int *pki_usergroupmembership_id,
+    int *fki_usergroup_id,
+    int *fki_user_id,
+    int *fki_usergroupexternal_id,
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_user_loginname,
     char *s_email_address,
     char *s_usergroup_name_x,
-    int b_user_isactive,
+    int *b_user_isactive,
     char *s_usergroupexternal_name
 );
 

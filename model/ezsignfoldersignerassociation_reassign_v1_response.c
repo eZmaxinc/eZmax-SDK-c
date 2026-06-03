@@ -13,10 +13,10 @@ static ezsignfoldersignerassociation_reassign_v1_response_t *ezsignfoldersignera
     if (!ezsignfoldersignerassociation_reassign_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsignfoldersignerassociation_reassign_v1_response_local_var, 0, sizeof(ezsignfoldersignerassociation_reassign_v1_response_t));
+    ezsignfoldersignerassociation_reassign_v1_response_local_var->_library_owned = 1;
     ezsignfoldersignerassociation_reassign_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsignfoldersignerassociation_reassign_v1_response_local_var->obj_debug = obj_debug;
-
-    ezsignfoldersignerassociation_reassign_v1_response_local_var->_library_owned = 1;
     return ezsignfoldersignerassociation_reassign_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) ezsignfoldersignerassociation_reassign_v1_response_t
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return ezsignfoldersignerassociation_reassign_v1_response_create_internal (
+    ezsignfoldersignerassociation_reassign_v1_response_t *result = ezsignfoldersignerassociation_reassign_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignfoldersignerassociation_reassign_v1_response_free(ezsignfoldersignerassociation_reassign_v1_response_t *ezsignfoldersignerassociation_reassign_v1_response) {
@@ -119,10 +122,15 @@ ezsignfoldersignerassociation_reassign_v1_response_t *ezsignfoldersignerassociat
     }
 
 
+
     ezsignfoldersignerassociation_reassign_v1_response_local_var = ezsignfoldersignerassociation_reassign_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!ezsignfoldersignerassociation_reassign_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsignfoldersignerassociation_reassign_v1_response_local_var;
 end:

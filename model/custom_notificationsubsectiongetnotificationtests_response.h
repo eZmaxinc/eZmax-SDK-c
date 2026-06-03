@@ -21,8 +21,8 @@ typedef struct custom_notificationsubsectiongetnotificationtests_response_t cust
 
 
 typedef struct custom_notificationsubsectiongetnotificationtests_response_t {
-    int pki_notificationsubsection_id; //numeric
-    int fki_notificationsection_id; //numeric
+    int *pki_notificationsubsection_id; //numeric
+    int *fki_notificationsection_id; //numeric
     struct multilingual_notificationsubsection_name_t *obj_notificationsubsection_name; //model
     char *s_notificationsection_name_x; // string
     char *s_notificationsubsection_name_x; // string
@@ -32,8 +32,8 @@ typedef struct custom_notificationsubsectiongetnotificationtests_response_t {
 } custom_notificationsubsectiongetnotificationtests_response_t;
 
 __attribute__((deprecated)) custom_notificationsubsectiongetnotificationtests_response_t *custom_notificationsubsectiongetnotificationtests_response_create(
-    int pki_notificationsubsection_id,
-    int fki_notificationsection_id,
+    int *pki_notificationsubsection_id,
+    int *fki_notificationsection_id,
     multilingual_notificationsubsection_name_t *obj_notificationsubsection_name,
     char *s_notificationsection_name_x,
     char *s_notificationsubsection_name_x,

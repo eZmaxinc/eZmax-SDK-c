@@ -12,18 +12,21 @@ static creditcardtype_get_autocomplete_v2_response_m_payload_t *creditcardtype_g
     if (!creditcardtype_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    creditcardtype_get_autocomplete_v2_response_m_payload_local_var->a_obj_creditcardtype = a_obj_creditcardtype;
-
+    memset(creditcardtype_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(creditcardtype_get_autocomplete_v2_response_m_payload_t));
     creditcardtype_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    creditcardtype_get_autocomplete_v2_response_m_payload_local_var->a_obj_creditcardtype = a_obj_creditcardtype;
     return creditcardtype_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) creditcardtype_get_autocomplete_v2_response_m_payload_t *creditcardtype_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_creditcardtype
     ) {
-    return creditcardtype_get_autocomplete_v2_response_m_payload_create_internal (
+    creditcardtype_get_autocomplete_v2_response_m_payload_t *result = creditcardtype_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_creditcardtype
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void creditcardtype_get_autocomplete_v2_response_m_payload_free(creditcardtype_get_autocomplete_v2_response_m_payload_t *creditcardtype_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ creditcardtype_get_autocomplete_v2_response_m_payload_t *creditcardtype_get_auto
     }
 
 
+
     creditcardtype_get_autocomplete_v2_response_m_payload_local_var = creditcardtype_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_creditcardtypeList
         );
+
+    if (!creditcardtype_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return creditcardtype_get_autocomplete_v2_response_m_payload_local_var;
 end:

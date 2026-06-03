@@ -6,8 +6,8 @@
 
 
 static paymentgateway_response_t *paymentgateway_response_create_internal(
-    int pki_paymentgateway_id,
-    int fki_creditcardmerchant_id,
+    int *pki_paymentgateway_id,
+    int *fki_creditcardmerchant_id,
     char *s_creditcardmerchant_description,
     ezmax_api_definition__full_field_e_paymentgateway_processor__e e_paymentgateway_processor,
     multilingual_paymentgateway_description_t *obj_paymentgateway_description,
@@ -17,33 +17,48 @@ static paymentgateway_response_t *paymentgateway_response_create_internal(
     if (!paymentgateway_response_local_var) {
         return NULL;
     }
+    memset(paymentgateway_response_local_var, 0, sizeof(paymentgateway_response_t));
+    paymentgateway_response_local_var->_library_owned = 1;
     paymentgateway_response_local_var->pki_paymentgateway_id = pki_paymentgateway_id;
     paymentgateway_response_local_var->fki_creditcardmerchant_id = fki_creditcardmerchant_id;
     paymentgateway_response_local_var->s_creditcardmerchant_description = s_creditcardmerchant_description;
     paymentgateway_response_local_var->e_paymentgateway_processor = e_paymentgateway_processor;
     paymentgateway_response_local_var->obj_paymentgateway_description = obj_paymentgateway_description;
     paymentgateway_response_local_var->obj_creditcardmerchant = obj_creditcardmerchant;
-
-    paymentgateway_response_local_var->_library_owned = 1;
     return paymentgateway_response_local_var;
 }
 
 __attribute__((deprecated)) paymentgateway_response_t *paymentgateway_response_create(
-    int pki_paymentgateway_id,
-    int fki_creditcardmerchant_id,
+    int *pki_paymentgateway_id,
+    int *fki_creditcardmerchant_id,
     char *s_creditcardmerchant_description,
     ezmax_api_definition__full_field_e_paymentgateway_processor__e e_paymentgateway_processor,
     multilingual_paymentgateway_description_t *obj_paymentgateway_description,
     creditcardmerchant_response_compound_t *obj_creditcardmerchant
     ) {
-    return paymentgateway_response_create_internal (
-        pki_paymentgateway_id,
-        fki_creditcardmerchant_id,
+    int *pki_paymentgateway_id_copy = NULL;
+    if (pki_paymentgateway_id) {
+        pki_paymentgateway_id_copy = malloc(sizeof(int));
+        if (pki_paymentgateway_id_copy) *pki_paymentgateway_id_copy = *pki_paymentgateway_id;
+    }
+    int *fki_creditcardmerchant_id_copy = NULL;
+    if (fki_creditcardmerchant_id) {
+        fki_creditcardmerchant_id_copy = malloc(sizeof(int));
+        if (fki_creditcardmerchant_id_copy) *fki_creditcardmerchant_id_copy = *fki_creditcardmerchant_id;
+    }
+    paymentgateway_response_t *result = paymentgateway_response_create_internal (
+        pki_paymentgateway_id_copy,
+        fki_creditcardmerchant_id_copy,
         s_creditcardmerchant_description,
         e_paymentgateway_processor,
         obj_paymentgateway_description,
         obj_creditcardmerchant
         );
+    if (!result) {
+        free(pki_paymentgateway_id_copy);
+        free(fki_creditcardmerchant_id_copy);
+    }
+    return result;
 }
 
 void paymentgateway_response_free(paymentgateway_response_t *paymentgateway_response) {
@@ -55,6 +70,14 @@ void paymentgateway_response_free(paymentgateway_response_t *paymentgateway_resp
         return ;
     }
     listEntry_t *listEntry;
+    if (paymentgateway_response->pki_paymentgateway_id) {
+        free(paymentgateway_response->pki_paymentgateway_id);
+        paymentgateway_response->pki_paymentgateway_id = NULL;
+    }
+    if (paymentgateway_response->fki_creditcardmerchant_id) {
+        free(paymentgateway_response->fki_creditcardmerchant_id);
+        paymentgateway_response->fki_creditcardmerchant_id = NULL;
+    }
     if (paymentgateway_response->s_creditcardmerchant_description) {
         free(paymentgateway_response->s_creditcardmerchant_description);
         paymentgateway_response->s_creditcardmerchant_description = NULL;
@@ -77,14 +100,14 @@ cJSON *paymentgateway_response_convertToJSON(paymentgateway_response_t *paymentg
     if (!paymentgateway_response->pki_paymentgateway_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiPaymentgatewayID", paymentgateway_response->pki_paymentgateway_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiPaymentgatewayID", *paymentgateway_response->pki_paymentgateway_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // paymentgateway_response->fki_creditcardmerchant_id
     if(paymentgateway_response->fki_creditcardmerchant_id) {
-    if(cJSON_AddNumberToObject(item, "fkiCreditcardmerchantID", paymentgateway_response->fki_creditcardmerchant_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiCreditcardmerchantID", *paymentgateway_response->fki_creditcardmerchant_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -150,6 +173,14 @@ paymentgateway_response_t *paymentgateway_response_parseFromJSON(cJSON *paymentg
 
     paymentgateway_response_t *paymentgateway_response_local_var = NULL;
 
+    // define the local variable for paymentgateway_response->pki_paymentgateway_id
+    int *pki_paymentgateway_id_local_var = NULL;
+
+    // define the local variable for paymentgateway_response->fki_creditcardmerchant_id
+    int *fki_creditcardmerchant_id_local_var = NULL;
+
+    char *s_creditcardmerchant_description_local_str = NULL;
+
     // define the local variable for paymentgateway_response->e_paymentgateway_processor
     ezmax_api_definition__full_field_e_paymentgateway_processor__e e_paymentgateway_processor_local_nonprim = 0;
 
@@ -173,6 +204,12 @@ paymentgateway_response_t *paymentgateway_response_parseFromJSON(cJSON *paymentg
     {
     goto end; //Numeric
     }
+    pki_paymentgateway_id_local_var = malloc(sizeof(int));
+    if(!pki_paymentgateway_id_local_var)
+    {
+        goto end;
+    }
+    *pki_paymentgateway_id_local_var = pki_paymentgateway_id->valuedouble;
 
     // paymentgateway_response->fki_creditcardmerchant_id
     cJSON *fki_creditcardmerchant_id = cJSON_GetObjectItemCaseSensitive(paymentgateway_responseJSON, "fkiCreditcardmerchantID");
@@ -184,6 +221,12 @@ paymentgateway_response_t *paymentgateway_response_parseFromJSON(cJSON *paymentg
     {
     goto end; //Numeric
     }
+    fki_creditcardmerchant_id_local_var = malloc(sizeof(int));
+    if(!fki_creditcardmerchant_id_local_var)
+    {
+        goto end;
+    }
+    *fki_creditcardmerchant_id_local_var = fki_creditcardmerchant_id->valuedouble;
     }
 
     // paymentgateway_response->s_creditcardmerchant_description
@@ -232,17 +275,35 @@ paymentgateway_response_t *paymentgateway_response_parseFromJSON(cJSON *paymentg
     }
 
 
+    if (s_creditcardmerchant_description && !cJSON_IsNull(s_creditcardmerchant_description)) s_creditcardmerchant_description_local_str = strdup(s_creditcardmerchant_description->valuestring);
+
     paymentgateway_response_local_var = paymentgateway_response_create_internal (
-        pki_paymentgateway_id->valuedouble,
-        fki_creditcardmerchant_id ? fki_creditcardmerchant_id->valuedouble : 0,
-        s_creditcardmerchant_description && !cJSON_IsNull(s_creditcardmerchant_description) ? strdup(s_creditcardmerchant_description->valuestring) : NULL,
+        pki_paymentgateway_id_local_var,
+        fki_creditcardmerchant_id_local_var,
+        s_creditcardmerchant_description_local_str,
         e_paymentgateway_processor_local_nonprim,
         obj_paymentgateway_description_local_nonprim,
         obj_creditcardmerchant ? obj_creditcardmerchant_local_nonprim : NULL
         );
 
+    if (!paymentgateway_response_local_var) {
+        goto end;
+    }
+
     return paymentgateway_response_local_var;
 end:
+    if (pki_paymentgateway_id_local_var) {
+        free(pki_paymentgateway_id_local_var);
+        pki_paymentgateway_id_local_var = NULL;
+    }
+    if (fki_creditcardmerchant_id_local_var) {
+        free(fki_creditcardmerchant_id_local_var);
+        fki_creditcardmerchant_id_local_var = NULL;
+    }
+    if (s_creditcardmerchant_description_local_str) {
+        free(s_creditcardmerchant_description_local_str);
+        s_creditcardmerchant_description_local_str = NULL;
+    }
     if (e_paymentgateway_processor_local_nonprim) {
         e_paymentgateway_processor_local_nonprim = 0;
     }

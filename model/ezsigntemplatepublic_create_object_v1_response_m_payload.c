@@ -12,18 +12,21 @@ static ezsigntemplatepublic_create_object_v1_response_m_payload_t *ezsigntemplat
     if (!ezsigntemplatepublic_create_object_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsigntemplatepublic_create_object_v1_response_m_payload_local_var->a_pki_ezsigntemplatepublic_id = a_pki_ezsigntemplatepublic_id;
-
+    memset(ezsigntemplatepublic_create_object_v1_response_m_payload_local_var, 0, sizeof(ezsigntemplatepublic_create_object_v1_response_m_payload_t));
     ezsigntemplatepublic_create_object_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsigntemplatepublic_create_object_v1_response_m_payload_local_var->a_pki_ezsigntemplatepublic_id = a_pki_ezsigntemplatepublic_id;
     return ezsigntemplatepublic_create_object_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplatepublic_create_object_v1_response_m_payload_t *ezsigntemplatepublic_create_object_v1_response_m_payload_create(
     list_t *a_pki_ezsigntemplatepublic_id
     ) {
-    return ezsigntemplatepublic_create_object_v1_response_m_payload_create_internal (
+    ezsigntemplatepublic_create_object_v1_response_m_payload_t *result = ezsigntemplatepublic_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsigntemplatepublic_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatepublic_create_object_v1_response_m_payload_free(ezsigntemplatepublic_create_object_v1_response_m_payload_t *ezsigntemplatepublic_create_object_v1_response_m_payload) {
@@ -112,9 +115,14 @@ ezsigntemplatepublic_create_object_v1_response_m_payload_t *ezsigntemplatepublic
     }
 
 
+
     ezsigntemplatepublic_create_object_v1_response_m_payload_local_var = ezsigntemplatepublic_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsigntemplatepublic_idList
         );
+
+    if (!ezsigntemplatepublic_create_object_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatepublic_create_object_v1_response_m_payload_local_var;
 end:

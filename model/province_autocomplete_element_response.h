@@ -19,21 +19,21 @@ typedef struct province_autocomplete_element_response_t province_autocomplete_el
 
 
 typedef struct province_autocomplete_element_response_t {
-    int pki_province_id; //numeric
-    int fki_country_id; //numeric
+    int *pki_province_id; //numeric
+    int *fki_country_id; //numeric
     char *s_province_name_x; // string
     char *s_province_shortname; // string
-    int b_province_isactive; //boolean
+    int *b_province_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } province_autocomplete_element_response_t;
 
 __attribute__((deprecated)) province_autocomplete_element_response_t *province_autocomplete_element_response_create(
-    int pki_province_id,
-    int fki_country_id,
+    int *pki_province_id,
+    int *fki_country_id,
     char *s_province_name_x,
     char *s_province_shortname,
-    int b_province_isactive
+    int *b_province_isactive
 );
 
 void province_autocomplete_element_response_free(province_autocomplete_element_response_t *province_autocomplete_element_response);

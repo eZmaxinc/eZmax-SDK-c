@@ -12,18 +12,21 @@ static communication_send_v1_response_m_payload_t *communication_send_v1_respons
     if (!communication_send_v1_response_m_payload_local_var) {
         return NULL;
     }
-    communication_send_v1_response_m_payload_local_var->a_pki_communication_id = a_pki_communication_id;
-
+    memset(communication_send_v1_response_m_payload_local_var, 0, sizeof(communication_send_v1_response_m_payload_t));
     communication_send_v1_response_m_payload_local_var->_library_owned = 1;
+    communication_send_v1_response_m_payload_local_var->a_pki_communication_id = a_pki_communication_id;
     return communication_send_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) communication_send_v1_response_m_payload_t *communication_send_v1_response_m_payload_create(
     list_t *a_pki_communication_id
     ) {
-    return communication_send_v1_response_m_payload_create_internal (
+    communication_send_v1_response_m_payload_t *result = communication_send_v1_response_m_payload_create_internal (
         a_pki_communication_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void communication_send_v1_response_m_payload_free(communication_send_v1_response_m_payload_t *communication_send_v1_response_m_payload) {
@@ -112,9 +115,14 @@ communication_send_v1_response_m_payload_t *communication_send_v1_response_m_pay
     }
 
 
+
     communication_send_v1_response_m_payload_local_var = communication_send_v1_response_m_payload_create_internal (
         a_pki_communication_idList
         );
+
+    if (!communication_send_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return communication_send_v1_response_m_payload_local_var;
 end:

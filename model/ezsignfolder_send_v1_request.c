@@ -12,18 +12,21 @@ static ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request_create_inter
     if (!ezsignfolder_send_v1_request_local_var) {
         return NULL;
     }
-    ezsignfolder_send_v1_request_local_var->t_extra_message = t_extra_message;
-
+    memset(ezsignfolder_send_v1_request_local_var, 0, sizeof(ezsignfolder_send_v1_request_t));
     ezsignfolder_send_v1_request_local_var->_library_owned = 1;
+    ezsignfolder_send_v1_request_local_var->t_extra_message = t_extra_message;
     return ezsignfolder_send_v1_request_local_var;
 }
 
 __attribute__((deprecated)) ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request_create(
     char *t_extra_message
     ) {
-    return ezsignfolder_send_v1_request_create_internal (
+    ezsignfolder_send_v1_request_t *result = ezsignfolder_send_v1_request_create_internal (
         t_extra_message
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignfolder_send_v1_request_free(ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request) {
@@ -65,6 +68,8 @@ ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request_parseFromJSON(cJSON
 
     ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request_local_var = NULL;
 
+    char *t_extra_message_local_str = NULL;
+
     // ezsignfolder_send_v1_request->t_extra_message
     cJSON *t_extra_message = cJSON_GetObjectItemCaseSensitive(ezsignfolder_send_v1_requestJSON, "tExtraMessage");
     if (cJSON_IsNull(t_extra_message)) {
@@ -81,12 +86,22 @@ ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request_parseFromJSON(cJSON
     }
 
 
+    if (t_extra_message && !cJSON_IsNull(t_extra_message)) t_extra_message_local_str = strdup(t_extra_message->valuestring);
+
     ezsignfolder_send_v1_request_local_var = ezsignfolder_send_v1_request_create_internal (
-        strdup(t_extra_message->valuestring)
+        t_extra_message_local_str
         );
+
+    if (!ezsignfolder_send_v1_request_local_var) {
+        goto end;
+    }
 
     return ezsignfolder_send_v1_request_local_var;
 end:
+    if (t_extra_message_local_str) {
+        free(t_extra_message_local_str);
+        t_extra_message_local_str = NULL;
+    }
     return NULL;
 
 }

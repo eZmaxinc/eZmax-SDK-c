@@ -20,7 +20,7 @@ typedef struct communicationexternalrecipient_request_t communicationexternalrec
 
 
 typedef struct communicationexternalrecipient_request_t {
-    int pki_communicationexternalrecipient_id; //numeric
+    int *pki_communicationexternalrecipient_id; //numeric
     char *s_email_address; // string
     char *s_phone_e164; // string
     ezmax_api_definition__full_field_e_communicationexternalrecipient_type__e e_communicationexternalrecipient_type; //referenced enum
@@ -30,7 +30,7 @@ typedef struct communicationexternalrecipient_request_t {
 } communicationexternalrecipient_request_t;
 
 __attribute__((deprecated)) communicationexternalrecipient_request_t *communicationexternalrecipient_request_create(
-    int pki_communicationexternalrecipient_id,
+    int *pki_communicationexternalrecipient_id,
     char *s_email_address,
     char *s_phone_e164,
     ezmax_api_definition__full_field_e_communicationexternalrecipient_type__e e_communicationexternalrecipient_type,

@@ -22,8 +22,8 @@ typedef struct user_autocomplete_element_response_t user_autocomplete_element_re
 typedef struct user_autocomplete_element_response_t {
     ezmax_api_definition__full_field_e_user_type__e e_user_type; //referenced enum
     char *s_user_name; // string
-    int pki_user_id; //numeric
-    int b_user_isactive; //boolean
+    int *pki_user_id; //numeric
+    int *b_user_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } user_autocomplete_element_response_t;
@@ -31,8 +31,8 @@ typedef struct user_autocomplete_element_response_t {
 __attribute__((deprecated)) user_autocomplete_element_response_t *user_autocomplete_element_response_create(
     ezmax_api_definition__full_field_e_user_type__e e_user_type,
     char *s_user_name,
-    int pki_user_id,
-    int b_user_isactive
+    int *pki_user_id,
+    int *b_user_isactive
 );
 
 void user_autocomplete_element_response_free(user_autocomplete_element_response_t *user_autocomplete_element_response);

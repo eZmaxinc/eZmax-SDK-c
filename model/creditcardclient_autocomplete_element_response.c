@@ -6,28 +6,37 @@
 
 
 static creditcardclient_autocomplete_element_response_t *creditcardclient_autocomplete_element_response_create_internal(
-    int pki_creditcardclient_id,
+    int *pki_creditcardclient_id,
     char *s_creditcardclient_description
     ) {
     creditcardclient_autocomplete_element_response_t *creditcardclient_autocomplete_element_response_local_var = malloc(sizeof(creditcardclient_autocomplete_element_response_t));
     if (!creditcardclient_autocomplete_element_response_local_var) {
         return NULL;
     }
+    memset(creditcardclient_autocomplete_element_response_local_var, 0, sizeof(creditcardclient_autocomplete_element_response_t));
+    creditcardclient_autocomplete_element_response_local_var->_library_owned = 1;
     creditcardclient_autocomplete_element_response_local_var->pki_creditcardclient_id = pki_creditcardclient_id;
     creditcardclient_autocomplete_element_response_local_var->s_creditcardclient_description = s_creditcardclient_description;
-
-    creditcardclient_autocomplete_element_response_local_var->_library_owned = 1;
     return creditcardclient_autocomplete_element_response_local_var;
 }
 
 __attribute__((deprecated)) creditcardclient_autocomplete_element_response_t *creditcardclient_autocomplete_element_response_create(
-    int pki_creditcardclient_id,
+    int *pki_creditcardclient_id,
     char *s_creditcardclient_description
     ) {
-    return creditcardclient_autocomplete_element_response_create_internal (
-        pki_creditcardclient_id,
+    int *pki_creditcardclient_id_copy = NULL;
+    if (pki_creditcardclient_id) {
+        pki_creditcardclient_id_copy = malloc(sizeof(int));
+        if (pki_creditcardclient_id_copy) *pki_creditcardclient_id_copy = *pki_creditcardclient_id;
+    }
+    creditcardclient_autocomplete_element_response_t *result = creditcardclient_autocomplete_element_response_create_internal (
+        pki_creditcardclient_id_copy,
         s_creditcardclient_description
         );
+    if (!result) {
+        free(pki_creditcardclient_id_copy);
+    }
+    return result;
 }
 
 void creditcardclient_autocomplete_element_response_free(creditcardclient_autocomplete_element_response_t *creditcardclient_autocomplete_element_response) {
@@ -39,6 +48,10 @@ void creditcardclient_autocomplete_element_response_free(creditcardclient_autoco
         return ;
     }
     listEntry_t *listEntry;
+    if (creditcardclient_autocomplete_element_response->pki_creditcardclient_id) {
+        free(creditcardclient_autocomplete_element_response->pki_creditcardclient_id);
+        creditcardclient_autocomplete_element_response->pki_creditcardclient_id = NULL;
+    }
     if (creditcardclient_autocomplete_element_response->s_creditcardclient_description) {
         free(creditcardclient_autocomplete_element_response->s_creditcardclient_description);
         creditcardclient_autocomplete_element_response->s_creditcardclient_description = NULL;
@@ -53,7 +66,7 @@ cJSON *creditcardclient_autocomplete_element_response_convertToJSON(creditcardcl
     if (!creditcardclient_autocomplete_element_response->pki_creditcardclient_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiCreditcardclientID", creditcardclient_autocomplete_element_response->pki_creditcardclient_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiCreditcardclientID", *creditcardclient_autocomplete_element_response->pki_creditcardclient_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -78,6 +91,11 @@ creditcardclient_autocomplete_element_response_t *creditcardclient_autocomplete_
 
     creditcardclient_autocomplete_element_response_t *creditcardclient_autocomplete_element_response_local_var = NULL;
 
+    // define the local variable for creditcardclient_autocomplete_element_response->pki_creditcardclient_id
+    int *pki_creditcardclient_id_local_var = NULL;
+
+    char *s_creditcardclient_description_local_str = NULL;
+
     // creditcardclient_autocomplete_element_response->pki_creditcardclient_id
     cJSON *pki_creditcardclient_id = cJSON_GetObjectItemCaseSensitive(creditcardclient_autocomplete_element_responseJSON, "pkiCreditcardclientID");
     if (cJSON_IsNull(pki_creditcardclient_id)) {
@@ -92,6 +110,12 @@ creditcardclient_autocomplete_element_response_t *creditcardclient_autocomplete_
     {
     goto end; //Numeric
     }
+    pki_creditcardclient_id_local_var = malloc(sizeof(int));
+    if(!pki_creditcardclient_id_local_var)
+    {
+        goto end;
+    }
+    *pki_creditcardclient_id_local_var = pki_creditcardclient_id->valuedouble;
 
     // creditcardclient_autocomplete_element_response->s_creditcardclient_description
     cJSON *s_creditcardclient_description = cJSON_GetObjectItemCaseSensitive(creditcardclient_autocomplete_element_responseJSON, "sCreditcardclientDescription");
@@ -109,13 +133,27 @@ creditcardclient_autocomplete_element_response_t *creditcardclient_autocomplete_
     }
 
 
+    if (s_creditcardclient_description && !cJSON_IsNull(s_creditcardclient_description)) s_creditcardclient_description_local_str = strdup(s_creditcardclient_description->valuestring);
+
     creditcardclient_autocomplete_element_response_local_var = creditcardclient_autocomplete_element_response_create_internal (
-        pki_creditcardclient_id->valuedouble,
-        strdup(s_creditcardclient_description->valuestring)
+        pki_creditcardclient_id_local_var,
+        s_creditcardclient_description_local_str
         );
+
+    if (!creditcardclient_autocomplete_element_response_local_var) {
+        goto end;
+    }
 
     return creditcardclient_autocomplete_element_response_local_var;
 end:
+    if (pki_creditcardclient_id_local_var) {
+        free(pki_creditcardclient_id_local_var);
+        pki_creditcardclient_id_local_var = NULL;
+    }
+    if (s_creditcardclient_description_local_str) {
+        free(s_creditcardclient_description_local_str);
+        s_creditcardclient_description_local_str = NULL;
+    }
     return NULL;
 
 }

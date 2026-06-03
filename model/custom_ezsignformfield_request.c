@@ -6,36 +6,51 @@
 
 
 static custom_ezsignformfield_request_t *custom_ezsignformfield_request_create_internal(
-    int pki_ezsignformfield_id,
+    int *pki_ezsignformfield_id,
     char *s_ezsignformfield_label,
-    int b_ezsignformfield_selected,
+    int *b_ezsignformfield_selected,
     char *s_ezsignformfield_enteredvalue
     ) {
     custom_ezsignformfield_request_t *custom_ezsignformfield_request_local_var = malloc(sizeof(custom_ezsignformfield_request_t));
     if (!custom_ezsignformfield_request_local_var) {
         return NULL;
     }
+    memset(custom_ezsignformfield_request_local_var, 0, sizeof(custom_ezsignformfield_request_t));
+    custom_ezsignformfield_request_local_var->_library_owned = 1;
     custom_ezsignformfield_request_local_var->pki_ezsignformfield_id = pki_ezsignformfield_id;
     custom_ezsignformfield_request_local_var->s_ezsignformfield_label = s_ezsignformfield_label;
     custom_ezsignformfield_request_local_var->b_ezsignformfield_selected = b_ezsignformfield_selected;
     custom_ezsignformfield_request_local_var->s_ezsignformfield_enteredvalue = s_ezsignformfield_enteredvalue;
-
-    custom_ezsignformfield_request_local_var->_library_owned = 1;
     return custom_ezsignformfield_request_local_var;
 }
 
 __attribute__((deprecated)) custom_ezsignformfield_request_t *custom_ezsignformfield_request_create(
-    int pki_ezsignformfield_id,
+    int *pki_ezsignformfield_id,
     char *s_ezsignformfield_label,
-    int b_ezsignformfield_selected,
+    int *b_ezsignformfield_selected,
     char *s_ezsignformfield_enteredvalue
     ) {
-    return custom_ezsignformfield_request_create_internal (
-        pki_ezsignformfield_id,
+    int *pki_ezsignformfield_id_copy = NULL;
+    if (pki_ezsignformfield_id) {
+        pki_ezsignformfield_id_copy = malloc(sizeof(int));
+        if (pki_ezsignformfield_id_copy) *pki_ezsignformfield_id_copy = *pki_ezsignformfield_id;
+    }
+    int *b_ezsignformfield_selected_copy = NULL;
+    if (b_ezsignformfield_selected) {
+        b_ezsignformfield_selected_copy = malloc(sizeof(int));
+        if (b_ezsignformfield_selected_copy) *b_ezsignformfield_selected_copy = *b_ezsignformfield_selected;
+    }
+    custom_ezsignformfield_request_t *result = custom_ezsignformfield_request_create_internal (
+        pki_ezsignformfield_id_copy,
         s_ezsignformfield_label,
-        b_ezsignformfield_selected,
+        b_ezsignformfield_selected_copy,
         s_ezsignformfield_enteredvalue
         );
+    if (!result) {
+        free(pki_ezsignformfield_id_copy);
+        free(b_ezsignformfield_selected_copy);
+    }
+    return result;
 }
 
 void custom_ezsignformfield_request_free(custom_ezsignformfield_request_t *custom_ezsignformfield_request) {
@@ -47,9 +62,17 @@ void custom_ezsignformfield_request_free(custom_ezsignformfield_request_t *custo
         return ;
     }
     listEntry_t *listEntry;
+    if (custom_ezsignformfield_request->pki_ezsignformfield_id) {
+        free(custom_ezsignformfield_request->pki_ezsignformfield_id);
+        custom_ezsignformfield_request->pki_ezsignformfield_id = NULL;
+    }
     if (custom_ezsignformfield_request->s_ezsignformfield_label) {
         free(custom_ezsignformfield_request->s_ezsignformfield_label);
         custom_ezsignformfield_request->s_ezsignformfield_label = NULL;
+    }
+    if (custom_ezsignformfield_request->b_ezsignformfield_selected) {
+        free(custom_ezsignformfield_request->b_ezsignformfield_selected);
+        custom_ezsignformfield_request->b_ezsignformfield_selected = NULL;
     }
     if (custom_ezsignformfield_request->s_ezsignformfield_enteredvalue) {
         free(custom_ezsignformfield_request->s_ezsignformfield_enteredvalue);
@@ -63,7 +86,7 @@ cJSON *custom_ezsignformfield_request_convertToJSON(custom_ezsignformfield_reque
 
     // custom_ezsignformfield_request->pki_ezsignformfield_id
     if(custom_ezsignformfield_request->pki_ezsignformfield_id) {
-    if(cJSON_AddNumberToObject(item, "pkiEzsignformfieldID", custom_ezsignformfield_request->pki_ezsignformfield_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzsignformfieldID", *custom_ezsignformfield_request->pki_ezsignformfield_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -79,7 +102,7 @@ cJSON *custom_ezsignformfield_request_convertToJSON(custom_ezsignformfield_reque
 
     // custom_ezsignformfield_request->b_ezsignformfield_selected
     if(custom_ezsignformfield_request->b_ezsignformfield_selected) {
-    if(cJSON_AddBoolToObject(item, "bEzsignformfieldSelected", custom_ezsignformfield_request->b_ezsignformfield_selected) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bEzsignformfieldSelected", *custom_ezsignformfield_request->b_ezsignformfield_selected) == NULL) {
     goto fail; //Bool
     }
     }
@@ -104,6 +127,16 @@ custom_ezsignformfield_request_t *custom_ezsignformfield_request_parseFromJSON(c
 
     custom_ezsignformfield_request_t *custom_ezsignformfield_request_local_var = NULL;
 
+    // define the local variable for custom_ezsignformfield_request->pki_ezsignformfield_id
+    int *pki_ezsignformfield_id_local_var = NULL;
+
+    char *s_ezsignformfield_label_local_str = NULL;
+
+    // define the local variable for custom_ezsignformfield_request->b_ezsignformfield_selected
+    int *b_ezsignformfield_selected_local_var = NULL;
+
+    char *s_ezsignformfield_enteredvalue_local_str = NULL;
+
     // custom_ezsignformfield_request->pki_ezsignformfield_id
     cJSON *pki_ezsignformfield_id = cJSON_GetObjectItemCaseSensitive(custom_ezsignformfield_requestJSON, "pkiEzsignformfieldID");
     if (cJSON_IsNull(pki_ezsignformfield_id)) {
@@ -114,6 +147,12 @@ custom_ezsignformfield_request_t *custom_ezsignformfield_request_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    pki_ezsignformfield_id_local_var = malloc(sizeof(int));
+    if(!pki_ezsignformfield_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezsignformfield_id_local_var = pki_ezsignformfield_id->valuedouble;
     }
 
     // custom_ezsignformfield_request->s_ezsignformfield_label
@@ -138,6 +177,12 @@ custom_ezsignformfield_request_t *custom_ezsignformfield_request_parseFromJSON(c
     {
     goto end; //Bool
     }
+    b_ezsignformfield_selected_local_var = malloc(sizeof(int));
+    if(!b_ezsignformfield_selected_local_var)
+    {
+        goto end;
+    }
+    *b_ezsignformfield_selected_local_var = b_ezsignformfield_selected->valueint;
     }
 
     // custom_ezsignformfield_request->s_ezsignformfield_enteredvalue
@@ -153,15 +198,38 @@ custom_ezsignformfield_request_t *custom_ezsignformfield_request_parseFromJSON(c
     }
 
 
+    if (s_ezsignformfield_label && !cJSON_IsNull(s_ezsignformfield_label)) s_ezsignformfield_label_local_str = strdup(s_ezsignformfield_label->valuestring);
+    if (s_ezsignformfield_enteredvalue && !cJSON_IsNull(s_ezsignformfield_enteredvalue)) s_ezsignformfield_enteredvalue_local_str = strdup(s_ezsignformfield_enteredvalue->valuestring);
+
     custom_ezsignformfield_request_local_var = custom_ezsignformfield_request_create_internal (
-        pki_ezsignformfield_id ? pki_ezsignformfield_id->valuedouble : 0,
-        s_ezsignformfield_label && !cJSON_IsNull(s_ezsignformfield_label) ? strdup(s_ezsignformfield_label->valuestring) : NULL,
-        b_ezsignformfield_selected ? b_ezsignformfield_selected->valueint : 0,
-        s_ezsignformfield_enteredvalue && !cJSON_IsNull(s_ezsignformfield_enteredvalue) ? strdup(s_ezsignformfield_enteredvalue->valuestring) : NULL
+        pki_ezsignformfield_id_local_var,
+        s_ezsignformfield_label_local_str,
+        b_ezsignformfield_selected_local_var,
+        s_ezsignformfield_enteredvalue_local_str
         );
+
+    if (!custom_ezsignformfield_request_local_var) {
+        goto end;
+    }
 
     return custom_ezsignformfield_request_local_var;
 end:
+    if (pki_ezsignformfield_id_local_var) {
+        free(pki_ezsignformfield_id_local_var);
+        pki_ezsignformfield_id_local_var = NULL;
+    }
+    if (s_ezsignformfield_label_local_str) {
+        free(s_ezsignformfield_label_local_str);
+        s_ezsignformfield_label_local_str = NULL;
+    }
+    if (b_ezsignformfield_selected_local_var) {
+        free(b_ezsignformfield_selected_local_var);
+        b_ezsignformfield_selected_local_var = NULL;
+    }
+    if (s_ezsignformfield_enteredvalue_local_str) {
+        free(s_ezsignformfield_enteredvalue_local_str);
+        s_ezsignformfield_enteredvalue_local_str = NULL;
+    }
     return NULL;
 
 }

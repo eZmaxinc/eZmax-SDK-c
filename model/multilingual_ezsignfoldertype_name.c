@@ -13,10 +13,10 @@ static multilingual_ezsignfoldertype_name_t *multilingual_ezsignfoldertype_name_
     if (!multilingual_ezsignfoldertype_name_local_var) {
         return NULL;
     }
+    memset(multilingual_ezsignfoldertype_name_local_var, 0, sizeof(multilingual_ezsignfoldertype_name_t));
+    multilingual_ezsignfoldertype_name_local_var->_library_owned = 1;
     multilingual_ezsignfoldertype_name_local_var->s_ezsignfoldertype_name1 = s_ezsignfoldertype_name1;
     multilingual_ezsignfoldertype_name_local_var->s_ezsignfoldertype_name2 = s_ezsignfoldertype_name2;
-
-    multilingual_ezsignfoldertype_name_local_var->_library_owned = 1;
     return multilingual_ezsignfoldertype_name_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) multilingual_ezsignfoldertype_name_t *multilingual_e
     char *s_ezsignfoldertype_name1,
     char *s_ezsignfoldertype_name2
     ) {
-    return multilingual_ezsignfoldertype_name_create_internal (
+    multilingual_ezsignfoldertype_name_t *result = multilingual_ezsignfoldertype_name_create_internal (
         s_ezsignfoldertype_name1,
         s_ezsignfoldertype_name2
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void multilingual_ezsignfoldertype_name_free(multilingual_ezsignfoldertype_name_t *multilingual_ezsignfoldertype_name) {
@@ -80,6 +83,10 @@ multilingual_ezsignfoldertype_name_t *multilingual_ezsignfoldertype_name_parseFr
 
     multilingual_ezsignfoldertype_name_t *multilingual_ezsignfoldertype_name_local_var = NULL;
 
+    char *s_ezsignfoldertype_name1_local_str = NULL;
+
+    char *s_ezsignfoldertype_name2_local_str = NULL;
+
     // multilingual_ezsignfoldertype_name->s_ezsignfoldertype_name1
     cJSON *s_ezsignfoldertype_name1 = cJSON_GetObjectItemCaseSensitive(multilingual_ezsignfoldertype_nameJSON, "sEzsignfoldertypeName1");
     if (cJSON_IsNull(s_ezsignfoldertype_name1)) {
@@ -105,13 +112,28 @@ multilingual_ezsignfoldertype_name_t *multilingual_ezsignfoldertype_name_parseFr
     }
 
 
+    if (s_ezsignfoldertype_name1 && !cJSON_IsNull(s_ezsignfoldertype_name1)) s_ezsignfoldertype_name1_local_str = strdup(s_ezsignfoldertype_name1->valuestring);
+    if (s_ezsignfoldertype_name2 && !cJSON_IsNull(s_ezsignfoldertype_name2)) s_ezsignfoldertype_name2_local_str = strdup(s_ezsignfoldertype_name2->valuestring);
+
     multilingual_ezsignfoldertype_name_local_var = multilingual_ezsignfoldertype_name_create_internal (
-        s_ezsignfoldertype_name1 && !cJSON_IsNull(s_ezsignfoldertype_name1) ? strdup(s_ezsignfoldertype_name1->valuestring) : NULL,
-        s_ezsignfoldertype_name2 && !cJSON_IsNull(s_ezsignfoldertype_name2) ? strdup(s_ezsignfoldertype_name2->valuestring) : NULL
+        s_ezsignfoldertype_name1_local_str,
+        s_ezsignfoldertype_name2_local_str
         );
+
+    if (!multilingual_ezsignfoldertype_name_local_var) {
+        goto end;
+    }
 
     return multilingual_ezsignfoldertype_name_local_var;
 end:
+    if (s_ezsignfoldertype_name1_local_str) {
+        free(s_ezsignfoldertype_name1_local_str);
+        s_ezsignfoldertype_name1_local_str = NULL;
+    }
+    if (s_ezsignfoldertype_name2_local_str) {
+        free(s_ezsignfoldertype_name2_local_str);
+        s_ezsignfoldertype_name2_local_str = NULL;
+    }
     return NULL;
 
 }

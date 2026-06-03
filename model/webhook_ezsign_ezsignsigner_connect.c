@@ -15,12 +15,12 @@ static webhook_ezsign_ezsignsigner_connect_t *webhook_ezsign_ezsignsigner_connec
     if (!webhook_ezsign_ezsignsigner_connect_local_var) {
         return NULL;
     }
+    memset(webhook_ezsign_ezsignsigner_connect_local_var, 0, sizeof(webhook_ezsign_ezsignsigner_connect_t));
+    webhook_ezsign_ezsignsigner_connect_local_var->_library_owned = 1;
     webhook_ezsign_ezsignsigner_connect_local_var->obj_webhook = obj_webhook;
     webhook_ezsign_ezsignsigner_connect_local_var->a_obj_attempt = a_obj_attempt;
     webhook_ezsign_ezsignsigner_connect_local_var->obj_ezsignfolder = obj_ezsignfolder;
     webhook_ezsign_ezsignsigner_connect_local_var->obj_ezsignfoldersignerassociation = obj_ezsignfoldersignerassociation;
-
-    webhook_ezsign_ezsignsigner_connect_local_var->_library_owned = 1;
     return webhook_ezsign_ezsignsigner_connect_local_var;
 }
 
@@ -30,12 +30,15 @@ __attribute__((deprecated)) webhook_ezsign_ezsignsigner_connect_t *webhook_ezsig
     ezsignfolder_response_t *obj_ezsignfolder,
     ezsignfoldersignerassociation_response_compound_t *obj_ezsignfoldersignerassociation
     ) {
-    return webhook_ezsign_ezsignsigner_connect_create_internal (
+    webhook_ezsign_ezsignsigner_connect_t *result = webhook_ezsign_ezsignsigner_connect_create_internal (
         obj_webhook,
         a_obj_attempt,
         obj_ezsignfolder,
         obj_ezsignfoldersignerassociation
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void webhook_ezsign_ezsignsigner_connect_free(webhook_ezsign_ezsignsigner_connect_t *webhook_ezsign_ezsignsigner_connect) {
@@ -218,12 +221,17 @@ webhook_ezsign_ezsignsigner_connect_t *webhook_ezsign_ezsignsigner_connect_parse
     obj_ezsignfoldersignerassociation_local_nonprim = ezsignfoldersignerassociation_response_compound_parseFromJSON(obj_ezsignfoldersignerassociation); //nonprimitive
 
 
+
     webhook_ezsign_ezsignsigner_connect_local_var = webhook_ezsign_ezsignsigner_connect_create_internal (
         obj_webhook_local_nonprim,
         a_obj_attemptList,
         obj_ezsignfolder ? obj_ezsignfolder_local_nonprim : NULL,
         obj_ezsignfoldersignerassociation_local_nonprim
         );
+
+    if (!webhook_ezsign_ezsignsigner_connect_local_var) {
+        goto end;
+    }
 
     return webhook_ezsign_ezsignsigner_connect_local_var;
 end:

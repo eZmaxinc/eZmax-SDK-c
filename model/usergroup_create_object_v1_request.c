@@ -12,18 +12,21 @@ static usergroup_create_object_v1_request_t *usergroup_create_object_v1_request_
     if (!usergroup_create_object_v1_request_local_var) {
         return NULL;
     }
-    usergroup_create_object_v1_request_local_var->a_obj_usergroup = a_obj_usergroup;
-
+    memset(usergroup_create_object_v1_request_local_var, 0, sizeof(usergroup_create_object_v1_request_t));
     usergroup_create_object_v1_request_local_var->_library_owned = 1;
+    usergroup_create_object_v1_request_local_var->a_obj_usergroup = a_obj_usergroup;
     return usergroup_create_object_v1_request_local_var;
 }
 
 __attribute__((deprecated)) usergroup_create_object_v1_request_t *usergroup_create_object_v1_request_create(
     list_t *a_obj_usergroup
     ) {
-    return usergroup_create_object_v1_request_create_internal (
+    usergroup_create_object_v1_request_t *result = usergroup_create_object_v1_request_create_internal (
         a_obj_usergroup
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void usergroup_create_object_v1_request_free(usergroup_create_object_v1_request_t *usergroup_create_object_v1_request) {
@@ -111,9 +114,14 @@ usergroup_create_object_v1_request_t *usergroup_create_object_v1_request_parseFr
     }
 
 
+
     usergroup_create_object_v1_request_local_var = usergroup_create_object_v1_request_create_internal (
         a_obj_usergroupList
         );
+
+    if (!usergroup_create_object_v1_request_local_var) {
+        goto end;
+    }
 
     return usergroup_create_object_v1_request_local_var;
 end:

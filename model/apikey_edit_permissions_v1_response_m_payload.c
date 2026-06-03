@@ -12,18 +12,21 @@ static apikey_edit_permissions_v1_response_m_payload_t *apikey_edit_permissions_
     if (!apikey_edit_permissions_v1_response_m_payload_local_var) {
         return NULL;
     }
-    apikey_edit_permissions_v1_response_m_payload_local_var->a_pki_permission_id = a_pki_permission_id;
-
+    memset(apikey_edit_permissions_v1_response_m_payload_local_var, 0, sizeof(apikey_edit_permissions_v1_response_m_payload_t));
     apikey_edit_permissions_v1_response_m_payload_local_var->_library_owned = 1;
+    apikey_edit_permissions_v1_response_m_payload_local_var->a_pki_permission_id = a_pki_permission_id;
     return apikey_edit_permissions_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) apikey_edit_permissions_v1_response_m_payload_t *apikey_edit_permissions_v1_response_m_payload_create(
     list_t *a_pki_permission_id
     ) {
-    return apikey_edit_permissions_v1_response_m_payload_create_internal (
+    apikey_edit_permissions_v1_response_m_payload_t *result = apikey_edit_permissions_v1_response_m_payload_create_internal (
         a_pki_permission_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void apikey_edit_permissions_v1_response_m_payload_free(apikey_edit_permissions_v1_response_m_payload_t *apikey_edit_permissions_v1_response_m_payload) {
@@ -112,9 +115,14 @@ apikey_edit_permissions_v1_response_m_payload_t *apikey_edit_permissions_v1_resp
     }
 
 
+
     apikey_edit_permissions_v1_response_m_payload_local_var = apikey_edit_permissions_v1_response_m_payload_create_internal (
         a_pki_permission_idList
         );
+
+    if (!apikey_edit_permissions_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return apikey_edit_permissions_v1_response_m_payload_local_var;
 end:

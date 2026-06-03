@@ -14,11 +14,11 @@ static phonetype_get_autocomplete_v2_response_t *phonetype_get_autocomplete_v2_r
     if (!phonetype_get_autocomplete_v2_response_local_var) {
         return NULL;
     }
+    memset(phonetype_get_autocomplete_v2_response_local_var, 0, sizeof(phonetype_get_autocomplete_v2_response_t));
+    phonetype_get_autocomplete_v2_response_local_var->_library_owned = 1;
     phonetype_get_autocomplete_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     phonetype_get_autocomplete_v2_response_local_var->obj_debug = obj_debug;
     phonetype_get_autocomplete_v2_response_local_var->m_payload = m_payload;
-
-    phonetype_get_autocomplete_v2_response_local_var->_library_owned = 1;
     return phonetype_get_autocomplete_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) phonetype_get_autocomplete_v2_response_t *phonetype_
     common_response_obj_debug_t *obj_debug,
     phonetype_get_autocomplete_v2_response_m_payload_t *m_payload
     ) {
-    return phonetype_get_autocomplete_v2_response_create_internal (
+    phonetype_get_autocomplete_v2_response_t *result = phonetype_get_autocomplete_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void phonetype_get_autocomplete_v2_response_free(phonetype_get_autocomplete_v2_response_t *phonetype_get_autocomplete_v2_response) {
@@ -156,11 +159,16 @@ phonetype_get_autocomplete_v2_response_t *phonetype_get_autocomplete_v2_response
     m_payload_local_nonprim = phonetype_get_autocomplete_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     phonetype_get_autocomplete_v2_response_local_var = phonetype_get_autocomplete_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!phonetype_get_autocomplete_v2_response_local_var) {
+        goto end;
+    }
 
     return phonetype_get_autocomplete_v2_response_local_var;
 end:

@@ -20,7 +20,7 @@ typedef struct custom_ezsignformfieldgroup_request_t custom_ezsignformfieldgroup
 
 
 typedef struct custom_ezsignformfieldgroup_request_t {
-    int pki_ezsignformfieldgroup_id; //numeric
+    int *pki_ezsignformfieldgroup_id; //numeric
     char *s_ezsignformfieldgroup_label; // string
     list_t *a_obj_ezsignformfield; //nonprimitive container
 
@@ -28,7 +28,7 @@ typedef struct custom_ezsignformfieldgroup_request_t {
 } custom_ezsignformfieldgroup_request_t;
 
 __attribute__((deprecated)) custom_ezsignformfieldgroup_request_t *custom_ezsignformfieldgroup_request_create(
-    int pki_ezsignformfieldgroup_id,
+    int *pki_ezsignformfieldgroup_id,
     char *s_ezsignformfieldgroup_label,
     list_t *a_obj_ezsignformfield
 );

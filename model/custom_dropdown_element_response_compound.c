@@ -13,10 +13,10 @@ static custom_dropdown_element_response_compound_t *custom_dropdown_element_resp
     if (!custom_dropdown_element_response_compound_local_var) {
         return NULL;
     }
+    memset(custom_dropdown_element_response_compound_local_var, 0, sizeof(custom_dropdown_element_response_compound_t));
+    custom_dropdown_element_response_compound_local_var->_library_owned = 1;
     custom_dropdown_element_response_compound_local_var->s_label = s_label;
     custom_dropdown_element_response_compound_local_var->s_value = s_value;
-
-    custom_dropdown_element_response_compound_local_var->_library_owned = 1;
     return custom_dropdown_element_response_compound_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) custom_dropdown_element_response_compound_t *custom_
     char *s_label,
     char *s_value
     ) {
-    return custom_dropdown_element_response_compound_create_internal (
+    custom_dropdown_element_response_compound_t *result = custom_dropdown_element_response_compound_create_internal (
         s_label,
         s_value
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void custom_dropdown_element_response_compound_free(custom_dropdown_element_response_compound_t *custom_dropdown_element_response_compound) {
@@ -82,6 +85,10 @@ custom_dropdown_element_response_compound_t *custom_dropdown_element_response_co
 
     custom_dropdown_element_response_compound_t *custom_dropdown_element_response_compound_local_var = NULL;
 
+    char *s_label_local_str = NULL;
+
+    char *s_value_local_str = NULL;
+
     // custom_dropdown_element_response_compound->s_label
     cJSON *s_label = cJSON_GetObjectItemCaseSensitive(custom_dropdown_element_response_compoundJSON, "sLabel");
     if (cJSON_IsNull(s_label)) {
@@ -113,13 +120,28 @@ custom_dropdown_element_response_compound_t *custom_dropdown_element_response_co
     }
 
 
+    if (s_label && !cJSON_IsNull(s_label)) s_label_local_str = strdup(s_label->valuestring);
+    if (s_value && !cJSON_IsNull(s_value)) s_value_local_str = strdup(s_value->valuestring);
+
     custom_dropdown_element_response_compound_local_var = custom_dropdown_element_response_compound_create_internal (
-        strdup(s_label->valuestring),
-        strdup(s_value->valuestring)
+        s_label_local_str,
+        s_value_local_str
         );
+
+    if (!custom_dropdown_element_response_compound_local_var) {
+        goto end;
+    }
 
     return custom_dropdown_element_response_compound_local_var;
 end:
+    if (s_label_local_str) {
+        free(s_label_local_str);
+        s_label_local_str = NULL;
+    }
+    if (s_value_local_str) {
+        free(s_value_local_str);
+        s_value_local_str = NULL;
+    }
     return NULL;
 
 }

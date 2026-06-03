@@ -13,10 +13,10 @@ static websocket_response_error_v1_m_payload_t *websocket_response_error_v1_m_pa
     if (!websocket_response_error_v1_m_payload_local_var) {
         return NULL;
     }
+    memset(websocket_response_error_v1_m_payload_local_var, 0, sizeof(websocket_response_error_v1_m_payload_t));
+    websocket_response_error_v1_m_payload_local_var->_library_owned = 1;
     websocket_response_error_v1_m_payload_local_var->s_error_message = s_error_message;
     websocket_response_error_v1_m_payload_local_var->e_error_code = e_error_code;
-
-    websocket_response_error_v1_m_payload_local_var->_library_owned = 1;
     return websocket_response_error_v1_m_payload_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) websocket_response_error_v1_m_payload_t *websocket_r
     char *s_error_message,
     ezmax_api_definition__full_field_e_error_code__e e_error_code
     ) {
-    return websocket_response_error_v1_m_payload_create_internal (
+    websocket_response_error_v1_m_payload_t *result = websocket_response_error_v1_m_payload_create_internal (
         s_error_message,
         e_error_code
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void websocket_response_error_v1_m_payload_free(websocket_response_error_v1_m_payload_t *websocket_response_error_v1_m_payload) {
@@ -83,6 +86,8 @@ websocket_response_error_v1_m_payload_t *websocket_response_error_v1_m_payload_p
 
     websocket_response_error_v1_m_payload_t *websocket_response_error_v1_m_payload_local_var = NULL;
 
+    char *s_error_message_local_str = NULL;
+
     // define the local variable for websocket_response_error_v1_m_payload->e_error_code
     ezmax_api_definition__full_field_e_error_code__e e_error_code_local_nonprim = 0;
 
@@ -114,13 +119,23 @@ websocket_response_error_v1_m_payload_t *websocket_response_error_v1_m_payload_p
     e_error_code_local_nonprim = field_e_error_code_parseFromJSON(e_error_code); //custom
 
 
+    if (s_error_message && !cJSON_IsNull(s_error_message)) s_error_message_local_str = strdup(s_error_message->valuestring);
+
     websocket_response_error_v1_m_payload_local_var = websocket_response_error_v1_m_payload_create_internal (
-        strdup(s_error_message->valuestring),
+        s_error_message_local_str,
         e_error_code_local_nonprim
         );
 
+    if (!websocket_response_error_v1_m_payload_local_var) {
+        goto end;
+    }
+
     return websocket_response_error_v1_m_payload_local_var;
 end:
+    if (s_error_message_local_str) {
+        free(s_error_message_local_str);
+        s_error_message_local_str = NULL;
+    }
     if (e_error_code_local_nonprim) {
         e_error_code_local_nonprim = 0;
     }

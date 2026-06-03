@@ -19,6 +19,8 @@ static scim_service_provider_config_t *scim_service_provider_config_create_inter
     if (!scim_service_provider_config_local_var) {
         return NULL;
     }
+    memset(scim_service_provider_config_local_var, 0, sizeof(scim_service_provider_config_t));
+    scim_service_provider_config_local_var->_library_owned = 1;
     scim_service_provider_config_local_var->authentication_schemes = authentication_schemes;
     scim_service_provider_config_local_var->bulk = bulk;
     scim_service_provider_config_local_var->change_password = change_password;
@@ -27,8 +29,6 @@ static scim_service_provider_config_t *scim_service_provider_config_create_inter
     scim_service_provider_config_local_var->filter = filter;
     scim_service_provider_config_local_var->patch = patch;
     scim_service_provider_config_local_var->sort = sort;
-
-    scim_service_provider_config_local_var->_library_owned = 1;
     return scim_service_provider_config_local_var;
 }
 
@@ -42,7 +42,7 @@ __attribute__((deprecated)) scim_service_provider_config_t *scim_service_provide
     scim_service_provider_config_patch_t *patch,
     scim_service_provider_config_sort_t *sort
     ) {
-    return scim_service_provider_config_create_internal (
+    scim_service_provider_config_t *result = scim_service_provider_config_create_internal (
         authentication_schemes,
         bulk,
         change_password,
@@ -52,6 +52,9 @@ __attribute__((deprecated)) scim_service_provider_config_t *scim_service_provide
         patch,
         sort
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void scim_service_provider_config_free(scim_service_provider_config_t *scim_service_provider_config) {
@@ -238,6 +241,8 @@ scim_service_provider_config_t *scim_service_provider_config_parseFromJSON(cJSON
     // define the local variable for scim_service_provider_config->change_password
     scim_service_provider_config_change_password_t *change_password_local_nonprim = NULL;
 
+    char *documentation_uri_local_str = NULL;
+
     // define the local variable for scim_service_provider_config->etag
     scim_service_provider_config_etag_t *etag_local_nonprim = NULL;
 
@@ -365,16 +370,22 @@ scim_service_provider_config_t *scim_service_provider_config_parseFromJSON(cJSON
     sort_local_nonprim = scim_service_provider_config_sort_parseFromJSON(sort); //nonprimitive
 
 
+    if (documentation_uri && !cJSON_IsNull(documentation_uri)) documentation_uri_local_str = strdup(documentation_uri->valuestring);
+
     scim_service_provider_config_local_var = scim_service_provider_config_create_internal (
         authentication_schemesList,
         bulk_local_nonprim,
         change_password_local_nonprim,
-        strdup(documentation_uri->valuestring),
+        documentation_uri_local_str,
         etag_local_nonprim,
         filter_local_nonprim,
         patch_local_nonprim,
         sort_local_nonprim
         );
+
+    if (!scim_service_provider_config_local_var) {
+        goto end;
+    }
 
     return scim_service_provider_config_local_var;
 end:
@@ -394,6 +405,10 @@ end:
     if (change_password_local_nonprim) {
         scim_service_provider_config_change_password_free(change_password_local_nonprim);
         change_password_local_nonprim = NULL;
+    }
+    if (documentation_uri_local_str) {
+        free(documentation_uri_local_str);
+        documentation_uri_local_str = NULL;
     }
     if (etag_local_nonprim) {
         scim_service_provider_config_etag_free(etag_local_nonprim);

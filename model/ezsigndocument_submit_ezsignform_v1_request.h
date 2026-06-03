@@ -20,14 +20,14 @@ typedef struct ezsigndocument_submit_ezsignform_v1_request_t ezsigndocument_subm
 
 
 typedef struct ezsigndocument_submit_ezsignform_v1_request_t {
-    int b_ezsignform_isdraft; //boolean
+    int *b_ezsignform_isdraft; //boolean
     list_t *a_obj_ezsignformfieldgroup; //nonprimitive container
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndocument_submit_ezsignform_v1_request_t;
 
 __attribute__((deprecated)) ezsigndocument_submit_ezsignform_v1_request_t *ezsigndocument_submit_ezsignform_v1_request_create(
-    int b_ezsignform_isdraft,
+    int *b_ezsignform_isdraft,
     list_t *a_obj_ezsignformfieldgroup
 );
 

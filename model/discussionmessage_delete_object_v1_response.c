@@ -13,10 +13,10 @@ static discussionmessage_delete_object_v1_response_t *discussionmessage_delete_o
     if (!discussionmessage_delete_object_v1_response_local_var) {
         return NULL;
     }
+    memset(discussionmessage_delete_object_v1_response_local_var, 0, sizeof(discussionmessage_delete_object_v1_response_t));
+    discussionmessage_delete_object_v1_response_local_var->_library_owned = 1;
     discussionmessage_delete_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     discussionmessage_delete_object_v1_response_local_var->obj_debug = obj_debug;
-
-    discussionmessage_delete_object_v1_response_local_var->_library_owned = 1;
     return discussionmessage_delete_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) discussionmessage_delete_object_v1_response_t *discu
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return discussionmessage_delete_object_v1_response_create_internal (
+    discussionmessage_delete_object_v1_response_t *result = discussionmessage_delete_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void discussionmessage_delete_object_v1_response_free(discussionmessage_delete_object_v1_response_t *discussionmessage_delete_object_v1_response) {
@@ -119,10 +122,15 @@ discussionmessage_delete_object_v1_response_t *discussionmessage_delete_object_v
     }
 
 
+
     discussionmessage_delete_object_v1_response_local_var = discussionmessage_delete_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!discussionmessage_delete_object_v1_response_local_var) {
+        goto end;
+    }
 
     return discussionmessage_delete_object_v1_response_local_var;
 end:

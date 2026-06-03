@@ -6,20 +6,22 @@
 
 
 static usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_create_internal(
-    int pki_usergroupdelegation_id,
-    int fki_usergroup_id,
-    int fki_user_id,
+    int *pki_usergroupdelegation_id,
+    int *fki_usergroup_id,
+    int *fki_user_id,
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_user_loginname,
     char *s_email_address,
-    int b_user_isactive,
+    int *b_user_isactive,
     char *s_usergroup_name_x
     ) {
     usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_local_var = malloc(sizeof(usergroupdelegation_response_compound_t));
     if (!usergroupdelegation_response_compound_local_var) {
         return NULL;
     }
+    memset(usergroupdelegation_response_compound_local_var, 0, sizeof(usergroupdelegation_response_compound_t));
+    usergroupdelegation_response_compound_local_var->_library_owned = 1;
     usergroupdelegation_response_compound_local_var->pki_usergroupdelegation_id = pki_usergroupdelegation_id;
     usergroupdelegation_response_compound_local_var->fki_usergroup_id = fki_usergroup_id;
     usergroupdelegation_response_compound_local_var->fki_user_id = fki_user_id;
@@ -29,33 +31,58 @@ static usergroupdelegation_response_compound_t *usergroupdelegation_response_com
     usergroupdelegation_response_compound_local_var->s_email_address = s_email_address;
     usergroupdelegation_response_compound_local_var->b_user_isactive = b_user_isactive;
     usergroupdelegation_response_compound_local_var->s_usergroup_name_x = s_usergroup_name_x;
-
-    usergroupdelegation_response_compound_local_var->_library_owned = 1;
     return usergroupdelegation_response_compound_local_var;
 }
 
 __attribute__((deprecated)) usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_create(
-    int pki_usergroupdelegation_id,
-    int fki_usergroup_id,
-    int fki_user_id,
+    int *pki_usergroupdelegation_id,
+    int *fki_usergroup_id,
+    int *fki_user_id,
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_user_loginname,
     char *s_email_address,
-    int b_user_isactive,
+    int *b_user_isactive,
     char *s_usergroup_name_x
     ) {
-    return usergroupdelegation_response_compound_create_internal (
-        pki_usergroupdelegation_id,
-        fki_usergroup_id,
-        fki_user_id,
+    int *pki_usergroupdelegation_id_copy = NULL;
+    if (pki_usergroupdelegation_id) {
+        pki_usergroupdelegation_id_copy = malloc(sizeof(int));
+        if (pki_usergroupdelegation_id_copy) *pki_usergroupdelegation_id_copy = *pki_usergroupdelegation_id;
+    }
+    int *fki_usergroup_id_copy = NULL;
+    if (fki_usergroup_id) {
+        fki_usergroup_id_copy = malloc(sizeof(int));
+        if (fki_usergroup_id_copy) *fki_usergroup_id_copy = *fki_usergroup_id;
+    }
+    int *fki_user_id_copy = NULL;
+    if (fki_user_id) {
+        fki_user_id_copy = malloc(sizeof(int));
+        if (fki_user_id_copy) *fki_user_id_copy = *fki_user_id;
+    }
+    int *b_user_isactive_copy = NULL;
+    if (b_user_isactive) {
+        b_user_isactive_copy = malloc(sizeof(int));
+        if (b_user_isactive_copy) *b_user_isactive_copy = *b_user_isactive;
+    }
+    usergroupdelegation_response_compound_t *result = usergroupdelegation_response_compound_create_internal (
+        pki_usergroupdelegation_id_copy,
+        fki_usergroup_id_copy,
+        fki_user_id_copy,
         s_user_firstname,
         s_user_lastname,
         s_user_loginname,
         s_email_address,
-        b_user_isactive,
+        b_user_isactive_copy,
         s_usergroup_name_x
         );
+    if (!result) {
+        free(pki_usergroupdelegation_id_copy);
+        free(fki_usergroup_id_copy);
+        free(fki_user_id_copy);
+        free(b_user_isactive_copy);
+    }
+    return result;
 }
 
 void usergroupdelegation_response_compound_free(usergroupdelegation_response_compound_t *usergroupdelegation_response_compound) {
@@ -67,6 +94,18 @@ void usergroupdelegation_response_compound_free(usergroupdelegation_response_com
         return ;
     }
     listEntry_t *listEntry;
+    if (usergroupdelegation_response_compound->pki_usergroupdelegation_id) {
+        free(usergroupdelegation_response_compound->pki_usergroupdelegation_id);
+        usergroupdelegation_response_compound->pki_usergroupdelegation_id = NULL;
+    }
+    if (usergroupdelegation_response_compound->fki_usergroup_id) {
+        free(usergroupdelegation_response_compound->fki_usergroup_id);
+        usergroupdelegation_response_compound->fki_usergroup_id = NULL;
+    }
+    if (usergroupdelegation_response_compound->fki_user_id) {
+        free(usergroupdelegation_response_compound->fki_user_id);
+        usergroupdelegation_response_compound->fki_user_id = NULL;
+    }
     if (usergroupdelegation_response_compound->s_user_firstname) {
         free(usergroupdelegation_response_compound->s_user_firstname);
         usergroupdelegation_response_compound->s_user_firstname = NULL;
@@ -83,6 +122,10 @@ void usergroupdelegation_response_compound_free(usergroupdelegation_response_com
         free(usergroupdelegation_response_compound->s_email_address);
         usergroupdelegation_response_compound->s_email_address = NULL;
     }
+    if (usergroupdelegation_response_compound->b_user_isactive) {
+        free(usergroupdelegation_response_compound->b_user_isactive);
+        usergroupdelegation_response_compound->b_user_isactive = NULL;
+    }
     if (usergroupdelegation_response_compound->s_usergroup_name_x) {
         free(usergroupdelegation_response_compound->s_usergroup_name_x);
         usergroupdelegation_response_compound->s_usergroup_name_x = NULL;
@@ -97,7 +140,7 @@ cJSON *usergroupdelegation_response_compound_convertToJSON(usergroupdelegation_r
     if (!usergroupdelegation_response_compound->pki_usergroupdelegation_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiUsergroupdelegationID", usergroupdelegation_response_compound->pki_usergroupdelegation_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiUsergroupdelegationID", *usergroupdelegation_response_compound->pki_usergroupdelegation_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -106,7 +149,7 @@ cJSON *usergroupdelegation_response_compound_convertToJSON(usergroupdelegation_r
     if (!usergroupdelegation_response_compound->fki_usergroup_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiUsergroupID", usergroupdelegation_response_compound->fki_usergroup_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiUsergroupID", *usergroupdelegation_response_compound->fki_usergroup_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -115,7 +158,7 @@ cJSON *usergroupdelegation_response_compound_convertToJSON(usergroupdelegation_r
     if (!usergroupdelegation_response_compound->fki_user_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiUserID", usergroupdelegation_response_compound->fki_user_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiUserID", *usergroupdelegation_response_compound->fki_user_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -159,7 +202,7 @@ cJSON *usergroupdelegation_response_compound_convertToJSON(usergroupdelegation_r
     if (!usergroupdelegation_response_compound->b_user_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bUserIsactive", usergroupdelegation_response_compound->b_user_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bUserIsactive", *usergroupdelegation_response_compound->b_user_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -184,6 +227,28 @@ usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_p
 
     usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_local_var = NULL;
 
+    // define the local variable for usergroupdelegation_response_compound->pki_usergroupdelegation_id
+    int *pki_usergroupdelegation_id_local_var = NULL;
+
+    // define the local variable for usergroupdelegation_response_compound->fki_usergroup_id
+    int *fki_usergroup_id_local_var = NULL;
+
+    // define the local variable for usergroupdelegation_response_compound->fki_user_id
+    int *fki_user_id_local_var = NULL;
+
+    char *s_user_firstname_local_str = NULL;
+
+    char *s_user_lastname_local_str = NULL;
+
+    char *s_user_loginname_local_str = NULL;
+
+    char *s_email_address_local_str = NULL;
+
+    // define the local variable for usergroupdelegation_response_compound->b_user_isactive
+    int *b_user_isactive_local_var = NULL;
+
+    char *s_usergroup_name_x_local_str = NULL;
+
     // usergroupdelegation_response_compound->pki_usergroupdelegation_id
     cJSON *pki_usergroupdelegation_id = cJSON_GetObjectItemCaseSensitive(usergroupdelegation_response_compoundJSON, "pkiUsergroupdelegationID");
     if (cJSON_IsNull(pki_usergroupdelegation_id)) {
@@ -198,6 +263,12 @@ usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_p
     {
     goto end; //Numeric
     }
+    pki_usergroupdelegation_id_local_var = malloc(sizeof(int));
+    if(!pki_usergroupdelegation_id_local_var)
+    {
+        goto end;
+    }
+    *pki_usergroupdelegation_id_local_var = pki_usergroupdelegation_id->valuedouble;
 
     // usergroupdelegation_response_compound->fki_usergroup_id
     cJSON *fki_usergroup_id = cJSON_GetObjectItemCaseSensitive(usergroupdelegation_response_compoundJSON, "fkiUsergroupID");
@@ -213,6 +284,12 @@ usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_p
     {
     goto end; //Numeric
     }
+    fki_usergroup_id_local_var = malloc(sizeof(int));
+    if(!fki_usergroup_id_local_var)
+    {
+        goto end;
+    }
+    *fki_usergroup_id_local_var = fki_usergroup_id->valuedouble;
 
     // usergroupdelegation_response_compound->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(usergroupdelegation_response_compoundJSON, "fkiUserID");
@@ -228,6 +305,12 @@ usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_p
     {
     goto end; //Numeric
     }
+    fki_user_id_local_var = malloc(sizeof(int));
+    if(!fki_user_id_local_var)
+    {
+        goto end;
+    }
+    *fki_user_id_local_var = fki_user_id->valuedouble;
 
     // usergroupdelegation_response_compound->s_user_firstname
     cJSON *s_user_firstname = cJSON_GetObjectItemCaseSensitive(usergroupdelegation_response_compoundJSON, "sUserFirstname");
@@ -300,6 +383,12 @@ usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_p
     {
     goto end; //Bool
     }
+    b_user_isactive_local_var = malloc(sizeof(int));
+    if(!b_user_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_user_isactive_local_var = b_user_isactive->valueint;
 
     // usergroupdelegation_response_compound->s_usergroup_name_x
     cJSON *s_usergroup_name_x = cJSON_GetObjectItemCaseSensitive(usergroupdelegation_response_compoundJSON, "sUsergroupNameX");
@@ -317,20 +406,66 @@ usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_p
     }
 
 
+    if (s_user_firstname && !cJSON_IsNull(s_user_firstname)) s_user_firstname_local_str = strdup(s_user_firstname->valuestring);
+    if (s_user_lastname && !cJSON_IsNull(s_user_lastname)) s_user_lastname_local_str = strdup(s_user_lastname->valuestring);
+    if (s_user_loginname && !cJSON_IsNull(s_user_loginname)) s_user_loginname_local_str = strdup(s_user_loginname->valuestring);
+    if (s_email_address && !cJSON_IsNull(s_email_address)) s_email_address_local_str = strdup(s_email_address->valuestring);
+    if (s_usergroup_name_x && !cJSON_IsNull(s_usergroup_name_x)) s_usergroup_name_x_local_str = strdup(s_usergroup_name_x->valuestring);
+
     usergroupdelegation_response_compound_local_var = usergroupdelegation_response_compound_create_internal (
-        pki_usergroupdelegation_id->valuedouble,
-        fki_usergroup_id->valuedouble,
-        fki_user_id->valuedouble,
-        strdup(s_user_firstname->valuestring),
-        strdup(s_user_lastname->valuestring),
-        strdup(s_user_loginname->valuestring),
-        s_email_address && !cJSON_IsNull(s_email_address) ? strdup(s_email_address->valuestring) : NULL,
-        b_user_isactive->valueint,
-        strdup(s_usergroup_name_x->valuestring)
+        pki_usergroupdelegation_id_local_var,
+        fki_usergroup_id_local_var,
+        fki_user_id_local_var,
+        s_user_firstname_local_str,
+        s_user_lastname_local_str,
+        s_user_loginname_local_str,
+        s_email_address_local_str,
+        b_user_isactive_local_var,
+        s_usergroup_name_x_local_str
         );
+
+    if (!usergroupdelegation_response_compound_local_var) {
+        goto end;
+    }
 
     return usergroupdelegation_response_compound_local_var;
 end:
+    if (pki_usergroupdelegation_id_local_var) {
+        free(pki_usergroupdelegation_id_local_var);
+        pki_usergroupdelegation_id_local_var = NULL;
+    }
+    if (fki_usergroup_id_local_var) {
+        free(fki_usergroup_id_local_var);
+        fki_usergroup_id_local_var = NULL;
+    }
+    if (fki_user_id_local_var) {
+        free(fki_user_id_local_var);
+        fki_user_id_local_var = NULL;
+    }
+    if (s_user_firstname_local_str) {
+        free(s_user_firstname_local_str);
+        s_user_firstname_local_str = NULL;
+    }
+    if (s_user_lastname_local_str) {
+        free(s_user_lastname_local_str);
+        s_user_lastname_local_str = NULL;
+    }
+    if (s_user_loginname_local_str) {
+        free(s_user_loginname_local_str);
+        s_user_loginname_local_str = NULL;
+    }
+    if (s_email_address_local_str) {
+        free(s_email_address_local_str);
+        s_email_address_local_str = NULL;
+    }
+    if (b_user_isactive_local_var) {
+        free(b_user_isactive_local_var);
+        b_user_isactive_local_var = NULL;
+    }
+    if (s_usergroup_name_x_local_str) {
+        free(s_usergroup_name_x_local_str);
+        s_usergroup_name_x_local_str = NULL;
+    }
     return NULL;
 
 }

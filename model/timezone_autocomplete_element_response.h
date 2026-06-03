@@ -20,16 +20,16 @@ typedef struct timezone_autocomplete_element_response_t timezone_autocomplete_el
 
 typedef struct timezone_autocomplete_element_response_t {
     char *s_timezone_name; // string
-    int pki_timezone_id; //numeric
-    int b_timezone_isactive; //boolean
+    int *pki_timezone_id; //numeric
+    int *b_timezone_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } timezone_autocomplete_element_response_t;
 
 __attribute__((deprecated)) timezone_autocomplete_element_response_t *timezone_autocomplete_element_response_create(
     char *s_timezone_name,
-    int pki_timezone_id,
-    int b_timezone_isactive
+    int *pki_timezone_id,
+    int *b_timezone_isactive
 );
 
 void timezone_autocomplete_element_response_free(timezone_autocomplete_element_response_t *timezone_autocomplete_element_response);

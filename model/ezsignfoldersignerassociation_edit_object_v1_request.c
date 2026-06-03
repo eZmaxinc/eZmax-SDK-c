@@ -12,18 +12,21 @@ static ezsignfoldersignerassociation_edit_object_v1_request_t *ezsignfoldersigne
     if (!ezsignfoldersignerassociation_edit_object_v1_request_local_var) {
         return NULL;
     }
-    ezsignfoldersignerassociation_edit_object_v1_request_local_var->obj_ezsignfoldersignerassociation = obj_ezsignfoldersignerassociation;
-
+    memset(ezsignfoldersignerassociation_edit_object_v1_request_local_var, 0, sizeof(ezsignfoldersignerassociation_edit_object_v1_request_t));
     ezsignfoldersignerassociation_edit_object_v1_request_local_var->_library_owned = 1;
+    ezsignfoldersignerassociation_edit_object_v1_request_local_var->obj_ezsignfoldersignerassociation = obj_ezsignfoldersignerassociation;
     return ezsignfoldersignerassociation_edit_object_v1_request_local_var;
 }
 
 __attribute__((deprecated)) ezsignfoldersignerassociation_edit_object_v1_request_t *ezsignfoldersignerassociation_edit_object_v1_request_create(
     ezsignfoldersignerassociation_request_compound_t *obj_ezsignfoldersignerassociation
     ) {
-    return ezsignfoldersignerassociation_edit_object_v1_request_create_internal (
+    ezsignfoldersignerassociation_edit_object_v1_request_t *result = ezsignfoldersignerassociation_edit_object_v1_request_create_internal (
         obj_ezsignfoldersignerassociation
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignfoldersignerassociation_edit_object_v1_request_free(ezsignfoldersignerassociation_edit_object_v1_request_t *ezsignfoldersignerassociation_edit_object_v1_request) {
@@ -86,9 +89,14 @@ ezsignfoldersignerassociation_edit_object_v1_request_t *ezsignfoldersignerassoci
     obj_ezsignfoldersignerassociation_local_nonprim = ezsignfoldersignerassociation_request_compound_parseFromJSON(obj_ezsignfoldersignerassociation); //nonprimitive
 
 
+
     ezsignfoldersignerassociation_edit_object_v1_request_local_var = ezsignfoldersignerassociation_edit_object_v1_request_create_internal (
         obj_ezsignfoldersignerassociation_local_nonprim
         );
+
+    if (!ezsignfoldersignerassociation_edit_object_v1_request_local_var) {
+        goto end;
+    }
 
     return ezsignfoldersignerassociation_edit_object_v1_request_local_var;
 end:

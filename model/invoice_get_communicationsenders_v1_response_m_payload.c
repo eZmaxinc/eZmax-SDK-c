@@ -12,18 +12,21 @@ static invoice_get_communicationsenders_v1_response_m_payload_t *invoice_get_com
     if (!invoice_get_communicationsenders_v1_response_m_payload_local_var) {
         return NULL;
     }
-    invoice_get_communicationsenders_v1_response_m_payload_local_var->a_obj_communicationsenders = a_obj_communicationsenders;
-
+    memset(invoice_get_communicationsenders_v1_response_m_payload_local_var, 0, sizeof(invoice_get_communicationsenders_v1_response_m_payload_t));
     invoice_get_communicationsenders_v1_response_m_payload_local_var->_library_owned = 1;
+    invoice_get_communicationsenders_v1_response_m_payload_local_var->a_obj_communicationsenders = a_obj_communicationsenders;
     return invoice_get_communicationsenders_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) invoice_get_communicationsenders_v1_response_m_payload_t *invoice_get_communicationsenders_v1_response_m_payload_create(
     list_t *a_obj_communicationsenders
     ) {
-    return invoice_get_communicationsenders_v1_response_m_payload_create_internal (
+    invoice_get_communicationsenders_v1_response_m_payload_t *result = invoice_get_communicationsenders_v1_response_m_payload_create_internal (
         a_obj_communicationsenders
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void invoice_get_communicationsenders_v1_response_m_payload_free(invoice_get_communicationsenders_v1_response_m_payload_t *invoice_get_communicationsenders_v1_response_m_payload) {
@@ -111,9 +114,14 @@ invoice_get_communicationsenders_v1_response_m_payload_t *invoice_get_communicat
     }
 
 
+
     invoice_get_communicationsenders_v1_response_m_payload_local_var = invoice_get_communicationsenders_v1_response_m_payload_create_internal (
         a_obj_communicationsendersList
         );
+
+    if (!invoice_get_communicationsenders_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return invoice_get_communicationsenders_v1_response_m_payload_local_var;
 end:

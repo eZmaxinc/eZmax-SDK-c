@@ -14,11 +14,11 @@ static webhook_ezsign_document_unsent_t *webhook_ezsign_document_unsent_create_i
     if (!webhook_ezsign_document_unsent_local_var) {
         return NULL;
     }
+    memset(webhook_ezsign_document_unsent_local_var, 0, sizeof(webhook_ezsign_document_unsent_t));
+    webhook_ezsign_document_unsent_local_var->_library_owned = 1;
     webhook_ezsign_document_unsent_local_var->obj_webhook = obj_webhook;
     webhook_ezsign_document_unsent_local_var->a_obj_attempt = a_obj_attempt;
     webhook_ezsign_document_unsent_local_var->obj_ezsigndocument = obj_ezsigndocument;
-
-    webhook_ezsign_document_unsent_local_var->_library_owned = 1;
     return webhook_ezsign_document_unsent_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) webhook_ezsign_document_unsent_t *webhook_ezsign_doc
     list_t *a_obj_attempt,
     ezsigndocument_response_t *obj_ezsigndocument
     ) {
-    return webhook_ezsign_document_unsent_create_internal (
+    webhook_ezsign_document_unsent_t *result = webhook_ezsign_document_unsent_create_internal (
         obj_webhook,
         a_obj_attempt,
         obj_ezsigndocument
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void webhook_ezsign_document_unsent_free(webhook_ezsign_document_unsent_t *webhook_ezsign_document_unsent) {
@@ -185,11 +188,16 @@ webhook_ezsign_document_unsent_t *webhook_ezsign_document_unsent_parseFromJSON(c
     obj_ezsigndocument_local_nonprim = ezsigndocument_response_parseFromJSON(obj_ezsigndocument); //nonprimitive
 
 
+
     webhook_ezsign_document_unsent_local_var = webhook_ezsign_document_unsent_create_internal (
         obj_webhook_local_nonprim,
         a_obj_attemptList,
         obj_ezsigndocument_local_nonprim
         );
+
+    if (!webhook_ezsign_document_unsent_local_var) {
+        goto end;
+    }
 
     return webhook_ezsign_document_unsent_local_var;
 end:

@@ -8,30 +8,39 @@
 static attempt_response_compound_t *attempt_response_compound_create_internal(
     char *dt_attempt_start,
     char *s_attempt_result,
-    int i_attempt_duration
+    int *i_attempt_duration
     ) {
     attempt_response_compound_t *attempt_response_compound_local_var = malloc(sizeof(attempt_response_compound_t));
     if (!attempt_response_compound_local_var) {
         return NULL;
     }
+    memset(attempt_response_compound_local_var, 0, sizeof(attempt_response_compound_t));
+    attempt_response_compound_local_var->_library_owned = 1;
     attempt_response_compound_local_var->dt_attempt_start = dt_attempt_start;
     attempt_response_compound_local_var->s_attempt_result = s_attempt_result;
     attempt_response_compound_local_var->i_attempt_duration = i_attempt_duration;
-
-    attempt_response_compound_local_var->_library_owned = 1;
     return attempt_response_compound_local_var;
 }
 
 __attribute__((deprecated)) attempt_response_compound_t *attempt_response_compound_create(
     char *dt_attempt_start,
     char *s_attempt_result,
-    int i_attempt_duration
+    int *i_attempt_duration
     ) {
-    return attempt_response_compound_create_internal (
+    int *i_attempt_duration_copy = NULL;
+    if (i_attempt_duration) {
+        i_attempt_duration_copy = malloc(sizeof(int));
+        if (i_attempt_duration_copy) *i_attempt_duration_copy = *i_attempt_duration;
+    }
+    attempt_response_compound_t *result = attempt_response_compound_create_internal (
         dt_attempt_start,
         s_attempt_result,
-        i_attempt_duration
+        i_attempt_duration_copy
         );
+    if (!result) {
+        free(i_attempt_duration_copy);
+    }
+    return result;
 }
 
 void attempt_response_compound_free(attempt_response_compound_t *attempt_response_compound) {
@@ -50,6 +59,10 @@ void attempt_response_compound_free(attempt_response_compound_t *attempt_respons
     if (attempt_response_compound->s_attempt_result) {
         free(attempt_response_compound->s_attempt_result);
         attempt_response_compound->s_attempt_result = NULL;
+    }
+    if (attempt_response_compound->i_attempt_duration) {
+        free(attempt_response_compound->i_attempt_duration);
+        attempt_response_compound->i_attempt_duration = NULL;
     }
     free(attempt_response_compound);
 }
@@ -79,7 +92,7 @@ cJSON *attempt_response_compound_convertToJSON(attempt_response_compound_t *atte
     if (!attempt_response_compound->i_attempt_duration) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iAttemptDuration", attempt_response_compound->i_attempt_duration) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iAttemptDuration", *attempt_response_compound->i_attempt_duration) == NULL) {
     goto fail; //Numeric
     }
 
@@ -94,6 +107,13 @@ fail:
 attempt_response_compound_t *attempt_response_compound_parseFromJSON(cJSON *attempt_response_compoundJSON){
 
     attempt_response_compound_t *attempt_response_compound_local_var = NULL;
+
+    char *dt_attempt_start_local_str = NULL;
+
+    char *s_attempt_result_local_str = NULL;
+
+    // define the local variable for attempt_response_compound->i_attempt_duration
+    int *i_attempt_duration_local_var = NULL;
 
     // attempt_response_compound->dt_attempt_start
     cJSON *dt_attempt_start = cJSON_GetObjectItemCaseSensitive(attempt_response_compoundJSON, "dtAttemptStart");
@@ -139,16 +159,41 @@ attempt_response_compound_t *attempt_response_compound_parseFromJSON(cJSON *atte
     {
     goto end; //Numeric
     }
+    i_attempt_duration_local_var = malloc(sizeof(int));
+    if(!i_attempt_duration_local_var)
+    {
+        goto end;
+    }
+    *i_attempt_duration_local_var = i_attempt_duration->valuedouble;
 
+
+    if (dt_attempt_start && !cJSON_IsNull(dt_attempt_start)) dt_attempt_start_local_str = strdup(dt_attempt_start->valuestring);
+    if (s_attempt_result && !cJSON_IsNull(s_attempt_result)) s_attempt_result_local_str = strdup(s_attempt_result->valuestring);
 
     attempt_response_compound_local_var = attempt_response_compound_create_internal (
-        strdup(dt_attempt_start->valuestring),
-        strdup(s_attempt_result->valuestring),
-        i_attempt_duration->valuedouble
+        dt_attempt_start_local_str,
+        s_attempt_result_local_str,
+        i_attempt_duration_local_var
         );
+
+    if (!attempt_response_compound_local_var) {
+        goto end;
+    }
 
     return attempt_response_compound_local_var;
 end:
+    if (dt_attempt_start_local_str) {
+        free(dt_attempt_start_local_str);
+        dt_attempt_start_local_str = NULL;
+    }
+    if (s_attempt_result_local_str) {
+        free(s_attempt_result_local_str);
+        s_attempt_result_local_str = NULL;
+    }
+    if (i_attempt_duration_local_var) {
+        free(i_attempt_duration_local_var);
+        i_attempt_duration_local_var = NULL;
+    }
     return NULL;
 
 }

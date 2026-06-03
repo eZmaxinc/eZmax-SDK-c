@@ -6,32 +6,47 @@
 
 
 static ezsignuser_request_t *ezsignuser_request_create_internal(
-    int pki_ezsignuser_id,
-    int fki_contact_id,
+    int *pki_ezsignuser_id,
+    int *fki_contact_id,
     contact_request_compound_v2_t *obj_contact
     ) {
     ezsignuser_request_t *ezsignuser_request_local_var = malloc(sizeof(ezsignuser_request_t));
     if (!ezsignuser_request_local_var) {
         return NULL;
     }
+    memset(ezsignuser_request_local_var, 0, sizeof(ezsignuser_request_t));
+    ezsignuser_request_local_var->_library_owned = 1;
     ezsignuser_request_local_var->pki_ezsignuser_id = pki_ezsignuser_id;
     ezsignuser_request_local_var->fki_contact_id = fki_contact_id;
     ezsignuser_request_local_var->obj_contact = obj_contact;
-
-    ezsignuser_request_local_var->_library_owned = 1;
     return ezsignuser_request_local_var;
 }
 
 __attribute__((deprecated)) ezsignuser_request_t *ezsignuser_request_create(
-    int pki_ezsignuser_id,
-    int fki_contact_id,
+    int *pki_ezsignuser_id,
+    int *fki_contact_id,
     contact_request_compound_v2_t *obj_contact
     ) {
-    return ezsignuser_request_create_internal (
-        pki_ezsignuser_id,
-        fki_contact_id,
+    int *pki_ezsignuser_id_copy = NULL;
+    if (pki_ezsignuser_id) {
+        pki_ezsignuser_id_copy = malloc(sizeof(int));
+        if (pki_ezsignuser_id_copy) *pki_ezsignuser_id_copy = *pki_ezsignuser_id;
+    }
+    int *fki_contact_id_copy = NULL;
+    if (fki_contact_id) {
+        fki_contact_id_copy = malloc(sizeof(int));
+        if (fki_contact_id_copy) *fki_contact_id_copy = *fki_contact_id;
+    }
+    ezsignuser_request_t *result = ezsignuser_request_create_internal (
+        pki_ezsignuser_id_copy,
+        fki_contact_id_copy,
         obj_contact
         );
+    if (!result) {
+        free(pki_ezsignuser_id_copy);
+        free(fki_contact_id_copy);
+    }
+    return result;
 }
 
 void ezsignuser_request_free(ezsignuser_request_t *ezsignuser_request) {
@@ -43,6 +58,14 @@ void ezsignuser_request_free(ezsignuser_request_t *ezsignuser_request) {
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignuser_request->pki_ezsignuser_id) {
+        free(ezsignuser_request->pki_ezsignuser_id);
+        ezsignuser_request->pki_ezsignuser_id = NULL;
+    }
+    if (ezsignuser_request->fki_contact_id) {
+        free(ezsignuser_request->fki_contact_id);
+        ezsignuser_request->fki_contact_id = NULL;
+    }
     if (ezsignuser_request->obj_contact) {
         contact_request_compound_v2_free(ezsignuser_request->obj_contact);
         ezsignuser_request->obj_contact = NULL;
@@ -55,7 +78,7 @@ cJSON *ezsignuser_request_convertToJSON(ezsignuser_request_t *ezsignuser_request
 
     // ezsignuser_request->pki_ezsignuser_id
     if(ezsignuser_request->pki_ezsignuser_id) {
-    if(cJSON_AddNumberToObject(item, "pkiEzsignuserID", ezsignuser_request->pki_ezsignuser_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzsignuserID", *ezsignuser_request->pki_ezsignuser_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -65,7 +88,7 @@ cJSON *ezsignuser_request_convertToJSON(ezsignuser_request_t *ezsignuser_request
     if (!ezsignuser_request->fki_contact_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiContactID", ezsignuser_request->fki_contact_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiContactID", *ezsignuser_request->fki_contact_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -95,6 +118,12 @@ ezsignuser_request_t *ezsignuser_request_parseFromJSON(cJSON *ezsignuser_request
 
     ezsignuser_request_t *ezsignuser_request_local_var = NULL;
 
+    // define the local variable for ezsignuser_request->pki_ezsignuser_id
+    int *pki_ezsignuser_id_local_var = NULL;
+
+    // define the local variable for ezsignuser_request->fki_contact_id
+    int *fki_contact_id_local_var = NULL;
+
     // define the local variable for ezsignuser_request->obj_contact
     contact_request_compound_v2_t *obj_contact_local_nonprim = NULL;
 
@@ -108,6 +137,12 @@ ezsignuser_request_t *ezsignuser_request_parseFromJSON(cJSON *ezsignuser_request
     {
     goto end; //Numeric
     }
+    pki_ezsignuser_id_local_var = malloc(sizeof(int));
+    if(!pki_ezsignuser_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezsignuser_id_local_var = pki_ezsignuser_id->valuedouble;
     }
 
     // ezsignuser_request->fki_contact_id
@@ -124,6 +159,12 @@ ezsignuser_request_t *ezsignuser_request_parseFromJSON(cJSON *ezsignuser_request
     {
     goto end; //Numeric
     }
+    fki_contact_id_local_var = malloc(sizeof(int));
+    if(!fki_contact_id_local_var)
+    {
+        goto end;
+    }
+    *fki_contact_id_local_var = fki_contact_id->valuedouble;
 
     // ezsignuser_request->obj_contact
     cJSON *obj_contact = cJSON_GetObjectItemCaseSensitive(ezsignuser_requestJSON, "objContact");
@@ -138,14 +179,27 @@ ezsignuser_request_t *ezsignuser_request_parseFromJSON(cJSON *ezsignuser_request
     obj_contact_local_nonprim = contact_request_compound_v2_parseFromJSON(obj_contact); //nonprimitive
 
 
+
     ezsignuser_request_local_var = ezsignuser_request_create_internal (
-        pki_ezsignuser_id ? pki_ezsignuser_id->valuedouble : 0,
-        fki_contact_id->valuedouble,
+        pki_ezsignuser_id_local_var,
+        fki_contact_id_local_var,
         obj_contact_local_nonprim
         );
 
+    if (!ezsignuser_request_local_var) {
+        goto end;
+    }
+
     return ezsignuser_request_local_var;
 end:
+    if (pki_ezsignuser_id_local_var) {
+        free(pki_ezsignuser_id_local_var);
+        pki_ezsignuser_id_local_var = NULL;
+    }
+    if (fki_contact_id_local_var) {
+        free(fki_contact_id_local_var);
+        fki_contact_id_local_var = NULL;
+    }
     if (obj_contact_local_nonprim) {
         contact_request_compound_v2_free(obj_contact_local_nonprim);
         obj_contact_local_nonprim = NULL;

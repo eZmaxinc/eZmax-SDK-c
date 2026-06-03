@@ -13,10 +13,10 @@ static multilingual_subnet_description_t *multilingual_subnet_description_create
     if (!multilingual_subnet_description_local_var) {
         return NULL;
     }
+    memset(multilingual_subnet_description_local_var, 0, sizeof(multilingual_subnet_description_t));
+    multilingual_subnet_description_local_var->_library_owned = 1;
     multilingual_subnet_description_local_var->s_subnet_description1 = s_subnet_description1;
     multilingual_subnet_description_local_var->s_subnet_description2 = s_subnet_description2;
-
-    multilingual_subnet_description_local_var->_library_owned = 1;
     return multilingual_subnet_description_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) multilingual_subnet_description_t *multilingual_subn
     char *s_subnet_description1,
     char *s_subnet_description2
     ) {
-    return multilingual_subnet_description_create_internal (
+    multilingual_subnet_description_t *result = multilingual_subnet_description_create_internal (
         s_subnet_description1,
         s_subnet_description2
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void multilingual_subnet_description_free(multilingual_subnet_description_t *multilingual_subnet_description) {
@@ -80,6 +83,10 @@ multilingual_subnet_description_t *multilingual_subnet_description_parseFromJSON
 
     multilingual_subnet_description_t *multilingual_subnet_description_local_var = NULL;
 
+    char *s_subnet_description1_local_str = NULL;
+
+    char *s_subnet_description2_local_str = NULL;
+
     // multilingual_subnet_description->s_subnet_description1
     cJSON *s_subnet_description1 = cJSON_GetObjectItemCaseSensitive(multilingual_subnet_descriptionJSON, "sSubnetDescription1");
     if (cJSON_IsNull(s_subnet_description1)) {
@@ -105,13 +112,28 @@ multilingual_subnet_description_t *multilingual_subnet_description_parseFromJSON
     }
 
 
+    if (s_subnet_description1 && !cJSON_IsNull(s_subnet_description1)) s_subnet_description1_local_str = strdup(s_subnet_description1->valuestring);
+    if (s_subnet_description2 && !cJSON_IsNull(s_subnet_description2)) s_subnet_description2_local_str = strdup(s_subnet_description2->valuestring);
+
     multilingual_subnet_description_local_var = multilingual_subnet_description_create_internal (
-        s_subnet_description1 && !cJSON_IsNull(s_subnet_description1) ? strdup(s_subnet_description1->valuestring) : NULL,
-        s_subnet_description2 && !cJSON_IsNull(s_subnet_description2) ? strdup(s_subnet_description2->valuestring) : NULL
+        s_subnet_description1_local_str,
+        s_subnet_description2_local_str
         );
+
+    if (!multilingual_subnet_description_local_var) {
+        goto end;
+    }
 
     return multilingual_subnet_description_local_var;
 end:
+    if (s_subnet_description1_local_str) {
+        free(s_subnet_description1_local_str);
+        s_subnet_description1_local_str = NULL;
+    }
+    if (s_subnet_description2_local_str) {
+        free(s_subnet_description2_local_str);
+        s_subnet_description2_local_str = NULL;
+    }
     return NULL;
 
 }

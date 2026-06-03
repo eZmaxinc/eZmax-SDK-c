@@ -12,18 +12,21 @@ static signature_get_object_v3_response_m_payload_t *signature_get_object_v3_res
     if (!signature_get_object_v3_response_m_payload_local_var) {
         return NULL;
     }
-    signature_get_object_v3_response_m_payload_local_var->obj_signature = obj_signature;
-
+    memset(signature_get_object_v3_response_m_payload_local_var, 0, sizeof(signature_get_object_v3_response_m_payload_t));
     signature_get_object_v3_response_m_payload_local_var->_library_owned = 1;
+    signature_get_object_v3_response_m_payload_local_var->obj_signature = obj_signature;
     return signature_get_object_v3_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) signature_get_object_v3_response_m_payload_t *signature_get_object_v3_response_m_payload_create(
     signature_response_compound_v3_t *obj_signature
     ) {
-    return signature_get_object_v3_response_m_payload_create_internal (
+    signature_get_object_v3_response_m_payload_t *result = signature_get_object_v3_response_m_payload_create_internal (
         obj_signature
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void signature_get_object_v3_response_m_payload_free(signature_get_object_v3_response_m_payload_t *signature_get_object_v3_response_m_payload) {
@@ -86,9 +89,14 @@ signature_get_object_v3_response_m_payload_t *signature_get_object_v3_response_m
     obj_signature_local_nonprim = signature_response_compound_v3_parseFromJSON(obj_signature); //nonprimitive
 
 
+
     signature_get_object_v3_response_m_payload_local_var = signature_get_object_v3_response_m_payload_create_internal (
         obj_signature_local_nonprim
         );
+
+    if (!signature_get_object_v3_response_m_payload_local_var) {
+        goto end;
+    }
 
     return signature_get_object_v3_response_m_payload_local_var;
 end:

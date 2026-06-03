@@ -6,21 +6,23 @@
 
 
 static branding_request_v2_t *branding_request_v2_create_internal(
-    int pki_branding_id,
-    int fki_domain_id,
+    int *pki_branding_id,
+    int *fki_domain_id,
     multilingual_branding_description_t *obj_branding_description,
     ezmax_api_definition__full_field_e_branding_logo__e e_branding_logo,
     ezmax_api_definition__full_field_e_branding_alignlogo__e e_branding_alignlogo,
     char *s_branding_base64,
-    int i_branding_color,
+    int *i_branding_color,
     char *s_branding_name,
     char *s_email_address,
-    int b_branding_isactive
+    int *b_branding_isactive
     ) {
     branding_request_v2_t *branding_request_v2_local_var = malloc(sizeof(branding_request_v2_t));
     if (!branding_request_v2_local_var) {
         return NULL;
     }
+    memset(branding_request_v2_local_var, 0, sizeof(branding_request_v2_t));
+    branding_request_v2_local_var->_library_owned = 1;
     branding_request_v2_local_var->pki_branding_id = pki_branding_id;
     branding_request_v2_local_var->fki_domain_id = fki_domain_id;
     branding_request_v2_local_var->obj_branding_description = obj_branding_description;
@@ -31,35 +33,60 @@ static branding_request_v2_t *branding_request_v2_create_internal(
     branding_request_v2_local_var->s_branding_name = s_branding_name;
     branding_request_v2_local_var->s_email_address = s_email_address;
     branding_request_v2_local_var->b_branding_isactive = b_branding_isactive;
-
-    branding_request_v2_local_var->_library_owned = 1;
     return branding_request_v2_local_var;
 }
 
 __attribute__((deprecated)) branding_request_v2_t *branding_request_v2_create(
-    int pki_branding_id,
-    int fki_domain_id,
+    int *pki_branding_id,
+    int *fki_domain_id,
     multilingual_branding_description_t *obj_branding_description,
     ezmax_api_definition__full_field_e_branding_logo__e e_branding_logo,
     ezmax_api_definition__full_field_e_branding_alignlogo__e e_branding_alignlogo,
     char *s_branding_base64,
-    int i_branding_color,
+    int *i_branding_color,
     char *s_branding_name,
     char *s_email_address,
-    int b_branding_isactive
+    int *b_branding_isactive
     ) {
-    return branding_request_v2_create_internal (
-        pki_branding_id,
-        fki_domain_id,
+    int *pki_branding_id_copy = NULL;
+    if (pki_branding_id) {
+        pki_branding_id_copy = malloc(sizeof(int));
+        if (pki_branding_id_copy) *pki_branding_id_copy = *pki_branding_id;
+    }
+    int *fki_domain_id_copy = NULL;
+    if (fki_domain_id) {
+        fki_domain_id_copy = malloc(sizeof(int));
+        if (fki_domain_id_copy) *fki_domain_id_copy = *fki_domain_id;
+    }
+    int *i_branding_color_copy = NULL;
+    if (i_branding_color) {
+        i_branding_color_copy = malloc(sizeof(int));
+        if (i_branding_color_copy) *i_branding_color_copy = *i_branding_color;
+    }
+    int *b_branding_isactive_copy = NULL;
+    if (b_branding_isactive) {
+        b_branding_isactive_copy = malloc(sizeof(int));
+        if (b_branding_isactive_copy) *b_branding_isactive_copy = *b_branding_isactive;
+    }
+    branding_request_v2_t *result = branding_request_v2_create_internal (
+        pki_branding_id_copy,
+        fki_domain_id_copy,
         obj_branding_description,
         e_branding_logo,
         e_branding_alignlogo,
         s_branding_base64,
-        i_branding_color,
+        i_branding_color_copy,
         s_branding_name,
         s_email_address,
-        b_branding_isactive
+        b_branding_isactive_copy
         );
+    if (!result) {
+        free(pki_branding_id_copy);
+        free(fki_domain_id_copy);
+        free(i_branding_color_copy);
+        free(b_branding_isactive_copy);
+    }
+    return result;
 }
 
 void branding_request_v2_free(branding_request_v2_t *branding_request_v2) {
@@ -71,6 +98,14 @@ void branding_request_v2_free(branding_request_v2_t *branding_request_v2) {
         return ;
     }
     listEntry_t *listEntry;
+    if (branding_request_v2->pki_branding_id) {
+        free(branding_request_v2->pki_branding_id);
+        branding_request_v2->pki_branding_id = NULL;
+    }
+    if (branding_request_v2->fki_domain_id) {
+        free(branding_request_v2->fki_domain_id);
+        branding_request_v2->fki_domain_id = NULL;
+    }
     if (branding_request_v2->obj_branding_description) {
         multilingual_branding_description_free(branding_request_v2->obj_branding_description);
         branding_request_v2->obj_branding_description = NULL;
@@ -78,6 +113,10 @@ void branding_request_v2_free(branding_request_v2_t *branding_request_v2) {
     if (branding_request_v2->s_branding_base64) {
         free(branding_request_v2->s_branding_base64);
         branding_request_v2->s_branding_base64 = NULL;
+    }
+    if (branding_request_v2->i_branding_color) {
+        free(branding_request_v2->i_branding_color);
+        branding_request_v2->i_branding_color = NULL;
     }
     if (branding_request_v2->s_branding_name) {
         free(branding_request_v2->s_branding_name);
@@ -87,6 +126,10 @@ void branding_request_v2_free(branding_request_v2_t *branding_request_v2) {
         free(branding_request_v2->s_email_address);
         branding_request_v2->s_email_address = NULL;
     }
+    if (branding_request_v2->b_branding_isactive) {
+        free(branding_request_v2->b_branding_isactive);
+        branding_request_v2->b_branding_isactive = NULL;
+    }
     free(branding_request_v2);
 }
 
@@ -95,7 +138,7 @@ cJSON *branding_request_v2_convertToJSON(branding_request_v2_t *branding_request
 
     // branding_request_v2->pki_branding_id
     if(branding_request_v2->pki_branding_id) {
-    if(cJSON_AddNumberToObject(item, "pkiBrandingID", branding_request_v2->pki_branding_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiBrandingID", *branding_request_v2->pki_branding_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -103,7 +146,7 @@ cJSON *branding_request_v2_convertToJSON(branding_request_v2_t *branding_request
 
     // branding_request_v2->fki_domain_id
     if(branding_request_v2->fki_domain_id) {
-    if(cJSON_AddNumberToObject(item, "fkiDomainID", branding_request_v2->fki_domain_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiDomainID", *branding_request_v2->fki_domain_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -162,7 +205,7 @@ cJSON *branding_request_v2_convertToJSON(branding_request_v2_t *branding_request
     if (!branding_request_v2->i_branding_color) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iBrandingColor", branding_request_v2->i_branding_color) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iBrandingColor", *branding_request_v2->i_branding_color) == NULL) {
     goto fail; //Numeric
     }
 
@@ -187,7 +230,7 @@ cJSON *branding_request_v2_convertToJSON(branding_request_v2_t *branding_request
     if (!branding_request_v2->b_branding_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bBrandingIsactive", branding_request_v2->b_branding_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bBrandingIsactive", *branding_request_v2->b_branding_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -203,6 +246,12 @@ branding_request_v2_t *branding_request_v2_parseFromJSON(cJSON *branding_request
 
     branding_request_v2_t *branding_request_v2_local_var = NULL;
 
+    // define the local variable for branding_request_v2->pki_branding_id
+    int *pki_branding_id_local_var = NULL;
+
+    // define the local variable for branding_request_v2->fki_domain_id
+    int *fki_domain_id_local_var = NULL;
+
     // define the local variable for branding_request_v2->obj_branding_description
     multilingual_branding_description_t *obj_branding_description_local_nonprim = NULL;
 
@@ -211,6 +260,18 @@ branding_request_v2_t *branding_request_v2_parseFromJSON(cJSON *branding_request
 
     // define the local variable for branding_request_v2->e_branding_alignlogo
     ezmax_api_definition__full_field_e_branding_alignlogo__e e_branding_alignlogo_local_nonprim = 0;
+
+    char *s_branding_base64_local_str = NULL;
+
+    // define the local variable for branding_request_v2->i_branding_color
+    int *i_branding_color_local_var = NULL;
+
+    char *s_branding_name_local_str = NULL;
+
+    char *s_email_address_local_str = NULL;
+
+    // define the local variable for branding_request_v2->b_branding_isactive
+    int *b_branding_isactive_local_var = NULL;
 
     // branding_request_v2->pki_branding_id
     cJSON *pki_branding_id = cJSON_GetObjectItemCaseSensitive(branding_request_v2JSON, "pkiBrandingID");
@@ -222,6 +283,12 @@ branding_request_v2_t *branding_request_v2_parseFromJSON(cJSON *branding_request
     {
     goto end; //Numeric
     }
+    pki_branding_id_local_var = malloc(sizeof(int));
+    if(!pki_branding_id_local_var)
+    {
+        goto end;
+    }
+    *pki_branding_id_local_var = pki_branding_id->valuedouble;
     }
 
     // branding_request_v2->fki_domain_id
@@ -234,6 +301,12 @@ branding_request_v2_t *branding_request_v2_parseFromJSON(cJSON *branding_request
     {
     goto end; //Numeric
     }
+    fki_domain_id_local_var = malloc(sizeof(int));
+    if(!fki_domain_id_local_var)
+    {
+        goto end;
+    }
+    *fki_domain_id_local_var = fki_domain_id->valuedouble;
     }
 
     // branding_request_v2->obj_branding_description
@@ -295,6 +368,12 @@ branding_request_v2_t *branding_request_v2_parseFromJSON(cJSON *branding_request
     {
     goto end; //Numeric
     }
+    i_branding_color_local_var = malloc(sizeof(int));
+    if(!i_branding_color_local_var)
+    {
+        goto end;
+    }
+    *i_branding_color_local_var = i_branding_color->valuedouble;
 
     // branding_request_v2->s_branding_name
     cJSON *s_branding_name = cJSON_GetObjectItemCaseSensitive(branding_request_v2JSON, "sBrandingName");
@@ -334,23 +413,45 @@ branding_request_v2_t *branding_request_v2_parseFromJSON(cJSON *branding_request
     {
     goto end; //Bool
     }
+    b_branding_isactive_local_var = malloc(sizeof(int));
+    if(!b_branding_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_branding_isactive_local_var = b_branding_isactive->valueint;
 
+
+    if (s_branding_base64) s_branding_base64_local_str = strdup(s_branding_base64->valuestring);
+    if (s_branding_name && !cJSON_IsNull(s_branding_name)) s_branding_name_local_str = strdup(s_branding_name->valuestring);
+    if (s_email_address && !cJSON_IsNull(s_email_address)) s_email_address_local_str = strdup(s_email_address->valuestring);
 
     branding_request_v2_local_var = branding_request_v2_create_internal (
-        pki_branding_id ? pki_branding_id->valuedouble : 0,
-        fki_domain_id ? fki_domain_id->valuedouble : 0,
+        pki_branding_id_local_var,
+        fki_domain_id_local_var,
         obj_branding_description_local_nonprim,
         e_branding_logo_local_nonprim,
         e_branding_alignlogo ? e_branding_alignlogo_local_nonprim : 0,
-        s_branding_base64 ? strdup(s_branding_base64->valuestring) : NULL,
-        i_branding_color->valuedouble,
-        s_branding_name && !cJSON_IsNull(s_branding_name) ? strdup(s_branding_name->valuestring) : NULL,
-        s_email_address && !cJSON_IsNull(s_email_address) ? strdup(s_email_address->valuestring) : NULL,
-        b_branding_isactive->valueint
+        s_branding_base64_local_str,
+        i_branding_color_local_var,
+        s_branding_name_local_str,
+        s_email_address_local_str,
+        b_branding_isactive_local_var
         );
+
+    if (!branding_request_v2_local_var) {
+        goto end;
+    }
 
     return branding_request_v2_local_var;
 end:
+    if (pki_branding_id_local_var) {
+        free(pki_branding_id_local_var);
+        pki_branding_id_local_var = NULL;
+    }
+    if (fki_domain_id_local_var) {
+        free(fki_domain_id_local_var);
+        fki_domain_id_local_var = NULL;
+    }
     if (obj_branding_description_local_nonprim) {
         multilingual_branding_description_free(obj_branding_description_local_nonprim);
         obj_branding_description_local_nonprim = NULL;
@@ -360,6 +461,26 @@ end:
     }
     if (e_branding_alignlogo_local_nonprim) {
         e_branding_alignlogo_local_nonprim = 0;
+    }
+    if (s_branding_base64_local_str) {
+        free(s_branding_base64_local_str);
+        s_branding_base64_local_str = NULL;
+    }
+    if (i_branding_color_local_var) {
+        free(i_branding_color_local_var);
+        i_branding_color_local_var = NULL;
+    }
+    if (s_branding_name_local_str) {
+        free(s_branding_name_local_str);
+        s_branding_name_local_str = NULL;
+    }
+    if (s_email_address_local_str) {
+        free(s_email_address_local_str);
+        s_email_address_local_str = NULL;
+    }
+    if (b_branding_isactive_local_var) {
+        free(b_branding_isactive_local_var);
+        b_branding_isactive_local_var = NULL;
     }
     return NULL;
 

@@ -6,22 +6,24 @@
 
 
 static ezsigntemplate_request_v3_t *ezsigntemplate_request_v3_create_internal(
-    int pki_ezsigntemplate_id,
-    int fki_ezsignfoldertype_id,
-    int fki_language_id,
-    int fki_ezdoctemplatedocument_id,
+    int *pki_ezsigntemplate_id,
+    int *fki_ezsignfoldertype_id,
+    int *fki_language_id,
+    int *fki_ezdoctemplatedocument_id,
     char *s_ezsigntemplate_description,
     char *s_ezsigntemplate_externaldescription,
     char *t_ezsigntemplate_comment,
     ezmax_api_definition__full_field_e_ezsigntemplate_recognition__e e_ezsigntemplate_recognition,
     char *s_ezsigntemplate_filenameregexp,
-    int b_ezsigntemplate_adminonly,
+    int *b_ezsigntemplate_adminonly,
     ezmax_api_definition__full_field_e_ezsigntemplate_type__e e_ezsigntemplate_type
     ) {
     ezsigntemplate_request_v3_t *ezsigntemplate_request_v3_local_var = malloc(sizeof(ezsigntemplate_request_v3_t));
     if (!ezsigntemplate_request_v3_local_var) {
         return NULL;
     }
+    memset(ezsigntemplate_request_v3_local_var, 0, sizeof(ezsigntemplate_request_v3_t));
+    ezsigntemplate_request_v3_local_var->_library_owned = 1;
     ezsigntemplate_request_v3_local_var->pki_ezsigntemplate_id = pki_ezsigntemplate_id;
     ezsigntemplate_request_v3_local_var->fki_ezsignfoldertype_id = fki_ezsignfoldertype_id;
     ezsigntemplate_request_v3_local_var->fki_language_id = fki_language_id;
@@ -33,37 +35,68 @@ static ezsigntemplate_request_v3_t *ezsigntemplate_request_v3_create_internal(
     ezsigntemplate_request_v3_local_var->s_ezsigntemplate_filenameregexp = s_ezsigntemplate_filenameregexp;
     ezsigntemplate_request_v3_local_var->b_ezsigntemplate_adminonly = b_ezsigntemplate_adminonly;
     ezsigntemplate_request_v3_local_var->e_ezsigntemplate_type = e_ezsigntemplate_type;
-
-    ezsigntemplate_request_v3_local_var->_library_owned = 1;
     return ezsigntemplate_request_v3_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplate_request_v3_t *ezsigntemplate_request_v3_create(
-    int pki_ezsigntemplate_id,
-    int fki_ezsignfoldertype_id,
-    int fki_language_id,
-    int fki_ezdoctemplatedocument_id,
+    int *pki_ezsigntemplate_id,
+    int *fki_ezsignfoldertype_id,
+    int *fki_language_id,
+    int *fki_ezdoctemplatedocument_id,
     char *s_ezsigntemplate_description,
     char *s_ezsigntemplate_externaldescription,
     char *t_ezsigntemplate_comment,
     ezmax_api_definition__full_field_e_ezsigntemplate_recognition__e e_ezsigntemplate_recognition,
     char *s_ezsigntemplate_filenameregexp,
-    int b_ezsigntemplate_adminonly,
+    int *b_ezsigntemplate_adminonly,
     ezmax_api_definition__full_field_e_ezsigntemplate_type__e e_ezsigntemplate_type
     ) {
-    return ezsigntemplate_request_v3_create_internal (
-        pki_ezsigntemplate_id,
-        fki_ezsignfoldertype_id,
-        fki_language_id,
-        fki_ezdoctemplatedocument_id,
+    int *pki_ezsigntemplate_id_copy = NULL;
+    if (pki_ezsigntemplate_id) {
+        pki_ezsigntemplate_id_copy = malloc(sizeof(int));
+        if (pki_ezsigntemplate_id_copy) *pki_ezsigntemplate_id_copy = *pki_ezsigntemplate_id;
+    }
+    int *fki_ezsignfoldertype_id_copy = NULL;
+    if (fki_ezsignfoldertype_id) {
+        fki_ezsignfoldertype_id_copy = malloc(sizeof(int));
+        if (fki_ezsignfoldertype_id_copy) *fki_ezsignfoldertype_id_copy = *fki_ezsignfoldertype_id;
+    }
+    int *fki_language_id_copy = NULL;
+    if (fki_language_id) {
+        fki_language_id_copy = malloc(sizeof(int));
+        if (fki_language_id_copy) *fki_language_id_copy = *fki_language_id;
+    }
+    int *fki_ezdoctemplatedocument_id_copy = NULL;
+    if (fki_ezdoctemplatedocument_id) {
+        fki_ezdoctemplatedocument_id_copy = malloc(sizeof(int));
+        if (fki_ezdoctemplatedocument_id_copy) *fki_ezdoctemplatedocument_id_copy = *fki_ezdoctemplatedocument_id;
+    }
+    int *b_ezsigntemplate_adminonly_copy = NULL;
+    if (b_ezsigntemplate_adminonly) {
+        b_ezsigntemplate_adminonly_copy = malloc(sizeof(int));
+        if (b_ezsigntemplate_adminonly_copy) *b_ezsigntemplate_adminonly_copy = *b_ezsigntemplate_adminonly;
+    }
+    ezsigntemplate_request_v3_t *result = ezsigntemplate_request_v3_create_internal (
+        pki_ezsigntemplate_id_copy,
+        fki_ezsignfoldertype_id_copy,
+        fki_language_id_copy,
+        fki_ezdoctemplatedocument_id_copy,
         s_ezsigntemplate_description,
         s_ezsigntemplate_externaldescription,
         t_ezsigntemplate_comment,
         e_ezsigntemplate_recognition,
         s_ezsigntemplate_filenameregexp,
-        b_ezsigntemplate_adminonly,
+        b_ezsigntemplate_adminonly_copy,
         e_ezsigntemplate_type
         );
+    if (!result) {
+        free(pki_ezsigntemplate_id_copy);
+        free(fki_ezsignfoldertype_id_copy);
+        free(fki_language_id_copy);
+        free(fki_ezdoctemplatedocument_id_copy);
+        free(b_ezsigntemplate_adminonly_copy);
+    }
+    return result;
 }
 
 void ezsigntemplate_request_v3_free(ezsigntemplate_request_v3_t *ezsigntemplate_request_v3) {
@@ -75,6 +108,22 @@ void ezsigntemplate_request_v3_free(ezsigntemplate_request_v3_t *ezsigntemplate_
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsigntemplate_request_v3->pki_ezsigntemplate_id) {
+        free(ezsigntemplate_request_v3->pki_ezsigntemplate_id);
+        ezsigntemplate_request_v3->pki_ezsigntemplate_id = NULL;
+    }
+    if (ezsigntemplate_request_v3->fki_ezsignfoldertype_id) {
+        free(ezsigntemplate_request_v3->fki_ezsignfoldertype_id);
+        ezsigntemplate_request_v3->fki_ezsignfoldertype_id = NULL;
+    }
+    if (ezsigntemplate_request_v3->fki_language_id) {
+        free(ezsigntemplate_request_v3->fki_language_id);
+        ezsigntemplate_request_v3->fki_language_id = NULL;
+    }
+    if (ezsigntemplate_request_v3->fki_ezdoctemplatedocument_id) {
+        free(ezsigntemplate_request_v3->fki_ezdoctemplatedocument_id);
+        ezsigntemplate_request_v3->fki_ezdoctemplatedocument_id = NULL;
+    }
     if (ezsigntemplate_request_v3->s_ezsigntemplate_description) {
         free(ezsigntemplate_request_v3->s_ezsigntemplate_description);
         ezsigntemplate_request_v3->s_ezsigntemplate_description = NULL;
@@ -91,6 +140,10 @@ void ezsigntemplate_request_v3_free(ezsigntemplate_request_v3_t *ezsigntemplate_
         free(ezsigntemplate_request_v3->s_ezsigntemplate_filenameregexp);
         ezsigntemplate_request_v3->s_ezsigntemplate_filenameregexp = NULL;
     }
+    if (ezsigntemplate_request_v3->b_ezsigntemplate_adminonly) {
+        free(ezsigntemplate_request_v3->b_ezsigntemplate_adminonly);
+        ezsigntemplate_request_v3->b_ezsigntemplate_adminonly = NULL;
+    }
     free(ezsigntemplate_request_v3);
 }
 
@@ -99,7 +152,7 @@ cJSON *ezsigntemplate_request_v3_convertToJSON(ezsigntemplate_request_v3_t *ezsi
 
     // ezsigntemplate_request_v3->pki_ezsigntemplate_id
     if(ezsigntemplate_request_v3->pki_ezsigntemplate_id) {
-    if(cJSON_AddNumberToObject(item, "pkiEzsigntemplateID", ezsigntemplate_request_v3->pki_ezsigntemplate_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzsigntemplateID", *ezsigntemplate_request_v3->pki_ezsigntemplate_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -107,7 +160,7 @@ cJSON *ezsigntemplate_request_v3_convertToJSON(ezsigntemplate_request_v3_t *ezsi
 
     // ezsigntemplate_request_v3->fki_ezsignfoldertype_id
     if(ezsigntemplate_request_v3->fki_ezsignfoldertype_id) {
-    if(cJSON_AddNumberToObject(item, "fkiEzsignfoldertypeID", ezsigntemplate_request_v3->fki_ezsignfoldertype_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsignfoldertypeID", *ezsigntemplate_request_v3->fki_ezsignfoldertype_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -117,14 +170,14 @@ cJSON *ezsigntemplate_request_v3_convertToJSON(ezsigntemplate_request_v3_t *ezsi
     if (!ezsigntemplate_request_v3->fki_language_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiLanguageID", ezsigntemplate_request_v3->fki_language_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiLanguageID", *ezsigntemplate_request_v3->fki_language_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // ezsigntemplate_request_v3->fki_ezdoctemplatedocument_id
     if(ezsigntemplate_request_v3->fki_ezdoctemplatedocument_id) {
-    if(cJSON_AddNumberToObject(item, "fkiEzdoctemplatedocumentID", ezsigntemplate_request_v3->fki_ezdoctemplatedocument_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiEzdoctemplatedocumentID", *ezsigntemplate_request_v3->fki_ezdoctemplatedocument_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -180,7 +233,7 @@ cJSON *ezsigntemplate_request_v3_convertToJSON(ezsigntemplate_request_v3_t *ezsi
     if (!ezsigntemplate_request_v3->b_ezsigntemplate_adminonly) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bEzsigntemplateAdminonly", ezsigntemplate_request_v3->b_ezsigntemplate_adminonly) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bEzsigntemplateAdminonly", *ezsigntemplate_request_v3->b_ezsigntemplate_adminonly) == NULL) {
     goto fail; //Bool
     }
 
@@ -210,8 +263,31 @@ ezsigntemplate_request_v3_t *ezsigntemplate_request_v3_parseFromJSON(cJSON *ezsi
 
     ezsigntemplate_request_v3_t *ezsigntemplate_request_v3_local_var = NULL;
 
+    // define the local variable for ezsigntemplate_request_v3->pki_ezsigntemplate_id
+    int *pki_ezsigntemplate_id_local_var = NULL;
+
+    // define the local variable for ezsigntemplate_request_v3->fki_ezsignfoldertype_id
+    int *fki_ezsignfoldertype_id_local_var = NULL;
+
+    // define the local variable for ezsigntemplate_request_v3->fki_language_id
+    int *fki_language_id_local_var = NULL;
+
+    // define the local variable for ezsigntemplate_request_v3->fki_ezdoctemplatedocument_id
+    int *fki_ezdoctemplatedocument_id_local_var = NULL;
+
+    char *s_ezsigntemplate_description_local_str = NULL;
+
+    char *s_ezsigntemplate_externaldescription_local_str = NULL;
+
+    char *t_ezsigntemplate_comment_local_str = NULL;
+
     // define the local variable for ezsigntemplate_request_v3->e_ezsigntemplate_recognition
     ezmax_api_definition__full_field_e_ezsigntemplate_recognition__e e_ezsigntemplate_recognition_local_nonprim = 0;
+
+    char *s_ezsigntemplate_filenameregexp_local_str = NULL;
+
+    // define the local variable for ezsigntemplate_request_v3->b_ezsigntemplate_adminonly
+    int *b_ezsigntemplate_adminonly_local_var = NULL;
 
     // define the local variable for ezsigntemplate_request_v3->e_ezsigntemplate_type
     ezmax_api_definition__full_field_e_ezsigntemplate_type__e e_ezsigntemplate_type_local_nonprim = 0;
@@ -226,6 +302,12 @@ ezsigntemplate_request_v3_t *ezsigntemplate_request_v3_parseFromJSON(cJSON *ezsi
     {
     goto end; //Numeric
     }
+    pki_ezsigntemplate_id_local_var = malloc(sizeof(int));
+    if(!pki_ezsigntemplate_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezsigntemplate_id_local_var = pki_ezsigntemplate_id->valuedouble;
     }
 
     // ezsigntemplate_request_v3->fki_ezsignfoldertype_id
@@ -238,6 +320,12 @@ ezsigntemplate_request_v3_t *ezsigntemplate_request_v3_parseFromJSON(cJSON *ezsi
     {
     goto end; //Numeric
     }
+    fki_ezsignfoldertype_id_local_var = malloc(sizeof(int));
+    if(!fki_ezsignfoldertype_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezsignfoldertype_id_local_var = fki_ezsignfoldertype_id->valuedouble;
     }
 
     // ezsigntemplate_request_v3->fki_language_id
@@ -254,6 +342,12 @@ ezsigntemplate_request_v3_t *ezsigntemplate_request_v3_parseFromJSON(cJSON *ezsi
     {
     goto end; //Numeric
     }
+    fki_language_id_local_var = malloc(sizeof(int));
+    if(!fki_language_id_local_var)
+    {
+        goto end;
+    }
+    *fki_language_id_local_var = fki_language_id->valuedouble;
 
     // ezsigntemplate_request_v3->fki_ezdoctemplatedocument_id
     cJSON *fki_ezdoctemplatedocument_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplate_request_v3JSON, "fkiEzdoctemplatedocumentID");
@@ -265,6 +359,12 @@ ezsigntemplate_request_v3_t *ezsigntemplate_request_v3_parseFromJSON(cJSON *ezsi
     {
     goto end; //Numeric
     }
+    fki_ezdoctemplatedocument_id_local_var = malloc(sizeof(int));
+    if(!fki_ezdoctemplatedocument_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezdoctemplatedocument_id_local_var = fki_ezdoctemplatedocument_id->valuedouble;
     }
 
     // ezsigntemplate_request_v3->s_ezsigntemplate_description
@@ -341,6 +441,12 @@ ezsigntemplate_request_v3_t *ezsigntemplate_request_v3_parseFromJSON(cJSON *ezsi
     {
     goto end; //Bool
     }
+    b_ezsigntemplate_adminonly_local_var = malloc(sizeof(int));
+    if(!b_ezsigntemplate_adminonly_local_var)
+    {
+        goto end;
+    }
+    *b_ezsigntemplate_adminonly_local_var = b_ezsigntemplate_adminonly->valueint;
 
     // ezsigntemplate_request_v3->e_ezsigntemplate_type
     cJSON *e_ezsigntemplate_type = cJSON_GetObjectItemCaseSensitive(ezsigntemplate_request_v3JSON, "eEzsigntemplateType");
@@ -355,24 +461,69 @@ ezsigntemplate_request_v3_t *ezsigntemplate_request_v3_parseFromJSON(cJSON *ezsi
     e_ezsigntemplate_type_local_nonprim = field_e_ezsigntemplate_type_parseFromJSON(e_ezsigntemplate_type); //custom
 
 
+    if (s_ezsigntemplate_description && !cJSON_IsNull(s_ezsigntemplate_description)) s_ezsigntemplate_description_local_str = strdup(s_ezsigntemplate_description->valuestring);
+    if (s_ezsigntemplate_externaldescription && !cJSON_IsNull(s_ezsigntemplate_externaldescription)) s_ezsigntemplate_externaldescription_local_str = strdup(s_ezsigntemplate_externaldescription->valuestring);
+    if (t_ezsigntemplate_comment && !cJSON_IsNull(t_ezsigntemplate_comment)) t_ezsigntemplate_comment_local_str = strdup(t_ezsigntemplate_comment->valuestring);
+    if (s_ezsigntemplate_filenameregexp && !cJSON_IsNull(s_ezsigntemplate_filenameregexp)) s_ezsigntemplate_filenameregexp_local_str = strdup(s_ezsigntemplate_filenameregexp->valuestring);
+
     ezsigntemplate_request_v3_local_var = ezsigntemplate_request_v3_create_internal (
-        pki_ezsigntemplate_id ? pki_ezsigntemplate_id->valuedouble : 0,
-        fki_ezsignfoldertype_id ? fki_ezsignfoldertype_id->valuedouble : 0,
-        fki_language_id->valuedouble,
-        fki_ezdoctemplatedocument_id ? fki_ezdoctemplatedocument_id->valuedouble : 0,
-        strdup(s_ezsigntemplate_description->valuestring),
-        s_ezsigntemplate_externaldescription && !cJSON_IsNull(s_ezsigntemplate_externaldescription) ? strdup(s_ezsigntemplate_externaldescription->valuestring) : NULL,
-        t_ezsigntemplate_comment && !cJSON_IsNull(t_ezsigntemplate_comment) ? strdup(t_ezsigntemplate_comment->valuestring) : NULL,
+        pki_ezsigntemplate_id_local_var,
+        fki_ezsignfoldertype_id_local_var,
+        fki_language_id_local_var,
+        fki_ezdoctemplatedocument_id_local_var,
+        s_ezsigntemplate_description_local_str,
+        s_ezsigntemplate_externaldescription_local_str,
+        t_ezsigntemplate_comment_local_str,
         e_ezsigntemplate_recognition ? e_ezsigntemplate_recognition_local_nonprim : 0,
-        s_ezsigntemplate_filenameregexp && !cJSON_IsNull(s_ezsigntemplate_filenameregexp) ? strdup(s_ezsigntemplate_filenameregexp->valuestring) : NULL,
-        b_ezsigntemplate_adminonly->valueint,
+        s_ezsigntemplate_filenameregexp_local_str,
+        b_ezsigntemplate_adminonly_local_var,
         e_ezsigntemplate_type_local_nonprim
         );
 
+    if (!ezsigntemplate_request_v3_local_var) {
+        goto end;
+    }
+
     return ezsigntemplate_request_v3_local_var;
 end:
+    if (pki_ezsigntemplate_id_local_var) {
+        free(pki_ezsigntemplate_id_local_var);
+        pki_ezsigntemplate_id_local_var = NULL;
+    }
+    if (fki_ezsignfoldertype_id_local_var) {
+        free(fki_ezsignfoldertype_id_local_var);
+        fki_ezsignfoldertype_id_local_var = NULL;
+    }
+    if (fki_language_id_local_var) {
+        free(fki_language_id_local_var);
+        fki_language_id_local_var = NULL;
+    }
+    if (fki_ezdoctemplatedocument_id_local_var) {
+        free(fki_ezdoctemplatedocument_id_local_var);
+        fki_ezdoctemplatedocument_id_local_var = NULL;
+    }
+    if (s_ezsigntemplate_description_local_str) {
+        free(s_ezsigntemplate_description_local_str);
+        s_ezsigntemplate_description_local_str = NULL;
+    }
+    if (s_ezsigntemplate_externaldescription_local_str) {
+        free(s_ezsigntemplate_externaldescription_local_str);
+        s_ezsigntemplate_externaldescription_local_str = NULL;
+    }
+    if (t_ezsigntemplate_comment_local_str) {
+        free(t_ezsigntemplate_comment_local_str);
+        t_ezsigntemplate_comment_local_str = NULL;
+    }
     if (e_ezsigntemplate_recognition_local_nonprim) {
         e_ezsigntemplate_recognition_local_nonprim = 0;
+    }
+    if (s_ezsigntemplate_filenameregexp_local_str) {
+        free(s_ezsigntemplate_filenameregexp_local_str);
+        s_ezsigntemplate_filenameregexp_local_str = NULL;
+    }
+    if (b_ezsigntemplate_adminonly_local_var) {
+        free(b_ezsigntemplate_adminonly_local_var);
+        b_ezsigntemplate_adminonly_local_var = NULL;
     }
     if (e_ezsigntemplate_type_local_nonprim) {
         e_ezsigntemplate_type_local_nonprim = 0;

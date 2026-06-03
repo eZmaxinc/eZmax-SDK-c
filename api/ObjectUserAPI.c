@@ -11,13 +11,13 @@
 // Functions for enum SSELECTOR for ObjectUserAPI_userGetAutocompleteV2
 
 static char* userGetAutocompleteV2_SSELECTOR_ToString(ezmax_api_definition__full_userGetAutocompleteV2_sSelector_e SSELECTOR){
-    char *SSELECTORArray[] =  { "NULL", "AgentBrokerAssistant", "AgentBrokerEmployeeEzsignUserNormal", "AgentBrokerEmployeeNormalBuiltIn", "AgentBrokerEzsignuserNormal", "ClonableUsers", "EzsignuserBuiltIn", "Ezsignuser", "Normal", "UsergroupDelegated" };
+    char *SSELECTORArray[] =  { "NULL", "AgentBrokerAssistant", "AgentBrokerEmployeeEzsignUserNormalWithoutEzmaxpartner", "AgentBrokerEmployeeEzsignUserNormal", "AgentBrokerEmployeeNormalBuiltIn", "AgentBrokerEzsignuserNormal", "ClonableUsers", "EzsignuserBuiltIn", "Ezsignuser", "Normal", "UsergroupDelegated" };
     return SSELECTORArray[SSELECTOR];
 }
 
 static ezmax_api_definition__full_userGetAutocompleteV2_sSelector_e userGetAutocompleteV2_SSELECTOR_FromString(char* SSELECTOR){
     int stringToReturn = 0;
-    char *SSELECTORArray[] =  { "NULL", "AgentBrokerAssistant", "AgentBrokerEmployeeEzsignUserNormal", "AgentBrokerEmployeeNormalBuiltIn", "AgentBrokerEzsignuserNormal", "ClonableUsers", "EzsignuserBuiltIn", "Ezsignuser", "Normal", "UsergroupDelegated" };
+    char *SSELECTORArray[] =  { "NULL", "AgentBrokerAssistant", "AgentBrokerEmployeeEzsignUserNormalWithoutEzmaxpartner", "AgentBrokerEmployeeEzsignUserNormal", "AgentBrokerEmployeeNormalBuiltIn", "AgentBrokerEzsignuserNormal", "ClonableUsers", "EzsignuserBuiltIn", "Ezsignuser", "Normal", "UsergroupDelegated" };
     size_t sizeofArray = sizeof(SSELECTORArray) / sizeof(SSELECTORArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(SSELECTOR, SSELECTORArray[stringToReturn]) == 0) {
@@ -158,13 +158,13 @@ end:
 // Functions for enum EORDERBY for ObjectUserAPI_userGetListV1
 
 static char* userGetListV1_EORDERBY_ToString(ezmax_api_definition__full_userGetListV1_eOrderBy_e EORDERBY){
-    char *EORDERBYArray[] =  { "NULL", "pkiUserID_ASC", "pkiUserID_DESC", "sUserFirstname_ASC", "sUserFirstname_DESC", "sUserLastname_ASC", "sUserLastname_DESC", "sUserLoginname_ASC", "sUserLoginname_DESC", "bUserIsactive_ASC", "bUserIsactive_DESC", "eUserType_ASC", "eUserType_DESC", "eUserOrigin_ASC", "eUserOrigin_DESC", "eUserEzsignaccess_ASC", "eUserEzsignaccess_DESC", "dtUserEzsignprepaidexpiration_ASC", "dtUserEzsignprepaidexpiration_DESC", "sEmailAddress_ASC", "sEmailAddress_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiUserID_ASC", "pkiUserID_DESC", "sUserFirstname_ASC", "sUserFirstname_DESC", "sUserLastname_ASC", "sUserLastname_DESC", "sUserLoginname_ASC", "sUserLoginname_DESC", "bUserIsactive_ASC", "bUserIsactive_DESC", "eUserType_ASC", "eUserType_DESC", "eUserOrigin_ASC", "eUserOrigin_DESC", "eUserEzsignaccess_ASC", "eUserEzsignaccess_DESC", "dtUserEzsignprepaidexpiration_ASC", "dtUserEzsignprepaidexpiration_DESC", "sEmailAddress_ASC", "sEmailAddress_DESC", "bUserSuspended_ASC", "bUserSuspended_DESC" };
     return EORDERBYArray[EORDERBY];
 }
 
 static ezmax_api_definition__full_userGetListV1_eOrderBy_e userGetListV1_EORDERBY_FromString(char* EORDERBY){
     int stringToReturn = 0;
-    char *EORDERBYArray[] =  { "NULL", "pkiUserID_ASC", "pkiUserID_DESC", "sUserFirstname_ASC", "sUserFirstname_DESC", "sUserLastname_ASC", "sUserLastname_DESC", "sUserLoginname_ASC", "sUserLoginname_DESC", "bUserIsactive_ASC", "bUserIsactive_DESC", "eUserType_ASC", "eUserType_DESC", "eUserOrigin_ASC", "eUserOrigin_DESC", "eUserEzsignaccess_ASC", "eUserEzsignaccess_DESC", "dtUserEzsignprepaidexpiration_ASC", "dtUserEzsignprepaidexpiration_DESC", "sEmailAddress_ASC", "sEmailAddress_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiUserID_ASC", "pkiUserID_DESC", "sUserFirstname_ASC", "sUserFirstname_DESC", "sUserLastname_ASC", "sUserLastname_DESC", "sUserLoginname_ASC", "sUserLoginname_DESC", "bUserIsactive_ASC", "bUserIsactive_DESC", "eUserType_ASC", "eUserType_DESC", "eUserOrigin_ASC", "eUserOrigin_DESC", "eUserEzsignaccess_ASC", "eUserEzsignaccess_DESC", "dtUserEzsignprepaidexpiration_ASC", "dtUserEzsignprepaidexpiration_DESC", "sEmailAddress_ASC", "sEmailAddress_DESC", "bUserSuspended_ASC", "bUserSuspended_DESC" };
     size_t sizeofArray = sizeof(EORDERBYArray) / sizeof(EORDERBYArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(EORDERBY, EORDERBYArray[stringToReturn]) == 0) {
@@ -1158,6 +1158,99 @@ end:
 
 }
 
+// Returns the Ezmaxcustomeruser for the User
+//
+// Returns the Ezmaxcustomeruser for the User
+//
+user_get_ezmaxcustomeruser_v1_response_t*
+ObjectUserAPI_userGetEzmaxcustomeruserV1(apiClient_t *apiClient, int *pkiUserID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/user/{pkiUserID}/getEzmaxcustomeruser");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiUserID =  + sizeof("{ pkiUserID }") - 1;
+    if(pkiUserID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiUserID = malloc(sizeOfPathParams_pkiUserID);
+    snprintf(localVarToReplace_pkiUserID, sizeOfPathParams_pkiUserID, "{%s}", "pkiUserID");
+
+    char localVarBuff_pkiUserID[256];
+    snprintf(localVarBuff_pkiUserID, sizeof localVarBuff_pkiUserID, "%ld", (long)*pkiUserID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiUserID, localVarBuff_pkiUserID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    user_get_ezmaxcustomeruser_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = user_get_ezmaxcustomeruser_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
+        cJSON_Delete(ObjectUserAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiUserID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Retrieve User list
 //
 // Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eUserType | AgentBroker<br>Assistant<br>Employee<br>EzsignUser<br>Normal | | eUserOrigin | BuiltIn<br>External | | eUserEzsignaccess | No<br>PaidByOffice<br>PerDocument<br>Prepaid |
@@ -1775,6 +1868,115 @@ ObjectUserAPI_userGetUsergroupsV1(apiClient_t *apiClient, int *pkiUserID)
     
     free(localVarPath);
     free(localVarToReplace_pkiUserID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Impersonate the user
+//
+// Using this endpoint, you can impersonate the user.
+//
+user_impersonate_v1_response_t*
+ObjectUserAPI_userImpersonateV1(apiClient_t *apiClient, int *pkiUserID, user_impersonate_v1_request_t *user_impersonate_v1_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/user/{pkiUserID}/impersonate");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiUserID =  + sizeof("{ pkiUserID }") - 1;
+    if(pkiUserID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiUserID = malloc(sizeOfPathParams_pkiUserID);
+    snprintf(localVarToReplace_pkiUserID, sizeOfPathParams_pkiUserID, "{%s}", "pkiUserID");
+
+    char localVarBuff_pkiUserID[256];
+    snprintf(localVarBuff_pkiUserID, sizeof localVarBuff_pkiUserID, "%ld", (long)*pkiUserID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiUserID, localVarBuff_pkiUserID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_user_impersonate_v1_request = NULL;
+    if (user_impersonate_v1_request != NULL)
+    {
+        //not string, not binary
+        localVarSingleItemJSON_user_impersonate_v1_request = user_impersonate_v1_request_convertToJSON(user_impersonate_v1_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_user_impersonate_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    user_impersonate_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = user_impersonate_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
+        cJSON_Delete(ObjectUserAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiUserID);
+    if (localVarSingleItemJSON_user_impersonate_v1_request) {
+        cJSON_Delete(localVarSingleItemJSON_user_impersonate_v1_request);
+        localVarSingleItemJSON_user_impersonate_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
     return elementToReturn;
 end:
     free(localVarPath);

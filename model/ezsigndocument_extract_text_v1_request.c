@@ -23,44 +23,77 @@ ezmax_api_definition__full_ezsigndocument_extract_text_v1_request_ESECTION_e ezs
 }
 
 static ezsigndocument_extract_text_v1_request_t *ezsigndocument_extract_text_v1_request_create_internal(
-    int i_page,
+    int *i_page,
     ezmax_api_definition__full_ezsigndocument_extract_text_v1_request_ESECTION_e e_section,
-    int i_x,
-    int i_y,
-    int i_width,
-    int i_height
+    int *i_x,
+    int *i_y,
+    int *i_width,
+    int *i_height
     ) {
     ezsigndocument_extract_text_v1_request_t *ezsigndocument_extract_text_v1_request_local_var = malloc(sizeof(ezsigndocument_extract_text_v1_request_t));
     if (!ezsigndocument_extract_text_v1_request_local_var) {
         return NULL;
     }
+    memset(ezsigndocument_extract_text_v1_request_local_var, 0, sizeof(ezsigndocument_extract_text_v1_request_t));
+    ezsigndocument_extract_text_v1_request_local_var->_library_owned = 1;
     ezsigndocument_extract_text_v1_request_local_var->i_page = i_page;
     ezsigndocument_extract_text_v1_request_local_var->e_section = e_section;
     ezsigndocument_extract_text_v1_request_local_var->i_x = i_x;
     ezsigndocument_extract_text_v1_request_local_var->i_y = i_y;
     ezsigndocument_extract_text_v1_request_local_var->i_width = i_width;
     ezsigndocument_extract_text_v1_request_local_var->i_height = i_height;
-
-    ezsigndocument_extract_text_v1_request_local_var->_library_owned = 1;
     return ezsigndocument_extract_text_v1_request_local_var;
 }
 
 __attribute__((deprecated)) ezsigndocument_extract_text_v1_request_t *ezsigndocument_extract_text_v1_request_create(
-    int i_page,
+    int *i_page,
     ezmax_api_definition__full_ezsigndocument_extract_text_v1_request_ESECTION_e e_section,
-    int i_x,
-    int i_y,
-    int i_width,
-    int i_height
+    int *i_x,
+    int *i_y,
+    int *i_width,
+    int *i_height
     ) {
-    return ezsigndocument_extract_text_v1_request_create_internal (
-        i_page,
+    int *i_page_copy = NULL;
+    if (i_page) {
+        i_page_copy = malloc(sizeof(int));
+        if (i_page_copy) *i_page_copy = *i_page;
+    }
+    int *i_x_copy = NULL;
+    if (i_x) {
+        i_x_copy = malloc(sizeof(int));
+        if (i_x_copy) *i_x_copy = *i_x;
+    }
+    int *i_y_copy = NULL;
+    if (i_y) {
+        i_y_copy = malloc(sizeof(int));
+        if (i_y_copy) *i_y_copy = *i_y;
+    }
+    int *i_width_copy = NULL;
+    if (i_width) {
+        i_width_copy = malloc(sizeof(int));
+        if (i_width_copy) *i_width_copy = *i_width;
+    }
+    int *i_height_copy = NULL;
+    if (i_height) {
+        i_height_copy = malloc(sizeof(int));
+        if (i_height_copy) *i_height_copy = *i_height;
+    }
+    ezsigndocument_extract_text_v1_request_t *result = ezsigndocument_extract_text_v1_request_create_internal (
+        i_page_copy,
         e_section,
-        i_x,
-        i_y,
-        i_width,
-        i_height
+        i_x_copy,
+        i_y_copy,
+        i_width_copy,
+        i_height_copy
         );
+    if (!result) {
+        free(i_page_copy);
+        free(i_x_copy);
+        free(i_y_copy);
+        free(i_width_copy);
+        free(i_height_copy);
+    }
+    return result;
 }
 
 void ezsigndocument_extract_text_v1_request_free(ezsigndocument_extract_text_v1_request_t *ezsigndocument_extract_text_v1_request) {
@@ -72,6 +105,26 @@ void ezsigndocument_extract_text_v1_request_free(ezsigndocument_extract_text_v1_
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsigndocument_extract_text_v1_request->i_page) {
+        free(ezsigndocument_extract_text_v1_request->i_page);
+        ezsigndocument_extract_text_v1_request->i_page = NULL;
+    }
+    if (ezsigndocument_extract_text_v1_request->i_x) {
+        free(ezsigndocument_extract_text_v1_request->i_x);
+        ezsigndocument_extract_text_v1_request->i_x = NULL;
+    }
+    if (ezsigndocument_extract_text_v1_request->i_y) {
+        free(ezsigndocument_extract_text_v1_request->i_y);
+        ezsigndocument_extract_text_v1_request->i_y = NULL;
+    }
+    if (ezsigndocument_extract_text_v1_request->i_width) {
+        free(ezsigndocument_extract_text_v1_request->i_width);
+        ezsigndocument_extract_text_v1_request->i_width = NULL;
+    }
+    if (ezsigndocument_extract_text_v1_request->i_height) {
+        free(ezsigndocument_extract_text_v1_request->i_height);
+        ezsigndocument_extract_text_v1_request->i_height = NULL;
+    }
     free(ezsigndocument_extract_text_v1_request);
 }
 
@@ -82,7 +135,7 @@ cJSON *ezsigndocument_extract_text_v1_request_convertToJSON(ezsigndocument_extra
     if (!ezsigndocument_extract_text_v1_request->i_page) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iPage", ezsigndocument_extract_text_v1_request->i_page) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iPage", *ezsigndocument_extract_text_v1_request->i_page) == NULL) {
     goto fail; //Numeric
     }
 
@@ -98,7 +151,7 @@ cJSON *ezsigndocument_extract_text_v1_request_convertToJSON(ezsigndocument_extra
 
     // ezsigndocument_extract_text_v1_request->i_x
     if(ezsigndocument_extract_text_v1_request->i_x) {
-    if(cJSON_AddNumberToObject(item, "iX", ezsigndocument_extract_text_v1_request->i_x) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iX", *ezsigndocument_extract_text_v1_request->i_x) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -106,7 +159,7 @@ cJSON *ezsigndocument_extract_text_v1_request_convertToJSON(ezsigndocument_extra
 
     // ezsigndocument_extract_text_v1_request->i_y
     if(ezsigndocument_extract_text_v1_request->i_y) {
-    if(cJSON_AddNumberToObject(item, "iY", ezsigndocument_extract_text_v1_request->i_y) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iY", *ezsigndocument_extract_text_v1_request->i_y) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -114,7 +167,7 @@ cJSON *ezsigndocument_extract_text_v1_request_convertToJSON(ezsigndocument_extra
 
     // ezsigndocument_extract_text_v1_request->i_width
     if(ezsigndocument_extract_text_v1_request->i_width) {
-    if(cJSON_AddNumberToObject(item, "iWidth", ezsigndocument_extract_text_v1_request->i_width) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iWidth", *ezsigndocument_extract_text_v1_request->i_width) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -122,7 +175,7 @@ cJSON *ezsigndocument_extract_text_v1_request_convertToJSON(ezsigndocument_extra
 
     // ezsigndocument_extract_text_v1_request->i_height
     if(ezsigndocument_extract_text_v1_request->i_height) {
-    if(cJSON_AddNumberToObject(item, "iHeight", ezsigndocument_extract_text_v1_request->i_height) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iHeight", *ezsigndocument_extract_text_v1_request->i_height) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -139,6 +192,21 @@ ezsigndocument_extract_text_v1_request_t *ezsigndocument_extract_text_v1_request
 
     ezsigndocument_extract_text_v1_request_t *ezsigndocument_extract_text_v1_request_local_var = NULL;
 
+    // define the local variable for ezsigndocument_extract_text_v1_request->i_page
+    int *i_page_local_var = NULL;
+
+    // define the local variable for ezsigndocument_extract_text_v1_request->i_x
+    int *i_x_local_var = NULL;
+
+    // define the local variable for ezsigndocument_extract_text_v1_request->i_y
+    int *i_y_local_var = NULL;
+
+    // define the local variable for ezsigndocument_extract_text_v1_request->i_width
+    int *i_width_local_var = NULL;
+
+    // define the local variable for ezsigndocument_extract_text_v1_request->i_height
+    int *i_height_local_var = NULL;
+
     // ezsigndocument_extract_text_v1_request->i_page
     cJSON *i_page = cJSON_GetObjectItemCaseSensitive(ezsigndocument_extract_text_v1_requestJSON, "iPage");
     if (cJSON_IsNull(i_page)) {
@@ -153,6 +221,12 @@ ezsigndocument_extract_text_v1_request_t *ezsigndocument_extract_text_v1_request
     {
     goto end; //Numeric
     }
+    i_page_local_var = malloc(sizeof(int));
+    if(!i_page_local_var)
+    {
+        goto end;
+    }
+    *i_page_local_var = i_page->valuedouble;
 
     // ezsigndocument_extract_text_v1_request->e_section
     cJSON *e_section = cJSON_GetObjectItemCaseSensitive(ezsigndocument_extract_text_v1_requestJSON, "eSection");
@@ -178,6 +252,12 @@ ezsigndocument_extract_text_v1_request_t *ezsigndocument_extract_text_v1_request
     {
     goto end; //Numeric
     }
+    i_x_local_var = malloc(sizeof(int));
+    if(!i_x_local_var)
+    {
+        goto end;
+    }
+    *i_x_local_var = i_x->valuedouble;
     }
 
     // ezsigndocument_extract_text_v1_request->i_y
@@ -190,6 +270,12 @@ ezsigndocument_extract_text_v1_request_t *ezsigndocument_extract_text_v1_request
     {
     goto end; //Numeric
     }
+    i_y_local_var = malloc(sizeof(int));
+    if(!i_y_local_var)
+    {
+        goto end;
+    }
+    *i_y_local_var = i_y->valuedouble;
     }
 
     // ezsigndocument_extract_text_v1_request->i_width
@@ -202,6 +288,12 @@ ezsigndocument_extract_text_v1_request_t *ezsigndocument_extract_text_v1_request
     {
     goto end; //Numeric
     }
+    i_width_local_var = malloc(sizeof(int));
+    if(!i_width_local_var)
+    {
+        goto end;
+    }
+    *i_width_local_var = i_width->valuedouble;
     }
 
     // ezsigndocument_extract_text_v1_request->i_height
@@ -214,20 +306,51 @@ ezsigndocument_extract_text_v1_request_t *ezsigndocument_extract_text_v1_request
     {
     goto end; //Numeric
     }
+    i_height_local_var = malloc(sizeof(int));
+    if(!i_height_local_var)
+    {
+        goto end;
+    }
+    *i_height_local_var = i_height->valuedouble;
     }
 
 
+
     ezsigndocument_extract_text_v1_request_local_var = ezsigndocument_extract_text_v1_request_create_internal (
-        i_page->valuedouble,
+        i_page_local_var,
         e_section ? e_sectionVariable : ezmax_api_definition__full_ezsigndocument_extract_text_v1_request_ESECTION_NULL,
-        i_x ? i_x->valuedouble : 0,
-        i_y ? i_y->valuedouble : 0,
-        i_width ? i_width->valuedouble : 0,
-        i_height ? i_height->valuedouble : 0
+        i_x_local_var,
+        i_y_local_var,
+        i_width_local_var,
+        i_height_local_var
         );
+
+    if (!ezsigndocument_extract_text_v1_request_local_var) {
+        goto end;
+    }
 
     return ezsigndocument_extract_text_v1_request_local_var;
 end:
+    if (i_page_local_var) {
+        free(i_page_local_var);
+        i_page_local_var = NULL;
+    }
+    if (i_x_local_var) {
+        free(i_x_local_var);
+        i_x_local_var = NULL;
+    }
+    if (i_y_local_var) {
+        free(i_y_local_var);
+        i_y_local_var = NULL;
+    }
+    if (i_width_local_var) {
+        free(i_width_local_var);
+        i_width_local_var = NULL;
+    }
+    if (i_height_local_var) {
+        free(i_height_local_var);
+        i_height_local_var = NULL;
+    }
     return NULL;
 
 }

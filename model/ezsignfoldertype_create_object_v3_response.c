@@ -14,11 +14,11 @@ static ezsignfoldertype_create_object_v3_response_t *ezsignfoldertype_create_obj
     if (!ezsignfoldertype_create_object_v3_response_local_var) {
         return NULL;
     }
+    memset(ezsignfoldertype_create_object_v3_response_local_var, 0, sizeof(ezsignfoldertype_create_object_v3_response_t));
+    ezsignfoldertype_create_object_v3_response_local_var->_library_owned = 1;
     ezsignfoldertype_create_object_v3_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsignfoldertype_create_object_v3_response_local_var->obj_debug = obj_debug;
     ezsignfoldertype_create_object_v3_response_local_var->m_payload = m_payload;
-
-    ezsignfoldertype_create_object_v3_response_local_var->_library_owned = 1;
     return ezsignfoldertype_create_object_v3_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) ezsignfoldertype_create_object_v3_response_t *ezsign
     common_response_obj_debug_t *obj_debug,
     ezsignfoldertype_create_object_v3_response_m_payload_t *m_payload
     ) {
-    return ezsignfoldertype_create_object_v3_response_create_internal (
+    ezsignfoldertype_create_object_v3_response_t *result = ezsignfoldertype_create_object_v3_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignfoldertype_create_object_v3_response_free(ezsignfoldertype_create_object_v3_response_t *ezsignfoldertype_create_object_v3_response) {
@@ -156,11 +159,16 @@ ezsignfoldertype_create_object_v3_response_t *ezsignfoldertype_create_object_v3_
     m_payload_local_nonprim = ezsignfoldertype_create_object_v3_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     ezsignfoldertype_create_object_v3_response_local_var = ezsignfoldertype_create_object_v3_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!ezsignfoldertype_create_object_v3_response_local_var) {
+        goto end;
+    }
 
     return ezsignfoldertype_create_object_v3_response_local_var;
 end:

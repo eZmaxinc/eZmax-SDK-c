@@ -14,11 +14,11 @@ static secretquestion_get_autocomplete_v2_response_t *secretquestion_get_autocom
     if (!secretquestion_get_autocomplete_v2_response_local_var) {
         return NULL;
     }
+    memset(secretquestion_get_autocomplete_v2_response_local_var, 0, sizeof(secretquestion_get_autocomplete_v2_response_t));
+    secretquestion_get_autocomplete_v2_response_local_var->_library_owned = 1;
     secretquestion_get_autocomplete_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     secretquestion_get_autocomplete_v2_response_local_var->obj_debug = obj_debug;
     secretquestion_get_autocomplete_v2_response_local_var->m_payload = m_payload;
-
-    secretquestion_get_autocomplete_v2_response_local_var->_library_owned = 1;
     return secretquestion_get_autocomplete_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) secretquestion_get_autocomplete_v2_response_t *secre
     common_response_obj_debug_t *obj_debug,
     secretquestion_get_autocomplete_v2_response_m_payload_t *m_payload
     ) {
-    return secretquestion_get_autocomplete_v2_response_create_internal (
+    secretquestion_get_autocomplete_v2_response_t *result = secretquestion_get_autocomplete_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void secretquestion_get_autocomplete_v2_response_free(secretquestion_get_autocomplete_v2_response_t *secretquestion_get_autocomplete_v2_response) {
@@ -156,11 +159,16 @@ secretquestion_get_autocomplete_v2_response_t *secretquestion_get_autocomplete_v
     m_payload_local_nonprim = secretquestion_get_autocomplete_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     secretquestion_get_autocomplete_v2_response_local_var = secretquestion_get_autocomplete_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!secretquestion_get_autocomplete_v2_response_local_var) {
+        goto end;
+    }
 
     return secretquestion_get_autocomplete_v2_response_local_var;
 end:

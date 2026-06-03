@@ -14,11 +14,11 @@ static scim_group_t *scim_group_create_internal(
     if (!scim_group_local_var) {
         return NULL;
     }
+    memset(scim_group_local_var, 0, sizeof(scim_group_t));
+    scim_group_local_var->_library_owned = 1;
     scim_group_local_var->id = id;
     scim_group_local_var->display_name = display_name;
     scim_group_local_var->members = members;
-
-    scim_group_local_var->_library_owned = 1;
     return scim_group_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) scim_group_t *scim_group_create(
     char *display_name,
     list_t *members
     ) {
-    return scim_group_create_internal (
+    scim_group_t *result = scim_group_create_internal (
         id,
         display_name,
         members
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void scim_group_free(scim_group_t *scim_group) {
@@ -112,6 +115,10 @@ scim_group_t *scim_group_parseFromJSON(cJSON *scim_groupJSON){
 
     scim_group_t *scim_group_local_var = NULL;
 
+    char *id_local_str = NULL;
+
+    char *display_name_local_str = NULL;
+
     // define the local list for scim_group->members
     list_t *membersList = NULL;
 
@@ -167,14 +174,29 @@ scim_group_t *scim_group_parseFromJSON(cJSON *scim_groupJSON){
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (display_name && !cJSON_IsNull(display_name)) display_name_local_str = strdup(display_name->valuestring);
+
     scim_group_local_var = scim_group_create_internal (
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
-        strdup(display_name->valuestring),
+        id_local_str,
+        display_name_local_str,
         members ? membersList : NULL
         );
 
+    if (!scim_group_local_var) {
+        goto end;
+    }
+
     return scim_group_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (display_name_local_str) {
+        free(display_name_local_str);
+        display_name_local_str = NULL;
+    }
     if (membersList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, membersList) {

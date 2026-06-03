@@ -13,10 +13,10 @@ static signature_edit_object_v1_response_t *signature_edit_object_v1_response_cr
     if (!signature_edit_object_v1_response_local_var) {
         return NULL;
     }
+    memset(signature_edit_object_v1_response_local_var, 0, sizeof(signature_edit_object_v1_response_t));
+    signature_edit_object_v1_response_local_var->_library_owned = 1;
     signature_edit_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     signature_edit_object_v1_response_local_var->obj_debug = obj_debug;
-
-    signature_edit_object_v1_response_local_var->_library_owned = 1;
     return signature_edit_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) signature_edit_object_v1_response_t *signature_edit_
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return signature_edit_object_v1_response_create_internal (
+    signature_edit_object_v1_response_t *result = signature_edit_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void signature_edit_object_v1_response_free(signature_edit_object_v1_response_t *signature_edit_object_v1_response) {
@@ -119,10 +122,15 @@ signature_edit_object_v1_response_t *signature_edit_object_v1_response_parseFrom
     }
 
 
+
     signature_edit_object_v1_response_local_var = signature_edit_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!signature_edit_object_v1_response_local_var) {
+        goto end;
+    }
 
     return signature_edit_object_v1_response_local_var;
 end:

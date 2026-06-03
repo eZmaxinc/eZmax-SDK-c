@@ -22,8 +22,8 @@ typedef struct common_reportsubsection_t common_reportsubsection_t;
 
 typedef struct common_reportsubsection_t {
     list_t *a_obj_reportcolumn; //nonprimitive container
-    int i_reportsubsection_columncount; //numeric
-    int i_reportsubsection_width; //numeric
+    int *i_reportsubsection_columncount; //numeric
+    int *i_reportsubsection_width; //numeric
     struct common_reportsubsectionpart_t *obj_reportsubsectionpart_header; //model
     struct common_reportsubsectionpart_t *obj_reportsubsectionpart_body; //model
     struct common_reportsubsectionpart_t *obj_reportsubsectionpart_footer; //model
@@ -34,8 +34,8 @@ typedef struct common_reportsubsection_t {
 
 __attribute__((deprecated)) common_reportsubsection_t *common_reportsubsection_create(
     list_t *a_obj_reportcolumn,
-    int i_reportsubsection_columncount,
-    int i_reportsubsection_width,
+    int *i_reportsubsection_columncount,
+    int *i_reportsubsection_width,
     common_reportsubsectionpart_t *obj_reportsubsectionpart_header,
     common_reportsubsectionpart_t *obj_reportsubsectionpart_body,
     common_reportsubsectionpart_t *obj_reportsubsectionpart_footer,

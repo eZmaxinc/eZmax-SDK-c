@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **e_user_ezsignaccess** | **field_e_user_ezsignaccess_t \*** |  | 
 **e_user_ezsignprepaid** | **field_e_user_ezsignprepaid_t \*** |  | [optional] 
 **b_user_ezsigntrial** | **int** | Whether the User&#39;s eZsign subscription is a trial | [optional] 
+**b_user_ezsigntemplaterolegrouping** | **int** | Whether we group or not the Ezsigntemplate roles | [optional] 
 **dt_user_ezsignprepaidexpiration** | **char \*** | The eZsign prepaid expiration date | [optional] 
 **dt_user_npsrequest** | **char \*** | The date at which the NPS questionnaire will be show | [optional] 
 **a_pki_permission_id** | **list_t \*** | An array of permissions granted to the user or api key | 
@@ -35,6 +36,7 @@ Name | Type | Description | Notes
 **obj_user_cloned** | [**activesession_response_compound_user_t**](activesession_response_compound_user.md) \* |  | [optional] 
 **obj_apikey** | [**activesession_response_compound_apikey_t**](activesession_response_compound_apikey.md) \* |  | [optional] 
 **a_e_module_internalname** | **list_t \*** | An Array of Registered modules.  These are the modules that are Licensed to be used by the User or the API Key. | 
+**b_activesession_maillinglistrequest** | **int** | If you need to ask which mailing lists this user wants to subscribe to | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

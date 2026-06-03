@@ -13,10 +13,10 @@ static discussion_chat_v1_200_response_t *discussion_chat_v1_200_response_create
     if (!discussion_chat_v1_200_response_local_var) {
         return NULL;
     }
+    memset(discussion_chat_v1_200_response_local_var, 0, sizeof(discussion_chat_v1_200_response_t));
+    discussion_chat_v1_200_response_local_var->_library_owned = 1;
     discussion_chat_v1_200_response_local_var->event = event;
     discussion_chat_v1_200_response_local_var->data = data;
-
-    discussion_chat_v1_200_response_local_var->_library_owned = 1;
     return discussion_chat_v1_200_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) discussion_chat_v1_200_response_t *discussion_chat_v
     char *event,
     char *data
     ) {
-    return discussion_chat_v1_200_response_create_internal (
+    discussion_chat_v1_200_response_t *result = discussion_chat_v1_200_response_create_internal (
         event,
         data
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void discussion_chat_v1_200_response_free(discussion_chat_v1_200_response_t *discussion_chat_v1_200_response) {
@@ -80,6 +83,10 @@ discussion_chat_v1_200_response_t *discussion_chat_v1_200_response_parseFromJSON
 
     discussion_chat_v1_200_response_t *discussion_chat_v1_200_response_local_var = NULL;
 
+    char *event_local_str = NULL;
+
+    char *data_local_str = NULL;
+
     // discussion_chat_v1_200_response->event
     cJSON *event = cJSON_GetObjectItemCaseSensitive(discussion_chat_v1_200_responseJSON, "event");
     if (cJSON_IsNull(event)) {
@@ -105,13 +112,28 @@ discussion_chat_v1_200_response_t *discussion_chat_v1_200_response_parseFromJSON
     }
 
 
+    if (event && !cJSON_IsNull(event)) event_local_str = strdup(event->valuestring);
+    if (data && !cJSON_IsNull(data)) data_local_str = strdup(data->valuestring);
+
     discussion_chat_v1_200_response_local_var = discussion_chat_v1_200_response_create_internal (
-        event && !cJSON_IsNull(event) ? strdup(event->valuestring) : NULL,
-        data && !cJSON_IsNull(data) ? strdup(data->valuestring) : NULL
+        event_local_str,
+        data_local_str
         );
+
+    if (!discussion_chat_v1_200_response_local_var) {
+        goto end;
+    }
 
     return discussion_chat_v1_200_response_local_var;
 end:
+    if (event_local_str) {
+        free(event_local_str);
+        event_local_str = NULL;
+    }
+    if (data_local_str) {
+        free(data_local_str);
+        data_local_str = NULL;
+    }
     return NULL;
 
 }

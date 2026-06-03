@@ -23,10 +23,10 @@ ezmax_api_definition__full_custom_webhook_response_EWEBHOOKEMITTYPE_e custom_web
 }
 
 static custom_webhook_response_t *custom_webhook_response_create_internal(
-    int pki_webhook_id,
-    int fki_authenticationexternal_id,
+    int *pki_webhook_id,
+    int *fki_authenticationexternal_id,
     char *s_webhook_description,
-    int fki_ezsignfoldertype_id,
+    int *fki_ezsignfoldertype_id,
     char *s_ezsignfoldertype_name_x,
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module,
     ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent,
@@ -35,22 +35,25 @@ static custom_webhook_response_t *custom_webhook_response_create_internal(
     char *s_webhook_emailfailed,
     char *s_webhook_apikey,
     char *s_webhook_secret,
-    int b_webhook_isactive,
-    int b_webhook_issigned,
-    int b_webhook_skipsslvalidation,
+    int *b_webhook_isactive,
+    int *b_webhook_issigned,
+    int *b_webhook_skipsslvalidation,
     char *s_authenticationexternal_description,
     common_audit_t *obj_audit,
     char *s_webhook_event,
     char *s_webhook_authentificationexternalerror,
     list_t *a_obj_webhookheader,
     char *pks_customer_code,
-    int b_webhook_test,
-    ezmax_api_definition__full_custom_webhook_response_EWEBHOOKEMITTYPE_e e_webhook_emittype
+    int *b_webhook_test,
+    ezmax_api_definition__full_custom_webhook_response_EWEBHOOKEMITTYPE_e e_webhook_emittype,
+    int *fki_ezmaxpartnerproductstagewebhook_id
     ) {
     custom_webhook_response_t *custom_webhook_response_local_var = malloc(sizeof(custom_webhook_response_t));
     if (!custom_webhook_response_local_var) {
         return NULL;
     }
+    memset(custom_webhook_response_local_var, 0, sizeof(custom_webhook_response_t));
+    custom_webhook_response_local_var->_library_owned = 1;
     custom_webhook_response_local_var->pki_webhook_id = pki_webhook_id;
     custom_webhook_response_local_var->fki_authenticationexternal_id = fki_authenticationexternal_id;
     custom_webhook_response_local_var->s_webhook_description = s_webhook_description;
@@ -74,16 +77,15 @@ static custom_webhook_response_t *custom_webhook_response_create_internal(
     custom_webhook_response_local_var->pks_customer_code = pks_customer_code;
     custom_webhook_response_local_var->b_webhook_test = b_webhook_test;
     custom_webhook_response_local_var->e_webhook_emittype = e_webhook_emittype;
-
-    custom_webhook_response_local_var->_library_owned = 1;
+    custom_webhook_response_local_var->fki_ezmaxpartnerproductstagewebhook_id = fki_ezmaxpartnerproductstagewebhook_id;
     return custom_webhook_response_local_var;
 }
 
 __attribute__((deprecated)) custom_webhook_response_t *custom_webhook_response_create(
-    int pki_webhook_id,
-    int fki_authenticationexternal_id,
+    int *pki_webhook_id,
+    int *fki_authenticationexternal_id,
     char *s_webhook_description,
-    int fki_ezsignfoldertype_id,
+    int *fki_ezsignfoldertype_id,
     char *s_ezsignfoldertype_name_x,
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module,
     ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent,
@@ -92,23 +94,64 @@ __attribute__((deprecated)) custom_webhook_response_t *custom_webhook_response_c
     char *s_webhook_emailfailed,
     char *s_webhook_apikey,
     char *s_webhook_secret,
-    int b_webhook_isactive,
-    int b_webhook_issigned,
-    int b_webhook_skipsslvalidation,
+    int *b_webhook_isactive,
+    int *b_webhook_issigned,
+    int *b_webhook_skipsslvalidation,
     char *s_authenticationexternal_description,
     common_audit_t *obj_audit,
     char *s_webhook_event,
     char *s_webhook_authentificationexternalerror,
     list_t *a_obj_webhookheader,
     char *pks_customer_code,
-    int b_webhook_test,
-    ezmax_api_definition__full_custom_webhook_response_EWEBHOOKEMITTYPE_e e_webhook_emittype
+    int *b_webhook_test,
+    ezmax_api_definition__full_custom_webhook_response_EWEBHOOKEMITTYPE_e e_webhook_emittype,
+    int *fki_ezmaxpartnerproductstagewebhook_id
     ) {
-    return custom_webhook_response_create_internal (
-        pki_webhook_id,
-        fki_authenticationexternal_id,
+    int *pki_webhook_id_copy = NULL;
+    if (pki_webhook_id) {
+        pki_webhook_id_copy = malloc(sizeof(int));
+        if (pki_webhook_id_copy) *pki_webhook_id_copy = *pki_webhook_id;
+    }
+    int *fki_authenticationexternal_id_copy = NULL;
+    if (fki_authenticationexternal_id) {
+        fki_authenticationexternal_id_copy = malloc(sizeof(int));
+        if (fki_authenticationexternal_id_copy) *fki_authenticationexternal_id_copy = *fki_authenticationexternal_id;
+    }
+    int *fki_ezsignfoldertype_id_copy = NULL;
+    if (fki_ezsignfoldertype_id) {
+        fki_ezsignfoldertype_id_copy = malloc(sizeof(int));
+        if (fki_ezsignfoldertype_id_copy) *fki_ezsignfoldertype_id_copy = *fki_ezsignfoldertype_id;
+    }
+    int *b_webhook_isactive_copy = NULL;
+    if (b_webhook_isactive) {
+        b_webhook_isactive_copy = malloc(sizeof(int));
+        if (b_webhook_isactive_copy) *b_webhook_isactive_copy = *b_webhook_isactive;
+    }
+    int *b_webhook_issigned_copy = NULL;
+    if (b_webhook_issigned) {
+        b_webhook_issigned_copy = malloc(sizeof(int));
+        if (b_webhook_issigned_copy) *b_webhook_issigned_copy = *b_webhook_issigned;
+    }
+    int *b_webhook_skipsslvalidation_copy = NULL;
+    if (b_webhook_skipsslvalidation) {
+        b_webhook_skipsslvalidation_copy = malloc(sizeof(int));
+        if (b_webhook_skipsslvalidation_copy) *b_webhook_skipsslvalidation_copy = *b_webhook_skipsslvalidation;
+    }
+    int *b_webhook_test_copy = NULL;
+    if (b_webhook_test) {
+        b_webhook_test_copy = malloc(sizeof(int));
+        if (b_webhook_test_copy) *b_webhook_test_copy = *b_webhook_test;
+    }
+    int *fki_ezmaxpartnerproductstagewebhook_id_copy = NULL;
+    if (fki_ezmaxpartnerproductstagewebhook_id) {
+        fki_ezmaxpartnerproductstagewebhook_id_copy = malloc(sizeof(int));
+        if (fki_ezmaxpartnerproductstagewebhook_id_copy) *fki_ezmaxpartnerproductstagewebhook_id_copy = *fki_ezmaxpartnerproductstagewebhook_id;
+    }
+    custom_webhook_response_t *result = custom_webhook_response_create_internal (
+        pki_webhook_id_copy,
+        fki_authenticationexternal_id_copy,
         s_webhook_description,
-        fki_ezsignfoldertype_id,
+        fki_ezsignfoldertype_id_copy,
         s_ezsignfoldertype_name_x,
         e_webhook_module,
         e_webhook_ezsignevent,
@@ -117,18 +160,30 @@ __attribute__((deprecated)) custom_webhook_response_t *custom_webhook_response_c
         s_webhook_emailfailed,
         s_webhook_apikey,
         s_webhook_secret,
-        b_webhook_isactive,
-        b_webhook_issigned,
-        b_webhook_skipsslvalidation,
+        b_webhook_isactive_copy,
+        b_webhook_issigned_copy,
+        b_webhook_skipsslvalidation_copy,
         s_authenticationexternal_description,
         obj_audit,
         s_webhook_event,
         s_webhook_authentificationexternalerror,
         a_obj_webhookheader,
         pks_customer_code,
-        b_webhook_test,
-        e_webhook_emittype
+        b_webhook_test_copy,
+        e_webhook_emittype,
+        fki_ezmaxpartnerproductstagewebhook_id_copy
         );
+    if (!result) {
+        free(pki_webhook_id_copy);
+        free(fki_authenticationexternal_id_copy);
+        free(fki_ezsignfoldertype_id_copy);
+        free(b_webhook_isactive_copy);
+        free(b_webhook_issigned_copy);
+        free(b_webhook_skipsslvalidation_copy);
+        free(b_webhook_test_copy);
+        free(fki_ezmaxpartnerproductstagewebhook_id_copy);
+    }
+    return result;
 }
 
 void custom_webhook_response_free(custom_webhook_response_t *custom_webhook_response) {
@@ -140,9 +195,21 @@ void custom_webhook_response_free(custom_webhook_response_t *custom_webhook_resp
         return ;
     }
     listEntry_t *listEntry;
+    if (custom_webhook_response->pki_webhook_id) {
+        free(custom_webhook_response->pki_webhook_id);
+        custom_webhook_response->pki_webhook_id = NULL;
+    }
+    if (custom_webhook_response->fki_authenticationexternal_id) {
+        free(custom_webhook_response->fki_authenticationexternal_id);
+        custom_webhook_response->fki_authenticationexternal_id = NULL;
+    }
     if (custom_webhook_response->s_webhook_description) {
         free(custom_webhook_response->s_webhook_description);
         custom_webhook_response->s_webhook_description = NULL;
+    }
+    if (custom_webhook_response->fki_ezsignfoldertype_id) {
+        free(custom_webhook_response->fki_ezsignfoldertype_id);
+        custom_webhook_response->fki_ezsignfoldertype_id = NULL;
     }
     if (custom_webhook_response->s_ezsignfoldertype_name_x) {
         free(custom_webhook_response->s_ezsignfoldertype_name_x);
@@ -163,6 +230,18 @@ void custom_webhook_response_free(custom_webhook_response_t *custom_webhook_resp
     if (custom_webhook_response->s_webhook_secret) {
         free(custom_webhook_response->s_webhook_secret);
         custom_webhook_response->s_webhook_secret = NULL;
+    }
+    if (custom_webhook_response->b_webhook_isactive) {
+        free(custom_webhook_response->b_webhook_isactive);
+        custom_webhook_response->b_webhook_isactive = NULL;
+    }
+    if (custom_webhook_response->b_webhook_issigned) {
+        free(custom_webhook_response->b_webhook_issigned);
+        custom_webhook_response->b_webhook_issigned = NULL;
+    }
+    if (custom_webhook_response->b_webhook_skipsslvalidation) {
+        free(custom_webhook_response->b_webhook_skipsslvalidation);
+        custom_webhook_response->b_webhook_skipsslvalidation = NULL;
     }
     if (custom_webhook_response->s_authenticationexternal_description) {
         free(custom_webhook_response->s_authenticationexternal_description);
@@ -191,6 +270,14 @@ void custom_webhook_response_free(custom_webhook_response_t *custom_webhook_resp
         free(custom_webhook_response->pks_customer_code);
         custom_webhook_response->pks_customer_code = NULL;
     }
+    if (custom_webhook_response->b_webhook_test) {
+        free(custom_webhook_response->b_webhook_test);
+        custom_webhook_response->b_webhook_test = NULL;
+    }
+    if (custom_webhook_response->fki_ezmaxpartnerproductstagewebhook_id) {
+        free(custom_webhook_response->fki_ezmaxpartnerproductstagewebhook_id);
+        custom_webhook_response->fki_ezmaxpartnerproductstagewebhook_id = NULL;
+    }
     free(custom_webhook_response);
 }
 
@@ -198,17 +285,16 @@ cJSON *custom_webhook_response_convertToJSON(custom_webhook_response_t *custom_w
     cJSON *item = cJSON_CreateObject();
 
     // custom_webhook_response->pki_webhook_id
-    if (!custom_webhook_response->pki_webhook_id) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "pkiWebhookID", custom_webhook_response->pki_webhook_id) == NULL) {
+    if(custom_webhook_response->pki_webhook_id) {
+    if(cJSON_AddNumberToObject(item, "pkiWebhookID", *custom_webhook_response->pki_webhook_id) == NULL) {
     goto fail; //Numeric
+    }
     }
 
 
     // custom_webhook_response->fki_authenticationexternal_id
     if(custom_webhook_response->fki_authenticationexternal_id) {
-    if(cJSON_AddNumberToObject(item, "fkiAuthenticationexternalID", custom_webhook_response->fki_authenticationexternal_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiAuthenticationexternalID", *custom_webhook_response->fki_authenticationexternal_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -225,7 +311,7 @@ cJSON *custom_webhook_response_convertToJSON(custom_webhook_response_t *custom_w
 
     // custom_webhook_response->fki_ezsignfoldertype_id
     if(custom_webhook_response->fki_ezsignfoldertype_id) {
-    if(cJSON_AddNumberToObject(item, "fkiEzsignfoldertypeID", custom_webhook_response->fki_ezsignfoldertype_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsignfoldertypeID", *custom_webhook_response->fki_ezsignfoldertype_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -317,7 +403,7 @@ cJSON *custom_webhook_response_convertToJSON(custom_webhook_response_t *custom_w
     if (!custom_webhook_response->b_webhook_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bWebhookIsactive", custom_webhook_response->b_webhook_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bWebhookIsactive", *custom_webhook_response->b_webhook_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -326,7 +412,7 @@ cJSON *custom_webhook_response_convertToJSON(custom_webhook_response_t *custom_w
     if (!custom_webhook_response->b_webhook_issigned) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bWebhookIssigned", custom_webhook_response->b_webhook_issigned) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bWebhookIssigned", *custom_webhook_response->b_webhook_issigned) == NULL) {
     goto fail; //Bool
     }
 
@@ -335,7 +421,7 @@ cJSON *custom_webhook_response_convertToJSON(custom_webhook_response_t *custom_w
     if (!custom_webhook_response->b_webhook_skipsslvalidation) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bWebhookSkipsslvalidation", custom_webhook_response->b_webhook_skipsslvalidation) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bWebhookSkipsslvalidation", *custom_webhook_response->b_webhook_skipsslvalidation) == NULL) {
     goto fail; //Bool
     }
 
@@ -349,9 +435,7 @@ cJSON *custom_webhook_response_convertToJSON(custom_webhook_response_t *custom_w
 
 
     // custom_webhook_response->obj_audit
-    if (!custom_webhook_response->obj_audit) {
-        goto fail;
-    }
+    if(custom_webhook_response->obj_audit) {
     cJSON *obj_audit_local_JSON = common_audit_convertToJSON(custom_webhook_response->obj_audit);
     if(obj_audit_local_JSON == NULL) {
     goto fail; //model
@@ -359,6 +443,7 @@ cJSON *custom_webhook_response_convertToJSON(custom_webhook_response_t *custom_w
     cJSON_AddItemToObject(item, "objAudit", obj_audit_local_JSON);
     if(item->child == NULL) {
     goto fail;
+    }
     }
 
 
@@ -411,7 +496,7 @@ cJSON *custom_webhook_response_convertToJSON(custom_webhook_response_t *custom_w
     if (!custom_webhook_response->b_webhook_test) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bWebhookTest", custom_webhook_response->b_webhook_test) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bWebhookTest", *custom_webhook_response->b_webhook_test) == NULL) {
     goto fail; //Bool
     }
 
@@ -421,6 +506,14 @@ cJSON *custom_webhook_response_convertToJSON(custom_webhook_response_t *custom_w
     if(cJSON_AddStringToObject(item, "eWebhookEmittype", custom_webhook_response_e_webhook_emittype_ToString(custom_webhook_response->e_webhook_emittype)) == NULL)
     {
     goto fail; //Enum
+    }
+    }
+
+
+    // custom_webhook_response->fki_ezmaxpartnerproductstagewebhook_id
+    if(custom_webhook_response->fki_ezmaxpartnerproductstagewebhook_id) {
+    if(cJSON_AddNumberToObject(item, "fkiEzmaxpartnerproductstagewebhookID", *custom_webhook_response->fki_ezmaxpartnerproductstagewebhook_id) == NULL) {
+    goto fail; //Numeric
     }
     }
 
@@ -436,6 +529,19 @@ custom_webhook_response_t *custom_webhook_response_parseFromJSON(cJSON *custom_w
 
     custom_webhook_response_t *custom_webhook_response_local_var = NULL;
 
+    // define the local variable for custom_webhook_response->pki_webhook_id
+    int *pki_webhook_id_local_var = NULL;
+
+    // define the local variable for custom_webhook_response->fki_authenticationexternal_id
+    int *fki_authenticationexternal_id_local_var = NULL;
+
+    char *s_webhook_description_local_str = NULL;
+
+    // define the local variable for custom_webhook_response->fki_ezsignfoldertype_id
+    int *fki_ezsignfoldertype_id_local_var = NULL;
+
+    char *s_ezsignfoldertype_name_x_local_str = NULL;
+
     // define the local variable for custom_webhook_response->e_webhook_module
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module_local_nonprim = 0;
 
@@ -445,25 +551,59 @@ custom_webhook_response_t *custom_webhook_response_parseFromJSON(cJSON *custom_w
     // define the local variable for custom_webhook_response->e_webhook_managementevent
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent_local_nonprim = 0;
 
+    char *s_webhook_url_local_str = NULL;
+
+    char *s_webhook_emailfailed_local_str = NULL;
+
+    char *s_webhook_apikey_local_str = NULL;
+
+    char *s_webhook_secret_local_str = NULL;
+
+    // define the local variable for custom_webhook_response->b_webhook_isactive
+    int *b_webhook_isactive_local_var = NULL;
+
+    // define the local variable for custom_webhook_response->b_webhook_issigned
+    int *b_webhook_issigned_local_var = NULL;
+
+    // define the local variable for custom_webhook_response->b_webhook_skipsslvalidation
+    int *b_webhook_skipsslvalidation_local_var = NULL;
+
+    char *s_authenticationexternal_description_local_str = NULL;
+
     // define the local variable for custom_webhook_response->obj_audit
     common_audit_t *obj_audit_local_nonprim = NULL;
 
+    char *s_webhook_event_local_str = NULL;
+
+    char *s_webhook_authentificationexternalerror_local_str = NULL;
+
     // define the local list for custom_webhook_response->a_obj_webhookheader
     list_t *a_obj_webhookheaderList = NULL;
+
+    char *pks_customer_code_local_str = NULL;
+
+    // define the local variable for custom_webhook_response->b_webhook_test
+    int *b_webhook_test_local_var = NULL;
+
+    // define the local variable for custom_webhook_response->fki_ezmaxpartnerproductstagewebhook_id
+    int *fki_ezmaxpartnerproductstagewebhook_id_local_var = NULL;
 
     // custom_webhook_response->pki_webhook_id
     cJSON *pki_webhook_id = cJSON_GetObjectItemCaseSensitive(custom_webhook_responseJSON, "pkiWebhookID");
     if (cJSON_IsNull(pki_webhook_id)) {
         pki_webhook_id = NULL;
     }
-    if (!pki_webhook_id) {
-        goto end;
-    }
-
-    
+    if (pki_webhook_id) { 
     if(!cJSON_IsNumber(pki_webhook_id))
     {
     goto end; //Numeric
+    }
+    pki_webhook_id_local_var = malloc(sizeof(int));
+    if(!pki_webhook_id_local_var)
+    {
+        goto end;
+    }
+    *pki_webhook_id_local_var = pki_webhook_id->valuedouble;
     }
 
     // custom_webhook_response->fki_authenticationexternal_id
@@ -476,6 +616,12 @@ custom_webhook_response_t *custom_webhook_response_parseFromJSON(cJSON *custom_w
     {
     goto end; //Numeric
     }
+    fki_authenticationexternal_id_local_var = malloc(sizeof(int));
+    if(!fki_authenticationexternal_id_local_var)
+    {
+        goto end;
+    }
+    *fki_authenticationexternal_id_local_var = fki_authenticationexternal_id->valuedouble;
     }
 
     // custom_webhook_response->s_webhook_description
@@ -503,6 +649,12 @@ custom_webhook_response_t *custom_webhook_response_parseFromJSON(cJSON *custom_w
     {
     goto end; //Numeric
     }
+    fki_ezsignfoldertype_id_local_var = malloc(sizeof(int));
+    if(!fki_ezsignfoldertype_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezsignfoldertype_id_local_var = fki_ezsignfoldertype_id->valuedouble;
     }
 
     // custom_webhook_response->s_ezsignfoldertype_name_x
@@ -615,6 +767,12 @@ custom_webhook_response_t *custom_webhook_response_parseFromJSON(cJSON *custom_w
     {
     goto end; //Bool
     }
+    b_webhook_isactive_local_var = malloc(sizeof(int));
+    if(!b_webhook_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_webhook_isactive_local_var = b_webhook_isactive->valueint;
 
     // custom_webhook_response->b_webhook_issigned
     cJSON *b_webhook_issigned = cJSON_GetObjectItemCaseSensitive(custom_webhook_responseJSON, "bWebhookIssigned");
@@ -630,6 +788,12 @@ custom_webhook_response_t *custom_webhook_response_parseFromJSON(cJSON *custom_w
     {
     goto end; //Bool
     }
+    b_webhook_issigned_local_var = malloc(sizeof(int));
+    if(!b_webhook_issigned_local_var)
+    {
+        goto end;
+    }
+    *b_webhook_issigned_local_var = b_webhook_issigned->valueint;
 
     // custom_webhook_response->b_webhook_skipsslvalidation
     cJSON *b_webhook_skipsslvalidation = cJSON_GetObjectItemCaseSensitive(custom_webhook_responseJSON, "bWebhookSkipsslvalidation");
@@ -645,6 +809,12 @@ custom_webhook_response_t *custom_webhook_response_parseFromJSON(cJSON *custom_w
     {
     goto end; //Bool
     }
+    b_webhook_skipsslvalidation_local_var = malloc(sizeof(int));
+    if(!b_webhook_skipsslvalidation_local_var)
+    {
+        goto end;
+    }
+    *b_webhook_skipsslvalidation_local_var = b_webhook_skipsslvalidation->valueint;
 
     // custom_webhook_response->s_authenticationexternal_description
     cJSON *s_authenticationexternal_description = cJSON_GetObjectItemCaseSensitive(custom_webhook_responseJSON, "sAuthenticationexternalDescription");
@@ -663,12 +833,9 @@ custom_webhook_response_t *custom_webhook_response_parseFromJSON(cJSON *custom_w
     if (cJSON_IsNull(obj_audit)) {
         obj_audit = NULL;
     }
-    if (!obj_audit) {
-        goto end;
-    }
-
-    
+    if (obj_audit) { 
     obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
+    }
 
     // custom_webhook_response->s_webhook_event
     cJSON *s_webhook_event = cJSON_GetObjectItemCaseSensitive(custom_webhook_responseJSON, "sWebhookEvent");
@@ -747,6 +914,12 @@ custom_webhook_response_t *custom_webhook_response_parseFromJSON(cJSON *custom_w
     {
     goto end; //Bool
     }
+    b_webhook_test_local_var = malloc(sizeof(int));
+    if(!b_webhook_test_local_var)
+    {
+        goto end;
+    }
+    *b_webhook_test_local_var = b_webhook_test->valueint;
 
     // custom_webhook_response->e_webhook_emittype
     cJSON *e_webhook_emittype = cJSON_GetObjectItemCaseSensitive(custom_webhook_responseJSON, "eWebhookEmittype");
@@ -762,35 +935,89 @@ custom_webhook_response_t *custom_webhook_response_parseFromJSON(cJSON *custom_w
     e_webhook_emittypeVariable = custom_webhook_response_e_webhook_emittype_FromString(e_webhook_emittype->valuestring);
     }
 
+    // custom_webhook_response->fki_ezmaxpartnerproductstagewebhook_id
+    cJSON *fki_ezmaxpartnerproductstagewebhook_id = cJSON_GetObjectItemCaseSensitive(custom_webhook_responseJSON, "fkiEzmaxpartnerproductstagewebhookID");
+    if (cJSON_IsNull(fki_ezmaxpartnerproductstagewebhook_id)) {
+        fki_ezmaxpartnerproductstagewebhook_id = NULL;
+    }
+    if (fki_ezmaxpartnerproductstagewebhook_id) { 
+    if(!cJSON_IsNumber(fki_ezmaxpartnerproductstagewebhook_id))
+    {
+    goto end; //Numeric
+    }
+    fki_ezmaxpartnerproductstagewebhook_id_local_var = malloc(sizeof(int));
+    if(!fki_ezmaxpartnerproductstagewebhook_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezmaxpartnerproductstagewebhook_id_local_var = fki_ezmaxpartnerproductstagewebhook_id->valuedouble;
+    }
+
+
+    if (s_webhook_description && !cJSON_IsNull(s_webhook_description)) s_webhook_description_local_str = strdup(s_webhook_description->valuestring);
+    if (s_ezsignfoldertype_name_x && !cJSON_IsNull(s_ezsignfoldertype_name_x)) s_ezsignfoldertype_name_x_local_str = strdup(s_ezsignfoldertype_name_x->valuestring);
+    if (s_webhook_url && !cJSON_IsNull(s_webhook_url)) s_webhook_url_local_str = strdup(s_webhook_url->valuestring);
+    if (s_webhook_emailfailed && !cJSON_IsNull(s_webhook_emailfailed)) s_webhook_emailfailed_local_str = strdup(s_webhook_emailfailed->valuestring);
+    if (s_webhook_apikey && !cJSON_IsNull(s_webhook_apikey)) s_webhook_apikey_local_str = strdup(s_webhook_apikey->valuestring);
+    if (s_webhook_secret && !cJSON_IsNull(s_webhook_secret)) s_webhook_secret_local_str = strdup(s_webhook_secret->valuestring);
+    if (s_authenticationexternal_description && !cJSON_IsNull(s_authenticationexternal_description)) s_authenticationexternal_description_local_str = strdup(s_authenticationexternal_description->valuestring);
+    if (s_webhook_event && !cJSON_IsNull(s_webhook_event)) s_webhook_event_local_str = strdup(s_webhook_event->valuestring);
+    if (s_webhook_authentificationexternalerror && !cJSON_IsNull(s_webhook_authentificationexternalerror)) s_webhook_authentificationexternalerror_local_str = strdup(s_webhook_authentificationexternalerror->valuestring);
+    if (pks_customer_code && !cJSON_IsNull(pks_customer_code)) pks_customer_code_local_str = strdup(pks_customer_code->valuestring);
 
     custom_webhook_response_local_var = custom_webhook_response_create_internal (
-        pki_webhook_id->valuedouble,
-        fki_authenticationexternal_id ? fki_authenticationexternal_id->valuedouble : 0,
-        strdup(s_webhook_description->valuestring),
-        fki_ezsignfoldertype_id ? fki_ezsignfoldertype_id->valuedouble : 0,
-        s_ezsignfoldertype_name_x && !cJSON_IsNull(s_ezsignfoldertype_name_x) ? strdup(s_ezsignfoldertype_name_x->valuestring) : NULL,
+        pki_webhook_id_local_var,
+        fki_authenticationexternal_id_local_var,
+        s_webhook_description_local_str,
+        fki_ezsignfoldertype_id_local_var,
+        s_ezsignfoldertype_name_x_local_str,
         e_webhook_module_local_nonprim,
         e_webhook_ezsignevent ? e_webhook_ezsignevent_local_nonprim : 0,
         e_webhook_managementevent ? e_webhook_managementevent_local_nonprim : 0,
-        strdup(s_webhook_url->valuestring),
-        strdup(s_webhook_emailfailed->valuestring),
-        s_webhook_apikey && !cJSON_IsNull(s_webhook_apikey) ? strdup(s_webhook_apikey->valuestring) : NULL,
-        s_webhook_secret && !cJSON_IsNull(s_webhook_secret) ? strdup(s_webhook_secret->valuestring) : NULL,
-        b_webhook_isactive->valueint,
-        b_webhook_issigned->valueint,
-        b_webhook_skipsslvalidation->valueint,
-        s_authenticationexternal_description && !cJSON_IsNull(s_authenticationexternal_description) ? strdup(s_authenticationexternal_description->valuestring) : NULL,
-        obj_audit_local_nonprim,
-        s_webhook_event && !cJSON_IsNull(s_webhook_event) ? strdup(s_webhook_event->valuestring) : NULL,
-        s_webhook_authentificationexternalerror && !cJSON_IsNull(s_webhook_authentificationexternalerror) ? strdup(s_webhook_authentificationexternalerror->valuestring) : NULL,
+        s_webhook_url_local_str,
+        s_webhook_emailfailed_local_str,
+        s_webhook_apikey_local_str,
+        s_webhook_secret_local_str,
+        b_webhook_isactive_local_var,
+        b_webhook_issigned_local_var,
+        b_webhook_skipsslvalidation_local_var,
+        s_authenticationexternal_description_local_str,
+        obj_audit ? obj_audit_local_nonprim : NULL,
+        s_webhook_event_local_str,
+        s_webhook_authentificationexternalerror_local_str,
         a_obj_webhookheader ? a_obj_webhookheaderList : NULL,
-        strdup(pks_customer_code->valuestring),
-        b_webhook_test->valueint,
-        e_webhook_emittype ? e_webhook_emittypeVariable : ezmax_api_definition__full_custom_webhook_response_EWEBHOOKEMITTYPE_NULL
+        pks_customer_code_local_str,
+        b_webhook_test_local_var,
+        e_webhook_emittype ? e_webhook_emittypeVariable : ezmax_api_definition__full_custom_webhook_response_EWEBHOOKEMITTYPE_NULL,
+        fki_ezmaxpartnerproductstagewebhook_id_local_var
         );
+
+    if (!custom_webhook_response_local_var) {
+        goto end;
+    }
 
     return custom_webhook_response_local_var;
 end:
+    if (pki_webhook_id_local_var) {
+        free(pki_webhook_id_local_var);
+        pki_webhook_id_local_var = NULL;
+    }
+    if (fki_authenticationexternal_id_local_var) {
+        free(fki_authenticationexternal_id_local_var);
+        fki_authenticationexternal_id_local_var = NULL;
+    }
+    if (s_webhook_description_local_str) {
+        free(s_webhook_description_local_str);
+        s_webhook_description_local_str = NULL;
+    }
+    if (fki_ezsignfoldertype_id_local_var) {
+        free(fki_ezsignfoldertype_id_local_var);
+        fki_ezsignfoldertype_id_local_var = NULL;
+    }
+    if (s_ezsignfoldertype_name_x_local_str) {
+        free(s_ezsignfoldertype_name_x_local_str);
+        s_ezsignfoldertype_name_x_local_str = NULL;
+    }
     if (e_webhook_module_local_nonprim) {
         e_webhook_module_local_nonprim = 0;
     }
@@ -800,9 +1027,49 @@ end:
     if (e_webhook_managementevent_local_nonprim) {
         e_webhook_managementevent_local_nonprim = 0;
     }
+    if (s_webhook_url_local_str) {
+        free(s_webhook_url_local_str);
+        s_webhook_url_local_str = NULL;
+    }
+    if (s_webhook_emailfailed_local_str) {
+        free(s_webhook_emailfailed_local_str);
+        s_webhook_emailfailed_local_str = NULL;
+    }
+    if (s_webhook_apikey_local_str) {
+        free(s_webhook_apikey_local_str);
+        s_webhook_apikey_local_str = NULL;
+    }
+    if (s_webhook_secret_local_str) {
+        free(s_webhook_secret_local_str);
+        s_webhook_secret_local_str = NULL;
+    }
+    if (b_webhook_isactive_local_var) {
+        free(b_webhook_isactive_local_var);
+        b_webhook_isactive_local_var = NULL;
+    }
+    if (b_webhook_issigned_local_var) {
+        free(b_webhook_issigned_local_var);
+        b_webhook_issigned_local_var = NULL;
+    }
+    if (b_webhook_skipsslvalidation_local_var) {
+        free(b_webhook_skipsslvalidation_local_var);
+        b_webhook_skipsslvalidation_local_var = NULL;
+    }
+    if (s_authenticationexternal_description_local_str) {
+        free(s_authenticationexternal_description_local_str);
+        s_authenticationexternal_description_local_str = NULL;
+    }
     if (obj_audit_local_nonprim) {
         common_audit_free(obj_audit_local_nonprim);
         obj_audit_local_nonprim = NULL;
+    }
+    if (s_webhook_event_local_str) {
+        free(s_webhook_event_local_str);
+        s_webhook_event_local_str = NULL;
+    }
+    if (s_webhook_authentificationexternalerror_local_str) {
+        free(s_webhook_authentificationexternalerror_local_str);
+        s_webhook_authentificationexternalerror_local_str = NULL;
     }
     if (a_obj_webhookheaderList) {
         listEntry_t *listEntry = NULL;
@@ -812,6 +1079,18 @@ end:
         }
         list_freeList(a_obj_webhookheaderList);
         a_obj_webhookheaderList = NULL;
+    }
+    if (pks_customer_code_local_str) {
+        free(pks_customer_code_local_str);
+        pks_customer_code_local_str = NULL;
+    }
+    if (b_webhook_test_local_var) {
+        free(b_webhook_test_local_var);
+        b_webhook_test_local_var = NULL;
+    }
+    if (fki_ezmaxpartnerproductstagewebhook_id_local_var) {
+        free(fki_ezmaxpartnerproductstagewebhook_id_local_var);
+        fki_ezmaxpartnerproductstagewebhook_id_local_var = NULL;
     }
     return NULL;
 

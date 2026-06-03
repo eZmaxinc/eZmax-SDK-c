@@ -19,21 +19,21 @@ typedef struct custom_discussionconfiguration_response_t custom_discussionconfig
 
 
 typedef struct custom_discussionconfiguration_response_t {
-    int b_discussionconfiguration_completehistorywhenadded; //boolean
-    int b_discussionconfiguration_createallowed; //boolean
-    int b_discussionconfiguration_deleteallowed; //boolean
-    int b_discussionconfiguration_deletediscussionmessageallowed; //boolean
-    int b_discussionconfiguration_editdiscussionmessageallowed; //boolean
+    int *b_discussionconfiguration_completehistorywhenadded; //boolean
+    int *b_discussionconfiguration_createallowed; //boolean
+    int *b_discussionconfiguration_deleteallowed; //boolean
+    int *b_discussionconfiguration_deletediscussionmessageallowed; //boolean
+    int *b_discussionconfiguration_editdiscussionmessageallowed; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } custom_discussionconfiguration_response_t;
 
 __attribute__((deprecated)) custom_discussionconfiguration_response_t *custom_discussionconfiguration_response_create(
-    int b_discussionconfiguration_completehistorywhenadded,
-    int b_discussionconfiguration_createallowed,
-    int b_discussionconfiguration_deleteallowed,
-    int b_discussionconfiguration_deletediscussionmessageallowed,
-    int b_discussionconfiguration_editdiscussionmessageallowed
+    int *b_discussionconfiguration_completehistorywhenadded,
+    int *b_discussionconfiguration_createallowed,
+    int *b_discussionconfiguration_deleteallowed,
+    int *b_discussionconfiguration_deletediscussionmessageallowed,
+    int *b_discussionconfiguration_editdiscussionmessageallowed
 );
 
 void custom_discussionconfiguration_response_free(custom_discussionconfiguration_response_t *custom_discussionconfiguration_response);

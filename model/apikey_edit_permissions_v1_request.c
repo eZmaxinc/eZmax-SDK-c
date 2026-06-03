@@ -12,18 +12,21 @@ static apikey_edit_permissions_v1_request_t *apikey_edit_permissions_v1_request_
     if (!apikey_edit_permissions_v1_request_local_var) {
         return NULL;
     }
-    apikey_edit_permissions_v1_request_local_var->a_obj_permission = a_obj_permission;
-
+    memset(apikey_edit_permissions_v1_request_local_var, 0, sizeof(apikey_edit_permissions_v1_request_t));
     apikey_edit_permissions_v1_request_local_var->_library_owned = 1;
+    apikey_edit_permissions_v1_request_local_var->a_obj_permission = a_obj_permission;
     return apikey_edit_permissions_v1_request_local_var;
 }
 
 __attribute__((deprecated)) apikey_edit_permissions_v1_request_t *apikey_edit_permissions_v1_request_create(
     list_t *a_obj_permission
     ) {
-    return apikey_edit_permissions_v1_request_create_internal (
+    apikey_edit_permissions_v1_request_t *result = apikey_edit_permissions_v1_request_create_internal (
         a_obj_permission
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void apikey_edit_permissions_v1_request_free(apikey_edit_permissions_v1_request_t *apikey_edit_permissions_v1_request) {
@@ -111,9 +114,14 @@ apikey_edit_permissions_v1_request_t *apikey_edit_permissions_v1_request_parseFr
     }
 
 
+
     apikey_edit_permissions_v1_request_local_var = apikey_edit_permissions_v1_request_create_internal (
         a_obj_permissionList
         );
+
+    if (!apikey_edit_permissions_v1_request_local_var) {
+        goto end;
+    }
 
     return apikey_edit_permissions_v1_request_local_var;
 end:

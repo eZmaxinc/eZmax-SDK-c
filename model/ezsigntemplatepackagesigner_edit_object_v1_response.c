@@ -13,10 +13,10 @@ static ezsigntemplatepackagesigner_edit_object_v1_response_t *ezsigntemplatepack
     if (!ezsigntemplatepackagesigner_edit_object_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsigntemplatepackagesigner_edit_object_v1_response_local_var, 0, sizeof(ezsigntemplatepackagesigner_edit_object_v1_response_t));
+    ezsigntemplatepackagesigner_edit_object_v1_response_local_var->_library_owned = 1;
     ezsigntemplatepackagesigner_edit_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsigntemplatepackagesigner_edit_object_v1_response_local_var->obj_debug = obj_debug;
-
-    ezsigntemplatepackagesigner_edit_object_v1_response_local_var->_library_owned = 1;
     return ezsigntemplatepackagesigner_edit_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) ezsigntemplatepackagesigner_edit_object_v1_response_
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return ezsigntemplatepackagesigner_edit_object_v1_response_create_internal (
+    ezsigntemplatepackagesigner_edit_object_v1_response_t *result = ezsigntemplatepackagesigner_edit_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatepackagesigner_edit_object_v1_response_free(ezsigntemplatepackagesigner_edit_object_v1_response_t *ezsigntemplatepackagesigner_edit_object_v1_response) {
@@ -119,10 +122,15 @@ ezsigntemplatepackagesigner_edit_object_v1_response_t *ezsigntemplatepackagesign
     }
 
 
+
     ezsigntemplatepackagesigner_edit_object_v1_response_local_var = ezsigntemplatepackagesigner_edit_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!ezsigntemplatepackagesigner_edit_object_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatepackagesigner_edit_object_v1_response_local_var;
 end:

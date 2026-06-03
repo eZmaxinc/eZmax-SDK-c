@@ -12,18 +12,21 @@ static timezone_get_autocomplete_v2_response_m_payload_t *timezone_get_autocompl
     if (!timezone_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    timezone_get_autocomplete_v2_response_m_payload_local_var->a_obj_timezone = a_obj_timezone;
-
+    memset(timezone_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(timezone_get_autocomplete_v2_response_m_payload_t));
     timezone_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    timezone_get_autocomplete_v2_response_m_payload_local_var->a_obj_timezone = a_obj_timezone;
     return timezone_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) timezone_get_autocomplete_v2_response_m_payload_t *timezone_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_timezone
     ) {
-    return timezone_get_autocomplete_v2_response_m_payload_create_internal (
+    timezone_get_autocomplete_v2_response_m_payload_t *result = timezone_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_timezone
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void timezone_get_autocomplete_v2_response_m_payload_free(timezone_get_autocomplete_v2_response_m_payload_t *timezone_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ timezone_get_autocomplete_v2_response_m_payload_t *timezone_get_autocomplete_v2_
     }
 
 
+
     timezone_get_autocomplete_v2_response_m_payload_local_var = timezone_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_timezoneList
         );
+
+    if (!timezone_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return timezone_get_autocomplete_v2_response_m_payload_local_var;
 end:

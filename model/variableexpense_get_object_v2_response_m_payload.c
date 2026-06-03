@@ -12,18 +12,21 @@ static variableexpense_get_object_v2_response_m_payload_t *variableexpense_get_o
     if (!variableexpense_get_object_v2_response_m_payload_local_var) {
         return NULL;
     }
-    variableexpense_get_object_v2_response_m_payload_local_var->obj_variableexpense = obj_variableexpense;
-
+    memset(variableexpense_get_object_v2_response_m_payload_local_var, 0, sizeof(variableexpense_get_object_v2_response_m_payload_t));
     variableexpense_get_object_v2_response_m_payload_local_var->_library_owned = 1;
+    variableexpense_get_object_v2_response_m_payload_local_var->obj_variableexpense = obj_variableexpense;
     return variableexpense_get_object_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) variableexpense_get_object_v2_response_m_payload_t *variableexpense_get_object_v2_response_m_payload_create(
     variableexpense_response_compound_t *obj_variableexpense
     ) {
-    return variableexpense_get_object_v2_response_m_payload_create_internal (
+    variableexpense_get_object_v2_response_m_payload_t *result = variableexpense_get_object_v2_response_m_payload_create_internal (
         obj_variableexpense
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void variableexpense_get_object_v2_response_m_payload_free(variableexpense_get_object_v2_response_m_payload_t *variableexpense_get_object_v2_response_m_payload) {
@@ -86,9 +89,14 @@ variableexpense_get_object_v2_response_m_payload_t *variableexpense_get_object_v
     obj_variableexpense_local_nonprim = variableexpense_response_compound_parseFromJSON(obj_variableexpense); //nonprimitive
 
 
+
     variableexpense_get_object_v2_response_m_payload_local_var = variableexpense_get_object_v2_response_m_payload_create_internal (
         obj_variableexpense_local_nonprim
         );
+
+    if (!variableexpense_get_object_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return variableexpense_get_object_v2_response_m_payload_local_var;
 end:

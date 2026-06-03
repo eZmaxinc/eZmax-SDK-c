@@ -6,32 +6,47 @@
 
 
 static ezsigntemplateglobal_autocomplete_element_response_t *ezsigntemplateglobal_autocomplete_element_response_create_internal(
-    int pki_ezsigntemplateglobal_id,
+    int *pki_ezsigntemplateglobal_id,
     char *s_ezsigntemplateglobal_description,
-    int b_ezsigntemplateglobal_isactive
+    int *b_ezsigntemplateglobal_isactive
     ) {
     ezsigntemplateglobal_autocomplete_element_response_t *ezsigntemplateglobal_autocomplete_element_response_local_var = malloc(sizeof(ezsigntemplateglobal_autocomplete_element_response_t));
     if (!ezsigntemplateglobal_autocomplete_element_response_local_var) {
         return NULL;
     }
+    memset(ezsigntemplateglobal_autocomplete_element_response_local_var, 0, sizeof(ezsigntemplateglobal_autocomplete_element_response_t));
+    ezsigntemplateglobal_autocomplete_element_response_local_var->_library_owned = 1;
     ezsigntemplateglobal_autocomplete_element_response_local_var->pki_ezsigntemplateglobal_id = pki_ezsigntemplateglobal_id;
     ezsigntemplateglobal_autocomplete_element_response_local_var->s_ezsigntemplateglobal_description = s_ezsigntemplateglobal_description;
     ezsigntemplateglobal_autocomplete_element_response_local_var->b_ezsigntemplateglobal_isactive = b_ezsigntemplateglobal_isactive;
-
-    ezsigntemplateglobal_autocomplete_element_response_local_var->_library_owned = 1;
     return ezsigntemplateglobal_autocomplete_element_response_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplateglobal_autocomplete_element_response_t *ezsigntemplateglobal_autocomplete_element_response_create(
-    int pki_ezsigntemplateglobal_id,
+    int *pki_ezsigntemplateglobal_id,
     char *s_ezsigntemplateglobal_description,
-    int b_ezsigntemplateglobal_isactive
+    int *b_ezsigntemplateglobal_isactive
     ) {
-    return ezsigntemplateglobal_autocomplete_element_response_create_internal (
-        pki_ezsigntemplateglobal_id,
+    int *pki_ezsigntemplateglobal_id_copy = NULL;
+    if (pki_ezsigntemplateglobal_id) {
+        pki_ezsigntemplateglobal_id_copy = malloc(sizeof(int));
+        if (pki_ezsigntemplateglobal_id_copy) *pki_ezsigntemplateglobal_id_copy = *pki_ezsigntemplateglobal_id;
+    }
+    int *b_ezsigntemplateglobal_isactive_copy = NULL;
+    if (b_ezsigntemplateglobal_isactive) {
+        b_ezsigntemplateglobal_isactive_copy = malloc(sizeof(int));
+        if (b_ezsigntemplateglobal_isactive_copy) *b_ezsigntemplateglobal_isactive_copy = *b_ezsigntemplateglobal_isactive;
+    }
+    ezsigntemplateglobal_autocomplete_element_response_t *result = ezsigntemplateglobal_autocomplete_element_response_create_internal (
+        pki_ezsigntemplateglobal_id_copy,
         s_ezsigntemplateglobal_description,
-        b_ezsigntemplateglobal_isactive
+        b_ezsigntemplateglobal_isactive_copy
         );
+    if (!result) {
+        free(pki_ezsigntemplateglobal_id_copy);
+        free(b_ezsigntemplateglobal_isactive_copy);
+    }
+    return result;
 }
 
 void ezsigntemplateglobal_autocomplete_element_response_free(ezsigntemplateglobal_autocomplete_element_response_t *ezsigntemplateglobal_autocomplete_element_response) {
@@ -43,9 +58,17 @@ void ezsigntemplateglobal_autocomplete_element_response_free(ezsigntemplategloba
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsigntemplateglobal_autocomplete_element_response->pki_ezsigntemplateglobal_id) {
+        free(ezsigntemplateglobal_autocomplete_element_response->pki_ezsigntemplateglobal_id);
+        ezsigntemplateglobal_autocomplete_element_response->pki_ezsigntemplateglobal_id = NULL;
+    }
     if (ezsigntemplateglobal_autocomplete_element_response->s_ezsigntemplateglobal_description) {
         free(ezsigntemplateglobal_autocomplete_element_response->s_ezsigntemplateglobal_description);
         ezsigntemplateglobal_autocomplete_element_response->s_ezsigntemplateglobal_description = NULL;
+    }
+    if (ezsigntemplateglobal_autocomplete_element_response->b_ezsigntemplateglobal_isactive) {
+        free(ezsigntemplateglobal_autocomplete_element_response->b_ezsigntemplateglobal_isactive);
+        ezsigntemplateglobal_autocomplete_element_response->b_ezsigntemplateglobal_isactive = NULL;
     }
     free(ezsigntemplateglobal_autocomplete_element_response);
 }
@@ -57,7 +80,7 @@ cJSON *ezsigntemplateglobal_autocomplete_element_response_convertToJSON(ezsignte
     if (!ezsigntemplateglobal_autocomplete_element_response->pki_ezsigntemplateglobal_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiEzsigntemplateglobalID", ezsigntemplateglobal_autocomplete_element_response->pki_ezsigntemplateglobal_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzsigntemplateglobalID", *ezsigntemplateglobal_autocomplete_element_response->pki_ezsigntemplateglobal_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -75,7 +98,7 @@ cJSON *ezsigntemplateglobal_autocomplete_element_response_convertToJSON(ezsignte
     if (!ezsigntemplateglobal_autocomplete_element_response->b_ezsigntemplateglobal_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bEzsigntemplateglobalIsactive", ezsigntemplateglobal_autocomplete_element_response->b_ezsigntemplateglobal_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bEzsigntemplateglobalIsactive", *ezsigntemplateglobal_autocomplete_element_response->b_ezsigntemplateglobal_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -91,6 +114,14 @@ ezsigntemplateglobal_autocomplete_element_response_t *ezsigntemplateglobal_autoc
 
     ezsigntemplateglobal_autocomplete_element_response_t *ezsigntemplateglobal_autocomplete_element_response_local_var = NULL;
 
+    // define the local variable for ezsigntemplateglobal_autocomplete_element_response->pki_ezsigntemplateglobal_id
+    int *pki_ezsigntemplateglobal_id_local_var = NULL;
+
+    char *s_ezsigntemplateglobal_description_local_str = NULL;
+
+    // define the local variable for ezsigntemplateglobal_autocomplete_element_response->b_ezsigntemplateglobal_isactive
+    int *b_ezsigntemplateglobal_isactive_local_var = NULL;
+
     // ezsigntemplateglobal_autocomplete_element_response->pki_ezsigntemplateglobal_id
     cJSON *pki_ezsigntemplateglobal_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplateglobal_autocomplete_element_responseJSON, "pkiEzsigntemplateglobalID");
     if (cJSON_IsNull(pki_ezsigntemplateglobal_id)) {
@@ -105,6 +136,12 @@ ezsigntemplateglobal_autocomplete_element_response_t *ezsigntemplateglobal_autoc
     {
     goto end; //Numeric
     }
+    pki_ezsigntemplateglobal_id_local_var = malloc(sizeof(int));
+    if(!pki_ezsigntemplateglobal_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezsigntemplateglobal_id_local_var = pki_ezsigntemplateglobal_id->valuedouble;
 
     // ezsigntemplateglobal_autocomplete_element_response->s_ezsigntemplateglobal_description
     cJSON *s_ezsigntemplateglobal_description = cJSON_GetObjectItemCaseSensitive(ezsigntemplateglobal_autocomplete_element_responseJSON, "sEzsigntemplateglobalDescription");
@@ -135,16 +172,40 @@ ezsigntemplateglobal_autocomplete_element_response_t *ezsigntemplateglobal_autoc
     {
     goto end; //Bool
     }
+    b_ezsigntemplateglobal_isactive_local_var = malloc(sizeof(int));
+    if(!b_ezsigntemplateglobal_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_ezsigntemplateglobal_isactive_local_var = b_ezsigntemplateglobal_isactive->valueint;
 
+
+    if (s_ezsigntemplateglobal_description && !cJSON_IsNull(s_ezsigntemplateglobal_description)) s_ezsigntemplateglobal_description_local_str = strdup(s_ezsigntemplateglobal_description->valuestring);
 
     ezsigntemplateglobal_autocomplete_element_response_local_var = ezsigntemplateglobal_autocomplete_element_response_create_internal (
-        pki_ezsigntemplateglobal_id->valuedouble,
-        strdup(s_ezsigntemplateglobal_description->valuestring),
-        b_ezsigntemplateglobal_isactive->valueint
+        pki_ezsigntemplateglobal_id_local_var,
+        s_ezsigntemplateglobal_description_local_str,
+        b_ezsigntemplateglobal_isactive_local_var
         );
+
+    if (!ezsigntemplateglobal_autocomplete_element_response_local_var) {
+        goto end;
+    }
 
     return ezsigntemplateglobal_autocomplete_element_response_local_var;
 end:
+    if (pki_ezsigntemplateglobal_id_local_var) {
+        free(pki_ezsigntemplateglobal_id_local_var);
+        pki_ezsigntemplateglobal_id_local_var = NULL;
+    }
+    if (s_ezsigntemplateglobal_description_local_str) {
+        free(s_ezsigntemplateglobal_description_local_str);
+        s_ezsigntemplateglobal_description_local_str = NULL;
+    }
+    if (b_ezsigntemplateglobal_isactive_local_var) {
+        free(b_ezsigntemplateglobal_isactive_local_var);
+        b_ezsigntemplateglobal_isactive_local_var = NULL;
+    }
     return NULL;
 
 }

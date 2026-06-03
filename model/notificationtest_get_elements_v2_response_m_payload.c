@@ -12,18 +12,21 @@ static notificationtest_get_elements_v2_response_m_payload_t *notificationtest_g
     if (!notificationtest_get_elements_v2_response_m_payload_local_var) {
         return NULL;
     }
-    notificationtest_get_elements_v2_response_m_payload_local_var->obj_notificationtest = obj_notificationtest;
-
+    memset(notificationtest_get_elements_v2_response_m_payload_local_var, 0, sizeof(notificationtest_get_elements_v2_response_m_payload_t));
     notificationtest_get_elements_v2_response_m_payload_local_var->_library_owned = 1;
+    notificationtest_get_elements_v2_response_m_payload_local_var->obj_notificationtest = obj_notificationtest;
     return notificationtest_get_elements_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) notificationtest_get_elements_v2_response_m_payload_t *notificationtest_get_elements_v2_response_m_payload_create(
     custom_notificationtestgetelements_response_t *obj_notificationtest
     ) {
-    return notificationtest_get_elements_v2_response_m_payload_create_internal (
+    notificationtest_get_elements_v2_response_m_payload_t *result = notificationtest_get_elements_v2_response_m_payload_create_internal (
         obj_notificationtest
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void notificationtest_get_elements_v2_response_m_payload_free(notificationtest_get_elements_v2_response_m_payload_t *notificationtest_get_elements_v2_response_m_payload) {
@@ -86,9 +89,14 @@ notificationtest_get_elements_v2_response_m_payload_t *notificationtest_get_elem
     obj_notificationtest_local_nonprim = custom_notificationtestgetelements_response_parseFromJSON(obj_notificationtest); //nonprimitive
 
 
+
     notificationtest_get_elements_v2_response_m_payload_local_var = notificationtest_get_elements_v2_response_m_payload_create_internal (
         obj_notificationtest_local_nonprim
         );
+
+    if (!notificationtest_get_elements_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return notificationtest_get_elements_v2_response_m_payload_local_var;
 end:

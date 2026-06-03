@@ -6,7 +6,7 @@
 
 
 static user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_create_internal(
-    int fki_language_id,
+    int *fki_language_id,
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_email_address,
@@ -19,6 +19,8 @@ static user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_cr
     if (!user_create_ezsignuser_v1_request_local_var) {
         return NULL;
     }
+    memset(user_create_ezsignuser_v1_request_local_var, 0, sizeof(user_create_ezsignuser_v1_request_t));
+    user_create_ezsignuser_v1_request_local_var->_library_owned = 1;
     user_create_ezsignuser_v1_request_local_var->fki_language_id = fki_language_id;
     user_create_ezsignuser_v1_request_local_var->s_user_firstname = s_user_firstname;
     user_create_ezsignuser_v1_request_local_var->s_user_lastname = s_user_lastname;
@@ -27,13 +29,11 @@ static user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_cr
     user_create_ezsignuser_v1_request_local_var->s_phone_exchange = s_phone_exchange;
     user_create_ezsignuser_v1_request_local_var->s_phone_number = s_phone_number;
     user_create_ezsignuser_v1_request_local_var->s_phone_extension = s_phone_extension;
-
-    user_create_ezsignuser_v1_request_local_var->_library_owned = 1;
     return user_create_ezsignuser_v1_request_local_var;
 }
 
 __attribute__((deprecated)) user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_create(
-    int fki_language_id,
+    int *fki_language_id,
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_email_address,
@@ -42,8 +42,13 @@ __attribute__((deprecated)) user_create_ezsignuser_v1_request_t *user_create_ezs
     char *s_phone_number,
     char *s_phone_extension
     ) {
-    return user_create_ezsignuser_v1_request_create_internal (
-        fki_language_id,
+    int *fki_language_id_copy = NULL;
+    if (fki_language_id) {
+        fki_language_id_copy = malloc(sizeof(int));
+        if (fki_language_id_copy) *fki_language_id_copy = *fki_language_id;
+    }
+    user_create_ezsignuser_v1_request_t *result = user_create_ezsignuser_v1_request_create_internal (
+        fki_language_id_copy,
         s_user_firstname,
         s_user_lastname,
         s_email_address,
@@ -52,6 +57,10 @@ __attribute__((deprecated)) user_create_ezsignuser_v1_request_t *user_create_ezs
         s_phone_number,
         s_phone_extension
         );
+    if (!result) {
+        free(fki_language_id_copy);
+    }
+    return result;
 }
 
 void user_create_ezsignuser_v1_request_free(user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request) {
@@ -63,6 +72,10 @@ void user_create_ezsignuser_v1_request_free(user_create_ezsignuser_v1_request_t 
         return ;
     }
     listEntry_t *listEntry;
+    if (user_create_ezsignuser_v1_request->fki_language_id) {
+        free(user_create_ezsignuser_v1_request->fki_language_id);
+        user_create_ezsignuser_v1_request->fki_language_id = NULL;
+    }
     if (user_create_ezsignuser_v1_request->s_user_firstname) {
         free(user_create_ezsignuser_v1_request->s_user_firstname);
         user_create_ezsignuser_v1_request->s_user_firstname = NULL;
@@ -101,7 +114,7 @@ cJSON *user_create_ezsignuser_v1_request_convertToJSON(user_create_ezsignuser_v1
     if (!user_create_ezsignuser_v1_request->fki_language_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiLanguageID", user_create_ezsignuser_v1_request->fki_language_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiLanguageID", *user_create_ezsignuser_v1_request->fki_language_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -179,6 +192,23 @@ user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_parseFrom
 
     user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_local_var = NULL;
 
+    // define the local variable for user_create_ezsignuser_v1_request->fki_language_id
+    int *fki_language_id_local_var = NULL;
+
+    char *s_user_firstname_local_str = NULL;
+
+    char *s_user_lastname_local_str = NULL;
+
+    char *s_email_address_local_str = NULL;
+
+    char *s_phone_region_local_str = NULL;
+
+    char *s_phone_exchange_local_str = NULL;
+
+    char *s_phone_number_local_str = NULL;
+
+    char *s_phone_extension_local_str = NULL;
+
     // user_create_ezsignuser_v1_request->fki_language_id
     cJSON *fki_language_id = cJSON_GetObjectItemCaseSensitive(user_create_ezsignuser_v1_requestJSON, "fkiLanguageID");
     if (cJSON_IsNull(fki_language_id)) {
@@ -193,6 +223,12 @@ user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_parseFrom
     {
     goto end; //Numeric
     }
+    fki_language_id_local_var = malloc(sizeof(int));
+    if(!fki_language_id_local_var)
+    {
+        goto end;
+    }
+    *fki_language_id_local_var = fki_language_id->valuedouble;
 
     // user_create_ezsignuser_v1_request->s_user_firstname
     cJSON *s_user_firstname = cJSON_GetObjectItemCaseSensitive(user_create_ezsignuser_v1_requestJSON, "sUserFirstname");
@@ -297,19 +333,63 @@ user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_parseFrom
     }
 
 
+    if (s_user_firstname && !cJSON_IsNull(s_user_firstname)) s_user_firstname_local_str = strdup(s_user_firstname->valuestring);
+    if (s_user_lastname && !cJSON_IsNull(s_user_lastname)) s_user_lastname_local_str = strdup(s_user_lastname->valuestring);
+    if (s_email_address && !cJSON_IsNull(s_email_address)) s_email_address_local_str = strdup(s_email_address->valuestring);
+    if (s_phone_region && !cJSON_IsNull(s_phone_region)) s_phone_region_local_str = strdup(s_phone_region->valuestring);
+    if (s_phone_exchange && !cJSON_IsNull(s_phone_exchange)) s_phone_exchange_local_str = strdup(s_phone_exchange->valuestring);
+    if (s_phone_number && !cJSON_IsNull(s_phone_number)) s_phone_number_local_str = strdup(s_phone_number->valuestring);
+    if (s_phone_extension && !cJSON_IsNull(s_phone_extension)) s_phone_extension_local_str = strdup(s_phone_extension->valuestring);
+
     user_create_ezsignuser_v1_request_local_var = user_create_ezsignuser_v1_request_create_internal (
-        fki_language_id->valuedouble,
-        strdup(s_user_firstname->valuestring),
-        strdup(s_user_lastname->valuestring),
-        strdup(s_email_address->valuestring),
-        strdup(s_phone_region->valuestring),
-        strdup(s_phone_exchange->valuestring),
-        strdup(s_phone_number->valuestring),
-        s_phone_extension && !cJSON_IsNull(s_phone_extension) ? strdup(s_phone_extension->valuestring) : NULL
+        fki_language_id_local_var,
+        s_user_firstname_local_str,
+        s_user_lastname_local_str,
+        s_email_address_local_str,
+        s_phone_region_local_str,
+        s_phone_exchange_local_str,
+        s_phone_number_local_str,
+        s_phone_extension_local_str
         );
+
+    if (!user_create_ezsignuser_v1_request_local_var) {
+        goto end;
+    }
 
     return user_create_ezsignuser_v1_request_local_var;
 end:
+    if (fki_language_id_local_var) {
+        free(fki_language_id_local_var);
+        fki_language_id_local_var = NULL;
+    }
+    if (s_user_firstname_local_str) {
+        free(s_user_firstname_local_str);
+        s_user_firstname_local_str = NULL;
+    }
+    if (s_user_lastname_local_str) {
+        free(s_user_lastname_local_str);
+        s_user_lastname_local_str = NULL;
+    }
+    if (s_email_address_local_str) {
+        free(s_email_address_local_str);
+        s_email_address_local_str = NULL;
+    }
+    if (s_phone_region_local_str) {
+        free(s_phone_region_local_str);
+        s_phone_region_local_str = NULL;
+    }
+    if (s_phone_exchange_local_str) {
+        free(s_phone_exchange_local_str);
+        s_phone_exchange_local_str = NULL;
+    }
+    if (s_phone_number_local_str) {
+        free(s_phone_number_local_str);
+        s_phone_number_local_str = NULL;
+    }
+    if (s_phone_extension_local_str) {
+        free(s_phone_extension_local_str);
+        s_phone_extension_local_str = NULL;
+    }
     return NULL;
 
 }

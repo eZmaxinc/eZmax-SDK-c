@@ -20,21 +20,21 @@ typedef struct variableexpense_list_element_t variableexpense_list_element_t;
 
 
 typedef struct variableexpense_list_element_t {
-    int pki_variableexpense_id; //numeric
+    int *pki_variableexpense_id; //numeric
     char *s_variableexpense_code; // string
     char *s_variableexpense_description_x; // string
     ezmax_api_definition__full_field_e_variableexpense_taxable__e e_variableexpense_taxable; //referenced enum
-    int b_variableexpense_isactive; //boolean
+    int *b_variableexpense_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } variableexpense_list_element_t;
 
 __attribute__((deprecated)) variableexpense_list_element_t *variableexpense_list_element_create(
-    int pki_variableexpense_id,
+    int *pki_variableexpense_id,
     char *s_variableexpense_code,
     char *s_variableexpense_description_x,
     ezmax_api_definition__full_field_e_variableexpense_taxable__e e_variableexpense_taxable,
-    int b_variableexpense_isactive
+    int *b_variableexpense_isactive
 );
 
 void variableexpense_list_element_free(variableexpense_list_element_t *variableexpense_list_element);

@@ -12,18 +12,21 @@ static usergroupdelegation_get_object_v2_response_m_payload_t *usergroupdelegati
     if (!usergroupdelegation_get_object_v2_response_m_payload_local_var) {
         return NULL;
     }
-    usergroupdelegation_get_object_v2_response_m_payload_local_var->obj_usergroupdelegation = obj_usergroupdelegation;
-
+    memset(usergroupdelegation_get_object_v2_response_m_payload_local_var, 0, sizeof(usergroupdelegation_get_object_v2_response_m_payload_t));
     usergroupdelegation_get_object_v2_response_m_payload_local_var->_library_owned = 1;
+    usergroupdelegation_get_object_v2_response_m_payload_local_var->obj_usergroupdelegation = obj_usergroupdelegation;
     return usergroupdelegation_get_object_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) usergroupdelegation_get_object_v2_response_m_payload_t *usergroupdelegation_get_object_v2_response_m_payload_create(
     usergroupdelegation_response_compound_t *obj_usergroupdelegation
     ) {
-    return usergroupdelegation_get_object_v2_response_m_payload_create_internal (
+    usergroupdelegation_get_object_v2_response_m_payload_t *result = usergroupdelegation_get_object_v2_response_m_payload_create_internal (
         obj_usergroupdelegation
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void usergroupdelegation_get_object_v2_response_m_payload_free(usergroupdelegation_get_object_v2_response_m_payload_t *usergroupdelegation_get_object_v2_response_m_payload) {
@@ -86,9 +89,14 @@ usergroupdelegation_get_object_v2_response_m_payload_t *usergroupdelegation_get_
     obj_usergroupdelegation_local_nonprim = usergroupdelegation_response_compound_parseFromJSON(obj_usergroupdelegation); //nonprimitive
 
 
+
     usergroupdelegation_get_object_v2_response_m_payload_local_var = usergroupdelegation_get_object_v2_response_m_payload_create_internal (
         obj_usergroupdelegation_local_nonprim
         );
+
+    if (!usergroupdelegation_get_object_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return usergroupdelegation_get_object_v2_response_m_payload_local_var;
 end:

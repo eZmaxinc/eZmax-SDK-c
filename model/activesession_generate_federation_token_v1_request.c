@@ -12,18 +12,21 @@ static activesession_generate_federation_token_v1_request_t *activesession_gener
     if (!activesession_generate_federation_token_v1_request_local_var) {
         return NULL;
     }
-    activesession_generate_federation_token_v1_request_local_var->fks_ezmaxcustomer_code = fks_ezmaxcustomer_code;
-
+    memset(activesession_generate_federation_token_v1_request_local_var, 0, sizeof(activesession_generate_federation_token_v1_request_t));
     activesession_generate_federation_token_v1_request_local_var->_library_owned = 1;
+    activesession_generate_federation_token_v1_request_local_var->fks_ezmaxcustomer_code = fks_ezmaxcustomer_code;
     return activesession_generate_federation_token_v1_request_local_var;
 }
 
 __attribute__((deprecated)) activesession_generate_federation_token_v1_request_t *activesession_generate_federation_token_v1_request_create(
     char *fks_ezmaxcustomer_code
     ) {
-    return activesession_generate_federation_token_v1_request_create_internal (
+    activesession_generate_federation_token_v1_request_t *result = activesession_generate_federation_token_v1_request_create_internal (
         fks_ezmaxcustomer_code
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void activesession_generate_federation_token_v1_request_free(activesession_generate_federation_token_v1_request_t *activesession_generate_federation_token_v1_request) {
@@ -65,6 +68,8 @@ activesession_generate_federation_token_v1_request_t *activesession_generate_fed
 
     activesession_generate_federation_token_v1_request_t *activesession_generate_federation_token_v1_request_local_var = NULL;
 
+    char *fks_ezmaxcustomer_code_local_str = NULL;
+
     // activesession_generate_federation_token_v1_request->fks_ezmaxcustomer_code
     cJSON *fks_ezmaxcustomer_code = cJSON_GetObjectItemCaseSensitive(activesession_generate_federation_token_v1_requestJSON, "fksEzmaxcustomerCode");
     if (cJSON_IsNull(fks_ezmaxcustomer_code)) {
@@ -81,12 +86,22 @@ activesession_generate_federation_token_v1_request_t *activesession_generate_fed
     }
 
 
+    if (fks_ezmaxcustomer_code && !cJSON_IsNull(fks_ezmaxcustomer_code)) fks_ezmaxcustomer_code_local_str = strdup(fks_ezmaxcustomer_code->valuestring);
+
     activesession_generate_federation_token_v1_request_local_var = activesession_generate_federation_token_v1_request_create_internal (
-        strdup(fks_ezmaxcustomer_code->valuestring)
+        fks_ezmaxcustomer_code_local_str
         );
+
+    if (!activesession_generate_federation_token_v1_request_local_var) {
+        goto end;
+    }
 
     return activesession_generate_federation_token_v1_request_local_var;
 end:
+    if (fks_ezmaxcustomer_code_local_str) {
+        free(fks_ezmaxcustomer_code_local_str);
+        fks_ezmaxcustomer_code_local_str = NULL;
+    }
     return NULL;
 
 }

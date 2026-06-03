@@ -19,16 +19,16 @@ typedef struct cors_response_t cors_response_t;
 
 
 typedef struct cors_response_t {
-    int pki_cors_id; //numeric
-    int fki_apikey_id; //numeric
+    int *pki_cors_id; //numeric
+    int *fki_apikey_id; //numeric
     char *s_cors_entryurl; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } cors_response_t;
 
 __attribute__((deprecated)) cors_response_t *cors_response_create(
-    int pki_cors_id,
-    int fki_apikey_id,
+    int *pki_cors_id,
+    int *fki_apikey_id,
     char *s_cors_entryurl
 );
 

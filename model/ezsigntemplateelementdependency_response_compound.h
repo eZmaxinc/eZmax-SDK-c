@@ -21,13 +21,13 @@ typedef struct ezsigntemplateelementdependency_response_compound_t ezsigntemplat
 
 
 typedef struct ezsigntemplateelementdependency_response_compound_t {
-    int pki_ezsigntemplateelementdependency_id; //numeric
-    int fki_ezsigntemplateformfield_id; //numeric
-    int fki_ezsigntemplatesignature_id; //numeric
-    int fki_ezsigntemplateformfield_id_validation; //numeric
-    int fki_ezsigntemplateformfieldgroup_id_validation; //numeric
+    int *pki_ezsigntemplateelementdependency_id; //numeric
+    int *fki_ezsigntemplateformfield_id; //numeric
+    int *fki_ezsigntemplatesignature_id; //numeric
+    int *fki_ezsigntemplateformfield_id_validation; //numeric
+    int *fki_ezsigntemplateformfieldgroup_id_validation; //numeric
     ezmax_api_definition__full_field_e_ezsigntemplateelementdependency_validation__e e_ezsigntemplateelementdependency_validation; //referenced enum
-    int b_ezsigntemplateelementdependency_selected; //boolean
+    int *b_ezsigntemplateelementdependency_selected; //boolean
     ezmax_api_definition__full_field_e_ezsigntemplateelementdependency_operator__e e_ezsigntemplateelementdependency_operator; //referenced enum
     char *s_ezsigntemplateelementdependency_value; // string
 
@@ -35,13 +35,13 @@ typedef struct ezsigntemplateelementdependency_response_compound_t {
 } ezsigntemplateelementdependency_response_compound_t;
 
 __attribute__((deprecated)) ezsigntemplateelementdependency_response_compound_t *ezsigntemplateelementdependency_response_compound_create(
-    int pki_ezsigntemplateelementdependency_id,
-    int fki_ezsigntemplateformfield_id,
-    int fki_ezsigntemplatesignature_id,
-    int fki_ezsigntemplateformfield_id_validation,
-    int fki_ezsigntemplateformfieldgroup_id_validation,
+    int *pki_ezsigntemplateelementdependency_id,
+    int *fki_ezsigntemplateformfield_id,
+    int *fki_ezsigntemplatesignature_id,
+    int *fki_ezsigntemplateformfield_id_validation,
+    int *fki_ezsigntemplateformfieldgroup_id_validation,
     ezmax_api_definition__full_field_e_ezsigntemplateelementdependency_validation__e e_ezsigntemplateelementdependency_validation,
-    int b_ezsigntemplateelementdependency_selected,
+    int *b_ezsigntemplateelementdependency_selected,
     ezmax_api_definition__full_field_e_ezsigntemplateelementdependency_operator__e e_ezsigntemplateelementdependency_operator,
     char *s_ezsigntemplateelementdependency_value
 );

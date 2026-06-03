@@ -21,10 +21,10 @@ typedef struct discussionmessage_response_t discussionmessage_response_t;
 
 
 typedef struct discussionmessage_response_t {
-    int pki_discussionmessage_id; //numeric
-    int fki_discussion_id; //numeric
-    int fki_discussionmembership_id; //numeric
-    int fki_discussionmembership_id_actionrequired; //numeric
+    int *pki_discussionmessage_id; //numeric
+    int *fki_discussion_id; //numeric
+    int *fki_discussionmembership_id; //numeric
+    int *fki_discussionmembership_id_actionrequired; //numeric
     ezmax_api_definition__full_field_e_discussionmessage_status__e e_discussionmessage_status; //referenced enum
     char *t_discussionmessage_content; // string
     char *s_discussionmessage_creatorname; // string
@@ -35,10 +35,10 @@ typedef struct discussionmessage_response_t {
 } discussionmessage_response_t;
 
 __attribute__((deprecated)) discussionmessage_response_t *discussionmessage_response_create(
-    int pki_discussionmessage_id,
-    int fki_discussion_id,
-    int fki_discussionmembership_id,
-    int fki_discussionmembership_id_actionrequired,
+    int *pki_discussionmessage_id,
+    int *fki_discussion_id,
+    int *fki_discussionmembership_id,
+    int *fki_discussionmembership_id_actionrequired,
     ezmax_api_definition__full_field_e_discussionmessage_status__e e_discussionmessage_status,
     char *t_discussionmessage_content,
     char *s_discussionmessage_creatorname,

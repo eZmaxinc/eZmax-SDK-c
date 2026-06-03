@@ -12,18 +12,21 @@ static tranqcontract_get_communicationrecipients_v1_response_m_payload_t *tranqc
     if (!tranqcontract_get_communicationrecipients_v1_response_m_payload_local_var) {
         return NULL;
     }
-    tranqcontract_get_communicationrecipients_v1_response_m_payload_local_var->a_obj_communicationrecipientsgroup = a_obj_communicationrecipientsgroup;
-
+    memset(tranqcontract_get_communicationrecipients_v1_response_m_payload_local_var, 0, sizeof(tranqcontract_get_communicationrecipients_v1_response_m_payload_t));
     tranqcontract_get_communicationrecipients_v1_response_m_payload_local_var->_library_owned = 1;
+    tranqcontract_get_communicationrecipients_v1_response_m_payload_local_var->a_obj_communicationrecipientsgroup = a_obj_communicationrecipientsgroup;
     return tranqcontract_get_communicationrecipients_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) tranqcontract_get_communicationrecipients_v1_response_m_payload_t *tranqcontract_get_communicationrecipients_v1_response_m_payload_create(
     list_t *a_obj_communicationrecipientsgroup
     ) {
-    return tranqcontract_get_communicationrecipients_v1_response_m_payload_create_internal (
+    tranqcontract_get_communicationrecipients_v1_response_m_payload_t *result = tranqcontract_get_communicationrecipients_v1_response_m_payload_create_internal (
         a_obj_communicationrecipientsgroup
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void tranqcontract_get_communicationrecipients_v1_response_m_payload_free(tranqcontract_get_communicationrecipients_v1_response_m_payload_t *tranqcontract_get_communicationrecipients_v1_response_m_payload) {
@@ -111,9 +114,14 @@ tranqcontract_get_communicationrecipients_v1_response_m_payload_t *tranqcontract
     }
 
 
+
     tranqcontract_get_communicationrecipients_v1_response_m_payload_local_var = tranqcontract_get_communicationrecipients_v1_response_m_payload_create_internal (
         a_obj_communicationrecipientsgroupList
         );
+
+    if (!tranqcontract_get_communicationrecipients_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return tranqcontract_get_communicationrecipients_v1_response_m_payload_local_var;
 end:

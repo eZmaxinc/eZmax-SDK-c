@@ -14,11 +14,11 @@ static ezsignannotation_get_object_v2_response_t *ezsignannotation_get_object_v2
     if (!ezsignannotation_get_object_v2_response_local_var) {
         return NULL;
     }
+    memset(ezsignannotation_get_object_v2_response_local_var, 0, sizeof(ezsignannotation_get_object_v2_response_t));
+    ezsignannotation_get_object_v2_response_local_var->_library_owned = 1;
     ezsignannotation_get_object_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsignannotation_get_object_v2_response_local_var->obj_debug = obj_debug;
     ezsignannotation_get_object_v2_response_local_var->m_payload = m_payload;
-
-    ezsignannotation_get_object_v2_response_local_var->_library_owned = 1;
     return ezsignannotation_get_object_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) ezsignannotation_get_object_v2_response_t *ezsignann
     common_response_obj_debug_t *obj_debug,
     ezsignannotation_get_object_v2_response_m_payload_t *m_payload
     ) {
-    return ezsignannotation_get_object_v2_response_create_internal (
+    ezsignannotation_get_object_v2_response_t *result = ezsignannotation_get_object_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignannotation_get_object_v2_response_free(ezsignannotation_get_object_v2_response_t *ezsignannotation_get_object_v2_response) {
@@ -156,11 +159,16 @@ ezsignannotation_get_object_v2_response_t *ezsignannotation_get_object_v2_respon
     m_payload_local_nonprim = ezsignannotation_get_object_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     ezsignannotation_get_object_v2_response_local_var = ezsignannotation_get_object_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!ezsignannotation_get_object_v2_response_local_var) {
+        goto end;
+    }
 
     return ezsignannotation_get_object_v2_response_local_var;
 end:

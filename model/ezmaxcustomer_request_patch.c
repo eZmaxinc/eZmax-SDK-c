@@ -12,18 +12,21 @@ static ezmaxcustomer_request_patch_t *ezmaxcustomer_request_patch_create_interna
     if (!ezmaxcustomer_request_patch_local_var) {
         return NULL;
     }
-    ezmaxcustomer_request_patch_local_var->obj_ezmaxcustomer_note = obj_ezmaxcustomer_note;
-
+    memset(ezmaxcustomer_request_patch_local_var, 0, sizeof(ezmaxcustomer_request_patch_t));
     ezmaxcustomer_request_patch_local_var->_library_owned = 1;
+    ezmaxcustomer_request_patch_local_var->obj_ezmaxcustomer_note = obj_ezmaxcustomer_note;
     return ezmaxcustomer_request_patch_local_var;
 }
 
 __attribute__((deprecated)) ezmaxcustomer_request_patch_t *ezmaxcustomer_request_patch_create(
     multilingual_ezmaxcustomer_note_t *obj_ezmaxcustomer_note
     ) {
-    return ezmaxcustomer_request_patch_create_internal (
+    ezmaxcustomer_request_patch_t *result = ezmaxcustomer_request_patch_create_internal (
         obj_ezmaxcustomer_note
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezmaxcustomer_request_patch_free(ezmaxcustomer_request_patch_t *ezmaxcustomer_request_patch) {
@@ -82,9 +85,14 @@ ezmaxcustomer_request_patch_t *ezmaxcustomer_request_patch_parseFromJSON(cJSON *
     }
 
 
+
     ezmaxcustomer_request_patch_local_var = ezmaxcustomer_request_patch_create_internal (
         obj_ezmaxcustomer_note ? obj_ezmaxcustomer_note_local_nonprim : NULL
         );
+
+    if (!ezmaxcustomer_request_patch_local_var) {
+        goto end;
+    }
 
     return ezmaxcustomer_request_patch_local_var;
 end:

@@ -13,10 +13,10 @@ static userstaged_delete_object_v1_response_t *userstaged_delete_object_v1_respo
     if (!userstaged_delete_object_v1_response_local_var) {
         return NULL;
     }
+    memset(userstaged_delete_object_v1_response_local_var, 0, sizeof(userstaged_delete_object_v1_response_t));
+    userstaged_delete_object_v1_response_local_var->_library_owned = 1;
     userstaged_delete_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     userstaged_delete_object_v1_response_local_var->obj_debug = obj_debug;
-
-    userstaged_delete_object_v1_response_local_var->_library_owned = 1;
     return userstaged_delete_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) userstaged_delete_object_v1_response_t *userstaged_d
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return userstaged_delete_object_v1_response_create_internal (
+    userstaged_delete_object_v1_response_t *result = userstaged_delete_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void userstaged_delete_object_v1_response_free(userstaged_delete_object_v1_response_t *userstaged_delete_object_v1_response) {
@@ -119,10 +122,15 @@ userstaged_delete_object_v1_response_t *userstaged_delete_object_v1_response_par
     }
 
 
+
     userstaged_delete_object_v1_response_local_var = userstaged_delete_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!userstaged_delete_object_v1_response_local_var) {
+        goto end;
+    }
 
     return userstaged_delete_object_v1_response_local_var;
 end:

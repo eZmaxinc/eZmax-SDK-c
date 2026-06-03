@@ -6,7 +6,7 @@
 
 
 static ezsignfolder_import_ezsigntemplatepackage_v1_request_t *ezsignfolder_import_ezsigntemplatepackage_v1_request_create_internal(
-    int fki_ezsigntemplatepackage_id,
+    int *fki_ezsigntemplatepackage_id,
     char *dt_ezsigndocument_duedate,
     list_t *a_obj_import_ezsigntemplatepackage_relation
     ) {
@@ -14,24 +14,33 @@ static ezsignfolder_import_ezsigntemplatepackage_v1_request_t *ezsignfolder_impo
     if (!ezsignfolder_import_ezsigntemplatepackage_v1_request_local_var) {
         return NULL;
     }
+    memset(ezsignfolder_import_ezsigntemplatepackage_v1_request_local_var, 0, sizeof(ezsignfolder_import_ezsigntemplatepackage_v1_request_t));
+    ezsignfolder_import_ezsigntemplatepackage_v1_request_local_var->_library_owned = 1;
     ezsignfolder_import_ezsigntemplatepackage_v1_request_local_var->fki_ezsigntemplatepackage_id = fki_ezsigntemplatepackage_id;
     ezsignfolder_import_ezsigntemplatepackage_v1_request_local_var->dt_ezsigndocument_duedate = dt_ezsigndocument_duedate;
     ezsignfolder_import_ezsigntemplatepackage_v1_request_local_var->a_obj_import_ezsigntemplatepackage_relation = a_obj_import_ezsigntemplatepackage_relation;
-
-    ezsignfolder_import_ezsigntemplatepackage_v1_request_local_var->_library_owned = 1;
     return ezsignfolder_import_ezsigntemplatepackage_v1_request_local_var;
 }
 
 __attribute__((deprecated)) ezsignfolder_import_ezsigntemplatepackage_v1_request_t *ezsignfolder_import_ezsigntemplatepackage_v1_request_create(
-    int fki_ezsigntemplatepackage_id,
+    int *fki_ezsigntemplatepackage_id,
     char *dt_ezsigndocument_duedate,
     list_t *a_obj_import_ezsigntemplatepackage_relation
     ) {
-    return ezsignfolder_import_ezsigntemplatepackage_v1_request_create_internal (
-        fki_ezsigntemplatepackage_id,
+    int *fki_ezsigntemplatepackage_id_copy = NULL;
+    if (fki_ezsigntemplatepackage_id) {
+        fki_ezsigntemplatepackage_id_copy = malloc(sizeof(int));
+        if (fki_ezsigntemplatepackage_id_copy) *fki_ezsigntemplatepackage_id_copy = *fki_ezsigntemplatepackage_id;
+    }
+    ezsignfolder_import_ezsigntemplatepackage_v1_request_t *result = ezsignfolder_import_ezsigntemplatepackage_v1_request_create_internal (
+        fki_ezsigntemplatepackage_id_copy,
         dt_ezsigndocument_duedate,
         a_obj_import_ezsigntemplatepackage_relation
         );
+    if (!result) {
+        free(fki_ezsigntemplatepackage_id_copy);
+    }
+    return result;
 }
 
 void ezsignfolder_import_ezsigntemplatepackage_v1_request_free(ezsignfolder_import_ezsigntemplatepackage_v1_request_t *ezsignfolder_import_ezsigntemplatepackage_v1_request) {
@@ -43,6 +52,10 @@ void ezsignfolder_import_ezsigntemplatepackage_v1_request_free(ezsignfolder_impo
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignfolder_import_ezsigntemplatepackage_v1_request->fki_ezsigntemplatepackage_id) {
+        free(ezsignfolder_import_ezsigntemplatepackage_v1_request->fki_ezsigntemplatepackage_id);
+        ezsignfolder_import_ezsigntemplatepackage_v1_request->fki_ezsigntemplatepackage_id = NULL;
+    }
     if (ezsignfolder_import_ezsigntemplatepackage_v1_request->dt_ezsigndocument_duedate) {
         free(ezsignfolder_import_ezsigntemplatepackage_v1_request->dt_ezsigndocument_duedate);
         ezsignfolder_import_ezsigntemplatepackage_v1_request->dt_ezsigndocument_duedate = NULL;
@@ -64,7 +77,7 @@ cJSON *ezsignfolder_import_ezsigntemplatepackage_v1_request_convertToJSON(ezsign
     if (!ezsignfolder_import_ezsigntemplatepackage_v1_request->fki_ezsigntemplatepackage_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiEzsigntemplatepackageID", ezsignfolder_import_ezsigntemplatepackage_v1_request->fki_ezsigntemplatepackage_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsigntemplatepackageID", *ezsignfolder_import_ezsigntemplatepackage_v1_request->fki_ezsigntemplatepackage_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -110,6 +123,11 @@ ezsignfolder_import_ezsigntemplatepackage_v1_request_t *ezsignfolder_import_ezsi
 
     ezsignfolder_import_ezsigntemplatepackage_v1_request_t *ezsignfolder_import_ezsigntemplatepackage_v1_request_local_var = NULL;
 
+    // define the local variable for ezsignfolder_import_ezsigntemplatepackage_v1_request->fki_ezsigntemplatepackage_id
+    int *fki_ezsigntemplatepackage_id_local_var = NULL;
+
+    char *dt_ezsigndocument_duedate_local_str = NULL;
+
     // define the local list for ezsignfolder_import_ezsigntemplatepackage_v1_request->a_obj_import_ezsigntemplatepackage_relation
     list_t *a_obj_import_ezsigntemplatepackage_relationList = NULL;
 
@@ -127,6 +145,12 @@ ezsignfolder_import_ezsigntemplatepackage_v1_request_t *ezsignfolder_import_ezsi
     {
     goto end; //Numeric
     }
+    fki_ezsigntemplatepackage_id_local_var = malloc(sizeof(int));
+    if(!fki_ezsigntemplatepackage_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezsigntemplatepackage_id_local_var = fki_ezsigntemplatepackage_id->valuedouble;
 
     // ezsignfolder_import_ezsigntemplatepackage_v1_request->dt_ezsigndocument_duedate
     cJSON *dt_ezsigndocument_duedate = cJSON_GetObjectItemCaseSensitive(ezsignfolder_import_ezsigntemplatepackage_v1_requestJSON, "dtEzsigndocumentDuedate");
@@ -171,14 +195,28 @@ ezsignfolder_import_ezsigntemplatepackage_v1_request_t *ezsignfolder_import_ezsi
     }
 
 
+    if (dt_ezsigndocument_duedate && !cJSON_IsNull(dt_ezsigndocument_duedate)) dt_ezsigndocument_duedate_local_str = strdup(dt_ezsigndocument_duedate->valuestring);
+
     ezsignfolder_import_ezsigntemplatepackage_v1_request_local_var = ezsignfolder_import_ezsigntemplatepackage_v1_request_create_internal (
-        fki_ezsigntemplatepackage_id->valuedouble,
-        strdup(dt_ezsigndocument_duedate->valuestring),
+        fki_ezsigntemplatepackage_id_local_var,
+        dt_ezsigndocument_duedate_local_str,
         a_obj_import_ezsigntemplatepackage_relationList
         );
 
+    if (!ezsignfolder_import_ezsigntemplatepackage_v1_request_local_var) {
+        goto end;
+    }
+
     return ezsignfolder_import_ezsigntemplatepackage_v1_request_local_var;
 end:
+    if (fki_ezsigntemplatepackage_id_local_var) {
+        free(fki_ezsigntemplatepackage_id_local_var);
+        fki_ezsigntemplatepackage_id_local_var = NULL;
+    }
+    if (dt_ezsigndocument_duedate_local_str) {
+        free(dt_ezsigndocument_duedate_local_str);
+        dt_ezsigndocument_duedate_local_str = NULL;
+    }
     if (a_obj_import_ezsigntemplatepackage_relationList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_import_ezsigntemplatepackage_relationList) {

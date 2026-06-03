@@ -6,16 +6,17 @@
 
 
 static buyercontract_list_element_t *buyercontract_list_element_create_internal(
-    int pki_buyercontract_id,
-    int fki_inscriptiontype_id,
+    int *pki_buyercontract_id,
+    int *fki_inscriptiontype_id,
     char *s_inscriptiontype_name_x,
     ezmax_api_definition__full_field_e_buyercontract_step__e e_buyercontract_step,
     char *d_buyercontract_minimumprice,
     char *d_buyercontract_maximumprice,
     ezmax_api_definition__full_field_e_buyercontract_type__e e_buyercontract_type,
+    char *s_buyercontract_contract,
     char *dt_buyercontract_date,
     char *dt_buyercontract_expirationdate,
-    int b_buyercontract_isactive,
+    int *b_buyercontract_isactive,
     char *s_buyercontract_brokers,
     char *s_buyercontract_buyers
     ) {
@@ -23,6 +24,8 @@ static buyercontract_list_element_t *buyercontract_list_element_create_internal(
     if (!buyercontract_list_element_local_var) {
         return NULL;
     }
+    memset(buyercontract_list_element_local_var, 0, sizeof(buyercontract_list_element_t));
+    buyercontract_list_element_local_var->_library_owned = 1;
     buyercontract_list_element_local_var->pki_buyercontract_id = pki_buyercontract_id;
     buyercontract_list_element_local_var->fki_inscriptiontype_id = fki_inscriptiontype_id;
     buyercontract_list_element_local_var->s_inscriptiontype_name_x = s_inscriptiontype_name_x;
@@ -30,44 +33,66 @@ static buyercontract_list_element_t *buyercontract_list_element_create_internal(
     buyercontract_list_element_local_var->d_buyercontract_minimumprice = d_buyercontract_minimumprice;
     buyercontract_list_element_local_var->d_buyercontract_maximumprice = d_buyercontract_maximumprice;
     buyercontract_list_element_local_var->e_buyercontract_type = e_buyercontract_type;
+    buyercontract_list_element_local_var->s_buyercontract_contract = s_buyercontract_contract;
     buyercontract_list_element_local_var->dt_buyercontract_date = dt_buyercontract_date;
     buyercontract_list_element_local_var->dt_buyercontract_expirationdate = dt_buyercontract_expirationdate;
     buyercontract_list_element_local_var->b_buyercontract_isactive = b_buyercontract_isactive;
     buyercontract_list_element_local_var->s_buyercontract_brokers = s_buyercontract_brokers;
     buyercontract_list_element_local_var->s_buyercontract_buyers = s_buyercontract_buyers;
-
-    buyercontract_list_element_local_var->_library_owned = 1;
     return buyercontract_list_element_local_var;
 }
 
 __attribute__((deprecated)) buyercontract_list_element_t *buyercontract_list_element_create(
-    int pki_buyercontract_id,
-    int fki_inscriptiontype_id,
+    int *pki_buyercontract_id,
+    int *fki_inscriptiontype_id,
     char *s_inscriptiontype_name_x,
     ezmax_api_definition__full_field_e_buyercontract_step__e e_buyercontract_step,
     char *d_buyercontract_minimumprice,
     char *d_buyercontract_maximumprice,
     ezmax_api_definition__full_field_e_buyercontract_type__e e_buyercontract_type,
+    char *s_buyercontract_contract,
     char *dt_buyercontract_date,
     char *dt_buyercontract_expirationdate,
-    int b_buyercontract_isactive,
+    int *b_buyercontract_isactive,
     char *s_buyercontract_brokers,
     char *s_buyercontract_buyers
     ) {
-    return buyercontract_list_element_create_internal (
-        pki_buyercontract_id,
-        fki_inscriptiontype_id,
+    int *pki_buyercontract_id_copy = NULL;
+    if (pki_buyercontract_id) {
+        pki_buyercontract_id_copy = malloc(sizeof(int));
+        if (pki_buyercontract_id_copy) *pki_buyercontract_id_copy = *pki_buyercontract_id;
+    }
+    int *fki_inscriptiontype_id_copy = NULL;
+    if (fki_inscriptiontype_id) {
+        fki_inscriptiontype_id_copy = malloc(sizeof(int));
+        if (fki_inscriptiontype_id_copy) *fki_inscriptiontype_id_copy = *fki_inscriptiontype_id;
+    }
+    int *b_buyercontract_isactive_copy = NULL;
+    if (b_buyercontract_isactive) {
+        b_buyercontract_isactive_copy = malloc(sizeof(int));
+        if (b_buyercontract_isactive_copy) *b_buyercontract_isactive_copy = *b_buyercontract_isactive;
+    }
+    buyercontract_list_element_t *result = buyercontract_list_element_create_internal (
+        pki_buyercontract_id_copy,
+        fki_inscriptiontype_id_copy,
         s_inscriptiontype_name_x,
         e_buyercontract_step,
         d_buyercontract_minimumprice,
         d_buyercontract_maximumprice,
         e_buyercontract_type,
+        s_buyercontract_contract,
         dt_buyercontract_date,
         dt_buyercontract_expirationdate,
-        b_buyercontract_isactive,
+        b_buyercontract_isactive_copy,
         s_buyercontract_brokers,
         s_buyercontract_buyers
         );
+    if (!result) {
+        free(pki_buyercontract_id_copy);
+        free(fki_inscriptiontype_id_copy);
+        free(b_buyercontract_isactive_copy);
+    }
+    return result;
 }
 
 void buyercontract_list_element_free(buyercontract_list_element_t *buyercontract_list_element) {
@@ -79,6 +104,14 @@ void buyercontract_list_element_free(buyercontract_list_element_t *buyercontract
         return ;
     }
     listEntry_t *listEntry;
+    if (buyercontract_list_element->pki_buyercontract_id) {
+        free(buyercontract_list_element->pki_buyercontract_id);
+        buyercontract_list_element->pki_buyercontract_id = NULL;
+    }
+    if (buyercontract_list_element->fki_inscriptiontype_id) {
+        free(buyercontract_list_element->fki_inscriptiontype_id);
+        buyercontract_list_element->fki_inscriptiontype_id = NULL;
+    }
     if (buyercontract_list_element->s_inscriptiontype_name_x) {
         free(buyercontract_list_element->s_inscriptiontype_name_x);
         buyercontract_list_element->s_inscriptiontype_name_x = NULL;
@@ -91,6 +124,10 @@ void buyercontract_list_element_free(buyercontract_list_element_t *buyercontract
         free(buyercontract_list_element->d_buyercontract_maximumprice);
         buyercontract_list_element->d_buyercontract_maximumprice = NULL;
     }
+    if (buyercontract_list_element->s_buyercontract_contract) {
+        free(buyercontract_list_element->s_buyercontract_contract);
+        buyercontract_list_element->s_buyercontract_contract = NULL;
+    }
     if (buyercontract_list_element->dt_buyercontract_date) {
         free(buyercontract_list_element->dt_buyercontract_date);
         buyercontract_list_element->dt_buyercontract_date = NULL;
@@ -98,6 +135,10 @@ void buyercontract_list_element_free(buyercontract_list_element_t *buyercontract
     if (buyercontract_list_element->dt_buyercontract_expirationdate) {
         free(buyercontract_list_element->dt_buyercontract_expirationdate);
         buyercontract_list_element->dt_buyercontract_expirationdate = NULL;
+    }
+    if (buyercontract_list_element->b_buyercontract_isactive) {
+        free(buyercontract_list_element->b_buyercontract_isactive);
+        buyercontract_list_element->b_buyercontract_isactive = NULL;
     }
     if (buyercontract_list_element->s_buyercontract_brokers) {
         free(buyercontract_list_element->s_buyercontract_brokers);
@@ -117,7 +158,7 @@ cJSON *buyercontract_list_element_convertToJSON(buyercontract_list_element_t *bu
     if (!buyercontract_list_element->pki_buyercontract_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiBuyercontractID", buyercontract_list_element->pki_buyercontract_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiBuyercontractID", *buyercontract_list_element->pki_buyercontract_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -126,7 +167,7 @@ cJSON *buyercontract_list_element_convertToJSON(buyercontract_list_element_t *bu
     if (!buyercontract_list_element->fki_inscriptiontype_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiInscriptiontypeID", buyercontract_list_element->fki_inscriptiontype_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiInscriptiontypeID", *buyercontract_list_element->fki_inscriptiontype_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -186,6 +227,14 @@ cJSON *buyercontract_list_element_convertToJSON(buyercontract_list_element_t *bu
     }
 
 
+    // buyercontract_list_element->s_buyercontract_contract
+    if(buyercontract_list_element->s_buyercontract_contract) {
+    if(cJSON_AddStringToObject(item, "sBuyercontractContract", buyercontract_list_element->s_buyercontract_contract) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
     // buyercontract_list_element->dt_buyercontract_date
     if (!buyercontract_list_element->dt_buyercontract_date) {
         goto fail;
@@ -207,7 +256,7 @@ cJSON *buyercontract_list_element_convertToJSON(buyercontract_list_element_t *bu
     if (!buyercontract_list_element->b_buyercontract_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bBuyercontractIsactive", buyercontract_list_element->b_buyercontract_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bBuyercontractIsactive", *buyercontract_list_element->b_buyercontract_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -241,11 +290,36 @@ buyercontract_list_element_t *buyercontract_list_element_parseFromJSON(cJSON *bu
 
     buyercontract_list_element_t *buyercontract_list_element_local_var = NULL;
 
+    // define the local variable for buyercontract_list_element->pki_buyercontract_id
+    int *pki_buyercontract_id_local_var = NULL;
+
+    // define the local variable for buyercontract_list_element->fki_inscriptiontype_id
+    int *fki_inscriptiontype_id_local_var = NULL;
+
+    char *s_inscriptiontype_name_x_local_str = NULL;
+
     // define the local variable for buyercontract_list_element->e_buyercontract_step
     ezmax_api_definition__full_field_e_buyercontract_step__e e_buyercontract_step_local_nonprim = 0;
 
+    char *d_buyercontract_minimumprice_local_str = NULL;
+
+    char *d_buyercontract_maximumprice_local_str = NULL;
+
     // define the local variable for buyercontract_list_element->e_buyercontract_type
     ezmax_api_definition__full_field_e_buyercontract_type__e e_buyercontract_type_local_nonprim = 0;
+
+    char *s_buyercontract_contract_local_str = NULL;
+
+    char *dt_buyercontract_date_local_str = NULL;
+
+    char *dt_buyercontract_expirationdate_local_str = NULL;
+
+    // define the local variable for buyercontract_list_element->b_buyercontract_isactive
+    int *b_buyercontract_isactive_local_var = NULL;
+
+    char *s_buyercontract_brokers_local_str = NULL;
+
+    char *s_buyercontract_buyers_local_str = NULL;
 
     // buyercontract_list_element->pki_buyercontract_id
     cJSON *pki_buyercontract_id = cJSON_GetObjectItemCaseSensitive(buyercontract_list_elementJSON, "pkiBuyercontractID");
@@ -261,6 +335,12 @@ buyercontract_list_element_t *buyercontract_list_element_parseFromJSON(cJSON *bu
     {
     goto end; //Numeric
     }
+    pki_buyercontract_id_local_var = malloc(sizeof(int));
+    if(!pki_buyercontract_id_local_var)
+    {
+        goto end;
+    }
+    *pki_buyercontract_id_local_var = pki_buyercontract_id->valuedouble;
 
     // buyercontract_list_element->fki_inscriptiontype_id
     cJSON *fki_inscriptiontype_id = cJSON_GetObjectItemCaseSensitive(buyercontract_list_elementJSON, "fkiInscriptiontypeID");
@@ -276,6 +356,12 @@ buyercontract_list_element_t *buyercontract_list_element_parseFromJSON(cJSON *bu
     {
     goto end; //Numeric
     }
+    fki_inscriptiontype_id_local_var = malloc(sizeof(int));
+    if(!fki_inscriptiontype_id_local_var)
+    {
+        goto end;
+    }
+    *fki_inscriptiontype_id_local_var = fki_inscriptiontype_id->valuedouble;
 
     // buyercontract_list_element->s_inscriptiontype_name_x
     cJSON *s_inscriptiontype_name_x = cJSON_GetObjectItemCaseSensitive(buyercontract_list_elementJSON, "sInscriptiontypeNameX");
@@ -346,6 +432,18 @@ buyercontract_list_element_t *buyercontract_list_element_parseFromJSON(cJSON *bu
     
     e_buyercontract_type_local_nonprim = field_e_buyercontract_type_parseFromJSON(e_buyercontract_type); //custom
 
+    // buyercontract_list_element->s_buyercontract_contract
+    cJSON *s_buyercontract_contract = cJSON_GetObjectItemCaseSensitive(buyercontract_list_elementJSON, "sBuyercontractContract");
+    if (cJSON_IsNull(s_buyercontract_contract)) {
+        s_buyercontract_contract = NULL;
+    }
+    if (s_buyercontract_contract) { 
+    if(!cJSON_IsString(s_buyercontract_contract) && !cJSON_IsNull(s_buyercontract_contract))
+    {
+    goto end; //String
+    }
+    }
+
     // buyercontract_list_element->dt_buyercontract_date
     cJSON *dt_buyercontract_date = cJSON_GetObjectItemCaseSensitive(buyercontract_list_elementJSON, "dtBuyercontractDate");
     if (cJSON_IsNull(dt_buyercontract_date)) {
@@ -387,6 +485,12 @@ buyercontract_list_element_t *buyercontract_list_element_parseFromJSON(cJSON *bu
     {
     goto end; //Bool
     }
+    b_buyercontract_isactive_local_var = malloc(sizeof(int));
+    if(!b_buyercontract_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_buyercontract_isactive_local_var = b_buyercontract_isactive->valueint;
 
     // buyercontract_list_element->s_buyercontract_brokers
     cJSON *s_buyercontract_brokers = cJSON_GetObjectItemCaseSensitive(buyercontract_list_elementJSON, "sBuyercontractBrokers");
@@ -419,28 +523,86 @@ buyercontract_list_element_t *buyercontract_list_element_parseFromJSON(cJSON *bu
     }
 
 
+    if (s_inscriptiontype_name_x && !cJSON_IsNull(s_inscriptiontype_name_x)) s_inscriptiontype_name_x_local_str = strdup(s_inscriptiontype_name_x->valuestring);
+    if (d_buyercontract_minimumprice && !cJSON_IsNull(d_buyercontract_minimumprice)) d_buyercontract_minimumprice_local_str = strdup(d_buyercontract_minimumprice->valuestring);
+    if (d_buyercontract_maximumprice && !cJSON_IsNull(d_buyercontract_maximumprice)) d_buyercontract_maximumprice_local_str = strdup(d_buyercontract_maximumprice->valuestring);
+    if (s_buyercontract_contract && !cJSON_IsNull(s_buyercontract_contract)) s_buyercontract_contract_local_str = strdup(s_buyercontract_contract->valuestring);
+    if (dt_buyercontract_date && !cJSON_IsNull(dt_buyercontract_date)) dt_buyercontract_date_local_str = strdup(dt_buyercontract_date->valuestring);
+    if (dt_buyercontract_expirationdate && !cJSON_IsNull(dt_buyercontract_expirationdate)) dt_buyercontract_expirationdate_local_str = strdup(dt_buyercontract_expirationdate->valuestring);
+    if (s_buyercontract_brokers && !cJSON_IsNull(s_buyercontract_brokers)) s_buyercontract_brokers_local_str = strdup(s_buyercontract_brokers->valuestring);
+    if (s_buyercontract_buyers && !cJSON_IsNull(s_buyercontract_buyers)) s_buyercontract_buyers_local_str = strdup(s_buyercontract_buyers->valuestring);
+
     buyercontract_list_element_local_var = buyercontract_list_element_create_internal (
-        pki_buyercontract_id->valuedouble,
-        fki_inscriptiontype_id->valuedouble,
-        strdup(s_inscriptiontype_name_x->valuestring),
+        pki_buyercontract_id_local_var,
+        fki_inscriptiontype_id_local_var,
+        s_inscriptiontype_name_x_local_str,
         e_buyercontract_step_local_nonprim,
-        strdup(d_buyercontract_minimumprice->valuestring),
-        strdup(d_buyercontract_maximumprice->valuestring),
+        d_buyercontract_minimumprice_local_str,
+        d_buyercontract_maximumprice_local_str,
         e_buyercontract_type_local_nonprim,
-        strdup(dt_buyercontract_date->valuestring),
-        dt_buyercontract_expirationdate && !cJSON_IsNull(dt_buyercontract_expirationdate) ? strdup(dt_buyercontract_expirationdate->valuestring) : NULL,
-        b_buyercontract_isactive->valueint,
-        strdup(s_buyercontract_brokers->valuestring),
-        strdup(s_buyercontract_buyers->valuestring)
+        s_buyercontract_contract_local_str,
+        dt_buyercontract_date_local_str,
+        dt_buyercontract_expirationdate_local_str,
+        b_buyercontract_isactive_local_var,
+        s_buyercontract_brokers_local_str,
+        s_buyercontract_buyers_local_str
         );
+
+    if (!buyercontract_list_element_local_var) {
+        goto end;
+    }
 
     return buyercontract_list_element_local_var;
 end:
+    if (pki_buyercontract_id_local_var) {
+        free(pki_buyercontract_id_local_var);
+        pki_buyercontract_id_local_var = NULL;
+    }
+    if (fki_inscriptiontype_id_local_var) {
+        free(fki_inscriptiontype_id_local_var);
+        fki_inscriptiontype_id_local_var = NULL;
+    }
+    if (s_inscriptiontype_name_x_local_str) {
+        free(s_inscriptiontype_name_x_local_str);
+        s_inscriptiontype_name_x_local_str = NULL;
+    }
     if (e_buyercontract_step_local_nonprim) {
         e_buyercontract_step_local_nonprim = 0;
     }
+    if (d_buyercontract_minimumprice_local_str) {
+        free(d_buyercontract_minimumprice_local_str);
+        d_buyercontract_minimumprice_local_str = NULL;
+    }
+    if (d_buyercontract_maximumprice_local_str) {
+        free(d_buyercontract_maximumprice_local_str);
+        d_buyercontract_maximumprice_local_str = NULL;
+    }
     if (e_buyercontract_type_local_nonprim) {
         e_buyercontract_type_local_nonprim = 0;
+    }
+    if (s_buyercontract_contract_local_str) {
+        free(s_buyercontract_contract_local_str);
+        s_buyercontract_contract_local_str = NULL;
+    }
+    if (dt_buyercontract_date_local_str) {
+        free(dt_buyercontract_date_local_str);
+        dt_buyercontract_date_local_str = NULL;
+    }
+    if (dt_buyercontract_expirationdate_local_str) {
+        free(dt_buyercontract_expirationdate_local_str);
+        dt_buyercontract_expirationdate_local_str = NULL;
+    }
+    if (b_buyercontract_isactive_local_var) {
+        free(b_buyercontract_isactive_local_var);
+        b_buyercontract_isactive_local_var = NULL;
+    }
+    if (s_buyercontract_brokers_local_str) {
+        free(s_buyercontract_brokers_local_str);
+        s_buyercontract_brokers_local_str = NULL;
+    }
+    if (s_buyercontract_buyers_local_str) {
+        free(s_buyercontract_buyers_local_str);
+        s_buyercontract_buyers_local_str = NULL;
     }
     return NULL;
 

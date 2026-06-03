@@ -12,18 +12,21 @@ static discussionmessage_create_object_v1_response_m_payload_t *discussionmessag
     if (!discussionmessage_create_object_v1_response_m_payload_local_var) {
         return NULL;
     }
-    discussionmessage_create_object_v1_response_m_payload_local_var->a_pki_discussionmessage_id = a_pki_discussionmessage_id;
-
+    memset(discussionmessage_create_object_v1_response_m_payload_local_var, 0, sizeof(discussionmessage_create_object_v1_response_m_payload_t));
     discussionmessage_create_object_v1_response_m_payload_local_var->_library_owned = 1;
+    discussionmessage_create_object_v1_response_m_payload_local_var->a_pki_discussionmessage_id = a_pki_discussionmessage_id;
     return discussionmessage_create_object_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) discussionmessage_create_object_v1_response_m_payload_t *discussionmessage_create_object_v1_response_m_payload_create(
     list_t *a_pki_discussionmessage_id
     ) {
-    return discussionmessage_create_object_v1_response_m_payload_create_internal (
+    discussionmessage_create_object_v1_response_m_payload_t *result = discussionmessage_create_object_v1_response_m_payload_create_internal (
         a_pki_discussionmessage_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void discussionmessage_create_object_v1_response_m_payload_free(discussionmessage_create_object_v1_response_m_payload_t *discussionmessage_create_object_v1_response_m_payload) {
@@ -112,9 +115,14 @@ discussionmessage_create_object_v1_response_m_payload_t *discussionmessage_creat
     }
 
 
+
     discussionmessage_create_object_v1_response_m_payload_local_var = discussionmessage_create_object_v1_response_m_payload_create_internal (
         a_pki_discussionmessage_idList
         );
+
+    if (!discussionmessage_create_object_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return discussionmessage_create_object_v1_response_m_payload_local_var;
 end:

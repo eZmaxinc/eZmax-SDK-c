@@ -14,11 +14,11 @@ static common_response_error_too_many_requests_t *common_response_error_too_many
     if (!common_response_error_too_many_requests_local_var) {
         return NULL;
     }
+    memset(common_response_error_too_many_requests_local_var, 0, sizeof(common_response_error_too_many_requests_t));
+    common_response_error_too_many_requests_local_var->_library_owned = 1;
     common_response_error_too_many_requests_local_var->s_error_message = s_error_message;
     common_response_error_too_many_requests_local_var->e_error_code = e_error_code;
     common_response_error_too_many_requests_local_var->a_s_error_messagedetail = a_s_error_messagedetail;
-
-    common_response_error_too_many_requests_local_var->_library_owned = 1;
     return common_response_error_too_many_requests_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) common_response_error_too_many_requests_t *common_re
     ezmax_api_definition__full_field_e_error_code__e e_error_code,
     list_t *a_s_error_messagedetail
     ) {
-    return common_response_error_too_many_requests_create_internal (
+    common_response_error_too_many_requests_t *result = common_response_error_too_many_requests_create_internal (
         s_error_message,
         e_error_code,
         a_s_error_messagedetail
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void common_response_error_too_many_requests_free(common_response_error_too_many_requests_t *common_response_error_too_many_requests) {
@@ -111,6 +114,8 @@ common_response_error_too_many_requests_t *common_response_error_too_many_reques
 
     common_response_error_too_many_requests_t *common_response_error_too_many_requests_local_var = NULL;
 
+    char *s_error_message_local_str = NULL;
+
     // define the local variable for common_response_error_too_many_requests->e_error_code
     ezmax_api_definition__full_field_e_error_code__e e_error_code_local_nonprim = 0;
 
@@ -167,14 +172,24 @@ common_response_error_too_many_requests_t *common_response_error_too_many_reques
     }
 
 
+    if (s_error_message && !cJSON_IsNull(s_error_message)) s_error_message_local_str = strdup(s_error_message->valuestring);
+
     common_response_error_too_many_requests_local_var = common_response_error_too_many_requests_create_internal (
-        strdup(s_error_message->valuestring),
+        s_error_message_local_str,
         e_error_code_local_nonprim,
         a_s_error_messagedetail ? a_s_error_messagedetailList : NULL
         );
 
+    if (!common_response_error_too_many_requests_local_var) {
+        goto end;
+    }
+
     return common_response_error_too_many_requests_local_var;
 end:
+    if (s_error_message_local_str) {
+        free(s_error_message_local_str);
+        s_error_message_local_str = NULL;
+    }
     if (e_error_code_local_nonprim) {
         e_error_code_local_nonprim = 0;
     }

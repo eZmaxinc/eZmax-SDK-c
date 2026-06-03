@@ -6,8 +6,8 @@
 
 
 static ezsigndocumentlog_response_t *ezsigndocumentlog_response_create_internal(
-    int fki_user_id,
-    int fki_ezsignsigner_id,
+    int *fki_user_id,
+    int *fki_ezsignsigner_id,
     char *dt_ezsigndocumentlog_datetime,
     ezmax_api_definition__full_field_e_ezsigndocumentlog_type__e e_ezsigndocumentlog_type,
     char *s_ezsigndocumentlog_detail,
@@ -19,6 +19,8 @@ static ezsigndocumentlog_response_t *ezsigndocumentlog_response_create_internal(
     if (!ezsigndocumentlog_response_local_var) {
         return NULL;
     }
+    memset(ezsigndocumentlog_response_local_var, 0, sizeof(ezsigndocumentlog_response_t));
+    ezsigndocumentlog_response_local_var->_library_owned = 1;
     ezsigndocumentlog_response_local_var->fki_user_id = fki_user_id;
     ezsigndocumentlog_response_local_var->fki_ezsignsigner_id = fki_ezsignsigner_id;
     ezsigndocumentlog_response_local_var->dt_ezsigndocumentlog_datetime = dt_ezsigndocumentlog_datetime;
@@ -27,14 +29,12 @@ static ezsigndocumentlog_response_t *ezsigndocumentlog_response_create_internal(
     ezsigndocumentlog_response_local_var->s_ezsigndocumentlog_lastname = s_ezsigndocumentlog_lastname;
     ezsigndocumentlog_response_local_var->s_ezsigndocumentlog_firstname = s_ezsigndocumentlog_firstname;
     ezsigndocumentlog_response_local_var->s_ezsigndocumentlog_ip = s_ezsigndocumentlog_ip;
-
-    ezsigndocumentlog_response_local_var->_library_owned = 1;
     return ezsigndocumentlog_response_local_var;
 }
 
 __attribute__((deprecated)) ezsigndocumentlog_response_t *ezsigndocumentlog_response_create(
-    int fki_user_id,
-    int fki_ezsignsigner_id,
+    int *fki_user_id,
+    int *fki_ezsignsigner_id,
     char *dt_ezsigndocumentlog_datetime,
     ezmax_api_definition__full_field_e_ezsigndocumentlog_type__e e_ezsigndocumentlog_type,
     char *s_ezsigndocumentlog_detail,
@@ -42,9 +42,19 @@ __attribute__((deprecated)) ezsigndocumentlog_response_t *ezsigndocumentlog_resp
     char *s_ezsigndocumentlog_firstname,
     char *s_ezsigndocumentlog_ip
     ) {
-    return ezsigndocumentlog_response_create_internal (
-        fki_user_id,
-        fki_ezsignsigner_id,
+    int *fki_user_id_copy = NULL;
+    if (fki_user_id) {
+        fki_user_id_copy = malloc(sizeof(int));
+        if (fki_user_id_copy) *fki_user_id_copy = *fki_user_id;
+    }
+    int *fki_ezsignsigner_id_copy = NULL;
+    if (fki_ezsignsigner_id) {
+        fki_ezsignsigner_id_copy = malloc(sizeof(int));
+        if (fki_ezsignsigner_id_copy) *fki_ezsignsigner_id_copy = *fki_ezsignsigner_id;
+    }
+    ezsigndocumentlog_response_t *result = ezsigndocumentlog_response_create_internal (
+        fki_user_id_copy,
+        fki_ezsignsigner_id_copy,
         dt_ezsigndocumentlog_datetime,
         e_ezsigndocumentlog_type,
         s_ezsigndocumentlog_detail,
@@ -52,6 +62,11 @@ __attribute__((deprecated)) ezsigndocumentlog_response_t *ezsigndocumentlog_resp
         s_ezsigndocumentlog_firstname,
         s_ezsigndocumentlog_ip
         );
+    if (!result) {
+        free(fki_user_id_copy);
+        free(fki_ezsignsigner_id_copy);
+    }
+    return result;
 }
 
 void ezsigndocumentlog_response_free(ezsigndocumentlog_response_t *ezsigndocumentlog_response) {
@@ -63,6 +78,14 @@ void ezsigndocumentlog_response_free(ezsigndocumentlog_response_t *ezsigndocumen
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsigndocumentlog_response->fki_user_id) {
+        free(ezsigndocumentlog_response->fki_user_id);
+        ezsigndocumentlog_response->fki_user_id = NULL;
+    }
+    if (ezsigndocumentlog_response->fki_ezsignsigner_id) {
+        free(ezsigndocumentlog_response->fki_ezsignsigner_id);
+        ezsigndocumentlog_response->fki_ezsignsigner_id = NULL;
+    }
     if (ezsigndocumentlog_response->dt_ezsigndocumentlog_datetime) {
         free(ezsigndocumentlog_response->dt_ezsigndocumentlog_datetime);
         ezsigndocumentlog_response->dt_ezsigndocumentlog_datetime = NULL;
@@ -91,7 +114,7 @@ cJSON *ezsigndocumentlog_response_convertToJSON(ezsigndocumentlog_response_t *ez
 
     // ezsigndocumentlog_response->fki_user_id
     if(ezsigndocumentlog_response->fki_user_id) {
-    if(cJSON_AddNumberToObject(item, "fkiUserID", ezsigndocumentlog_response->fki_user_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiUserID", *ezsigndocumentlog_response->fki_user_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -99,7 +122,7 @@ cJSON *ezsigndocumentlog_response_convertToJSON(ezsigndocumentlog_response_t *ez
 
     // ezsigndocumentlog_response->fki_ezsignsigner_id
     if(ezsigndocumentlog_response->fki_ezsignsigner_id) {
-    if(cJSON_AddNumberToObject(item, "fkiEzsignsignerID", ezsigndocumentlog_response->fki_ezsignsigner_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsignsignerID", *ezsigndocumentlog_response->fki_ezsignsigner_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -175,8 +198,24 @@ ezsigndocumentlog_response_t *ezsigndocumentlog_response_parseFromJSON(cJSON *ez
 
     ezsigndocumentlog_response_t *ezsigndocumentlog_response_local_var = NULL;
 
+    // define the local variable for ezsigndocumentlog_response->fki_user_id
+    int *fki_user_id_local_var = NULL;
+
+    // define the local variable for ezsigndocumentlog_response->fki_ezsignsigner_id
+    int *fki_ezsignsigner_id_local_var = NULL;
+
+    char *dt_ezsigndocumentlog_datetime_local_str = NULL;
+
     // define the local variable for ezsigndocumentlog_response->e_ezsigndocumentlog_type
     ezmax_api_definition__full_field_e_ezsigndocumentlog_type__e e_ezsigndocumentlog_type_local_nonprim = 0;
+
+    char *s_ezsigndocumentlog_detail_local_str = NULL;
+
+    char *s_ezsigndocumentlog_lastname_local_str = NULL;
+
+    char *s_ezsigndocumentlog_firstname_local_str = NULL;
+
+    char *s_ezsigndocumentlog_ip_local_str = NULL;
 
     // ezsigndocumentlog_response->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(ezsigndocumentlog_responseJSON, "fkiUserID");
@@ -188,6 +227,12 @@ ezsigndocumentlog_response_t *ezsigndocumentlog_response_parseFromJSON(cJSON *ez
     {
     goto end; //Numeric
     }
+    fki_user_id_local_var = malloc(sizeof(int));
+    if(!fki_user_id_local_var)
+    {
+        goto end;
+    }
+    *fki_user_id_local_var = fki_user_id->valuedouble;
     }
 
     // ezsigndocumentlog_response->fki_ezsignsigner_id
@@ -200,6 +245,12 @@ ezsigndocumentlog_response_t *ezsigndocumentlog_response_parseFromJSON(cJSON *ez
     {
     goto end; //Numeric
     }
+    fki_ezsignsigner_id_local_var = malloc(sizeof(int));
+    if(!fki_ezsignsigner_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezsignsigner_id_local_var = fki_ezsignsigner_id->valuedouble;
     }
 
     // ezsigndocumentlog_response->dt_ezsigndocumentlog_datetime
@@ -290,21 +341,59 @@ ezsigndocumentlog_response_t *ezsigndocumentlog_response_parseFromJSON(cJSON *ez
     }
 
 
+    if (dt_ezsigndocumentlog_datetime && !cJSON_IsNull(dt_ezsigndocumentlog_datetime)) dt_ezsigndocumentlog_datetime_local_str = strdup(dt_ezsigndocumentlog_datetime->valuestring);
+    if (s_ezsigndocumentlog_detail && !cJSON_IsNull(s_ezsigndocumentlog_detail)) s_ezsigndocumentlog_detail_local_str = strdup(s_ezsigndocumentlog_detail->valuestring);
+    if (s_ezsigndocumentlog_lastname && !cJSON_IsNull(s_ezsigndocumentlog_lastname)) s_ezsigndocumentlog_lastname_local_str = strdup(s_ezsigndocumentlog_lastname->valuestring);
+    if (s_ezsigndocumentlog_firstname && !cJSON_IsNull(s_ezsigndocumentlog_firstname)) s_ezsigndocumentlog_firstname_local_str = strdup(s_ezsigndocumentlog_firstname->valuestring);
+    if (s_ezsigndocumentlog_ip && !cJSON_IsNull(s_ezsigndocumentlog_ip)) s_ezsigndocumentlog_ip_local_str = strdup(s_ezsigndocumentlog_ip->valuestring);
+
     ezsigndocumentlog_response_local_var = ezsigndocumentlog_response_create_internal (
-        fki_user_id ? fki_user_id->valuedouble : 0,
-        fki_ezsignsigner_id ? fki_ezsignsigner_id->valuedouble : 0,
-        strdup(dt_ezsigndocumentlog_datetime->valuestring),
+        fki_user_id_local_var,
+        fki_ezsignsigner_id_local_var,
+        dt_ezsigndocumentlog_datetime_local_str,
         e_ezsigndocumentlog_type_local_nonprim,
-        strdup(s_ezsigndocumentlog_detail->valuestring),
-        strdup(s_ezsigndocumentlog_lastname->valuestring),
-        strdup(s_ezsigndocumentlog_firstname->valuestring),
-        strdup(s_ezsigndocumentlog_ip->valuestring)
+        s_ezsigndocumentlog_detail_local_str,
+        s_ezsigndocumentlog_lastname_local_str,
+        s_ezsigndocumentlog_firstname_local_str,
+        s_ezsigndocumentlog_ip_local_str
         );
+
+    if (!ezsigndocumentlog_response_local_var) {
+        goto end;
+    }
 
     return ezsigndocumentlog_response_local_var;
 end:
+    if (fki_user_id_local_var) {
+        free(fki_user_id_local_var);
+        fki_user_id_local_var = NULL;
+    }
+    if (fki_ezsignsigner_id_local_var) {
+        free(fki_ezsignsigner_id_local_var);
+        fki_ezsignsigner_id_local_var = NULL;
+    }
+    if (dt_ezsigndocumentlog_datetime_local_str) {
+        free(dt_ezsigndocumentlog_datetime_local_str);
+        dt_ezsigndocumentlog_datetime_local_str = NULL;
+    }
     if (e_ezsigndocumentlog_type_local_nonprim) {
         e_ezsigndocumentlog_type_local_nonprim = 0;
+    }
+    if (s_ezsigndocumentlog_detail_local_str) {
+        free(s_ezsigndocumentlog_detail_local_str);
+        s_ezsigndocumentlog_detail_local_str = NULL;
+    }
+    if (s_ezsigndocumentlog_lastname_local_str) {
+        free(s_ezsigndocumentlog_lastname_local_str);
+        s_ezsigndocumentlog_lastname_local_str = NULL;
+    }
+    if (s_ezsigndocumentlog_firstname_local_str) {
+        free(s_ezsigndocumentlog_firstname_local_str);
+        s_ezsigndocumentlog_firstname_local_str = NULL;
+    }
+    if (s_ezsigndocumentlog_ip_local_str) {
+        free(s_ezsigndocumentlog_ip_local_str);
+        s_ezsigndocumentlog_ip_local_str = NULL;
     }
     return NULL;
 

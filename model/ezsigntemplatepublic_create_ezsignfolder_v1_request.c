@@ -15,12 +15,12 @@ static ezsigntemplatepublic_create_ezsignfolder_v1_request_t *ezsigntemplatepubl
     if (!ezsigntemplatepublic_create_ezsignfolder_v1_request_local_var) {
         return NULL;
     }
+    memset(ezsigntemplatepublic_create_ezsignfolder_v1_request_local_var, 0, sizeof(ezsigntemplatepublic_create_ezsignfolder_v1_request_t));
+    ezsigntemplatepublic_create_ezsignfolder_v1_request_local_var->_library_owned = 1;
     ezsigntemplatepublic_create_ezsignfolder_v1_request_local_var->pks_ezmaxcustomer_code = pks_ezmaxcustomer_code;
     ezsigntemplatepublic_create_ezsignfolder_v1_request_local_var->s_ezsigntemplatepublic_referenceid = s_ezsigntemplatepublic_referenceid;
     ezsigntemplatepublic_create_ezsignfolder_v1_request_local_var->a_s_ezsigntemplatesigner_description = a_s_ezsigntemplatesigner_description;
     ezsigntemplatepublic_create_ezsignfolder_v1_request_local_var->a_obj_ezsignsigner = a_obj_ezsignsigner;
-
-    ezsigntemplatepublic_create_ezsignfolder_v1_request_local_var->_library_owned = 1;
     return ezsigntemplatepublic_create_ezsignfolder_v1_request_local_var;
 }
 
@@ -30,12 +30,15 @@ __attribute__((deprecated)) ezsigntemplatepublic_create_ezsignfolder_v1_request_
     list_t *a_s_ezsigntemplatesigner_description,
     list_t *a_obj_ezsignsigner
     ) {
-    return ezsigntemplatepublic_create_ezsignfolder_v1_request_create_internal (
+    ezsigntemplatepublic_create_ezsignfolder_v1_request_t *result = ezsigntemplatepublic_create_ezsignfolder_v1_request_create_internal (
         pks_ezmaxcustomer_code,
         s_ezsigntemplatepublic_referenceid,
         a_s_ezsigntemplatesigner_description,
         a_obj_ezsignsigner
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatepublic_create_ezsignfolder_v1_request_free(ezsigntemplatepublic_create_ezsignfolder_v1_request_t *ezsigntemplatepublic_create_ezsignfolder_v1_request) {
@@ -143,6 +146,10 @@ ezsigntemplatepublic_create_ezsignfolder_v1_request_t *ezsigntemplatepublic_crea
 
     ezsigntemplatepublic_create_ezsignfolder_v1_request_t *ezsigntemplatepublic_create_ezsignfolder_v1_request_local_var = NULL;
 
+    char *pks_ezmaxcustomer_code_local_str = NULL;
+
+    char *s_ezsigntemplatepublic_referenceid_local_str = NULL;
+
     // define the local list for ezsigntemplatepublic_create_ezsignfolder_v1_request->a_s_ezsigntemplatesigner_description
     list_t *a_s_ezsigntemplatesigner_descriptionList = NULL;
 
@@ -232,15 +239,30 @@ ezsigntemplatepublic_create_ezsignfolder_v1_request_t *ezsigntemplatepublic_crea
     }
 
 
+    if (pks_ezmaxcustomer_code && !cJSON_IsNull(pks_ezmaxcustomer_code)) pks_ezmaxcustomer_code_local_str = strdup(pks_ezmaxcustomer_code->valuestring);
+    if (s_ezsigntemplatepublic_referenceid && !cJSON_IsNull(s_ezsigntemplatepublic_referenceid)) s_ezsigntemplatepublic_referenceid_local_str = strdup(s_ezsigntemplatepublic_referenceid->valuestring);
+
     ezsigntemplatepublic_create_ezsignfolder_v1_request_local_var = ezsigntemplatepublic_create_ezsignfolder_v1_request_create_internal (
-        strdup(pks_ezmaxcustomer_code->valuestring),
-        strdup(s_ezsigntemplatepublic_referenceid->valuestring),
+        pks_ezmaxcustomer_code_local_str,
+        s_ezsigntemplatepublic_referenceid_local_str,
         a_s_ezsigntemplatesigner_descriptionList,
         a_obj_ezsignsignerList
         );
 
+    if (!ezsigntemplatepublic_create_ezsignfolder_v1_request_local_var) {
+        goto end;
+    }
+
     return ezsigntemplatepublic_create_ezsignfolder_v1_request_local_var;
 end:
+    if (pks_ezmaxcustomer_code_local_str) {
+        free(pks_ezmaxcustomer_code_local_str);
+        pks_ezmaxcustomer_code_local_str = NULL;
+    }
+    if (s_ezsigntemplatepublic_referenceid_local_str) {
+        free(s_ezsigntemplatepublic_referenceid_local_str);
+        s_ezsigntemplatepublic_referenceid_local_str = NULL;
+    }
     if (a_s_ezsigntemplatesigner_descriptionList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_s_ezsigntemplatesigner_descriptionList) {

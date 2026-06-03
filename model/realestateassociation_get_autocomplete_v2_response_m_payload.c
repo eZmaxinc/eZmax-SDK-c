@@ -12,18 +12,21 @@ static realestateassociation_get_autocomplete_v2_response_m_payload_t *realestat
     if (!realestateassociation_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    realestateassociation_get_autocomplete_v2_response_m_payload_local_var->a_obj_realestateassociation = a_obj_realestateassociation;
-
+    memset(realestateassociation_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(realestateassociation_get_autocomplete_v2_response_m_payload_t));
     realestateassociation_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    realestateassociation_get_autocomplete_v2_response_m_payload_local_var->a_obj_realestateassociation = a_obj_realestateassociation;
     return realestateassociation_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) realestateassociation_get_autocomplete_v2_response_m_payload_t *realestateassociation_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_realestateassociation
     ) {
-    return realestateassociation_get_autocomplete_v2_response_m_payload_create_internal (
+    realestateassociation_get_autocomplete_v2_response_m_payload_t *result = realestateassociation_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_realestateassociation
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realestateassociation_get_autocomplete_v2_response_m_payload_free(realestateassociation_get_autocomplete_v2_response_m_payload_t *realestateassociation_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ realestateassociation_get_autocomplete_v2_response_m_payload_t *realestateassoci
     }
 
 
+
     realestateassociation_get_autocomplete_v2_response_m_payload_local_var = realestateassociation_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_realestateassociationList
         );
+
+    if (!realestateassociation_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return realestateassociation_get_autocomplete_v2_response_m_payload_local_var;
 end:

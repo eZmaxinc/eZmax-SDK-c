@@ -12,18 +12,21 @@ static usergroupmembership_create_object_v1_request_t *usergroupmembership_creat
     if (!usergroupmembership_create_object_v1_request_local_var) {
         return NULL;
     }
-    usergroupmembership_create_object_v1_request_local_var->a_obj_usergroupmembership = a_obj_usergroupmembership;
-
+    memset(usergroupmembership_create_object_v1_request_local_var, 0, sizeof(usergroupmembership_create_object_v1_request_t));
     usergroupmembership_create_object_v1_request_local_var->_library_owned = 1;
+    usergroupmembership_create_object_v1_request_local_var->a_obj_usergroupmembership = a_obj_usergroupmembership;
     return usergroupmembership_create_object_v1_request_local_var;
 }
 
 __attribute__((deprecated)) usergroupmembership_create_object_v1_request_t *usergroupmembership_create_object_v1_request_create(
     list_t *a_obj_usergroupmembership
     ) {
-    return usergroupmembership_create_object_v1_request_create_internal (
+    usergroupmembership_create_object_v1_request_t *result = usergroupmembership_create_object_v1_request_create_internal (
         a_obj_usergroupmembership
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void usergroupmembership_create_object_v1_request_free(usergroupmembership_create_object_v1_request_t *usergroupmembership_create_object_v1_request) {
@@ -111,9 +114,14 @@ usergroupmembership_create_object_v1_request_t *usergroupmembership_create_objec
     }
 
 
+
     usergroupmembership_create_object_v1_request_local_var = usergroupmembership_create_object_v1_request_create_internal (
         a_obj_usergroupmembershipList
         );
+
+    if (!usergroupmembership_create_object_v1_request_local_var) {
+        goto end;
+    }
 
     return usergroupmembership_create_object_v1_request_local_var;
 end:

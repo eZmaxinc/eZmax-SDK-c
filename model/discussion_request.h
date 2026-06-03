@@ -19,17 +19,17 @@ typedef struct discussion_request_t discussion_request_t;
 
 
 typedef struct discussion_request_t {
-    int pki_discussion_id; //numeric
+    int *pki_discussion_id; //numeric
     char *s_discussion_description; // string
-    int b_discussion_closed; //boolean
+    int *b_discussion_closed; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } discussion_request_t;
 
 __attribute__((deprecated)) discussion_request_t *discussion_request_create(
-    int pki_discussion_id,
+    int *pki_discussion_id,
     char *s_discussion_description,
-    int b_discussion_closed
+    int *b_discussion_closed
 );
 
 void discussion_request_free(discussion_request_t *discussion_request);

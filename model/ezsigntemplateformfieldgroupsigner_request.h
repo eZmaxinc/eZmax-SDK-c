@@ -19,15 +19,15 @@ typedef struct ezsigntemplateformfieldgroupsigner_request_t ezsigntemplateformfi
 
 
 typedef struct ezsigntemplateformfieldgroupsigner_request_t {
-    int pki_ezsigntemplateformfieldgroupsigner_id; //numeric
-    int fki_ezsigntemplatesigner_id; //numeric
+    int *pki_ezsigntemplateformfieldgroupsigner_id; //numeric
+    int *fki_ezsigntemplatesigner_id; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplateformfieldgroupsigner_request_t;
 
 __attribute__((deprecated)) ezsigntemplateformfieldgroupsigner_request_t *ezsigntemplateformfieldgroupsigner_request_create(
-    int pki_ezsigntemplateformfieldgroupsigner_id,
-    int fki_ezsigntemplatesigner_id
+    int *pki_ezsigntemplateformfieldgroupsigner_id,
+    int *fki_ezsigntemplatesigner_id
 );
 
 void ezsigntemplateformfieldgroupsigner_request_free(ezsigntemplateformfieldgroupsigner_request_t *ezsigntemplateformfieldgroupsigner_request);

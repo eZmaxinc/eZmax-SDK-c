@@ -14,11 +14,11 @@ static ezsigntemplateformfieldgroup_create_object_v1_response_t *ezsigntemplatef
     if (!ezsigntemplateformfieldgroup_create_object_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsigntemplateformfieldgroup_create_object_v1_response_local_var, 0, sizeof(ezsigntemplateformfieldgroup_create_object_v1_response_t));
+    ezsigntemplateformfieldgroup_create_object_v1_response_local_var->_library_owned = 1;
     ezsigntemplateformfieldgroup_create_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsigntemplateformfieldgroup_create_object_v1_response_local_var->obj_debug = obj_debug;
     ezsigntemplateformfieldgroup_create_object_v1_response_local_var->m_payload = m_payload;
-
-    ezsigntemplateformfieldgroup_create_object_v1_response_local_var->_library_owned = 1;
     return ezsigntemplateformfieldgroup_create_object_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) ezsigntemplateformfieldgroup_create_object_v1_respon
     common_response_obj_debug_t *obj_debug,
     ezsigntemplateformfieldgroup_create_object_v1_response_m_payload_t *m_payload
     ) {
-    return ezsigntemplateformfieldgroup_create_object_v1_response_create_internal (
+    ezsigntemplateformfieldgroup_create_object_v1_response_t *result = ezsigntemplateformfieldgroup_create_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplateformfieldgroup_create_object_v1_response_free(ezsigntemplateformfieldgroup_create_object_v1_response_t *ezsigntemplateformfieldgroup_create_object_v1_response) {
@@ -156,11 +159,16 @@ ezsigntemplateformfieldgroup_create_object_v1_response_t *ezsigntemplateformfiel
     m_payload_local_nonprim = ezsigntemplateformfieldgroup_create_object_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     ezsigntemplateformfieldgroup_create_object_v1_response_local_var = ezsigntemplateformfieldgroup_create_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!ezsigntemplateformfieldgroup_create_object_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsigntemplateformfieldgroup_create_object_v1_response_local_var;
 end:

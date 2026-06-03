@@ -19,7 +19,7 @@ typedef struct webhookheader_request_t webhookheader_request_t;
 
 
 typedef struct webhookheader_request_t {
-    int pki_webhookheader_id; //numeric
+    int *pki_webhookheader_id; //numeric
     char *s_webhookheader_name; // string
     char *s_webhookheader_value; // string
 
@@ -27,7 +27,7 @@ typedef struct webhookheader_request_t {
 } webhookheader_request_t;
 
 __attribute__((deprecated)) webhookheader_request_t *webhookheader_request_create(
-    int pki_webhookheader_id,
+    int *pki_webhookheader_id,
     char *s_webhookheader_name,
     char *s_webhookheader_value
 );

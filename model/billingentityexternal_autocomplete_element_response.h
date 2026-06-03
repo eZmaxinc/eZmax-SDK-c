@@ -19,17 +19,17 @@ typedef struct billingentityexternal_autocomplete_element_response_t billingenti
 
 
 typedef struct billingentityexternal_autocomplete_element_response_t {
-    int pki_billingentityexternal_id; //numeric
+    int *pki_billingentityexternal_id; //numeric
     char *s_billingentityexternal_description; // string
-    int b_billingentityexternal_isactive; //boolean
+    int *b_billingentityexternal_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } billingentityexternal_autocomplete_element_response_t;
 
 __attribute__((deprecated)) billingentityexternal_autocomplete_element_response_t *billingentityexternal_autocomplete_element_response_create(
-    int pki_billingentityexternal_id,
+    int *pki_billingentityexternal_id,
     char *s_billingentityexternal_description,
-    int b_billingentityexternal_isactive
+    int *b_billingentityexternal_isactive
 );
 
 void billingentityexternal_autocomplete_element_response_free(billingentityexternal_autocomplete_element_response_t *billingentityexternal_autocomplete_element_response);

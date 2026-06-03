@@ -14,11 +14,11 @@ static userlogintype_get_autocomplete_v2_response_t *userlogintype_get_autocompl
     if (!userlogintype_get_autocomplete_v2_response_local_var) {
         return NULL;
     }
+    memset(userlogintype_get_autocomplete_v2_response_local_var, 0, sizeof(userlogintype_get_autocomplete_v2_response_t));
+    userlogintype_get_autocomplete_v2_response_local_var->_library_owned = 1;
     userlogintype_get_autocomplete_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     userlogintype_get_autocomplete_v2_response_local_var->obj_debug = obj_debug;
     userlogintype_get_autocomplete_v2_response_local_var->m_payload = m_payload;
-
-    userlogintype_get_autocomplete_v2_response_local_var->_library_owned = 1;
     return userlogintype_get_autocomplete_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) userlogintype_get_autocomplete_v2_response_t *userlo
     common_response_obj_debug_t *obj_debug,
     userlogintype_get_autocomplete_v2_response_m_payload_t *m_payload
     ) {
-    return userlogintype_get_autocomplete_v2_response_create_internal (
+    userlogintype_get_autocomplete_v2_response_t *result = userlogintype_get_autocomplete_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void userlogintype_get_autocomplete_v2_response_free(userlogintype_get_autocomplete_v2_response_t *userlogintype_get_autocomplete_v2_response) {
@@ -156,11 +159,16 @@ userlogintype_get_autocomplete_v2_response_t *userlogintype_get_autocomplete_v2_
     m_payload_local_nonprim = userlogintype_get_autocomplete_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     userlogintype_get_autocomplete_v2_response_local_var = userlogintype_get_autocomplete_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!userlogintype_get_autocomplete_v2_response_local_var) {
+        goto end;
+    }
 
     return userlogintype_get_autocomplete_v2_response_local_var;
 end:

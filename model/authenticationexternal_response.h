@@ -21,10 +21,10 @@ typedef struct authenticationexternal_response_t authenticationexternal_response
 
 
 typedef struct authenticationexternal_response_t {
-    int pki_authenticationexternal_id; //numeric
+    int *pki_authenticationexternal_id; //numeric
     char *s_authenticationexternal_description; // string
     ezmax_api_definition__full_field_e_authenticationexternal_type__e e_authenticationexternal_type; //referenced enum
-    int b_authenticationexternal_connected; //boolean
+    int *b_authenticationexternal_connected; //boolean
     char *s_authenticationexternal_authorizationurl; // string
     struct common_audit_t *obj_audit; //model
 
@@ -32,10 +32,10 @@ typedef struct authenticationexternal_response_t {
 } authenticationexternal_response_t;
 
 __attribute__((deprecated)) authenticationexternal_response_t *authenticationexternal_response_create(
-    int pki_authenticationexternal_id,
+    int *pki_authenticationexternal_id,
     char *s_authenticationexternal_description,
     ezmax_api_definition__full_field_e_authenticationexternal_type__e e_authenticationexternal_type,
-    int b_authenticationexternal_connected,
+    int *b_authenticationexternal_connected,
     char *s_authenticationexternal_authorizationurl,
     common_audit_t *obj_audit
 );

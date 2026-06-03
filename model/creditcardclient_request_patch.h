@@ -19,13 +19,13 @@ typedef struct creditcardclient_request_patch_t creditcardclient_request_patch_t
 
 
 typedef struct creditcardclient_request_patch_t {
-    int b_creditcardclientrelation_isdefault; //boolean
+    int *b_creditcardclientrelation_isdefault; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } creditcardclient_request_patch_t;
 
 __attribute__((deprecated)) creditcardclient_request_patch_t *creditcardclient_request_patch_create(
-    int b_creditcardclientrelation_isdefault
+    int *b_creditcardclientrelation_isdefault
 );
 
 void creditcardclient_request_patch_free(creditcardclient_request_patch_t *creditcardclient_request_patch);

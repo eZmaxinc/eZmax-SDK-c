@@ -19,16 +19,16 @@ typedef struct email_response_t email_response_t;
 
 
 typedef struct email_response_t {
-    int pki_email_id; //numeric
-    int fki_emailtype_id; //numeric
+    int *pki_email_id; //numeric
+    int *fki_emailtype_id; //numeric
     char *s_email_address; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } email_response_t;
 
 __attribute__((deprecated)) email_response_t *email_response_create(
-    int pki_email_id,
-    int fki_emailtype_id,
+    int *pki_email_id,
+    int *fki_emailtype_id,
     char *s_email_address
 );
 

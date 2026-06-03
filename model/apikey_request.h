@@ -20,21 +20,21 @@ typedef struct apikey_request_t apikey_request_t;
 
 
 typedef struct apikey_request_t {
-    int pki_apikey_id; //numeric
-    int fki_user_id; //numeric
+    int *pki_apikey_id; //numeric
+    int *fki_user_id; //numeric
     struct multilingual_apikey_description_t *obj_apikey_description; //model
-    int b_apikey_isactive; //boolean
-    int b_apikey_issigned; //boolean
+    int *b_apikey_isactive; //boolean
+    int *b_apikey_issigned; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } apikey_request_t;
 
 __attribute__((deprecated)) apikey_request_t *apikey_request_create(
-    int pki_apikey_id,
-    int fki_user_id,
+    int *pki_apikey_id,
+    int *fki_user_id,
     multilingual_apikey_description_t *obj_apikey_description,
-    int b_apikey_isactive,
-    int b_apikey_issigned
+    int *b_apikey_isactive,
+    int *b_apikey_issigned
 );
 
 void apikey_request_free(apikey_request_t *apikey_request);

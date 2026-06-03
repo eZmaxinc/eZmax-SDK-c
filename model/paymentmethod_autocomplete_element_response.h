@@ -19,17 +19,17 @@ typedef struct paymentmethod_autocomplete_element_response_t paymentmethod_autoc
 
 
 typedef struct paymentmethod_autocomplete_element_response_t {
-    int pki_paymentmethod_id; //numeric
+    int *pki_paymentmethod_id; //numeric
     char *s_paymentmethod_description_x; // string
-    int b_paymentmethod_isactive; //boolean
+    int *b_paymentmethod_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } paymentmethod_autocomplete_element_response_t;
 
 __attribute__((deprecated)) paymentmethod_autocomplete_element_response_t *paymentmethod_autocomplete_element_response_create(
-    int pki_paymentmethod_id,
+    int *pki_paymentmethod_id,
     char *s_paymentmethod_description_x,
-    int b_paymentmethod_isactive
+    int *b_paymentmethod_isactive
 );
 
 void paymentmethod_autocomplete_element_response_free(paymentmethod_autocomplete_element_response_t *paymentmethod_autocomplete_element_response);

@@ -34,42 +34,42 @@ typedef struct ezsignsignature_response_compound_v3_t ezsignsignature_response_c
 
 
 typedef struct ezsignsignature_response_compound_v3_t {
-    int pki_ezsignsignature_id; //numeric
-    int fki_ezsigndocument_id; //numeric
-    int fki_ezsignfoldersignerassociation_id; //numeric
-    int fki_ezsignsigningreason_id; //numeric
-    int fki_font_id; //numeric
-    int fki_paymentgateway_id; //numeric
+    int *pki_ezsignsignature_id; //numeric
+    int *fki_ezsigndocument_id; //numeric
+    int *fki_ezsignfoldersignerassociation_id; //numeric
+    int *fki_ezsignsigningreason_id; //numeric
+    int *fki_font_id; //numeric
+    int *fki_paymentgateway_id; //numeric
     char *s_currency_description_x; // string
     char *d_ezsignsignature_creditcardamount; // string
     char *s_ezsignsignature_creditcardamountdescription; // string
-    int b_ezsignsignature_creditcardcustomamount; //boolean
+    int *b_ezsignsignature_creditcardcustomamount; //boolean
     char *s_ezsignsigningreason_description_x; // string
-    int i_ezsignpage_pagenumber; //numeric
-    int i_ezsignsignature_x; //numeric
-    int i_ezsignsignature_y; //numeric
-    int i_ezsignsignature_height; //numeric
-    int i_ezsignsignature_width; //numeric
-    int i_ezsignsignature_step; //numeric
-    int i_ezsignsignature_stepadjusted; //numeric
+    int *i_ezsignpage_pagenumber; //numeric
+    int *i_ezsignsignature_x; //numeric
+    int *i_ezsignsignature_y; //numeric
+    int *i_ezsignsignature_height; //numeric
+    int *i_ezsignsignature_width; //numeric
+    int *i_ezsignsignature_step; //numeric
+    int *i_ezsignsignature_stepadjusted; //numeric
     ezmax_api_definition__full_field_e_ezsignsignature_type__e e_ezsignsignature_type; //referenced enum
     ezmax_api_definition__full_field_e_ezsignsignature_signaturepad__e e_ezsignsignature_signaturepad; //referenced enum
     ezmax_api_definition__full_field_e_ezsignsignature_signaturepadrequired__e e_ezsignsignature_signaturepadrequired; //referenced enum
     char *t_ezsignsignature_tooltip; // string
     ezmax_api_definition__full_field_e_ezsignsignature_tooltipposition__e e_ezsignsignature_tooltipposition; //referenced enum
     ezmax_api_definition__full_field_e_ezsignsignature_font__e e_ezsignsignature_font; //referenced enum
-    int i_ezsignsignature_validationstep; //numeric
+    int *i_ezsignsignature_validationstep; //numeric
     char *s_ezsignsignature_attachmentdescription; // string
     ezmax_api_definition__full_field_e_ezsignsignature_attachmentnamesource__e e_ezsignsignature_attachmentnamesource; //referenced enum
     ezmax_api_definition__full_field_e_ezsignsignature_consultationtrigger__e e_ezsignsignature_consultationtrigger; //referenced enum
-    int b_ezsignsignature_handwritten; //boolean
-    int b_ezsignsignature_reason; //boolean
-    int b_ezsignsignature_required; //boolean
-    int fki_ezsignfoldersignerassociation_id_validation; //numeric
+    int *b_ezsignsignature_handwritten; //boolean
+    int *b_ezsignsignature_reason; //boolean
+    int *b_ezsignsignature_required; //boolean
+    int *fki_ezsignfoldersignerassociation_id_validation; //numeric
     char *dt_ezsignsignature_date; // string
-    int i_ezsignsignatureattachment_count; //numeric
+    int *i_ezsignsignatureattachment_count; //numeric
     char *s_ezsignsignature_description; // string
-    int i_ezsignsignature_maxlength; //numeric
+    int *i_ezsignsignature_maxlength; //numeric
     ezmax_api_definition__full_enum_textvalidation__e e_ezsignsignature_textvalidation; //referenced enum
     char *s_ezsignsignature_textvalidationcustommessage; // string
     ezmax_api_definition__full_field_e_ezsignsignature_dependencyrequirement__e e_ezsignsignature_dependencyrequirement; //referenced enum
@@ -79,7 +79,7 @@ typedef struct ezsignsignature_response_compound_v3_t {
     struct custom_contact_name_response_t *obj_contact_name_delegation; //model
     struct signature_response_compound_t *obj_signature; //model
     char *s_ezsignsignergroup_description_x; // string
-    int b_ezsignsignature_customdate; //boolean
+    int *b_ezsignsignature_customdate; //boolean
     list_t *a_obj_ezsignsignaturecustomdate; //nonprimitive container
     struct custom_creditcardtransaction_response_t *obj_creditcardtransaction; //model
     list_t *a_obj_ezsignelementdependency; //nonprimitive container
@@ -89,42 +89,42 @@ typedef struct ezsignsignature_response_compound_v3_t {
 } ezsignsignature_response_compound_v3_t;
 
 __attribute__((deprecated)) ezsignsignature_response_compound_v3_t *ezsignsignature_response_compound_v3_create(
-    int pki_ezsignsignature_id,
-    int fki_ezsigndocument_id,
-    int fki_ezsignfoldersignerassociation_id,
-    int fki_ezsignsigningreason_id,
-    int fki_font_id,
-    int fki_paymentgateway_id,
+    int *pki_ezsignsignature_id,
+    int *fki_ezsigndocument_id,
+    int *fki_ezsignfoldersignerassociation_id,
+    int *fki_ezsignsigningreason_id,
+    int *fki_font_id,
+    int *fki_paymentgateway_id,
     char *s_currency_description_x,
     char *d_ezsignsignature_creditcardamount,
     char *s_ezsignsignature_creditcardamountdescription,
-    int b_ezsignsignature_creditcardcustomamount,
+    int *b_ezsignsignature_creditcardcustomamount,
     char *s_ezsignsigningreason_description_x,
-    int i_ezsignpage_pagenumber,
-    int i_ezsignsignature_x,
-    int i_ezsignsignature_y,
-    int i_ezsignsignature_height,
-    int i_ezsignsignature_width,
-    int i_ezsignsignature_step,
-    int i_ezsignsignature_stepadjusted,
+    int *i_ezsignpage_pagenumber,
+    int *i_ezsignsignature_x,
+    int *i_ezsignsignature_y,
+    int *i_ezsignsignature_height,
+    int *i_ezsignsignature_width,
+    int *i_ezsignsignature_step,
+    int *i_ezsignsignature_stepadjusted,
     ezmax_api_definition__full_field_e_ezsignsignature_type__e e_ezsignsignature_type,
     ezmax_api_definition__full_field_e_ezsignsignature_signaturepad__e e_ezsignsignature_signaturepad,
     ezmax_api_definition__full_field_e_ezsignsignature_signaturepadrequired__e e_ezsignsignature_signaturepadrequired,
     char *t_ezsignsignature_tooltip,
     ezmax_api_definition__full_field_e_ezsignsignature_tooltipposition__e e_ezsignsignature_tooltipposition,
     ezmax_api_definition__full_field_e_ezsignsignature_font__e e_ezsignsignature_font,
-    int i_ezsignsignature_validationstep,
+    int *i_ezsignsignature_validationstep,
     char *s_ezsignsignature_attachmentdescription,
     ezmax_api_definition__full_field_e_ezsignsignature_attachmentnamesource__e e_ezsignsignature_attachmentnamesource,
     ezmax_api_definition__full_field_e_ezsignsignature_consultationtrigger__e e_ezsignsignature_consultationtrigger,
-    int b_ezsignsignature_handwritten,
-    int b_ezsignsignature_reason,
-    int b_ezsignsignature_required,
-    int fki_ezsignfoldersignerassociation_id_validation,
+    int *b_ezsignsignature_handwritten,
+    int *b_ezsignsignature_reason,
+    int *b_ezsignsignature_required,
+    int *fki_ezsignfoldersignerassociation_id_validation,
     char *dt_ezsignsignature_date,
-    int i_ezsignsignatureattachment_count,
+    int *i_ezsignsignatureattachment_count,
     char *s_ezsignsignature_description,
-    int i_ezsignsignature_maxlength,
+    int *i_ezsignsignature_maxlength,
     ezmax_api_definition__full_enum_textvalidation__e e_ezsignsignature_textvalidation,
     char *s_ezsignsignature_textvalidationcustommessage,
     ezmax_api_definition__full_field_e_ezsignsignature_dependencyrequirement__e e_ezsignsignature_dependencyrequirement,
@@ -134,7 +134,7 @@ __attribute__((deprecated)) ezsignsignature_response_compound_v3_t *ezsignsignat
     custom_contact_name_response_t *obj_contact_name_delegation,
     signature_response_compound_t *obj_signature,
     char *s_ezsignsignergroup_description_x,
-    int b_ezsignsignature_customdate,
+    int *b_ezsignsignature_customdate,
     list_t *a_obj_ezsignsignaturecustomdate,
     custom_creditcardtransaction_response_t *obj_creditcardtransaction,
     list_t *a_obj_ezsignelementdependency,

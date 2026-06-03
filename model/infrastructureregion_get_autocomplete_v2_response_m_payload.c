@@ -12,18 +12,21 @@ static infrastructureregion_get_autocomplete_v2_response_m_payload_t *infrastruc
     if (!infrastructureregion_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    infrastructureregion_get_autocomplete_v2_response_m_payload_local_var->a_obj_infrastructureregion = a_obj_infrastructureregion;
-
+    memset(infrastructureregion_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(infrastructureregion_get_autocomplete_v2_response_m_payload_t));
     infrastructureregion_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    infrastructureregion_get_autocomplete_v2_response_m_payload_local_var->a_obj_infrastructureregion = a_obj_infrastructureregion;
     return infrastructureregion_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) infrastructureregion_get_autocomplete_v2_response_m_payload_t *infrastructureregion_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_infrastructureregion
     ) {
-    return infrastructureregion_get_autocomplete_v2_response_m_payload_create_internal (
+    infrastructureregion_get_autocomplete_v2_response_m_payload_t *result = infrastructureregion_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_infrastructureregion
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void infrastructureregion_get_autocomplete_v2_response_m_payload_free(infrastructureregion_get_autocomplete_v2_response_m_payload_t *infrastructureregion_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ infrastructureregion_get_autocomplete_v2_response_m_payload_t *infrastructurereg
     }
 
 
+
     infrastructureregion_get_autocomplete_v2_response_m_payload_local_var = infrastructureregion_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_infrastructureregionList
         );
+
+    if (!infrastructureregion_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return infrastructureregion_get_autocomplete_v2_response_m_payload_local_var;
 end:

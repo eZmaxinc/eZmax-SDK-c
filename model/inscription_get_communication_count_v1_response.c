@@ -14,11 +14,11 @@ static inscription_get_communication_count_v1_response_t *inscription_get_commun
     if (!inscription_get_communication_count_v1_response_local_var) {
         return NULL;
     }
+    memset(inscription_get_communication_count_v1_response_local_var, 0, sizeof(inscription_get_communication_count_v1_response_t));
+    inscription_get_communication_count_v1_response_local_var->_library_owned = 1;
     inscription_get_communication_count_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     inscription_get_communication_count_v1_response_local_var->obj_debug = obj_debug;
     inscription_get_communication_count_v1_response_local_var->m_payload = m_payload;
-
-    inscription_get_communication_count_v1_response_local_var->_library_owned = 1;
     return inscription_get_communication_count_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) inscription_get_communication_count_v1_response_t *i
     common_response_obj_debug_t *obj_debug,
     inscription_get_communication_count_v1_response_m_payload_t *m_payload
     ) {
-    return inscription_get_communication_count_v1_response_create_internal (
+    inscription_get_communication_count_v1_response_t *result = inscription_get_communication_count_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void inscription_get_communication_count_v1_response_free(inscription_get_communication_count_v1_response_t *inscription_get_communication_count_v1_response) {
@@ -156,11 +159,16 @@ inscription_get_communication_count_v1_response_t *inscription_get_communication
     m_payload_local_nonprim = inscription_get_communication_count_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     inscription_get_communication_count_v1_response_local_var = inscription_get_communication_count_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!inscription_get_communication_count_v1_response_local_var) {
+        goto end;
+    }
 
     return inscription_get_communication_count_v1_response_local_var;
 end:

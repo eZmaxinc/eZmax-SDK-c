@@ -20,7 +20,7 @@ typedef struct custom_ezsignfolder_ezsignsignatures_automatic_response_t custom_
 
 
 typedef struct custom_ezsignfolder_ezsignsignatures_automatic_response_t {
-    int pki_ezsignfolder_id; //numeric
+    int *pki_ezsignfolder_id; //numeric
     char *s_ezsignfolder_description; // string
     list_t *a_obj_ezsigndocument; //nonprimitive container
 
@@ -28,7 +28,7 @@ typedef struct custom_ezsignfolder_ezsignsignatures_automatic_response_t {
 } custom_ezsignfolder_ezsignsignatures_automatic_response_t;
 
 __attribute__((deprecated)) custom_ezsignfolder_ezsignsignatures_automatic_response_t *custom_ezsignfolder_ezsignsignatures_automatic_response_create(
-    int pki_ezsignfolder_id,
+    int *pki_ezsignfolder_id,
     char *s_ezsignfolder_description,
     list_t *a_obj_ezsigndocument
 );

@@ -13,10 +13,10 @@ static ezsigntemplateformfieldgroup_edit_object_v1_response_t *ezsigntemplatefor
     if (!ezsigntemplateformfieldgroup_edit_object_v1_response_local_var) {
         return NULL;
     }
+    memset(ezsigntemplateformfieldgroup_edit_object_v1_response_local_var, 0, sizeof(ezsigntemplateformfieldgroup_edit_object_v1_response_t));
+    ezsigntemplateformfieldgroup_edit_object_v1_response_local_var->_library_owned = 1;
     ezsigntemplateformfieldgroup_edit_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsigntemplateformfieldgroup_edit_object_v1_response_local_var->obj_debug = obj_debug;
-
-    ezsigntemplateformfieldgroup_edit_object_v1_response_local_var->_library_owned = 1;
     return ezsigntemplateformfieldgroup_edit_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) ezsigntemplateformfieldgroup_edit_object_v1_response
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return ezsigntemplateformfieldgroup_edit_object_v1_response_create_internal (
+    ezsigntemplateformfieldgroup_edit_object_v1_response_t *result = ezsigntemplateformfieldgroup_edit_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplateformfieldgroup_edit_object_v1_response_free(ezsigntemplateformfieldgroup_edit_object_v1_response_t *ezsigntemplateformfieldgroup_edit_object_v1_response) {
@@ -119,10 +122,15 @@ ezsigntemplateformfieldgroup_edit_object_v1_response_t *ezsigntemplateformfieldg
     }
 
 
+
     ezsigntemplateformfieldgroup_edit_object_v1_response_local_var = ezsigntemplateformfieldgroup_edit_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!ezsigntemplateformfieldgroup_edit_object_v1_response_local_var) {
+        goto end;
+    }
 
     return ezsigntemplateformfieldgroup_edit_object_v1_response_local_var;
 end:

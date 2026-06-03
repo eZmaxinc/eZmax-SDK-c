@@ -19,14 +19,14 @@ typedef struct domain_list_element_t domain_list_element_t;
 
 
 typedef struct domain_list_element_t {
-    int pki_domain_id; //numeric
+    int *pki_domain_id; //numeric
     char *s_domain_name; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } domain_list_element_t;
 
 __attribute__((deprecated)) domain_list_element_t *domain_list_element_create(
-    int pki_domain_id,
+    int *pki_domain_id,
     char *s_domain_name
 );
 

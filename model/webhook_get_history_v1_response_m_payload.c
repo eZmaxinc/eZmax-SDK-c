@@ -12,18 +12,21 @@ static webhook_get_history_v1_response_m_payload_t *webhook_get_history_v1_respo
     if (!webhook_get_history_v1_response_m_payload_local_var) {
         return NULL;
     }
-    webhook_get_history_v1_response_m_payload_local_var->a_obj_webhooklog = a_obj_webhooklog;
-
+    memset(webhook_get_history_v1_response_m_payload_local_var, 0, sizeof(webhook_get_history_v1_response_m_payload_t));
     webhook_get_history_v1_response_m_payload_local_var->_library_owned = 1;
+    webhook_get_history_v1_response_m_payload_local_var->a_obj_webhooklog = a_obj_webhooklog;
     return webhook_get_history_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) webhook_get_history_v1_response_m_payload_t *webhook_get_history_v1_response_m_payload_create(
     list_t *a_obj_webhooklog
     ) {
-    return webhook_get_history_v1_response_m_payload_create_internal (
+    webhook_get_history_v1_response_m_payload_t *result = webhook_get_history_v1_response_m_payload_create_internal (
         a_obj_webhooklog
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void webhook_get_history_v1_response_m_payload_free(webhook_get_history_v1_response_m_payload_t *webhook_get_history_v1_response_m_payload) {
@@ -111,9 +114,14 @@ webhook_get_history_v1_response_m_payload_t *webhook_get_history_v1_response_m_p
     }
 
 
+
     webhook_get_history_v1_response_m_payload_local_var = webhook_get_history_v1_response_m_payload_create_internal (
         a_obj_webhooklogList
         );
+
+    if (!webhook_get_history_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return webhook_get_history_v1_response_m_payload_local_var;
 end:

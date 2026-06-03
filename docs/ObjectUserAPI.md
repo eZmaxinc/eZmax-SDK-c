@@ -13,12 +13,14 @@ Method | HTTP request | Description
 [**ObjectUserAPI_userGetAutocompleteV2**](ObjectUserAPI.md#ObjectUserAPI_userGetAutocompleteV2) | **GET** /2/object/user/getAutocomplete/{sSelector} | Retrieve Users and IDs
 [**ObjectUserAPI_userGetColleaguesV2**](ObjectUserAPI.md#ObjectUserAPI_userGetColleaguesV2) | **GET** /2/object/user/{pkiUserID}/getColleagues | Retrieve an existing User&#39;s Colleagues
 [**ObjectUserAPI_userGetEffectivePermissionsV1**](ObjectUserAPI.md#ObjectUserAPI_userGetEffectivePermissionsV1) | **GET** /1/object/user/{pkiUserID}/getEffectivePermissions | Retrieve an existing User&#39;s Effective Permissions
+[**ObjectUserAPI_userGetEzmaxcustomeruserV1**](ObjectUserAPI.md#ObjectUserAPI_userGetEzmaxcustomeruserV1) | **GET** /1/object/user/{pkiUserID}/getEzmaxcustomeruser | Returns the Ezmaxcustomeruser for the User
 [**ObjectUserAPI_userGetListV1**](ObjectUserAPI.md#ObjectUserAPI_userGetListV1) | **GET** /1/object/user/getList | Retrieve User list
 [**ObjectUserAPI_userGetObjectV2**](ObjectUserAPI.md#ObjectUserAPI_userGetObjectV2) | **GET** /2/object/user/{pkiUserID} | Retrieve an existing User
 [**ObjectUserAPI_userGetPermissionsV1**](ObjectUserAPI.md#ObjectUserAPI_userGetPermissionsV1) | **GET** /1/object/user/{pkiUserID}/getPermissions | Retrieve an existing User&#39;s Permissions
 [**ObjectUserAPI_userGetSubnetsV1**](ObjectUserAPI.md#ObjectUserAPI_userGetSubnetsV1) | **GET** /1/object/user/{pkiUserID}/getSubnets | Retrieve an existing User&#39;s Subnets
 [**ObjectUserAPI_userGetUsergroupexternalsV1**](ObjectUserAPI.md#ObjectUserAPI_userGetUsergroupexternalsV1) | **GET** /1/object/user/{pkiUserID}/getUsergroupexternals | Get User&#39;s Usergroupexternals
 [**ObjectUserAPI_userGetUsergroupsV1**](ObjectUserAPI.md#ObjectUserAPI_userGetUsergroupsV1) | **GET** /1/object/user/{pkiUserID}/getUsergroups | Get User&#39;s Usergroups
+[**ObjectUserAPI_userImpersonateV1**](ObjectUserAPI.md#ObjectUserAPI_userImpersonateV1) | **POST** /1/object/user/{pkiUserID}/impersonate | Impersonate the user
 [**ObjectUserAPI_userSendPasswordResetV1**](ObjectUserAPI.md#ObjectUserAPI_userSendPasswordResetV1) | **POST** /1/object/user/{pkiUserID}/sendPasswordReset | Send password reset
 
 
@@ -303,6 +305,37 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **ObjectUserAPI_userGetEzmaxcustomeruserV1**
+```c
+// Returns the Ezmaxcustomeruser for the User
+//
+// Returns the Ezmaxcustomeruser for the User
+//
+user_get_ezmaxcustomeruser_v1_response_t* ObjectUserAPI_userGetEzmaxcustomeruserV1(apiClient_t *apiClient, int *pkiUserID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiUserID** | **int \*** |  | 
+
+### Return type
+
+[user_get_ezmaxcustomeruser_v1_response_t](user_get_ezmaxcustomeruser_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **ObjectUserAPI_userGetListV1**
 ```c
 // Retrieve User list
@@ -481,6 +514,38 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectUserAPI_userImpersonateV1**
+```c
+// Impersonate the user
+//
+// Using this endpoint, you can impersonate the user.
+//
+user_impersonate_v1_response_t* ObjectUserAPI_userImpersonateV1(apiClient_t *apiClient, int *pkiUserID, user_impersonate_v1_request_t *user_impersonate_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiUserID** | **int \*** |  | 
+**user_impersonate_v1_request** | **[user_impersonate_v1_request_t](user_impersonate_v1_request.md) \*** |  | 
+
+### Return type
+
+[user_impersonate_v1_response_t](user_impersonate_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

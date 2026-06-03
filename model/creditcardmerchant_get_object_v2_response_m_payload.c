@@ -12,18 +12,21 @@ static creditcardmerchant_get_object_v2_response_m_payload_t *creditcardmerchant
     if (!creditcardmerchant_get_object_v2_response_m_payload_local_var) {
         return NULL;
     }
-    creditcardmerchant_get_object_v2_response_m_payload_local_var->obj_creditcardmerchant = obj_creditcardmerchant;
-
+    memset(creditcardmerchant_get_object_v2_response_m_payload_local_var, 0, sizeof(creditcardmerchant_get_object_v2_response_m_payload_t));
     creditcardmerchant_get_object_v2_response_m_payload_local_var->_library_owned = 1;
+    creditcardmerchant_get_object_v2_response_m_payload_local_var->obj_creditcardmerchant = obj_creditcardmerchant;
     return creditcardmerchant_get_object_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) creditcardmerchant_get_object_v2_response_m_payload_t *creditcardmerchant_get_object_v2_response_m_payload_create(
     creditcardmerchant_response_compound_t *obj_creditcardmerchant
     ) {
-    return creditcardmerchant_get_object_v2_response_m_payload_create_internal (
+    creditcardmerchant_get_object_v2_response_m_payload_t *result = creditcardmerchant_get_object_v2_response_m_payload_create_internal (
         obj_creditcardmerchant
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void creditcardmerchant_get_object_v2_response_m_payload_free(creditcardmerchant_get_object_v2_response_m_payload_t *creditcardmerchant_get_object_v2_response_m_payload) {
@@ -86,9 +89,14 @@ creditcardmerchant_get_object_v2_response_m_payload_t *creditcardmerchant_get_ob
     obj_creditcardmerchant_local_nonprim = creditcardmerchant_response_compound_parseFromJSON(obj_creditcardmerchant); //nonprimitive
 
 
+
     creditcardmerchant_get_object_v2_response_m_payload_local_var = creditcardmerchant_get_object_v2_response_m_payload_create_internal (
         obj_creditcardmerchant_local_nonprim
         );
+
+    if (!creditcardmerchant_get_object_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return creditcardmerchant_get_object_v2_response_m_payload_local_var;
 end:

@@ -19,21 +19,21 @@ typedef struct ezsignbulksenddocumentmapping_response_t ezsignbulksenddocumentma
 
 
 typedef struct ezsignbulksenddocumentmapping_response_t {
-    int pki_ezsignbulksenddocumentmapping_id; //numeric
-    int fki_ezsignbulksend_id; //numeric
-    int fki_ezsigntemplatepackage_id; //numeric
-    int fki_ezsigntemplate_id; //numeric
-    int i_ezsignbulksenddocumentmapping_order; //numeric
+    int *pki_ezsignbulksenddocumentmapping_id; //numeric
+    int *fki_ezsignbulksend_id; //numeric
+    int *fki_ezsigntemplatepackage_id; //numeric
+    int *fki_ezsigntemplate_id; //numeric
+    int *i_ezsignbulksenddocumentmapping_order; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignbulksenddocumentmapping_response_t;
 
 __attribute__((deprecated)) ezsignbulksenddocumentmapping_response_t *ezsignbulksenddocumentmapping_response_create(
-    int pki_ezsignbulksenddocumentmapping_id,
-    int fki_ezsignbulksend_id,
-    int fki_ezsigntemplatepackage_id,
-    int fki_ezsigntemplate_id,
-    int i_ezsignbulksenddocumentmapping_order
+    int *pki_ezsignbulksenddocumentmapping_id,
+    int *fki_ezsignbulksend_id,
+    int *fki_ezsigntemplatepackage_id,
+    int *fki_ezsigntemplate_id,
+    int *i_ezsignbulksenddocumentmapping_order
 );
 
 void ezsignbulksenddocumentmapping_response_free(ezsignbulksenddocumentmapping_response_t *ezsignbulksenddocumentmapping_response);

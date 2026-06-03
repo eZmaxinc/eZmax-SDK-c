@@ -12,18 +12,21 @@ static ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_t
     if (!ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_local_var->dt_ezsigntemplatepublic_limitexceededsince = dt_ezsigntemplatepublic_limitexceededsince;
-
+    memset(ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_local_var, 0, sizeof(ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_t));
     ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_local_var->dt_ezsigntemplatepublic_limitexceededsince = dt_ezsigntemplatepublic_limitexceededsince;
     return ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_t *ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_create(
     char *dt_ezsigntemplatepublic_limitexceededsince
     ) {
-    return ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_create_internal (
+    ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_t *result = ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_create_internal (
         dt_ezsigntemplatepublic_limitexceededsince
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_free(ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_t *ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload) {
@@ -65,6 +68,8 @@ ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_t *ezsig
 
     ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_t *ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_local_var = NULL;
 
+    char *dt_ezsigntemplatepublic_limitexceededsince_local_str = NULL;
+
     // ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload->dt_ezsigntemplatepublic_limitexceededsince
     cJSON *dt_ezsigntemplatepublic_limitexceededsince = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payloadJSON, "dtEzsigntemplatepublicLimitexceededsince");
     if (cJSON_IsNull(dt_ezsigntemplatepublic_limitexceededsince)) {
@@ -81,12 +86,22 @@ ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_t *ezsig
     }
 
 
+    if (dt_ezsigntemplatepublic_limitexceededsince && !cJSON_IsNull(dt_ezsigntemplatepublic_limitexceededsince)) dt_ezsigntemplatepublic_limitexceededsince_local_str = strdup(dt_ezsigntemplatepublic_limitexceededsince->valuestring);
+
     ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_local_var = ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_create_internal (
-        strdup(dt_ezsigntemplatepublic_limitexceededsince->valuestring)
+        dt_ezsigntemplatepublic_limitexceededsince_local_str
         );
+
+    if (!ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_local_var;
 end:
+    if (dt_ezsigntemplatepublic_limitexceededsince_local_str) {
+        free(dt_ezsigntemplatepublic_limitexceededsince_local_str);
+        dt_ezsigntemplatepublic_limitexceededsince_local_str = NULL;
+    }
     return NULL;
 
 }

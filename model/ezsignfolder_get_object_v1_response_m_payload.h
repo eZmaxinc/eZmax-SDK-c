@@ -26,22 +26,22 @@ typedef struct ezsignfolder_get_object_v1_response_m_payload_t ezsignfolder_get_
 
 
 typedef struct ezsignfolder_get_object_v1_response_m_payload_t {
-    int pki_ezsignfolder_id; //numeric
-    int fki_ezsignfoldertype_id; //numeric
+    int *pki_ezsignfolder_id; //numeric
+    int *fki_ezsignfoldertype_id; //numeric
     struct custom_ezsignfoldertype_response_t *obj_ezsignfoldertype; //model
-    int fki_timezone_id; //numeric
+    int *fki_timezone_id; //numeric
     ezmax_api_definition__full_field_e_ezsignfolder_completion__e e_ezsignfolder_completion; //referenced enum
     char *s_ezsignfoldertype_name_x; // string
-    int fki_billingentityinternal_id; //numeric
+    int *fki_billingentityinternal_id; //numeric
     char *s_billingentityinternal_description_x; // string
-    int fki_ezsigntsarequirement_id; //numeric
+    int *fki_ezsigntsarequirement_id; //numeric
     char *s_ezsigntsarequirement_description_x; // string
     char *s_ezsignfolder_description; // string
     char *t_ezsignfolder_note; // string
-    int b_ezsignfolder_isdisposable; //boolean
+    int *b_ezsignfolder_isdisposable; //boolean
     ezmax_api_definition__full_field_e_ezsignfolder_sendreminderfrequency__e e_ezsignfolder_sendreminderfrequency; //referenced enum
-    int i_ezsignfolder_sendreminderfirstdays; //numeric
-    int i_ezsignfolder_sendreminderotherdays; //numeric
+    int *i_ezsignfolder_sendreminderfirstdays; //numeric
+    int *i_ezsignfolder_sendreminderotherdays; //numeric
     char *dt_ezsignfolder_delayedsenddate; // string
     char *dt_ezsignfolder_duedate; // string
     char *dt_ezsignfolder_sentdate; // string
@@ -59,22 +59,22 @@ typedef struct ezsignfolder_get_object_v1_response_m_payload_t {
 } ezsignfolder_get_object_v1_response_m_payload_t;
 
 __attribute__((deprecated)) ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_response_m_payload_create(
-    int pki_ezsignfolder_id,
-    int fki_ezsignfoldertype_id,
+    int *pki_ezsignfolder_id,
+    int *fki_ezsignfoldertype_id,
     custom_ezsignfoldertype_response_t *obj_ezsignfoldertype,
-    int fki_timezone_id,
+    int *fki_timezone_id,
     ezmax_api_definition__full_field_e_ezsignfolder_completion__e e_ezsignfolder_completion,
     char *s_ezsignfoldertype_name_x,
-    int fki_billingentityinternal_id,
+    int *fki_billingentityinternal_id,
     char *s_billingentityinternal_description_x,
-    int fki_ezsigntsarequirement_id,
+    int *fki_ezsigntsarequirement_id,
     char *s_ezsigntsarequirement_description_x,
     char *s_ezsignfolder_description,
     char *t_ezsignfolder_note,
-    int b_ezsignfolder_isdisposable,
+    int *b_ezsignfolder_isdisposable,
     ezmax_api_definition__full_field_e_ezsignfolder_sendreminderfrequency__e e_ezsignfolder_sendreminderfrequency,
-    int i_ezsignfolder_sendreminderfirstdays,
-    int i_ezsignfolder_sendreminderotherdays,
+    int *i_ezsignfolder_sendreminderfirstdays,
+    int *i_ezsignfolder_sendreminderotherdays,
     char *dt_ezsignfolder_delayedsenddate,
     char *dt_ezsignfolder_duedate,
     char *dt_ezsignfolder_sentdate,

@@ -20,8 +20,8 @@ typedef struct ezsignsignaturepaymentdetail_request_t ezsignsignaturepaymentdeta
 
 
 typedef struct ezsignsignaturepaymentdetail_request_t {
-    int pki_ezsignsignaturepaymentdetail_id; //numeric
-    int fki_glaccountcontainer_id; //numeric
+    int *pki_ezsignsignaturepaymentdetail_id; //numeric
+    int *fki_glaccountcontainer_id; //numeric
     char *t_ezsignsignaturepaymentdetail_description; // string
     char *d_ezsignsignaturepaymentdetail_amount; // string
     ezmax_api_definition__full_field_e_ezsignsignaturepaymentdetail_taxable__e e_ezsignsignaturepaymentdetail_taxable; //referenced enum
@@ -30,8 +30,8 @@ typedef struct ezsignsignaturepaymentdetail_request_t {
 } ezsignsignaturepaymentdetail_request_t;
 
 __attribute__((deprecated)) ezsignsignaturepaymentdetail_request_t *ezsignsignaturepaymentdetail_request_create(
-    int pki_ezsignsignaturepaymentdetail_id,
-    int fki_glaccountcontainer_id,
+    int *pki_ezsignsignaturepaymentdetail_id,
+    int *fki_glaccountcontainer_id,
     char *t_ezsignsignaturepaymentdetail_description,
     char *d_ezsignsignaturepaymentdetail_amount,
     ezmax_api_definition__full_field_e_ezsignsignaturepaymentdetail_taxable__e e_ezsignsignaturepaymentdetail_taxable

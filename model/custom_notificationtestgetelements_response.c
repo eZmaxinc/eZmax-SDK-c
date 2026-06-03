@@ -6,7 +6,7 @@
 
 
 static custom_notificationtestgetelements_response_t *custom_notificationtestgetelements_response_create_internal(
-    int pki_notificationtest_id,
+    int *pki_notificationtest_id,
     char *s_notificationtest_function,
     list_t *a_s_variableobject_property,
     list_t *a_obj_variableobject
@@ -15,27 +15,36 @@ static custom_notificationtestgetelements_response_t *custom_notificationtestget
     if (!custom_notificationtestgetelements_response_local_var) {
         return NULL;
     }
+    memset(custom_notificationtestgetelements_response_local_var, 0, sizeof(custom_notificationtestgetelements_response_t));
+    custom_notificationtestgetelements_response_local_var->_library_owned = 1;
     custom_notificationtestgetelements_response_local_var->pki_notificationtest_id = pki_notificationtest_id;
     custom_notificationtestgetelements_response_local_var->s_notificationtest_function = s_notificationtest_function;
     custom_notificationtestgetelements_response_local_var->a_s_variableobject_property = a_s_variableobject_property;
     custom_notificationtestgetelements_response_local_var->a_obj_variableobject = a_obj_variableobject;
-
-    custom_notificationtestgetelements_response_local_var->_library_owned = 1;
     return custom_notificationtestgetelements_response_local_var;
 }
 
 __attribute__((deprecated)) custom_notificationtestgetelements_response_t *custom_notificationtestgetelements_response_create(
-    int pki_notificationtest_id,
+    int *pki_notificationtest_id,
     char *s_notificationtest_function,
     list_t *a_s_variableobject_property,
     list_t *a_obj_variableobject
     ) {
-    return custom_notificationtestgetelements_response_create_internal (
-        pki_notificationtest_id,
+    int *pki_notificationtest_id_copy = NULL;
+    if (pki_notificationtest_id) {
+        pki_notificationtest_id_copy = malloc(sizeof(int));
+        if (pki_notificationtest_id_copy) *pki_notificationtest_id_copy = *pki_notificationtest_id;
+    }
+    custom_notificationtestgetelements_response_t *result = custom_notificationtestgetelements_response_create_internal (
+        pki_notificationtest_id_copy,
         s_notificationtest_function,
         a_s_variableobject_property,
         a_obj_variableobject
         );
+    if (!result) {
+        free(pki_notificationtest_id_copy);
+    }
+    return result;
 }
 
 void custom_notificationtestgetelements_response_free(custom_notificationtestgetelements_response_t *custom_notificationtestgetelements_response) {
@@ -47,6 +56,10 @@ void custom_notificationtestgetelements_response_free(custom_notificationtestget
         return ;
     }
     listEntry_t *listEntry;
+    if (custom_notificationtestgetelements_response->pki_notificationtest_id) {
+        free(custom_notificationtestgetelements_response->pki_notificationtest_id);
+        custom_notificationtestgetelements_response->pki_notificationtest_id = NULL;
+    }
     if (custom_notificationtestgetelements_response->s_notificationtest_function) {
         free(custom_notificationtestgetelements_response->s_notificationtest_function);
         custom_notificationtestgetelements_response->s_notificationtest_function = NULL;
@@ -75,7 +88,7 @@ cJSON *custom_notificationtestgetelements_response_convertToJSON(custom_notifica
     if (!custom_notificationtestgetelements_response->pki_notificationtest_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiNotificationtestID", custom_notificationtestgetelements_response->pki_notificationtest_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiNotificationtestID", *custom_notificationtestgetelements_response->pki_notificationtest_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -132,6 +145,11 @@ custom_notificationtestgetelements_response_t *custom_notificationtestgetelement
 
     custom_notificationtestgetelements_response_t *custom_notificationtestgetelements_response_local_var = NULL;
 
+    // define the local variable for custom_notificationtestgetelements_response->pki_notificationtest_id
+    int *pki_notificationtest_id_local_var = NULL;
+
+    char *s_notificationtest_function_local_str = NULL;
+
     // define the local list for custom_notificationtestgetelements_response->a_s_variableobject_property
     list_t *a_s_variableobject_propertyList = NULL;
 
@@ -152,6 +170,12 @@ custom_notificationtestgetelements_response_t *custom_notificationtestgetelement
     {
     goto end; //Numeric
     }
+    pki_notificationtest_id_local_var = malloc(sizeof(int));
+    if(!pki_notificationtest_id_local_var)
+    {
+        goto end;
+    }
+    *pki_notificationtest_id_local_var = pki_notificationtest_id->valuedouble;
 
     // custom_notificationtestgetelements_response->s_notificationtest_function
     cJSON *s_notificationtest_function = cJSON_GetObjectItemCaseSensitive(custom_notificationtestgetelements_responseJSON, "sNotificationtestFunction");
@@ -214,15 +238,29 @@ custom_notificationtestgetelements_response_t *custom_notificationtestgetelement
     }
 
 
+    if (s_notificationtest_function && !cJSON_IsNull(s_notificationtest_function)) s_notificationtest_function_local_str = strdup(s_notificationtest_function->valuestring);
+
     custom_notificationtestgetelements_response_local_var = custom_notificationtestgetelements_response_create_internal (
-        pki_notificationtest_id->valuedouble,
-        strdup(s_notificationtest_function->valuestring),
+        pki_notificationtest_id_local_var,
+        s_notificationtest_function_local_str,
         a_s_variableobject_propertyList,
         a_obj_variableobjectList
         );
 
+    if (!custom_notificationtestgetelements_response_local_var) {
+        goto end;
+    }
+
     return custom_notificationtestgetelements_response_local_var;
 end:
+    if (pki_notificationtest_id_local_var) {
+        free(pki_notificationtest_id_local_var);
+        pki_notificationtest_id_local_var = NULL;
+    }
+    if (s_notificationtest_function_local_str) {
+        free(s_notificationtest_function_local_str);
+        s_notificationtest_function_local_str = NULL;
+    }
     if (a_s_variableobject_propertyList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_s_variableobject_propertyList) {

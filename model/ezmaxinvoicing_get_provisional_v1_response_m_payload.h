@@ -30,18 +30,18 @@ typedef struct ezmaxinvoicing_get_provisional_v1_response_m_payload_t ezmaxinvoi
 
 
 typedef struct ezmaxinvoicing_get_provisional_v1_response_m_payload_t {
-    int pki_ezmaxinvoicing_id; //numeric
-    int fki_ezmaxinvoicingcontract_id; //numeric
-    int fki_ezmaxpricing_id; //numeric
-    int fki_systemconfigurationtype_id; //numeric
+    int *pki_ezmaxinvoicing_id; //numeric
+    int *fki_ezmaxinvoicingcontract_id; //numeric
+    int *fki_ezmaxpricing_id; //numeric
+    int *fki_systemconfigurationtype_id; //numeric
     char *s_systemconfigurationtype_description_x; // string
     char *yyyymm_ezmaxinvoicing; // string
-    int i_ezmaxinvoicing_days; //numeric
+    int *i_ezmaxinvoicing_days; //numeric
     ezmax_api_definition__full_field_e_ezmaxinvoicing_paymenttype__e e_ezmaxinvoicing_paymenttype; //referenced enum
     char *d_ezmaxinvoicing_rebatepaymenttype; // string
-    int i_ezmaxinvoicing_contractlength; //numeric
+    int *i_ezmaxinvoicing_contractlength; //numeric
     char *d_ezmaxinvoicing_rebatecontractlength; // string
-    int b_ezmaxinvoicing_rebate_ezsignallagents; //boolean
+    int *b_ezmaxinvoicing_rebate_ezsignallagents; //boolean
     struct common_audit_t *obj_audit; //model
     struct ezmaxinvoicingcontract_response_compound_t *obj_ezmaxinvoicingcontract; //model
     struct custom_ezmaxpricing_response_t *obj_ezmaxpricing; //model
@@ -57,18 +57,18 @@ typedef struct ezmaxinvoicing_get_provisional_v1_response_m_payload_t {
 } ezmaxinvoicing_get_provisional_v1_response_m_payload_t;
 
 __attribute__((deprecated)) ezmaxinvoicing_get_provisional_v1_response_m_payload_t *ezmaxinvoicing_get_provisional_v1_response_m_payload_create(
-    int pki_ezmaxinvoicing_id,
-    int fki_ezmaxinvoicingcontract_id,
-    int fki_ezmaxpricing_id,
-    int fki_systemconfigurationtype_id,
+    int *pki_ezmaxinvoicing_id,
+    int *fki_ezmaxinvoicingcontract_id,
+    int *fki_ezmaxpricing_id,
+    int *fki_systemconfigurationtype_id,
     char *s_systemconfigurationtype_description_x,
     char *yyyymm_ezmaxinvoicing,
-    int i_ezmaxinvoicing_days,
+    int *i_ezmaxinvoicing_days,
     ezmax_api_definition__full_field_e_ezmaxinvoicing_paymenttype__e e_ezmaxinvoicing_paymenttype,
     char *d_ezmaxinvoicing_rebatepaymenttype,
-    int i_ezmaxinvoicing_contractlength,
+    int *i_ezmaxinvoicing_contractlength,
     char *d_ezmaxinvoicing_rebatecontractlength,
-    int b_ezmaxinvoicing_rebate_ezsignallagents,
+    int *b_ezmaxinvoicing_rebate_ezsignallagents,
     common_audit_t *obj_audit,
     ezmaxinvoicingcontract_response_compound_t *obj_ezmaxinvoicingcontract,
     custom_ezmaxpricing_response_t *obj_ezmaxpricing,

@@ -6,32 +6,47 @@
 
 
 static creditcardmerchant_get_list_v1_response_m_payload_t *creditcardmerchant_get_list_v1_response_m_payload_create_internal(
-    int i_row_returned,
-    int i_row_filtered,
+    int *i_row_returned,
+    int *i_row_filtered,
     list_t *a_obj_creditcardmerchant
     ) {
     creditcardmerchant_get_list_v1_response_m_payload_t *creditcardmerchant_get_list_v1_response_m_payload_local_var = malloc(sizeof(creditcardmerchant_get_list_v1_response_m_payload_t));
     if (!creditcardmerchant_get_list_v1_response_m_payload_local_var) {
         return NULL;
     }
+    memset(creditcardmerchant_get_list_v1_response_m_payload_local_var, 0, sizeof(creditcardmerchant_get_list_v1_response_m_payload_t));
+    creditcardmerchant_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     creditcardmerchant_get_list_v1_response_m_payload_local_var->i_row_returned = i_row_returned;
     creditcardmerchant_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
     creditcardmerchant_get_list_v1_response_m_payload_local_var->a_obj_creditcardmerchant = a_obj_creditcardmerchant;
-
-    creditcardmerchant_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     return creditcardmerchant_get_list_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) creditcardmerchant_get_list_v1_response_m_payload_t *creditcardmerchant_get_list_v1_response_m_payload_create(
-    int i_row_returned,
-    int i_row_filtered,
+    int *i_row_returned,
+    int *i_row_filtered,
     list_t *a_obj_creditcardmerchant
     ) {
-    return creditcardmerchant_get_list_v1_response_m_payload_create_internal (
-        i_row_returned,
-        i_row_filtered,
+    int *i_row_returned_copy = NULL;
+    if (i_row_returned) {
+        i_row_returned_copy = malloc(sizeof(int));
+        if (i_row_returned_copy) *i_row_returned_copy = *i_row_returned;
+    }
+    int *i_row_filtered_copy = NULL;
+    if (i_row_filtered) {
+        i_row_filtered_copy = malloc(sizeof(int));
+        if (i_row_filtered_copy) *i_row_filtered_copy = *i_row_filtered;
+    }
+    creditcardmerchant_get_list_v1_response_m_payload_t *result = creditcardmerchant_get_list_v1_response_m_payload_create_internal (
+        i_row_returned_copy,
+        i_row_filtered_copy,
         a_obj_creditcardmerchant
         );
+    if (!result) {
+        free(i_row_returned_copy);
+        free(i_row_filtered_copy);
+    }
+    return result;
 }
 
 void creditcardmerchant_get_list_v1_response_m_payload_free(creditcardmerchant_get_list_v1_response_m_payload_t *creditcardmerchant_get_list_v1_response_m_payload) {
@@ -43,6 +58,14 @@ void creditcardmerchant_get_list_v1_response_m_payload_free(creditcardmerchant_g
         return ;
     }
     listEntry_t *listEntry;
+    if (creditcardmerchant_get_list_v1_response_m_payload->i_row_returned) {
+        free(creditcardmerchant_get_list_v1_response_m_payload->i_row_returned);
+        creditcardmerchant_get_list_v1_response_m_payload->i_row_returned = NULL;
+    }
+    if (creditcardmerchant_get_list_v1_response_m_payload->i_row_filtered) {
+        free(creditcardmerchant_get_list_v1_response_m_payload->i_row_filtered);
+        creditcardmerchant_get_list_v1_response_m_payload->i_row_filtered = NULL;
+    }
     if (creditcardmerchant_get_list_v1_response_m_payload->a_obj_creditcardmerchant) {
         list_ForEach(listEntry, creditcardmerchant_get_list_v1_response_m_payload->a_obj_creditcardmerchant) {
             creditcardmerchant_list_element_free(listEntry->data);
@@ -60,7 +83,7 @@ cJSON *creditcardmerchant_get_list_v1_response_m_payload_convertToJSON(creditcar
     if (!creditcardmerchant_get_list_v1_response_m_payload->i_row_returned) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iRowReturned", creditcardmerchant_get_list_v1_response_m_payload->i_row_returned) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iRowReturned", *creditcardmerchant_get_list_v1_response_m_payload->i_row_returned) == NULL) {
     goto fail; //Numeric
     }
 
@@ -69,7 +92,7 @@ cJSON *creditcardmerchant_get_list_v1_response_m_payload_convertToJSON(creditcar
     if (!creditcardmerchant_get_list_v1_response_m_payload->i_row_filtered) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iRowFiltered", creditcardmerchant_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iRowFiltered", *creditcardmerchant_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
     goto fail; //Numeric
     }
 
@@ -106,6 +129,12 @@ creditcardmerchant_get_list_v1_response_m_payload_t *creditcardmerchant_get_list
 
     creditcardmerchant_get_list_v1_response_m_payload_t *creditcardmerchant_get_list_v1_response_m_payload_local_var = NULL;
 
+    // define the local variable for creditcardmerchant_get_list_v1_response_m_payload->i_row_returned
+    int *i_row_returned_local_var = NULL;
+
+    // define the local variable for creditcardmerchant_get_list_v1_response_m_payload->i_row_filtered
+    int *i_row_filtered_local_var = NULL;
+
     // define the local list for creditcardmerchant_get_list_v1_response_m_payload->a_obj_creditcardmerchant
     list_t *a_obj_creditcardmerchantList = NULL;
 
@@ -123,6 +152,12 @@ creditcardmerchant_get_list_v1_response_m_payload_t *creditcardmerchant_get_list
     {
     goto end; //Numeric
     }
+    i_row_returned_local_var = malloc(sizeof(int));
+    if(!i_row_returned_local_var)
+    {
+        goto end;
+    }
+    *i_row_returned_local_var = i_row_returned->valuedouble;
 
     // creditcardmerchant_get_list_v1_response_m_payload->i_row_filtered
     cJSON *i_row_filtered = cJSON_GetObjectItemCaseSensitive(creditcardmerchant_get_list_v1_response_m_payloadJSON, "iRowFiltered");
@@ -138,6 +173,12 @@ creditcardmerchant_get_list_v1_response_m_payload_t *creditcardmerchant_get_list
     {
     goto end; //Numeric
     }
+    i_row_filtered_local_var = malloc(sizeof(int));
+    if(!i_row_filtered_local_var)
+    {
+        goto end;
+    }
+    *i_row_filtered_local_var = i_row_filtered->valuedouble;
 
     // creditcardmerchant_get_list_v1_response_m_payload->a_obj_creditcardmerchant
     cJSON *a_obj_creditcardmerchant = cJSON_GetObjectItemCaseSensitive(creditcardmerchant_get_list_v1_response_m_payloadJSON, "a_objCreditcardmerchant");
@@ -167,14 +208,27 @@ creditcardmerchant_get_list_v1_response_m_payload_t *creditcardmerchant_get_list
     }
 
 
+
     creditcardmerchant_get_list_v1_response_m_payload_local_var = creditcardmerchant_get_list_v1_response_m_payload_create_internal (
-        i_row_returned->valuedouble,
-        i_row_filtered->valuedouble,
+        i_row_returned_local_var,
+        i_row_filtered_local_var,
         a_obj_creditcardmerchantList
         );
 
+    if (!creditcardmerchant_get_list_v1_response_m_payload_local_var) {
+        goto end;
+    }
+
     return creditcardmerchant_get_list_v1_response_m_payload_local_var;
 end:
+    if (i_row_returned_local_var) {
+        free(i_row_returned_local_var);
+        i_row_returned_local_var = NULL;
+    }
+    if (i_row_filtered_local_var) {
+        free(i_row_filtered_local_var);
+        i_row_filtered_local_var = NULL;
+    }
     if (a_obj_creditcardmerchantList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_creditcardmerchantList) {

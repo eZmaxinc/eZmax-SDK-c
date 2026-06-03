@@ -20,8 +20,8 @@ typedef struct custom_form_data_document_response_t custom_form_data_document_re
 
 
 typedef struct custom_form_data_document_response_t {
-    int pki_ezsigndocument_id; //numeric
-    int fki_ezsignfolder_id; //numeric
+    int *pki_ezsigndocument_id; //numeric
+    int *fki_ezsignfolder_id; //numeric
     char *s_ezsigndocument_name; // string
     char *dt_modified_date; // string
     list_t *a_obj_form_data_signer; //nonprimitive container
@@ -30,8 +30,8 @@ typedef struct custom_form_data_document_response_t {
 } custom_form_data_document_response_t;
 
 __attribute__((deprecated)) custom_form_data_document_response_t *custom_form_data_document_response_create(
-    int pki_ezsigndocument_id,
-    int fki_ezsignfolder_id,
+    int *pki_ezsigndocument_id,
+    int *fki_ezsignfolder_id,
     char *s_ezsigndocument_name,
     char *dt_modified_date,
     list_t *a_obj_form_data_signer

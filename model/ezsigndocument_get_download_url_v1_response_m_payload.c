@@ -12,18 +12,21 @@ static ezsigndocument_get_download_url_v1_response_m_payload_t *ezsigndocument_g
     if (!ezsigndocument_get_download_url_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsigndocument_get_download_url_v1_response_m_payload_local_var->s_download_url = s_download_url;
-
+    memset(ezsigndocument_get_download_url_v1_response_m_payload_local_var, 0, sizeof(ezsigndocument_get_download_url_v1_response_m_payload_t));
     ezsigndocument_get_download_url_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsigndocument_get_download_url_v1_response_m_payload_local_var->s_download_url = s_download_url;
     return ezsigndocument_get_download_url_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsigndocument_get_download_url_v1_response_m_payload_t *ezsigndocument_get_download_url_v1_response_m_payload_create(
     char *s_download_url
     ) {
-    return ezsigndocument_get_download_url_v1_response_m_payload_create_internal (
+    ezsigndocument_get_download_url_v1_response_m_payload_t *result = ezsigndocument_get_download_url_v1_response_m_payload_create_internal (
         s_download_url
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigndocument_get_download_url_v1_response_m_payload_free(ezsigndocument_get_download_url_v1_response_m_payload_t *ezsigndocument_get_download_url_v1_response_m_payload) {
@@ -65,6 +68,8 @@ ezsigndocument_get_download_url_v1_response_m_payload_t *ezsigndocument_get_down
 
     ezsigndocument_get_download_url_v1_response_m_payload_t *ezsigndocument_get_download_url_v1_response_m_payload_local_var = NULL;
 
+    char *s_download_url_local_str = NULL;
+
     // ezsigndocument_get_download_url_v1_response_m_payload->s_download_url
     cJSON *s_download_url = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_download_url_v1_response_m_payloadJSON, "sDownloadUrl");
     if (cJSON_IsNull(s_download_url)) {
@@ -81,12 +86,22 @@ ezsigndocument_get_download_url_v1_response_m_payload_t *ezsigndocument_get_down
     }
 
 
+    if (s_download_url && !cJSON_IsNull(s_download_url)) s_download_url_local_str = strdup(s_download_url->valuestring);
+
     ezsigndocument_get_download_url_v1_response_m_payload_local_var = ezsigndocument_get_download_url_v1_response_m_payload_create_internal (
-        strdup(s_download_url->valuestring)
+        s_download_url_local_str
         );
+
+    if (!ezsigndocument_get_download_url_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsigndocument_get_download_url_v1_response_m_payload_local_var;
 end:
+    if (s_download_url_local_str) {
+        free(s_download_url_local_str);
+        s_download_url_local_str = NULL;
+    }
     return NULL;
 
 }

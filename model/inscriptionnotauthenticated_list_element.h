@@ -20,9 +20,9 @@ typedef struct inscriptionnotauthenticated_list_element_t inscriptionnotauthenti
 
 
 typedef struct inscriptionnotauthenticated_list_element_t {
-    int pki_inscription_id; //numeric
-    int pki_inscriptionnotauthenticated_id; //numeric
-    int fki_inscriptiontype_id; //numeric
+    int *pki_inscription_id; //numeric
+    int *pki_inscriptionnotauthenticated_id; //numeric
+    int *fki_inscriptiontype_id; //numeric
     char *s_inscriptiontype_name_x; // string
     ezmax_api_definition__full_field_e_inscription_step__e e_inscription_step; //referenced enum
     char *s_inscription_civicend; // string
@@ -32,20 +32,22 @@ typedef struct inscriptionnotauthenticated_list_element_t {
     char *dt_inscription_date; // string
     char *dt_inscription_expirationdate; // string
     char *dt_inscription_notarydate; // string
-    int b_inscription_inspection; //boolean
-    int b_inscription_isactive; //boolean
-    int b_inscription_archived; //boolean
+    int *b_inscription_inspection; //boolean
+    int *b_inscription_isactive; //boolean
+    int *b_inscription_archived; //boolean
     char *dt_inscriptionnotauthenticated_notaryscheduledate; // string
     char *dt_inscriptionnotauthenticated_transactiondate; // string
     char *dt_inscriptionnotauthenticated_transactiondate_real; // string
-    int b_inscriptionnotauthenticated_conditional; //boolean
-    int b_inscriptionnotauthenticated_isactive; //boolean
+    int *b_inscriptionnotauthenticated_conditional; //boolean
+    int *b_inscriptionnotauthenticated_isactive; //boolean
     char *s_address_civic; // string
     char *s_address_street; // string
     char *s_address_suite; // string
     char *s_address_city; // string
     char *s_address_zip; // string
+    int *fki_province_id; //numeric
     char *s_province_name_x; // string
+    int *fki_country_id; //numeric
     char *s_country_name_x; // string
     char *s_inscriptionnotauthenticated_offertopurchasenumber; // string
 
@@ -53,9 +55,9 @@ typedef struct inscriptionnotauthenticated_list_element_t {
 } inscriptionnotauthenticated_list_element_t;
 
 __attribute__((deprecated)) inscriptionnotauthenticated_list_element_t *inscriptionnotauthenticated_list_element_create(
-    int pki_inscription_id,
-    int pki_inscriptionnotauthenticated_id,
-    int fki_inscriptiontype_id,
+    int *pki_inscription_id,
+    int *pki_inscriptionnotauthenticated_id,
+    int *fki_inscriptiontype_id,
     char *s_inscriptiontype_name_x,
     ezmax_api_definition__full_field_e_inscription_step__e e_inscription_step,
     char *s_inscription_civicend,
@@ -65,20 +67,22 @@ __attribute__((deprecated)) inscriptionnotauthenticated_list_element_t *inscript
     char *dt_inscription_date,
     char *dt_inscription_expirationdate,
     char *dt_inscription_notarydate,
-    int b_inscription_inspection,
-    int b_inscription_isactive,
-    int b_inscription_archived,
+    int *b_inscription_inspection,
+    int *b_inscription_isactive,
+    int *b_inscription_archived,
     char *dt_inscriptionnotauthenticated_notaryscheduledate,
     char *dt_inscriptionnotauthenticated_transactiondate,
     char *dt_inscriptionnotauthenticated_transactiondate_real,
-    int b_inscriptionnotauthenticated_conditional,
-    int b_inscriptionnotauthenticated_isactive,
+    int *b_inscriptionnotauthenticated_conditional,
+    int *b_inscriptionnotauthenticated_isactive,
     char *s_address_civic,
     char *s_address_street,
     char *s_address_suite,
     char *s_address_city,
     char *s_address_zip,
+    int *fki_province_id,
     char *s_province_name_x,
+    int *fki_country_id,
     char *s_country_name_x,
     char *s_inscriptionnotauthenticated_offertopurchasenumber
 );

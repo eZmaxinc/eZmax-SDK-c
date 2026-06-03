@@ -27,28 +27,29 @@ typedef struct ezsignfolder_response_compound_v3_t ezsignfolder_response_compoun
 
 
 typedef struct ezsignfolder_response_compound_v3_t {
-    int pki_ezsignfolder_id; //numeric
-    int fki_ezsignfoldertype_id; //numeric
+    int *pki_ezsignfolder_id; //numeric
+    int *fki_ezsignfoldertype_id; //numeric
     struct custom_ezsignfoldertype_response_t *obj_ezsignfoldertype; //model
-    int fki_timezone_id; //numeric
+    int *fki_timezone_id; //numeric
     ezmax_api_definition__full_field_e_ezsignfolder_completion__e e_ezsignfolder_completion; //referenced enum
     ezmax_api_definition__full_field_e_ezsignfolder_documentdependency__e e_ezsignfolder_documentdependency; //referenced enum
     char *s_ezsignfoldertype_name_x; // string
-    int fki_billingentityinternal_id; //numeric
+    int *fki_billingentityinternal_id; //numeric
     char *s_billingentityinternal_description_x; // string
-    int fki_ezsigntsarequirement_id; //numeric
+    int *fki_ezsigntsarequirement_id; //numeric
     char *s_ezsigntsarequirement_description_x; // string
     char *s_ezsignfolder_description; // string
     char *t_ezsignfolder_note; // string
-    int b_ezsignfolder_isdisposable; //boolean
-    int i_ezsignfolder_sendreminderfirstdays; //numeric
-    int i_ezsignfolder_sendreminderotherdays; //numeric
+    int *b_ezsignfolder_isdisposable; //boolean
+    int *i_ezsignfolder_sendreminderfirstdays; //numeric
+    int *i_ezsignfolder_sendreminderotherdays; //numeric
     char *dt_ezsignfolder_delayedsenddate; // string
     char *dt_ezsignfolder_duedate; // string
     char *dt_ezsignfolder_sentdate; // string
     char *dt_ezsignfolder_scheduledarchive; // string
     char *dt_ezsignfolder_scheduleddispose; // string
     ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step; //referenced enum
+    int *i_ezsignfolder_stepcurrent; //numeric
     char *dt_ezsignfolder_close; // string
     char *dt_ezsignfolder_archive; // string
     char *dt_ezsignfolder_dispose; // string
@@ -63,28 +64,29 @@ typedef struct ezsignfolder_response_compound_v3_t {
 } ezsignfolder_response_compound_v3_t;
 
 __attribute__((deprecated)) ezsignfolder_response_compound_v3_t *ezsignfolder_response_compound_v3_create(
-    int pki_ezsignfolder_id,
-    int fki_ezsignfoldertype_id,
+    int *pki_ezsignfolder_id,
+    int *fki_ezsignfoldertype_id,
     custom_ezsignfoldertype_response_t *obj_ezsignfoldertype,
-    int fki_timezone_id,
+    int *fki_timezone_id,
     ezmax_api_definition__full_field_e_ezsignfolder_completion__e e_ezsignfolder_completion,
     ezmax_api_definition__full_field_e_ezsignfolder_documentdependency__e e_ezsignfolder_documentdependency,
     char *s_ezsignfoldertype_name_x,
-    int fki_billingentityinternal_id,
+    int *fki_billingentityinternal_id,
     char *s_billingentityinternal_description_x,
-    int fki_ezsigntsarequirement_id,
+    int *fki_ezsigntsarequirement_id,
     char *s_ezsigntsarequirement_description_x,
     char *s_ezsignfolder_description,
     char *t_ezsignfolder_note,
-    int b_ezsignfolder_isdisposable,
-    int i_ezsignfolder_sendreminderfirstdays,
-    int i_ezsignfolder_sendreminderotherdays,
+    int *b_ezsignfolder_isdisposable,
+    int *i_ezsignfolder_sendreminderfirstdays,
+    int *i_ezsignfolder_sendreminderotherdays,
     char *dt_ezsignfolder_delayedsenddate,
     char *dt_ezsignfolder_duedate,
     char *dt_ezsignfolder_sentdate,
     char *dt_ezsignfolder_scheduledarchive,
     char *dt_ezsignfolder_scheduleddispose,
     ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step,
+    int *i_ezsignfolder_stepcurrent,
     char *dt_ezsignfolder_close,
     char *dt_ezsignfolder_archive,
     char *dt_ezsignfolder_dispose,

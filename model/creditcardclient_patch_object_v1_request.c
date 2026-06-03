@@ -12,18 +12,21 @@ static creditcardclient_patch_object_v1_request_t *creditcardclient_patch_object
     if (!creditcardclient_patch_object_v1_request_local_var) {
         return NULL;
     }
-    creditcardclient_patch_object_v1_request_local_var->obj_creditcardclient = obj_creditcardclient;
-
+    memset(creditcardclient_patch_object_v1_request_local_var, 0, sizeof(creditcardclient_patch_object_v1_request_t));
     creditcardclient_patch_object_v1_request_local_var->_library_owned = 1;
+    creditcardclient_patch_object_v1_request_local_var->obj_creditcardclient = obj_creditcardclient;
     return creditcardclient_patch_object_v1_request_local_var;
 }
 
 __attribute__((deprecated)) creditcardclient_patch_object_v1_request_t *creditcardclient_patch_object_v1_request_create(
     creditcardclient_request_patch_t *obj_creditcardclient
     ) {
-    return creditcardclient_patch_object_v1_request_create_internal (
+    creditcardclient_patch_object_v1_request_t *result = creditcardclient_patch_object_v1_request_create_internal (
         obj_creditcardclient
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void creditcardclient_patch_object_v1_request_free(creditcardclient_patch_object_v1_request_t *creditcardclient_patch_object_v1_request) {
@@ -86,9 +89,14 @@ creditcardclient_patch_object_v1_request_t *creditcardclient_patch_object_v1_req
     obj_creditcardclient_local_nonprim = creditcardclient_request_patch_parseFromJSON(obj_creditcardclient); //nonprimitive
 
 
+
     creditcardclient_patch_object_v1_request_local_var = creditcardclient_patch_object_v1_request_create_internal (
         obj_creditcardclient_local_nonprim
         );
+
+    if (!creditcardclient_patch_object_v1_request_local_var) {
+        goto end;
+    }
 
     return creditcardclient_patch_object_v1_request_local_var;
 end:

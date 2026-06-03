@@ -15,6 +15,7 @@
 
 typedef struct ezsigntemplateglobal_response_compound_t ezsigntemplateglobal_response_compound_t;
 
+#include "ezsigntemplateglobalannotation_response_compound.h"
 #include "ezsigntemplateglobaldocument_response.h"
 #include "ezsigntemplateglobalsigner_response_compound.h"
 #include "field_e_ezsigntemplateglobal_module.h"
@@ -23,11 +24,11 @@ typedef struct ezsigntemplateglobal_response_compound_t ezsigntemplateglobal_res
 
 
 typedef struct ezsigntemplateglobal_response_compound_t {
-    int pki_ezsigntemplateglobal_id; //numeric
-    int fki_ezsigntemplateglobaldocument_id; //numeric
-    int fki_module_id; //numeric
+    int *pki_ezsigntemplateglobal_id; //numeric
+    int *fki_ezsigntemplateglobaldocument_id; //numeric
+    int *fki_module_id; //numeric
     char *s_module_name_x; // string
-    int fki_language_id; //numeric
+    int *fki_language_id; //numeric
     char *s_language_name_x; // string
     ezmax_api_definition__full_field_e_ezsigntemplateglobal_module__e e_ezsigntemplateglobal_module; //referenced enum
     ezmax_api_definition__full_field_e_ezsigntemplateglobal_supplier__e e_ezsigntemplateglobal_supplier; //referenced enum
@@ -35,23 +36,25 @@ typedef struct ezsigntemplateglobal_response_compound_t {
     char *s_ezsigntemplateglobal_description; // string
     struct ezsigntemplateglobaldocument_response_t *obj_ezsigntemplateglobaldocument; //model
     list_t *a_obj_ezsigntemplateglobalsigner; //nonprimitive container
+    list_t *a_obj_ezsigntemplateglobalannotation; //nonprimitive container
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplateglobal_response_compound_t;
 
 __attribute__((deprecated)) ezsigntemplateglobal_response_compound_t *ezsigntemplateglobal_response_compound_create(
-    int pki_ezsigntemplateglobal_id,
-    int fki_ezsigntemplateglobaldocument_id,
-    int fki_module_id,
+    int *pki_ezsigntemplateglobal_id,
+    int *fki_ezsigntemplateglobaldocument_id,
+    int *fki_module_id,
     char *s_module_name_x,
-    int fki_language_id,
+    int *fki_language_id,
     char *s_language_name_x,
     ezmax_api_definition__full_field_e_ezsigntemplateglobal_module__e e_ezsigntemplateglobal_module,
     ezmax_api_definition__full_field_e_ezsigntemplateglobal_supplier__e e_ezsigntemplateglobal_supplier,
     char *s_ezsigntemplateglobal_code,
     char *s_ezsigntemplateglobal_description,
     ezsigntemplateglobaldocument_response_t *obj_ezsigntemplateglobaldocument,
-    list_t *a_obj_ezsigntemplateglobalsigner
+    list_t *a_obj_ezsigntemplateglobalsigner,
+    list_t *a_obj_ezsigntemplateglobalannotation
 );
 
 void ezsigntemplateglobal_response_compound_free(ezsigntemplateglobal_response_compound_t *ezsigntemplateglobal_response_compound);

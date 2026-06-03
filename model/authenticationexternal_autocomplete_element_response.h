@@ -19,17 +19,17 @@ typedef struct authenticationexternal_autocomplete_element_response_t authentica
 
 
 typedef struct authenticationexternal_autocomplete_element_response_t {
-    int pki_authenticationexternal_id; //numeric
+    int *pki_authenticationexternal_id; //numeric
     char *s_authenticationexternal_description; // string
-    int b_authenticationexternal_isactive; //boolean
+    int *b_authenticationexternal_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } authenticationexternal_autocomplete_element_response_t;
 
 __attribute__((deprecated)) authenticationexternal_autocomplete_element_response_t *authenticationexternal_autocomplete_element_response_create(
-    int pki_authenticationexternal_id,
+    int *pki_authenticationexternal_id,
     char *s_authenticationexternal_description,
-    int b_authenticationexternal_isactive
+    int *b_authenticationexternal_isactive
 );
 
 void authenticationexternal_autocomplete_element_response_free(authenticationexternal_autocomplete_element_response_t *authenticationexternal_autocomplete_element_response);

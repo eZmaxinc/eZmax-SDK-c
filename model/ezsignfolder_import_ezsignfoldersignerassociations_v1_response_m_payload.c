@@ -12,18 +12,21 @@ static ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload_
     if (!ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload_local_var->a_pki_ezsignfoldersignerassociation_id = a_pki_ezsignfoldersignerassociation_id;
-
+    memset(ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload_local_var, 0, sizeof(ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload_t));
     ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload_local_var->a_pki_ezsignfoldersignerassociation_id = a_pki_ezsignfoldersignerassociation_id;
     return ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload_t *ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload_create(
     list_t *a_pki_ezsignfoldersignerassociation_id
     ) {
-    return ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload_create_internal (
+    ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload_t *result = ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload_create_internal (
         a_pki_ezsignfoldersignerassociation_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload_free(ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload_t *ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload) {
@@ -112,9 +115,14 @@ ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload_t *ezsi
     }
 
 
+
     ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload_local_var = ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload_create_internal (
         a_pki_ezsignfoldersignerassociation_idList
         );
+
+    if (!ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload_local_var;
 end:

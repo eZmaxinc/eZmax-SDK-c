@@ -12,18 +12,21 @@ static ezdoctemplatedocument_create_object_v1_response_m_payload_t *ezdoctemplat
     if (!ezdoctemplatedocument_create_object_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezdoctemplatedocument_create_object_v1_response_m_payload_local_var->a_pki_ezdoctemplatedocument_id = a_pki_ezdoctemplatedocument_id;
-
+    memset(ezdoctemplatedocument_create_object_v1_response_m_payload_local_var, 0, sizeof(ezdoctemplatedocument_create_object_v1_response_m_payload_t));
     ezdoctemplatedocument_create_object_v1_response_m_payload_local_var->_library_owned = 1;
+    ezdoctemplatedocument_create_object_v1_response_m_payload_local_var->a_pki_ezdoctemplatedocument_id = a_pki_ezdoctemplatedocument_id;
     return ezdoctemplatedocument_create_object_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezdoctemplatedocument_create_object_v1_response_m_payload_t *ezdoctemplatedocument_create_object_v1_response_m_payload_create(
     list_t *a_pki_ezdoctemplatedocument_id
     ) {
-    return ezdoctemplatedocument_create_object_v1_response_m_payload_create_internal (
+    ezdoctemplatedocument_create_object_v1_response_m_payload_t *result = ezdoctemplatedocument_create_object_v1_response_m_payload_create_internal (
         a_pki_ezdoctemplatedocument_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezdoctemplatedocument_create_object_v1_response_m_payload_free(ezdoctemplatedocument_create_object_v1_response_m_payload_t *ezdoctemplatedocument_create_object_v1_response_m_payload) {
@@ -112,9 +115,14 @@ ezdoctemplatedocument_create_object_v1_response_m_payload_t *ezdoctemplatedocume
     }
 
 
+
     ezdoctemplatedocument_create_object_v1_response_m_payload_local_var = ezdoctemplatedocument_create_object_v1_response_m_payload_create_internal (
         a_pki_ezdoctemplatedocument_idList
         );
+
+    if (!ezdoctemplatedocument_create_object_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezdoctemplatedocument_create_object_v1_response_m_payload_local_var;
 end:

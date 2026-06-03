@@ -19,17 +19,17 @@ typedef struct ezdoctemplatedocument_autocomplete_element_response_t ezdoctempla
 
 
 typedef struct ezdoctemplatedocument_autocomplete_element_response_t {
-    int pki_ezdoctemplatedocument_id; //numeric
+    int *pki_ezdoctemplatedocument_id; //numeric
     char *s_ezdoctemplatedocument_name_x; // string
-    int b_ezdoctemplatedocument_isactive; //boolean
+    int *b_ezdoctemplatedocument_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezdoctemplatedocument_autocomplete_element_response_t;
 
 __attribute__((deprecated)) ezdoctemplatedocument_autocomplete_element_response_t *ezdoctemplatedocument_autocomplete_element_response_create(
-    int pki_ezdoctemplatedocument_id,
+    int *pki_ezdoctemplatedocument_id,
     char *s_ezdoctemplatedocument_name_x,
-    int b_ezdoctemplatedocument_isactive
+    int *b_ezdoctemplatedocument_isactive
 );
 
 void ezdoctemplatedocument_autocomplete_element_response_free(ezdoctemplatedocument_autocomplete_element_response_t *ezdoctemplatedocument_autocomplete_element_response);

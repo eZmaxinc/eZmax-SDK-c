@@ -21,24 +21,24 @@ typedef struct custom_ezsignfolderezsigntemplatepublic_response_t custom_ezsignf
 
 
 typedef struct custom_ezsignfolderezsigntemplatepublic_response_t {
-    int pki_ezsignfolder_id; //numeric
+    int *pki_ezsignfolder_id; //numeric
     char *s_ezsignfolder_description; // string
     ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step; //referenced enum
-    int i_ezsignfolder_signaturetotal; //numeric
-    int i_ezsignfolder_formfieldtotal; //numeric
-    int i_ezsignfolder_signaturesigned; //numeric
+    int *i_ezsignfolder_signaturetotal; //numeric
+    int *i_ezsignfolder_formfieldtotal; //numeric
+    int *i_ezsignfolder_signaturesigned; //numeric
     list_t *a_obj_ezsignfolderezsigntemplatepublic_signer; //nonprimitive container
 
     int _library_owned; // Is the library responsible for freeing this object?
 } custom_ezsignfolderezsigntemplatepublic_response_t;
 
 __attribute__((deprecated)) custom_ezsignfolderezsigntemplatepublic_response_t *custom_ezsignfolderezsigntemplatepublic_response_create(
-    int pki_ezsignfolder_id,
+    int *pki_ezsignfolder_id,
     char *s_ezsignfolder_description,
     ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step,
-    int i_ezsignfolder_signaturetotal,
-    int i_ezsignfolder_formfieldtotal,
-    int i_ezsignfolder_signaturesigned,
+    int *i_ezsignfolder_signaturetotal,
+    int *i_ezsignfolder_formfieldtotal,
+    int *i_ezsignfolder_signaturesigned,
     list_t *a_obj_ezsignfolderezsigntemplatepublic_signer
 );
 

@@ -19,37 +19,41 @@ typedef struct rejectedoffertopurchase_list_element_t rejectedoffertopurchase_li
 
 
 typedef struct rejectedoffertopurchase_list_element_t {
-    int pki_rejectedoffertopurchase_id; //numeric
+    int *pki_rejectedoffertopurchase_id; //numeric
     char *s_rejectedoffertopurchase_number; // string
     char *dt_rejectedoffertopurchase_date; // string
-    int b_rejectedoffertopurchase_isactive; //boolean
+    int *b_rejectedoffertopurchase_isactive; //boolean
     char *dt_created_date; // string
     char *s_address_civic; // string
     char *s_address_street; // string
     char *s_address_suite; // string
     char *s_address_city; // string
     char *s_address_zip; // string
+    int *fki_province_id; //numeric
     char *s_province_name_x; // string
+    int *fki_country_id; //numeric
     char *s_country_name_x; // string
-    int b_rejectedoffertopurchase_linkedtoinscription; //boolean
+    int *b_rejectedoffertopurchase_linkedtoinscription; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } rejectedoffertopurchase_list_element_t;
 
 __attribute__((deprecated)) rejectedoffertopurchase_list_element_t *rejectedoffertopurchase_list_element_create(
-    int pki_rejectedoffertopurchase_id,
+    int *pki_rejectedoffertopurchase_id,
     char *s_rejectedoffertopurchase_number,
     char *dt_rejectedoffertopurchase_date,
-    int b_rejectedoffertopurchase_isactive,
+    int *b_rejectedoffertopurchase_isactive,
     char *dt_created_date,
     char *s_address_civic,
     char *s_address_street,
     char *s_address_suite,
     char *s_address_city,
     char *s_address_zip,
+    int *fki_province_id,
     char *s_province_name_x,
+    int *fki_country_id,
     char *s_country_name_x,
-    int b_rejectedoffertopurchase_linkedtoinscription
+    int *b_rejectedoffertopurchase_linkedtoinscription
 );
 
 void rejectedoffertopurchase_list_element_free(rejectedoffertopurchase_list_element_t *rejectedoffertopurchase_list_element);

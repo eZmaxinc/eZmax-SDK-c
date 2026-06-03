@@ -12,18 +12,21 @@ static ezsignsigningreason_create_object_v1_response_m_payload_t *ezsignsigningr
     if (!ezsignsigningreason_create_object_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsignsigningreason_create_object_v1_response_m_payload_local_var->a_pki_ezsignsigningreason_id = a_pki_ezsignsigningreason_id;
-
+    memset(ezsignsigningreason_create_object_v1_response_m_payload_local_var, 0, sizeof(ezsignsigningreason_create_object_v1_response_m_payload_t));
     ezsignsigningreason_create_object_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsignsigningreason_create_object_v1_response_m_payload_local_var->a_pki_ezsignsigningreason_id = a_pki_ezsignsigningreason_id;
     return ezsignsigningreason_create_object_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsignsigningreason_create_object_v1_response_m_payload_t *ezsignsigningreason_create_object_v1_response_m_payload_create(
     list_t *a_pki_ezsignsigningreason_id
     ) {
-    return ezsignsigningreason_create_object_v1_response_m_payload_create_internal (
+    ezsignsigningreason_create_object_v1_response_m_payload_t *result = ezsignsigningreason_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsignsigningreason_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsignsigningreason_create_object_v1_response_m_payload_free(ezsignsigningreason_create_object_v1_response_m_payload_t *ezsignsigningreason_create_object_v1_response_m_payload) {
@@ -112,9 +115,14 @@ ezsignsigningreason_create_object_v1_response_m_payload_t *ezsignsigningreason_c
     }
 
 
+
     ezsignsigningreason_create_object_v1_response_m_payload_local_var = ezsignsigningreason_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsignsigningreason_idList
         );
+
+    if (!ezsignsigningreason_create_object_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsignsigningreason_create_object_v1_response_m_payload_local_var;
 end:

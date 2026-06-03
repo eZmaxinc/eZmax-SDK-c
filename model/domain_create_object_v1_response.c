@@ -14,11 +14,11 @@ static domain_create_object_v1_response_t *domain_create_object_v1_response_crea
     if (!domain_create_object_v1_response_local_var) {
         return NULL;
     }
+    memset(domain_create_object_v1_response_local_var, 0, sizeof(domain_create_object_v1_response_t));
+    domain_create_object_v1_response_local_var->_library_owned = 1;
     domain_create_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     domain_create_object_v1_response_local_var->obj_debug = obj_debug;
     domain_create_object_v1_response_local_var->m_payload = m_payload;
-
-    domain_create_object_v1_response_local_var->_library_owned = 1;
     return domain_create_object_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) domain_create_object_v1_response_t *domain_create_ob
     common_response_obj_debug_t *obj_debug,
     domain_create_object_v1_response_m_payload_t *m_payload
     ) {
-    return domain_create_object_v1_response_create_internal (
+    domain_create_object_v1_response_t *result = domain_create_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void domain_create_object_v1_response_free(domain_create_object_v1_response_t *domain_create_object_v1_response) {
@@ -156,11 +159,16 @@ domain_create_object_v1_response_t *domain_create_object_v1_response_parseFromJS
     m_payload_local_nonprim = domain_create_object_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     domain_create_object_v1_response_local_var = domain_create_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!domain_create_object_v1_response_local_var) {
+        goto end;
+    }
 
     return domain_create_object_v1_response_local_var;
 end:

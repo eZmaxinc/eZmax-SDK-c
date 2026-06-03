@@ -20,7 +20,7 @@ typedef struct discussion_chat_v1_request_t discussion_chat_v1_request_t;
 
 
 typedef struct discussion_chat_v1_request_t {
-    int fki_discussion_id; //numeric
+    int *fki_discussion_id; //numeric
     ezmax_api_definition__full_field_e_discussion_robot__e e_discussion_robot; //referenced enum
     char *t_discussion_message; // string
 
@@ -28,7 +28,7 @@ typedef struct discussion_chat_v1_request_t {
 } discussion_chat_v1_request_t;
 
 __attribute__((deprecated)) discussion_chat_v1_request_t *discussion_chat_v1_request_create(
-    int fki_discussion_id,
+    int *fki_discussion_id,
     ezmax_api_definition__full_field_e_discussion_robot__e e_discussion_robot,
     char *t_discussion_message
 );

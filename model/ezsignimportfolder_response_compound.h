@@ -20,7 +20,7 @@ typedef struct ezsignimportfolder_response_compound_t ezsignimportfolder_respons
 
 
 typedef struct ezsignimportfolder_response_compound_t {
-    int pki_ezsignimportfolder_id; //numeric
+    int *pki_ezsignimportfolder_id; //numeric
     char *s_ezsignimportfolder_name; // string
     list_t *a_obj_ezsignimportdocument; //nonprimitive container
 
@@ -28,7 +28,7 @@ typedef struct ezsignimportfolder_response_compound_t {
 } ezsignimportfolder_response_compound_t;
 
 __attribute__((deprecated)) ezsignimportfolder_response_compound_t *ezsignimportfolder_response_compound_create(
-    int pki_ezsignimportfolder_id,
+    int *pki_ezsignimportfolder_id,
     char *s_ezsignimportfolder_name,
     list_t *a_obj_ezsignimportdocument
 );

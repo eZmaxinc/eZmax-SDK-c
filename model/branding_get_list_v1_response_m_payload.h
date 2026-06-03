@@ -20,16 +20,16 @@ typedef struct branding_get_list_v1_response_m_payload_t branding_get_list_v1_re
 
 
 typedef struct branding_get_list_v1_response_m_payload_t {
-    int i_row_returned; //numeric
-    int i_row_filtered; //numeric
+    int *i_row_returned; //numeric
+    int *i_row_filtered; //numeric
     list_t *a_obj_branding; //nonprimitive container
 
     int _library_owned; // Is the library responsible for freeing this object?
 } branding_get_list_v1_response_m_payload_t;
 
 __attribute__((deprecated)) branding_get_list_v1_response_m_payload_t *branding_get_list_v1_response_m_payload_create(
-    int i_row_returned,
-    int i_row_filtered,
+    int *i_row_returned,
+    int *i_row_filtered,
     list_t *a_obj_branding
 );
 

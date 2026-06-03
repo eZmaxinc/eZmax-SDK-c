@@ -21,26 +21,26 @@ typedef struct ezdoctemplatedocument_request_t ezdoctemplatedocument_request_t;
 
 
 typedef struct ezdoctemplatedocument_request_t {
-    int pki_ezdoctemplatedocument_id; //numeric
-    int fki_language_id; //numeric
-    int fki_ezsignfoldertype_id; //numeric
-    int fki_ezdoctemplatetype_id; //numeric
-    int fki_ezdoctemplatefieldtypecategory_id; //numeric
+    int *pki_ezdoctemplatedocument_id; //numeric
+    int *fki_language_id; //numeric
+    int *fki_ezsignfoldertype_id; //numeric
+    int *fki_ezdoctemplatetype_id; //numeric
+    int *fki_ezdoctemplatefieldtypecategory_id; //numeric
     ezmax_api_definition__full_field_e_ezdoctemplatedocument_privacylevel__e e_ezdoctemplatedocument_privacylevel; //referenced enum
-    int b_ezdoctemplatedocument_isactive; //boolean
+    int *b_ezdoctemplatedocument_isactive; //boolean
     struct multilingual_ezdoctemplatedocument_name_t *obj_ezdoctemplatedocument_name; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezdoctemplatedocument_request_t;
 
 __attribute__((deprecated)) ezdoctemplatedocument_request_t *ezdoctemplatedocument_request_create(
-    int pki_ezdoctemplatedocument_id,
-    int fki_language_id,
-    int fki_ezsignfoldertype_id,
-    int fki_ezdoctemplatetype_id,
-    int fki_ezdoctemplatefieldtypecategory_id,
+    int *pki_ezdoctemplatedocument_id,
+    int *fki_language_id,
+    int *fki_ezsignfoldertype_id,
+    int *fki_ezdoctemplatetype_id,
+    int *fki_ezdoctemplatefieldtypecategory_id,
     ezmax_api_definition__full_field_e_ezdoctemplatedocument_privacylevel__e e_ezdoctemplatedocument_privacylevel,
-    int b_ezdoctemplatedocument_isactive,
+    int *b_ezdoctemplatedocument_isactive,
     multilingual_ezdoctemplatedocument_name_t *obj_ezdoctemplatedocument_name
 );
 

@@ -19,17 +19,17 @@ typedef struct emailtype_autocomplete_element_response_t emailtype_autocomplete_
 
 
 typedef struct emailtype_autocomplete_element_response_t {
-    int pki_emailtype_id; //numeric
+    int *pki_emailtype_id; //numeric
     char *s_emailtype_name_x; // string
-    int b_emailtype_isactive; //boolean
+    int *b_emailtype_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } emailtype_autocomplete_element_response_t;
 
 __attribute__((deprecated)) emailtype_autocomplete_element_response_t *emailtype_autocomplete_element_response_create(
-    int pki_emailtype_id,
+    int *pki_emailtype_id,
     char *s_emailtype_name_x,
-    int b_emailtype_isactive
+    int *b_emailtype_isactive
 );
 
 void emailtype_autocomplete_element_response_free(emailtype_autocomplete_element_response_t *emailtype_autocomplete_element_response);

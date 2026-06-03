@@ -6,32 +6,47 @@
 
 
 static authenticationexternal_autocomplete_element_response_t *authenticationexternal_autocomplete_element_response_create_internal(
-    int pki_authenticationexternal_id,
+    int *pki_authenticationexternal_id,
     char *s_authenticationexternal_description,
-    int b_authenticationexternal_isactive
+    int *b_authenticationexternal_isactive
     ) {
     authenticationexternal_autocomplete_element_response_t *authenticationexternal_autocomplete_element_response_local_var = malloc(sizeof(authenticationexternal_autocomplete_element_response_t));
     if (!authenticationexternal_autocomplete_element_response_local_var) {
         return NULL;
     }
+    memset(authenticationexternal_autocomplete_element_response_local_var, 0, sizeof(authenticationexternal_autocomplete_element_response_t));
+    authenticationexternal_autocomplete_element_response_local_var->_library_owned = 1;
     authenticationexternal_autocomplete_element_response_local_var->pki_authenticationexternal_id = pki_authenticationexternal_id;
     authenticationexternal_autocomplete_element_response_local_var->s_authenticationexternal_description = s_authenticationexternal_description;
     authenticationexternal_autocomplete_element_response_local_var->b_authenticationexternal_isactive = b_authenticationexternal_isactive;
-
-    authenticationexternal_autocomplete_element_response_local_var->_library_owned = 1;
     return authenticationexternal_autocomplete_element_response_local_var;
 }
 
 __attribute__((deprecated)) authenticationexternal_autocomplete_element_response_t *authenticationexternal_autocomplete_element_response_create(
-    int pki_authenticationexternal_id,
+    int *pki_authenticationexternal_id,
     char *s_authenticationexternal_description,
-    int b_authenticationexternal_isactive
+    int *b_authenticationexternal_isactive
     ) {
-    return authenticationexternal_autocomplete_element_response_create_internal (
-        pki_authenticationexternal_id,
+    int *pki_authenticationexternal_id_copy = NULL;
+    if (pki_authenticationexternal_id) {
+        pki_authenticationexternal_id_copy = malloc(sizeof(int));
+        if (pki_authenticationexternal_id_copy) *pki_authenticationexternal_id_copy = *pki_authenticationexternal_id;
+    }
+    int *b_authenticationexternal_isactive_copy = NULL;
+    if (b_authenticationexternal_isactive) {
+        b_authenticationexternal_isactive_copy = malloc(sizeof(int));
+        if (b_authenticationexternal_isactive_copy) *b_authenticationexternal_isactive_copy = *b_authenticationexternal_isactive;
+    }
+    authenticationexternal_autocomplete_element_response_t *result = authenticationexternal_autocomplete_element_response_create_internal (
+        pki_authenticationexternal_id_copy,
         s_authenticationexternal_description,
-        b_authenticationexternal_isactive
+        b_authenticationexternal_isactive_copy
         );
+    if (!result) {
+        free(pki_authenticationexternal_id_copy);
+        free(b_authenticationexternal_isactive_copy);
+    }
+    return result;
 }
 
 void authenticationexternal_autocomplete_element_response_free(authenticationexternal_autocomplete_element_response_t *authenticationexternal_autocomplete_element_response) {
@@ -43,9 +58,17 @@ void authenticationexternal_autocomplete_element_response_free(authenticationext
         return ;
     }
     listEntry_t *listEntry;
+    if (authenticationexternal_autocomplete_element_response->pki_authenticationexternal_id) {
+        free(authenticationexternal_autocomplete_element_response->pki_authenticationexternal_id);
+        authenticationexternal_autocomplete_element_response->pki_authenticationexternal_id = NULL;
+    }
     if (authenticationexternal_autocomplete_element_response->s_authenticationexternal_description) {
         free(authenticationexternal_autocomplete_element_response->s_authenticationexternal_description);
         authenticationexternal_autocomplete_element_response->s_authenticationexternal_description = NULL;
+    }
+    if (authenticationexternal_autocomplete_element_response->b_authenticationexternal_isactive) {
+        free(authenticationexternal_autocomplete_element_response->b_authenticationexternal_isactive);
+        authenticationexternal_autocomplete_element_response->b_authenticationexternal_isactive = NULL;
     }
     free(authenticationexternal_autocomplete_element_response);
 }
@@ -57,7 +80,7 @@ cJSON *authenticationexternal_autocomplete_element_response_convertToJSON(authen
     if (!authenticationexternal_autocomplete_element_response->pki_authenticationexternal_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiAuthenticationexternalID", authenticationexternal_autocomplete_element_response->pki_authenticationexternal_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiAuthenticationexternalID", *authenticationexternal_autocomplete_element_response->pki_authenticationexternal_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -75,7 +98,7 @@ cJSON *authenticationexternal_autocomplete_element_response_convertToJSON(authen
     if (!authenticationexternal_autocomplete_element_response->b_authenticationexternal_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bAuthenticationexternalIsactive", authenticationexternal_autocomplete_element_response->b_authenticationexternal_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bAuthenticationexternalIsactive", *authenticationexternal_autocomplete_element_response->b_authenticationexternal_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -91,6 +114,14 @@ authenticationexternal_autocomplete_element_response_t *authenticationexternal_a
 
     authenticationexternal_autocomplete_element_response_t *authenticationexternal_autocomplete_element_response_local_var = NULL;
 
+    // define the local variable for authenticationexternal_autocomplete_element_response->pki_authenticationexternal_id
+    int *pki_authenticationexternal_id_local_var = NULL;
+
+    char *s_authenticationexternal_description_local_str = NULL;
+
+    // define the local variable for authenticationexternal_autocomplete_element_response->b_authenticationexternal_isactive
+    int *b_authenticationexternal_isactive_local_var = NULL;
+
     // authenticationexternal_autocomplete_element_response->pki_authenticationexternal_id
     cJSON *pki_authenticationexternal_id = cJSON_GetObjectItemCaseSensitive(authenticationexternal_autocomplete_element_responseJSON, "pkiAuthenticationexternalID");
     if (cJSON_IsNull(pki_authenticationexternal_id)) {
@@ -105,6 +136,12 @@ authenticationexternal_autocomplete_element_response_t *authenticationexternal_a
     {
     goto end; //Numeric
     }
+    pki_authenticationexternal_id_local_var = malloc(sizeof(int));
+    if(!pki_authenticationexternal_id_local_var)
+    {
+        goto end;
+    }
+    *pki_authenticationexternal_id_local_var = pki_authenticationexternal_id->valuedouble;
 
     // authenticationexternal_autocomplete_element_response->s_authenticationexternal_description
     cJSON *s_authenticationexternal_description = cJSON_GetObjectItemCaseSensitive(authenticationexternal_autocomplete_element_responseJSON, "sAuthenticationexternalDescription");
@@ -135,16 +172,40 @@ authenticationexternal_autocomplete_element_response_t *authenticationexternal_a
     {
     goto end; //Bool
     }
+    b_authenticationexternal_isactive_local_var = malloc(sizeof(int));
+    if(!b_authenticationexternal_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_authenticationexternal_isactive_local_var = b_authenticationexternal_isactive->valueint;
 
+
+    if (s_authenticationexternal_description && !cJSON_IsNull(s_authenticationexternal_description)) s_authenticationexternal_description_local_str = strdup(s_authenticationexternal_description->valuestring);
 
     authenticationexternal_autocomplete_element_response_local_var = authenticationexternal_autocomplete_element_response_create_internal (
-        pki_authenticationexternal_id->valuedouble,
-        strdup(s_authenticationexternal_description->valuestring),
-        b_authenticationexternal_isactive->valueint
+        pki_authenticationexternal_id_local_var,
+        s_authenticationexternal_description_local_str,
+        b_authenticationexternal_isactive_local_var
         );
+
+    if (!authenticationexternal_autocomplete_element_response_local_var) {
+        goto end;
+    }
 
     return authenticationexternal_autocomplete_element_response_local_var;
 end:
+    if (pki_authenticationexternal_id_local_var) {
+        free(pki_authenticationexternal_id_local_var);
+        pki_authenticationexternal_id_local_var = NULL;
+    }
+    if (s_authenticationexternal_description_local_str) {
+        free(s_authenticationexternal_description_local_str);
+        s_authenticationexternal_description_local_str = NULL;
+    }
+    if (b_authenticationexternal_isactive_local_var) {
+        free(b_authenticationexternal_isactive_local_var);
+        b_authenticationexternal_isactive_local_var = NULL;
+    }
     return NULL;
 
 }

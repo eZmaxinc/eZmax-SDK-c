@@ -12,18 +12,21 @@ static customer_get_autocomplete_v2_response_m_payload_t *customer_get_autocompl
     if (!customer_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    customer_get_autocomplete_v2_response_m_payload_local_var->a_obj_customer = a_obj_customer;
-
+    memset(customer_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(customer_get_autocomplete_v2_response_m_payload_t));
     customer_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    customer_get_autocomplete_v2_response_m_payload_local_var->a_obj_customer = a_obj_customer;
     return customer_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) customer_get_autocomplete_v2_response_m_payload_t *customer_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_customer
     ) {
-    return customer_get_autocomplete_v2_response_m_payload_create_internal (
+    customer_get_autocomplete_v2_response_m_payload_t *result = customer_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_customer
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void customer_get_autocomplete_v2_response_m_payload_free(customer_get_autocomplete_v2_response_m_payload_t *customer_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ customer_get_autocomplete_v2_response_m_payload_t *customer_get_autocomplete_v2_
     }
 
 
+
     customer_get_autocomplete_v2_response_m_payload_local_var = customer_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_customerList
         );
+
+    if (!customer_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return customer_get_autocomplete_v2_response_m_payload_local_var;
 end:

@@ -20,9 +20,9 @@ typedef struct sessionhistory_list_element_t sessionhistory_list_element_t;
 
 
 typedef struct sessionhistory_list_element_t {
-    int pki_sessionhistory_id; //numeric
-    int fki_computer_id; //numeric
-    int fki_user_id; //numeric
+    int *pki_sessionhistory_id; //numeric
+    int *fki_computer_id; //numeric
+    int *fki_user_id; //numeric
     char *dt_sessionhistory_firsthit; // string
     char *dt_sessionhistory_lasthit; // string
     ezmax_api_definition__full_field_e_sessionhistory_endby__e e_sessionhistory_endby; //referenced enum
@@ -35,9 +35,9 @@ typedef struct sessionhistory_list_element_t {
 } sessionhistory_list_element_t;
 
 __attribute__((deprecated)) sessionhistory_list_element_t *sessionhistory_list_element_create(
-    int pki_sessionhistory_id,
-    int fki_computer_id,
-    int fki_user_id,
+    int *pki_sessionhistory_id,
+    int *fki_computer_id,
+    int *fki_user_id,
     char *dt_sessionhistory_firsthit,
     char *dt_sessionhistory_lasthit,
     ezmax_api_definition__full_field_e_sessionhistory_endby__e e_sessionhistory_endby,

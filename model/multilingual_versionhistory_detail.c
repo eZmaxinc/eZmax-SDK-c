@@ -13,10 +13,10 @@ static multilingual_versionhistory_detail_t *multilingual_versionhistory_detail_
     if (!multilingual_versionhistory_detail_local_var) {
         return NULL;
     }
+    memset(multilingual_versionhistory_detail_local_var, 0, sizeof(multilingual_versionhistory_detail_t));
+    multilingual_versionhistory_detail_local_var->_library_owned = 1;
     multilingual_versionhistory_detail_local_var->t_versionhistory_detail1 = t_versionhistory_detail1;
     multilingual_versionhistory_detail_local_var->t_versionhistory_detail2 = t_versionhistory_detail2;
-
-    multilingual_versionhistory_detail_local_var->_library_owned = 1;
     return multilingual_versionhistory_detail_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) multilingual_versionhistory_detail_t *multilingual_v
     char *t_versionhistory_detail1,
     char *t_versionhistory_detail2
     ) {
-    return multilingual_versionhistory_detail_create_internal (
+    multilingual_versionhistory_detail_t *result = multilingual_versionhistory_detail_create_internal (
         t_versionhistory_detail1,
         t_versionhistory_detail2
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void multilingual_versionhistory_detail_free(multilingual_versionhistory_detail_t *multilingual_versionhistory_detail) {
@@ -80,6 +83,10 @@ multilingual_versionhistory_detail_t *multilingual_versionhistory_detail_parseFr
 
     multilingual_versionhistory_detail_t *multilingual_versionhistory_detail_local_var = NULL;
 
+    char *t_versionhistory_detail1_local_str = NULL;
+
+    char *t_versionhistory_detail2_local_str = NULL;
+
     // multilingual_versionhistory_detail->t_versionhistory_detail1
     cJSON *t_versionhistory_detail1 = cJSON_GetObjectItemCaseSensitive(multilingual_versionhistory_detailJSON, "tVersionhistoryDetail1");
     if (cJSON_IsNull(t_versionhistory_detail1)) {
@@ -105,13 +112,28 @@ multilingual_versionhistory_detail_t *multilingual_versionhistory_detail_parseFr
     }
 
 
+    if (t_versionhistory_detail1 && !cJSON_IsNull(t_versionhistory_detail1)) t_versionhistory_detail1_local_str = strdup(t_versionhistory_detail1->valuestring);
+    if (t_versionhistory_detail2 && !cJSON_IsNull(t_versionhistory_detail2)) t_versionhistory_detail2_local_str = strdup(t_versionhistory_detail2->valuestring);
+
     multilingual_versionhistory_detail_local_var = multilingual_versionhistory_detail_create_internal (
-        t_versionhistory_detail1 && !cJSON_IsNull(t_versionhistory_detail1) ? strdup(t_versionhistory_detail1->valuestring) : NULL,
-        t_versionhistory_detail2 && !cJSON_IsNull(t_versionhistory_detail2) ? strdup(t_versionhistory_detail2->valuestring) : NULL
+        t_versionhistory_detail1_local_str,
+        t_versionhistory_detail2_local_str
         );
+
+    if (!multilingual_versionhistory_detail_local_var) {
+        goto end;
+    }
 
     return multilingual_versionhistory_detail_local_var;
 end:
+    if (t_versionhistory_detail1_local_str) {
+        free(t_versionhistory_detail1_local_str);
+        t_versionhistory_detail1_local_str = NULL;
+    }
+    if (t_versionhistory_detail2_local_str) {
+        free(t_versionhistory_detail2_local_str);
+        t_versionhistory_detail2_local_str = NULL;
+    }
     return NULL;
 
 }

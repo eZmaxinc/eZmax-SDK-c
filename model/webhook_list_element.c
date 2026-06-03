@@ -6,7 +6,7 @@
 
 
 static webhook_list_element_t *webhook_list_element_create_internal(
-    int pki_webhook_id,
+    int *pki_webhook_id,
     char *s_webhook_description,
     char *s_webhook_url,
     char *s_webhook_event,
@@ -14,13 +14,15 @@ static webhook_list_element_t *webhook_list_element_create_internal(
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module,
     ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent,
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent,
-    int b_webhook_isactive,
-    int b_webhook_issigned
+    int *b_webhook_isactive,
+    int *b_webhook_issigned
     ) {
     webhook_list_element_t *webhook_list_element_local_var = malloc(sizeof(webhook_list_element_t));
     if (!webhook_list_element_local_var) {
         return NULL;
     }
+    memset(webhook_list_element_local_var, 0, sizeof(webhook_list_element_t));
+    webhook_list_element_local_var->_library_owned = 1;
     webhook_list_element_local_var->pki_webhook_id = pki_webhook_id;
     webhook_list_element_local_var->s_webhook_description = s_webhook_description;
     webhook_list_element_local_var->s_webhook_url = s_webhook_url;
@@ -31,13 +33,11 @@ static webhook_list_element_t *webhook_list_element_create_internal(
     webhook_list_element_local_var->e_webhook_managementevent = e_webhook_managementevent;
     webhook_list_element_local_var->b_webhook_isactive = b_webhook_isactive;
     webhook_list_element_local_var->b_webhook_issigned = b_webhook_issigned;
-
-    webhook_list_element_local_var->_library_owned = 1;
     return webhook_list_element_local_var;
 }
 
 __attribute__((deprecated)) webhook_list_element_t *webhook_list_element_create(
-    int pki_webhook_id,
+    int *pki_webhook_id,
     char *s_webhook_description,
     char *s_webhook_url,
     char *s_webhook_event,
@@ -45,11 +45,26 @@ __attribute__((deprecated)) webhook_list_element_t *webhook_list_element_create(
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module,
     ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent,
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent,
-    int b_webhook_isactive,
-    int b_webhook_issigned
+    int *b_webhook_isactive,
+    int *b_webhook_issigned
     ) {
-    return webhook_list_element_create_internal (
-        pki_webhook_id,
+    int *pki_webhook_id_copy = NULL;
+    if (pki_webhook_id) {
+        pki_webhook_id_copy = malloc(sizeof(int));
+        if (pki_webhook_id_copy) *pki_webhook_id_copy = *pki_webhook_id;
+    }
+    int *b_webhook_isactive_copy = NULL;
+    if (b_webhook_isactive) {
+        b_webhook_isactive_copy = malloc(sizeof(int));
+        if (b_webhook_isactive_copy) *b_webhook_isactive_copy = *b_webhook_isactive;
+    }
+    int *b_webhook_issigned_copy = NULL;
+    if (b_webhook_issigned) {
+        b_webhook_issigned_copy = malloc(sizeof(int));
+        if (b_webhook_issigned_copy) *b_webhook_issigned_copy = *b_webhook_issigned;
+    }
+    webhook_list_element_t *result = webhook_list_element_create_internal (
+        pki_webhook_id_copy,
         s_webhook_description,
         s_webhook_url,
         s_webhook_event,
@@ -57,9 +72,15 @@ __attribute__((deprecated)) webhook_list_element_t *webhook_list_element_create(
         e_webhook_module,
         e_webhook_ezsignevent,
         e_webhook_managementevent,
-        b_webhook_isactive,
-        b_webhook_issigned
+        b_webhook_isactive_copy,
+        b_webhook_issigned_copy
         );
+    if (!result) {
+        free(pki_webhook_id_copy);
+        free(b_webhook_isactive_copy);
+        free(b_webhook_issigned_copy);
+    }
+    return result;
 }
 
 void webhook_list_element_free(webhook_list_element_t *webhook_list_element) {
@@ -71,6 +92,10 @@ void webhook_list_element_free(webhook_list_element_t *webhook_list_element) {
         return ;
     }
     listEntry_t *listEntry;
+    if (webhook_list_element->pki_webhook_id) {
+        free(webhook_list_element->pki_webhook_id);
+        webhook_list_element->pki_webhook_id = NULL;
+    }
     if (webhook_list_element->s_webhook_description) {
         free(webhook_list_element->s_webhook_description);
         webhook_list_element->s_webhook_description = NULL;
@@ -87,6 +112,14 @@ void webhook_list_element_free(webhook_list_element_t *webhook_list_element) {
         free(webhook_list_element->s_webhook_emailfailed);
         webhook_list_element->s_webhook_emailfailed = NULL;
     }
+    if (webhook_list_element->b_webhook_isactive) {
+        free(webhook_list_element->b_webhook_isactive);
+        webhook_list_element->b_webhook_isactive = NULL;
+    }
+    if (webhook_list_element->b_webhook_issigned) {
+        free(webhook_list_element->b_webhook_issigned);
+        webhook_list_element->b_webhook_issigned = NULL;
+    }
     free(webhook_list_element);
 }
 
@@ -97,7 +130,7 @@ cJSON *webhook_list_element_convertToJSON(webhook_list_element_t *webhook_list_e
     if (!webhook_list_element->pki_webhook_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiWebhookID", webhook_list_element->pki_webhook_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiWebhookID", *webhook_list_element->pki_webhook_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -182,7 +215,7 @@ cJSON *webhook_list_element_convertToJSON(webhook_list_element_t *webhook_list_e
     if (!webhook_list_element->b_webhook_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bWebhookIsactive", webhook_list_element->b_webhook_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bWebhookIsactive", *webhook_list_element->b_webhook_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -191,7 +224,7 @@ cJSON *webhook_list_element_convertToJSON(webhook_list_element_t *webhook_list_e
     if (!webhook_list_element->b_webhook_issigned) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bWebhookIssigned", webhook_list_element->b_webhook_issigned) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bWebhookIssigned", *webhook_list_element->b_webhook_issigned) == NULL) {
     goto fail; //Bool
     }
 
@@ -207,6 +240,17 @@ webhook_list_element_t *webhook_list_element_parseFromJSON(cJSON *webhook_list_e
 
     webhook_list_element_t *webhook_list_element_local_var = NULL;
 
+    // define the local variable for webhook_list_element->pki_webhook_id
+    int *pki_webhook_id_local_var = NULL;
+
+    char *s_webhook_description_local_str = NULL;
+
+    char *s_webhook_url_local_str = NULL;
+
+    char *s_webhook_event_local_str = NULL;
+
+    char *s_webhook_emailfailed_local_str = NULL;
+
     // define the local variable for webhook_list_element->e_webhook_module
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module_local_nonprim = 0;
 
@@ -215,6 +259,12 @@ webhook_list_element_t *webhook_list_element_parseFromJSON(cJSON *webhook_list_e
 
     // define the local variable for webhook_list_element->e_webhook_managementevent
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent_local_nonprim = 0;
+
+    // define the local variable for webhook_list_element->b_webhook_isactive
+    int *b_webhook_isactive_local_var = NULL;
+
+    // define the local variable for webhook_list_element->b_webhook_issigned
+    int *b_webhook_issigned_local_var = NULL;
 
     // webhook_list_element->pki_webhook_id
     cJSON *pki_webhook_id = cJSON_GetObjectItemCaseSensitive(webhook_list_elementJSON, "pkiWebhookID");
@@ -230,6 +280,12 @@ webhook_list_element_t *webhook_list_element_parseFromJSON(cJSON *webhook_list_e
     {
     goto end; //Numeric
     }
+    pki_webhook_id_local_var = malloc(sizeof(int));
+    if(!pki_webhook_id_local_var)
+    {
+        goto end;
+    }
+    *pki_webhook_id_local_var = pki_webhook_id->valuedouble;
 
     // webhook_list_element->s_webhook_description
     cJSON *s_webhook_description = cJSON_GetObjectItemCaseSensitive(webhook_list_elementJSON, "sWebhookDescription");
@@ -335,6 +391,12 @@ webhook_list_element_t *webhook_list_element_parseFromJSON(cJSON *webhook_list_e
     {
     goto end; //Bool
     }
+    b_webhook_isactive_local_var = malloc(sizeof(int));
+    if(!b_webhook_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_webhook_isactive_local_var = b_webhook_isactive->valueint;
 
     // webhook_list_element->b_webhook_issigned
     cJSON *b_webhook_issigned = cJSON_GetObjectItemCaseSensitive(webhook_list_elementJSON, "bWebhookIssigned");
@@ -350,23 +412,58 @@ webhook_list_element_t *webhook_list_element_parseFromJSON(cJSON *webhook_list_e
     {
     goto end; //Bool
     }
+    b_webhook_issigned_local_var = malloc(sizeof(int));
+    if(!b_webhook_issigned_local_var)
+    {
+        goto end;
+    }
+    *b_webhook_issigned_local_var = b_webhook_issigned->valueint;
 
+
+    if (s_webhook_description && !cJSON_IsNull(s_webhook_description)) s_webhook_description_local_str = strdup(s_webhook_description->valuestring);
+    if (s_webhook_url && !cJSON_IsNull(s_webhook_url)) s_webhook_url_local_str = strdup(s_webhook_url->valuestring);
+    if (s_webhook_event && !cJSON_IsNull(s_webhook_event)) s_webhook_event_local_str = strdup(s_webhook_event->valuestring);
+    if (s_webhook_emailfailed && !cJSON_IsNull(s_webhook_emailfailed)) s_webhook_emailfailed_local_str = strdup(s_webhook_emailfailed->valuestring);
 
     webhook_list_element_local_var = webhook_list_element_create_internal (
-        pki_webhook_id->valuedouble,
-        strdup(s_webhook_description->valuestring),
-        strdup(s_webhook_url->valuestring),
-        strdup(s_webhook_event->valuestring),
-        strdup(s_webhook_emailfailed->valuestring),
+        pki_webhook_id_local_var,
+        s_webhook_description_local_str,
+        s_webhook_url_local_str,
+        s_webhook_event_local_str,
+        s_webhook_emailfailed_local_str,
         e_webhook_module_local_nonprim,
         e_webhook_ezsignevent ? e_webhook_ezsignevent_local_nonprim : 0,
         e_webhook_managementevent ? e_webhook_managementevent_local_nonprim : 0,
-        b_webhook_isactive->valueint,
-        b_webhook_issigned->valueint
+        b_webhook_isactive_local_var,
+        b_webhook_issigned_local_var
         );
+
+    if (!webhook_list_element_local_var) {
+        goto end;
+    }
 
     return webhook_list_element_local_var;
 end:
+    if (pki_webhook_id_local_var) {
+        free(pki_webhook_id_local_var);
+        pki_webhook_id_local_var = NULL;
+    }
+    if (s_webhook_description_local_str) {
+        free(s_webhook_description_local_str);
+        s_webhook_description_local_str = NULL;
+    }
+    if (s_webhook_url_local_str) {
+        free(s_webhook_url_local_str);
+        s_webhook_url_local_str = NULL;
+    }
+    if (s_webhook_event_local_str) {
+        free(s_webhook_event_local_str);
+        s_webhook_event_local_str = NULL;
+    }
+    if (s_webhook_emailfailed_local_str) {
+        free(s_webhook_emailfailed_local_str);
+        s_webhook_emailfailed_local_str = NULL;
+    }
     if (e_webhook_module_local_nonprim) {
         e_webhook_module_local_nonprim = 0;
     }
@@ -375,6 +472,14 @@ end:
     }
     if (e_webhook_managementevent_local_nonprim) {
         e_webhook_managementevent_local_nonprim = 0;
+    }
+    if (b_webhook_isactive_local_var) {
+        free(b_webhook_isactive_local_var);
+        b_webhook_isactive_local_var = NULL;
+    }
+    if (b_webhook_issigned_local_var) {
+        free(b_webhook_issigned_local_var);
+        b_webhook_issigned_local_var = NULL;
     }
     return NULL;
 

@@ -19,15 +19,15 @@ typedef struct supply_list_element_t supply_list_element_t;
 
 
 typedef struct supply_list_element_t {
-    int pki_supply_id; //numeric
-    int fki_glaccount_id; //numeric
-    int fki_glaccountcontainer_id; //numeric
-    int fki_variableexpense_id; //numeric
+    int *pki_supply_id; //numeric
+    int *fki_glaccount_id; //numeric
+    int *fki_glaccountcontainer_id; //numeric
+    int *fki_variableexpense_id; //numeric
     char *s_supply_code; // string
     char *s_supply_description_x; // string
     char *d_supply_unitprice; // string
-    int b_supply_isactive; //boolean
-    int b_supply_variableprice; //boolean
+    int *b_supply_isactive; //boolean
+    int *b_supply_variableprice; //boolean
     char *s_glaccount_description_x; // string
     char *s_glaccountcontainer_longdescription_x; // string
     char *s_variableexpense_description_x; // string
@@ -36,15 +36,15 @@ typedef struct supply_list_element_t {
 } supply_list_element_t;
 
 __attribute__((deprecated)) supply_list_element_t *supply_list_element_create(
-    int pki_supply_id,
-    int fki_glaccount_id,
-    int fki_glaccountcontainer_id,
-    int fki_variableexpense_id,
+    int *pki_supply_id,
+    int *fki_glaccount_id,
+    int *fki_glaccountcontainer_id,
+    int *fki_variableexpense_id,
     char *s_supply_code,
     char *s_supply_description_x,
     char *d_supply_unitprice,
-    int b_supply_isactive,
-    int b_supply_variableprice,
+    int *b_supply_isactive,
+    int *b_supply_variableprice,
     char *s_glaccount_description_x,
     char *s_glaccountcontainer_longdescription_x,
     char *s_variableexpense_description_x

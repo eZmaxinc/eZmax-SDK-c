@@ -6,32 +6,47 @@
 
 
 static ezdoctemplatedocument_get_list_v1_response_m_payload_t *ezdoctemplatedocument_get_list_v1_response_m_payload_create_internal(
-    int i_row_returned,
-    int i_row_filtered,
+    int *i_row_returned,
+    int *i_row_filtered,
     list_t *a_obj_ezdoctemplatedocument
     ) {
     ezdoctemplatedocument_get_list_v1_response_m_payload_t *ezdoctemplatedocument_get_list_v1_response_m_payload_local_var = malloc(sizeof(ezdoctemplatedocument_get_list_v1_response_m_payload_t));
     if (!ezdoctemplatedocument_get_list_v1_response_m_payload_local_var) {
         return NULL;
     }
+    memset(ezdoctemplatedocument_get_list_v1_response_m_payload_local_var, 0, sizeof(ezdoctemplatedocument_get_list_v1_response_m_payload_t));
+    ezdoctemplatedocument_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     ezdoctemplatedocument_get_list_v1_response_m_payload_local_var->i_row_returned = i_row_returned;
     ezdoctemplatedocument_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
     ezdoctemplatedocument_get_list_v1_response_m_payload_local_var->a_obj_ezdoctemplatedocument = a_obj_ezdoctemplatedocument;
-
-    ezdoctemplatedocument_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     return ezdoctemplatedocument_get_list_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezdoctemplatedocument_get_list_v1_response_m_payload_t *ezdoctemplatedocument_get_list_v1_response_m_payload_create(
-    int i_row_returned,
-    int i_row_filtered,
+    int *i_row_returned,
+    int *i_row_filtered,
     list_t *a_obj_ezdoctemplatedocument
     ) {
-    return ezdoctemplatedocument_get_list_v1_response_m_payload_create_internal (
-        i_row_returned,
-        i_row_filtered,
+    int *i_row_returned_copy = NULL;
+    if (i_row_returned) {
+        i_row_returned_copy = malloc(sizeof(int));
+        if (i_row_returned_copy) *i_row_returned_copy = *i_row_returned;
+    }
+    int *i_row_filtered_copy = NULL;
+    if (i_row_filtered) {
+        i_row_filtered_copy = malloc(sizeof(int));
+        if (i_row_filtered_copy) *i_row_filtered_copy = *i_row_filtered;
+    }
+    ezdoctemplatedocument_get_list_v1_response_m_payload_t *result = ezdoctemplatedocument_get_list_v1_response_m_payload_create_internal (
+        i_row_returned_copy,
+        i_row_filtered_copy,
         a_obj_ezdoctemplatedocument
         );
+    if (!result) {
+        free(i_row_returned_copy);
+        free(i_row_filtered_copy);
+    }
+    return result;
 }
 
 void ezdoctemplatedocument_get_list_v1_response_m_payload_free(ezdoctemplatedocument_get_list_v1_response_m_payload_t *ezdoctemplatedocument_get_list_v1_response_m_payload) {
@@ -43,6 +58,14 @@ void ezdoctemplatedocument_get_list_v1_response_m_payload_free(ezdoctemplatedocu
         return ;
     }
     listEntry_t *listEntry;
+    if (ezdoctemplatedocument_get_list_v1_response_m_payload->i_row_returned) {
+        free(ezdoctemplatedocument_get_list_v1_response_m_payload->i_row_returned);
+        ezdoctemplatedocument_get_list_v1_response_m_payload->i_row_returned = NULL;
+    }
+    if (ezdoctemplatedocument_get_list_v1_response_m_payload->i_row_filtered) {
+        free(ezdoctemplatedocument_get_list_v1_response_m_payload->i_row_filtered);
+        ezdoctemplatedocument_get_list_v1_response_m_payload->i_row_filtered = NULL;
+    }
     if (ezdoctemplatedocument_get_list_v1_response_m_payload->a_obj_ezdoctemplatedocument) {
         list_ForEach(listEntry, ezdoctemplatedocument_get_list_v1_response_m_payload->a_obj_ezdoctemplatedocument) {
             ezdoctemplatedocument_list_element_free(listEntry->data);
@@ -60,7 +83,7 @@ cJSON *ezdoctemplatedocument_get_list_v1_response_m_payload_convertToJSON(ezdoct
     if (!ezdoctemplatedocument_get_list_v1_response_m_payload->i_row_returned) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iRowReturned", ezdoctemplatedocument_get_list_v1_response_m_payload->i_row_returned) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iRowReturned", *ezdoctemplatedocument_get_list_v1_response_m_payload->i_row_returned) == NULL) {
     goto fail; //Numeric
     }
 
@@ -69,7 +92,7 @@ cJSON *ezdoctemplatedocument_get_list_v1_response_m_payload_convertToJSON(ezdoct
     if (!ezdoctemplatedocument_get_list_v1_response_m_payload->i_row_filtered) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iRowFiltered", ezdoctemplatedocument_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iRowFiltered", *ezdoctemplatedocument_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
     goto fail; //Numeric
     }
 
@@ -106,6 +129,12 @@ ezdoctemplatedocument_get_list_v1_response_m_payload_t *ezdoctemplatedocument_ge
 
     ezdoctemplatedocument_get_list_v1_response_m_payload_t *ezdoctemplatedocument_get_list_v1_response_m_payload_local_var = NULL;
 
+    // define the local variable for ezdoctemplatedocument_get_list_v1_response_m_payload->i_row_returned
+    int *i_row_returned_local_var = NULL;
+
+    // define the local variable for ezdoctemplatedocument_get_list_v1_response_m_payload->i_row_filtered
+    int *i_row_filtered_local_var = NULL;
+
     // define the local list for ezdoctemplatedocument_get_list_v1_response_m_payload->a_obj_ezdoctemplatedocument
     list_t *a_obj_ezdoctemplatedocumentList = NULL;
 
@@ -123,6 +152,12 @@ ezdoctemplatedocument_get_list_v1_response_m_payload_t *ezdoctemplatedocument_ge
     {
     goto end; //Numeric
     }
+    i_row_returned_local_var = malloc(sizeof(int));
+    if(!i_row_returned_local_var)
+    {
+        goto end;
+    }
+    *i_row_returned_local_var = i_row_returned->valuedouble;
 
     // ezdoctemplatedocument_get_list_v1_response_m_payload->i_row_filtered
     cJSON *i_row_filtered = cJSON_GetObjectItemCaseSensitive(ezdoctemplatedocument_get_list_v1_response_m_payloadJSON, "iRowFiltered");
@@ -138,6 +173,12 @@ ezdoctemplatedocument_get_list_v1_response_m_payload_t *ezdoctemplatedocument_ge
     {
     goto end; //Numeric
     }
+    i_row_filtered_local_var = malloc(sizeof(int));
+    if(!i_row_filtered_local_var)
+    {
+        goto end;
+    }
+    *i_row_filtered_local_var = i_row_filtered->valuedouble;
 
     // ezdoctemplatedocument_get_list_v1_response_m_payload->a_obj_ezdoctemplatedocument
     cJSON *a_obj_ezdoctemplatedocument = cJSON_GetObjectItemCaseSensitive(ezdoctemplatedocument_get_list_v1_response_m_payloadJSON, "a_objEzdoctemplatedocument");
@@ -167,14 +208,27 @@ ezdoctemplatedocument_get_list_v1_response_m_payload_t *ezdoctemplatedocument_ge
     }
 
 
+
     ezdoctemplatedocument_get_list_v1_response_m_payload_local_var = ezdoctemplatedocument_get_list_v1_response_m_payload_create_internal (
-        i_row_returned->valuedouble,
-        i_row_filtered->valuedouble,
+        i_row_returned_local_var,
+        i_row_filtered_local_var,
         a_obj_ezdoctemplatedocumentList
         );
 
+    if (!ezdoctemplatedocument_get_list_v1_response_m_payload_local_var) {
+        goto end;
+    }
+
     return ezdoctemplatedocument_get_list_v1_response_m_payload_local_var;
 end:
+    if (i_row_returned_local_var) {
+        free(i_row_returned_local_var);
+        i_row_returned_local_var = NULL;
+    }
+    if (i_row_filtered_local_var) {
+        free(i_row_filtered_local_var);
+        i_row_filtered_local_var = NULL;
+    }
     if (a_obj_ezdoctemplatedocumentList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezdoctemplatedocumentList) {

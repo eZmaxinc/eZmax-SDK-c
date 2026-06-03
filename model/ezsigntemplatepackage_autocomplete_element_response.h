@@ -22,9 +22,9 @@ typedef struct ezsigntemplatepackage_autocomplete_element_response_t ezsigntempl
 typedef struct ezsigntemplatepackage_autocomplete_element_response_t {
     ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel; //referenced enum
     char *s_ezsigntemplatepackage_description; // string
-    int pki_ezsigntemplatepackage_id; //numeric
-    int b_ezsigntemplatepackage_isactive; //boolean
-    int b_disabled; //boolean
+    int *pki_ezsigntemplatepackage_id; //numeric
+    int *b_ezsigntemplatepackage_isactive; //boolean
+    int *b_disabled; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatepackage_autocomplete_element_response_t;
@@ -32,9 +32,9 @@ typedef struct ezsigntemplatepackage_autocomplete_element_response_t {
 __attribute__((deprecated)) ezsigntemplatepackage_autocomplete_element_response_t *ezsigntemplatepackage_autocomplete_element_response_create(
     ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel,
     char *s_ezsigntemplatepackage_description,
-    int pki_ezsigntemplatepackage_id,
-    int b_ezsigntemplatepackage_isactive,
-    int b_disabled
+    int *pki_ezsigntemplatepackage_id,
+    int *b_ezsigntemplatepackage_isactive,
+    int *b_disabled
 );
 
 void ezsigntemplatepackage_autocomplete_element_response_free(ezsigntemplatepackage_autocomplete_element_response_t *ezsigntemplatepackage_autocomplete_element_response);

@@ -12,18 +12,21 @@ static ezsigntemplatepackagesigner_create_object_v1_response_m_payload_t *ezsign
     if (!ezsigntemplatepackagesigner_create_object_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsigntemplatepackagesigner_create_object_v1_response_m_payload_local_var->a_pki_ezsigntemplatepackagesigner_id = a_pki_ezsigntemplatepackagesigner_id;
-
+    memset(ezsigntemplatepackagesigner_create_object_v1_response_m_payload_local_var, 0, sizeof(ezsigntemplatepackagesigner_create_object_v1_response_m_payload_t));
     ezsigntemplatepackagesigner_create_object_v1_response_m_payload_local_var->_library_owned = 1;
+    ezsigntemplatepackagesigner_create_object_v1_response_m_payload_local_var->a_pki_ezsigntemplatepackagesigner_id = a_pki_ezsigntemplatepackagesigner_id;
     return ezsigntemplatepackagesigner_create_object_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplatepackagesigner_create_object_v1_response_m_payload_t *ezsigntemplatepackagesigner_create_object_v1_response_m_payload_create(
     list_t *a_pki_ezsigntemplatepackagesigner_id
     ) {
-    return ezsigntemplatepackagesigner_create_object_v1_response_m_payload_create_internal (
+    ezsigntemplatepackagesigner_create_object_v1_response_m_payload_t *result = ezsigntemplatepackagesigner_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsigntemplatepackagesigner_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatepackagesigner_create_object_v1_response_m_payload_free(ezsigntemplatepackagesigner_create_object_v1_response_m_payload_t *ezsigntemplatepackagesigner_create_object_v1_response_m_payload) {
@@ -112,9 +115,14 @@ ezsigntemplatepackagesigner_create_object_v1_response_m_payload_t *ezsigntemplat
     }
 
 
+
     ezsigntemplatepackagesigner_create_object_v1_response_m_payload_local_var = ezsigntemplatepackagesigner_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsigntemplatepackagesigner_idList
         );
+
+    if (!ezsigntemplatepackagesigner_create_object_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatepackagesigner_create_object_v1_response_m_payload_local_var;
 end:

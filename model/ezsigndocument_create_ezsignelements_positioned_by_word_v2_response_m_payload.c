@@ -13,10 +13,10 @@ static ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_m_pay
     if (!ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_m_payload_local_var) {
         return NULL;
     }
+    memset(ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_m_payload_local_var, 0, sizeof(ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_m_payload_t));
+    ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_m_payload_local_var->_library_owned = 1;
     ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_m_payload_local_var->a_pki_ezsignsignature_id = a_pki_ezsignsignature_id;
     ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_m_payload_local_var->a_pki_ezsignformfieldgroup_id = a_pki_ezsignformfieldgroup_id;
-
-    ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_m_payload_local_var->_library_owned = 1;
     return ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_m_payload_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) ezsigndocument_create_ezsignelements_positioned_by_w
     list_t *a_pki_ezsignsignature_id,
     list_t *a_pki_ezsignformfieldgroup_id
     ) {
-    return ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_m_payload_create_internal (
+    ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_m_payload_t *result = ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_m_payload_create_internal (
         a_pki_ezsignsignature_id,
         a_pki_ezsignformfieldgroup_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_m_payload_free(ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_m_payload_t *ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_m_payload) {
@@ -175,10 +178,15 @@ ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_m_payload_t 
     }
 
 
+
     ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_m_payload_local_var = ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_m_payload_create_internal (
         a_pki_ezsignsignature_idList,
         a_pki_ezsignformfieldgroup_idList
         );
+
+    if (!ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_m_payload_local_var;
 end:

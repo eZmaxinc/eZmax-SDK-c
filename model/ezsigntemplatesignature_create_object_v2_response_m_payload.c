@@ -12,18 +12,21 @@ static ezsigntemplatesignature_create_object_v2_response_m_payload_t *ezsigntemp
     if (!ezsigntemplatesignature_create_object_v2_response_m_payload_local_var) {
         return NULL;
     }
-    ezsigntemplatesignature_create_object_v2_response_m_payload_local_var->a_pki_ezsigntemplatesignature_id = a_pki_ezsigntemplatesignature_id;
-
+    memset(ezsigntemplatesignature_create_object_v2_response_m_payload_local_var, 0, sizeof(ezsigntemplatesignature_create_object_v2_response_m_payload_t));
     ezsigntemplatesignature_create_object_v2_response_m_payload_local_var->_library_owned = 1;
+    ezsigntemplatesignature_create_object_v2_response_m_payload_local_var->a_pki_ezsigntemplatesignature_id = a_pki_ezsigntemplatesignature_id;
     return ezsigntemplatesignature_create_object_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) ezsigntemplatesignature_create_object_v2_response_m_payload_t *ezsigntemplatesignature_create_object_v2_response_m_payload_create(
     list_t *a_pki_ezsigntemplatesignature_id
     ) {
-    return ezsigntemplatesignature_create_object_v2_response_m_payload_create_internal (
+    ezsigntemplatesignature_create_object_v2_response_m_payload_t *result = ezsigntemplatesignature_create_object_v2_response_m_payload_create_internal (
         a_pki_ezsigntemplatesignature_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void ezsigntemplatesignature_create_object_v2_response_m_payload_free(ezsigntemplatesignature_create_object_v2_response_m_payload_t *ezsigntemplatesignature_create_object_v2_response_m_payload) {
@@ -112,9 +115,14 @@ ezsigntemplatesignature_create_object_v2_response_m_payload_t *ezsigntemplatesig
     }
 
 
+
     ezsigntemplatesignature_create_object_v2_response_m_payload_local_var = ezsigntemplatesignature_create_object_v2_response_m_payload_create_internal (
         a_pki_ezsigntemplatesignature_idList
         );
+
+    if (!ezsigntemplatesignature_create_object_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return ezsigntemplatesignature_create_object_v2_response_m_payload_local_var;
 end:

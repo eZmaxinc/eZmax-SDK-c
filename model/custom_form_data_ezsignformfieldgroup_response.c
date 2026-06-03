@@ -13,10 +13,10 @@ static custom_form_data_ezsignformfieldgroup_response_t *custom_form_data_ezsign
     if (!custom_form_data_ezsignformfieldgroup_response_local_var) {
         return NULL;
     }
+    memset(custom_form_data_ezsignformfieldgroup_response_local_var, 0, sizeof(custom_form_data_ezsignformfieldgroup_response_t));
+    custom_form_data_ezsignformfieldgroup_response_local_var->_library_owned = 1;
     custom_form_data_ezsignformfieldgroup_response_local_var->s_ezsignformfieldgroup_label = s_ezsignformfieldgroup_label;
     custom_form_data_ezsignformfieldgroup_response_local_var->a_obj_ezsignformfield = a_obj_ezsignformfield;
-
-    custom_form_data_ezsignformfieldgroup_response_local_var->_library_owned = 1;
     return custom_form_data_ezsignformfieldgroup_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) custom_form_data_ezsignformfieldgroup_response_t *cu
     char *s_ezsignformfieldgroup_label,
     list_t *a_obj_ezsignformfield
     ) {
-    return custom_form_data_ezsignformfieldgroup_response_create_internal (
+    custom_form_data_ezsignformfieldgroup_response_t *result = custom_form_data_ezsignformfieldgroup_response_create_internal (
         s_ezsignformfieldgroup_label,
         a_obj_ezsignformfield
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void custom_form_data_ezsignformfieldgroup_response_free(custom_form_data_ezsignformfieldgroup_response_t *custom_form_data_ezsignformfieldgroup_response) {
@@ -97,6 +100,8 @@ custom_form_data_ezsignformfieldgroup_response_t *custom_form_data_ezsignformfie
 
     custom_form_data_ezsignformfieldgroup_response_t *custom_form_data_ezsignformfieldgroup_response_local_var = NULL;
 
+    char *s_ezsignformfieldgroup_label_local_str = NULL;
+
     // define the local list for custom_form_data_ezsignformfieldgroup_response->a_obj_ezsignformfield
     list_t *a_obj_ezsignformfieldList = NULL;
 
@@ -143,13 +148,23 @@ custom_form_data_ezsignformfieldgroup_response_t *custom_form_data_ezsignformfie
     }
 
 
+    if (s_ezsignformfieldgroup_label && !cJSON_IsNull(s_ezsignformfieldgroup_label)) s_ezsignformfieldgroup_label_local_str = strdup(s_ezsignformfieldgroup_label->valuestring);
+
     custom_form_data_ezsignformfieldgroup_response_local_var = custom_form_data_ezsignformfieldgroup_response_create_internal (
-        strdup(s_ezsignformfieldgroup_label->valuestring),
+        s_ezsignformfieldgroup_label_local_str,
         a_obj_ezsignformfieldList
         );
 
+    if (!custom_form_data_ezsignformfieldgroup_response_local_var) {
+        goto end;
+    }
+
     return custom_form_data_ezsignformfieldgroup_response_local_var;
 end:
+    if (s_ezsignformfieldgroup_label_local_str) {
+        free(s_ezsignformfieldgroup_label_local_str);
+        s_ezsignformfieldgroup_label_local_str = NULL;
+    }
     if (a_obj_ezsignformfieldList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsignformfieldList) {

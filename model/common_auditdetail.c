@@ -6,8 +6,8 @@
 
 
 static common_auditdetail_t *common_auditdetail_create_internal(
-    int fki_user_id,
-    int fki_apikey_id,
+    int *fki_user_id,
+    int *fki_apikey_id,
     char *s_user_loginname,
     char *s_user_lastname,
     char *s_user_firstname,
@@ -18,6 +18,8 @@ static common_auditdetail_t *common_auditdetail_create_internal(
     if (!common_auditdetail_local_var) {
         return NULL;
     }
+    memset(common_auditdetail_local_var, 0, sizeof(common_auditdetail_t));
+    common_auditdetail_local_var->_library_owned = 1;
     common_auditdetail_local_var->fki_user_id = fki_user_id;
     common_auditdetail_local_var->fki_apikey_id = fki_apikey_id;
     common_auditdetail_local_var->s_user_loginname = s_user_loginname;
@@ -25,29 +27,42 @@ static common_auditdetail_t *common_auditdetail_create_internal(
     common_auditdetail_local_var->s_user_firstname = s_user_firstname;
     common_auditdetail_local_var->s_apikey_description_x = s_apikey_description_x;
     common_auditdetail_local_var->dt_auditdetail_date = dt_auditdetail_date;
-
-    common_auditdetail_local_var->_library_owned = 1;
     return common_auditdetail_local_var;
 }
 
 __attribute__((deprecated)) common_auditdetail_t *common_auditdetail_create(
-    int fki_user_id,
-    int fki_apikey_id,
+    int *fki_user_id,
+    int *fki_apikey_id,
     char *s_user_loginname,
     char *s_user_lastname,
     char *s_user_firstname,
     char *s_apikey_description_x,
     char *dt_auditdetail_date
     ) {
-    return common_auditdetail_create_internal (
-        fki_user_id,
-        fki_apikey_id,
+    int *fki_user_id_copy = NULL;
+    if (fki_user_id) {
+        fki_user_id_copy = malloc(sizeof(int));
+        if (fki_user_id_copy) *fki_user_id_copy = *fki_user_id;
+    }
+    int *fki_apikey_id_copy = NULL;
+    if (fki_apikey_id) {
+        fki_apikey_id_copy = malloc(sizeof(int));
+        if (fki_apikey_id_copy) *fki_apikey_id_copy = *fki_apikey_id;
+    }
+    common_auditdetail_t *result = common_auditdetail_create_internal (
+        fki_user_id_copy,
+        fki_apikey_id_copy,
         s_user_loginname,
         s_user_lastname,
         s_user_firstname,
         s_apikey_description_x,
         dt_auditdetail_date
         );
+    if (!result) {
+        free(fki_user_id_copy);
+        free(fki_apikey_id_copy);
+    }
+    return result;
 }
 
 void common_auditdetail_free(common_auditdetail_t *common_auditdetail) {
@@ -59,6 +74,14 @@ void common_auditdetail_free(common_auditdetail_t *common_auditdetail) {
         return ;
     }
     listEntry_t *listEntry;
+    if (common_auditdetail->fki_user_id) {
+        free(common_auditdetail->fki_user_id);
+        common_auditdetail->fki_user_id = NULL;
+    }
+    if (common_auditdetail->fki_apikey_id) {
+        free(common_auditdetail->fki_apikey_id);
+        common_auditdetail->fki_apikey_id = NULL;
+    }
     if (common_auditdetail->s_user_loginname) {
         free(common_auditdetail->s_user_loginname);
         common_auditdetail->s_user_loginname = NULL;
@@ -89,14 +112,14 @@ cJSON *common_auditdetail_convertToJSON(common_auditdetail_t *common_auditdetail
     if (!common_auditdetail->fki_user_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiUserID", common_auditdetail->fki_user_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiUserID", *common_auditdetail->fki_user_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // common_auditdetail->fki_apikey_id
     if(common_auditdetail->fki_apikey_id) {
-    if(cJSON_AddNumberToObject(item, "fkiApikeyID", common_auditdetail->fki_apikey_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiApikeyID", *common_auditdetail->fki_apikey_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -157,6 +180,22 @@ common_auditdetail_t *common_auditdetail_parseFromJSON(cJSON *common_auditdetail
 
     common_auditdetail_t *common_auditdetail_local_var = NULL;
 
+    // define the local variable for common_auditdetail->fki_user_id
+    int *fki_user_id_local_var = NULL;
+
+    // define the local variable for common_auditdetail->fki_apikey_id
+    int *fki_apikey_id_local_var = NULL;
+
+    char *s_user_loginname_local_str = NULL;
+
+    char *s_user_lastname_local_str = NULL;
+
+    char *s_user_firstname_local_str = NULL;
+
+    char *s_apikey_description_x_local_str = NULL;
+
+    char *dt_auditdetail_date_local_str = NULL;
+
     // common_auditdetail->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(common_auditdetailJSON, "fkiUserID");
     if (cJSON_IsNull(fki_user_id)) {
@@ -171,6 +210,12 @@ common_auditdetail_t *common_auditdetail_parseFromJSON(cJSON *common_auditdetail
     {
     goto end; //Numeric
     }
+    fki_user_id_local_var = malloc(sizeof(int));
+    if(!fki_user_id_local_var)
+    {
+        goto end;
+    }
+    *fki_user_id_local_var = fki_user_id->valuedouble;
 
     // common_auditdetail->fki_apikey_id
     cJSON *fki_apikey_id = cJSON_GetObjectItemCaseSensitive(common_auditdetailJSON, "fkiApikeyID");
@@ -182,6 +227,12 @@ common_auditdetail_t *common_auditdetail_parseFromJSON(cJSON *common_auditdetail
     {
     goto end; //Numeric
     }
+    fki_apikey_id_local_var = malloc(sizeof(int));
+    if(!fki_apikey_id_local_var)
+    {
+        goto end;
+    }
+    *fki_apikey_id_local_var = fki_apikey_id->valuedouble;
     }
 
     // common_auditdetail->s_user_loginname
@@ -257,18 +308,56 @@ common_auditdetail_t *common_auditdetail_parseFromJSON(cJSON *common_auditdetail
     }
 
 
+    if (s_user_loginname && !cJSON_IsNull(s_user_loginname)) s_user_loginname_local_str = strdup(s_user_loginname->valuestring);
+    if (s_user_lastname && !cJSON_IsNull(s_user_lastname)) s_user_lastname_local_str = strdup(s_user_lastname->valuestring);
+    if (s_user_firstname && !cJSON_IsNull(s_user_firstname)) s_user_firstname_local_str = strdup(s_user_firstname->valuestring);
+    if (s_apikey_description_x && !cJSON_IsNull(s_apikey_description_x)) s_apikey_description_x_local_str = strdup(s_apikey_description_x->valuestring);
+    if (dt_auditdetail_date && !cJSON_IsNull(dt_auditdetail_date)) dt_auditdetail_date_local_str = strdup(dt_auditdetail_date->valuestring);
+
     common_auditdetail_local_var = common_auditdetail_create_internal (
-        fki_user_id->valuedouble,
-        fki_apikey_id ? fki_apikey_id->valuedouble : 0,
-        strdup(s_user_loginname->valuestring),
-        strdup(s_user_lastname->valuestring),
-        strdup(s_user_firstname->valuestring),
-        s_apikey_description_x && !cJSON_IsNull(s_apikey_description_x) ? strdup(s_apikey_description_x->valuestring) : NULL,
-        strdup(dt_auditdetail_date->valuestring)
+        fki_user_id_local_var,
+        fki_apikey_id_local_var,
+        s_user_loginname_local_str,
+        s_user_lastname_local_str,
+        s_user_firstname_local_str,
+        s_apikey_description_x_local_str,
+        dt_auditdetail_date_local_str
         );
+
+    if (!common_auditdetail_local_var) {
+        goto end;
+    }
 
     return common_auditdetail_local_var;
 end:
+    if (fki_user_id_local_var) {
+        free(fki_user_id_local_var);
+        fki_user_id_local_var = NULL;
+    }
+    if (fki_apikey_id_local_var) {
+        free(fki_apikey_id_local_var);
+        fki_apikey_id_local_var = NULL;
+    }
+    if (s_user_loginname_local_str) {
+        free(s_user_loginname_local_str);
+        s_user_loginname_local_str = NULL;
+    }
+    if (s_user_lastname_local_str) {
+        free(s_user_lastname_local_str);
+        s_user_lastname_local_str = NULL;
+    }
+    if (s_user_firstname_local_str) {
+        free(s_user_firstname_local_str);
+        s_user_firstname_local_str = NULL;
+    }
+    if (s_apikey_description_x_local_str) {
+        free(s_apikey_description_x_local_str);
+        s_apikey_description_x_local_str = NULL;
+    }
+    if (dt_auditdetail_date_local_str) {
+        free(dt_auditdetail_date_local_str);
+        dt_auditdetail_date_local_str = NULL;
+    }
     return NULL;
 
 }

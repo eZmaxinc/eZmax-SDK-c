@@ -12,18 +12,21 @@ static glaccount_get_autocomplete_v2_response_m_payload_t *glaccount_get_autocom
     if (!glaccount_get_autocomplete_v2_response_m_payload_local_var) {
         return NULL;
     }
-    glaccount_get_autocomplete_v2_response_m_payload_local_var->a_obj_glaccount = a_obj_glaccount;
-
+    memset(glaccount_get_autocomplete_v2_response_m_payload_local_var, 0, sizeof(glaccount_get_autocomplete_v2_response_m_payload_t));
     glaccount_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
+    glaccount_get_autocomplete_v2_response_m_payload_local_var->a_obj_glaccount = a_obj_glaccount;
     return glaccount_get_autocomplete_v2_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) glaccount_get_autocomplete_v2_response_m_payload_t *glaccount_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_glaccount
     ) {
-    return glaccount_get_autocomplete_v2_response_m_payload_create_internal (
+    glaccount_get_autocomplete_v2_response_m_payload_t *result = glaccount_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_glaccount
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void glaccount_get_autocomplete_v2_response_m_payload_free(glaccount_get_autocomplete_v2_response_m_payload_t *glaccount_get_autocomplete_v2_response_m_payload) {
@@ -111,9 +114,14 @@ glaccount_get_autocomplete_v2_response_m_payload_t *glaccount_get_autocomplete_v
     }
 
 
+
     glaccount_get_autocomplete_v2_response_m_payload_local_var = glaccount_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_glaccountList
         );
+
+    if (!glaccount_get_autocomplete_v2_response_m_payload_local_var) {
+        goto end;
+    }
 
     return glaccount_get_autocomplete_v2_response_m_payload_local_var;
 end:

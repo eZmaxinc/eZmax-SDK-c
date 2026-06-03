@@ -20,13 +20,13 @@ typedef struct ezsigntemplatepackagesigner_response_t ezsigntemplatepackagesigne
 
 
 typedef struct ezsigntemplatepackagesigner_response_t {
-    int pki_ezsigntemplatepackagesigner_id; //numeric
-    int fki_ezsigntemplatepackage_id; //numeric
-    int fki_ezdoctemplatedocument_id; //numeric
-    int fki_user_id; //numeric
-    int fki_usergroup_id; //numeric
+    int *pki_ezsigntemplatepackagesigner_id; //numeric
+    int *fki_ezsigntemplatepackage_id; //numeric
+    int *fki_ezdoctemplatedocument_id; //numeric
+    int *fki_user_id; //numeric
+    int *fki_usergroup_id; //numeric
     char *s_ezdoctemplatedocument_name_x; // string
-    int b_ezsigntemplatepackagesigner_receivecopy; //boolean
+    int *b_ezsigntemplatepackagesigner_receivecopy; //boolean
     ezmax_api_definition__full_field_e_ezsigntemplatepackagesigner_mapping__e e_ezsigntemplatepackagesigner_mapping; //referenced enum
     char *s_ezsigntemplatepackagesigner_description; // string
     char *s_user_name; // string
@@ -36,13 +36,13 @@ typedef struct ezsigntemplatepackagesigner_response_t {
 } ezsigntemplatepackagesigner_response_t;
 
 __attribute__((deprecated)) ezsigntemplatepackagesigner_response_t *ezsigntemplatepackagesigner_response_create(
-    int pki_ezsigntemplatepackagesigner_id,
-    int fki_ezsigntemplatepackage_id,
-    int fki_ezdoctemplatedocument_id,
-    int fki_user_id,
-    int fki_usergroup_id,
+    int *pki_ezsigntemplatepackagesigner_id,
+    int *fki_ezsigntemplatepackage_id,
+    int *fki_ezdoctemplatedocument_id,
+    int *fki_user_id,
+    int *fki_usergroup_id,
     char *s_ezdoctemplatedocument_name_x,
-    int b_ezsigntemplatepackagesigner_receivecopy,
+    int *b_ezsigntemplatepackagesigner_receivecopy,
     ezmax_api_definition__full_field_e_ezsigntemplatepackagesigner_mapping__e e_ezsigntemplatepackagesigner_mapping,
     char *s_ezsigntemplatepackagesigner_description,
     char *s_user_name,

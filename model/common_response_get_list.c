@@ -13,10 +13,10 @@ static common_response_get_list_t *common_response_get_list_create_internal(
     if (!common_response_get_list_local_var) {
         return NULL;
     }
+    memset(common_response_get_list_local_var, 0, sizeof(common_response_get_list_t));
+    common_response_get_list_local_var->_library_owned = 1;
     common_response_get_list_local_var->obj_debug_payload = obj_debug_payload;
     common_response_get_list_local_var->obj_debug = obj_debug;
-
-    common_response_get_list_local_var->_library_owned = 1;
     return common_response_get_list_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) common_response_get_list_t *common_response_get_list
     common_response_obj_debug_payload_get_list_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return common_response_get_list_create_internal (
+    common_response_get_list_t *result = common_response_get_list_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void common_response_get_list_free(common_response_get_list_t *common_response_get_list) {
@@ -119,10 +122,15 @@ common_response_get_list_t *common_response_get_list_parseFromJSON(cJSON *common
     }
 
 
+
     common_response_get_list_local_var = common_response_get_list_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!common_response_get_list_local_var) {
+        goto end;
+    }
 
     return common_response_get_list_local_var;
 end:

@@ -19,17 +19,17 @@ typedef struct currency_autocomplete_element_response_t currency_autocomplete_el
 
 
 typedef struct currency_autocomplete_element_response_t {
-    int pki_currency_id; //numeric
+    int *pki_currency_id; //numeric
     char *s_currency_description_x; // string
-    int b_currency_isactive; //boolean
+    int *b_currency_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } currency_autocomplete_element_response_t;
 
 __attribute__((deprecated)) currency_autocomplete_element_response_t *currency_autocomplete_element_response_create(
-    int pki_currency_id,
+    int *pki_currency_id,
     char *s_currency_description_x,
-    int b_currency_isactive
+    int *b_currency_isactive
 );
 
 void currency_autocomplete_element_response_free(currency_autocomplete_element_response_t *currency_autocomplete_element_response);

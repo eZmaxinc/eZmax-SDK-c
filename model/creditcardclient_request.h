@@ -20,13 +20,13 @@ typedef struct creditcardclient_request_t creditcardclient_request_t;
 
 
 typedef struct creditcardclient_request_t {
-    int pki_creditcardclient_id; //numeric
+    int *pki_creditcardclient_id; //numeric
     char *fks_creditcardtoken_id; // string
-    int b_creditcardclientrelation_isdefault; //boolean
+    int *b_creditcardclientrelation_isdefault; //boolean
     char *s_creditcardclient_description; // string
-    int b_creditcardclient_allowedcompanypayment; //boolean
-    int b_creditcardclient_allowedezsign; //boolean
-    int b_creditcardclient_allowedtranquillit; //boolean
+    int *b_creditcardclient_allowedcompanypayment; //boolean
+    int *b_creditcardclient_allowedezsign; //boolean
+    int *b_creditcardclient_allowedtranquillit; //boolean
     struct creditcarddetail_request_t *obj_creditcarddetail; //model
     char *s_creditcardclient_cvv; // string
 
@@ -34,13 +34,13 @@ typedef struct creditcardclient_request_t {
 } creditcardclient_request_t;
 
 __attribute__((deprecated)) creditcardclient_request_t *creditcardclient_request_create(
-    int pki_creditcardclient_id,
+    int *pki_creditcardclient_id,
     char *fks_creditcardtoken_id,
-    int b_creditcardclientrelation_isdefault,
+    int *b_creditcardclientrelation_isdefault,
     char *s_creditcardclient_description,
-    int b_creditcardclient_allowedcompanypayment,
-    int b_creditcardclient_allowedezsign,
-    int b_creditcardclient_allowedtranquillit,
+    int *b_creditcardclient_allowedcompanypayment,
+    int *b_creditcardclient_allowedezsign,
+    int *b_creditcardclient_allowedtranquillit,
     creditcarddetail_request_t *obj_creditcarddetail,
     char *s_creditcardclient_cvv
 );

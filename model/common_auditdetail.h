@@ -19,8 +19,8 @@ typedef struct common_auditdetail_t common_auditdetail_t;
 
 
 typedef struct common_auditdetail_t {
-    int fki_user_id; //numeric
-    int fki_apikey_id; //numeric
+    int *fki_user_id; //numeric
+    int *fki_apikey_id; //numeric
     char *s_user_loginname; // string
     char *s_user_lastname; // string
     char *s_user_firstname; // string
@@ -31,8 +31,8 @@ typedef struct common_auditdetail_t {
 } common_auditdetail_t;
 
 __attribute__((deprecated)) common_auditdetail_t *common_auditdetail_create(
-    int fki_user_id,
-    int fki_apikey_id,
+    int *fki_user_id,
+    int *fki_apikey_id,
     char *s_user_loginname,
     char *s_user_lastname,
     char *s_user_firstname,

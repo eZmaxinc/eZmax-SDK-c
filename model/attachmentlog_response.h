@@ -20,8 +20,8 @@ typedef struct attachmentlog_response_t attachmentlog_response_t;
 
 
 typedef struct attachmentlog_response_t {
-    int fki_attachment_id; //numeric
-    int fki_user_id; //numeric
+    int *fki_attachment_id; //numeric
+    int *fki_user_id; //numeric
     char *dt_attachmentlog_datetime; // string
     ezmax_api_definition__full_field_e_attachmentlog_type__e e_attachmentlog_type; //referenced enum
     char *s_attachmentlog_detail; // string
@@ -30,8 +30,8 @@ typedef struct attachmentlog_response_t {
 } attachmentlog_response_t;
 
 __attribute__((deprecated)) attachmentlog_response_t *attachmentlog_response_create(
-    int fki_attachment_id,
-    int fki_user_id,
+    int *fki_attachment_id,
+    int *fki_user_id,
     char *dt_attachmentlog_datetime,
     ezmax_api_definition__full_field_e_attachmentlog_type__e e_attachmentlog_type,
     char *s_attachmentlog_detail

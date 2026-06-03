@@ -19,17 +19,17 @@ typedef struct language_autocomplete_element_response_t language_autocomplete_el
 
 
 typedef struct language_autocomplete_element_response_t {
-    int pki_language_id; //numeric
+    int *pki_language_id; //numeric
     char *s_language_name_x; // string
-    int b_language_isactive; //boolean
+    int *b_language_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } language_autocomplete_element_response_t;
 
 __attribute__((deprecated)) language_autocomplete_element_response_t *language_autocomplete_element_response_create(
-    int pki_language_id,
+    int *pki_language_id,
     char *s_language_name_x,
-    int b_language_isactive
+    int *b_language_isactive
 );
 
 void language_autocomplete_element_response_free(language_autocomplete_element_response_t *language_autocomplete_element_response);

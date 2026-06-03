@@ -22,11 +22,12 @@ typedef struct user_list_element_t user_list_element_t;
 
 
 typedef struct user_list_element_t {
-    int pki_user_id; //numeric
+    int *pki_user_id; //numeric
     char *s_user_firstname; // string
     char *s_user_lastname; // string
     char *s_user_loginname; // string
-    int b_user_isactive; //boolean
+    int *b_user_isactive; //boolean
+    int *b_user_suspended; //boolean
     ezmax_api_definition__full_field_e_user_type__e e_user_type; //referenced enum
     ezmax_api_definition__full_field_e_user_origin__e e_user_origin; //referenced enum
     ezmax_api_definition__full_field_e_user_ezsignaccess__e e_user_ezsignaccess; //referenced enum
@@ -38,11 +39,12 @@ typedef struct user_list_element_t {
 } user_list_element_t;
 
 __attribute__((deprecated)) user_list_element_t *user_list_element_create(
-    int pki_user_id,
+    int *pki_user_id,
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_user_loginname,
-    int b_user_isactive,
+    int *b_user_isactive,
+    int *b_user_suspended,
     ezmax_api_definition__full_field_e_user_type__e e_user_type,
     ezmax_api_definition__full_field_e_user_origin__e e_user_origin,
     ezmax_api_definition__full_field_e_user_ezsignaccess__e e_user_ezsignaccess,

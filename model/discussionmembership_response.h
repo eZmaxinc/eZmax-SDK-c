@@ -19,11 +19,11 @@ typedef struct discussionmembership_response_t discussionmembership_response_t;
 
 
 typedef struct discussionmembership_response_t {
-    int pki_discussionmembership_id; //numeric
-    int fki_discussion_id; //numeric
-    int fki_user_id; //numeric
-    int fki_usergroup_id; //numeric
-    int fki_modulesection_id; //numeric
+    int *pki_discussionmembership_id; //numeric
+    int *fki_discussion_id; //numeric
+    int *fki_user_id; //numeric
+    int *fki_usergroup_id; //numeric
+    int *fki_modulesection_id; //numeric
     char *s_discussionmembership_description; // string
     char *dt_discussionmembership_joined; // string
 
@@ -31,11 +31,11 @@ typedef struct discussionmembership_response_t {
 } discussionmembership_response_t;
 
 __attribute__((deprecated)) discussionmembership_response_t *discussionmembership_response_create(
-    int pki_discussionmembership_id,
-    int fki_discussion_id,
-    int fki_user_id,
-    int fki_usergroup_id,
-    int fki_modulesection_id,
+    int *pki_discussionmembership_id,
+    int *fki_discussion_id,
+    int *fki_user_id,
+    int *fki_usergroup_id,
+    int *fki_modulesection_id,
     char *s_discussionmembership_description,
     char *dt_discussionmembership_joined
 );

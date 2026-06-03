@@ -19,21 +19,21 @@ typedef struct ezsignsignergroupmembership_request_t ezsignsignergroupmembership
 
 
 typedef struct ezsignsignergroupmembership_request_t {
-    int pki_ezsignsignergroupmembership_id; //numeric
-    int fki_ezsignsignergroup_id; //numeric
-    int fki_ezsignsigner_id; //numeric
-    int fki_user_id; //numeric
-    int fki_usergroup_id; //numeric
+    int *pki_ezsignsignergroupmembership_id; //numeric
+    int *fki_ezsignsignergroup_id; //numeric
+    int *fki_ezsignsigner_id; //numeric
+    int *fki_user_id; //numeric
+    int *fki_usergroup_id; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsignergroupmembership_request_t;
 
 __attribute__((deprecated)) ezsignsignergroupmembership_request_t *ezsignsignergroupmembership_request_create(
-    int pki_ezsignsignergroupmembership_id,
-    int fki_ezsignsignergroup_id,
-    int fki_ezsignsigner_id,
-    int fki_user_id,
-    int fki_usergroup_id
+    int *pki_ezsignsignergroupmembership_id,
+    int *fki_ezsignsignergroup_id,
+    int *fki_ezsignsigner_id,
+    int *fki_user_id,
+    int *fki_usergroup_id
 );
 
 void ezsignsignergroupmembership_request_free(ezsignsignergroupmembership_request_t *ezsignsignergroupmembership_request);

@@ -12,18 +12,21 @@ static authenticationexternal_edit_object_v1_request_t *authenticationexternal_e
     if (!authenticationexternal_edit_object_v1_request_local_var) {
         return NULL;
     }
-    authenticationexternal_edit_object_v1_request_local_var->obj_authenticationexternal = obj_authenticationexternal;
-
+    memset(authenticationexternal_edit_object_v1_request_local_var, 0, sizeof(authenticationexternal_edit_object_v1_request_t));
     authenticationexternal_edit_object_v1_request_local_var->_library_owned = 1;
+    authenticationexternal_edit_object_v1_request_local_var->obj_authenticationexternal = obj_authenticationexternal;
     return authenticationexternal_edit_object_v1_request_local_var;
 }
 
 __attribute__((deprecated)) authenticationexternal_edit_object_v1_request_t *authenticationexternal_edit_object_v1_request_create(
     authenticationexternal_request_compound_t *obj_authenticationexternal
     ) {
-    return authenticationexternal_edit_object_v1_request_create_internal (
+    authenticationexternal_edit_object_v1_request_t *result = authenticationexternal_edit_object_v1_request_create_internal (
         obj_authenticationexternal
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void authenticationexternal_edit_object_v1_request_free(authenticationexternal_edit_object_v1_request_t *authenticationexternal_edit_object_v1_request) {
@@ -86,9 +89,14 @@ authenticationexternal_edit_object_v1_request_t *authenticationexternal_edit_obj
     obj_authenticationexternal_local_nonprim = authenticationexternal_request_compound_parseFromJSON(obj_authenticationexternal); //nonprimitive
 
 
+
     authenticationexternal_edit_object_v1_request_local_var = authenticationexternal_edit_object_v1_request_create_internal (
         obj_authenticationexternal_local_nonprim
         );
+
+    if (!authenticationexternal_edit_object_v1_request_local_var) {
+        goto end;
+    }
 
     return authenticationexternal_edit_object_v1_request_local_var;
 end:

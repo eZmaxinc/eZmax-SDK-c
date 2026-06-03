@@ -14,11 +14,11 @@ static authenticationexternal_get_object_v2_response_t *authenticationexternal_g
     if (!authenticationexternal_get_object_v2_response_local_var) {
         return NULL;
     }
+    memset(authenticationexternal_get_object_v2_response_local_var, 0, sizeof(authenticationexternal_get_object_v2_response_t));
+    authenticationexternal_get_object_v2_response_local_var->_library_owned = 1;
     authenticationexternal_get_object_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     authenticationexternal_get_object_v2_response_local_var->obj_debug = obj_debug;
     authenticationexternal_get_object_v2_response_local_var->m_payload = m_payload;
-
-    authenticationexternal_get_object_v2_response_local_var->_library_owned = 1;
     return authenticationexternal_get_object_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) authenticationexternal_get_object_v2_response_t *aut
     common_response_obj_debug_t *obj_debug,
     authenticationexternal_get_object_v2_response_m_payload_t *m_payload
     ) {
-    return authenticationexternal_get_object_v2_response_create_internal (
+    authenticationexternal_get_object_v2_response_t *result = authenticationexternal_get_object_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void authenticationexternal_get_object_v2_response_free(authenticationexternal_get_object_v2_response_t *authenticationexternal_get_object_v2_response) {
@@ -156,11 +159,16 @@ authenticationexternal_get_object_v2_response_t *authenticationexternal_get_obje
     m_payload_local_nonprim = authenticationexternal_get_object_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     authenticationexternal_get_object_v2_response_local_var = authenticationexternal_get_object_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!authenticationexternal_get_object_v2_response_local_var) {
+        goto end;
+    }
 
     return authenticationexternal_get_object_v2_response_local_var;
 end:

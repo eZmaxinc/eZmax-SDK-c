@@ -6,23 +6,25 @@
 
 
 static activesession_response_compound_user_t *activesession_response_compound_user_create_internal(
-    int pki_user_id,
-    int fki_timezone_id,
+    int *pki_user_id,
+    int *fki_timezone_id,
     char *s_avatar_url,
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_email_address,
-    int b_user_addmeinezsignfolder,
+    int *b_user_addmeinezsignfolder,
     ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e e_user_ezsignsendreminderfrequency,
-    int i_user_interfacecolor,
-    int b_user_interfacedark,
-    int i_user_listresult,
-    int i_user_frontendgoal
+    int *i_user_interfacecolor,
+    int *b_user_interfacedark,
+    int *i_user_listresult,
+    int *i_user_frontendgoal
     ) {
     activesession_response_compound_user_t *activesession_response_compound_user_local_var = malloc(sizeof(activesession_response_compound_user_t));
     if (!activesession_response_compound_user_local_var) {
         return NULL;
     }
+    memset(activesession_response_compound_user_local_var, 0, sizeof(activesession_response_compound_user_t));
+    activesession_response_compound_user_local_var->_library_owned = 1;
     activesession_response_compound_user_local_var->pki_user_id = pki_user_id;
     activesession_response_compound_user_local_var->fki_timezone_id = fki_timezone_id;
     activesession_response_compound_user_local_var->s_avatar_url = s_avatar_url;
@@ -35,39 +37,82 @@ static activesession_response_compound_user_t *activesession_response_compound_u
     activesession_response_compound_user_local_var->b_user_interfacedark = b_user_interfacedark;
     activesession_response_compound_user_local_var->i_user_listresult = i_user_listresult;
     activesession_response_compound_user_local_var->i_user_frontendgoal = i_user_frontendgoal;
-
-    activesession_response_compound_user_local_var->_library_owned = 1;
     return activesession_response_compound_user_local_var;
 }
 
 __attribute__((deprecated)) activesession_response_compound_user_t *activesession_response_compound_user_create(
-    int pki_user_id,
-    int fki_timezone_id,
+    int *pki_user_id,
+    int *fki_timezone_id,
     char *s_avatar_url,
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_email_address,
-    int b_user_addmeinezsignfolder,
+    int *b_user_addmeinezsignfolder,
     ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e e_user_ezsignsendreminderfrequency,
-    int i_user_interfacecolor,
-    int b_user_interfacedark,
-    int i_user_listresult,
-    int i_user_frontendgoal
+    int *i_user_interfacecolor,
+    int *b_user_interfacedark,
+    int *i_user_listresult,
+    int *i_user_frontendgoal
     ) {
-    return activesession_response_compound_user_create_internal (
-        pki_user_id,
-        fki_timezone_id,
+    int *pki_user_id_copy = NULL;
+    if (pki_user_id) {
+        pki_user_id_copy = malloc(sizeof(int));
+        if (pki_user_id_copy) *pki_user_id_copy = *pki_user_id;
+    }
+    int *fki_timezone_id_copy = NULL;
+    if (fki_timezone_id) {
+        fki_timezone_id_copy = malloc(sizeof(int));
+        if (fki_timezone_id_copy) *fki_timezone_id_copy = *fki_timezone_id;
+    }
+    int *b_user_addmeinezsignfolder_copy = NULL;
+    if (b_user_addmeinezsignfolder) {
+        b_user_addmeinezsignfolder_copy = malloc(sizeof(int));
+        if (b_user_addmeinezsignfolder_copy) *b_user_addmeinezsignfolder_copy = *b_user_addmeinezsignfolder;
+    }
+    int *i_user_interfacecolor_copy = NULL;
+    if (i_user_interfacecolor) {
+        i_user_interfacecolor_copy = malloc(sizeof(int));
+        if (i_user_interfacecolor_copy) *i_user_interfacecolor_copy = *i_user_interfacecolor;
+    }
+    int *b_user_interfacedark_copy = NULL;
+    if (b_user_interfacedark) {
+        b_user_interfacedark_copy = malloc(sizeof(int));
+        if (b_user_interfacedark_copy) *b_user_interfacedark_copy = *b_user_interfacedark;
+    }
+    int *i_user_listresult_copy = NULL;
+    if (i_user_listresult) {
+        i_user_listresult_copy = malloc(sizeof(int));
+        if (i_user_listresult_copy) *i_user_listresult_copy = *i_user_listresult;
+    }
+    int *i_user_frontendgoal_copy = NULL;
+    if (i_user_frontendgoal) {
+        i_user_frontendgoal_copy = malloc(sizeof(int));
+        if (i_user_frontendgoal_copy) *i_user_frontendgoal_copy = *i_user_frontendgoal;
+    }
+    activesession_response_compound_user_t *result = activesession_response_compound_user_create_internal (
+        pki_user_id_copy,
+        fki_timezone_id_copy,
         s_avatar_url,
         s_user_firstname,
         s_user_lastname,
         s_email_address,
-        b_user_addmeinezsignfolder,
+        b_user_addmeinezsignfolder_copy,
         e_user_ezsignsendreminderfrequency,
-        i_user_interfacecolor,
-        b_user_interfacedark,
-        i_user_listresult,
-        i_user_frontendgoal
+        i_user_interfacecolor_copy,
+        b_user_interfacedark_copy,
+        i_user_listresult_copy,
+        i_user_frontendgoal_copy
         );
+    if (!result) {
+        free(pki_user_id_copy);
+        free(fki_timezone_id_copy);
+        free(b_user_addmeinezsignfolder_copy);
+        free(i_user_interfacecolor_copy);
+        free(b_user_interfacedark_copy);
+        free(i_user_listresult_copy);
+        free(i_user_frontendgoal_copy);
+    }
+    return result;
 }
 
 void activesession_response_compound_user_free(activesession_response_compound_user_t *activesession_response_compound_user) {
@@ -79,6 +124,14 @@ void activesession_response_compound_user_free(activesession_response_compound_u
         return ;
     }
     listEntry_t *listEntry;
+    if (activesession_response_compound_user->pki_user_id) {
+        free(activesession_response_compound_user->pki_user_id);
+        activesession_response_compound_user->pki_user_id = NULL;
+    }
+    if (activesession_response_compound_user->fki_timezone_id) {
+        free(activesession_response_compound_user->fki_timezone_id);
+        activesession_response_compound_user->fki_timezone_id = NULL;
+    }
     if (activesession_response_compound_user->s_avatar_url) {
         free(activesession_response_compound_user->s_avatar_url);
         activesession_response_compound_user->s_avatar_url = NULL;
@@ -95,6 +148,26 @@ void activesession_response_compound_user_free(activesession_response_compound_u
         free(activesession_response_compound_user->s_email_address);
         activesession_response_compound_user->s_email_address = NULL;
     }
+    if (activesession_response_compound_user->b_user_addmeinezsignfolder) {
+        free(activesession_response_compound_user->b_user_addmeinezsignfolder);
+        activesession_response_compound_user->b_user_addmeinezsignfolder = NULL;
+    }
+    if (activesession_response_compound_user->i_user_interfacecolor) {
+        free(activesession_response_compound_user->i_user_interfacecolor);
+        activesession_response_compound_user->i_user_interfacecolor = NULL;
+    }
+    if (activesession_response_compound_user->b_user_interfacedark) {
+        free(activesession_response_compound_user->b_user_interfacedark);
+        activesession_response_compound_user->b_user_interfacedark = NULL;
+    }
+    if (activesession_response_compound_user->i_user_listresult) {
+        free(activesession_response_compound_user->i_user_listresult);
+        activesession_response_compound_user->i_user_listresult = NULL;
+    }
+    if (activesession_response_compound_user->i_user_frontendgoal) {
+        free(activesession_response_compound_user->i_user_frontendgoal);
+        activesession_response_compound_user->i_user_frontendgoal = NULL;
+    }
     free(activesession_response_compound_user);
 }
 
@@ -105,7 +178,7 @@ cJSON *activesession_response_compound_user_convertToJSON(activesession_response
     if (!activesession_response_compound_user->pki_user_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiUserID", activesession_response_compound_user->pki_user_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiUserID", *activesession_response_compound_user->pki_user_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -114,7 +187,7 @@ cJSON *activesession_response_compound_user_convertToJSON(activesession_response
     if (!activesession_response_compound_user->fki_timezone_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiTimezoneID", activesession_response_compound_user->fki_timezone_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiTimezoneID", *activesession_response_compound_user->fki_timezone_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -157,7 +230,7 @@ cJSON *activesession_response_compound_user_convertToJSON(activesession_response
     if (!activesession_response_compound_user->b_user_addmeinezsignfolder) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bUserAddmeinezsignfolder", activesession_response_compound_user->b_user_addmeinezsignfolder) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bUserAddmeinezsignfolder", *activesession_response_compound_user->b_user_addmeinezsignfolder) == NULL) {
     goto fail; //Bool
     }
 
@@ -180,7 +253,7 @@ cJSON *activesession_response_compound_user_convertToJSON(activesession_response
     if (!activesession_response_compound_user->i_user_interfacecolor) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iUserInterfacecolor", activesession_response_compound_user->i_user_interfacecolor) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iUserInterfacecolor", *activesession_response_compound_user->i_user_interfacecolor) == NULL) {
     goto fail; //Numeric
     }
 
@@ -189,7 +262,7 @@ cJSON *activesession_response_compound_user_convertToJSON(activesession_response
     if (!activesession_response_compound_user->b_user_interfacedark) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bUserInterfacedark", activesession_response_compound_user->b_user_interfacedark) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bUserInterfacedark", *activesession_response_compound_user->b_user_interfacedark) == NULL) {
     goto fail; //Bool
     }
 
@@ -198,7 +271,7 @@ cJSON *activesession_response_compound_user_convertToJSON(activesession_response
     if (!activesession_response_compound_user->i_user_listresult) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iUserListresult", activesession_response_compound_user->i_user_listresult) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iUserListresult", *activesession_response_compound_user->i_user_listresult) == NULL) {
     goto fail; //Numeric
     }
 
@@ -207,7 +280,7 @@ cJSON *activesession_response_compound_user_convertToJSON(activesession_response
     if (!activesession_response_compound_user->i_user_frontendgoal) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "iUserFrontendgoal", activesession_response_compound_user->i_user_frontendgoal) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iUserFrontendgoal", *activesession_response_compound_user->i_user_frontendgoal) == NULL) {
     goto fail; //Numeric
     }
 
@@ -223,8 +296,37 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
 
     activesession_response_compound_user_t *activesession_response_compound_user_local_var = NULL;
 
+    // define the local variable for activesession_response_compound_user->pki_user_id
+    int *pki_user_id_local_var = NULL;
+
+    // define the local variable for activesession_response_compound_user->fki_timezone_id
+    int *fki_timezone_id_local_var = NULL;
+
+    char *s_avatar_url_local_str = NULL;
+
+    char *s_user_firstname_local_str = NULL;
+
+    char *s_user_lastname_local_str = NULL;
+
+    char *s_email_address_local_str = NULL;
+
+    // define the local variable for activesession_response_compound_user->b_user_addmeinezsignfolder
+    int *b_user_addmeinezsignfolder_local_var = NULL;
+
     // define the local variable for activesession_response_compound_user->e_user_ezsignsendreminderfrequency
     ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e e_user_ezsignsendreminderfrequency_local_nonprim = 0;
+
+    // define the local variable for activesession_response_compound_user->i_user_interfacecolor
+    int *i_user_interfacecolor_local_var = NULL;
+
+    // define the local variable for activesession_response_compound_user->b_user_interfacedark
+    int *b_user_interfacedark_local_var = NULL;
+
+    // define the local variable for activesession_response_compound_user->i_user_listresult
+    int *i_user_listresult_local_var = NULL;
+
+    // define the local variable for activesession_response_compound_user->i_user_frontendgoal
+    int *i_user_frontendgoal_local_var = NULL;
 
     // activesession_response_compound_user->pki_user_id
     cJSON *pki_user_id = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_userJSON, "pkiUserID");
@@ -240,6 +342,12 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
     {
     goto end; //Numeric
     }
+    pki_user_id_local_var = malloc(sizeof(int));
+    if(!pki_user_id_local_var)
+    {
+        goto end;
+    }
+    *pki_user_id_local_var = pki_user_id->valuedouble;
 
     // activesession_response_compound_user->fki_timezone_id
     cJSON *fki_timezone_id = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_userJSON, "fkiTimezoneID");
@@ -255,6 +363,12 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
     {
     goto end; //Numeric
     }
+    fki_timezone_id_local_var = malloc(sizeof(int));
+    if(!fki_timezone_id_local_var)
+    {
+        goto end;
+    }
+    *fki_timezone_id_local_var = fki_timezone_id->valuedouble;
 
     // activesession_response_compound_user->s_avatar_url
     cJSON *s_avatar_url = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_userJSON, "sAvatarUrl");
@@ -324,6 +438,12 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
     {
     goto end; //Bool
     }
+    b_user_addmeinezsignfolder_local_var = malloc(sizeof(int));
+    if(!b_user_addmeinezsignfolder_local_var)
+    {
+        goto end;
+    }
+    *b_user_addmeinezsignfolder_local_var = b_user_addmeinezsignfolder->valueint;
 
     // activesession_response_compound_user->e_user_ezsignsendreminderfrequency
     cJSON *e_user_ezsignsendreminderfrequency = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_userJSON, "eUserEzsignsendreminderfrequency");
@@ -351,6 +471,12 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
     {
     goto end; //Numeric
     }
+    i_user_interfacecolor_local_var = malloc(sizeof(int));
+    if(!i_user_interfacecolor_local_var)
+    {
+        goto end;
+    }
+    *i_user_interfacecolor_local_var = i_user_interfacecolor->valuedouble;
 
     // activesession_response_compound_user->b_user_interfacedark
     cJSON *b_user_interfacedark = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_userJSON, "bUserInterfacedark");
@@ -366,6 +492,12 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
     {
     goto end; //Bool
     }
+    b_user_interfacedark_local_var = malloc(sizeof(int));
+    if(!b_user_interfacedark_local_var)
+    {
+        goto end;
+    }
+    *b_user_interfacedark_local_var = b_user_interfacedark->valueint;
 
     // activesession_response_compound_user->i_user_listresult
     cJSON *i_user_listresult = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_userJSON, "iUserListresult");
@@ -381,6 +513,12 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
     {
     goto end; //Numeric
     }
+    i_user_listresult_local_var = malloc(sizeof(int));
+    if(!i_user_listresult_local_var)
+    {
+        goto end;
+    }
+    *i_user_listresult_local_var = i_user_listresult->valuedouble;
 
     // activesession_response_compound_user->i_user_frontendgoal
     cJSON *i_user_frontendgoal = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_userJSON, "iUserFrontendgoal");
@@ -396,27 +534,86 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
     {
     goto end; //Numeric
     }
+    i_user_frontendgoal_local_var = malloc(sizeof(int));
+    if(!i_user_frontendgoal_local_var)
+    {
+        goto end;
+    }
+    *i_user_frontendgoal_local_var = i_user_frontendgoal->valuedouble;
 
+
+    if (s_avatar_url && !cJSON_IsNull(s_avatar_url)) s_avatar_url_local_str = strdup(s_avatar_url->valuestring);
+    if (s_user_firstname && !cJSON_IsNull(s_user_firstname)) s_user_firstname_local_str = strdup(s_user_firstname->valuestring);
+    if (s_user_lastname && !cJSON_IsNull(s_user_lastname)) s_user_lastname_local_str = strdup(s_user_lastname->valuestring);
+    if (s_email_address && !cJSON_IsNull(s_email_address)) s_email_address_local_str = strdup(s_email_address->valuestring);
 
     activesession_response_compound_user_local_var = activesession_response_compound_user_create_internal (
-        pki_user_id->valuedouble,
-        fki_timezone_id->valuedouble,
-        s_avatar_url && !cJSON_IsNull(s_avatar_url) ? strdup(s_avatar_url->valuestring) : NULL,
-        strdup(s_user_firstname->valuestring),
-        strdup(s_user_lastname->valuestring),
-        s_email_address && !cJSON_IsNull(s_email_address) ? strdup(s_email_address->valuestring) : NULL,
-        b_user_addmeinezsignfolder->valueint,
+        pki_user_id_local_var,
+        fki_timezone_id_local_var,
+        s_avatar_url_local_str,
+        s_user_firstname_local_str,
+        s_user_lastname_local_str,
+        s_email_address_local_str,
+        b_user_addmeinezsignfolder_local_var,
         e_user_ezsignsendreminderfrequency_local_nonprim,
-        i_user_interfacecolor->valuedouble,
-        b_user_interfacedark->valueint,
-        i_user_listresult->valuedouble,
-        i_user_frontendgoal->valuedouble
+        i_user_interfacecolor_local_var,
+        b_user_interfacedark_local_var,
+        i_user_listresult_local_var,
+        i_user_frontendgoal_local_var
         );
+
+    if (!activesession_response_compound_user_local_var) {
+        goto end;
+    }
 
     return activesession_response_compound_user_local_var;
 end:
+    if (pki_user_id_local_var) {
+        free(pki_user_id_local_var);
+        pki_user_id_local_var = NULL;
+    }
+    if (fki_timezone_id_local_var) {
+        free(fki_timezone_id_local_var);
+        fki_timezone_id_local_var = NULL;
+    }
+    if (s_avatar_url_local_str) {
+        free(s_avatar_url_local_str);
+        s_avatar_url_local_str = NULL;
+    }
+    if (s_user_firstname_local_str) {
+        free(s_user_firstname_local_str);
+        s_user_firstname_local_str = NULL;
+    }
+    if (s_user_lastname_local_str) {
+        free(s_user_lastname_local_str);
+        s_user_lastname_local_str = NULL;
+    }
+    if (s_email_address_local_str) {
+        free(s_email_address_local_str);
+        s_email_address_local_str = NULL;
+    }
+    if (b_user_addmeinezsignfolder_local_var) {
+        free(b_user_addmeinezsignfolder_local_var);
+        b_user_addmeinezsignfolder_local_var = NULL;
+    }
     if (e_user_ezsignsendreminderfrequency_local_nonprim) {
         e_user_ezsignsendreminderfrequency_local_nonprim = 0;
+    }
+    if (i_user_interfacecolor_local_var) {
+        free(i_user_interfacecolor_local_var);
+        i_user_interfacecolor_local_var = NULL;
+    }
+    if (b_user_interfacedark_local_var) {
+        free(b_user_interfacedark_local_var);
+        b_user_interfacedark_local_var = NULL;
+    }
+    if (i_user_listresult_local_var) {
+        free(i_user_listresult_local_var);
+        i_user_listresult_local_var = NULL;
+    }
+    if (i_user_frontendgoal_local_var) {
+        free(i_user_frontendgoal_local_var);
+        i_user_frontendgoal_local_var = NULL;
     }
     return NULL;
 

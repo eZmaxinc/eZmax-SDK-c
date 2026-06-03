@@ -12,18 +12,21 @@ static apikey_edit_object_v1_request_t *apikey_edit_object_v1_request_create_int
     if (!apikey_edit_object_v1_request_local_var) {
         return NULL;
     }
-    apikey_edit_object_v1_request_local_var->obj_apikey = obj_apikey;
-
+    memset(apikey_edit_object_v1_request_local_var, 0, sizeof(apikey_edit_object_v1_request_t));
     apikey_edit_object_v1_request_local_var->_library_owned = 1;
+    apikey_edit_object_v1_request_local_var->obj_apikey = obj_apikey;
     return apikey_edit_object_v1_request_local_var;
 }
 
 __attribute__((deprecated)) apikey_edit_object_v1_request_t *apikey_edit_object_v1_request_create(
     apikey_request_compound_t *obj_apikey
     ) {
-    return apikey_edit_object_v1_request_create_internal (
+    apikey_edit_object_v1_request_t *result = apikey_edit_object_v1_request_create_internal (
         obj_apikey
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void apikey_edit_object_v1_request_free(apikey_edit_object_v1_request_t *apikey_edit_object_v1_request) {
@@ -86,9 +89,14 @@ apikey_edit_object_v1_request_t *apikey_edit_object_v1_request_parseFromJSON(cJS
     obj_apikey_local_nonprim = apikey_request_compound_parseFromJSON(obj_apikey); //nonprimitive
 
 
+
     apikey_edit_object_v1_request_local_var = apikey_edit_object_v1_request_create_internal (
         obj_apikey_local_nonprim
         );
+
+    if (!apikey_edit_object_v1_request_local_var) {
+        goto end;
+    }
 
     return apikey_edit_object_v1_request_local_var;
 end:

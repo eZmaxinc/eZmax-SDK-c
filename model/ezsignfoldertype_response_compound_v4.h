@@ -23,6 +23,7 @@ typedef struct ezsignfoldertype_response_compound_v4_t ezsignfoldertype_response
 #include "field_e_ezsignfoldertype_pdfanoncompliantaction.h"
 #include "field_e_ezsignfoldertype_pdfarequirement.h"
 #include "field_e_ezsignfoldertype_privacylevel.h"
+#include "field_e_ezsignfoldertype_signaturedatedisplay.h"
 #include "field_e_ezsignfoldertype_signeraccess.h"
 #include "multilingual_ezsignfoldertype_name.h"
 #include "usergroup_response.h"
@@ -31,15 +32,17 @@ typedef struct ezsignfoldertype_response_compound_v4_t ezsignfoldertype_response
 
 
 typedef struct ezsignfoldertype_response_compound_v4_t {
-    int pki_ezsignfoldertype_id; //numeric
+    int *pki_ezsignfoldertype_id; //numeric
     struct multilingual_ezsignfoldertype_name_t *obj_ezsignfoldertype_name; //model
-    int fki_branding_id; //numeric
-    int fki_billingentityinternal_id; //numeric
-    int fki_ezsigntsarequirement_id; //numeric
-    int fki_font_id_annotation; //numeric
-    int fki_font_id_formfield; //numeric
-    int fki_font_id_signature; //numeric
-    int fki_pdfalevel_id_convert; //numeric
+    int *fki_branding_id; //numeric
+    int *fki_billingentityinternal_id; //numeric
+    int *fki_ezsigntsarequirement_id; //numeric
+    int *fki_font_id_annotation; //numeric
+    int *fki_font_id_formfield; //numeric
+    int *fki_font_id_signature; //numeric
+    int *fki_pdfalevel_id_convert; //numeric
+    ezmax_api_definition__full_field_e_ezsignfoldertype_signaturedatedisplay__e e_ezsignfoldertype_signaturedatedisplay; //referenced enum
+    char *s_ezsignfoldertype_signaturedatecustomformat; // string
     ezmax_api_definition__full_field_e_ezsignfoldertype_documentdependency__e e_ezsignfoldertype_documentdependency; //referenced enum
     char *s_branding_description_x; // string
     char *s_billingentityinternal_description_x; // string
@@ -50,51 +53,55 @@ typedef struct ezsignfoldertype_response_compound_v4_t {
     ezmax_api_definition__full_field_e_ezsignfoldertype_pdfanoncompliantaction__e e_ezsignfoldertype_pdfanoncompliantaction; //referenced enum
     ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel; //referenced enum
     ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__e e_ezsignfoldertype_documentmerge; //referenced enum
-    int i_ezsignfoldertype_fontsizeannotation; //numeric
-    int i_ezsignfoldertype_fontsizeformfield; //numeric
-    int i_ezsignfoldertype_sendreminderfirstdays; //numeric
-    int i_ezsignfoldertype_sendreminderotherdays; //numeric
-    int i_ezsignfoldertype_archivaldays; //numeric
+    int *i_ezsignfoldertype_fontsizeannotation; //numeric
+    int *i_ezsignfoldertype_fontsizeformfield; //numeric
+    int *i_ezsignfoldertype_sendreminderfirstdays; //numeric
+    int *i_ezsignfoldertype_sendreminderotherdays; //numeric
+    int *i_ezsignfoldertype_archivaldays; //numeric
     ezmax_api_definition__full_field_e_ezsignfoldertype_disposal__e e_ezsignfoldertype_disposal; //referenced enum
     ezmax_api_definition__full_field_e_ezsignfoldertype_completion__e e_ezsignfoldertype_completion; //referenced enum
-    int i_ezsignfoldertype_disposaldays; //numeric
-    int i_ezsignfoldertype_deadlinedays; //numeric
-    int b_ezsignfoldertype_prematurelyendautomatically; //boolean
-    int i_ezsignfoldertype_prematurelyendautomaticallydays; //numeric
-    int b_ezsignfoldertype_automaticsignature; //boolean
-    int b_ezsignfoldertype_delegate; //boolean
-    int b_ezsignfoldertype_discussion; //boolean
-    int b_ezsignfoldertype_logrecipientinproof; //boolean
-    int b_ezsignfoldertype_reassignezsignsigner; //boolean
-    int b_ezsignfoldertype_reassignuser; //boolean
-    int b_ezsignfoldertype_reassigngroup; //boolean
-    int b_ezsignfoldertype_sendsignedtoezsignsigner; //boolean
-    int b_ezsignfoldertype_sendsignedtouser; //boolean
-    int b_ezsignfoldertype_sendattachmentezsignsigner; //boolean
-    int b_ezsignfoldertype_sendsignatureattachmentezsignsigner; //boolean
-    int b_ezsignfoldertype_sendsignatureattachment; //boolean
-    int b_ezsignfoldertype_sendproofezsignsigner; //boolean
-    int b_ezsignfoldertype_sendattachmentuser; //boolean
-    int b_ezsignfoldertype_sendsignatureattachmentuser; //boolean
-    int b_ezsignfoldertype_sendproofuser; //boolean
-    int b_ezsignfoldertype_sendproofemail; //boolean
-    int b_ezsignfoldertype_allowdownloadattachmentezsignsigner; //boolean
-    int b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner; //boolean
-    int b_ezsignfoldertype_allowdownloadproofezsignsigner; //boolean
-    int b_ezsignfoldertype_sendproofreceivealldocument; //boolean
-    int b_ezsignfoldertype_sendsignatureattachmentreceivealldocument; //boolean
-    int b_ezsignfoldertype_sendsignedtodocumentowner; //boolean
-    int b_ezsignfoldertype_sendsignedtofolderowner; //boolean
-    int b_ezsignfoldertype_sendsignedtofullgroup; //boolean
-    int b_ezsignfoldertype_sendsignedtolimitedgroup; //boolean
-    int b_ezsignfoldertype_sendsignedtocolleague; //boolean
-    int b_ezsignfoldertype_sendsummarytodocumentowner; //boolean
-    int b_ezsignfoldertype_sendsummarytofolderowner; //boolean
-    int b_ezsignfoldertype_sendsummarytofullgroup; //boolean
-    int b_ezsignfoldertype_sendsummarytolimitedgroup; //boolean
-    int b_ezsignfoldertype_sendsummarytocolleague; //boolean
+    int *i_ezsignfoldertype_disposaldays; //numeric
+    int *i_ezsignfoldertype_deadlinedays; //numeric
+    int *b_ezsignfoldertype_prematurelyendautomatically; //boolean
+    int *i_ezsignfoldertype_prematurelyendautomaticallydays; //numeric
+    int *b_ezsignfoldertype_automaticsignature; //boolean
+    int *b_ezsignfoldertype_delegate; //boolean
+    int *b_ezsignfoldertype_discussion; //boolean
+    int *b_ezsignfoldertype_logrecipientinproof; //boolean
+    int *b_ezsignfoldertype_reassignezsignsigner; //boolean
+    int *b_ezsignfoldertype_reassignuser; //boolean
+    int *b_ezsignfoldertype_reassigngroup; //boolean
+    int *b_ezsignfoldertype_senddocumentmergetoemail; //boolean
+    int *b_ezsignfoldertype_senddocumentmergetoezsignsigner; //boolean
+    int *b_ezsignfoldertype_senddocumentmergetoreceivealldocument; //boolean
+    int *b_ezsignfoldertype_senddocumentmergetouser; //boolean
+    int *b_ezsignfoldertype_sendsignedtoezsignsigner; //boolean
+    int *b_ezsignfoldertype_sendsignedtouser; //boolean
+    int *b_ezsignfoldertype_sendattachmentezsignsigner; //boolean
+    int *b_ezsignfoldertype_sendsignatureattachmentezsignsigner; //boolean
+    int *b_ezsignfoldertype_sendsignatureattachment; //boolean
+    int *b_ezsignfoldertype_sendproofezsignsigner; //boolean
+    int *b_ezsignfoldertype_sendattachmentuser; //boolean
+    int *b_ezsignfoldertype_sendsignatureattachmentuser; //boolean
+    int *b_ezsignfoldertype_sendproofuser; //boolean
+    int *b_ezsignfoldertype_sendproofemail; //boolean
+    int *b_ezsignfoldertype_allowdownloadattachmentezsignsigner; //boolean
+    int *b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner; //boolean
+    int *b_ezsignfoldertype_allowdownloadproofezsignsigner; //boolean
+    int *b_ezsignfoldertype_sendproofreceivealldocument; //boolean
+    int *b_ezsignfoldertype_sendsignatureattachmentreceivealldocument; //boolean
+    int *b_ezsignfoldertype_sendsignedtodocumentowner; //boolean
+    int *b_ezsignfoldertype_sendsignedtofolderowner; //boolean
+    int *b_ezsignfoldertype_sendsignedtofullgroup; //boolean
+    int *b_ezsignfoldertype_sendsignedtolimitedgroup; //boolean
+    int *b_ezsignfoldertype_sendsignedtocolleague; //boolean
+    int *b_ezsignfoldertype_sendsummarytodocumentowner; //boolean
+    int *b_ezsignfoldertype_sendsummarytofolderowner; //boolean
+    int *b_ezsignfoldertype_sendsummarytofullgroup; //boolean
+    int *b_ezsignfoldertype_sendsummarytolimitedgroup; //boolean
+    int *b_ezsignfoldertype_sendsummarytocolleague; //boolean
     ezmax_api_definition__full_field_e_ezsignfoldertype_signeraccess__e e_ezsignfoldertype_signeraccess; //referenced enum
-    int b_ezsignfoldertype_isactive; //boolean
+    int *b_ezsignfoldertype_isactive; //boolean
     list_t *a_fki_pdfalevel_id; //primitive container
     list_t *a_obj_userlogintype; //nonprimitive container
     list_t *a_obj_usergroup_all; //nonprimitive container
@@ -108,15 +115,17 @@ typedef struct ezsignfoldertype_response_compound_v4_t {
 } ezsignfoldertype_response_compound_v4_t;
 
 __attribute__((deprecated)) ezsignfoldertype_response_compound_v4_t *ezsignfoldertype_response_compound_v4_create(
-    int pki_ezsignfoldertype_id,
+    int *pki_ezsignfoldertype_id,
     multilingual_ezsignfoldertype_name_t *obj_ezsignfoldertype_name,
-    int fki_branding_id,
-    int fki_billingentityinternal_id,
-    int fki_ezsigntsarequirement_id,
-    int fki_font_id_annotation,
-    int fki_font_id_formfield,
-    int fki_font_id_signature,
-    int fki_pdfalevel_id_convert,
+    int *fki_branding_id,
+    int *fki_billingentityinternal_id,
+    int *fki_ezsigntsarequirement_id,
+    int *fki_font_id_annotation,
+    int *fki_font_id_formfield,
+    int *fki_font_id_signature,
+    int *fki_pdfalevel_id_convert,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_signaturedatedisplay__e e_ezsignfoldertype_signaturedatedisplay,
+    char *s_ezsignfoldertype_signaturedatecustomformat,
     ezmax_api_definition__full_field_e_ezsignfoldertype_documentdependency__e e_ezsignfoldertype_documentdependency,
     char *s_branding_description_x,
     char *s_billingentityinternal_description_x,
@@ -127,51 +136,55 @@ __attribute__((deprecated)) ezsignfoldertype_response_compound_v4_t *ezsignfolde
     ezmax_api_definition__full_field_e_ezsignfoldertype_pdfanoncompliantaction__e e_ezsignfoldertype_pdfanoncompliantaction,
     ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel,
     ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__e e_ezsignfoldertype_documentmerge,
-    int i_ezsignfoldertype_fontsizeannotation,
-    int i_ezsignfoldertype_fontsizeformfield,
-    int i_ezsignfoldertype_sendreminderfirstdays,
-    int i_ezsignfoldertype_sendreminderotherdays,
-    int i_ezsignfoldertype_archivaldays,
+    int *i_ezsignfoldertype_fontsizeannotation,
+    int *i_ezsignfoldertype_fontsizeformfield,
+    int *i_ezsignfoldertype_sendreminderfirstdays,
+    int *i_ezsignfoldertype_sendreminderotherdays,
+    int *i_ezsignfoldertype_archivaldays,
     ezmax_api_definition__full_field_e_ezsignfoldertype_disposal__e e_ezsignfoldertype_disposal,
     ezmax_api_definition__full_field_e_ezsignfoldertype_completion__e e_ezsignfoldertype_completion,
-    int i_ezsignfoldertype_disposaldays,
-    int i_ezsignfoldertype_deadlinedays,
-    int b_ezsignfoldertype_prematurelyendautomatically,
-    int i_ezsignfoldertype_prematurelyendautomaticallydays,
-    int b_ezsignfoldertype_automaticsignature,
-    int b_ezsignfoldertype_delegate,
-    int b_ezsignfoldertype_discussion,
-    int b_ezsignfoldertype_logrecipientinproof,
-    int b_ezsignfoldertype_reassignezsignsigner,
-    int b_ezsignfoldertype_reassignuser,
-    int b_ezsignfoldertype_reassigngroup,
-    int b_ezsignfoldertype_sendsignedtoezsignsigner,
-    int b_ezsignfoldertype_sendsignedtouser,
-    int b_ezsignfoldertype_sendattachmentezsignsigner,
-    int b_ezsignfoldertype_sendsignatureattachmentezsignsigner,
-    int b_ezsignfoldertype_sendsignatureattachment,
-    int b_ezsignfoldertype_sendproofezsignsigner,
-    int b_ezsignfoldertype_sendattachmentuser,
-    int b_ezsignfoldertype_sendsignatureattachmentuser,
-    int b_ezsignfoldertype_sendproofuser,
-    int b_ezsignfoldertype_sendproofemail,
-    int b_ezsignfoldertype_allowdownloadattachmentezsignsigner,
-    int b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner,
-    int b_ezsignfoldertype_allowdownloadproofezsignsigner,
-    int b_ezsignfoldertype_sendproofreceivealldocument,
-    int b_ezsignfoldertype_sendsignatureattachmentreceivealldocument,
-    int b_ezsignfoldertype_sendsignedtodocumentowner,
-    int b_ezsignfoldertype_sendsignedtofolderowner,
-    int b_ezsignfoldertype_sendsignedtofullgroup,
-    int b_ezsignfoldertype_sendsignedtolimitedgroup,
-    int b_ezsignfoldertype_sendsignedtocolleague,
-    int b_ezsignfoldertype_sendsummarytodocumentowner,
-    int b_ezsignfoldertype_sendsummarytofolderowner,
-    int b_ezsignfoldertype_sendsummarytofullgroup,
-    int b_ezsignfoldertype_sendsummarytolimitedgroup,
-    int b_ezsignfoldertype_sendsummarytocolleague,
+    int *i_ezsignfoldertype_disposaldays,
+    int *i_ezsignfoldertype_deadlinedays,
+    int *b_ezsignfoldertype_prematurelyendautomatically,
+    int *i_ezsignfoldertype_prematurelyendautomaticallydays,
+    int *b_ezsignfoldertype_automaticsignature,
+    int *b_ezsignfoldertype_delegate,
+    int *b_ezsignfoldertype_discussion,
+    int *b_ezsignfoldertype_logrecipientinproof,
+    int *b_ezsignfoldertype_reassignezsignsigner,
+    int *b_ezsignfoldertype_reassignuser,
+    int *b_ezsignfoldertype_reassigngroup,
+    int *b_ezsignfoldertype_senddocumentmergetoemail,
+    int *b_ezsignfoldertype_senddocumentmergetoezsignsigner,
+    int *b_ezsignfoldertype_senddocumentmergetoreceivealldocument,
+    int *b_ezsignfoldertype_senddocumentmergetouser,
+    int *b_ezsignfoldertype_sendsignedtoezsignsigner,
+    int *b_ezsignfoldertype_sendsignedtouser,
+    int *b_ezsignfoldertype_sendattachmentezsignsigner,
+    int *b_ezsignfoldertype_sendsignatureattachmentezsignsigner,
+    int *b_ezsignfoldertype_sendsignatureattachment,
+    int *b_ezsignfoldertype_sendproofezsignsigner,
+    int *b_ezsignfoldertype_sendattachmentuser,
+    int *b_ezsignfoldertype_sendsignatureattachmentuser,
+    int *b_ezsignfoldertype_sendproofuser,
+    int *b_ezsignfoldertype_sendproofemail,
+    int *b_ezsignfoldertype_allowdownloadattachmentezsignsigner,
+    int *b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner,
+    int *b_ezsignfoldertype_allowdownloadproofezsignsigner,
+    int *b_ezsignfoldertype_sendproofreceivealldocument,
+    int *b_ezsignfoldertype_sendsignatureattachmentreceivealldocument,
+    int *b_ezsignfoldertype_sendsignedtodocumentowner,
+    int *b_ezsignfoldertype_sendsignedtofolderowner,
+    int *b_ezsignfoldertype_sendsignedtofullgroup,
+    int *b_ezsignfoldertype_sendsignedtolimitedgroup,
+    int *b_ezsignfoldertype_sendsignedtocolleague,
+    int *b_ezsignfoldertype_sendsummarytodocumentowner,
+    int *b_ezsignfoldertype_sendsummarytofolderowner,
+    int *b_ezsignfoldertype_sendsummarytofullgroup,
+    int *b_ezsignfoldertype_sendsummarytolimitedgroup,
+    int *b_ezsignfoldertype_sendsummarytocolleague,
     ezmax_api_definition__full_field_e_ezsignfoldertype_signeraccess__e e_ezsignfoldertype_signeraccess,
-    int b_ezsignfoldertype_isactive,
+    int *b_ezsignfoldertype_isactive,
     list_t *a_fki_pdfalevel_id,
     list_t *a_obj_userlogintype,
     list_t *a_obj_usergroup_all,

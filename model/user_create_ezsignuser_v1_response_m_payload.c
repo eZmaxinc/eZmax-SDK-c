@@ -13,10 +13,10 @@ static user_create_ezsignuser_v1_response_m_payload_t *user_create_ezsignuser_v1
     if (!user_create_ezsignuser_v1_response_m_payload_local_var) {
         return NULL;
     }
+    memset(user_create_ezsignuser_v1_response_m_payload_local_var, 0, sizeof(user_create_ezsignuser_v1_response_m_payload_t));
+    user_create_ezsignuser_v1_response_m_payload_local_var->_library_owned = 1;
     user_create_ezsignuser_v1_response_m_payload_local_var->a_s_email_address_success = a_s_email_address_success;
     user_create_ezsignuser_v1_response_m_payload_local_var->a_s_email_address_failure = a_s_email_address_failure;
-
-    user_create_ezsignuser_v1_response_m_payload_local_var->_library_owned = 1;
     return user_create_ezsignuser_v1_response_m_payload_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) user_create_ezsignuser_v1_response_m_payload_t *user
     list_t *a_s_email_address_success,
     list_t *a_s_email_address_failure
     ) {
-    return user_create_ezsignuser_v1_response_m_payload_create_internal (
+    user_create_ezsignuser_v1_response_m_payload_t *result = user_create_ezsignuser_v1_response_m_payload_create_internal (
         a_s_email_address_success,
         a_s_email_address_failure
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void user_create_ezsignuser_v1_response_m_payload_free(user_create_ezsignuser_v1_response_m_payload_t *user_create_ezsignuser_v1_response_m_payload) {
@@ -163,10 +166,15 @@ user_create_ezsignuser_v1_response_m_payload_t *user_create_ezsignuser_v1_respon
     }
 
 
+
     user_create_ezsignuser_v1_response_m_payload_local_var = user_create_ezsignuser_v1_response_m_payload_create_internal (
         a_s_email_address_successList,
         a_s_email_address_failureList
         );
+
+    if (!user_create_ezsignuser_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return user_create_ezsignuser_v1_response_m_payload_local_var;
 end:

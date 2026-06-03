@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **d_buyercontract_minimumprice** | **char \*** | The minimumprice of the Buyercontract | 
 **d_buyercontract_maximumprice** | **char \*** | The maximumprice of the Buyercontract | 
 **e_buyercontract_type** | **field_e_buyercontract_type_t \*** |  | 
+**s_buyercontract_contract** | **char \*** | The number of the Buyercontract | [optional] 
 **dt_buyercontract_date** | **char \*** | The date of the Buyercontract | 
 **dt_buyercontract_expirationdate** | **char \*** | The expirationdate of the Buyercontract | [optional] 
 **b_buyercontract_isactive** | **int** | Whether the buyercontract is active or not | 

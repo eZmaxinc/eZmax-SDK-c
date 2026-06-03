@@ -15,12 +15,12 @@ static custom_user_name_response_t *custom_user_name_response_create_internal(
     if (!custom_user_name_response_local_var) {
         return NULL;
     }
+    memset(custom_user_name_response_local_var, 0, sizeof(custom_user_name_response_t));
+    custom_user_name_response_local_var->_library_owned = 1;
     custom_user_name_response_local_var->s_contacttitle_name_x = s_contacttitle_name_x;
     custom_user_name_response_local_var->s_user_lastname = s_user_lastname;
     custom_user_name_response_local_var->s_user_firstname = s_user_firstname;
     custom_user_name_response_local_var->s_user_jobtitle = s_user_jobtitle;
-
-    custom_user_name_response_local_var->_library_owned = 1;
     return custom_user_name_response_local_var;
 }
 
@@ -30,12 +30,15 @@ __attribute__((deprecated)) custom_user_name_response_t *custom_user_name_respon
     char *s_user_firstname,
     char *s_user_jobtitle
     ) {
-    return custom_user_name_response_create_internal (
+    custom_user_name_response_t *result = custom_user_name_response_create_internal (
         s_contacttitle_name_x,
         s_user_lastname,
         s_user_firstname,
         s_user_jobtitle
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void custom_user_name_response_free(custom_user_name_response_t *custom_user_name_response) {
@@ -114,6 +117,14 @@ custom_user_name_response_t *custom_user_name_response_parseFromJSON(cJSON *cust
 
     custom_user_name_response_t *custom_user_name_response_local_var = NULL;
 
+    char *s_contacttitle_name_x_local_str = NULL;
+
+    char *s_user_lastname_local_str = NULL;
+
+    char *s_user_firstname_local_str = NULL;
+
+    char *s_user_jobtitle_local_str = NULL;
+
     // custom_user_name_response->s_contacttitle_name_x
     cJSON *s_contacttitle_name_x = cJSON_GetObjectItemCaseSensitive(custom_user_name_responseJSON, "sContacttitleNameX");
     if (cJSON_IsNull(s_contacttitle_name_x)) {
@@ -169,15 +180,40 @@ custom_user_name_response_t *custom_user_name_response_parseFromJSON(cJSON *cust
     }
 
 
+    if (s_contacttitle_name_x && !cJSON_IsNull(s_contacttitle_name_x)) s_contacttitle_name_x_local_str = strdup(s_contacttitle_name_x->valuestring);
+    if (s_user_lastname && !cJSON_IsNull(s_user_lastname)) s_user_lastname_local_str = strdup(s_user_lastname->valuestring);
+    if (s_user_firstname && !cJSON_IsNull(s_user_firstname)) s_user_firstname_local_str = strdup(s_user_firstname->valuestring);
+    if (s_user_jobtitle && !cJSON_IsNull(s_user_jobtitle)) s_user_jobtitle_local_str = strdup(s_user_jobtitle->valuestring);
+
     custom_user_name_response_local_var = custom_user_name_response_create_internal (
-        s_contacttitle_name_x && !cJSON_IsNull(s_contacttitle_name_x) ? strdup(s_contacttitle_name_x->valuestring) : NULL,
-        strdup(s_user_lastname->valuestring),
-        strdup(s_user_firstname->valuestring),
-        s_user_jobtitle && !cJSON_IsNull(s_user_jobtitle) ? strdup(s_user_jobtitle->valuestring) : NULL
+        s_contacttitle_name_x_local_str,
+        s_user_lastname_local_str,
+        s_user_firstname_local_str,
+        s_user_jobtitle_local_str
         );
+
+    if (!custom_user_name_response_local_var) {
+        goto end;
+    }
 
     return custom_user_name_response_local_var;
 end:
+    if (s_contacttitle_name_x_local_str) {
+        free(s_contacttitle_name_x_local_str);
+        s_contacttitle_name_x_local_str = NULL;
+    }
+    if (s_user_lastname_local_str) {
+        free(s_user_lastname_local_str);
+        s_user_lastname_local_str = NULL;
+    }
+    if (s_user_firstname_local_str) {
+        free(s_user_firstname_local_str);
+        s_user_firstname_local_str = NULL;
+    }
+    if (s_user_jobtitle_local_str) {
+        free(s_user_jobtitle_local_str);
+        s_user_jobtitle_local_str = NULL;
+    }
     return NULL;
 
 }

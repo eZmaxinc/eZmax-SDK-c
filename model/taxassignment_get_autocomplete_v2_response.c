@@ -14,11 +14,11 @@ static taxassignment_get_autocomplete_v2_response_t *taxassignment_get_autocompl
     if (!taxassignment_get_autocomplete_v2_response_local_var) {
         return NULL;
     }
+    memset(taxassignment_get_autocomplete_v2_response_local_var, 0, sizeof(taxassignment_get_autocomplete_v2_response_t));
+    taxassignment_get_autocomplete_v2_response_local_var->_library_owned = 1;
     taxassignment_get_autocomplete_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     taxassignment_get_autocomplete_v2_response_local_var->obj_debug = obj_debug;
     taxassignment_get_autocomplete_v2_response_local_var->m_payload = m_payload;
-
-    taxassignment_get_autocomplete_v2_response_local_var->_library_owned = 1;
     return taxassignment_get_autocomplete_v2_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) taxassignment_get_autocomplete_v2_response_t *taxass
     common_response_obj_debug_t *obj_debug,
     taxassignment_get_autocomplete_v2_response_m_payload_t *m_payload
     ) {
-    return taxassignment_get_autocomplete_v2_response_create_internal (
+    taxassignment_get_autocomplete_v2_response_t *result = taxassignment_get_autocomplete_v2_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void taxassignment_get_autocomplete_v2_response_free(taxassignment_get_autocomplete_v2_response_t *taxassignment_get_autocomplete_v2_response) {
@@ -156,11 +159,16 @@ taxassignment_get_autocomplete_v2_response_t *taxassignment_get_autocomplete_v2_
     m_payload_local_nonprim = taxassignment_get_autocomplete_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     taxassignment_get_autocomplete_v2_response_local_var = taxassignment_get_autocomplete_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!taxassignment_get_autocomplete_v2_response_local_var) {
+        goto end;
+    }
 
     return taxassignment_get_autocomplete_v2_response_local_var;
 end:

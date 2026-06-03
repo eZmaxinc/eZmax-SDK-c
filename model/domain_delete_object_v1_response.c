@@ -13,10 +13,10 @@ static domain_delete_object_v1_response_t *domain_delete_object_v1_response_crea
     if (!domain_delete_object_v1_response_local_var) {
         return NULL;
     }
+    memset(domain_delete_object_v1_response_local_var, 0, sizeof(domain_delete_object_v1_response_t));
+    domain_delete_object_v1_response_local_var->_library_owned = 1;
     domain_delete_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     domain_delete_object_v1_response_local_var->obj_debug = obj_debug;
-
-    domain_delete_object_v1_response_local_var->_library_owned = 1;
     return domain_delete_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) domain_delete_object_v1_response_t *domain_delete_ob
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return domain_delete_object_v1_response_create_internal (
+    domain_delete_object_v1_response_t *result = domain_delete_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void domain_delete_object_v1_response_free(domain_delete_object_v1_response_t *domain_delete_object_v1_response) {
@@ -119,10 +122,15 @@ domain_delete_object_v1_response_t *domain_delete_object_v1_response_parseFromJS
     }
 
 
+
     domain_delete_object_v1_response_local_var = domain_delete_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!domain_delete_object_v1_response_local_var) {
+        goto end;
+    }
 
     return domain_delete_object_v1_response_local_var;
 end:

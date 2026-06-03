@@ -14,11 +14,11 @@ static notificationsection_get_notificationtests_v1_response_t *notificationsect
     if (!notificationsection_get_notificationtests_v1_response_local_var) {
         return NULL;
     }
+    memset(notificationsection_get_notificationtests_v1_response_local_var, 0, sizeof(notificationsection_get_notificationtests_v1_response_t));
+    notificationsection_get_notificationtests_v1_response_local_var->_library_owned = 1;
     notificationsection_get_notificationtests_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     notificationsection_get_notificationtests_v1_response_local_var->obj_debug = obj_debug;
     notificationsection_get_notificationtests_v1_response_local_var->m_payload = m_payload;
-
-    notificationsection_get_notificationtests_v1_response_local_var->_library_owned = 1;
     return notificationsection_get_notificationtests_v1_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) notificationsection_get_notificationtests_v1_respons
     common_response_obj_debug_t *obj_debug,
     notificationsection_get_notificationtests_v1_response_m_payload_t *m_payload
     ) {
-    return notificationsection_get_notificationtests_v1_response_create_internal (
+    notificationsection_get_notificationtests_v1_response_t *result = notificationsection_get_notificationtests_v1_response_create_internal (
         obj_debug_payload,
         obj_debug,
         m_payload
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void notificationsection_get_notificationtests_v1_response_free(notificationsection_get_notificationtests_v1_response_t *notificationsection_get_notificationtests_v1_response) {
@@ -156,11 +159,16 @@ notificationsection_get_notificationtests_v1_response_t *notificationsection_get
     m_payload_local_nonprim = notificationsection_get_notificationtests_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
+
     notificationsection_get_notificationtests_v1_response_local_var = notificationsection_get_notificationtests_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim
         );
+
+    if (!notificationsection_get_notificationtests_v1_response_local_var) {
+        goto end;
+    }
 
     return notificationsection_get_notificationtests_v1_response_local_var;
 end:

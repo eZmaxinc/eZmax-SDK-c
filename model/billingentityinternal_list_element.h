@@ -19,14 +19,14 @@ typedef struct billingentityinternal_list_element_t billingentityinternal_list_e
 
 
 typedef struct billingentityinternal_list_element_t {
-    int pki_billingentityinternal_id; //numeric
+    int *pki_billingentityinternal_id; //numeric
     char *s_billingentityinternal_description_x; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } billingentityinternal_list_element_t;
 
 __attribute__((deprecated)) billingentityinternal_list_element_t *billingentityinternal_list_element_create(
-    int pki_billingentityinternal_id,
+    int *pki_billingentityinternal_id,
     char *s_billingentityinternal_description_x
 );
 

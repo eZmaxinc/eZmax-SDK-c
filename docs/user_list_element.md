@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **s_user_lastname** | **char \*** | The last name of the user | 
 **s_user_loginname** | **char \*** | The login name of the User. | 
 **b_user_isactive** | **int** | Whether the User is active or not | 
+**b_user_suspended** | **int** | Whether the User is suspended or not | [optional] 
 **e_user_type** | **field_e_user_type_t \*** |  | 
 **e_user_origin** | **field_e_user_origin_t \*** |  | 
 **e_user_ezsignaccess** | **field_e_user_ezsignaccess_t \*** |  | 

@@ -13,10 +13,10 @@ static authenticationexternal_delete_object_v1_response_t *authenticationexterna
     if (!authenticationexternal_delete_object_v1_response_local_var) {
         return NULL;
     }
+    memset(authenticationexternal_delete_object_v1_response_local_var, 0, sizeof(authenticationexternal_delete_object_v1_response_t));
+    authenticationexternal_delete_object_v1_response_local_var->_library_owned = 1;
     authenticationexternal_delete_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     authenticationexternal_delete_object_v1_response_local_var->obj_debug = obj_debug;
-
-    authenticationexternal_delete_object_v1_response_local_var->_library_owned = 1;
     return authenticationexternal_delete_object_v1_response_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) authenticationexternal_delete_object_v1_response_t *
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
-    return authenticationexternal_delete_object_v1_response_create_internal (
+    authenticationexternal_delete_object_v1_response_t *result = authenticationexternal_delete_object_v1_response_create_internal (
         obj_debug_payload,
         obj_debug
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void authenticationexternal_delete_object_v1_response_free(authenticationexternal_delete_object_v1_response_t *authenticationexternal_delete_object_v1_response) {
@@ -119,10 +122,15 @@ authenticationexternal_delete_object_v1_response_t *authenticationexternal_delet
     }
 
 
+
     authenticationexternal_delete_object_v1_response_local_var = authenticationexternal_delete_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
+
+    if (!authenticationexternal_delete_object_v1_response_local_var) {
+        goto end;
+    }
 
     return authenticationexternal_delete_object_v1_response_local_var;
 end:

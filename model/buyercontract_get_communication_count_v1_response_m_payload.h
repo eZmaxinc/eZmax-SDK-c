@@ -19,13 +19,13 @@ typedef struct buyercontract_get_communication_count_v1_response_m_payload_t buy
 
 
 typedef struct buyercontract_get_communication_count_v1_response_m_payload_t {
-    int i_communication_count; //numeric
+    int *i_communication_count; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } buyercontract_get_communication_count_v1_response_m_payload_t;
 
 __attribute__((deprecated)) buyercontract_get_communication_count_v1_response_m_payload_t *buyercontract_get_communication_count_v1_response_m_payload_create(
-    int i_communication_count
+    int *i_communication_count
 );
 
 void buyercontract_get_communication_count_v1_response_m_payload_free(buyercontract_get_communication_count_v1_response_m_payload_t *buyercontract_get_communication_count_v1_response_m_payload);

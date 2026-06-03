@@ -31,11 +31,11 @@ static common_reportsubsectionpart_t *common_reportsubsectionpart_create_interna
     if (!common_reportsubsectionpart_local_var) {
         return NULL;
     }
+    memset(common_reportsubsectionpart_local_var, 0, sizeof(common_reportsubsectionpart_t));
+    common_reportsubsectionpart_local_var->_library_owned = 1;
     common_reportsubsectionpart_local_var->e_reportsubsectionpart_type = e_reportsubsectionpart_type;
     common_reportsubsectionpart_local_var->a_obj_reportrow = a_obj_reportrow;
     common_reportsubsectionpart_local_var->a_s_variableobject_property = a_s_variableobject_property;
-
-    common_reportsubsectionpart_local_var->_library_owned = 1;
     return common_reportsubsectionpart_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) common_reportsubsectionpart_t *common_reportsubsecti
     list_t *a_obj_reportrow,
     list_t *a_s_variableobject_property
     ) {
-    return common_reportsubsectionpart_create_internal (
+    common_reportsubsectionpart_t *result = common_reportsubsectionpart_create_internal (
         e_reportsubsectionpart_type,
         a_obj_reportrow,
         a_s_variableobject_property
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void common_reportsubsectionpart_free(common_reportsubsectionpart_t *common_reportsubsectionpart) {
@@ -216,11 +219,16 @@ common_reportsubsectionpart_t *common_reportsubsectionpart_parseFromJSON(cJSON *
     }
 
 
+
     common_reportsubsectionpart_local_var = common_reportsubsectionpart_create_internal (
         e_reportsubsectionpart_typeVariable,
         a_obj_reportrowList,
         a_s_variableobject_propertyList
         );
+
+    if (!common_reportsubsectionpart_local_var) {
+        goto end;
+    }
 
     return common_reportsubsectionpart_local_var;
 end:

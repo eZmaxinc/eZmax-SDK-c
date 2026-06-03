@@ -6,8 +6,8 @@
 
 
 static webhookheader_response_compound_t *webhookheader_response_compound_create_internal(
-    int pki_webhookheader_id,
-    int fki_webhook_id,
+    int *pki_webhookheader_id,
+    int *fki_webhook_id,
     char *s_webhookheader_name,
     char *s_webhookheader_value
     ) {
@@ -15,27 +15,42 @@ static webhookheader_response_compound_t *webhookheader_response_compound_create
     if (!webhookheader_response_compound_local_var) {
         return NULL;
     }
+    memset(webhookheader_response_compound_local_var, 0, sizeof(webhookheader_response_compound_t));
+    webhookheader_response_compound_local_var->_library_owned = 1;
     webhookheader_response_compound_local_var->pki_webhookheader_id = pki_webhookheader_id;
     webhookheader_response_compound_local_var->fki_webhook_id = fki_webhook_id;
     webhookheader_response_compound_local_var->s_webhookheader_name = s_webhookheader_name;
     webhookheader_response_compound_local_var->s_webhookheader_value = s_webhookheader_value;
-
-    webhookheader_response_compound_local_var->_library_owned = 1;
     return webhookheader_response_compound_local_var;
 }
 
 __attribute__((deprecated)) webhookheader_response_compound_t *webhookheader_response_compound_create(
-    int pki_webhookheader_id,
-    int fki_webhook_id,
+    int *pki_webhookheader_id,
+    int *fki_webhook_id,
     char *s_webhookheader_name,
     char *s_webhookheader_value
     ) {
-    return webhookheader_response_compound_create_internal (
-        pki_webhookheader_id,
-        fki_webhook_id,
+    int *pki_webhookheader_id_copy = NULL;
+    if (pki_webhookheader_id) {
+        pki_webhookheader_id_copy = malloc(sizeof(int));
+        if (pki_webhookheader_id_copy) *pki_webhookheader_id_copy = *pki_webhookheader_id;
+    }
+    int *fki_webhook_id_copy = NULL;
+    if (fki_webhook_id) {
+        fki_webhook_id_copy = malloc(sizeof(int));
+        if (fki_webhook_id_copy) *fki_webhook_id_copy = *fki_webhook_id;
+    }
+    webhookheader_response_compound_t *result = webhookheader_response_compound_create_internal (
+        pki_webhookheader_id_copy,
+        fki_webhook_id_copy,
         s_webhookheader_name,
         s_webhookheader_value
         );
+    if (!result) {
+        free(pki_webhookheader_id_copy);
+        free(fki_webhook_id_copy);
+    }
+    return result;
 }
 
 void webhookheader_response_compound_free(webhookheader_response_compound_t *webhookheader_response_compound) {
@@ -47,6 +62,14 @@ void webhookheader_response_compound_free(webhookheader_response_compound_t *web
         return ;
     }
     listEntry_t *listEntry;
+    if (webhookheader_response_compound->pki_webhookheader_id) {
+        free(webhookheader_response_compound->pki_webhookheader_id);
+        webhookheader_response_compound->pki_webhookheader_id = NULL;
+    }
+    if (webhookheader_response_compound->fki_webhook_id) {
+        free(webhookheader_response_compound->fki_webhook_id);
+        webhookheader_response_compound->fki_webhook_id = NULL;
+    }
     if (webhookheader_response_compound->s_webhookheader_name) {
         free(webhookheader_response_compound->s_webhookheader_name);
         webhookheader_response_compound->s_webhookheader_name = NULL;
@@ -65,7 +88,7 @@ cJSON *webhookheader_response_compound_convertToJSON(webhookheader_response_comp
     if (!webhookheader_response_compound->pki_webhookheader_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiWebhookheaderID", webhookheader_response_compound->pki_webhookheader_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiWebhookheaderID", *webhookheader_response_compound->pki_webhookheader_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -74,7 +97,7 @@ cJSON *webhookheader_response_compound_convertToJSON(webhookheader_response_comp
     if (!webhookheader_response_compound->fki_webhook_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiWebhookID", webhookheader_response_compound->fki_webhook_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiWebhookID", *webhookheader_response_compound->fki_webhook_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -108,6 +131,16 @@ webhookheader_response_compound_t *webhookheader_response_compound_parseFromJSON
 
     webhookheader_response_compound_t *webhookheader_response_compound_local_var = NULL;
 
+    // define the local variable for webhookheader_response_compound->pki_webhookheader_id
+    int *pki_webhookheader_id_local_var = NULL;
+
+    // define the local variable for webhookheader_response_compound->fki_webhook_id
+    int *fki_webhook_id_local_var = NULL;
+
+    char *s_webhookheader_name_local_str = NULL;
+
+    char *s_webhookheader_value_local_str = NULL;
+
     // webhookheader_response_compound->pki_webhookheader_id
     cJSON *pki_webhookheader_id = cJSON_GetObjectItemCaseSensitive(webhookheader_response_compoundJSON, "pkiWebhookheaderID");
     if (cJSON_IsNull(pki_webhookheader_id)) {
@@ -122,6 +155,12 @@ webhookheader_response_compound_t *webhookheader_response_compound_parseFromJSON
     {
     goto end; //Numeric
     }
+    pki_webhookheader_id_local_var = malloc(sizeof(int));
+    if(!pki_webhookheader_id_local_var)
+    {
+        goto end;
+    }
+    *pki_webhookheader_id_local_var = pki_webhookheader_id->valuedouble;
 
     // webhookheader_response_compound->fki_webhook_id
     cJSON *fki_webhook_id = cJSON_GetObjectItemCaseSensitive(webhookheader_response_compoundJSON, "fkiWebhookID");
@@ -137,6 +176,12 @@ webhookheader_response_compound_t *webhookheader_response_compound_parseFromJSON
     {
     goto end; //Numeric
     }
+    fki_webhook_id_local_var = malloc(sizeof(int));
+    if(!fki_webhook_id_local_var)
+    {
+        goto end;
+    }
+    *fki_webhook_id_local_var = fki_webhook_id->valuedouble;
 
     // webhookheader_response_compound->s_webhookheader_name
     cJSON *s_webhookheader_name = cJSON_GetObjectItemCaseSensitive(webhookheader_response_compoundJSON, "sWebhookheaderName");
@@ -169,15 +214,38 @@ webhookheader_response_compound_t *webhookheader_response_compound_parseFromJSON
     }
 
 
+    if (s_webhookheader_name && !cJSON_IsNull(s_webhookheader_name)) s_webhookheader_name_local_str = strdup(s_webhookheader_name->valuestring);
+    if (s_webhookheader_value && !cJSON_IsNull(s_webhookheader_value)) s_webhookheader_value_local_str = strdup(s_webhookheader_value->valuestring);
+
     webhookheader_response_compound_local_var = webhookheader_response_compound_create_internal (
-        pki_webhookheader_id->valuedouble,
-        fki_webhook_id->valuedouble,
-        strdup(s_webhookheader_name->valuestring),
-        strdup(s_webhookheader_value->valuestring)
+        pki_webhookheader_id_local_var,
+        fki_webhook_id_local_var,
+        s_webhookheader_name_local_str,
+        s_webhookheader_value_local_str
         );
+
+    if (!webhookheader_response_compound_local_var) {
+        goto end;
+    }
 
     return webhookheader_response_compound_local_var;
 end:
+    if (pki_webhookheader_id_local_var) {
+        free(pki_webhookheader_id_local_var);
+        pki_webhookheader_id_local_var = NULL;
+    }
+    if (fki_webhook_id_local_var) {
+        free(fki_webhook_id_local_var);
+        fki_webhook_id_local_var = NULL;
+    }
+    if (s_webhookheader_name_local_str) {
+        free(s_webhookheader_name_local_str);
+        s_webhookheader_name_local_str = NULL;
+    }
+    if (s_webhookheader_value_local_str) {
+        free(s_webhookheader_value_local_str);
+        s_webhookheader_value_local_str = NULL;
+    }
     return NULL;
 
 }

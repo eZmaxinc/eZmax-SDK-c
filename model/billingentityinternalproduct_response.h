@@ -19,24 +19,24 @@ typedef struct billingentityinternalproduct_response_t billingentityinternalprod
 
 
 typedef struct billingentityinternalproduct_response_t {
-    int pki_billingentityinternalproduct_id; //numeric
-    int fki_billingentityinternal_id; //numeric
+    int *pki_billingentityinternalproduct_id; //numeric
+    int *fki_billingentityinternal_id; //numeric
     char *s_billingentityinternal_description_x; // string
-    int fki_ezmaxproduct_id; //numeric
+    int *fki_ezmaxproduct_id; //numeric
     char *s_ezmaxproduct_description_x; // string
-    int fki_billingentityexternal_id; //numeric
+    int *fki_billingentityexternal_id; //numeric
     char *s_billingentityexternal_description; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } billingentityinternalproduct_response_t;
 
 __attribute__((deprecated)) billingentityinternalproduct_response_t *billingentityinternalproduct_response_create(
-    int pki_billingentityinternalproduct_id,
-    int fki_billingentityinternal_id,
+    int *pki_billingentityinternalproduct_id,
+    int *fki_billingentityinternal_id,
     char *s_billingentityinternal_description_x,
-    int fki_ezmaxproduct_id,
+    int *fki_ezmaxproduct_id,
     char *s_ezmaxproduct_description_x,
-    int fki_billingentityexternal_id,
+    int *fki_billingentityexternal_id,
     char *s_billingentityexternal_description
 );
 

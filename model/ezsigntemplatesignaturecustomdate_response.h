@@ -19,22 +19,22 @@ typedef struct ezsigntemplatesignaturecustomdate_response_t ezsigntemplatesignat
 
 
 typedef struct ezsigntemplatesignaturecustomdate_response_t {
-    int pki_ezsigntemplatesignaturecustomdate_id; //numeric
-    int i_ezsigntemplatesignaturecustomdate_x; //numeric
-    int i_ezsigntemplatesignaturecustomdate_y; //numeric
-    int i_ezsigntemplatesignaturecustomdate_offsetx; //numeric
-    int i_ezsigntemplatesignaturecustomdate_offsety; //numeric
+    int *pki_ezsigntemplatesignaturecustomdate_id; //numeric
+    int *i_ezsigntemplatesignaturecustomdate_x; //numeric
+    int *i_ezsigntemplatesignaturecustomdate_y; //numeric
+    int *i_ezsigntemplatesignaturecustomdate_offsetx; //numeric
+    int *i_ezsigntemplatesignaturecustomdate_offsety; //numeric
     char *s_ezsigntemplatesignaturecustomdate_format; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatesignaturecustomdate_response_t;
 
 __attribute__((deprecated)) ezsigntemplatesignaturecustomdate_response_t *ezsigntemplatesignaturecustomdate_response_create(
-    int pki_ezsigntemplatesignaturecustomdate_id,
-    int i_ezsigntemplatesignaturecustomdate_x,
-    int i_ezsigntemplatesignaturecustomdate_y,
-    int i_ezsigntemplatesignaturecustomdate_offsetx,
-    int i_ezsigntemplatesignaturecustomdate_offsety,
+    int *pki_ezsigntemplatesignaturecustomdate_id,
+    int *i_ezsigntemplatesignaturecustomdate_x,
+    int *i_ezsigntemplatesignaturecustomdate_y,
+    int *i_ezsigntemplatesignaturecustomdate_offsetx,
+    int *i_ezsigntemplatesignaturecustomdate_offsety,
     char *s_ezsigntemplatesignaturecustomdate_format
 );
 

@@ -12,18 +12,21 @@ static inscription_prepare_files_transfer_v1_response_m_payload_t *inscription_p
     if (!inscription_prepare_files_transfer_v1_response_m_payload_local_var) {
         return NULL;
     }
-    inscription_prepare_files_transfer_v1_response_m_payload_local_var->a_obj_attachment = a_obj_attachment;
-
+    memset(inscription_prepare_files_transfer_v1_response_m_payload_local_var, 0, sizeof(inscription_prepare_files_transfer_v1_response_m_payload_t));
     inscription_prepare_files_transfer_v1_response_m_payload_local_var->_library_owned = 1;
+    inscription_prepare_files_transfer_v1_response_m_payload_local_var->a_obj_attachment = a_obj_attachment;
     return inscription_prepare_files_transfer_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) inscription_prepare_files_transfer_v1_response_m_payload_t *inscription_prepare_files_transfer_v1_response_m_payload_create(
     custom_attachment_prepare_files_transfer_response_t *a_obj_attachment
     ) {
-    return inscription_prepare_files_transfer_v1_response_m_payload_create_internal (
+    inscription_prepare_files_transfer_v1_response_m_payload_t *result = inscription_prepare_files_transfer_v1_response_m_payload_create_internal (
         a_obj_attachment
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void inscription_prepare_files_transfer_v1_response_m_payload_free(inscription_prepare_files_transfer_v1_response_m_payload_t *inscription_prepare_files_transfer_v1_response_m_payload) {
@@ -86,9 +89,14 @@ inscription_prepare_files_transfer_v1_response_m_payload_t *inscription_prepare_
     a_obj_attachment_local_nonprim = custom_attachment_prepare_files_transfer_response_parseFromJSON(a_obj_attachment); //nonprimitive
 
 
+
     inscription_prepare_files_transfer_v1_response_m_payload_local_var = inscription_prepare_files_transfer_v1_response_m_payload_create_internal (
         a_obj_attachment_local_nonprim
         );
+
+    if (!inscription_prepare_files_transfer_v1_response_m_payload_local_var) {
+        goto end;
+    }
 
     return inscription_prepare_files_transfer_v1_response_m_payload_local_var;
 end:

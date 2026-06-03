@@ -19,23 +19,23 @@ typedef struct ezsignfoldersignerassociation_response_t ezsignfoldersignerassoci
 
 
 typedef struct ezsignfoldersignerassociation_response_t {
-    int pki_ezsignfoldersignerassociation_id; //numeric
-    int fki_ezsignfolder_id; //numeric
-    int b_ezsignfoldersignerassociation_delayedsend; //boolean
-    int b_ezsignfoldersignerassociation_receivecopy; //boolean
+    int *pki_ezsignfoldersignerassociation_id; //numeric
+    int *fki_ezsignfolder_id; //numeric
+    int *b_ezsignfoldersignerassociation_delayedsend; //boolean
+    int *b_ezsignfoldersignerassociation_receivecopy; //boolean
     char *t_ezsignfoldersignerassociation_message; // string
-    int b_ezsignfoldersignerassociation_allowsigninginperson; //boolean
+    int *b_ezsignfoldersignerassociation_allowsigninginperson; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfoldersignerassociation_response_t;
 
 __attribute__((deprecated)) ezsignfoldersignerassociation_response_t *ezsignfoldersignerassociation_response_create(
-    int pki_ezsignfoldersignerassociation_id,
-    int fki_ezsignfolder_id,
-    int b_ezsignfoldersignerassociation_delayedsend,
-    int b_ezsignfoldersignerassociation_receivecopy,
+    int *pki_ezsignfoldersignerassociation_id,
+    int *fki_ezsignfolder_id,
+    int *b_ezsignfoldersignerassociation_delayedsend,
+    int *b_ezsignfoldersignerassociation_receivecopy,
     char *t_ezsignfoldersignerassociation_message,
-    int b_ezsignfoldersignerassociation_allowsigninginperson
+    int *b_ezsignfoldersignerassociation_allowsigninginperson
 );
 
 void ezsignfoldersignerassociation_response_free(ezsignfoldersignerassociation_response_t *ezsignfoldersignerassociation_response);

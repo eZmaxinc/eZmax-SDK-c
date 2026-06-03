@@ -9,40 +9,44 @@ static activesession_response_compound_t *activesession_response_compound_create
     ezmax_api_definition__full_field_e_activesession_usertype__e e_activesession_usertype,
     ezmax_api_definition__full_field_e_activesession_origin__e e_activesession_origin,
     ezmax_api_definition__full_field_e_activesession_weekdaystart__e e_activesession_weekdaystart,
-    int fki_language_id,
+    int *fki_language_id,
     char *s_company_name_x,
     char *s_department_name_x,
-    int b_activesession_debug,
-    int b_activesession_issuperadmin,
-    int b_activesession_attachment,
-    int b_activesession_canafe,
-    int b_activesession_financial,
-    int b_activesession_realestatecompleted,
+    int *b_activesession_debug,
+    int *b_activesession_issuperadmin,
+    int *b_activesession_attachment,
+    int *b_activesession_canafe,
+    int *b_activesession_financial,
+    int *b_activesession_realestatecompleted,
     ezmax_api_definition__full_field_e_activesession_ezsign__e e_activesession_ezsign,
     ezmax_api_definition__full_field_e_activesession_ezsignaccess__e e_activesession_ezsignaccess,
     ezmax_api_definition__full_field_e_activesession_ezsignprepaid__e e_activesession_ezsignprepaid,
     ezmax_api_definition__full_field_e_activesession_realestateinprogress__e e_activesession_realestateinprogress,
     char *pks_customer_code,
-    int fki_systemconfigurationtype_id,
-    int fki_signature_id,
-    int fki_ezsignuser_id,
-    int b_systemconfiguration_ezsignpaidbyoffice,
+    int *fki_systemconfigurationtype_id,
+    int *fki_signature_id,
+    int *fki_ezsignuser_id,
+    int *b_systemconfiguration_ezsignpaidbyoffice,
     ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__e e_systemconfiguration_ezsignofficeplan,
     ezmax_api_definition__full_field_e_user_ezsignaccess__e e_user_ezsignaccess,
     ezmax_api_definition__full_field_e_user_ezsignprepaid__e e_user_ezsignprepaid,
-    int b_user_ezsigntrial,
+    int *b_user_ezsigntrial,
+    int *b_user_ezsigntemplaterolegrouping,
     char *dt_user_ezsignprepaidexpiration,
     char *dt_user_npsrequest,
     list_t *a_pki_permission_id,
     activesession_response_compound_user_t *obj_user_real,
     activesession_response_compound_user_t *obj_user_cloned,
     activesession_response_compound_apikey_t *obj_apikey,
-    list_t *a_e_module_internalname
+    list_t *a_e_module_internalname,
+    int *b_activesession_maillinglistrequest
     ) {
     activesession_response_compound_t *activesession_response_compound_local_var = malloc(sizeof(activesession_response_compound_t));
     if (!activesession_response_compound_local_var) {
         return NULL;
     }
+    memset(activesession_response_compound_local_var, 0, sizeof(activesession_response_compound_t));
+    activesession_response_compound_local_var->_library_owned = 1;
     activesession_response_compound_local_var->e_activesession_usertype = e_activesession_usertype;
     activesession_response_compound_local_var->e_activesession_origin = e_activesession_origin;
     activesession_response_compound_local_var->e_activesession_weekdaystart = e_activesession_weekdaystart;
@@ -68,6 +72,7 @@ static activesession_response_compound_t *activesession_response_compound_create
     activesession_response_compound_local_var->e_user_ezsignaccess = e_user_ezsignaccess;
     activesession_response_compound_local_var->e_user_ezsignprepaid = e_user_ezsignprepaid;
     activesession_response_compound_local_var->b_user_ezsigntrial = b_user_ezsigntrial;
+    activesession_response_compound_local_var->b_user_ezsigntemplaterolegrouping = b_user_ezsigntemplaterolegrouping;
     activesession_response_compound_local_var->dt_user_ezsignprepaidexpiration = dt_user_ezsignprepaidexpiration;
     activesession_response_compound_local_var->dt_user_npsrequest = dt_user_npsrequest;
     activesession_response_compound_local_var->a_pki_permission_id = a_pki_permission_id;
@@ -75,8 +80,7 @@ static activesession_response_compound_t *activesession_response_compound_create
     activesession_response_compound_local_var->obj_user_cloned = obj_user_cloned;
     activesession_response_compound_local_var->obj_apikey = obj_apikey;
     activesession_response_compound_local_var->a_e_module_internalname = a_e_module_internalname;
-
-    activesession_response_compound_local_var->_library_owned = 1;
+    activesession_response_compound_local_var->b_activesession_maillinglistrequest = b_activesession_maillinglistrequest;
     return activesession_response_compound_local_var;
 }
 
@@ -84,70 +88,161 @@ __attribute__((deprecated)) activesession_response_compound_t *activesession_res
     ezmax_api_definition__full_field_e_activesession_usertype__e e_activesession_usertype,
     ezmax_api_definition__full_field_e_activesession_origin__e e_activesession_origin,
     ezmax_api_definition__full_field_e_activesession_weekdaystart__e e_activesession_weekdaystart,
-    int fki_language_id,
+    int *fki_language_id,
     char *s_company_name_x,
     char *s_department_name_x,
-    int b_activesession_debug,
-    int b_activesession_issuperadmin,
-    int b_activesession_attachment,
-    int b_activesession_canafe,
-    int b_activesession_financial,
-    int b_activesession_realestatecompleted,
+    int *b_activesession_debug,
+    int *b_activesession_issuperadmin,
+    int *b_activesession_attachment,
+    int *b_activesession_canafe,
+    int *b_activesession_financial,
+    int *b_activesession_realestatecompleted,
     ezmax_api_definition__full_field_e_activesession_ezsign__e e_activesession_ezsign,
     ezmax_api_definition__full_field_e_activesession_ezsignaccess__e e_activesession_ezsignaccess,
     ezmax_api_definition__full_field_e_activesession_ezsignprepaid__e e_activesession_ezsignprepaid,
     ezmax_api_definition__full_field_e_activesession_realestateinprogress__e e_activesession_realestateinprogress,
     char *pks_customer_code,
-    int fki_systemconfigurationtype_id,
-    int fki_signature_id,
-    int fki_ezsignuser_id,
-    int b_systemconfiguration_ezsignpaidbyoffice,
+    int *fki_systemconfigurationtype_id,
+    int *fki_signature_id,
+    int *fki_ezsignuser_id,
+    int *b_systemconfiguration_ezsignpaidbyoffice,
     ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__e e_systemconfiguration_ezsignofficeplan,
     ezmax_api_definition__full_field_e_user_ezsignaccess__e e_user_ezsignaccess,
     ezmax_api_definition__full_field_e_user_ezsignprepaid__e e_user_ezsignprepaid,
-    int b_user_ezsigntrial,
+    int *b_user_ezsigntrial,
+    int *b_user_ezsigntemplaterolegrouping,
     char *dt_user_ezsignprepaidexpiration,
     char *dt_user_npsrequest,
     list_t *a_pki_permission_id,
     activesession_response_compound_user_t *obj_user_real,
     activesession_response_compound_user_t *obj_user_cloned,
     activesession_response_compound_apikey_t *obj_apikey,
-    list_t *a_e_module_internalname
+    list_t *a_e_module_internalname,
+    int *b_activesession_maillinglistrequest
     ) {
-    return activesession_response_compound_create_internal (
+    int *fki_language_id_copy = NULL;
+    if (fki_language_id) {
+        fki_language_id_copy = malloc(sizeof(int));
+        if (fki_language_id_copy) *fki_language_id_copy = *fki_language_id;
+    }
+    int *b_activesession_debug_copy = NULL;
+    if (b_activesession_debug) {
+        b_activesession_debug_copy = malloc(sizeof(int));
+        if (b_activesession_debug_copy) *b_activesession_debug_copy = *b_activesession_debug;
+    }
+    int *b_activesession_issuperadmin_copy = NULL;
+    if (b_activesession_issuperadmin) {
+        b_activesession_issuperadmin_copy = malloc(sizeof(int));
+        if (b_activesession_issuperadmin_copy) *b_activesession_issuperadmin_copy = *b_activesession_issuperadmin;
+    }
+    int *b_activesession_attachment_copy = NULL;
+    if (b_activesession_attachment) {
+        b_activesession_attachment_copy = malloc(sizeof(int));
+        if (b_activesession_attachment_copy) *b_activesession_attachment_copy = *b_activesession_attachment;
+    }
+    int *b_activesession_canafe_copy = NULL;
+    if (b_activesession_canafe) {
+        b_activesession_canafe_copy = malloc(sizeof(int));
+        if (b_activesession_canafe_copy) *b_activesession_canafe_copy = *b_activesession_canafe;
+    }
+    int *b_activesession_financial_copy = NULL;
+    if (b_activesession_financial) {
+        b_activesession_financial_copy = malloc(sizeof(int));
+        if (b_activesession_financial_copy) *b_activesession_financial_copy = *b_activesession_financial;
+    }
+    int *b_activesession_realestatecompleted_copy = NULL;
+    if (b_activesession_realestatecompleted) {
+        b_activesession_realestatecompleted_copy = malloc(sizeof(int));
+        if (b_activesession_realestatecompleted_copy) *b_activesession_realestatecompleted_copy = *b_activesession_realestatecompleted;
+    }
+    int *fki_systemconfigurationtype_id_copy = NULL;
+    if (fki_systemconfigurationtype_id) {
+        fki_systemconfigurationtype_id_copy = malloc(sizeof(int));
+        if (fki_systemconfigurationtype_id_copy) *fki_systemconfigurationtype_id_copy = *fki_systemconfigurationtype_id;
+    }
+    int *fki_signature_id_copy = NULL;
+    if (fki_signature_id) {
+        fki_signature_id_copy = malloc(sizeof(int));
+        if (fki_signature_id_copy) *fki_signature_id_copy = *fki_signature_id;
+    }
+    int *fki_ezsignuser_id_copy = NULL;
+    if (fki_ezsignuser_id) {
+        fki_ezsignuser_id_copy = malloc(sizeof(int));
+        if (fki_ezsignuser_id_copy) *fki_ezsignuser_id_copy = *fki_ezsignuser_id;
+    }
+    int *b_systemconfiguration_ezsignpaidbyoffice_copy = NULL;
+    if (b_systemconfiguration_ezsignpaidbyoffice) {
+        b_systemconfiguration_ezsignpaidbyoffice_copy = malloc(sizeof(int));
+        if (b_systemconfiguration_ezsignpaidbyoffice_copy) *b_systemconfiguration_ezsignpaidbyoffice_copy = *b_systemconfiguration_ezsignpaidbyoffice;
+    }
+    int *b_user_ezsigntrial_copy = NULL;
+    if (b_user_ezsigntrial) {
+        b_user_ezsigntrial_copy = malloc(sizeof(int));
+        if (b_user_ezsigntrial_copy) *b_user_ezsigntrial_copy = *b_user_ezsigntrial;
+    }
+    int *b_user_ezsigntemplaterolegrouping_copy = NULL;
+    if (b_user_ezsigntemplaterolegrouping) {
+        b_user_ezsigntemplaterolegrouping_copy = malloc(sizeof(int));
+        if (b_user_ezsigntemplaterolegrouping_copy) *b_user_ezsigntemplaterolegrouping_copy = *b_user_ezsigntemplaterolegrouping;
+    }
+    int *b_activesession_maillinglistrequest_copy = NULL;
+    if (b_activesession_maillinglistrequest) {
+        b_activesession_maillinglistrequest_copy = malloc(sizeof(int));
+        if (b_activesession_maillinglistrequest_copy) *b_activesession_maillinglistrequest_copy = *b_activesession_maillinglistrequest;
+    }
+    activesession_response_compound_t *result = activesession_response_compound_create_internal (
         e_activesession_usertype,
         e_activesession_origin,
         e_activesession_weekdaystart,
-        fki_language_id,
+        fki_language_id_copy,
         s_company_name_x,
         s_department_name_x,
-        b_activesession_debug,
-        b_activesession_issuperadmin,
-        b_activesession_attachment,
-        b_activesession_canafe,
-        b_activesession_financial,
-        b_activesession_realestatecompleted,
+        b_activesession_debug_copy,
+        b_activesession_issuperadmin_copy,
+        b_activesession_attachment_copy,
+        b_activesession_canafe_copy,
+        b_activesession_financial_copy,
+        b_activesession_realestatecompleted_copy,
         e_activesession_ezsign,
         e_activesession_ezsignaccess,
         e_activesession_ezsignprepaid,
         e_activesession_realestateinprogress,
         pks_customer_code,
-        fki_systemconfigurationtype_id,
-        fki_signature_id,
-        fki_ezsignuser_id,
-        b_systemconfiguration_ezsignpaidbyoffice,
+        fki_systemconfigurationtype_id_copy,
+        fki_signature_id_copy,
+        fki_ezsignuser_id_copy,
+        b_systemconfiguration_ezsignpaidbyoffice_copy,
         e_systemconfiguration_ezsignofficeplan,
         e_user_ezsignaccess,
         e_user_ezsignprepaid,
-        b_user_ezsigntrial,
+        b_user_ezsigntrial_copy,
+        b_user_ezsigntemplaterolegrouping_copy,
         dt_user_ezsignprepaidexpiration,
         dt_user_npsrequest,
         a_pki_permission_id,
         obj_user_real,
         obj_user_cloned,
         obj_apikey,
-        a_e_module_internalname
+        a_e_module_internalname,
+        b_activesession_maillinglistrequest_copy
         );
+    if (!result) {
+        free(fki_language_id_copy);
+        free(b_activesession_debug_copy);
+        free(b_activesession_issuperadmin_copy);
+        free(b_activesession_attachment_copy);
+        free(b_activesession_canafe_copy);
+        free(b_activesession_financial_copy);
+        free(b_activesession_realestatecompleted_copy);
+        free(fki_systemconfigurationtype_id_copy);
+        free(fki_signature_id_copy);
+        free(fki_ezsignuser_id_copy);
+        free(b_systemconfiguration_ezsignpaidbyoffice_copy);
+        free(b_user_ezsigntrial_copy);
+        free(b_user_ezsigntemplaterolegrouping_copy);
+        free(b_activesession_maillinglistrequest_copy);
+    }
+    return result;
 }
 
 void activesession_response_compound_free(activesession_response_compound_t *activesession_response_compound) {
@@ -159,6 +254,10 @@ void activesession_response_compound_free(activesession_response_compound_t *act
         return ;
     }
     listEntry_t *listEntry;
+    if (activesession_response_compound->fki_language_id) {
+        free(activesession_response_compound->fki_language_id);
+        activesession_response_compound->fki_language_id = NULL;
+    }
     if (activesession_response_compound->s_company_name_x) {
         free(activesession_response_compound->s_company_name_x);
         activesession_response_compound->s_company_name_x = NULL;
@@ -167,9 +266,57 @@ void activesession_response_compound_free(activesession_response_compound_t *act
         free(activesession_response_compound->s_department_name_x);
         activesession_response_compound->s_department_name_x = NULL;
     }
+    if (activesession_response_compound->b_activesession_debug) {
+        free(activesession_response_compound->b_activesession_debug);
+        activesession_response_compound->b_activesession_debug = NULL;
+    }
+    if (activesession_response_compound->b_activesession_issuperadmin) {
+        free(activesession_response_compound->b_activesession_issuperadmin);
+        activesession_response_compound->b_activesession_issuperadmin = NULL;
+    }
+    if (activesession_response_compound->b_activesession_attachment) {
+        free(activesession_response_compound->b_activesession_attachment);
+        activesession_response_compound->b_activesession_attachment = NULL;
+    }
+    if (activesession_response_compound->b_activesession_canafe) {
+        free(activesession_response_compound->b_activesession_canafe);
+        activesession_response_compound->b_activesession_canafe = NULL;
+    }
+    if (activesession_response_compound->b_activesession_financial) {
+        free(activesession_response_compound->b_activesession_financial);
+        activesession_response_compound->b_activesession_financial = NULL;
+    }
+    if (activesession_response_compound->b_activesession_realestatecompleted) {
+        free(activesession_response_compound->b_activesession_realestatecompleted);
+        activesession_response_compound->b_activesession_realestatecompleted = NULL;
+    }
     if (activesession_response_compound->pks_customer_code) {
         free(activesession_response_compound->pks_customer_code);
         activesession_response_compound->pks_customer_code = NULL;
+    }
+    if (activesession_response_compound->fki_systemconfigurationtype_id) {
+        free(activesession_response_compound->fki_systemconfigurationtype_id);
+        activesession_response_compound->fki_systemconfigurationtype_id = NULL;
+    }
+    if (activesession_response_compound->fki_signature_id) {
+        free(activesession_response_compound->fki_signature_id);
+        activesession_response_compound->fki_signature_id = NULL;
+    }
+    if (activesession_response_compound->fki_ezsignuser_id) {
+        free(activesession_response_compound->fki_ezsignuser_id);
+        activesession_response_compound->fki_ezsignuser_id = NULL;
+    }
+    if (activesession_response_compound->b_systemconfiguration_ezsignpaidbyoffice) {
+        free(activesession_response_compound->b_systemconfiguration_ezsignpaidbyoffice);
+        activesession_response_compound->b_systemconfiguration_ezsignpaidbyoffice = NULL;
+    }
+    if (activesession_response_compound->b_user_ezsigntrial) {
+        free(activesession_response_compound->b_user_ezsigntrial);
+        activesession_response_compound->b_user_ezsigntrial = NULL;
+    }
+    if (activesession_response_compound->b_user_ezsigntemplaterolegrouping) {
+        free(activesession_response_compound->b_user_ezsigntemplaterolegrouping);
+        activesession_response_compound->b_user_ezsigntemplaterolegrouping = NULL;
     }
     if (activesession_response_compound->dt_user_ezsignprepaidexpiration) {
         free(activesession_response_compound->dt_user_ezsignprepaidexpiration);
@@ -204,6 +351,10 @@ void activesession_response_compound_free(activesession_response_compound_t *act
         }
         list_freeList(activesession_response_compound->a_e_module_internalname);
         activesession_response_compound->a_e_module_internalname = NULL;
+    }
+    if (activesession_response_compound->b_activesession_maillinglistrequest) {
+        free(activesession_response_compound->b_activesession_maillinglistrequest);
+        activesession_response_compound->b_activesession_maillinglistrequest = NULL;
     }
     free(activesession_response_compound);
 }
@@ -257,7 +408,7 @@ cJSON *activesession_response_compound_convertToJSON(activesession_response_comp
     if (!activesession_response_compound->fki_language_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiLanguageID", activesession_response_compound->fki_language_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiLanguageID", *activesession_response_compound->fki_language_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -284,7 +435,7 @@ cJSON *activesession_response_compound_convertToJSON(activesession_response_comp
     if (!activesession_response_compound->b_activesession_debug) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bActivesessionDebug", activesession_response_compound->b_activesession_debug) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bActivesessionDebug", *activesession_response_compound->b_activesession_debug) == NULL) {
     goto fail; //Bool
     }
 
@@ -293,14 +444,14 @@ cJSON *activesession_response_compound_convertToJSON(activesession_response_comp
     if (!activesession_response_compound->b_activesession_issuperadmin) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bActivesessionIssuperadmin", activesession_response_compound->b_activesession_issuperadmin) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bActivesessionIssuperadmin", *activesession_response_compound->b_activesession_issuperadmin) == NULL) {
     goto fail; //Bool
     }
 
 
     // activesession_response_compound->b_activesession_attachment
     if(activesession_response_compound->b_activesession_attachment) {
-    if(cJSON_AddBoolToObject(item, "bActivesessionAttachment", activesession_response_compound->b_activesession_attachment) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bActivesessionAttachment", *activesession_response_compound->b_activesession_attachment) == NULL) {
     goto fail; //Bool
     }
     }
@@ -308,7 +459,7 @@ cJSON *activesession_response_compound_convertToJSON(activesession_response_comp
 
     // activesession_response_compound->b_activesession_canafe
     if(activesession_response_compound->b_activesession_canafe) {
-    if(cJSON_AddBoolToObject(item, "bActivesessionCanafe", activesession_response_compound->b_activesession_canafe) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bActivesessionCanafe", *activesession_response_compound->b_activesession_canafe) == NULL) {
     goto fail; //Bool
     }
     }
@@ -316,7 +467,7 @@ cJSON *activesession_response_compound_convertToJSON(activesession_response_comp
 
     // activesession_response_compound->b_activesession_financial
     if(activesession_response_compound->b_activesession_financial) {
-    if(cJSON_AddBoolToObject(item, "bActivesessionFinancial", activesession_response_compound->b_activesession_financial) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bActivesessionFinancial", *activesession_response_compound->b_activesession_financial) == NULL) {
     goto fail; //Bool
     }
     }
@@ -324,7 +475,7 @@ cJSON *activesession_response_compound_convertToJSON(activesession_response_comp
 
     // activesession_response_compound->b_activesession_realestatecompleted
     if(activesession_response_compound->b_activesession_realestatecompleted) {
-    if(cJSON_AddBoolToObject(item, "bActivesessionRealestatecompleted", activesession_response_compound->b_activesession_realestatecompleted) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bActivesessionRealestatecompleted", *activesession_response_compound->b_activesession_realestatecompleted) == NULL) {
     goto fail; //Bool
     }
     }
@@ -396,14 +547,14 @@ cJSON *activesession_response_compound_convertToJSON(activesession_response_comp
     if (!activesession_response_compound->fki_systemconfigurationtype_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiSystemconfigurationtypeID", activesession_response_compound->fki_systemconfigurationtype_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiSystemconfigurationtypeID", *activesession_response_compound->fki_systemconfigurationtype_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // activesession_response_compound->fki_signature_id
     if(activesession_response_compound->fki_signature_id) {
-    if(cJSON_AddNumberToObject(item, "fkiSignatureID", activesession_response_compound->fki_signature_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiSignatureID", *activesession_response_compound->fki_signature_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -411,7 +562,7 @@ cJSON *activesession_response_compound_convertToJSON(activesession_response_comp
 
     // activesession_response_compound->fki_ezsignuser_id
     if(activesession_response_compound->fki_ezsignuser_id) {
-    if(cJSON_AddNumberToObject(item, "fkiEzsignuserID", activesession_response_compound->fki_ezsignuser_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsignuserID", *activesession_response_compound->fki_ezsignuser_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -419,7 +570,7 @@ cJSON *activesession_response_compound_convertToJSON(activesession_response_comp
 
     // activesession_response_compound->b_systemconfiguration_ezsignpaidbyoffice
     if(activesession_response_compound->b_systemconfiguration_ezsignpaidbyoffice) {
-    if(cJSON_AddBoolToObject(item, "bSystemconfigurationEzsignpaidbyoffice", activesession_response_compound->b_systemconfiguration_ezsignpaidbyoffice) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bSystemconfigurationEzsignpaidbyoffice", *activesession_response_compound->b_systemconfiguration_ezsignpaidbyoffice) == NULL) {
     goto fail; //Bool
     }
     }
@@ -467,7 +618,15 @@ cJSON *activesession_response_compound_convertToJSON(activesession_response_comp
 
     // activesession_response_compound->b_user_ezsigntrial
     if(activesession_response_compound->b_user_ezsigntrial) {
-    if(cJSON_AddBoolToObject(item, "bUserEzsigntrial", activesession_response_compound->b_user_ezsigntrial) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bUserEzsigntrial", *activesession_response_compound->b_user_ezsigntrial) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
+    // activesession_response_compound->b_user_ezsigntemplaterolegrouping
+    if(activesession_response_compound->b_user_ezsigntemplaterolegrouping) {
+    if(cJSON_AddBoolToObject(item, "bUserEzsigntemplaterolegrouping", *activesession_response_compound->b_user_ezsigntemplaterolegrouping) == NULL) {
     goto fail; //Bool
     }
     }
@@ -564,6 +723,14 @@ cJSON *activesession_response_compound_convertToJSON(activesession_response_comp
     }
     }
 
+
+    // activesession_response_compound->b_activesession_maillinglistrequest
+    if(activesession_response_compound->b_activesession_maillinglistrequest) {
+    if(cJSON_AddBoolToObject(item, "bActivesessionMaillinglistrequest", *activesession_response_compound->b_activesession_maillinglistrequest) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -585,6 +752,31 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
     // define the local variable for activesession_response_compound->e_activesession_weekdaystart
     ezmax_api_definition__full_field_e_activesession_weekdaystart__e e_activesession_weekdaystart_local_nonprim = 0;
 
+    // define the local variable for activesession_response_compound->fki_language_id
+    int *fki_language_id_local_var = NULL;
+
+    char *s_company_name_x_local_str = NULL;
+
+    char *s_department_name_x_local_str = NULL;
+
+    // define the local variable for activesession_response_compound->b_activesession_debug
+    int *b_activesession_debug_local_var = NULL;
+
+    // define the local variable for activesession_response_compound->b_activesession_issuperadmin
+    int *b_activesession_issuperadmin_local_var = NULL;
+
+    // define the local variable for activesession_response_compound->b_activesession_attachment
+    int *b_activesession_attachment_local_var = NULL;
+
+    // define the local variable for activesession_response_compound->b_activesession_canafe
+    int *b_activesession_canafe_local_var = NULL;
+
+    // define the local variable for activesession_response_compound->b_activesession_financial
+    int *b_activesession_financial_local_var = NULL;
+
+    // define the local variable for activesession_response_compound->b_activesession_realestatecompleted
+    int *b_activesession_realestatecompleted_local_var = NULL;
+
     // define the local variable for activesession_response_compound->e_activesession_ezsign
     ezmax_api_definition__full_field_e_activesession_ezsign__e e_activesession_ezsign_local_nonprim = 0;
 
@@ -597,6 +789,20 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
     // define the local variable for activesession_response_compound->e_activesession_realestateinprogress
     ezmax_api_definition__full_field_e_activesession_realestateinprogress__e e_activesession_realestateinprogress_local_nonprim = 0;
 
+    char *pks_customer_code_local_str = NULL;
+
+    // define the local variable for activesession_response_compound->fki_systemconfigurationtype_id
+    int *fki_systemconfigurationtype_id_local_var = NULL;
+
+    // define the local variable for activesession_response_compound->fki_signature_id
+    int *fki_signature_id_local_var = NULL;
+
+    // define the local variable for activesession_response_compound->fki_ezsignuser_id
+    int *fki_ezsignuser_id_local_var = NULL;
+
+    // define the local variable for activesession_response_compound->b_systemconfiguration_ezsignpaidbyoffice
+    int *b_systemconfiguration_ezsignpaidbyoffice_local_var = NULL;
+
     // define the local variable for activesession_response_compound->e_systemconfiguration_ezsignofficeplan
     ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__e e_systemconfiguration_ezsignofficeplan_local_nonprim = 0;
 
@@ -605,6 +811,16 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
 
     // define the local variable for activesession_response_compound->e_user_ezsignprepaid
     ezmax_api_definition__full_field_e_user_ezsignprepaid__e e_user_ezsignprepaid_local_nonprim = 0;
+
+    // define the local variable for activesession_response_compound->b_user_ezsigntrial
+    int *b_user_ezsigntrial_local_var = NULL;
+
+    // define the local variable for activesession_response_compound->b_user_ezsigntemplaterolegrouping
+    int *b_user_ezsigntemplaterolegrouping_local_var = NULL;
+
+    char *dt_user_ezsignprepaidexpiration_local_str = NULL;
+
+    char *dt_user_npsrequest_local_str = NULL;
 
     // define the local list for activesession_response_compound->a_pki_permission_id
     list_t *a_pki_permission_idList = NULL;
@@ -620,6 +836,9 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
 
     // define the local list for activesession_response_compound->a_e_module_internalname
     list_t *a_e_module_internalnameList = NULL;
+
+    // define the local variable for activesession_response_compound->b_activesession_maillinglistrequest
+    int *b_activesession_maillinglistrequest_local_var = NULL;
 
     // activesession_response_compound->e_activesession_usertype
     cJSON *e_activesession_usertype = cJSON_GetObjectItemCaseSensitive(activesession_response_compoundJSON, "eActivesessionUsertype");
@@ -671,6 +890,12 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
     {
     goto end; //Numeric
     }
+    fki_language_id_local_var = malloc(sizeof(int));
+    if(!fki_language_id_local_var)
+    {
+        goto end;
+    }
+    *fki_language_id_local_var = fki_language_id->valuedouble;
 
     // activesession_response_compound->s_company_name_x
     cJSON *s_company_name_x = cJSON_GetObjectItemCaseSensitive(activesession_response_compoundJSON, "sCompanyNameX");
@@ -716,6 +941,12 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
     {
     goto end; //Bool
     }
+    b_activesession_debug_local_var = malloc(sizeof(int));
+    if(!b_activesession_debug_local_var)
+    {
+        goto end;
+    }
+    *b_activesession_debug_local_var = b_activesession_debug->valueint;
 
     // activesession_response_compound->b_activesession_issuperadmin
     cJSON *b_activesession_issuperadmin = cJSON_GetObjectItemCaseSensitive(activesession_response_compoundJSON, "bActivesessionIssuperadmin");
@@ -731,6 +962,12 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
     {
     goto end; //Bool
     }
+    b_activesession_issuperadmin_local_var = malloc(sizeof(int));
+    if(!b_activesession_issuperadmin_local_var)
+    {
+        goto end;
+    }
+    *b_activesession_issuperadmin_local_var = b_activesession_issuperadmin->valueint;
 
     // activesession_response_compound->b_activesession_attachment
     cJSON *b_activesession_attachment = cJSON_GetObjectItemCaseSensitive(activesession_response_compoundJSON, "bActivesessionAttachment");
@@ -742,6 +979,12 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
     {
     goto end; //Bool
     }
+    b_activesession_attachment_local_var = malloc(sizeof(int));
+    if(!b_activesession_attachment_local_var)
+    {
+        goto end;
+    }
+    *b_activesession_attachment_local_var = b_activesession_attachment->valueint;
     }
 
     // activesession_response_compound->b_activesession_canafe
@@ -754,6 +997,12 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
     {
     goto end; //Bool
     }
+    b_activesession_canafe_local_var = malloc(sizeof(int));
+    if(!b_activesession_canafe_local_var)
+    {
+        goto end;
+    }
+    *b_activesession_canafe_local_var = b_activesession_canafe->valueint;
     }
 
     // activesession_response_compound->b_activesession_financial
@@ -766,6 +1015,12 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
     {
     goto end; //Bool
     }
+    b_activesession_financial_local_var = malloc(sizeof(int));
+    if(!b_activesession_financial_local_var)
+    {
+        goto end;
+    }
+    *b_activesession_financial_local_var = b_activesession_financial->valueint;
     }
 
     // activesession_response_compound->b_activesession_realestatecompleted
@@ -778,6 +1033,12 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
     {
     goto end; //Bool
     }
+    b_activesession_realestatecompleted_local_var = malloc(sizeof(int));
+    if(!b_activesession_realestatecompleted_local_var)
+    {
+        goto end;
+    }
+    *b_activesession_realestatecompleted_local_var = b_activesession_realestatecompleted->valueint;
     }
 
     // activesession_response_compound->e_activesession_ezsign
@@ -848,6 +1109,12 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
     {
     goto end; //Numeric
     }
+    fki_systemconfigurationtype_id_local_var = malloc(sizeof(int));
+    if(!fki_systemconfigurationtype_id_local_var)
+    {
+        goto end;
+    }
+    *fki_systemconfigurationtype_id_local_var = fki_systemconfigurationtype_id->valuedouble;
 
     // activesession_response_compound->fki_signature_id
     cJSON *fki_signature_id = cJSON_GetObjectItemCaseSensitive(activesession_response_compoundJSON, "fkiSignatureID");
@@ -859,6 +1126,12 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
     {
     goto end; //Numeric
     }
+    fki_signature_id_local_var = malloc(sizeof(int));
+    if(!fki_signature_id_local_var)
+    {
+        goto end;
+    }
+    *fki_signature_id_local_var = fki_signature_id->valuedouble;
     }
 
     // activesession_response_compound->fki_ezsignuser_id
@@ -871,6 +1144,12 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
     {
     goto end; //Numeric
     }
+    fki_ezsignuser_id_local_var = malloc(sizeof(int));
+    if(!fki_ezsignuser_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezsignuser_id_local_var = fki_ezsignuser_id->valuedouble;
     }
 
     // activesession_response_compound->b_systemconfiguration_ezsignpaidbyoffice
@@ -883,6 +1162,12 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
     {
     goto end; //Bool
     }
+    b_systemconfiguration_ezsignpaidbyoffice_local_var = malloc(sizeof(int));
+    if(!b_systemconfiguration_ezsignpaidbyoffice_local_var)
+    {
+        goto end;
+    }
+    *b_systemconfiguration_ezsignpaidbyoffice_local_var = b_systemconfiguration_ezsignpaidbyoffice->valueint;
     }
 
     // activesession_response_compound->e_systemconfiguration_ezsignofficeplan
@@ -925,6 +1210,30 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
     {
     goto end; //Bool
     }
+    b_user_ezsigntrial_local_var = malloc(sizeof(int));
+    if(!b_user_ezsigntrial_local_var)
+    {
+        goto end;
+    }
+    *b_user_ezsigntrial_local_var = b_user_ezsigntrial->valueint;
+    }
+
+    // activesession_response_compound->b_user_ezsigntemplaterolegrouping
+    cJSON *b_user_ezsigntemplaterolegrouping = cJSON_GetObjectItemCaseSensitive(activesession_response_compoundJSON, "bUserEzsigntemplaterolegrouping");
+    if (cJSON_IsNull(b_user_ezsigntemplaterolegrouping)) {
+        b_user_ezsigntemplaterolegrouping = NULL;
+    }
+    if (b_user_ezsigntemplaterolegrouping) { 
+    if(!cJSON_IsBool(b_user_ezsigntemplaterolegrouping))
+    {
+    goto end; //Bool
+    }
+    b_user_ezsigntemplaterolegrouping_local_var = malloc(sizeof(int));
+    if(!b_user_ezsigntemplaterolegrouping_local_var)
+    {
+        goto end;
+    }
+    *b_user_ezsigntemplaterolegrouping_local_var = b_user_ezsigntemplaterolegrouping->valueint;
     }
 
     // activesession_response_compound->dt_user_ezsignprepaidexpiration
@@ -1037,41 +1346,71 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
         list_addElement(a_e_module_internalnameList , strdup(a_e_module_internalname_local->valuestring));
     }
 
+    // activesession_response_compound->b_activesession_maillinglistrequest
+    cJSON *b_activesession_maillinglistrequest = cJSON_GetObjectItemCaseSensitive(activesession_response_compoundJSON, "bActivesessionMaillinglistrequest");
+    if (cJSON_IsNull(b_activesession_maillinglistrequest)) {
+        b_activesession_maillinglistrequest = NULL;
+    }
+    if (b_activesession_maillinglistrequest) { 
+    if(!cJSON_IsBool(b_activesession_maillinglistrequest))
+    {
+    goto end; //Bool
+    }
+    b_activesession_maillinglistrequest_local_var = malloc(sizeof(int));
+    if(!b_activesession_maillinglistrequest_local_var)
+    {
+        goto end;
+    }
+    *b_activesession_maillinglistrequest_local_var = b_activesession_maillinglistrequest->valueint;
+    }
+
+
+    if (s_company_name_x && !cJSON_IsNull(s_company_name_x)) s_company_name_x_local_str = strdup(s_company_name_x->valuestring);
+    if (s_department_name_x && !cJSON_IsNull(s_department_name_x)) s_department_name_x_local_str = strdup(s_department_name_x->valuestring);
+    if (pks_customer_code && !cJSON_IsNull(pks_customer_code)) pks_customer_code_local_str = strdup(pks_customer_code->valuestring);
+    if (dt_user_ezsignprepaidexpiration && !cJSON_IsNull(dt_user_ezsignprepaidexpiration)) dt_user_ezsignprepaidexpiration_local_str = strdup(dt_user_ezsignprepaidexpiration->valuestring);
+    if (dt_user_npsrequest && !cJSON_IsNull(dt_user_npsrequest)) dt_user_npsrequest_local_str = strdup(dt_user_npsrequest->valuestring);
 
     activesession_response_compound_local_var = activesession_response_compound_create_internal (
         e_activesession_usertype_local_nonprim,
         e_activesession_origin_local_nonprim,
         e_activesession_weekdaystart_local_nonprim,
-        fki_language_id->valuedouble,
-        strdup(s_company_name_x->valuestring),
-        strdup(s_department_name_x->valuestring),
-        b_activesession_debug->valueint,
-        b_activesession_issuperadmin->valueint,
-        b_activesession_attachment ? b_activesession_attachment->valueint : 0,
-        b_activesession_canafe ? b_activesession_canafe->valueint : 0,
-        b_activesession_financial ? b_activesession_financial->valueint : 0,
-        b_activesession_realestatecompleted ? b_activesession_realestatecompleted->valueint : 0,
+        fki_language_id_local_var,
+        s_company_name_x_local_str,
+        s_department_name_x_local_str,
+        b_activesession_debug_local_var,
+        b_activesession_issuperadmin_local_var,
+        b_activesession_attachment_local_var,
+        b_activesession_canafe_local_var,
+        b_activesession_financial_local_var,
+        b_activesession_realestatecompleted_local_var,
         e_activesession_ezsign ? e_activesession_ezsign_local_nonprim : 0,
         e_activesession_ezsignaccess_local_nonprim,
         e_activesession_ezsignprepaid ? e_activesession_ezsignprepaid_local_nonprim : 0,
         e_activesession_realestateinprogress ? e_activesession_realestateinprogress_local_nonprim : 0,
-        strdup(pks_customer_code->valuestring),
-        fki_systemconfigurationtype_id->valuedouble,
-        fki_signature_id ? fki_signature_id->valuedouble : 0,
-        fki_ezsignuser_id ? fki_ezsignuser_id->valuedouble : 0,
-        b_systemconfiguration_ezsignpaidbyoffice ? b_systemconfiguration_ezsignpaidbyoffice->valueint : 0,
+        pks_customer_code_local_str,
+        fki_systemconfigurationtype_id_local_var,
+        fki_signature_id_local_var,
+        fki_ezsignuser_id_local_var,
+        b_systemconfiguration_ezsignpaidbyoffice_local_var,
         e_systemconfiguration_ezsignofficeplan ? e_systemconfiguration_ezsignofficeplan_local_nonprim : 0,
         e_user_ezsignaccess_local_nonprim,
         e_user_ezsignprepaid ? e_user_ezsignprepaid_local_nonprim : 0,
-        b_user_ezsigntrial ? b_user_ezsigntrial->valueint : 0,
-        dt_user_ezsignprepaidexpiration && !cJSON_IsNull(dt_user_ezsignprepaidexpiration) ? strdup(dt_user_ezsignprepaidexpiration->valuestring) : NULL,
-        dt_user_npsrequest && !cJSON_IsNull(dt_user_npsrequest) ? strdup(dt_user_npsrequest->valuestring) : NULL,
+        b_user_ezsigntrial_local_var,
+        b_user_ezsigntemplaterolegrouping_local_var,
+        dt_user_ezsignprepaidexpiration_local_str,
+        dt_user_npsrequest_local_str,
         a_pki_permission_idList,
         obj_user_real_local_nonprim,
         obj_user_cloned ? obj_user_cloned_local_nonprim : NULL,
         obj_apikey ? obj_apikey_local_nonprim : NULL,
-        a_e_module_internalnameList
+        a_e_module_internalnameList,
+        b_activesession_maillinglistrequest_local_var
         );
+
+    if (!activesession_response_compound_local_var) {
+        goto end;
+    }
 
     return activesession_response_compound_local_var;
 end:
@@ -1083,6 +1422,42 @@ end:
     }
     if (e_activesession_weekdaystart_local_nonprim) {
         e_activesession_weekdaystart_local_nonprim = 0;
+    }
+    if (fki_language_id_local_var) {
+        free(fki_language_id_local_var);
+        fki_language_id_local_var = NULL;
+    }
+    if (s_company_name_x_local_str) {
+        free(s_company_name_x_local_str);
+        s_company_name_x_local_str = NULL;
+    }
+    if (s_department_name_x_local_str) {
+        free(s_department_name_x_local_str);
+        s_department_name_x_local_str = NULL;
+    }
+    if (b_activesession_debug_local_var) {
+        free(b_activesession_debug_local_var);
+        b_activesession_debug_local_var = NULL;
+    }
+    if (b_activesession_issuperadmin_local_var) {
+        free(b_activesession_issuperadmin_local_var);
+        b_activesession_issuperadmin_local_var = NULL;
+    }
+    if (b_activesession_attachment_local_var) {
+        free(b_activesession_attachment_local_var);
+        b_activesession_attachment_local_var = NULL;
+    }
+    if (b_activesession_canafe_local_var) {
+        free(b_activesession_canafe_local_var);
+        b_activesession_canafe_local_var = NULL;
+    }
+    if (b_activesession_financial_local_var) {
+        free(b_activesession_financial_local_var);
+        b_activesession_financial_local_var = NULL;
+    }
+    if (b_activesession_realestatecompleted_local_var) {
+        free(b_activesession_realestatecompleted_local_var);
+        b_activesession_realestatecompleted_local_var = NULL;
     }
     if (e_activesession_ezsign_local_nonprim) {
         e_activesession_ezsign_local_nonprim = 0;
@@ -1096,6 +1471,26 @@ end:
     if (e_activesession_realestateinprogress_local_nonprim) {
         e_activesession_realestateinprogress_local_nonprim = 0;
     }
+    if (pks_customer_code_local_str) {
+        free(pks_customer_code_local_str);
+        pks_customer_code_local_str = NULL;
+    }
+    if (fki_systemconfigurationtype_id_local_var) {
+        free(fki_systemconfigurationtype_id_local_var);
+        fki_systemconfigurationtype_id_local_var = NULL;
+    }
+    if (fki_signature_id_local_var) {
+        free(fki_signature_id_local_var);
+        fki_signature_id_local_var = NULL;
+    }
+    if (fki_ezsignuser_id_local_var) {
+        free(fki_ezsignuser_id_local_var);
+        fki_ezsignuser_id_local_var = NULL;
+    }
+    if (b_systemconfiguration_ezsignpaidbyoffice_local_var) {
+        free(b_systemconfiguration_ezsignpaidbyoffice_local_var);
+        b_systemconfiguration_ezsignpaidbyoffice_local_var = NULL;
+    }
     if (e_systemconfiguration_ezsignofficeplan_local_nonprim) {
         e_systemconfiguration_ezsignofficeplan_local_nonprim = 0;
     }
@@ -1104,6 +1499,22 @@ end:
     }
     if (e_user_ezsignprepaid_local_nonprim) {
         e_user_ezsignprepaid_local_nonprim = 0;
+    }
+    if (b_user_ezsigntrial_local_var) {
+        free(b_user_ezsigntrial_local_var);
+        b_user_ezsigntrial_local_var = NULL;
+    }
+    if (b_user_ezsigntemplaterolegrouping_local_var) {
+        free(b_user_ezsigntemplaterolegrouping_local_var);
+        b_user_ezsigntemplaterolegrouping_local_var = NULL;
+    }
+    if (dt_user_ezsignprepaidexpiration_local_str) {
+        free(dt_user_ezsignprepaidexpiration_local_str);
+        dt_user_ezsignprepaidexpiration_local_str = NULL;
+    }
+    if (dt_user_npsrequest_local_str) {
+        free(dt_user_npsrequest_local_str);
+        dt_user_npsrequest_local_str = NULL;
     }
     if (a_pki_permission_idList) {
         listEntry_t *listEntry = NULL;
@@ -1134,6 +1545,10 @@ end:
         }
         list_freeList(a_e_module_internalnameList);
         a_e_module_internalnameList = NULL;
+    }
+    if (b_activesession_maillinglistrequest_local_var) {
+        free(b_activesession_maillinglistrequest_local_var);
+        b_activesession_maillinglistrequest_local_var = NULL;
     }
     return NULL;
 

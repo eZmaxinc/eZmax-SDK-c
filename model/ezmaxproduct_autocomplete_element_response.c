@@ -6,32 +6,47 @@
 
 
 static ezmaxproduct_autocomplete_element_response_t *ezmaxproduct_autocomplete_element_response_create_internal(
-    int pki_ezmaxproduct_id,
+    int *pki_ezmaxproduct_id,
     char *s_ezmaxproduct_description_x,
-    int b_ezmaxproduct_isactive
+    int *b_ezmaxproduct_isactive
     ) {
     ezmaxproduct_autocomplete_element_response_t *ezmaxproduct_autocomplete_element_response_local_var = malloc(sizeof(ezmaxproduct_autocomplete_element_response_t));
     if (!ezmaxproduct_autocomplete_element_response_local_var) {
         return NULL;
     }
+    memset(ezmaxproduct_autocomplete_element_response_local_var, 0, sizeof(ezmaxproduct_autocomplete_element_response_t));
+    ezmaxproduct_autocomplete_element_response_local_var->_library_owned = 1;
     ezmaxproduct_autocomplete_element_response_local_var->pki_ezmaxproduct_id = pki_ezmaxproduct_id;
     ezmaxproduct_autocomplete_element_response_local_var->s_ezmaxproduct_description_x = s_ezmaxproduct_description_x;
     ezmaxproduct_autocomplete_element_response_local_var->b_ezmaxproduct_isactive = b_ezmaxproduct_isactive;
-
-    ezmaxproduct_autocomplete_element_response_local_var->_library_owned = 1;
     return ezmaxproduct_autocomplete_element_response_local_var;
 }
 
 __attribute__((deprecated)) ezmaxproduct_autocomplete_element_response_t *ezmaxproduct_autocomplete_element_response_create(
-    int pki_ezmaxproduct_id,
+    int *pki_ezmaxproduct_id,
     char *s_ezmaxproduct_description_x,
-    int b_ezmaxproduct_isactive
+    int *b_ezmaxproduct_isactive
     ) {
-    return ezmaxproduct_autocomplete_element_response_create_internal (
-        pki_ezmaxproduct_id,
+    int *pki_ezmaxproduct_id_copy = NULL;
+    if (pki_ezmaxproduct_id) {
+        pki_ezmaxproduct_id_copy = malloc(sizeof(int));
+        if (pki_ezmaxproduct_id_copy) *pki_ezmaxproduct_id_copy = *pki_ezmaxproduct_id;
+    }
+    int *b_ezmaxproduct_isactive_copy = NULL;
+    if (b_ezmaxproduct_isactive) {
+        b_ezmaxproduct_isactive_copy = malloc(sizeof(int));
+        if (b_ezmaxproduct_isactive_copy) *b_ezmaxproduct_isactive_copy = *b_ezmaxproduct_isactive;
+    }
+    ezmaxproduct_autocomplete_element_response_t *result = ezmaxproduct_autocomplete_element_response_create_internal (
+        pki_ezmaxproduct_id_copy,
         s_ezmaxproduct_description_x,
-        b_ezmaxproduct_isactive
+        b_ezmaxproduct_isactive_copy
         );
+    if (!result) {
+        free(pki_ezmaxproduct_id_copy);
+        free(b_ezmaxproduct_isactive_copy);
+    }
+    return result;
 }
 
 void ezmaxproduct_autocomplete_element_response_free(ezmaxproduct_autocomplete_element_response_t *ezmaxproduct_autocomplete_element_response) {
@@ -43,9 +58,17 @@ void ezmaxproduct_autocomplete_element_response_free(ezmaxproduct_autocomplete_e
         return ;
     }
     listEntry_t *listEntry;
+    if (ezmaxproduct_autocomplete_element_response->pki_ezmaxproduct_id) {
+        free(ezmaxproduct_autocomplete_element_response->pki_ezmaxproduct_id);
+        ezmaxproduct_autocomplete_element_response->pki_ezmaxproduct_id = NULL;
+    }
     if (ezmaxproduct_autocomplete_element_response->s_ezmaxproduct_description_x) {
         free(ezmaxproduct_autocomplete_element_response->s_ezmaxproduct_description_x);
         ezmaxproduct_autocomplete_element_response->s_ezmaxproduct_description_x = NULL;
+    }
+    if (ezmaxproduct_autocomplete_element_response->b_ezmaxproduct_isactive) {
+        free(ezmaxproduct_autocomplete_element_response->b_ezmaxproduct_isactive);
+        ezmaxproduct_autocomplete_element_response->b_ezmaxproduct_isactive = NULL;
     }
     free(ezmaxproduct_autocomplete_element_response);
 }
@@ -57,7 +80,7 @@ cJSON *ezmaxproduct_autocomplete_element_response_convertToJSON(ezmaxproduct_aut
     if (!ezmaxproduct_autocomplete_element_response->pki_ezmaxproduct_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiEzmaxproductID", ezmaxproduct_autocomplete_element_response->pki_ezmaxproduct_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pkiEzmaxproductID", *ezmaxproduct_autocomplete_element_response->pki_ezmaxproduct_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -75,7 +98,7 @@ cJSON *ezmaxproduct_autocomplete_element_response_convertToJSON(ezmaxproduct_aut
     if (!ezmaxproduct_autocomplete_element_response->b_ezmaxproduct_isactive) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bEzmaxproductIsactive", ezmaxproduct_autocomplete_element_response->b_ezmaxproduct_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bEzmaxproductIsactive", *ezmaxproduct_autocomplete_element_response->b_ezmaxproduct_isactive) == NULL) {
     goto fail; //Bool
     }
 
@@ -91,6 +114,14 @@ ezmaxproduct_autocomplete_element_response_t *ezmaxproduct_autocomplete_element_
 
     ezmaxproduct_autocomplete_element_response_t *ezmaxproduct_autocomplete_element_response_local_var = NULL;
 
+    // define the local variable for ezmaxproduct_autocomplete_element_response->pki_ezmaxproduct_id
+    int *pki_ezmaxproduct_id_local_var = NULL;
+
+    char *s_ezmaxproduct_description_x_local_str = NULL;
+
+    // define the local variable for ezmaxproduct_autocomplete_element_response->b_ezmaxproduct_isactive
+    int *b_ezmaxproduct_isactive_local_var = NULL;
+
     // ezmaxproduct_autocomplete_element_response->pki_ezmaxproduct_id
     cJSON *pki_ezmaxproduct_id = cJSON_GetObjectItemCaseSensitive(ezmaxproduct_autocomplete_element_responseJSON, "pkiEzmaxproductID");
     if (cJSON_IsNull(pki_ezmaxproduct_id)) {
@@ -105,6 +136,12 @@ ezmaxproduct_autocomplete_element_response_t *ezmaxproduct_autocomplete_element_
     {
     goto end; //Numeric
     }
+    pki_ezmaxproduct_id_local_var = malloc(sizeof(int));
+    if(!pki_ezmaxproduct_id_local_var)
+    {
+        goto end;
+    }
+    *pki_ezmaxproduct_id_local_var = pki_ezmaxproduct_id->valuedouble;
 
     // ezmaxproduct_autocomplete_element_response->s_ezmaxproduct_description_x
     cJSON *s_ezmaxproduct_description_x = cJSON_GetObjectItemCaseSensitive(ezmaxproduct_autocomplete_element_responseJSON, "sEzmaxproductDescriptionX");
@@ -135,16 +172,40 @@ ezmaxproduct_autocomplete_element_response_t *ezmaxproduct_autocomplete_element_
     {
     goto end; //Bool
     }
+    b_ezmaxproduct_isactive_local_var = malloc(sizeof(int));
+    if(!b_ezmaxproduct_isactive_local_var)
+    {
+        goto end;
+    }
+    *b_ezmaxproduct_isactive_local_var = b_ezmaxproduct_isactive->valueint;
 
+
+    if (s_ezmaxproduct_description_x && !cJSON_IsNull(s_ezmaxproduct_description_x)) s_ezmaxproduct_description_x_local_str = strdup(s_ezmaxproduct_description_x->valuestring);
 
     ezmaxproduct_autocomplete_element_response_local_var = ezmaxproduct_autocomplete_element_response_create_internal (
-        pki_ezmaxproduct_id->valuedouble,
-        strdup(s_ezmaxproduct_description_x->valuestring),
-        b_ezmaxproduct_isactive->valueint
+        pki_ezmaxproduct_id_local_var,
+        s_ezmaxproduct_description_x_local_str,
+        b_ezmaxproduct_isactive_local_var
         );
+
+    if (!ezmaxproduct_autocomplete_element_response_local_var) {
+        goto end;
+    }
 
     return ezmaxproduct_autocomplete_element_response_local_var;
 end:
+    if (pki_ezmaxproduct_id_local_var) {
+        free(pki_ezmaxproduct_id_local_var);
+        pki_ezmaxproduct_id_local_var = NULL;
+    }
+    if (s_ezmaxproduct_description_x_local_str) {
+        free(s_ezmaxproduct_description_x_local_str);
+        s_ezmaxproduct_description_x_local_str = NULL;
+    }
+    if (b_ezmaxproduct_isactive_local_var) {
+        free(b_ezmaxproduct_isactive_local_var);
+        b_ezmaxproduct_isactive_local_var = NULL;
+    }
     return NULL;
 
 }

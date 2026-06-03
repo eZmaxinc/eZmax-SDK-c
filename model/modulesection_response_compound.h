@@ -20,8 +20,8 @@ typedef struct modulesection_response_compound_t modulesection_response_compound
 
 
 typedef struct modulesection_response_compound_t {
-    int pki_modulesection_id; //numeric
-    int fki_module_id; //numeric
+    int *pki_modulesection_id; //numeric
+    int *fki_module_id; //numeric
     char *s_modulesection_internalname; // string
     char *s_modulesection_name_x; // string
     list_t *a_obj_permission; //nonprimitive container
@@ -30,8 +30,8 @@ typedef struct modulesection_response_compound_t {
 } modulesection_response_compound_t;
 
 __attribute__((deprecated)) modulesection_response_compound_t *modulesection_response_compound_create(
-    int pki_modulesection_id,
-    int fki_module_id,
+    int *pki_modulesection_id,
+    int *fki_module_id,
     char *s_modulesection_internalname,
     char *s_modulesection_name_x,
     list_t *a_obj_permission

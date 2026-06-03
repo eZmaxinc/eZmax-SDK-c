@@ -6,44 +6,65 @@
 
 
 static custom_ezmaxinvoicing_ezsigndocument_response_t *custom_ezmaxinvoicing_ezsigndocument_response_create_internal(
-    int fki_ezsignfolder_id,
-    int fki_billingentityinternal_id,
+    int *fki_ezsignfolder_id,
+    int *fki_billingentityinternal_id,
     char *s_name,
     char *s_ezsignfolder_description,
     char *s_ezsigndocument_name,
-    int b_ezsignfolder_allowed
+    int *b_ezsignfolder_allowed
     ) {
     custom_ezmaxinvoicing_ezsigndocument_response_t *custom_ezmaxinvoicing_ezsigndocument_response_local_var = malloc(sizeof(custom_ezmaxinvoicing_ezsigndocument_response_t));
     if (!custom_ezmaxinvoicing_ezsigndocument_response_local_var) {
         return NULL;
     }
+    memset(custom_ezmaxinvoicing_ezsigndocument_response_local_var, 0, sizeof(custom_ezmaxinvoicing_ezsigndocument_response_t));
+    custom_ezmaxinvoicing_ezsigndocument_response_local_var->_library_owned = 1;
     custom_ezmaxinvoicing_ezsigndocument_response_local_var->fki_ezsignfolder_id = fki_ezsignfolder_id;
     custom_ezmaxinvoicing_ezsigndocument_response_local_var->fki_billingentityinternal_id = fki_billingentityinternal_id;
     custom_ezmaxinvoicing_ezsigndocument_response_local_var->s_name = s_name;
     custom_ezmaxinvoicing_ezsigndocument_response_local_var->s_ezsignfolder_description = s_ezsignfolder_description;
     custom_ezmaxinvoicing_ezsigndocument_response_local_var->s_ezsigndocument_name = s_ezsigndocument_name;
     custom_ezmaxinvoicing_ezsigndocument_response_local_var->b_ezsignfolder_allowed = b_ezsignfolder_allowed;
-
-    custom_ezmaxinvoicing_ezsigndocument_response_local_var->_library_owned = 1;
     return custom_ezmaxinvoicing_ezsigndocument_response_local_var;
 }
 
 __attribute__((deprecated)) custom_ezmaxinvoicing_ezsigndocument_response_t *custom_ezmaxinvoicing_ezsigndocument_response_create(
-    int fki_ezsignfolder_id,
-    int fki_billingentityinternal_id,
+    int *fki_ezsignfolder_id,
+    int *fki_billingentityinternal_id,
     char *s_name,
     char *s_ezsignfolder_description,
     char *s_ezsigndocument_name,
-    int b_ezsignfolder_allowed
+    int *b_ezsignfolder_allowed
     ) {
-    return custom_ezmaxinvoicing_ezsigndocument_response_create_internal (
-        fki_ezsignfolder_id,
-        fki_billingentityinternal_id,
+    int *fki_ezsignfolder_id_copy = NULL;
+    if (fki_ezsignfolder_id) {
+        fki_ezsignfolder_id_copy = malloc(sizeof(int));
+        if (fki_ezsignfolder_id_copy) *fki_ezsignfolder_id_copy = *fki_ezsignfolder_id;
+    }
+    int *fki_billingentityinternal_id_copy = NULL;
+    if (fki_billingentityinternal_id) {
+        fki_billingentityinternal_id_copy = malloc(sizeof(int));
+        if (fki_billingentityinternal_id_copy) *fki_billingentityinternal_id_copy = *fki_billingentityinternal_id;
+    }
+    int *b_ezsignfolder_allowed_copy = NULL;
+    if (b_ezsignfolder_allowed) {
+        b_ezsignfolder_allowed_copy = malloc(sizeof(int));
+        if (b_ezsignfolder_allowed_copy) *b_ezsignfolder_allowed_copy = *b_ezsignfolder_allowed;
+    }
+    custom_ezmaxinvoicing_ezsigndocument_response_t *result = custom_ezmaxinvoicing_ezsigndocument_response_create_internal (
+        fki_ezsignfolder_id_copy,
+        fki_billingentityinternal_id_copy,
         s_name,
         s_ezsignfolder_description,
         s_ezsigndocument_name,
-        b_ezsignfolder_allowed
+        b_ezsignfolder_allowed_copy
         );
+    if (!result) {
+        free(fki_ezsignfolder_id_copy);
+        free(fki_billingentityinternal_id_copy);
+        free(b_ezsignfolder_allowed_copy);
+    }
+    return result;
 }
 
 void custom_ezmaxinvoicing_ezsigndocument_response_free(custom_ezmaxinvoicing_ezsigndocument_response_t *custom_ezmaxinvoicing_ezsigndocument_response) {
@@ -55,6 +76,14 @@ void custom_ezmaxinvoicing_ezsigndocument_response_free(custom_ezmaxinvoicing_ez
         return ;
     }
     listEntry_t *listEntry;
+    if (custom_ezmaxinvoicing_ezsigndocument_response->fki_ezsignfolder_id) {
+        free(custom_ezmaxinvoicing_ezsigndocument_response->fki_ezsignfolder_id);
+        custom_ezmaxinvoicing_ezsigndocument_response->fki_ezsignfolder_id = NULL;
+    }
+    if (custom_ezmaxinvoicing_ezsigndocument_response->fki_billingentityinternal_id) {
+        free(custom_ezmaxinvoicing_ezsigndocument_response->fki_billingentityinternal_id);
+        custom_ezmaxinvoicing_ezsigndocument_response->fki_billingentityinternal_id = NULL;
+    }
     if (custom_ezmaxinvoicing_ezsigndocument_response->s_name) {
         free(custom_ezmaxinvoicing_ezsigndocument_response->s_name);
         custom_ezmaxinvoicing_ezsigndocument_response->s_name = NULL;
@@ -67,6 +96,10 @@ void custom_ezmaxinvoicing_ezsigndocument_response_free(custom_ezmaxinvoicing_ez
         free(custom_ezmaxinvoicing_ezsigndocument_response->s_ezsigndocument_name);
         custom_ezmaxinvoicing_ezsigndocument_response->s_ezsigndocument_name = NULL;
     }
+    if (custom_ezmaxinvoicing_ezsigndocument_response->b_ezsignfolder_allowed) {
+        free(custom_ezmaxinvoicing_ezsigndocument_response->b_ezsignfolder_allowed);
+        custom_ezmaxinvoicing_ezsigndocument_response->b_ezsignfolder_allowed = NULL;
+    }
     free(custom_ezmaxinvoicing_ezsigndocument_response);
 }
 
@@ -77,14 +110,14 @@ cJSON *custom_ezmaxinvoicing_ezsigndocument_response_convertToJSON(custom_ezmaxi
     if (!custom_ezmaxinvoicing_ezsigndocument_response->fki_ezsignfolder_id) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "fkiEzsignfolderID", custom_ezmaxinvoicing_ezsigndocument_response->fki_ezsignfolder_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsignfolderID", *custom_ezmaxinvoicing_ezsigndocument_response->fki_ezsignfolder_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // custom_ezmaxinvoicing_ezsigndocument_response->fki_billingentityinternal_id
     if(custom_ezmaxinvoicing_ezsigndocument_response->fki_billingentityinternal_id) {
-    if(cJSON_AddNumberToObject(item, "fkiBillingentityinternalID", custom_ezmaxinvoicing_ezsigndocument_response->fki_billingentityinternal_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "fkiBillingentityinternalID", *custom_ezmaxinvoicing_ezsigndocument_response->fki_billingentityinternal_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -121,7 +154,7 @@ cJSON *custom_ezmaxinvoicing_ezsigndocument_response_convertToJSON(custom_ezmaxi
     if (!custom_ezmaxinvoicing_ezsigndocument_response->b_ezsignfolder_allowed) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bEzsignfolderAllowed", custom_ezmaxinvoicing_ezsigndocument_response->b_ezsignfolder_allowed) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bEzsignfolderAllowed", *custom_ezmaxinvoicing_ezsigndocument_response->b_ezsignfolder_allowed) == NULL) {
     goto fail; //Bool
     }
 
@@ -137,6 +170,21 @@ custom_ezmaxinvoicing_ezsigndocument_response_t *custom_ezmaxinvoicing_ezsigndoc
 
     custom_ezmaxinvoicing_ezsigndocument_response_t *custom_ezmaxinvoicing_ezsigndocument_response_local_var = NULL;
 
+    // define the local variable for custom_ezmaxinvoicing_ezsigndocument_response->fki_ezsignfolder_id
+    int *fki_ezsignfolder_id_local_var = NULL;
+
+    // define the local variable for custom_ezmaxinvoicing_ezsigndocument_response->fki_billingentityinternal_id
+    int *fki_billingentityinternal_id_local_var = NULL;
+
+    char *s_name_local_str = NULL;
+
+    char *s_ezsignfolder_description_local_str = NULL;
+
+    char *s_ezsigndocument_name_local_str = NULL;
+
+    // define the local variable for custom_ezmaxinvoicing_ezsigndocument_response->b_ezsignfolder_allowed
+    int *b_ezsignfolder_allowed_local_var = NULL;
+
     // custom_ezmaxinvoicing_ezsigndocument_response->fki_ezsignfolder_id
     cJSON *fki_ezsignfolder_id = cJSON_GetObjectItemCaseSensitive(custom_ezmaxinvoicing_ezsigndocument_responseJSON, "fkiEzsignfolderID");
     if (cJSON_IsNull(fki_ezsignfolder_id)) {
@@ -151,6 +199,12 @@ custom_ezmaxinvoicing_ezsigndocument_response_t *custom_ezmaxinvoicing_ezsigndoc
     {
     goto end; //Numeric
     }
+    fki_ezsignfolder_id_local_var = malloc(sizeof(int));
+    if(!fki_ezsignfolder_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezsignfolder_id_local_var = fki_ezsignfolder_id->valuedouble;
 
     // custom_ezmaxinvoicing_ezsigndocument_response->fki_billingentityinternal_id
     cJSON *fki_billingentityinternal_id = cJSON_GetObjectItemCaseSensitive(custom_ezmaxinvoicing_ezsigndocument_responseJSON, "fkiBillingentityinternalID");
@@ -162,6 +216,12 @@ custom_ezmaxinvoicing_ezsigndocument_response_t *custom_ezmaxinvoicing_ezsigndoc
     {
     goto end; //Numeric
     }
+    fki_billingentityinternal_id_local_var = malloc(sizeof(int));
+    if(!fki_billingentityinternal_id_local_var)
+    {
+        goto end;
+    }
+    *fki_billingentityinternal_id_local_var = fki_billingentityinternal_id->valuedouble;
     }
 
     // custom_ezmaxinvoicing_ezsigndocument_response->s_name
@@ -223,19 +283,57 @@ custom_ezmaxinvoicing_ezsigndocument_response_t *custom_ezmaxinvoicing_ezsigndoc
     {
     goto end; //Bool
     }
+    b_ezsignfolder_allowed_local_var = malloc(sizeof(int));
+    if(!b_ezsignfolder_allowed_local_var)
+    {
+        goto end;
+    }
+    *b_ezsignfolder_allowed_local_var = b_ezsignfolder_allowed->valueint;
 
+
+    if (s_name && !cJSON_IsNull(s_name)) s_name_local_str = strdup(s_name->valuestring);
+    if (s_ezsignfolder_description && !cJSON_IsNull(s_ezsignfolder_description)) s_ezsignfolder_description_local_str = strdup(s_ezsignfolder_description->valuestring);
+    if (s_ezsigndocument_name && !cJSON_IsNull(s_ezsigndocument_name)) s_ezsigndocument_name_local_str = strdup(s_ezsigndocument_name->valuestring);
 
     custom_ezmaxinvoicing_ezsigndocument_response_local_var = custom_ezmaxinvoicing_ezsigndocument_response_create_internal (
-        fki_ezsignfolder_id->valuedouble,
-        fki_billingentityinternal_id ? fki_billingentityinternal_id->valuedouble : 0,
-        strdup(s_name->valuestring),
-        strdup(s_ezsignfolder_description->valuestring),
-        strdup(s_ezsigndocument_name->valuestring),
-        b_ezsignfolder_allowed->valueint
+        fki_ezsignfolder_id_local_var,
+        fki_billingentityinternal_id_local_var,
+        s_name_local_str,
+        s_ezsignfolder_description_local_str,
+        s_ezsigndocument_name_local_str,
+        b_ezsignfolder_allowed_local_var
         );
+
+    if (!custom_ezmaxinvoicing_ezsigndocument_response_local_var) {
+        goto end;
+    }
 
     return custom_ezmaxinvoicing_ezsigndocument_response_local_var;
 end:
+    if (fki_ezsignfolder_id_local_var) {
+        free(fki_ezsignfolder_id_local_var);
+        fki_ezsignfolder_id_local_var = NULL;
+    }
+    if (fki_billingentityinternal_id_local_var) {
+        free(fki_billingentityinternal_id_local_var);
+        fki_billingentityinternal_id_local_var = NULL;
+    }
+    if (s_name_local_str) {
+        free(s_name_local_str);
+        s_name_local_str = NULL;
+    }
+    if (s_ezsignfolder_description_local_str) {
+        free(s_ezsignfolder_description_local_str);
+        s_ezsignfolder_description_local_str = NULL;
+    }
+    if (s_ezsigndocument_name_local_str) {
+        free(s_ezsigndocument_name_local_str);
+        s_ezsigndocument_name_local_str = NULL;
+    }
+    if (b_ezsignfolder_allowed_local_var) {
+        free(b_ezsignfolder_allowed_local_var);
+        b_ezsignfolder_allowed_local_var = NULL;
+    }
     return NULL;
 
 }

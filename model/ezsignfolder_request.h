@@ -20,10 +20,10 @@ typedef struct ezsignfolder_request_t ezsignfolder_request_t;
 
 
 typedef struct ezsignfolder_request_t {
-    int pki_ezsignfolder_id; //numeric
-    int fki_ezsignfoldertype_id; //numeric
-    int fki_timezone_id; //numeric
-    int fki_ezsigntsarequirement_id; //numeric
+    int *pki_ezsignfolder_id; //numeric
+    int *fki_ezsignfoldertype_id; //numeric
+    int *fki_timezone_id; //numeric
+    int *fki_ezsigntsarequirement_id; //numeric
     char *s_ezsignfolder_description; // string
     char *t_ezsignfolder_note; // string
     ezmax_api_definition__full_field_e_ezsignfolder_sendreminderfrequency__e e_ezsignfolder_sendreminderfrequency; //referenced enum
@@ -33,10 +33,10 @@ typedef struct ezsignfolder_request_t {
 } ezsignfolder_request_t;
 
 __attribute__((deprecated)) ezsignfolder_request_t *ezsignfolder_request_create(
-    int pki_ezsignfolder_id,
-    int fki_ezsignfoldertype_id,
-    int fki_timezone_id,
-    int fki_ezsigntsarequirement_id,
+    int *pki_ezsignfolder_id,
+    int *fki_ezsignfoldertype_id,
+    int *fki_timezone_id,
+    int *fki_ezsigntsarequirement_id,
     char *s_ezsignfolder_description,
     char *t_ezsignfolder_note,
     ezmax_api_definition__full_field_e_ezsignfolder_sendreminderfrequency__e e_ezsignfolder_sendreminderfrequency,
