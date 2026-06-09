@@ -1731,10 +1731,7 @@ set(SRCS
     model/scim_service_provider_config.c
     model/scim_service_provider_config_bulk.c
     model/scim_service_provider_config_change_password.c
-    model/scim_service_provider_config_etag.c
     model/scim_service_provider_config_filter.c
-    model/scim_service_provider_config_patch.c
-    model/scim_service_provider_config_sort.c
     model/scim_user.c
     model/scim_user_list.c
     model/secretquestion_autocomplete_element_response.c
@@ -3876,10 +3873,7 @@ set(HDRS
     model/scim_service_provider_config.h
     model/scim_service_provider_config_bulk.h
     model/scim_service_provider_config_change_password.h
-    model/scim_service_provider_config_etag.h
     model/scim_service_provider_config_filter.h
-    model/scim_service_provider_config_patch.h
-    model/scim_service_provider_config_sort.h
     model/scim_user.h
     model/scim_user_list.h
     model/secretquestion_autocomplete_element_response.h

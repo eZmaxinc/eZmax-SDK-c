@@ -8,6 +8,7 @@
 static apikey_response_t *apikey_response_create_internal(
     int *pki_apikey_id,
     int *fki_user_id,
+    int *fki_ezmaxpartnerproductstage_id,
     multilingual_apikey_description_t *obj_apikey_description,
     custom_contact_name_response_t *obj_contact_name,
     char *s_apikey_apikey,
@@ -24,6 +25,7 @@ static apikey_response_t *apikey_response_create_internal(
     apikey_response_local_var->_library_owned = 1;
     apikey_response_local_var->pki_apikey_id = pki_apikey_id;
     apikey_response_local_var->fki_user_id = fki_user_id;
+    apikey_response_local_var->fki_ezmaxpartnerproductstage_id = fki_ezmaxpartnerproductstage_id;
     apikey_response_local_var->obj_apikey_description = obj_apikey_description;
     apikey_response_local_var->obj_contact_name = obj_contact_name;
     apikey_response_local_var->s_apikey_apikey = s_apikey_apikey;
@@ -37,6 +39,7 @@ static apikey_response_t *apikey_response_create_internal(
 __attribute__((deprecated)) apikey_response_t *apikey_response_create(
     int *pki_apikey_id,
     int *fki_user_id,
+    int *fki_ezmaxpartnerproductstage_id,
     multilingual_apikey_description_t *obj_apikey_description,
     custom_contact_name_response_t *obj_contact_name,
     char *s_apikey_apikey,
@@ -55,6 +58,11 @@ __attribute__((deprecated)) apikey_response_t *apikey_response_create(
         fki_user_id_copy = malloc(sizeof(int));
         if (fki_user_id_copy) *fki_user_id_copy = *fki_user_id;
     }
+    int *fki_ezmaxpartnerproductstage_id_copy = NULL;
+    if (fki_ezmaxpartnerproductstage_id) {
+        fki_ezmaxpartnerproductstage_id_copy = malloc(sizeof(int));
+        if (fki_ezmaxpartnerproductstage_id_copy) *fki_ezmaxpartnerproductstage_id_copy = *fki_ezmaxpartnerproductstage_id;
+    }
     int *b_apikey_isactive_copy = NULL;
     if (b_apikey_isactive) {
         b_apikey_isactive_copy = malloc(sizeof(int));
@@ -68,6 +76,7 @@ __attribute__((deprecated)) apikey_response_t *apikey_response_create(
     apikey_response_t *result = apikey_response_create_internal (
         pki_apikey_id_copy,
         fki_user_id_copy,
+        fki_ezmaxpartnerproductstage_id_copy,
         obj_apikey_description,
         obj_contact_name,
         s_apikey_apikey,
@@ -79,6 +88,7 @@ __attribute__((deprecated)) apikey_response_t *apikey_response_create(
     if (!result) {
         free(pki_apikey_id_copy);
         free(fki_user_id_copy);
+        free(fki_ezmaxpartnerproductstage_id_copy);
         free(b_apikey_isactive_copy);
         free(b_apikey_issigned_copy);
     }
@@ -101,6 +111,10 @@ void apikey_response_free(apikey_response_t *apikey_response) {
     if (apikey_response->fki_user_id) {
         free(apikey_response->fki_user_id);
         apikey_response->fki_user_id = NULL;
+    }
+    if (apikey_response->fki_ezmaxpartnerproductstage_id) {
+        free(apikey_response->fki_ezmaxpartnerproductstage_id);
+        apikey_response->fki_ezmaxpartnerproductstage_id = NULL;
     }
     if (apikey_response->obj_apikey_description) {
         multilingual_apikey_description_free(apikey_response->obj_apikey_description);
@@ -151,6 +165,14 @@ cJSON *apikey_response_convertToJSON(apikey_response_t *apikey_response) {
     }
     if(cJSON_AddNumberToObject(item, "fkiUserID", *apikey_response->fki_user_id) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // apikey_response->fki_ezmaxpartnerproductstage_id
+    if(apikey_response->fki_ezmaxpartnerproductstage_id) {
+    if(cJSON_AddNumberToObject(item, "fkiEzmaxpartnerproductstageID", *apikey_response->fki_ezmaxpartnerproductstage_id) == NULL) {
+    goto fail; //Numeric
+    }
     }
 
 
@@ -246,6 +268,9 @@ apikey_response_t *apikey_response_parseFromJSON(cJSON *apikey_responseJSON){
     // define the local variable for apikey_response->fki_user_id
     int *fki_user_id_local_var = NULL;
 
+    // define the local variable for apikey_response->fki_ezmaxpartnerproductstage_id
+    int *fki_ezmaxpartnerproductstage_id_local_var = NULL;
+
     // define the local variable for apikey_response->obj_apikey_description
     multilingual_apikey_description_t *obj_apikey_description_local_nonprim = NULL;
 
@@ -306,6 +331,24 @@ apikey_response_t *apikey_response_parseFromJSON(cJSON *apikey_responseJSON){
         goto end;
     }
     *fki_user_id_local_var = fki_user_id->valuedouble;
+
+    // apikey_response->fki_ezmaxpartnerproductstage_id
+    cJSON *fki_ezmaxpartnerproductstage_id = cJSON_GetObjectItemCaseSensitive(apikey_responseJSON, "fkiEzmaxpartnerproductstageID");
+    if (cJSON_IsNull(fki_ezmaxpartnerproductstage_id)) {
+        fki_ezmaxpartnerproductstage_id = NULL;
+    }
+    if (fki_ezmaxpartnerproductstage_id) { 
+    if(!cJSON_IsNumber(fki_ezmaxpartnerproductstage_id))
+    {
+    goto end; //Numeric
+    }
+    fki_ezmaxpartnerproductstage_id_local_var = malloc(sizeof(int));
+    if(!fki_ezmaxpartnerproductstage_id_local_var)
+    {
+        goto end;
+    }
+    *fki_ezmaxpartnerproductstage_id_local_var = fki_ezmaxpartnerproductstage_id->valuedouble;
+    }
 
     // apikey_response->obj_apikey_description
     cJSON *obj_apikey_description = cJSON_GetObjectItemCaseSensitive(apikey_responseJSON, "objApikeyDescription");
@@ -413,6 +456,7 @@ apikey_response_t *apikey_response_parseFromJSON(cJSON *apikey_responseJSON){
     apikey_response_local_var = apikey_response_create_internal (
         pki_apikey_id_local_var,
         fki_user_id_local_var,
+        fki_ezmaxpartnerproductstage_id_local_var,
         obj_apikey_description_local_nonprim,
         obj_contact_name_local_nonprim,
         s_apikey_apikey_local_str,
@@ -435,6 +479,10 @@ end:
     if (fki_user_id_local_var) {
         free(fki_user_id_local_var);
         fki_user_id_local_var = NULL;
+    }
+    if (fki_ezmaxpartnerproductstage_id_local_var) {
+        free(fki_ezmaxpartnerproductstage_id_local_var);
+        fki_ezmaxpartnerproductstage_id_local_var = NULL;
     }
     if (obj_apikey_description_local_nonprim) {
         multilingual_apikey_description_free(obj_apikey_description_local_nonprim);

@@ -24,6 +24,7 @@ typedef struct apikey_response_t apikey_response_t;
 typedef struct apikey_response_t {
     int *pki_apikey_id; //numeric
     int *fki_user_id; //numeric
+    int *fki_ezmaxpartnerproductstage_id; //numeric
     struct multilingual_apikey_description_t *obj_apikey_description; //model
     struct custom_contact_name_response_t *obj_contact_name; //model
     char *s_apikey_apikey; // string
@@ -38,6 +39,7 @@ typedef struct apikey_response_t {
 __attribute__((deprecated)) apikey_response_t *apikey_response_create(
     int *pki_apikey_id,
     int *fki_user_id,
+    int *fki_ezmaxpartnerproductstage_id,
     multilingual_apikey_description_t *obj_apikey_description,
     custom_contact_name_response_t *obj_contact_name,
     char *s_apikey_apikey,

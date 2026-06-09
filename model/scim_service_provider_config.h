@@ -18,10 +18,7 @@ typedef struct scim_service_provider_config_t scim_service_provider_config_t;
 #include "scim_authentication_scheme.h"
 #include "scim_service_provider_config_bulk.h"
 #include "scim_service_provider_config_change_password.h"
-#include "scim_service_provider_config_etag.h"
 #include "scim_service_provider_config_filter.h"
-#include "scim_service_provider_config_patch.h"
-#include "scim_service_provider_config_sort.h"
 
 
 
@@ -30,10 +27,10 @@ typedef struct scim_service_provider_config_t {
     struct scim_service_provider_config_bulk_t *bulk; //model
     struct scim_service_provider_config_change_password_t *change_password; //model
     char *documentation_uri; // string
-    struct scim_service_provider_config_etag_t *etag; //model
+    struct scim_service_provider_config_change_password_t *etag; //model
     struct scim_service_provider_config_filter_t *filter; //model
-    struct scim_service_provider_config_patch_t *patch; //model
-    struct scim_service_provider_config_sort_t *sort; //model
+    struct scim_service_provider_config_change_password_t *patch; //model
+    struct scim_service_provider_config_change_password_t *sort; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
 } scim_service_provider_config_t;
@@ -43,10 +40,10 @@ __attribute__((deprecated)) scim_service_provider_config_t *scim_service_provide
     scim_service_provider_config_bulk_t *bulk,
     scim_service_provider_config_change_password_t *change_password,
     char *documentation_uri,
-    scim_service_provider_config_etag_t *etag,
+    scim_service_provider_config_change_password_t *etag,
     scim_service_provider_config_filter_t *filter,
-    scim_service_provider_config_patch_t *patch,
-    scim_service_provider_config_sort_t *sort
+    scim_service_provider_config_change_password_t *patch,
+    scim_service_provider_config_change_password_t *sort
 );
 
 void scim_service_provider_config_free(scim_service_provider_config_t *scim_service_provider_config);
