@@ -19,14 +19,12 @@ typedef struct user_impersonate_v1_request_t user_impersonate_v1_request_t;
 
 
 typedef struct user_impersonate_v1_request_t {
-    int *fki_user_id; //numeric
     int *i_expiration_minutes; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } user_impersonate_v1_request_t;
 
 __attribute__((deprecated)) user_impersonate_v1_request_t *user_impersonate_v1_request_create(
-    int *fki_user_id,
     int *i_expiration_minutes
 );
 

@@ -8,6 +8,58 @@
 #define MAX_BUFFER_LENGTH 4096
 #define MAX_NUMBER_LENGTH_LONG 21
 
+// Functions for enum ESIGNERTYPE for ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsForSignerV1
+
+static char* ezsignfolderGetActionableElementsForSignerV1_ESIGNERTYPE_ToString(ezmax_api_definition__full_ezsignfolderGetActionableElementsForSignerV1_eSignerType_e ESIGNERTYPE){
+    char *ESIGNERTYPEArray[] =  { "NULL", "Ezsignsigner", "User" };
+    return ESIGNERTYPEArray[ESIGNERTYPE];
+}
+
+static ezmax_api_definition__full_ezsignfolderGetActionableElementsForSignerV1_eSignerType_e ezsignfolderGetActionableElementsForSignerV1_ESIGNERTYPE_FromString(char* ESIGNERTYPE){
+    int stringToReturn = 0;
+    char *ESIGNERTYPEArray[] =  { "NULL", "Ezsignsigner", "User" };
+    size_t sizeofArray = sizeof(ESIGNERTYPEArray) / sizeof(ESIGNERTYPEArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(ESIGNERTYPE, ESIGNERTYPEArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
+
+/*
+// Function ezsignfolderGetActionableElementsForSignerV1_ESIGNERTYPE_convertToJSON is not currently used,
+// since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
+//
+static cJSON *ezsignfolderGetActionableElementsForSignerV1_ESIGNERTYPE_convertToJSON(ezmax_api_definition__full_ezsignfolderGetActionableElementsForSignerV1_eSignerType_e ESIGNERTYPE) {
+    cJSON *item = cJSON_CreateObject();
+    if(cJSON_AddStringToObject(item, "eSignerType", ezsignfolderGetActionableElementsForSignerV1_ESIGNERTYPE_ToString(ESIGNERTYPE)) == NULL) {
+        goto fail;
+    }
+    return item;
+    fail:
+    cJSON_Delete(item);
+    return NULL;
+}
+
+// Function ezsignfolderGetActionableElementsForSignerV1_ESIGNERTYPE_parseFromJSON is not currently used,
+// since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
+//
+static ezmax_api_definition__full_ezsignfolderGetActionableElementsForSignerV1_eSignerType_e ezsignfolderGetActionableElementsForSignerV1_ESIGNERTYPE_parseFromJSON(cJSON* ESIGNERTYPEJSON) {
+    ezmax_api_definition__full_ezsignfolderGetActionableElementsForSignerV1_eSignerType_e ESIGNERTYPEVariable = 0;
+    cJSON *ESIGNERTYPEVar = cJSON_GetObjectItemCaseSensitive(ESIGNERTYPEJSON, "eSignerType");
+    if(!cJSON_IsString(ESIGNERTYPEVar) || (ESIGNERTYPEVar->valuestring == NULL))
+    {
+        goto end;
+    }
+    ESIGNERTYPEVariable = ezsignfolderGetActionableElementsForSignerV1_ESIGNERTYPE_FromString(ESIGNERTYPEVar->valuestring);
+    return ESIGNERTYPEVariable;
+end:
+    return 0;
+}
+*/
+
 // Functions for enum EORDERBY for ObjectEzsignfolderAPI_ezsignfolderGetListV1
 
 static char* ezsignfolderGetListV1_EORDERBY_ToString(ezmax_api_definition__full_ezsignfolderGetListV1_eOrderBy_e EORDERBY){
@@ -1219,6 +1271,170 @@ ObjectEzsignfolderAPI_ezsignfolderEndPrematurelyV1(apiClient_t *apiClient, int *
         localVarSingleItemJSON_body = NULL;
     }
     free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve actionable elements of a user for the Ezsignfolder
+//
+// Return the Ezsignsignatures that can be signed and Ezsignformfieldgroups that can be filled by an user at the current step in the process
+//
+ezsignfolder_get_actionable_elements_for_signer_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsForSignerV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezmax_api_definition__full_ezsignfolderGetActionableElementsForSignerV1_eSignerType_e eSignerType, int *fkiEzsignsignerID, int *fkiUserID)
+{
+    list_t    *localVarQueryParameters = list_createList();
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}/getActionableElementsForSigner");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
+    if(pkiEzsignfolderID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsignfolderID = malloc(sizeOfPathParams_pkiEzsignfolderID);
+    snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
+
+    char localVarBuff_pkiEzsignfolderID[256];
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
+
+
+
+
+    // query parameters
+    char *keyQuery_eSignerType = NULL;
+    ezmax_api_definition__full_ezsignfolderGetActionableElementsForSignerV1_eSignerType_e valueQuery_eSignerType ;
+    keyValuePair_t *keyPairQuery_eSignerType = 0;
+    if (eSignerType)
+    {
+        keyQuery_eSignerType = strdup("eSignerType");
+        valueQuery_eSignerType = (eSignerType);
+        keyPairQuery_eSignerType = keyValuePair_create(keyQuery_eSignerType, strdup(ezsignfolderGetActionableElementsForSignerV1_ESIGNERTYPE_ToString(
+        valueQuery_eSignerType)));
+        list_addElement(localVarQueryParameters,keyPairQuery_eSignerType);
+    }
+
+    // query parameters
+    char *keyQuery_fkiEzsignsignerID = NULL;
+    char * valueQuery_fkiEzsignsignerID = NULL;
+    keyValuePair_t *keyPairQuery_fkiEzsignsignerID = 0;
+    if (fkiEzsignsignerID)
+    {
+        keyQuery_fkiEzsignsignerID = strdup("fkiEzsignsignerID");
+        valueQuery_fkiEzsignsignerID = calloc(1,MAX_NUMBER_LENGTH);
+        snprintf(valueQuery_fkiEzsignsignerID, MAX_NUMBER_LENGTH, "%d", *fkiEzsignsignerID);
+        keyPairQuery_fkiEzsignsignerID = keyValuePair_create(keyQuery_fkiEzsignsignerID, valueQuery_fkiEzsignsignerID);
+        list_addElement(localVarQueryParameters,keyPairQuery_fkiEzsignsignerID);
+    }
+
+    // query parameters
+    char *keyQuery_fkiUserID = NULL;
+    char * valueQuery_fkiUserID = NULL;
+    keyValuePair_t *keyPairQuery_fkiUserID = 0;
+    if (fkiUserID)
+    {
+        keyQuery_fkiUserID = strdup("fkiUserID");
+        valueQuery_fkiUserID = calloc(1,MAX_NUMBER_LENGTH);
+        snprintf(valueQuery_fkiUserID, MAX_NUMBER_LENGTH, "%d", *fkiUserID);
+        keyPairQuery_fkiUserID = keyValuePair_create(keyQuery_fkiUserID, valueQuery_fkiUserID);
+        list_addElement(localVarQueryParameters,keyPairQuery_fkiUserID);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    ezsignfolder_get_actionable_elements_for_signer_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_get_actionable_elements_for_signer_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    list_freeList(localVarQueryParameters);
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsignfolderID);
+    if(keyQuery_eSignerType){
+        free(keyQuery_eSignerType);
+        keyQuery_eSignerType = NULL;
+    }
+    if(keyPairQuery_eSignerType){
+        keyValuePair_free(keyPairQuery_eSignerType);
+        keyPairQuery_eSignerType = NULL;
+    }
+    if(keyQuery_fkiEzsignsignerID){
+        free(keyQuery_fkiEzsignsignerID);
+        keyQuery_fkiEzsignsignerID = NULL;
+    }
+    if(valueQuery_fkiEzsignsignerID){
+        free(valueQuery_fkiEzsignsignerID);
+        valueQuery_fkiEzsignsignerID = NULL;
+    }
+    if(keyPairQuery_fkiEzsignsignerID){
+        keyValuePair_free(keyPairQuery_fkiEzsignsignerID);
+        keyPairQuery_fkiEzsignsignerID = NULL;
+    }
+    if(keyQuery_fkiUserID){
+        free(keyQuery_fkiUserID);
+        keyQuery_fkiUserID = NULL;
+    }
+    if(valueQuery_fkiUserID){
+        free(valueQuery_fkiUserID);
+        valueQuery_fkiUserID = NULL;
+    }
+    if(keyPairQuery_fkiUserID){
+        keyValuePair_free(keyPairQuery_fkiUserID);
+        keyPairQuery_fkiUserID = NULL;
+    }
     return elementToReturn;
 end:
     free(localVarPath);

@@ -47,6 +47,7 @@
 #include "../model/ezsigndocument_extract_text_v1_request.h"
 #include "../model/ezsigndocument_extract_text_v1_response.h"
 #include "../model/ezsigndocument_flatten_v1_response.h"
+#include "../model/ezsigndocument_get_actionable_elements_for_signer_v1_response.h"
 #include "../model/ezsigndocument_get_actionable_elements_v1_response.h"
 #include "../model/ezsigndocument_get_actionable_elements_v2_response.h"
 #include "../model/ezsigndocument_get_actionable_elements_v3_response.h"
@@ -76,6 +77,9 @@
 #include "../model/ezsigndocument_submit_ezsignform_v1_response.h"
 #include "../model/ezsigndocument_unsend_v1_response.h"
 #include "../model/object.h"
+
+// Enum ESIGNERTYPE for ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsForSignerV1
+typedef enum  { ezmax_api_definition__full_ezsigndocumentGetActionableElementsForSignerV1_ESIGNERTYPE_NULL = 0, ezmax_api_definition__full_ezsigndocumentGetActionableElementsForSignerV1_ESIGNERTYPE_Ezsignsigner, ezmax_api_definition__full_ezsigndocumentGetActionableElementsForSignerV1_ESIGNERTYPE_User } ezmax_api_definition__full_ezsigndocumentGetActionableElementsForSignerV1_eSignerType_e;
 
 // Enum EDOCUMENTTYPE for ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1
 typedef enum  { ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_NULL = 0, ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_Original, ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_Initial, ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_SignatureReady, ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE__Signed, ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_Proof, ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_Proofdocument } ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_eDocumentType_e;
@@ -247,6 +251,14 @@ ObjectEzsigndocumentAPI_ezsigndocumentExtractTextV1(apiClient_t *apiClient, int 
 //
 ezsigndocument_flatten_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentFlattenV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, object_t *body);
+
+
+// Retrieve actionable elements of a user for the Ezsigndocument
+//
+// Return the Ezsignsignatures that can be signed and Ezsignformfieldgroups that can be filled by a user at the current step in the process
+//
+ezsigndocument_get_actionable_elements_for_signer_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsForSignerV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezmax_api_definition__full_ezsigndocumentGetActionableElementsForSignerV1_eSignerType_e eSignerType, int *fkiEzsignsignerID, int *fkiUserID);
 
 
 // Retrieve actionable elements for the Ezsigndocument

@@ -9,10 +9,13 @@ static inscriptionnotauthenticated_list_element_t *inscriptionnotauthenticated_l
     int *pki_inscription_id,
     int *pki_inscriptionnotauthenticated_id,
     int *fki_inscriptiontype_id,
+    int *fki_buyercontract_id,
+    char *s_buyercontract_contract,
     char *s_inscriptiontype_name_x,
     ezmax_api_definition__full_field_e_inscription_step__e e_inscription_step,
     char *s_inscription_civicend,
     char *s_inscription_mls,
+    char *s_inscription_contract,
     char *d_inscription_saleprice,
     char *d_inscription_rentprice,
     char *dt_inscription_date,
@@ -46,10 +49,13 @@ static inscriptionnotauthenticated_list_element_t *inscriptionnotauthenticated_l
     inscriptionnotauthenticated_list_element_local_var->pki_inscription_id = pki_inscription_id;
     inscriptionnotauthenticated_list_element_local_var->pki_inscriptionnotauthenticated_id = pki_inscriptionnotauthenticated_id;
     inscriptionnotauthenticated_list_element_local_var->fki_inscriptiontype_id = fki_inscriptiontype_id;
+    inscriptionnotauthenticated_list_element_local_var->fki_buyercontract_id = fki_buyercontract_id;
+    inscriptionnotauthenticated_list_element_local_var->s_buyercontract_contract = s_buyercontract_contract;
     inscriptionnotauthenticated_list_element_local_var->s_inscriptiontype_name_x = s_inscriptiontype_name_x;
     inscriptionnotauthenticated_list_element_local_var->e_inscription_step = e_inscription_step;
     inscriptionnotauthenticated_list_element_local_var->s_inscription_civicend = s_inscription_civicend;
     inscriptionnotauthenticated_list_element_local_var->s_inscription_mls = s_inscription_mls;
+    inscriptionnotauthenticated_list_element_local_var->s_inscription_contract = s_inscription_contract;
     inscriptionnotauthenticated_list_element_local_var->d_inscription_saleprice = d_inscription_saleprice;
     inscriptionnotauthenticated_list_element_local_var->d_inscription_rentprice = d_inscription_rentprice;
     inscriptionnotauthenticated_list_element_local_var->dt_inscription_date = dt_inscription_date;
@@ -80,10 +86,13 @@ __attribute__((deprecated)) inscriptionnotauthenticated_list_element_t *inscript
     int *pki_inscription_id,
     int *pki_inscriptionnotauthenticated_id,
     int *fki_inscriptiontype_id,
+    int *fki_buyercontract_id,
+    char *s_buyercontract_contract,
     char *s_inscriptiontype_name_x,
     ezmax_api_definition__full_field_e_inscription_step__e e_inscription_step,
     char *s_inscription_civicend,
     char *s_inscription_mls,
+    char *s_inscription_contract,
     char *d_inscription_saleprice,
     char *d_inscription_rentprice,
     char *dt_inscription_date,
@@ -122,6 +131,11 @@ __attribute__((deprecated)) inscriptionnotauthenticated_list_element_t *inscript
     if (fki_inscriptiontype_id) {
         fki_inscriptiontype_id_copy = malloc(sizeof(int));
         if (fki_inscriptiontype_id_copy) *fki_inscriptiontype_id_copy = *fki_inscriptiontype_id;
+    }
+    int *fki_buyercontract_id_copy = NULL;
+    if (fki_buyercontract_id) {
+        fki_buyercontract_id_copy = malloc(sizeof(int));
+        if (fki_buyercontract_id_copy) *fki_buyercontract_id_copy = *fki_buyercontract_id;
     }
     int *b_inscription_inspection_copy = NULL;
     if (b_inscription_inspection) {
@@ -162,10 +176,13 @@ __attribute__((deprecated)) inscriptionnotauthenticated_list_element_t *inscript
         pki_inscription_id_copy,
         pki_inscriptionnotauthenticated_id_copy,
         fki_inscriptiontype_id_copy,
+        fki_buyercontract_id_copy,
+        s_buyercontract_contract,
         s_inscriptiontype_name_x,
         e_inscription_step,
         s_inscription_civicend,
         s_inscription_mls,
+        s_inscription_contract,
         d_inscription_saleprice,
         d_inscription_rentprice,
         dt_inscription_date,
@@ -194,6 +211,7 @@ __attribute__((deprecated)) inscriptionnotauthenticated_list_element_t *inscript
         free(pki_inscription_id_copy);
         free(pki_inscriptionnotauthenticated_id_copy);
         free(fki_inscriptiontype_id_copy);
+        free(fki_buyercontract_id_copy);
         free(b_inscription_inspection_copy);
         free(b_inscription_isactive_copy);
         free(b_inscription_archived_copy);
@@ -226,6 +244,14 @@ void inscriptionnotauthenticated_list_element_free(inscriptionnotauthenticated_l
         free(inscriptionnotauthenticated_list_element->fki_inscriptiontype_id);
         inscriptionnotauthenticated_list_element->fki_inscriptiontype_id = NULL;
     }
+    if (inscriptionnotauthenticated_list_element->fki_buyercontract_id) {
+        free(inscriptionnotauthenticated_list_element->fki_buyercontract_id);
+        inscriptionnotauthenticated_list_element->fki_buyercontract_id = NULL;
+    }
+    if (inscriptionnotauthenticated_list_element->s_buyercontract_contract) {
+        free(inscriptionnotauthenticated_list_element->s_buyercontract_contract);
+        inscriptionnotauthenticated_list_element->s_buyercontract_contract = NULL;
+    }
     if (inscriptionnotauthenticated_list_element->s_inscriptiontype_name_x) {
         free(inscriptionnotauthenticated_list_element->s_inscriptiontype_name_x);
         inscriptionnotauthenticated_list_element->s_inscriptiontype_name_x = NULL;
@@ -237,6 +263,10 @@ void inscriptionnotauthenticated_list_element_free(inscriptionnotauthenticated_l
     if (inscriptionnotauthenticated_list_element->s_inscription_mls) {
         free(inscriptionnotauthenticated_list_element->s_inscription_mls);
         inscriptionnotauthenticated_list_element->s_inscription_mls = NULL;
+    }
+    if (inscriptionnotauthenticated_list_element->s_inscription_contract) {
+        free(inscriptionnotauthenticated_list_element->s_inscription_contract);
+        inscriptionnotauthenticated_list_element->s_inscription_contract = NULL;
     }
     if (inscriptionnotauthenticated_list_element->d_inscription_saleprice) {
         free(inscriptionnotauthenticated_list_element->d_inscription_saleprice);
@@ -362,6 +392,22 @@ cJSON *inscriptionnotauthenticated_list_element_convertToJSON(inscriptionnotauth
     }
 
 
+    // inscriptionnotauthenticated_list_element->fki_buyercontract_id
+    if(inscriptionnotauthenticated_list_element->fki_buyercontract_id) {
+    if(cJSON_AddNumberToObject(item, "fkiBuyercontractID", *inscriptionnotauthenticated_list_element->fki_buyercontract_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // inscriptionnotauthenticated_list_element->s_buyercontract_contract
+    if(inscriptionnotauthenticated_list_element->s_buyercontract_contract) {
+    if(cJSON_AddStringToObject(item, "sBuyercontractContract", inscriptionnotauthenticated_list_element->s_buyercontract_contract) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
     // inscriptionnotauthenticated_list_element->s_inscriptiontype_name_x
     if (!inscriptionnotauthenticated_list_element->s_inscriptiontype_name_x) {
         goto fail;
@@ -397,6 +443,14 @@ cJSON *inscriptionnotauthenticated_list_element_convertToJSON(inscriptionnotauth
     // inscriptionnotauthenticated_list_element->s_inscription_mls
     if(inscriptionnotauthenticated_list_element->s_inscription_mls) {
     if(cJSON_AddStringToObject(item, "sInscriptionMLS", inscriptionnotauthenticated_list_element->s_inscription_mls) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // inscriptionnotauthenticated_list_element->s_inscription_contract
+    if(inscriptionnotauthenticated_list_element->s_inscription_contract) {
+    if(cJSON_AddStringToObject(item, "sInscriptionContract", inscriptionnotauthenticated_list_element->s_inscription_contract) == NULL) {
     goto fail; //String
     }
     }
@@ -611,6 +665,11 @@ inscriptionnotauthenticated_list_element_t *inscriptionnotauthenticated_list_ele
     // define the local variable for inscriptionnotauthenticated_list_element->fki_inscriptiontype_id
     int *fki_inscriptiontype_id_local_var = NULL;
 
+    // define the local variable for inscriptionnotauthenticated_list_element->fki_buyercontract_id
+    int *fki_buyercontract_id_local_var = NULL;
+
+    char *s_buyercontract_contract_local_str = NULL;
+
     char *s_inscriptiontype_name_x_local_str = NULL;
 
     // define the local variable for inscriptionnotauthenticated_list_element->e_inscription_step
@@ -619,6 +678,8 @@ inscriptionnotauthenticated_list_element_t *inscriptionnotauthenticated_list_ele
     char *s_inscription_civicend_local_str = NULL;
 
     char *s_inscription_mls_local_str = NULL;
+
+    char *s_inscription_contract_local_str = NULL;
 
     char *d_inscription_saleprice_local_str = NULL;
 
@@ -733,6 +794,36 @@ inscriptionnotauthenticated_list_element_t *inscriptionnotauthenticated_list_ele
     }
     *fki_inscriptiontype_id_local_var = fki_inscriptiontype_id->valuedouble;
 
+    // inscriptionnotauthenticated_list_element->fki_buyercontract_id
+    cJSON *fki_buyercontract_id = cJSON_GetObjectItemCaseSensitive(inscriptionnotauthenticated_list_elementJSON, "fkiBuyercontractID");
+    if (cJSON_IsNull(fki_buyercontract_id)) {
+        fki_buyercontract_id = NULL;
+    }
+    if (fki_buyercontract_id) { 
+    if(!cJSON_IsNumber(fki_buyercontract_id))
+    {
+    goto end; //Numeric
+    }
+    fki_buyercontract_id_local_var = malloc(sizeof(int));
+    if(!fki_buyercontract_id_local_var)
+    {
+        goto end;
+    }
+    *fki_buyercontract_id_local_var = fki_buyercontract_id->valuedouble;
+    }
+
+    // inscriptionnotauthenticated_list_element->s_buyercontract_contract
+    cJSON *s_buyercontract_contract = cJSON_GetObjectItemCaseSensitive(inscriptionnotauthenticated_list_elementJSON, "sBuyercontractContract");
+    if (cJSON_IsNull(s_buyercontract_contract)) {
+        s_buyercontract_contract = NULL;
+    }
+    if (s_buyercontract_contract) { 
+    if(!cJSON_IsString(s_buyercontract_contract) && !cJSON_IsNull(s_buyercontract_contract))
+    {
+    goto end; //String
+    }
+    }
+
     // inscriptionnotauthenticated_list_element->s_inscriptiontype_name_x
     cJSON *s_inscriptiontype_name_x = cJSON_GetObjectItemCaseSensitive(inscriptionnotauthenticated_list_elementJSON, "sInscriptiontypeNameX");
     if (cJSON_IsNull(s_inscriptiontype_name_x)) {
@@ -782,6 +873,18 @@ inscriptionnotauthenticated_list_element_t *inscriptionnotauthenticated_list_ele
     }
     if (s_inscription_mls) { 
     if(!cJSON_IsString(s_inscription_mls) && !cJSON_IsNull(s_inscription_mls))
+    {
+    goto end; //String
+    }
+    }
+
+    // inscriptionnotauthenticated_list_element->s_inscription_contract
+    cJSON *s_inscription_contract = cJSON_GetObjectItemCaseSensitive(inscriptionnotauthenticated_list_elementJSON, "sInscriptionContract");
+    if (cJSON_IsNull(s_inscription_contract)) {
+        s_inscription_contract = NULL;
+    }
+    if (s_inscription_contract) { 
+    if(!cJSON_IsString(s_inscription_contract) && !cJSON_IsNull(s_inscription_contract))
     {
     goto end; //String
     }
@@ -1121,9 +1224,11 @@ inscriptionnotauthenticated_list_element_t *inscriptionnotauthenticated_list_ele
     }
 
 
+    if (s_buyercontract_contract && !cJSON_IsNull(s_buyercontract_contract)) s_buyercontract_contract_local_str = strdup(s_buyercontract_contract->valuestring);
     if (s_inscriptiontype_name_x && !cJSON_IsNull(s_inscriptiontype_name_x)) s_inscriptiontype_name_x_local_str = strdup(s_inscriptiontype_name_x->valuestring);
     if (s_inscription_civicend && !cJSON_IsNull(s_inscription_civicend)) s_inscription_civicend_local_str = strdup(s_inscription_civicend->valuestring);
     if (s_inscription_mls && !cJSON_IsNull(s_inscription_mls)) s_inscription_mls_local_str = strdup(s_inscription_mls->valuestring);
+    if (s_inscription_contract && !cJSON_IsNull(s_inscription_contract)) s_inscription_contract_local_str = strdup(s_inscription_contract->valuestring);
     if (d_inscription_saleprice && !cJSON_IsNull(d_inscription_saleprice)) d_inscription_saleprice_local_str = strdup(d_inscription_saleprice->valuestring);
     if (d_inscription_rentprice && !cJSON_IsNull(d_inscription_rentprice)) d_inscription_rentprice_local_str = strdup(d_inscription_rentprice->valuestring);
     if (dt_inscription_date && !cJSON_IsNull(dt_inscription_date)) dt_inscription_date_local_str = strdup(dt_inscription_date->valuestring);
@@ -1145,10 +1250,13 @@ inscriptionnotauthenticated_list_element_t *inscriptionnotauthenticated_list_ele
         pki_inscription_id_local_var,
         pki_inscriptionnotauthenticated_id_local_var,
         fki_inscriptiontype_id_local_var,
+        fki_buyercontract_id_local_var,
+        s_buyercontract_contract_local_str,
         s_inscriptiontype_name_x_local_str,
         e_inscription_step_local_nonprim,
         s_inscription_civicend_local_str,
         s_inscription_mls_local_str,
+        s_inscription_contract_local_str,
         d_inscription_saleprice_local_str,
         d_inscription_rentprice_local_str,
         dt_inscription_date_local_str,
@@ -1192,6 +1300,14 @@ end:
         free(fki_inscriptiontype_id_local_var);
         fki_inscriptiontype_id_local_var = NULL;
     }
+    if (fki_buyercontract_id_local_var) {
+        free(fki_buyercontract_id_local_var);
+        fki_buyercontract_id_local_var = NULL;
+    }
+    if (s_buyercontract_contract_local_str) {
+        free(s_buyercontract_contract_local_str);
+        s_buyercontract_contract_local_str = NULL;
+    }
     if (s_inscriptiontype_name_x_local_str) {
         free(s_inscriptiontype_name_x_local_str);
         s_inscriptiontype_name_x_local_str = NULL;
@@ -1206,6 +1322,10 @@ end:
     if (s_inscription_mls_local_str) {
         free(s_inscription_mls_local_str);
         s_inscription_mls_local_str = NULL;
+    }
+    if (s_inscription_contract_local_str) {
+        free(s_inscription_contract_local_str);
+        s_inscription_contract_local_str = NULL;
     }
     if (d_inscription_saleprice_local_str) {
         free(d_inscription_saleprice_local_str);

@@ -371,6 +371,7 @@ set(SRCS
     model/custom_ezmaxinvoicing_ezsigndocument_response.c
     model/custom_ezmaxinvoicing_ezsignfolder_response.c
     model/custom_ezmaxpartner_list_element.c
+    model/custom_ezmaxpartnerproduct_subscribe.c
     model/custom_ezmaxpricing_response.c
     model/custom_ezsigndocument_duplicate_request.c
     model/custom_ezsigndocument_ezsignsignatures_automatic_response.c
@@ -463,6 +464,8 @@ set(SRCS
     model/discussionmessage_request_patch.c
     model/discussionmessage_response.c
     model/discussionmessage_response_compound.c
+    model/documentation_subscribe_v1_request.c
+    model/documentation_subscribe_v1_response.c
     model/domain_autocomplete_element_response.c
     model/domain_create_object_v1_request.c
     model/domain_create_object_v1_response.c
@@ -721,6 +724,8 @@ set(SRCS
     model/ezsigndocument_extract_text_v1_response.c
     model/ezsigndocument_extract_text_v1_response_m_payload.c
     model/ezsigndocument_flatten_v1_response.c
+    model/ezsigndocument_get_actionable_elements_for_signer_v1_response.c
+    model/ezsigndocument_get_actionable_elements_for_signer_v1_response_m_payload.c
     model/ezsigndocument_get_actionable_elements_v1_response.c
     model/ezsigndocument_get_actionable_elements_v1_response_m_payload.c
     model/ezsigndocument_get_actionable_elements_v2_response.c
@@ -805,6 +810,8 @@ set(SRCS
     model/ezsignfolder_edit_object_v3_request.c
     model/ezsignfolder_edit_object_v3_response.c
     model/ezsignfolder_end_prematurely_v1_response.c
+    model/ezsignfolder_get_actionable_elements_for_signer_v1_response.c
+    model/ezsignfolder_get_actionable_elements_for_signer_v1_response_m_payload.c
     model/ezsignfolder_get_actionable_elements_v1_response.c
     model/ezsignfolder_get_actionable_elements_v1_response_m_payload.c
     model/ezsignfolder_get_actionable_elements_v2_response.c
@@ -1996,6 +2003,8 @@ set(SRCS
     model/webhook_delete_object_v1_response.c
     model/webhook_edit_object_v1_request.c
     model/webhook_edit_object_v1_response.c
+    model/webhook_ezmaxpartnerproduct_subscribe.c
+    model/webhook_ezmaxpartnerproduct_unsubscribe.c
     model/webhook_ezsign_document_completed.c
     model/webhook_ezsign_document_form_completed.c
     model/webhook_ezsign_document_unsent.c
@@ -2040,6 +2049,7 @@ set(SRCS
     model/websocket_response_get_websocket_id_v1_m_payload.c
     model/websocket_response_information_v1.c
     model/websocket_response_information_v1_m_payload.c
+    api/DocumentationEzmaxpartnerAPI.c
     api/GlobalCustomerAPI.c
     api/GlobalEzmaxclientAPI.c
     api/GlobalEzmaxcustomerAPI.c
@@ -2513,6 +2523,7 @@ set(HDRS
     model/custom_ezmaxinvoicing_ezsigndocument_response.h
     model/custom_ezmaxinvoicing_ezsignfolder_response.h
     model/custom_ezmaxpartner_list_element.h
+    model/custom_ezmaxpartnerproduct_subscribe.h
     model/custom_ezmaxpricing_response.h
     model/custom_ezsigndocument_duplicate_request.h
     model/custom_ezsigndocument_ezsignsignatures_automatic_response.h
@@ -2605,6 +2616,8 @@ set(HDRS
     model/discussionmessage_request_patch.h
     model/discussionmessage_response.h
     model/discussionmessage_response_compound.h
+    model/documentation_subscribe_v1_request.h
+    model/documentation_subscribe_v1_response.h
     model/domain_autocomplete_element_response.h
     model/domain_create_object_v1_request.h
     model/domain_create_object_v1_response.h
@@ -2863,6 +2876,8 @@ set(HDRS
     model/ezsigndocument_extract_text_v1_response.h
     model/ezsigndocument_extract_text_v1_response_m_payload.h
     model/ezsigndocument_flatten_v1_response.h
+    model/ezsigndocument_get_actionable_elements_for_signer_v1_response.h
+    model/ezsigndocument_get_actionable_elements_for_signer_v1_response_m_payload.h
     model/ezsigndocument_get_actionable_elements_v1_response.h
     model/ezsigndocument_get_actionable_elements_v1_response_m_payload.h
     model/ezsigndocument_get_actionable_elements_v2_response.h
@@ -2947,6 +2962,8 @@ set(HDRS
     model/ezsignfolder_edit_object_v3_request.h
     model/ezsignfolder_edit_object_v3_response.h
     model/ezsignfolder_end_prematurely_v1_response.h
+    model/ezsignfolder_get_actionable_elements_for_signer_v1_response.h
+    model/ezsignfolder_get_actionable_elements_for_signer_v1_response_m_payload.h
     model/ezsignfolder_get_actionable_elements_v1_response.h
     model/ezsignfolder_get_actionable_elements_v1_response_m_payload.h
     model/ezsignfolder_get_actionable_elements_v2_response.h
@@ -4138,6 +4155,8 @@ set(HDRS
     model/webhook_delete_object_v1_response.h
     model/webhook_edit_object_v1_request.h
     model/webhook_edit_object_v1_response.h
+    model/webhook_ezmaxpartnerproduct_subscribe.h
+    model/webhook_ezmaxpartnerproduct_unsubscribe.h
     model/webhook_ezsign_document_completed.h
     model/webhook_ezsign_document_form_completed.h
     model/webhook_ezsign_document_unsent.h
@@ -4182,6 +4201,7 @@ set(HDRS
     model/websocket_response_get_websocket_id_v1_m_payload.h
     model/websocket_response_information_v1.h
     model/websocket_response_information_v1_m_payload.h
+    api/DocumentationEzmaxpartnerAPI.h
     api/GlobalCustomerAPI.h
     api/GlobalEzmaxclientAPI.h
     api/GlobalEzmaxcustomerAPI.h
@@ -4406,6 +4426,7 @@ set(HDRS "")
 ## This section shows how to use the above compiled library to compile the source files
 ## set source files
 #set(SRCS
+#    unit-tests/manual-DocumentationEzmaxpartnerAPI.c
 #    unit-tests/manual-GlobalCustomerAPI.c
 #    unit-tests/manual-GlobalEzmaxclientAPI.c
 #    unit-tests/manual-GlobalEzmaxcustomerAPI.c

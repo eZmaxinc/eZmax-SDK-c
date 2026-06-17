@@ -1,9 +1,10 @@
-# user_impersonate_v1_request_t
+# ezsignfolder_get_actionable_elements_for_signer_v1_response_m_payload_t
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**i_expiration_minutes** | **int** | The number of minute before key is no longer active | 
+**a_obj_ezsignsignature** | [**list_t**](ezsignsignature_response_compound.md) \* |  | 
+**a_obj_ezsignformfieldgroup** | [**list_t**](ezsignformfieldgroup_response_compound.md) \* |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

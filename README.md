@@ -66,6 +66,7 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 
 Category | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*DocumentationEzmaxpartnerAPI* | [**DocumentationEzmaxpartnerAPI_documentationSubscribeV1**](docs/DocumentationEzmaxpartnerAPI.md#DocumentationEzmaxpartnerAPI_documentationSubscribeV1) | **POST** /1/documentation/subscribe | Subscribe to an Ezmaxparnerproductstage
 *GlobalCustomerAPI* | [**GlobalCustomerAPI_globalCustomerGetEndpointV1**](docs/GlobalCustomerAPI.md#GlobalCustomerAPI_globalCustomerGetEndpointV1) | **GET** /1/customer/{pksCustomerCode}/endpoint | Get customer endpoint
 *GlobalEzmaxclientAPI* | [**GlobalEzmaxclientAPI_globalEzmaxclientVersionV1**](docs/GlobalEzmaxclientAPI.md#GlobalEzmaxclientAPI_globalEzmaxclientVersionV1) | **GET** /1/ezmaxclient/{pksEzmaxclientOs}/version | Retrieve the latest version of the Ezmaxclient
 *GlobalEzmaxcustomerAPI* | [**GlobalEzmaxcustomerAPI_globalEzmaxcustomerGetConfigurationV1**](docs/GlobalEzmaxcustomerAPI.md#GlobalEzmaxcustomerAPI_globalEzmaxcustomerGetConfigurationV1) | **GET** /1/ezmaxcustomer/{pksEzmaxcustomerCode}/getConfiguration | Get ezmaxcustomer configuration
@@ -244,6 +245,7 @@ Category | Method | HTTP request | Description
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/endPrematurely | End prematurely
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentExtractTextV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentExtractTextV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/extractText | Extract text from Ezsigndocument area
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentFlattenV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentFlattenV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/flatten | Flatten
+*ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsForSignerV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsForSignerV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getActionableElementsForSigner | Retrieve actionable elements of a user for the Ezsigndocument
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getActionableElements | Retrieve actionable elements for the Ezsigndocument
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV2**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV2) | **GET** /2/object/ezsigndocument/{pkiEzsigndocumentID}/getActionableElements | Retrieve actionable elements for the Ezsigndocument
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV3**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV3) | **GET** /3/object/ezsigndocument/{pkiEzsigndocumentID}/getActionableElements | Retrieve actionable elements for the Ezsigndocument
@@ -279,6 +281,7 @@ Category | Method | HTTP request | Description
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderDuplicateV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderDuplicateV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/duplicate | Duplicate the Ezsignfolder
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderEditObjectV3**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderEditObjectV3) | **PUT** /3/object/ezsignfolder/{pkiEzsignfolderID} | Edit an existing Ezsignfolder
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderEndPrematurelyV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderEndPrematurelyV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/endPrematurely | End prematurely
+*ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsForSignerV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsForSignerV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getActionableElementsForSigner | Retrieve actionable elements of a user for the Ezsignfolder
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getActionableElements | Retrieve actionable elements for the Ezsignfolder
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV2**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV2) | **GET** /2/object/ezsignfolder/{pkiEzsignfolderID}/getActionableElements | Retrieve actionable elements for the Ezsignfolder
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV3**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV3) | **GET** /3/object/ezsignfolder/{pkiEzsignfolderID}/getActionableElements | Retrieve actionable elements for the Ezsignfolder
@@ -953,6 +956,7 @@ Category | Method | HTTP request | Description
  - [custom_ezmaxinvoicing_ezsigndocument_response_t](docs/custom_ezmaxinvoicing_ezsigndocument_response.md)
  - [custom_ezmaxinvoicing_ezsignfolder_response_t](docs/custom_ezmaxinvoicing_ezsignfolder_response.md)
  - [custom_ezmaxpartner_list_element_t](docs/custom_ezmaxpartner_list_element.md)
+ - [custom_ezmaxpartnerproduct_subscribe_t](docs/custom_ezmaxpartnerproduct_subscribe.md)
  - [custom_ezmaxpricing_response_t](docs/custom_ezmaxpricing_response.md)
  - [custom_ezsigndocument_duplicate_request_t](docs/custom_ezsigndocument_duplicate_request.md)
  - [custom_ezsigndocument_ezsignsignatures_automatic_response_t](docs/custom_ezsigndocument_ezsignsignatures_automatic_response.md)
@@ -1045,6 +1049,8 @@ Category | Method | HTTP request | Description
  - [discussionmessage_request_patch_t](docs/discussionmessage_request_patch.md)
  - [discussionmessage_response_t](docs/discussionmessage_response.md)
  - [discussionmessage_response_compound_t](docs/discussionmessage_response_compound.md)
+ - [documentation_subscribe_v1_request_t](docs/documentation_subscribe_v1_request.md)
+ - [documentation_subscribe_v1_response_t](docs/documentation_subscribe_v1_response.md)
  - [domain_autocomplete_element_response_t](docs/domain_autocomplete_element_response.md)
  - [domain_create_object_v1_request_t](docs/domain_create_object_v1_request.md)
  - [domain_create_object_v1_response_t](docs/domain_create_object_v1_response.md)
@@ -1303,6 +1309,8 @@ Category | Method | HTTP request | Description
  - [ezsigndocument_extract_text_v1_response_t](docs/ezsigndocument_extract_text_v1_response.md)
  - [ezsigndocument_extract_text_v1_response_m_payload_t](docs/ezsigndocument_extract_text_v1_response_m_payload.md)
  - [ezsigndocument_flatten_v1_response_t](docs/ezsigndocument_flatten_v1_response.md)
+ - [ezsigndocument_get_actionable_elements_for_signer_v1_response_t](docs/ezsigndocument_get_actionable_elements_for_signer_v1_response.md)
+ - [ezsigndocument_get_actionable_elements_for_signer_v1_response_m_payload_t](docs/ezsigndocument_get_actionable_elements_for_signer_v1_response_m_payload.md)
  - [ezsigndocument_get_actionable_elements_v1_response_t](docs/ezsigndocument_get_actionable_elements_v1_response.md)
  - [ezsigndocument_get_actionable_elements_v1_response_m_payload_t](docs/ezsigndocument_get_actionable_elements_v1_response_m_payload.md)
  - [ezsigndocument_get_actionable_elements_v2_response_t](docs/ezsigndocument_get_actionable_elements_v2_response.md)
@@ -1387,6 +1395,8 @@ Category | Method | HTTP request | Description
  - [ezsignfolder_edit_object_v3_request_t](docs/ezsignfolder_edit_object_v3_request.md)
  - [ezsignfolder_edit_object_v3_response_t](docs/ezsignfolder_edit_object_v3_response.md)
  - [ezsignfolder_end_prematurely_v1_response_t](docs/ezsignfolder_end_prematurely_v1_response.md)
+ - [ezsignfolder_get_actionable_elements_for_signer_v1_response_t](docs/ezsignfolder_get_actionable_elements_for_signer_v1_response.md)
+ - [ezsignfolder_get_actionable_elements_for_signer_v1_response_m_payload_t](docs/ezsignfolder_get_actionable_elements_for_signer_v1_response_m_payload.md)
  - [ezsignfolder_get_actionable_elements_v1_response_t](docs/ezsignfolder_get_actionable_elements_v1_response.md)
  - [ezsignfolder_get_actionable_elements_v1_response_m_payload_t](docs/ezsignfolder_get_actionable_elements_v1_response_m_payload.md)
  - [ezsignfolder_get_actionable_elements_v2_response_t](docs/ezsignfolder_get_actionable_elements_v2_response.md)
@@ -2578,6 +2588,8 @@ Category | Method | HTTP request | Description
  - [webhook_delete_object_v1_response_t](docs/webhook_delete_object_v1_response.md)
  - [webhook_edit_object_v1_request_t](docs/webhook_edit_object_v1_request.md)
  - [webhook_edit_object_v1_response_t](docs/webhook_edit_object_v1_response.md)
+ - [webhook_ezmaxpartnerproduct_subscribe_t](docs/webhook_ezmaxpartnerproduct_subscribe.md)
+ - [webhook_ezmaxpartnerproduct_unsubscribe_t](docs/webhook_ezmaxpartnerproduct_unsubscribe.md)
  - [webhook_ezsign_document_completed_t](docs/webhook_ezsign_document_completed.md)
  - [webhook_ezsign_document_form_completed_t](docs/webhook_ezsign_document_form_completed.md)
  - [webhook_ezsign_document_unsent_t](docs/webhook_ezsign_document_unsent.md)

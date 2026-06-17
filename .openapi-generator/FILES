@@ -3,6 +3,8 @@ CMakeLists.txt
 Config.cmake.in
 Packing.cmake
 README.md
+api/DocumentationEzmaxpartnerAPI.c
+api/DocumentationEzmaxpartnerAPI.h
 api/GlobalCustomerAPI.c
 api/GlobalCustomerAPI.h
 api/GlobalEzmaxclientAPI.c
@@ -281,6 +283,7 @@ api/ScimServiceProviderConfigAPI.c
 api/ScimServiceProviderConfigAPI.h
 api/ScimUsersAPI.c
 api/ScimUsersAPI.h
+docs/DocumentationEzmaxpartnerAPI.md
 docs/GlobalCustomerAPI.md
 docs/GlobalEzmaxclientAPI.md
 docs/GlobalEzmaxcustomerAPI.md
@@ -743,6 +746,7 @@ docs/custom_ezmaxcustomeruser_response.md
 docs/custom_ezmaxinvoicing_ezsigndocument_response.md
 docs/custom_ezmaxinvoicing_ezsignfolder_response.md
 docs/custom_ezmaxpartner_list_element.md
+docs/custom_ezmaxpartnerproduct_subscribe.md
 docs/custom_ezmaxpricing_response.md
 docs/custom_ezsigndocument_duplicate_request.md
 docs/custom_ezsigndocument_ezsignsignatures_automatic_response.md
@@ -835,6 +839,8 @@ docs/discussionmessage_request_compound.md
 docs/discussionmessage_request_patch.md
 docs/discussionmessage_response.md
 docs/discussionmessage_response_compound.md
+docs/documentation_subscribe_v1_request.md
+docs/documentation_subscribe_v1_response.md
 docs/domain_autocomplete_element_response.md
 docs/domain_create_object_v1_request.md
 docs/domain_create_object_v1_response.md
@@ -1093,6 +1099,8 @@ docs/ezsigndocument_extract_text_v1_request.md
 docs/ezsigndocument_extract_text_v1_response.md
 docs/ezsigndocument_extract_text_v1_response_m_payload.md
 docs/ezsigndocument_flatten_v1_response.md
+docs/ezsigndocument_get_actionable_elements_for_signer_v1_response.md
+docs/ezsigndocument_get_actionable_elements_for_signer_v1_response_m_payload.md
 docs/ezsigndocument_get_actionable_elements_v1_response.md
 docs/ezsigndocument_get_actionable_elements_v1_response_m_payload.md
 docs/ezsigndocument_get_actionable_elements_v2_response.md
@@ -1177,6 +1185,8 @@ docs/ezsignfolder_duplicate_v1_response_m_payload.md
 docs/ezsignfolder_edit_object_v3_request.md
 docs/ezsignfolder_edit_object_v3_response.md
 docs/ezsignfolder_end_prematurely_v1_response.md
+docs/ezsignfolder_get_actionable_elements_for_signer_v1_response.md
+docs/ezsignfolder_get_actionable_elements_for_signer_v1_response_m_payload.md
 docs/ezsignfolder_get_actionable_elements_v1_response.md
 docs/ezsignfolder_get_actionable_elements_v1_response_m_payload.md
 docs/ezsignfolder_get_actionable_elements_v2_response.md
@@ -2368,6 +2378,8 @@ docs/webhook_create_object_v2_response_m_payload.md
 docs/webhook_delete_object_v1_response.md
 docs/webhook_edit_object_v1_request.md
 docs/webhook_edit_object_v1_response.md
+docs/webhook_ezmaxpartnerproduct_subscribe.md
+docs/webhook_ezmaxpartnerproduct_unsubscribe.md
 docs/webhook_ezsign_document_completed.md
 docs/webhook_ezsign_document_form_completed.md
 docs/webhook_ezsign_document_unsent.md
@@ -3067,6 +3079,8 @@ model/custom_ezmaxinvoicing_ezsignfolder_response.c
 model/custom_ezmaxinvoicing_ezsignfolder_response.h
 model/custom_ezmaxpartner_list_element.c
 model/custom_ezmaxpartner_list_element.h
+model/custom_ezmaxpartnerproduct_subscribe.c
+model/custom_ezmaxpartnerproduct_subscribe.h
 model/custom_ezmaxpricing_response.c
 model/custom_ezmaxpricing_response.h
 model/custom_ezsigndocument_duplicate_request.c
@@ -3251,6 +3265,10 @@ model/discussionmessage_response.c
 model/discussionmessage_response.h
 model/discussionmessage_response_compound.c
 model/discussionmessage_response_compound.h
+model/documentation_subscribe_v1_request.c
+model/documentation_subscribe_v1_request.h
+model/documentation_subscribe_v1_response.c
+model/documentation_subscribe_v1_response.h
 model/domain_autocomplete_element_response.c
 model/domain_autocomplete_element_response.h
 model/domain_create_object_v1_request.c
@@ -3767,6 +3785,10 @@ model/ezsigndocument_extract_text_v1_response_m_payload.c
 model/ezsigndocument_extract_text_v1_response_m_payload.h
 model/ezsigndocument_flatten_v1_response.c
 model/ezsigndocument_flatten_v1_response.h
+model/ezsigndocument_get_actionable_elements_for_signer_v1_response.c
+model/ezsigndocument_get_actionable_elements_for_signer_v1_response.h
+model/ezsigndocument_get_actionable_elements_for_signer_v1_response_m_payload.c
+model/ezsigndocument_get_actionable_elements_for_signer_v1_response_m_payload.h
 model/ezsigndocument_get_actionable_elements_v1_response.c
 model/ezsigndocument_get_actionable_elements_v1_response.h
 model/ezsigndocument_get_actionable_elements_v1_response_m_payload.c
@@ -3935,6 +3957,10 @@ model/ezsignfolder_edit_object_v3_response.c
 model/ezsignfolder_edit_object_v3_response.h
 model/ezsignfolder_end_prematurely_v1_response.c
 model/ezsignfolder_end_prematurely_v1_response.h
+model/ezsignfolder_get_actionable_elements_for_signer_v1_response.c
+model/ezsignfolder_get_actionable_elements_for_signer_v1_response.h
+model/ezsignfolder_get_actionable_elements_for_signer_v1_response_m_payload.c
+model/ezsignfolder_get_actionable_elements_for_signer_v1_response_m_payload.h
 model/ezsignfolder_get_actionable_elements_v1_response.c
 model/ezsignfolder_get_actionable_elements_v1_response.h
 model/ezsignfolder_get_actionable_elements_v1_response_m_payload.c
@@ -6319,6 +6345,10 @@ model/webhook_edit_object_v1_request.c
 model/webhook_edit_object_v1_request.h
 model/webhook_edit_object_v1_response.c
 model/webhook_edit_object_v1_response.h
+model/webhook_ezmaxpartnerproduct_subscribe.c
+model/webhook_ezmaxpartnerproduct_subscribe.h
+model/webhook_ezmaxpartnerproduct_unsubscribe.c
+model/webhook_ezmaxpartnerproduct_unsubscribe.h
 model/webhook_ezsign_document_completed.c
 model/webhook_ezsign_document_completed.h
 model/webhook_ezsign_document_form_completed.c
