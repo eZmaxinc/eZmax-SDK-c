@@ -12,7 +12,9 @@
 #include "../model/inscription_get_communication_list_v1_response.h"
 #include "../model/inscription_get_communicationrecipients_v1_response.h"
 #include "../model/inscription_get_communicationsenders_v1_response.h"
+#include "../model/inscription_get_inscriptionnotauthenticateds_v1_response.h"
 #include "../model/inscription_get_list_v1_response.h"
+#include "../model/inscription_get_object_v2_response.h"
 #include "../model/inscription_import_into_edm_v1_request.h"
 #include "../model/inscription_import_into_edm_v1_response.h"
 #include "../model/inscription_prepare_files_transfer_v1_request.h"
@@ -65,12 +67,26 @@ inscription_get_communicationsenders_v1_response_t*
 ObjectInscriptionAPI_inscriptionGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiInscriptionID);
 
 
+// Retrieve Inscriptionnotauthenticated list
+//
+inscription_get_inscriptionnotauthenticateds_v1_response_t*
+ObjectInscriptionAPI_inscriptionGetInscriptionnotauthenticatedsV1(apiClient_t *apiClient, int *pkiInscriptionID);
+
+
 // Retrieve Inscription list
 //
 // Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eInscriptionStep | TemporaryNotAuthenticated<br>ImportedInscription<br>Inscription<br>ModifiedInscription<br>ContractEnded<br>ExpiredInscription<br>Out-market<br>ImportedNotauthenticated<br>NotAuthenticated<br>ModifiedNotauthenticated<br>Authenticated |  Advanced filters that can be used in query parameter *sFilter*:  | Variable | |---| | sBrokerNameInscriptor | | sBrokerNameSeller | | sContactFirstnameAgentInscriptor | | sContactLastnameAgentInscriptor | | sContactFirstnameAgentSeller | | sContactLastnameAgentSeller |         | sContactFirstnameBuyer | | sContactLastnameBuyer | | sContactFirstnameSeller | | sContactLastnameSeller |  | sContactFirstnameNotaryBuyer | | sContactLastnameNotaryBuyer |  | sContactFirstnameNotarySeller | | sContactLastnameNotarySeller |         
 //
 inscription_get_list_v1_response_t*
 ObjectInscriptionAPI_inscriptionGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_inscriptionGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
+
+
+// Retrieve an existing Inscription
+//
+// 
+//
+inscription_get_object_v2_response_t*
+ObjectInscriptionAPI_inscriptionGetObjectV2(apiClient_t *apiClient, int *pkiInscriptionID);
 
 
 // Import attachments into the Inscription

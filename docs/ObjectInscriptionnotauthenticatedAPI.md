@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunicationsendersV1**](ObjectInscriptionnotauthenticatedAPI.md#ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunicationsendersV1) | **GET** /1/object/inscriptionnotauthenticated/{pkiInscriptionnotauthenticatedID}/getCommunicationsenders | Retrieve Inscriptionnotauthenticated&#39;s Communicationsender
 [**ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetInscriptionnotauthenticatedconditionsV1**](ObjectInscriptionnotauthenticatedAPI.md#ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetInscriptionnotauthenticatedconditionsV1) | **GET** /1/object/inscriptionnotauthenticated/{pkiInscriptionnotauthenticatedID}/getInscriptionnotauthenticatedconditions | Retrieve Inscriptionnotauthenticated conditions
 [**ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetListV1**](ObjectInscriptionnotauthenticatedAPI.md#ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetListV1) | **GET** /1/object/inscriptionnotauthenticated/getList | Retrieve Inscriptionnotauthenticated list
+[**ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetObjectV2**](ObjectInscriptionnotauthenticatedAPI.md#ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetObjectV2) | **GET** /2/object/inscriptionnotauthenticated/{pkiInscriptionnotauthenticatedID} | Retrieve an existing Inscriptionnotauthenticated
 [**ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedImportIntoEDMV1**](ObjectInscriptionnotauthenticatedAPI.md#ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedImportIntoEDMV1) | **POST** /1/object/inscriptionnotauthenticated/{pkiInscriptionnotauthenticatedID}/importIntoEDM | Import attachments into the Inscriptionnotauthenticated
 
 
@@ -233,6 +234,37 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetObjectV2**
+```c
+// Retrieve an existing Inscriptionnotauthenticated
+//
+// 
+//
+inscriptionnotauthenticated_get_object_v2_response_t* ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetObjectV2(apiClient_t *apiClient, int *pkiInscriptionnotauthenticatedID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiInscriptionnotauthenticatedID** | **int \*** | The unique ID of the Inscriptionnotauthenticated | 
+
+### Return type
+
+[inscriptionnotauthenticated_get_object_v2_response_t](inscriptionnotauthenticated_get_object_v2_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

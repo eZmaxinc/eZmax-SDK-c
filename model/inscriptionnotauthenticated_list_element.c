@@ -29,6 +29,7 @@ static inscriptionnotauthenticated_list_element_t *inscriptionnotauthenticated_l
     char *dt_inscriptionnotauthenticated_transactiondate_real,
     int *b_inscriptionnotauthenticated_conditional,
     int *b_inscriptionnotauthenticated_isactive,
+    int *b_inscriptionnotauthenticated_draft,
     char *s_address_civic,
     char *s_address_street,
     char *s_address_suite,
@@ -69,6 +70,7 @@ static inscriptionnotauthenticated_list_element_t *inscriptionnotauthenticated_l
     inscriptionnotauthenticated_list_element_local_var->dt_inscriptionnotauthenticated_transactiondate_real = dt_inscriptionnotauthenticated_transactiondate_real;
     inscriptionnotauthenticated_list_element_local_var->b_inscriptionnotauthenticated_conditional = b_inscriptionnotauthenticated_conditional;
     inscriptionnotauthenticated_list_element_local_var->b_inscriptionnotauthenticated_isactive = b_inscriptionnotauthenticated_isactive;
+    inscriptionnotauthenticated_list_element_local_var->b_inscriptionnotauthenticated_draft = b_inscriptionnotauthenticated_draft;
     inscriptionnotauthenticated_list_element_local_var->s_address_civic = s_address_civic;
     inscriptionnotauthenticated_list_element_local_var->s_address_street = s_address_street;
     inscriptionnotauthenticated_list_element_local_var->s_address_suite = s_address_suite;
@@ -106,6 +108,7 @@ __attribute__((deprecated)) inscriptionnotauthenticated_list_element_t *inscript
     char *dt_inscriptionnotauthenticated_transactiondate_real,
     int *b_inscriptionnotauthenticated_conditional,
     int *b_inscriptionnotauthenticated_isactive,
+    int *b_inscriptionnotauthenticated_draft,
     char *s_address_civic,
     char *s_address_street,
     char *s_address_suite,
@@ -162,6 +165,11 @@ __attribute__((deprecated)) inscriptionnotauthenticated_list_element_t *inscript
         b_inscriptionnotauthenticated_isactive_copy = malloc(sizeof(int));
         if (b_inscriptionnotauthenticated_isactive_copy) *b_inscriptionnotauthenticated_isactive_copy = *b_inscriptionnotauthenticated_isactive;
     }
+    int *b_inscriptionnotauthenticated_draft_copy = NULL;
+    if (b_inscriptionnotauthenticated_draft) {
+        b_inscriptionnotauthenticated_draft_copy = malloc(sizeof(int));
+        if (b_inscriptionnotauthenticated_draft_copy) *b_inscriptionnotauthenticated_draft_copy = *b_inscriptionnotauthenticated_draft;
+    }
     int *fki_province_id_copy = NULL;
     if (fki_province_id) {
         fki_province_id_copy = malloc(sizeof(int));
@@ -196,6 +204,7 @@ __attribute__((deprecated)) inscriptionnotauthenticated_list_element_t *inscript
         dt_inscriptionnotauthenticated_transactiondate_real,
         b_inscriptionnotauthenticated_conditional_copy,
         b_inscriptionnotauthenticated_isactive_copy,
+        b_inscriptionnotauthenticated_draft_copy,
         s_address_civic,
         s_address_street,
         s_address_suite,
@@ -217,6 +226,7 @@ __attribute__((deprecated)) inscriptionnotauthenticated_list_element_t *inscript
         free(b_inscription_archived_copy);
         free(b_inscriptionnotauthenticated_conditional_copy);
         free(b_inscriptionnotauthenticated_isactive_copy);
+        free(b_inscriptionnotauthenticated_draft_copy);
         free(fki_province_id_copy);
         free(fki_country_id_copy);
     }
@@ -319,6 +329,10 @@ void inscriptionnotauthenticated_list_element_free(inscriptionnotauthenticated_l
     if (inscriptionnotauthenticated_list_element->b_inscriptionnotauthenticated_isactive) {
         free(inscriptionnotauthenticated_list_element->b_inscriptionnotauthenticated_isactive);
         inscriptionnotauthenticated_list_element->b_inscriptionnotauthenticated_isactive = NULL;
+    }
+    if (inscriptionnotauthenticated_list_element->b_inscriptionnotauthenticated_draft) {
+        free(inscriptionnotauthenticated_list_element->b_inscriptionnotauthenticated_draft);
+        inscriptionnotauthenticated_list_element->b_inscriptionnotauthenticated_draft = NULL;
     }
     if (inscriptionnotauthenticated_list_element->s_address_civic) {
         free(inscriptionnotauthenticated_list_element->s_address_civic);
@@ -564,6 +578,14 @@ cJSON *inscriptionnotauthenticated_list_element_convertToJSON(inscriptionnotauth
     }
 
 
+    // inscriptionnotauthenticated_list_element->b_inscriptionnotauthenticated_draft
+    if(inscriptionnotauthenticated_list_element->b_inscriptionnotauthenticated_draft) {
+    if(cJSON_AddBoolToObject(item, "bInscriptionnotauthenticatedDraft", *inscriptionnotauthenticated_list_element->b_inscriptionnotauthenticated_draft) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
     // inscriptionnotauthenticated_list_element->s_address_civic
     if(inscriptionnotauthenticated_list_element->s_address_civic) {
     if(cJSON_AddStringToObject(item, "sAddressCivic", inscriptionnotauthenticated_list_element->s_address_civic) == NULL) {
@@ -711,6 +733,9 @@ inscriptionnotauthenticated_list_element_t *inscriptionnotauthenticated_list_ele
 
     // define the local variable for inscriptionnotauthenticated_list_element->b_inscriptionnotauthenticated_isactive
     int *b_inscriptionnotauthenticated_isactive_local_var = NULL;
+
+    // define the local variable for inscriptionnotauthenticated_list_element->b_inscriptionnotauthenticated_draft
+    int *b_inscriptionnotauthenticated_draft_local_var = NULL;
 
     char *s_address_civic_local_str = NULL;
 
@@ -1088,6 +1113,24 @@ inscriptionnotauthenticated_list_element_t *inscriptionnotauthenticated_list_ele
     *b_inscriptionnotauthenticated_isactive_local_var = b_inscriptionnotauthenticated_isactive->valueint;
     }
 
+    // inscriptionnotauthenticated_list_element->b_inscriptionnotauthenticated_draft
+    cJSON *b_inscriptionnotauthenticated_draft = cJSON_GetObjectItemCaseSensitive(inscriptionnotauthenticated_list_elementJSON, "bInscriptionnotauthenticatedDraft");
+    if (cJSON_IsNull(b_inscriptionnotauthenticated_draft)) {
+        b_inscriptionnotauthenticated_draft = NULL;
+    }
+    if (b_inscriptionnotauthenticated_draft) { 
+    if(!cJSON_IsBool(b_inscriptionnotauthenticated_draft))
+    {
+    goto end; //Bool
+    }
+    b_inscriptionnotauthenticated_draft_local_var = malloc(sizeof(int));
+    if(!b_inscriptionnotauthenticated_draft_local_var)
+    {
+        goto end;
+    }
+    *b_inscriptionnotauthenticated_draft_local_var = b_inscriptionnotauthenticated_draft->valueint;
+    }
+
     // inscriptionnotauthenticated_list_element->s_address_civic
     cJSON *s_address_civic = cJSON_GetObjectItemCaseSensitive(inscriptionnotauthenticated_list_elementJSON, "sAddressCivic");
     if (cJSON_IsNull(s_address_civic)) {
@@ -1270,6 +1313,7 @@ inscriptionnotauthenticated_list_element_t *inscriptionnotauthenticated_list_ele
         dt_inscriptionnotauthenticated_transactiondate_real_local_str,
         b_inscriptionnotauthenticated_conditional_local_var,
         b_inscriptionnotauthenticated_isactive_local_var,
+        b_inscriptionnotauthenticated_draft_local_var,
         s_address_civic_local_str,
         s_address_street_local_str,
         s_address_suite_local_str,
@@ -1378,6 +1422,10 @@ end:
     if (b_inscriptionnotauthenticated_isactive_local_var) {
         free(b_inscriptionnotauthenticated_isactive_local_var);
         b_inscriptionnotauthenticated_isactive_local_var = NULL;
+    }
+    if (b_inscriptionnotauthenticated_draft_local_var) {
+        free(b_inscriptionnotauthenticated_draft_local_var);
+        b_inscriptionnotauthenticated_draft_local_var = NULL;
     }
     if (s_address_civic_local_str) {
         free(s_address_civic_local_str);

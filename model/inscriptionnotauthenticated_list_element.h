@@ -43,6 +43,7 @@ typedef struct inscriptionnotauthenticated_list_element_t {
     char *dt_inscriptionnotauthenticated_transactiondate_real; // string
     int *b_inscriptionnotauthenticated_conditional; //boolean
     int *b_inscriptionnotauthenticated_isactive; //boolean
+    int *b_inscriptionnotauthenticated_draft; //boolean
     char *s_address_civic; // string
     char *s_address_street; // string
     char *s_address_suite; // string
@@ -81,6 +82,7 @@ __attribute__((deprecated)) inscriptionnotauthenticated_list_element_t *inscript
     char *dt_inscriptionnotauthenticated_transactiondate_real,
     int *b_inscriptionnotauthenticated_conditional,
     int *b_inscriptionnotauthenticated_isactive,
+    int *b_inscriptionnotauthenticated_draft,
     char *s_address_civic,
     char *s_address_street,
     char *s_address_suite,

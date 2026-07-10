@@ -1,0 +1,32 @@
+/*
+ * field_e_inscription_remunerationtype.h
+ *
+ * The remunerationtype of the Inscription
+ */
+
+#ifndef _field_e_inscription_remunerationtype_H_
+#define _field_e_inscription_remunerationtype_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_inscription_remunerationtype_t field_e_inscription_remunerationtype_t;
+
+
+// Enum  for field_e_inscription_remunerationtype
+
+typedef enum { ezmax_api_definition__full_field_e_inscription_remunerationtype__NULL = 0, ezmax_api_definition__full_field_e_inscription_remunerationtype__Percentage, ezmax_api_definition__full_field_e_inscription_remunerationtype__Dollars } ezmax_api_definition__full_field_e_inscription_remunerationtype__e;
+
+char* field_e_inscription_remunerationtype_field_e_inscription_remunerationtype_ToString(ezmax_api_definition__full_field_e_inscription_remunerationtype__e field_e_inscription_remunerationtype);
+
+ezmax_api_definition__full_field_e_inscription_remunerationtype__e field_e_inscription_remunerationtype_field_e_inscription_remunerationtype_FromString(char* field_e_inscription_remunerationtype);
+
+cJSON *field_e_inscription_remunerationtype_convertToJSON(ezmax_api_definition__full_field_e_inscription_remunerationtype__e field_e_inscription_remunerationtype);
+
+ezmax_api_definition__full_field_e_inscription_remunerationtype__e field_e_inscription_remunerationtype_parseFromJSON(cJSON *field_e_inscription_remunerationtypeJSON);
+
+#endif /* _field_e_inscription_remunerationtype_H_ */
+

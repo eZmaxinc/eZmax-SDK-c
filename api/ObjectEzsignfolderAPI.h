@@ -37,6 +37,7 @@
 #include "../model/ezsignfolder_get_ezsigndocuments_v1_response.h"
 #include "../model/ezsignfolder_get_ezsigndocuments_v2_response.h"
 #include "../model/ezsignfolder_get_ezsignfoldersignerassociations_v1_response.h"
+#include "../model/ezsignfolder_get_ezsignfoldersignerassociations_v2_response.h"
 #include "../model/ezsignfolder_get_ezsignformfieldgroups_v1_response.h"
 #include "../model/ezsignfolder_get_ezsignsignatures_automatic_v1_response.h"
 #include "../model/ezsignfolder_get_ezsignsignatures_v1_response.h"
@@ -267,6 +268,14 @@ ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV2(apiClient_t *apiClient, i
 //
 ezsignfolder_get_ezsignfoldersignerassociations_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
+
+
+// Retrieve an existing Ezsignfolder's Ezsignfoldersignerassociations
+//
+// 
+//
+ezsignfolder_get_ezsignfoldersignerassociations_v2_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV2(apiClient_t *apiClient, int *pkiEzsignfolderID);
 
 
 // Retrieve an existing Ezsignfolder's Ezsignformfieldgroups

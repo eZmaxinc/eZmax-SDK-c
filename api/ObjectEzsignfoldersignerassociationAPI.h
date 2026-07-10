@@ -14,13 +14,18 @@
 #include "../model/ezsignfoldersignerassociation_create_object_v1_response.h"
 #include "../model/ezsignfoldersignerassociation_create_object_v2_request.h"
 #include "../model/ezsignfoldersignerassociation_create_object_v2_response.h"
+#include "../model/ezsignfoldersignerassociation_create_object_v3_request.h"
+#include "../model/ezsignfoldersignerassociation_create_object_v3_response.h"
 #include "../model/ezsignfoldersignerassociation_delete_object_v1_response.h"
 #include "../model/ezsignfoldersignerassociation_edit_object_v1_request.h"
 #include "../model/ezsignfoldersignerassociation_edit_object_v1_response.h"
+#include "../model/ezsignfoldersignerassociation_edit_object_v2_request.h"
+#include "../model/ezsignfoldersignerassociation_edit_object_v2_response.h"
 #include "../model/ezsignfoldersignerassociation_force_disconnect_v1_response.h"
 #include "../model/ezsignfoldersignerassociation_get_in_person_login_url_v1_response.h"
 #include "../model/ezsignfoldersignerassociation_get_object_v1_response.h"
 #include "../model/ezsignfoldersignerassociation_get_object_v2_response.h"
+#include "../model/ezsignfoldersignerassociation_get_object_v3_response.h"
 #include "../model/ezsignfoldersignerassociation_patch_object_v1_request.h"
 #include "../model/ezsignfoldersignerassociation_patch_object_v1_response.h"
 #include "../model/ezsignfoldersignerassociation_reassign_v1_request.h"
@@ -60,6 +65,14 @@ ezsignfoldersignerassociation_create_object_v2_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObjectV2(apiClient_t *apiClient, ezsignfoldersignerassociation_create_object_v2_request_t *ezsignfoldersignerassociation_create_object_v2_request);
 
 
+// Create a new Ezsignfoldersignerassociation
+//
+// The endpoint allows to create one or many elements at once.
+//
+ezsignfoldersignerassociation_create_object_v3_response_t*
+ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObjectV3(apiClient_t *apiClient, ezsignfoldersignerassociation_create_object_v3_request_t *ezsignfoldersignerassociation_create_object_v3_request);
+
+
 // Delete an existing Ezsignfoldersignerassociation
 //
 // 
@@ -74,6 +87,14 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationDeleteObject
 //
 ezsignfoldersignerassociation_edit_object_v1_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationEditObjectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_edit_object_v1_request_t *ezsignfoldersignerassociation_edit_object_v1_request);
+
+
+// Edit an existing Ezsignfoldersignerassociation
+//
+// 
+//
+ezsignfoldersignerassociation_edit_object_v2_response_t*
+ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationEditObjectV2(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_edit_object_v2_request_t *ezsignfoldersignerassociation_edit_object_v2_request);
 
 
 // Disconnects the Ezsignfoldersignerassociation
@@ -106,6 +127,14 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV1(
 //
 ezsignfoldersignerassociation_get_object_v2_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV2(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID);
+
+
+// Retrieve an existing Ezsignfoldersignerassociation
+//
+// 
+//
+ezsignfoldersignerassociation_get_object_v3_response_t*
+ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV3(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID);
 
 
 // Patch an existing Ezsignfoldersignerassociation

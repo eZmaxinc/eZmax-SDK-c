@@ -12,6 +12,7 @@ static webhook_response_t *webhook_response_create_internal(
     int *fki_ezsignfoldertype_id,
     char *s_ezsignfoldertype_name_x,
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module,
+    ezmax_api_definition__full_field_e_webhook_ezmaxpartnerevent__e e_webhook_ezmaxpartnerevent,
     ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent,
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent,
     char *s_webhook_url,
@@ -36,6 +37,7 @@ static webhook_response_t *webhook_response_create_internal(
     webhook_response_local_var->fki_ezsignfoldertype_id = fki_ezsignfoldertype_id;
     webhook_response_local_var->s_ezsignfoldertype_name_x = s_ezsignfoldertype_name_x;
     webhook_response_local_var->e_webhook_module = e_webhook_module;
+    webhook_response_local_var->e_webhook_ezmaxpartnerevent = e_webhook_ezmaxpartnerevent;
     webhook_response_local_var->e_webhook_ezsignevent = e_webhook_ezsignevent;
     webhook_response_local_var->e_webhook_managementevent = e_webhook_managementevent;
     webhook_response_local_var->s_webhook_url = s_webhook_url;
@@ -57,6 +59,7 @@ __attribute__((deprecated)) webhook_response_t *webhook_response_create(
     int *fki_ezsignfoldertype_id,
     char *s_ezsignfoldertype_name_x,
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module,
+    ezmax_api_definition__full_field_e_webhook_ezmaxpartnerevent__e e_webhook_ezmaxpartnerevent,
     ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent,
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent,
     char *s_webhook_url,
@@ -106,6 +109,7 @@ __attribute__((deprecated)) webhook_response_t *webhook_response_create(
         fki_ezsignfoldertype_id_copy,
         s_ezsignfoldertype_name_x,
         e_webhook_module,
+        e_webhook_ezmaxpartnerevent,
         e_webhook_ezsignevent,
         e_webhook_managementevent,
         s_webhook_url,
@@ -255,6 +259,19 @@ cJSON *webhook_response_convertToJSON(webhook_response_t *webhook_response) {
     }
 
 
+    // webhook_response->e_webhook_ezmaxpartnerevent
+    if(webhook_response->e_webhook_ezmaxpartnerevent != ezmax_api_definition__full_field_e_webhook_ezmaxpartnerevent__NULL) {
+    cJSON *e_webhook_ezmaxpartnerevent_local_JSON = field_e_webhook_ezmaxpartnerevent_convertToJSON(webhook_response->e_webhook_ezmaxpartnerevent);
+    if(e_webhook_ezmaxpartnerevent_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eWebhookEzmaxpartnerevent", e_webhook_ezmaxpartnerevent_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+    }
+
+
     // webhook_response->e_webhook_ezsignevent
     if(webhook_response->e_webhook_ezsignevent != ezmax_api_definition__full_field_e_webhook_ezsignevent__NULL) {
     cJSON *e_webhook_ezsignevent_local_JSON = field_e_webhook_ezsignevent_convertToJSON(webhook_response->e_webhook_ezsignevent);
@@ -390,6 +407,9 @@ webhook_response_t *webhook_response_parseFromJSON(cJSON *webhook_responseJSON){
     // define the local variable for webhook_response->e_webhook_module
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module_local_nonprim = 0;
 
+    // define the local variable for webhook_response->e_webhook_ezmaxpartnerevent
+    ezmax_api_definition__full_field_e_webhook_ezmaxpartnerevent__e e_webhook_ezmaxpartnerevent_local_nonprim = 0;
+
     // define the local variable for webhook_response->e_webhook_ezsignevent
     ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent_local_nonprim = 0;
 
@@ -510,6 +530,15 @@ webhook_response_t *webhook_response_parseFromJSON(cJSON *webhook_responseJSON){
 
     
     e_webhook_module_local_nonprim = field_e_webhook_module_parseFromJSON(e_webhook_module); //custom
+
+    // webhook_response->e_webhook_ezmaxpartnerevent
+    cJSON *e_webhook_ezmaxpartnerevent = cJSON_GetObjectItemCaseSensitive(webhook_responseJSON, "eWebhookEzmaxpartnerevent");
+    if (cJSON_IsNull(e_webhook_ezmaxpartnerevent)) {
+        e_webhook_ezmaxpartnerevent = NULL;
+    }
+    if (e_webhook_ezmaxpartnerevent) { 
+    e_webhook_ezmaxpartnerevent_local_nonprim = field_e_webhook_ezmaxpartnerevent_parseFromJSON(e_webhook_ezmaxpartnerevent); //custom
+    }
 
     // webhook_response->e_webhook_ezsignevent
     cJSON *e_webhook_ezsignevent = cJSON_GetObjectItemCaseSensitive(webhook_responseJSON, "eWebhookEzsignevent");
@@ -683,6 +712,7 @@ webhook_response_t *webhook_response_parseFromJSON(cJSON *webhook_responseJSON){
         fki_ezsignfoldertype_id_local_var,
         s_ezsignfoldertype_name_x_local_str,
         e_webhook_module_local_nonprim,
+        e_webhook_ezmaxpartnerevent ? e_webhook_ezmaxpartnerevent_local_nonprim : 0,
         e_webhook_ezsignevent ? e_webhook_ezsignevent_local_nonprim : 0,
         e_webhook_managementevent ? e_webhook_managementevent_local_nonprim : 0,
         s_webhook_url_local_str,
@@ -724,6 +754,9 @@ end:
     }
     if (e_webhook_module_local_nonprim) {
         e_webhook_module_local_nonprim = 0;
+    }
+    if (e_webhook_ezmaxpartnerevent_local_nonprim) {
+        e_webhook_ezmaxpartnerevent_local_nonprim = 0;
     }
     if (e_webhook_ezsignevent_local_nonprim) {
         e_webhook_ezsignevent_local_nonprim = 0;

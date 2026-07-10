@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **obj_ezmaxpartner_shortdescription** | [**multilingual_ezmaxpartner_shortdescription_t**](multilingual_ezmaxpartner_shortdescription.md) \* |  | 
 **obj_ezmaxpartner_url** | [**multilingual_ezmaxpartner_url_t**](multilingual_ezmaxpartner_url.md) \* |  | 
 **b_ezmaxpartner_isactive** | **int** | Whether the Ezmaxpartner is active or not | [optional] 
+**obj_ezmaxpartner_logourl** | [**multilingual_ezmaxpartner_logourl_t**](multilingual_ezmaxpartner_logourl.md) \* |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

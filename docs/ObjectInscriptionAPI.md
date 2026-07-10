@@ -9,7 +9,9 @@ Method | HTTP request | Description
 [**ObjectInscriptionAPI_inscriptionGetCommunicationListV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionGetCommunicationListV1) | **GET** /1/object/inscription/{pkiInscriptionID}/getCommunicationList | Retrieve Communication list
 [**ObjectInscriptionAPI_inscriptionGetCommunicationrecipientsV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionGetCommunicationrecipientsV1) | **GET** /1/object/inscription/{pkiInscriptionID}/getCommunicationrecipients | Retrieve Inscription&#39;s Communicationrecipient
 [**ObjectInscriptionAPI_inscriptionGetCommunicationsendersV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionGetCommunicationsendersV1) | **GET** /1/object/inscription/{pkiInscriptionID}/getCommunicationsenders | Retrieve Inscription&#39;s Communicationsender
+[**ObjectInscriptionAPI_inscriptionGetInscriptionnotauthenticatedsV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionGetInscriptionnotauthenticatedsV1) | **GET** /1/object/inscription/{pkiInscriptionID}/getInscriptionnotauthenticateds | Retrieve Inscriptionnotauthenticated list
 [**ObjectInscriptionAPI_inscriptionGetListV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionGetListV1) | **GET** /1/object/inscription/getList | Retrieve Inscription list
+[**ObjectInscriptionAPI_inscriptionGetObjectV2**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionGetObjectV2) | **GET** /2/object/inscription/{pkiInscriptionID} | Retrieve an existing Inscription
 [**ObjectInscriptionAPI_inscriptionImportIntoEDMV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionImportIntoEDMV1) | **POST** /1/object/inscription/{pkiInscriptionID}/importIntoEDM | Import attachments into the Inscription
 [**ObjectInscriptionAPI_inscriptionPrepareFilesTransferV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionPrepareFilesTransferV1) | **POST** /1/object/inscription/{pkiInscriptionID}/prepareFilesTransfer | Prepares file transfer into EDM
 
@@ -169,6 +171,35 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **ObjectInscriptionAPI_inscriptionGetInscriptionnotauthenticatedsV1**
+```c
+// Retrieve Inscriptionnotauthenticated list
+//
+inscription_get_inscriptionnotauthenticateds_v1_response_t* ObjectInscriptionAPI_inscriptionGetInscriptionnotauthenticatedsV1(apiClient_t *apiClient, int *pkiInscriptionID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiInscriptionID** | **int \*** |  | 
+
+### Return type
+
+[inscription_get_inscriptionnotauthenticateds_v1_response_t](inscription_get_inscriptionnotauthenticateds_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **ObjectInscriptionAPI_inscriptionGetListV1**
 ```c
 // Retrieve Inscription list
@@ -201,6 +232,37 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectInscriptionAPI_inscriptionGetObjectV2**
+```c
+// Retrieve an existing Inscription
+//
+// 
+//
+inscription_get_object_v2_response_t* ObjectInscriptionAPI_inscriptionGetObjectV2(apiClient_t *apiClient, int *pkiInscriptionID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiInscriptionID** | **int \*** | The unique ID of the Inscription | 
+
+### Return type
+
+[inscription_get_object_v2_response_t](inscription_get_object_v2_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

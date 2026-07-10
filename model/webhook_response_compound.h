@@ -16,6 +16,7 @@
 typedef struct webhook_response_compound_t webhook_response_compound_t;
 
 #include "common_audit.h"
+#include "field_e_webhook_ezmaxpartnerevent.h"
 #include "field_e_webhook_ezsignevent.h"
 #include "field_e_webhook_managementevent.h"
 #include "field_e_webhook_module.h"
@@ -30,6 +31,7 @@ typedef struct webhook_response_compound_t {
     int *fki_ezsignfoldertype_id; //numeric
     char *s_ezsignfoldertype_name_x; // string
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module; //referenced enum
+    ezmax_api_definition__full_field_e_webhook_ezmaxpartnerevent__e e_webhook_ezmaxpartnerevent; //referenced enum
     ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent; //referenced enum
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent; //referenced enum
     char *s_webhook_url; // string
@@ -55,6 +57,7 @@ __attribute__((deprecated)) webhook_response_compound_t *webhook_response_compou
     int *fki_ezsignfoldertype_id,
     char *s_ezsignfoldertype_name_x,
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module,
+    ezmax_api_definition__full_field_e_webhook_ezmaxpartnerevent__e e_webhook_ezmaxpartnerevent,
     ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent,
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent,
     char *s_webhook_url,

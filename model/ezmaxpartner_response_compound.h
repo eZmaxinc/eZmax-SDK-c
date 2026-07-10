@@ -19,6 +19,7 @@ typedef struct ezmaxpartner_response_compound_t ezmaxpartner_response_compound_t
 #include "multilingual_ezmaxpartner_address.h"
 #include "multilingual_ezmaxpartner_description.h"
 #include "multilingual_ezmaxpartner_emailaddress.h"
+#include "multilingual_ezmaxpartner_logourl.h"
 #include "multilingual_ezmaxpartner_name.h"
 #include "multilingual_ezmaxpartner_phone_e164.h"
 #include "multilingual_ezmaxpartner_shortdescription.h"
@@ -36,6 +37,7 @@ typedef struct ezmaxpartner_response_compound_t {
     struct multilingual_ezmaxpartner_shortdescription_t *obj_ezmaxpartner_shortdescription; //model
     struct multilingual_ezmaxpartner_url_t *obj_ezmaxpartner_url; //model
     int *b_ezmaxpartner_isactive; //boolean
+    struct multilingual_ezmaxpartner_logourl_t *obj_ezmaxpartner_logourl; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezmaxpartner_response_compound_t;
@@ -49,7 +51,8 @@ __attribute__((deprecated)) ezmaxpartner_response_compound_t *ezmaxpartner_respo
     multilingual_ezmaxpartner_phone_e164_t *obj_ezmaxpartner_phone_e164,
     multilingual_ezmaxpartner_shortdescription_t *obj_ezmaxpartner_shortdescription,
     multilingual_ezmaxpartner_url_t *obj_ezmaxpartner_url,
-    int *b_ezmaxpartner_isactive
+    int *b_ezmaxpartner_isactive,
+    multilingual_ezmaxpartner_logourl_t *obj_ezmaxpartner_logourl
 );
 
 void ezmaxpartner_response_compound_free(ezmaxpartner_response_compound_t *ezmaxpartner_response_compound);

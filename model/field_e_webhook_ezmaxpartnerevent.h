@@ -1,0 +1,32 @@
+/*
+ * field_e_webhook_ezmaxpartnerevent.h
+ *
+ * The Ezmaxpartnerevent of the Ezmaxpartnerproductstagewebhook
+ */
+
+#ifndef _field_e_webhook_ezmaxpartnerevent_H_
+#define _field_e_webhook_ezmaxpartnerevent_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_webhook_ezmaxpartnerevent_t field_e_webhook_ezmaxpartnerevent_t;
+
+
+// Enum  for field_e_webhook_ezmaxpartnerevent
+
+typedef enum { ezmax_api_definition__full_field_e_webhook_ezmaxpartnerevent__NULL = 0, ezmax_api_definition__full_field_e_webhook_ezmaxpartnerevent__ProductstageSubscribe, ezmax_api_definition__full_field_e_webhook_ezmaxpartnerevent__ProductstageUnsubscribe } ezmax_api_definition__full_field_e_webhook_ezmaxpartnerevent__e;
+
+char* field_e_webhook_ezmaxpartnerevent_field_e_webhook_ezmaxpartnerevent_ToString(ezmax_api_definition__full_field_e_webhook_ezmaxpartnerevent__e field_e_webhook_ezmaxpartnerevent);
+
+ezmax_api_definition__full_field_e_webhook_ezmaxpartnerevent__e field_e_webhook_ezmaxpartnerevent_field_e_webhook_ezmaxpartnerevent_FromString(char* field_e_webhook_ezmaxpartnerevent);
+
+cJSON *field_e_webhook_ezmaxpartnerevent_convertToJSON(ezmax_api_definition__full_field_e_webhook_ezmaxpartnerevent__e field_e_webhook_ezmaxpartnerevent);
+
+ezmax_api_definition__full_field_e_webhook_ezmaxpartnerevent__e field_e_webhook_ezmaxpartnerevent_parseFromJSON(cJSON *field_e_webhook_ezmaxpartnereventJSON);
+
+#endif /* _field_e_webhook_ezmaxpartnerevent_H_ */
+

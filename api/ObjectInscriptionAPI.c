@@ -549,6 +549,93 @@ end:
 
 }
 
+// Retrieve Inscriptionnotauthenticated list
+//
+inscription_get_inscriptionnotauthenticateds_v1_response_t*
+ObjectInscriptionAPI_inscriptionGetInscriptionnotauthenticatedsV1(apiClient_t *apiClient, int *pkiInscriptionID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/inscription/{pkiInscriptionID}/getInscriptionnotauthenticateds");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiInscriptionID =  + sizeof("{ pkiInscriptionID }") - 1;
+    if(pkiInscriptionID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiInscriptionID = malloc(sizeOfPathParams_pkiInscriptionID);
+    snprintf(localVarToReplace_pkiInscriptionID, sizeOfPathParams_pkiInscriptionID, "{%s}", "pkiInscriptionID");
+
+    char localVarBuff_pkiInscriptionID[256];
+    snprintf(localVarBuff_pkiInscriptionID, sizeof localVarBuff_pkiInscriptionID, "%ld", (long)*pkiInscriptionID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiInscriptionID, localVarBuff_pkiInscriptionID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    inscription_get_inscriptionnotauthenticateds_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectInscriptionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = inscription_get_inscriptionnotauthenticateds_v1_response_parseFromJSON(ObjectInscriptionAPIlocalVarJSON);
+        cJSON_Delete(ObjectInscriptionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiInscriptionID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Retrieve Inscription list
 //
 // Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eInscriptionStep | TemporaryNotAuthenticated<br>ImportedInscription<br>Inscription<br>ModifiedInscription<br>ContractEnded<br>ExpiredInscription<br>Out-market<br>ImportedNotauthenticated<br>NotAuthenticated<br>ModifiedNotauthenticated<br>Authenticated |  Advanced filters that can be used in query parameter *sFilter*:  | Variable | |---| | sBrokerNameInscriptor | | sBrokerNameSeller | | sContactFirstnameAgentInscriptor | | sContactLastnameAgentInscriptor | | sContactFirstnameAgentSeller | | sContactLastnameAgentSeller |         | sContactFirstnameBuyer | | sContactLastnameBuyer | | sContactFirstnameSeller | | sContactLastnameSeller |  | sContactFirstnameNotaryBuyer | | sContactLastnameNotaryBuyer |  | sContactFirstnameNotarySeller | | sContactLastnameNotarySeller |         
@@ -729,6 +816,95 @@ ObjectInscriptionAPI_inscriptionGetListV1(apiClient_t *apiClient, ezmax_api_defi
         keyValuePair_free(keyPairQuery_sFilter);
         keyPairQuery_sFilter = NULL;
     }
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve an existing Inscription
+//
+// 
+//
+inscription_get_object_v2_response_t*
+ObjectInscriptionAPI_inscriptionGetObjectV2(apiClient_t *apiClient, int *pkiInscriptionID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/2/object/inscription/{pkiInscriptionID}");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiInscriptionID =  + sizeof("{ pkiInscriptionID }") - 1;
+    if(pkiInscriptionID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiInscriptionID = malloc(sizeOfPathParams_pkiInscriptionID);
+    snprintf(localVarToReplace_pkiInscriptionID, sizeOfPathParams_pkiInscriptionID, "{%s}", "pkiInscriptionID");
+
+    char localVarBuff_pkiInscriptionID[256];
+    snprintf(localVarBuff_pkiInscriptionID, sizeof localVarBuff_pkiInscriptionID, "%ld", (long)*pkiInscriptionID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiInscriptionID, localVarBuff_pkiInscriptionID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    inscription_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectInscriptionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = inscription_get_object_v2_response_parseFromJSON(ObjectInscriptionAPIlocalVarJSON);
+        cJSON_Delete(ObjectInscriptionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiInscriptionID);
     return elementToReturn;
 end:
     free(localVarPath);

@@ -11,13 +11,13 @@
 // Functions for enum EORDERBY for ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetListV1
 
 static char* inscriptionnotauthenticatedGetListV1_EORDERBY_ToString(ezmax_api_definition__full_inscriptionnotauthenticatedGetListV1_eOrderBy_e EORDERBY){
-    char *EORDERBYArray[] =  { "NULL", "pkiInscriptionID_ASC", "pkiInscriptionID_DESC", "pkiInscriptionnotauthenticatedID_ASC", "pkiInscriptionnotauthenticatedID_DESC", "fkiInscriptiontypeID_ASC", "fkiInscriptiontypeID_DESC", "sInscriptiontypeNameX_ASC", "sInscriptiontypeNameX_DESC", "eInscriptionStep_ASC", "eInscriptionStep_DESC", "sInscriptionCivicend_ASC", "sInscriptionCivicend_DESC", "sInscriptionMLS_ASC", "sInscriptionMLS_DESC", "dInscriptionSaleprice_ASC", "dInscriptionSaleprice_DESC", "dInscriptionRentprice_ASC", "dInscriptionRentprice_DESC", "dtInscriptionDate_ASC", "dtInscriptionDate_DESC", "dtInscriptionExpirationdate_ASC", "dtInscriptionExpirationdate_DESC", "dtInscriptionNotarydate_ASC", "dtInscriptionNotarydate_DESC", "bInscriptionInspection_ASC", "bInscriptionInspection_DESC", "bInscriptionIsactive_ASC", "bInscriptionIsactive_DESC", "dtInscriptionnotauthenticatedNotaryscheduledate_ASC", "dtInscriptionnotauthenticatedNotaryscheduledate_DESC", "dtInscriptionnotauthenticatedTransactiondate_ASC", "dtInscriptionnotauthenticatedTransactiondate_DESC", "dtInscriptionnotauthenticatedTransactiondateReal_ASC", "dtInscriptionnotauthenticatedTransactiondateReal_DESC", "bInscriptionnotauthenticatedConditional_ASC", "bInscriptionnotauthenticatedConditional_DESC", "bInscriptionnotauthenticatedIsactive_ASC", "bInscriptionnotauthenticatedIsactive_DESC", "sAddressCivic_ASC", "sAddressCivic_DESC", "sAddressStreet_ASC", "sAddressStreet_DESC", "sAddressSuite_ASC", "sAddressSuite_DESC", "sAddressCity_ASC", "sAddressCity_DESC", "sAddressZip_ASC", "sAddressZip_DESC", "sProvinceNameX_ASC", "sProvinceNameX_DESC", "sCountryNameX_ASC", "sCountryNameX_DESC", "iInscriptionnotauthenticatedCanceled_ASC", "iInscriptionnotauthenticatedCanceled_DESC", "sInscriptionnotauthenticatedOffertopurchasenumber_ASC", "sInscriptionnotauthenticatedOffertopurchasenumber_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiInscriptionID_ASC", "pkiInscriptionID_DESC", "pkiInscriptionnotauthenticatedID_ASC", "pkiInscriptionnotauthenticatedID_DESC", "fkiInscriptiontypeID_ASC", "fkiInscriptiontypeID_DESC", "sInscriptiontypeNameX_ASC", "sInscriptiontypeNameX_DESC", "eInscriptionStep_ASC", "eInscriptionStep_DESC", "sInscriptionCivicend_ASC", "sInscriptionCivicend_DESC", "sInscriptionMLS_ASC", "sInscriptionMLS_DESC", "dInscriptionSaleprice_ASC", "dInscriptionSaleprice_DESC", "dInscriptionRentprice_ASC", "dInscriptionRentprice_DESC", "dtInscriptionDate_ASC", "dtInscriptionDate_DESC", "dtInscriptionExpirationdate_ASC", "dtInscriptionExpirationdate_DESC", "dtInscriptionNotarydate_ASC", "dtInscriptionNotarydate_DESC", "bInscriptionInspection_ASC", "bInscriptionInspection_DESC", "bInscriptionIsactive_ASC", "bInscriptionIsactive_DESC", "dtInscriptionnotauthenticatedNotaryscheduledate_ASC", "dtInscriptionnotauthenticatedNotaryscheduledate_DESC", "dtInscriptionnotauthenticatedTransactiondate_ASC", "dtInscriptionnotauthenticatedTransactiondate_DESC", "dtInscriptionnotauthenticatedTransactiondateReal_ASC", "dtInscriptionnotauthenticatedTransactiondateReal_DESC", "bInscriptionnotauthenticatedConditional_ASC", "bInscriptionnotauthenticatedConditional_DESC", "bInscriptionnotauthenticatedIsactive_ASC", "bInscriptionnotauthenticatedIsactive_DESC", "bInscriptionnotauthenticatedDraft_ASC", "bInscriptionnotauthenticatedDraft_DESC", "sAddressCivic_ASC", "sAddressCivic_DESC", "sAddressStreet_ASC", "sAddressStreet_DESC", "sAddressSuite_ASC", "sAddressSuite_DESC", "sAddressCity_ASC", "sAddressCity_DESC", "sAddressZip_ASC", "sAddressZip_DESC", "sProvinceNameX_ASC", "sProvinceNameX_DESC", "sCountryNameX_ASC", "sCountryNameX_DESC", "iInscriptionnotauthenticatedCanceled_ASC", "iInscriptionnotauthenticatedCanceled_DESC", "sInscriptionnotauthenticatedOffertopurchasenumber_ASC", "sInscriptionnotauthenticatedOffertopurchasenumber_DESC" };
     return EORDERBYArray[EORDERBY];
 }
 
 static ezmax_api_definition__full_inscriptionnotauthenticatedGetListV1_eOrderBy_e inscriptionnotauthenticatedGetListV1_EORDERBY_FromString(char* EORDERBY){
     int stringToReturn = 0;
-    char *EORDERBYArray[] =  { "NULL", "pkiInscriptionID_ASC", "pkiInscriptionID_DESC", "pkiInscriptionnotauthenticatedID_ASC", "pkiInscriptionnotauthenticatedID_DESC", "fkiInscriptiontypeID_ASC", "fkiInscriptiontypeID_DESC", "sInscriptiontypeNameX_ASC", "sInscriptiontypeNameX_DESC", "eInscriptionStep_ASC", "eInscriptionStep_DESC", "sInscriptionCivicend_ASC", "sInscriptionCivicend_DESC", "sInscriptionMLS_ASC", "sInscriptionMLS_DESC", "dInscriptionSaleprice_ASC", "dInscriptionSaleprice_DESC", "dInscriptionRentprice_ASC", "dInscriptionRentprice_DESC", "dtInscriptionDate_ASC", "dtInscriptionDate_DESC", "dtInscriptionExpirationdate_ASC", "dtInscriptionExpirationdate_DESC", "dtInscriptionNotarydate_ASC", "dtInscriptionNotarydate_DESC", "bInscriptionInspection_ASC", "bInscriptionInspection_DESC", "bInscriptionIsactive_ASC", "bInscriptionIsactive_DESC", "dtInscriptionnotauthenticatedNotaryscheduledate_ASC", "dtInscriptionnotauthenticatedNotaryscheduledate_DESC", "dtInscriptionnotauthenticatedTransactiondate_ASC", "dtInscriptionnotauthenticatedTransactiondate_DESC", "dtInscriptionnotauthenticatedTransactiondateReal_ASC", "dtInscriptionnotauthenticatedTransactiondateReal_DESC", "bInscriptionnotauthenticatedConditional_ASC", "bInscriptionnotauthenticatedConditional_DESC", "bInscriptionnotauthenticatedIsactive_ASC", "bInscriptionnotauthenticatedIsactive_DESC", "sAddressCivic_ASC", "sAddressCivic_DESC", "sAddressStreet_ASC", "sAddressStreet_DESC", "sAddressSuite_ASC", "sAddressSuite_DESC", "sAddressCity_ASC", "sAddressCity_DESC", "sAddressZip_ASC", "sAddressZip_DESC", "sProvinceNameX_ASC", "sProvinceNameX_DESC", "sCountryNameX_ASC", "sCountryNameX_DESC", "iInscriptionnotauthenticatedCanceled_ASC", "iInscriptionnotauthenticatedCanceled_DESC", "sInscriptionnotauthenticatedOffertopurchasenumber_ASC", "sInscriptionnotauthenticatedOffertopurchasenumber_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiInscriptionID_ASC", "pkiInscriptionID_DESC", "pkiInscriptionnotauthenticatedID_ASC", "pkiInscriptionnotauthenticatedID_DESC", "fkiInscriptiontypeID_ASC", "fkiInscriptiontypeID_DESC", "sInscriptiontypeNameX_ASC", "sInscriptiontypeNameX_DESC", "eInscriptionStep_ASC", "eInscriptionStep_DESC", "sInscriptionCivicend_ASC", "sInscriptionCivicend_DESC", "sInscriptionMLS_ASC", "sInscriptionMLS_DESC", "dInscriptionSaleprice_ASC", "dInscriptionSaleprice_DESC", "dInscriptionRentprice_ASC", "dInscriptionRentprice_DESC", "dtInscriptionDate_ASC", "dtInscriptionDate_DESC", "dtInscriptionExpirationdate_ASC", "dtInscriptionExpirationdate_DESC", "dtInscriptionNotarydate_ASC", "dtInscriptionNotarydate_DESC", "bInscriptionInspection_ASC", "bInscriptionInspection_DESC", "bInscriptionIsactive_ASC", "bInscriptionIsactive_DESC", "dtInscriptionnotauthenticatedNotaryscheduledate_ASC", "dtInscriptionnotauthenticatedNotaryscheduledate_DESC", "dtInscriptionnotauthenticatedTransactiondate_ASC", "dtInscriptionnotauthenticatedTransactiondate_DESC", "dtInscriptionnotauthenticatedTransactiondateReal_ASC", "dtInscriptionnotauthenticatedTransactiondateReal_DESC", "bInscriptionnotauthenticatedConditional_ASC", "bInscriptionnotauthenticatedConditional_DESC", "bInscriptionnotauthenticatedIsactive_ASC", "bInscriptionnotauthenticatedIsactive_DESC", "bInscriptionnotauthenticatedDraft_ASC", "bInscriptionnotauthenticatedDraft_DESC", "sAddressCivic_ASC", "sAddressCivic_DESC", "sAddressStreet_ASC", "sAddressStreet_DESC", "sAddressSuite_ASC", "sAddressSuite_DESC", "sAddressCity_ASC", "sAddressCity_DESC", "sAddressZip_ASC", "sAddressZip_DESC", "sProvinceNameX_ASC", "sProvinceNameX_DESC", "sCountryNameX_ASC", "sCountryNameX_DESC", "iInscriptionnotauthenticatedCanceled_ASC", "iInscriptionnotauthenticatedCanceled_DESC", "sInscriptionnotauthenticatedOffertopurchasenumber_ASC", "sInscriptionnotauthenticatedOffertopurchasenumber_DESC" };
     size_t sizeofArray = sizeof(EORDERBYArray) / sizeof(EORDERBYArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(EORDERBY, EORDERBYArray[stringToReturn]) == 0) {
@@ -834,6 +834,95 @@ ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetListV1(apiCli
         keyValuePair_free(keyPairQuery_sFilter);
         keyPairQuery_sFilter = NULL;
     }
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve an existing Inscriptionnotauthenticated
+//
+// 
+//
+inscriptionnotauthenticated_get_object_v2_response_t*
+ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetObjectV2(apiClient_t *apiClient, int *pkiInscriptionnotauthenticatedID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/2/object/inscriptionnotauthenticated/{pkiInscriptionnotauthenticatedID}");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiInscriptionnotauthenticatedID =  + sizeof("{ pkiInscriptionnotauthenticatedID }") - 1;
+    if(pkiInscriptionnotauthenticatedID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiInscriptionnotauthenticatedID = malloc(sizeOfPathParams_pkiInscriptionnotauthenticatedID);
+    snprintf(localVarToReplace_pkiInscriptionnotauthenticatedID, sizeOfPathParams_pkiInscriptionnotauthenticatedID, "{%s}", "pkiInscriptionnotauthenticatedID");
+
+    char localVarBuff_pkiInscriptionnotauthenticatedID[256];
+    snprintf(localVarBuff_pkiInscriptionnotauthenticatedID, sizeof localVarBuff_pkiInscriptionnotauthenticatedID, "%ld", (long)*pkiInscriptionnotauthenticatedID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiInscriptionnotauthenticatedID, localVarBuff_pkiInscriptionnotauthenticatedID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    inscriptionnotauthenticated_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectInscriptionnotauthenticatedAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = inscriptionnotauthenticated_get_object_v2_response_parseFromJSON(ObjectInscriptionnotauthenticatedAPIlocalVarJSON);
+        cJSON_Delete(ObjectInscriptionnotauthenticatedAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiInscriptionnotauthenticatedID);
     return elementToReturn;
 end:
     free(localVarPath);
