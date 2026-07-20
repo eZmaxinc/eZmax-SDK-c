@@ -5,13 +5,13 @@
 
 
 char* field_e_webhook_module_field_e_webhook_module_ToString(ezmax_api_definition__full_field_e_webhook_module__e field_e_webhook_module) {
-    char *field_e_webhook_moduleArray[] =  { "NULL", "Ezmaxpartner", "Ezsign", "Management" };
+    char *field_e_webhook_moduleArray[] =  { "NULL", "Ezmaxpartner", "Ezsign", "Management", "Realestate" };
     return field_e_webhook_moduleArray[field_e_webhook_module];
 }
 
 ezmax_api_definition__full_field_e_webhook_module__e field_e_webhook_module_field_e_webhook_module_FromString(char* field_e_webhook_module) {
     int stringToReturn = 0;
-    char *field_e_webhook_moduleArray[] =  { "NULL", "Ezmaxpartner", "Ezsign", "Management" };
+    char *field_e_webhook_moduleArray[] =  { "NULL", "Ezmaxpartner", "Ezsign", "Management", "Realestate" };
     size_t sizeofArray = sizeof(field_e_webhook_moduleArray) / sizeof(field_e_webhook_moduleArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(field_e_webhook_module, field_e_webhook_moduleArray[stringToReturn]) == 0) {

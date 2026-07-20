@@ -14,6 +14,7 @@ static webhook_list_element_t *webhook_list_element_create_internal(
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module,
     ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent,
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent,
+    ezmax_api_definition__full_field_e_webhook_realestateevent__e e_webhook_realestateevent,
     int *b_webhook_isactive,
     int *b_webhook_issigned
     ) {
@@ -31,6 +32,7 @@ static webhook_list_element_t *webhook_list_element_create_internal(
     webhook_list_element_local_var->e_webhook_module = e_webhook_module;
     webhook_list_element_local_var->e_webhook_ezsignevent = e_webhook_ezsignevent;
     webhook_list_element_local_var->e_webhook_managementevent = e_webhook_managementevent;
+    webhook_list_element_local_var->e_webhook_realestateevent = e_webhook_realestateevent;
     webhook_list_element_local_var->b_webhook_isactive = b_webhook_isactive;
     webhook_list_element_local_var->b_webhook_issigned = b_webhook_issigned;
     return webhook_list_element_local_var;
@@ -45,6 +47,7 @@ __attribute__((deprecated)) webhook_list_element_t *webhook_list_element_create(
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module,
     ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent,
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent,
+    ezmax_api_definition__full_field_e_webhook_realestateevent__e e_webhook_realestateevent,
     int *b_webhook_isactive,
     int *b_webhook_issigned
     ) {
@@ -72,6 +75,7 @@ __attribute__((deprecated)) webhook_list_element_t *webhook_list_element_create(
         e_webhook_module,
         e_webhook_ezsignevent,
         e_webhook_managementevent,
+        e_webhook_realestateevent,
         b_webhook_isactive_copy,
         b_webhook_issigned_copy
         );
@@ -211,6 +215,19 @@ cJSON *webhook_list_element_convertToJSON(webhook_list_element_t *webhook_list_e
     }
 
 
+    // webhook_list_element->e_webhook_realestateevent
+    if(webhook_list_element->e_webhook_realestateevent != ezmax_api_definition__full_field_e_webhook_realestateevent__NULL) {
+    cJSON *e_webhook_realestateevent_local_JSON = field_e_webhook_realestateevent_convertToJSON(webhook_list_element->e_webhook_realestateevent);
+    if(e_webhook_realestateevent_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eWebhookRealestateevent", e_webhook_realestateevent_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+    }
+
+
     // webhook_list_element->b_webhook_isactive
     if (!webhook_list_element->b_webhook_isactive) {
         goto fail;
@@ -259,6 +276,9 @@ webhook_list_element_t *webhook_list_element_parseFromJSON(cJSON *webhook_list_e
 
     // define the local variable for webhook_list_element->e_webhook_managementevent
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent_local_nonprim = 0;
+
+    // define the local variable for webhook_list_element->e_webhook_realestateevent
+    ezmax_api_definition__full_field_e_webhook_realestateevent__e e_webhook_realestateevent_local_nonprim = 0;
 
     // define the local variable for webhook_list_element->b_webhook_isactive
     int *b_webhook_isactive_local_var = NULL;
@@ -377,6 +397,15 @@ webhook_list_element_t *webhook_list_element_parseFromJSON(cJSON *webhook_list_e
     e_webhook_managementevent_local_nonprim = field_e_webhook_managementevent_parseFromJSON(e_webhook_managementevent); //custom
     }
 
+    // webhook_list_element->e_webhook_realestateevent
+    cJSON *e_webhook_realestateevent = cJSON_GetObjectItemCaseSensitive(webhook_list_elementJSON, "eWebhookRealestateevent");
+    if (cJSON_IsNull(e_webhook_realestateevent)) {
+        e_webhook_realestateevent = NULL;
+    }
+    if (e_webhook_realestateevent) { 
+    e_webhook_realestateevent_local_nonprim = field_e_webhook_realestateevent_parseFromJSON(e_webhook_realestateevent); //custom
+    }
+
     // webhook_list_element->b_webhook_isactive
     cJSON *b_webhook_isactive = cJSON_GetObjectItemCaseSensitive(webhook_list_elementJSON, "bWebhookIsactive");
     if (cJSON_IsNull(b_webhook_isactive)) {
@@ -434,6 +463,7 @@ webhook_list_element_t *webhook_list_element_parseFromJSON(cJSON *webhook_list_e
         e_webhook_module_local_nonprim,
         e_webhook_ezsignevent ? e_webhook_ezsignevent_local_nonprim : 0,
         e_webhook_managementevent ? e_webhook_managementevent_local_nonprim : 0,
+        e_webhook_realestateevent ? e_webhook_realestateevent_local_nonprim : 0,
         b_webhook_isactive_local_var,
         b_webhook_issigned_local_var
         );
@@ -472,6 +502,9 @@ end:
     }
     if (e_webhook_managementevent_local_nonprim) {
         e_webhook_managementevent_local_nonprim = 0;
+    }
+    if (e_webhook_realestateevent_local_nonprim) {
+        e_webhook_realestateevent_local_nonprim = 0;
     }
     if (b_webhook_isactive_local_var) {
         free(b_webhook_isactive_local_var);

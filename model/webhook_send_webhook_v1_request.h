@@ -18,6 +18,7 @@ typedef struct webhook_send_webhook_v1_request_t webhook_send_webhook_v1_request
 #include "custom_e_webhook_ezsignevent.h"
 #include "field_e_webhook_managementevent.h"
 #include "field_e_webhook_module.h"
+#include "field_e_webhook_realestateevent.h"
 
 
 
@@ -25,6 +26,7 @@ typedef struct webhook_send_webhook_v1_request_t {
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module; //referenced enum
     ezmax_api_definition__full_custom_e_webhook_ezsignevent__e e_webhook_ezsignevent; //referenced enum
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent; //referenced enum
+    ezmax_api_definition__full_field_e_webhook_realestateevent__e e_webhook_realestateevent; //referenced enum
     int *fki_ezsignfolder_id; //numeric
     int *fki_ezsigndocument_id; //numeric
     int *fki_ezsignsigner_id; //numeric
@@ -38,6 +40,7 @@ __attribute__((deprecated)) webhook_send_webhook_v1_request_t *webhook_send_webh
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module,
     ezmax_api_definition__full_custom_e_webhook_ezsignevent__e e_webhook_ezsignevent,
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent,
+    ezmax_api_definition__full_field_e_webhook_realestateevent__e e_webhook_realestateevent,
     int *fki_ezsignfolder_id,
     int *fki_ezsigndocument_id,
     int *fki_ezsignsigner_id,

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **e_webhook_module** | **field_e_webhook_module_t \*** |  | 
 **e_webhook_ezsignevent** | **field_e_webhook_ezsignevent_t \*** |  | [optional] 
 **e_webhook_managementevent** | **field_e_webhook_managementevent_t \*** |  | [optional] 
+**e_webhook_realestateevent** | **field_e_webhook_realestateevent_t \*** |  | [optional] 
 **s_webhook_url** | **char \*** | The URL of the Webhook callback | 
 **s_webhook_emailfailed** | **char \*** | The email that will receive the Webhook in case all attempts fail | 
 **b_webhook_isactive** | **int** | Whether the Webhook is active or not | 

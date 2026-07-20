@@ -3,8 +3,8 @@ CMakeLists.txt
 Config.cmake.in
 Packing.cmake
 README.md
-api/DocumentationEzmaxpartnerAPI.c
-api/DocumentationEzmaxpartnerAPI.h
+api/ExternalEzmaxpartnerAPI.c
+api/ExternalEzmaxpartnerAPI.h
 api/GlobalCustomerAPI.c
 api/GlobalCustomerAPI.h
 api/GlobalEzmaxclientAPI.c
@@ -283,7 +283,7 @@ api/ScimServiceProviderConfigAPI.c
 api/ScimServiceProviderConfigAPI.h
 api/ScimUsersAPI.c
 api/ScimUsersAPI.h
-docs/DocumentationEzmaxpartnerAPI.md
+docs/ExternalEzmaxpartnerAPI.md
 docs/GlobalCustomerAPI.md
 docs/GlobalEzmaxclientAPI.md
 docs/GlobalEzmaxcustomerAPI.md
@@ -1729,6 +1729,7 @@ docs/field_e_activesession_origin.md
 docs/field_e_activesession_realestateinprogress.md
 docs/field_e_activesession_usertype.md
 docs/field_e_activesession_weekdaystart.md
+docs/field_e_agent_schedule.md
 docs/field_e_attachment_documenttype.md
 docs/field_e_attachment_privacy.md
 docs/field_e_attachment_type.md
@@ -1870,6 +1871,7 @@ docs/field_e_webhook_ezmaxpartnerevent.md
 docs/field_e_webhook_ezsignevent.md
 docs/field_e_webhook_managementevent.md
 docs/field_e_webhook_module.md
+docs/field_e_webhook_realestateevent.md
 docs/field_et_inscriptionnotauthenticated_mortgagetype.md
 docs/field_pks_ezmaxclient_os.md
 docs/font_autocomplete_element_response.md
@@ -2149,7 +2151,10 @@ docs/scim_group_member.md
 docs/scim_service_provider_config.md
 docs/scim_service_provider_config_bulk.md
 docs/scim_service_provider_config_change_password.md
+docs/scim_service_provider_config_etag.md
 docs/scim_service_provider_config_filter.md
+docs/scim_service_provider_config_patch.md
+docs/scim_service_provider_config_sort.md
 docs/scim_user.md
 docs/scim_user_list.md
 docs/secretquestion_autocomplete_element_response.md
@@ -2433,6 +2438,10 @@ docs/webhook_get_list_v1_response_m_payload.md
 docs/webhook_get_object_v2_response.md
 docs/webhook_get_object_v2_response_m_payload.md
 docs/webhook_list_element.md
+docs/webhook_realestate_inscription_created.md
+docs/webhook_realestate_inscription_modified.md
+docs/webhook_realestate_inscriptionnotauthenticated_created.md
+docs/webhook_realestate_inscriptionnotauthenticated_modified.md
 docs/webhook_regenerate_apikey_v1_request.md
 docs/webhook_regenerate_apikey_v1_response.md
 docs/webhook_regenerate_apikey_v1_response_m_payload.md
@@ -5081,6 +5090,8 @@ model/field_e_activesession_usertype.c
 model/field_e_activesession_usertype.h
 model/field_e_activesession_weekdaystart.c
 model/field_e_activesession_weekdaystart.h
+model/field_e_agent_schedule.c
+model/field_e_agent_schedule.h
 model/field_e_attachment_documenttype.c
 model/field_e_attachment_documenttype.h
 model/field_e_attachment_privacy.c
@@ -5363,6 +5374,8 @@ model/field_e_webhook_managementevent.c
 model/field_e_webhook_managementevent.h
 model/field_e_webhook_module.c
 model/field_e_webhook_module.h
+model/field_e_webhook_realestateevent.c
+model/field_e_webhook_realestateevent.h
 model/field_et_inscriptionnotauthenticated_mortgagetype.c
 model/field_et_inscriptionnotauthenticated_mortgagetype.h
 model/field_pks_ezmaxclient_os.c
@@ -5923,8 +5936,14 @@ model/scim_service_provider_config_bulk.c
 model/scim_service_provider_config_bulk.h
 model/scim_service_provider_config_change_password.c
 model/scim_service_provider_config_change_password.h
+model/scim_service_provider_config_etag.c
+model/scim_service_provider_config_etag.h
 model/scim_service_provider_config_filter.c
 model/scim_service_provider_config_filter.h
+model/scim_service_provider_config_patch.c
+model/scim_service_provider_config_patch.h
+model/scim_service_provider_config_sort.c
+model/scim_service_provider_config_sort.h
 model/scim_user.c
 model/scim_user.h
 model/scim_user_list.c
@@ -6491,6 +6510,14 @@ model/webhook_get_object_v2_response_m_payload.c
 model/webhook_get_object_v2_response_m_payload.h
 model/webhook_list_element.c
 model/webhook_list_element.h
+model/webhook_realestate_inscription_created.c
+model/webhook_realestate_inscription_created.h
+model/webhook_realestate_inscription_modified.c
+model/webhook_realestate_inscription_modified.h
+model/webhook_realestate_inscriptionnotauthenticated_created.c
+model/webhook_realestate_inscriptionnotauthenticated_created.h
+model/webhook_realestate_inscriptionnotauthenticated_modified.c
+model/webhook_realestate_inscriptionnotauthenticated_modified.h
 model/webhook_regenerate_apikey_v1_request.c
 model/webhook_regenerate_apikey_v1_request.h
 model/webhook_regenerate_apikey_v1_response.c

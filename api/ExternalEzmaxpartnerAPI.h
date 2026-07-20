@@ -14,6 +14,6 @@
 // Subscribe to an Ezmaxparnerproductstage
 //
 documentation_subscribe_v1_response_t*
-DocumentationEzmaxpartnerAPI_documentationSubscribeV1(apiClient_t *apiClient, documentation_subscribe_v1_request_t *documentation_subscribe_v1_request);
+ExternalEzmaxpartnerAPI_externalpartnerSubscribeV1(apiClient_t *apiClient, documentation_subscribe_v1_request_t *documentation_subscribe_v1_request);
 
 

@@ -15,6 +15,7 @@
 
 typedef struct agent_list_element_t agent_list_element_t;
 
+#include "field_e_agent_schedule.h"
 
 
 
@@ -41,6 +42,7 @@ typedef struct agent_list_element_t {
     char *dt_agent_senioritydate; // string
     char *dt_agent_sickleavestart; // string
     char *dt_agent_sickleaveend; // string
+    ezmax_api_definition__full_field_e_agent_schedule__e e_agent_schedule; //referenced enum
     int *b_agent_tranquillit; //boolean
     int *b_agent_residentiallicense; //boolean
     int *b_agent_commerciallicense; //boolean
@@ -89,6 +91,7 @@ __attribute__((deprecated)) agent_list_element_t *agent_list_element_create(
     char *dt_agent_senioritydate,
     char *dt_agent_sickleavestart,
     char *dt_agent_sickleaveend,
+    ezmax_api_definition__full_field_e_agent_schedule__e e_agent_schedule,
     int *b_agent_tranquillit,
     int *b_agent_residentiallicense,
     int *b_agent_commerciallicense,

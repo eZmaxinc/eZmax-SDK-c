@@ -1354,6 +1354,7 @@ set(SRCS
     model/field_e_activesession_realestateinprogress.c
     model/field_e_activesession_usertype.c
     model/field_e_activesession_weekdaystart.c
+    model/field_e_agent_schedule.c
     model/field_e_attachment_documenttype.c
     model/field_e_attachment_privacy.c
     model/field_e_attachment_type.c
@@ -1495,6 +1496,7 @@ set(SRCS
     model/field_e_webhook_ezsignevent.c
     model/field_e_webhook_managementevent.c
     model/field_e_webhook_module.c
+    model/field_e_webhook_realestateevent.c
     model/field_et_inscriptionnotauthenticated_mortgagetype.c
     model/field_pks_ezmaxclient_os.c
     model/font_autocomplete_element_response.c
@@ -1774,7 +1776,10 @@ set(SRCS
     model/scim_service_provider_config.c
     model/scim_service_provider_config_bulk.c
     model/scim_service_provider_config_change_password.c
+    model/scim_service_provider_config_etag.c
     model/scim_service_provider_config_filter.c
+    model/scim_service_provider_config_patch.c
+    model/scim_service_provider_config_sort.c
     model/scim_user.c
     model/scim_user_list.c
     model/secretquestion_autocomplete_element_response.c
@@ -2058,6 +2063,10 @@ set(SRCS
     model/webhook_get_object_v2_response.c
     model/webhook_get_object_v2_response_m_payload.c
     model/webhook_list_element.c
+    model/webhook_realestate_inscription_created.c
+    model/webhook_realestate_inscription_modified.c
+    model/webhook_realestate_inscriptionnotauthenticated_created.c
+    model/webhook_realestate_inscriptionnotauthenticated_modified.c
     model/webhook_regenerate_apikey_v1_request.c
     model/webhook_regenerate_apikey_v1_response.c
     model/webhook_regenerate_apikey_v1_response_m_payload.c
@@ -2085,7 +2094,7 @@ set(SRCS
     model/websocket_response_get_websocket_id_v1_m_payload.c
     model/websocket_response_information_v1.c
     model/websocket_response_information_v1_m_payload.c
-    api/DocumentationEzmaxpartnerAPI.c
+    api/ExternalEzmaxpartnerAPI.c
     api/GlobalCustomerAPI.c
     api/GlobalEzmaxclientAPI.c
     api/GlobalEzmaxcustomerAPI.c
@@ -3542,6 +3551,7 @@ set(HDRS
     model/field_e_activesession_realestateinprogress.h
     model/field_e_activesession_usertype.h
     model/field_e_activesession_weekdaystart.h
+    model/field_e_agent_schedule.h
     model/field_e_attachment_documenttype.h
     model/field_e_attachment_privacy.h
     model/field_e_attachment_type.h
@@ -3683,6 +3693,7 @@ set(HDRS
     model/field_e_webhook_ezsignevent.h
     model/field_e_webhook_managementevent.h
     model/field_e_webhook_module.h
+    model/field_e_webhook_realestateevent.h
     model/field_et_inscriptionnotauthenticated_mortgagetype.h
     model/field_pks_ezmaxclient_os.h
     model/font_autocomplete_element_response.h
@@ -3962,7 +3973,10 @@ set(HDRS
     model/scim_service_provider_config.h
     model/scim_service_provider_config_bulk.h
     model/scim_service_provider_config_change_password.h
+    model/scim_service_provider_config_etag.h
     model/scim_service_provider_config_filter.h
+    model/scim_service_provider_config_patch.h
+    model/scim_service_provider_config_sort.h
     model/scim_user.h
     model/scim_user_list.h
     model/secretquestion_autocomplete_element_response.h
@@ -4246,6 +4260,10 @@ set(HDRS
     model/webhook_get_object_v2_response.h
     model/webhook_get_object_v2_response_m_payload.h
     model/webhook_list_element.h
+    model/webhook_realestate_inscription_created.h
+    model/webhook_realestate_inscription_modified.h
+    model/webhook_realestate_inscriptionnotauthenticated_created.h
+    model/webhook_realestate_inscriptionnotauthenticated_modified.h
     model/webhook_regenerate_apikey_v1_request.h
     model/webhook_regenerate_apikey_v1_response.h
     model/webhook_regenerate_apikey_v1_response_m_payload.h
@@ -4273,7 +4291,7 @@ set(HDRS
     model/websocket_response_get_websocket_id_v1_m_payload.h
     model/websocket_response_information_v1.h
     model/websocket_response_information_v1_m_payload.h
-    api/DocumentationEzmaxpartnerAPI.h
+    api/ExternalEzmaxpartnerAPI.h
     api/GlobalCustomerAPI.h
     api/GlobalEzmaxclientAPI.h
     api/GlobalEzmaxcustomerAPI.h
@@ -4498,7 +4516,7 @@ set(HDRS "")
 ## This section shows how to use the above compiled library to compile the source files
 ## set source files
 #set(SRCS
-#    unit-tests/manual-DocumentationEzmaxpartnerAPI.c
+#    unit-tests/manual-ExternalEzmaxpartnerAPI.c
 #    unit-tests/manual-GlobalCustomerAPI.c
 #    unit-tests/manual-GlobalEzmaxclientAPI.c
 #    unit-tests/manual-GlobalEzmaxcustomerAPI.c

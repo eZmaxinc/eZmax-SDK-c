@@ -15,6 +15,7 @@
 
 typedef struct custom_ezmaxpartner_list_element_t custom_ezmaxpartner_list_element_t;
 
+#include "multilingual_ezmaxpartner_logourl.h"
 
 
 
@@ -26,6 +27,7 @@ typedef struct custom_ezmaxpartner_list_element_t {
     char *s_ezmaxpartner_name_x; // string
     char *s_ezmaxpartner_phone_e164_x; // string
     char *s_ezmaxpartner_url_x; // string
+    struct multilingual_ezmaxpartner_logourl_t *obj_ezmaxpartner_logourl; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
 } custom_ezmaxpartner_list_element_t;
@@ -37,7 +39,8 @@ __attribute__((deprecated)) custom_ezmaxpartner_list_element_t *custom_ezmaxpart
     char *s_ezmaxpartner_shortdescription_x,
     char *s_ezmaxpartner_name_x,
     char *s_ezmaxpartner_phone_e164_x,
-    char *s_ezmaxpartner_url_x
+    char *s_ezmaxpartner_url_x,
+    multilingual_ezmaxpartner_logourl_t *obj_ezmaxpartner_logourl
 );
 
 void custom_ezmaxpartner_list_element_free(custom_ezmaxpartner_list_element_t *custom_ezmaxpartner_list_element);

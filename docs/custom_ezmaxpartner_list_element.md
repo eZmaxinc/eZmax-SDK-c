@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **s_ezmaxpartner_name_x** | **char \*** | The name of the Ezmaxpartner in the language of the requester | 
 **s_ezmaxpartner_phone_e164_x** | **char \*** | A phone number in E.164 Format | 
 **s_ezmaxpartner_url_x** | **char \*** | The url of the Ezmaxpartner website in the language of the requester | 
+**obj_ezmaxpartner_logourl** | [**multilingual_ezmaxpartner_logourl_t**](multilingual_ezmaxpartner_logourl.md) \* |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

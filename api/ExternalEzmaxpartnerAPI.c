@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <ctype.h>
 
-#include "DocumentationEzmaxpartnerAPI.h"
+#include "ExternalEzmaxpartnerAPI.h"
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
@@ -14,7 +14,7 @@
 // Subscribe to an Ezmaxparnerproductstage
 //
 documentation_subscribe_v1_response_t*
-DocumentationEzmaxpartnerAPI_documentationSubscribeV1(apiClient_t *apiClient, documentation_subscribe_v1_request_t *documentation_subscribe_v1_request)
+ExternalEzmaxpartnerAPI_externalpartnerSubscribeV1(apiClient_t *apiClient, documentation_subscribe_v1_request_t *documentation_subscribe_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -28,7 +28,7 @@ DocumentationEzmaxpartnerAPI_documentationSubscribeV1(apiClient_t *apiClient, do
     apiClient->response_code = 0;
 
     // create the path
-    char *localVarPath = strdup("/1/documentation/subscribe");
+    char *localVarPath = strdup("/1/external/ezmaxpartner/subscribe");
 
 
 
@@ -63,9 +63,9 @@ DocumentationEzmaxpartnerAPI_documentationSubscribeV1(apiClient_t *apiClient, do
     //nonprimitive not container
     documentation_subscribe_v1_response_t *elementToReturn = NULL;
     if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
-        cJSON *DocumentationEzmaxpartnerAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-        elementToReturn = documentation_subscribe_v1_response_parseFromJSON(DocumentationEzmaxpartnerAPIlocalVarJSON);
-        cJSON_Delete(DocumentationEzmaxpartnerAPIlocalVarJSON);
+        cJSON *ExternalEzmaxpartnerAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = documentation_subscribe_v1_response_parseFromJSON(ExternalEzmaxpartnerAPIlocalVarJSON);
+        cJSON_Delete(ExternalEzmaxpartnerAPIlocalVarJSON);
         if(elementToReturn == NULL) {
             // return 0;
         }

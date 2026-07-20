@@ -16,6 +16,7 @@
 typedef struct inscriptionnotauthenticated_list_element_t inscriptionnotauthenticated_list_element_t;
 
 #include "field_e_inscription_step.h"
+#include "field_e_inscription_type.h"
 
 
 
@@ -23,10 +24,15 @@ typedef struct inscriptionnotauthenticated_list_element_t {
     int *pki_inscription_id; //numeric
     int *pki_inscriptionnotauthenticated_id; //numeric
     int *fki_inscriptiontype_id; //numeric
+    char *s_inscriptiontype_name_x; // string
+    int *fki_inscriptionbuildingtype_id; //numeric
+    char *s_inscriptionbuildingtype_name_x; // string
+    int *fki_inscriptioncategory_id; //numeric
+    char *s_inscriptioncategory_name_x; // string
     int *fki_buyercontract_id; //numeric
     char *s_buyercontract_contract; // string
-    char *s_inscriptiontype_name_x; // string
     ezmax_api_definition__full_field_e_inscription_step__e e_inscription_step; //referenced enum
+    ezmax_api_definition__full_field_e_inscription_type__e e_inscription_type; //referenced enum
     char *s_inscription_civicend; // string
     char *s_inscription_mls; // string
     char *s_inscription_contract; // string
@@ -54,6 +60,7 @@ typedef struct inscriptionnotauthenticated_list_element_t {
     int *fki_country_id; //numeric
     char *s_country_name_x; // string
     char *s_inscriptionnotauthenticated_offertopurchasenumber; // string
+    int *i_inscription_unit; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } inscriptionnotauthenticated_list_element_t;
@@ -62,10 +69,15 @@ __attribute__((deprecated)) inscriptionnotauthenticated_list_element_t *inscript
     int *pki_inscription_id,
     int *pki_inscriptionnotauthenticated_id,
     int *fki_inscriptiontype_id,
+    char *s_inscriptiontype_name_x,
+    int *fki_inscriptionbuildingtype_id,
+    char *s_inscriptionbuildingtype_name_x,
+    int *fki_inscriptioncategory_id,
+    char *s_inscriptioncategory_name_x,
     int *fki_buyercontract_id,
     char *s_buyercontract_contract,
-    char *s_inscriptiontype_name_x,
     ezmax_api_definition__full_field_e_inscription_step__e e_inscription_step,
+    ezmax_api_definition__full_field_e_inscription_type__e e_inscription_type,
     char *s_inscription_civicend,
     char *s_inscription_mls,
     char *s_inscription_contract,
@@ -92,7 +104,8 @@ __attribute__((deprecated)) inscriptionnotauthenticated_list_element_t *inscript
     char *s_province_name_x,
     int *fki_country_id,
     char *s_country_name_x,
-    char *s_inscriptionnotauthenticated_offertopurchasenumber
+    char *s_inscriptionnotauthenticated_offertopurchasenumber,
+    int *i_inscription_unit
 );
 
 void inscriptionnotauthenticated_list_element_free(inscriptionnotauthenticated_list_element_t *inscriptionnotauthenticated_list_element);

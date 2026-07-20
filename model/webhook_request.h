@@ -18,6 +18,7 @@ typedef struct webhook_request_t webhook_request_t;
 #include "field_e_webhook_ezsignevent.h"
 #include "field_e_webhook_managementevent.h"
 #include "field_e_webhook_module.h"
+#include "field_e_webhook_realestateevent.h"
 
 
 
@@ -29,6 +30,7 @@ typedef struct webhook_request_t {
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module; //referenced enum
     ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent; //referenced enum
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent; //referenced enum
+    ezmax_api_definition__full_field_e_webhook_realestateevent__e e_webhook_realestateevent; //referenced enum
     char *s_webhook_url; // string
     char *s_webhook_emailfailed; // string
     int *b_webhook_isactive; //boolean
@@ -46,6 +48,7 @@ __attribute__((deprecated)) webhook_request_t *webhook_request_create(
     ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module,
     ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent,
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent,
+    ezmax_api_definition__full_field_e_webhook_realestateevent__e e_webhook_realestateevent,
     char *s_webhook_url,
     char *s_webhook_emailfailed,
     int *b_webhook_isactive,

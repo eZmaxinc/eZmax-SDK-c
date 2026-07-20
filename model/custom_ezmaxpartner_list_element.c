@@ -12,7 +12,8 @@ static custom_ezmaxpartner_list_element_t *custom_ezmaxpartner_list_element_crea
     char *s_ezmaxpartner_shortdescription_x,
     char *s_ezmaxpartner_name_x,
     char *s_ezmaxpartner_phone_e164_x,
-    char *s_ezmaxpartner_url_x
+    char *s_ezmaxpartner_url_x,
+    multilingual_ezmaxpartner_logourl_t *obj_ezmaxpartner_logourl
     ) {
     custom_ezmaxpartner_list_element_t *custom_ezmaxpartner_list_element_local_var = malloc(sizeof(custom_ezmaxpartner_list_element_t));
     if (!custom_ezmaxpartner_list_element_local_var) {
@@ -27,6 +28,7 @@ static custom_ezmaxpartner_list_element_t *custom_ezmaxpartner_list_element_crea
     custom_ezmaxpartner_list_element_local_var->s_ezmaxpartner_name_x = s_ezmaxpartner_name_x;
     custom_ezmaxpartner_list_element_local_var->s_ezmaxpartner_phone_e164_x = s_ezmaxpartner_phone_e164_x;
     custom_ezmaxpartner_list_element_local_var->s_ezmaxpartner_url_x = s_ezmaxpartner_url_x;
+    custom_ezmaxpartner_list_element_local_var->obj_ezmaxpartner_logourl = obj_ezmaxpartner_logourl;
     return custom_ezmaxpartner_list_element_local_var;
 }
 
@@ -37,7 +39,8 @@ __attribute__((deprecated)) custom_ezmaxpartner_list_element_t *custom_ezmaxpart
     char *s_ezmaxpartner_shortdescription_x,
     char *s_ezmaxpartner_name_x,
     char *s_ezmaxpartner_phone_e164_x,
-    char *s_ezmaxpartner_url_x
+    char *s_ezmaxpartner_url_x,
+    multilingual_ezmaxpartner_logourl_t *obj_ezmaxpartner_logourl
     ) {
     int *pki_ezmaxpartner_id_copy = NULL;
     if (pki_ezmaxpartner_id) {
@@ -51,7 +54,8 @@ __attribute__((deprecated)) custom_ezmaxpartner_list_element_t *custom_ezmaxpart
         s_ezmaxpartner_shortdescription_x,
         s_ezmaxpartner_name_x,
         s_ezmaxpartner_phone_e164_x,
-        s_ezmaxpartner_url_x
+        s_ezmaxpartner_url_x,
+        obj_ezmaxpartner_logourl
         );
     if (!result) {
         free(pki_ezmaxpartner_id_copy);
@@ -95,6 +99,10 @@ void custom_ezmaxpartner_list_element_free(custom_ezmaxpartner_list_element_t *c
     if (custom_ezmaxpartner_list_element->s_ezmaxpartner_url_x) {
         free(custom_ezmaxpartner_list_element->s_ezmaxpartner_url_x);
         custom_ezmaxpartner_list_element->s_ezmaxpartner_url_x = NULL;
+    }
+    if (custom_ezmaxpartner_list_element->obj_ezmaxpartner_logourl) {
+        multilingual_ezmaxpartner_logourl_free(custom_ezmaxpartner_list_element->obj_ezmaxpartner_logourl);
+        custom_ezmaxpartner_list_element->obj_ezmaxpartner_logourl = NULL;
     }
     free(custom_ezmaxpartner_list_element);
 }
@@ -164,6 +172,20 @@ cJSON *custom_ezmaxpartner_list_element_convertToJSON(custom_ezmaxpartner_list_e
     goto fail; //String
     }
 
+
+    // custom_ezmaxpartner_list_element->obj_ezmaxpartner_logourl
+    if (!custom_ezmaxpartner_list_element->obj_ezmaxpartner_logourl) {
+        goto fail;
+    }
+    cJSON *obj_ezmaxpartner_logourl_local_JSON = multilingual_ezmaxpartner_logourl_convertToJSON(custom_ezmaxpartner_list_element->obj_ezmaxpartner_logourl);
+    if(obj_ezmaxpartner_logourl_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objEzmaxpartnerLogourl", obj_ezmaxpartner_logourl_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
     return item;
 fail:
     if (item) {
@@ -190,6 +212,9 @@ custom_ezmaxpartner_list_element_t *custom_ezmaxpartner_list_element_parseFromJS
     char *s_ezmaxpartner_phone_e164_x_local_str = NULL;
 
     char *s_ezmaxpartner_url_x_local_str = NULL;
+
+    // define the local variable for custom_ezmaxpartner_list_element->obj_ezmaxpartner_logourl
+    multilingual_ezmaxpartner_logourl_t *obj_ezmaxpartner_logourl_local_nonprim = NULL;
 
     // custom_ezmaxpartner_list_element->pki_ezmaxpartner_id
     cJSON *pki_ezmaxpartner_id = cJSON_GetObjectItemCaseSensitive(custom_ezmaxpartner_list_elementJSON, "pkiEzmaxpartnerID");
@@ -302,6 +327,18 @@ custom_ezmaxpartner_list_element_t *custom_ezmaxpartner_list_element_parseFromJS
     goto end; //String
     }
 
+    // custom_ezmaxpartner_list_element->obj_ezmaxpartner_logourl
+    cJSON *obj_ezmaxpartner_logourl = cJSON_GetObjectItemCaseSensitive(custom_ezmaxpartner_list_elementJSON, "objEzmaxpartnerLogourl");
+    if (cJSON_IsNull(obj_ezmaxpartner_logourl)) {
+        obj_ezmaxpartner_logourl = NULL;
+    }
+    if (!obj_ezmaxpartner_logourl) {
+        goto end;
+    }
+
+    
+    obj_ezmaxpartner_logourl_local_nonprim = multilingual_ezmaxpartner_logourl_parseFromJSON(obj_ezmaxpartner_logourl); //nonprimitive
+
 
     if (s_ezmaxpartner_address_x && !cJSON_IsNull(s_ezmaxpartner_address_x)) s_ezmaxpartner_address_x_local_str = strdup(s_ezmaxpartner_address_x->valuestring);
     if (s_ezmaxpartner_emailaddress_x && !cJSON_IsNull(s_ezmaxpartner_emailaddress_x)) s_ezmaxpartner_emailaddress_x_local_str = strdup(s_ezmaxpartner_emailaddress_x->valuestring);
@@ -317,7 +354,8 @@ custom_ezmaxpartner_list_element_t *custom_ezmaxpartner_list_element_parseFromJS
         s_ezmaxpartner_shortdescription_x_local_str,
         s_ezmaxpartner_name_x_local_str,
         s_ezmaxpartner_phone_e164_x_local_str,
-        s_ezmaxpartner_url_x_local_str
+        s_ezmaxpartner_url_x_local_str,
+        obj_ezmaxpartner_logourl_local_nonprim
         );
 
     if (!custom_ezmaxpartner_list_element_local_var) {
@@ -353,6 +391,10 @@ end:
     if (s_ezmaxpartner_url_x_local_str) {
         free(s_ezmaxpartner_url_x_local_str);
         s_ezmaxpartner_url_x_local_str = NULL;
+    }
+    if (obj_ezmaxpartner_logourl_local_nonprim) {
+        multilingual_ezmaxpartner_logourl_free(obj_ezmaxpartner_logourl_local_nonprim);
+        obj_ezmaxpartner_logourl_local_nonprim = NULL;
     }
     return NULL;
 

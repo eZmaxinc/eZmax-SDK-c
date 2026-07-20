@@ -13,6 +13,7 @@ static ezsigntemplatesignature_request_compound_v2_t *ezsigntemplatesignature_re
     int *fki_paymentgateway_id,
     int *b_ezsigntemplatesignature_handwritten,
     int *b_ezsigntemplatesignature_reason,
+    int *b_ezsigntemplatesignature_creditcardcustomamount,
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioning__e e_ezsigntemplatesignature_positioning,
     int *i_ezsigntemplatedocumentpage_pagenumber,
     int *i_ezsigntemplatesignature_x,
@@ -61,6 +62,7 @@ static ezsigntemplatesignature_request_compound_v2_t *ezsigntemplatesignature_re
     ezsigntemplatesignature_request_compound_v2_local_var->fki_paymentgateway_id = fki_paymentgateway_id;
     ezsigntemplatesignature_request_compound_v2_local_var->b_ezsigntemplatesignature_handwritten = b_ezsigntemplatesignature_handwritten;
     ezsigntemplatesignature_request_compound_v2_local_var->b_ezsigntemplatesignature_reason = b_ezsigntemplatesignature_reason;
+    ezsigntemplatesignature_request_compound_v2_local_var->b_ezsigntemplatesignature_creditcardcustomamount = b_ezsigntemplatesignature_creditcardcustomamount;
     ezsigntemplatesignature_request_compound_v2_local_var->e_ezsigntemplatesignature_positioning = e_ezsigntemplatesignature_positioning;
     ezsigntemplatesignature_request_compound_v2_local_var->i_ezsigntemplatedocumentpage_pagenumber = i_ezsigntemplatedocumentpage_pagenumber;
     ezsigntemplatesignature_request_compound_v2_local_var->i_ezsigntemplatesignature_x = i_ezsigntemplatesignature_x;
@@ -106,6 +108,7 @@ __attribute__((deprecated)) ezsigntemplatesignature_request_compound_v2_t *ezsig
     int *fki_paymentgateway_id,
     int *b_ezsigntemplatesignature_handwritten,
     int *b_ezsigntemplatesignature_reason,
+    int *b_ezsigntemplatesignature_creditcardcustomamount,
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioning__e e_ezsigntemplatesignature_positioning,
     int *i_ezsigntemplatedocumentpage_pagenumber,
     int *i_ezsigntemplatesignature_x,
@@ -176,6 +179,11 @@ __attribute__((deprecated)) ezsigntemplatesignature_request_compound_v2_t *ezsig
         b_ezsigntemplatesignature_reason_copy = malloc(sizeof(int));
         if (b_ezsigntemplatesignature_reason_copy) *b_ezsigntemplatesignature_reason_copy = *b_ezsigntemplatesignature_reason;
     }
+    int *b_ezsigntemplatesignature_creditcardcustomamount_copy = NULL;
+    if (b_ezsigntemplatesignature_creditcardcustomamount) {
+        b_ezsigntemplatesignature_creditcardcustomamount_copy = malloc(sizeof(int));
+        if (b_ezsigntemplatesignature_creditcardcustomamount_copy) *b_ezsigntemplatesignature_creditcardcustomamount_copy = *b_ezsigntemplatesignature_creditcardcustomamount;
+    }
     int *i_ezsigntemplatedocumentpage_pagenumber_copy = NULL;
     if (i_ezsigntemplatedocumentpage_pagenumber) {
         i_ezsigntemplatedocumentpage_pagenumber_copy = malloc(sizeof(int));
@@ -244,6 +252,7 @@ __attribute__((deprecated)) ezsigntemplatesignature_request_compound_v2_t *ezsig
         fki_paymentgateway_id_copy,
         b_ezsigntemplatesignature_handwritten_copy,
         b_ezsigntemplatesignature_reason_copy,
+        b_ezsigntemplatesignature_creditcardcustomamount_copy,
         e_ezsigntemplatesignature_positioning,
         i_ezsigntemplatedocumentpage_pagenumber_copy,
         i_ezsigntemplatesignature_x_copy,
@@ -287,6 +296,7 @@ __attribute__((deprecated)) ezsigntemplatesignature_request_compound_v2_t *ezsig
         free(fki_paymentgateway_id_copy);
         free(b_ezsigntemplatesignature_handwritten_copy);
         free(b_ezsigntemplatesignature_reason_copy);
+        free(b_ezsigntemplatesignature_creditcardcustomamount_copy);
         free(i_ezsigntemplatedocumentpage_pagenumber_copy);
         free(i_ezsigntemplatesignature_x_copy);
         free(i_ezsigntemplatesignature_y_copy);
@@ -339,6 +349,10 @@ void ezsigntemplatesignature_request_compound_v2_free(ezsigntemplatesignature_re
     if (ezsigntemplatesignature_request_compound_v2->b_ezsigntemplatesignature_reason) {
         free(ezsigntemplatesignature_request_compound_v2->b_ezsigntemplatesignature_reason);
         ezsigntemplatesignature_request_compound_v2->b_ezsigntemplatesignature_reason = NULL;
+    }
+    if (ezsigntemplatesignature_request_compound_v2->b_ezsigntemplatesignature_creditcardcustomamount) {
+        free(ezsigntemplatesignature_request_compound_v2->b_ezsigntemplatesignature_creditcardcustomamount);
+        ezsigntemplatesignature_request_compound_v2->b_ezsigntemplatesignature_creditcardcustomamount = NULL;
     }
     if (ezsigntemplatesignature_request_compound_v2->i_ezsigntemplatedocumentpage_pagenumber) {
         free(ezsigntemplatesignature_request_compound_v2->i_ezsigntemplatedocumentpage_pagenumber);
@@ -500,6 +514,14 @@ cJSON *ezsigntemplatesignature_request_compound_v2_convertToJSON(ezsigntemplates
     // ezsigntemplatesignature_request_compound_v2->b_ezsigntemplatesignature_reason
     if(ezsigntemplatesignature_request_compound_v2->b_ezsigntemplatesignature_reason) {
     if(cJSON_AddBoolToObject(item, "bEzsigntemplatesignatureReason", *ezsigntemplatesignature_request_compound_v2->b_ezsigntemplatesignature_reason) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
+    // ezsigntemplatesignature_request_compound_v2->b_ezsigntemplatesignature_creditcardcustomamount
+    if(ezsigntemplatesignature_request_compound_v2->b_ezsigntemplatesignature_creditcardcustomamount) {
+    if(cJSON_AddBoolToObject(item, "bEzsigntemplatesignatureCreditcardcustomamount", *ezsigntemplatesignature_request_compound_v2->b_ezsigntemplatesignature_creditcardcustomamount) == NULL) {
     goto fail; //Bool
     }
     }
@@ -903,6 +925,9 @@ ezsigntemplatesignature_request_compound_v2_t *ezsigntemplatesignature_request_c
     // define the local variable for ezsigntemplatesignature_request_compound_v2->b_ezsigntemplatesignature_reason
     int *b_ezsigntemplatesignature_reason_local_var = NULL;
 
+    // define the local variable for ezsigntemplatesignature_request_compound_v2->b_ezsigntemplatesignature_creditcardcustomamount
+    int *b_ezsigntemplatesignature_creditcardcustomamount_local_var = NULL;
+
     // define the local variable for ezsigntemplatesignature_request_compound_v2->e_ezsigntemplatesignature_positioning
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioning__e e_ezsigntemplatesignature_positioning_local_nonprim = 0;
 
@@ -1127,6 +1152,24 @@ ezsigntemplatesignature_request_compound_v2_t *ezsigntemplatesignature_request_c
         goto end;
     }
     *b_ezsigntemplatesignature_reason_local_var = b_ezsigntemplatesignature_reason->valueint;
+    }
+
+    // ezsigntemplatesignature_request_compound_v2->b_ezsigntemplatesignature_creditcardcustomamount
+    cJSON *b_ezsigntemplatesignature_creditcardcustomamount = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignature_request_compound_v2JSON, "bEzsigntemplatesignatureCreditcardcustomamount");
+    if (cJSON_IsNull(b_ezsigntemplatesignature_creditcardcustomamount)) {
+        b_ezsigntemplatesignature_creditcardcustomamount = NULL;
+    }
+    if (b_ezsigntemplatesignature_creditcardcustomamount) { 
+    if(!cJSON_IsBool(b_ezsigntemplatesignature_creditcardcustomamount))
+    {
+    goto end; //Bool
+    }
+    b_ezsigntemplatesignature_creditcardcustomamount_local_var = malloc(sizeof(int));
+    if(!b_ezsigntemplatesignature_creditcardcustomamount_local_var)
+    {
+        goto end;
+    }
+    *b_ezsigntemplatesignature_creditcardcustomamount_local_var = b_ezsigntemplatesignature_creditcardcustomamount->valueint;
     }
 
     // ezsigntemplatesignature_request_compound_v2->e_ezsigntemplatesignature_positioning
@@ -1639,6 +1682,7 @@ ezsigntemplatesignature_request_compound_v2_t *ezsigntemplatesignature_request_c
         fki_paymentgateway_id_local_var,
         b_ezsigntemplatesignature_handwritten_local_var,
         b_ezsigntemplatesignature_reason_local_var,
+        b_ezsigntemplatesignature_creditcardcustomamount_local_var,
         e_ezsigntemplatesignature_positioning ? e_ezsigntemplatesignature_positioning_local_nonprim : 0,
         i_ezsigntemplatedocumentpage_pagenumber_local_var,
         i_ezsigntemplatesignature_x_local_var,
@@ -1708,6 +1752,10 @@ end:
     if (b_ezsigntemplatesignature_reason_local_var) {
         free(b_ezsigntemplatesignature_reason_local_var);
         b_ezsigntemplatesignature_reason_local_var = NULL;
+    }
+    if (b_ezsigntemplatesignature_creditcardcustomamount_local_var) {
+        free(b_ezsigntemplatesignature_creditcardcustomamount_local_var);
+        b_ezsigntemplatesignature_creditcardcustomamount_local_var = NULL;
     }
     if (e_ezsigntemplatesignature_positioning_local_nonprim) {
         e_ezsigntemplatesignature_positioning_local_nonprim = 0;

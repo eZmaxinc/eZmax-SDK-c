@@ -28,6 +28,7 @@ static agent_list_element_t *agent_list_element_create_internal(
     char *dt_agent_senioritydate,
     char *dt_agent_sickleavestart,
     char *dt_agent_sickleaveend,
+    ezmax_api_definition__full_field_e_agent_schedule__e e_agent_schedule,
     int *b_agent_tranquillit,
     int *b_agent_residentiallicense,
     int *b_agent_commerciallicense,
@@ -78,6 +79,7 @@ static agent_list_element_t *agent_list_element_create_internal(
     agent_list_element_local_var->dt_agent_senioritydate = dt_agent_senioritydate;
     agent_list_element_local_var->dt_agent_sickleavestart = dt_agent_sickleavestart;
     agent_list_element_local_var->dt_agent_sickleaveend = dt_agent_sickleaveend;
+    agent_list_element_local_var->e_agent_schedule = e_agent_schedule;
     agent_list_element_local_var->b_agent_tranquillit = b_agent_tranquillit;
     agent_list_element_local_var->b_agent_residentiallicense = b_agent_residentiallicense;
     agent_list_element_local_var->b_agent_commerciallicense = b_agent_commerciallicense;
@@ -125,6 +127,7 @@ __attribute__((deprecated)) agent_list_element_t *agent_list_element_create(
     char *dt_agent_senioritydate,
     char *dt_agent_sickleavestart,
     char *dt_agent_sickleaveend,
+    ezmax_api_definition__full_field_e_agent_schedule__e e_agent_schedule,
     int *b_agent_tranquillit,
     int *b_agent_residentiallicense,
     int *b_agent_commerciallicense,
@@ -250,6 +253,7 @@ __attribute__((deprecated)) agent_list_element_t *agent_list_element_create(
         dt_agent_senioritydate,
         dt_agent_sickleavestart,
         dt_agent_sickleaveend,
+        e_agent_schedule,
         b_agent_tranquillit_copy,
         b_agent_residentiallicense_copy,
         b_agent_commerciallicense_copy,
@@ -668,6 +672,20 @@ cJSON *agent_list_element_convertToJSON(agent_list_element_t *agent_list_element
     }
 
 
+    // agent_list_element->e_agent_schedule
+    if (ezmax_api_definition__full_field_e_agent_schedule__NULL == agent_list_element->e_agent_schedule) {
+        goto fail;
+    }
+    cJSON *e_agent_schedule_local_JSON = field_e_agent_schedule_convertToJSON(agent_list_element->e_agent_schedule);
+    if(e_agent_schedule_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eAgentSchedule", e_agent_schedule_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+
+
     // agent_list_element->b_agent_tranquillit
     if (!agent_list_element->b_agent_tranquillit) {
         goto fail;
@@ -906,6 +924,9 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     char *dt_agent_sickleavestart_local_str = NULL;
 
     char *dt_agent_sickleaveend_local_str = NULL;
+
+    // define the local variable for agent_list_element->e_agent_schedule
+    ezmax_api_definition__full_field_e_agent_schedule__e e_agent_schedule_local_nonprim = 0;
 
     // define the local variable for agent_list_element->b_agent_tranquillit
     int *b_agent_tranquillit_local_var = NULL;
@@ -1305,6 +1326,18 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     }
     }
 
+    // agent_list_element->e_agent_schedule
+    cJSON *e_agent_schedule = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "eAgentSchedule");
+    if (cJSON_IsNull(e_agent_schedule)) {
+        e_agent_schedule = NULL;
+    }
+    if (!e_agent_schedule) {
+        goto end;
+    }
+
+    
+    e_agent_schedule_local_nonprim = field_e_agent_schedule_parseFromJSON(e_agent_schedule); //custom
+
     // agent_list_element->b_agent_tranquillit
     cJSON *b_agent_tranquillit = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "bAgentTranquillit");
     if (cJSON_IsNull(b_agent_tranquillit)) {
@@ -1681,6 +1714,7 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
         dt_agent_senioritydate_local_str,
         dt_agent_sickleavestart_local_str,
         dt_agent_sickleaveend_local_str,
+        e_agent_schedule_local_nonprim,
         b_agent_tranquillit_local_var,
         b_agent_residentiallicense_local_var,
         b_agent_commerciallicense_local_var,
@@ -1797,6 +1831,9 @@ end:
     if (dt_agent_sickleaveend_local_str) {
         free(dt_agent_sickleaveend_local_str);
         dt_agent_sickleaveend_local_str = NULL;
+    }
+    if (e_agent_schedule_local_nonprim) {
+        e_agent_schedule_local_nonprim = 0;
     }
     if (b_agent_tranquillit_local_var) {
         free(b_agent_tranquillit_local_var);

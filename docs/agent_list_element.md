@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **dt_agent_senioritydate** | **char \*** | The seniority date of the Agent | [optional] 
 **dt_agent_sickleavestart** | **char \*** | The sick leave start date of the Agent | [optional] 
 **dt_agent_sickleaveend** | **char \*** | The sick leave end date of the Agent | [optional] 
+**e_agent_schedule** | **field_e_agent_schedule_t \*** |  | 
 **b_agent_tranquillit** | **int** | Whether if it&#39;s an tranquillit | 
 **b_agent_residentiallicense** | **int** | Whether if it&#39;s an residentiallicense | 
 **b_agent_commerciallicense** | **int** | Whether if it&#39;s an commerciallicense | 

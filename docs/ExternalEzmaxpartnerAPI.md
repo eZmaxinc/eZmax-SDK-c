@@ -1,19 +1,19 @@
-# DocumentationEzmaxpartnerAPI
+# ExternalEzmaxpartnerAPI
 
 All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/rest*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DocumentationEzmaxpartnerAPI_documentationSubscribeV1**](DocumentationEzmaxpartnerAPI.md#DocumentationEzmaxpartnerAPI_documentationSubscribeV1) | **POST** /1/documentation/subscribe | Subscribe to an Ezmaxparnerproductstage
+[**ExternalEzmaxpartnerAPI_externalpartnerSubscribeV1**](ExternalEzmaxpartnerAPI.md#ExternalEzmaxpartnerAPI_externalpartnerSubscribeV1) | **POST** /1/external/ezmaxpartner/subscribe | Subscribe to an Ezmaxparnerproductstage
 
 
-# **DocumentationEzmaxpartnerAPI_documentationSubscribeV1**
+# **ExternalEzmaxpartnerAPI_externalpartnerSubscribeV1**
 ```c
 // Subscribe to an Ezmaxparnerproductstage
 //
 // Subscribe to an Ezmaxparnerproductstage
 //
-documentation_subscribe_v1_response_t* DocumentationEzmaxpartnerAPI_documentationSubscribeV1(apiClient_t *apiClient, documentation_subscribe_v1_request_t *documentation_subscribe_v1_request);
+documentation_subscribe_v1_response_t* ExternalEzmaxpartnerAPI_externalpartnerSubscribeV1(apiClient_t *apiClient, documentation_subscribe_v1_request_t *documentation_subscribe_v1_request);
 ```
 
 ### Parameters

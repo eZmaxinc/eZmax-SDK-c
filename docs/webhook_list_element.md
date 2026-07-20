@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **e_webhook_module** | **field_e_webhook_module_t \*** |  | 
 **e_webhook_ezsignevent** | **field_e_webhook_ezsignevent_t \*** |  | [optional] 
 **e_webhook_managementevent** | **field_e_webhook_managementevent_t \*** |  | [optional] 
+**e_webhook_realestateevent** | **field_e_webhook_realestateevent_t \*** |  | [optional] 
 **b_webhook_isactive** | **int** | Whether the Webhook is active or not | 
 **b_webhook_issigned** | **int** | Whether the requests will be signed or not | 
 

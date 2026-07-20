@@ -37,6 +37,7 @@ typedef struct ezsigntemplatesignature_request_t {
     int *fki_paymentgateway_id; //numeric
     int *b_ezsigntemplatesignature_handwritten; //boolean
     int *b_ezsigntemplatesignature_reason; //boolean
+    int *b_ezsigntemplatesignature_creditcardcustomamount; //boolean
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioning__e e_ezsigntemplatesignature_positioning; //referenced enum
     int *i_ezsigntemplatedocumentpage_pagenumber; //numeric
     int *i_ezsigntemplatesignature_x; //numeric
@@ -79,6 +80,7 @@ __attribute__((deprecated)) ezsigntemplatesignature_request_t *ezsigntemplatesig
     int *fki_paymentgateway_id,
     int *b_ezsigntemplatesignature_handwritten,
     int *b_ezsigntemplatesignature_reason,
+    int *b_ezsigntemplatesignature_creditcardcustomamount,
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioning__e e_ezsigntemplatesignature_positioning,
     int *i_ezsigntemplatedocumentpage_pagenumber,
     int *i_ezsigntemplatesignature_x,

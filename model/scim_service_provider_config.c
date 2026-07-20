@@ -10,10 +10,10 @@ static scim_service_provider_config_t *scim_service_provider_config_create_inter
     scim_service_provider_config_bulk_t *bulk,
     scim_service_provider_config_change_password_t *change_password,
     char *documentation_uri,
-    scim_service_provider_config_change_password_t *etag,
+    scim_service_provider_config_etag_t *etag,
     scim_service_provider_config_filter_t *filter,
-    scim_service_provider_config_change_password_t *patch,
-    scim_service_provider_config_change_password_t *sort
+    scim_service_provider_config_patch_t *patch,
+    scim_service_provider_config_sort_t *sort
     ) {
     scim_service_provider_config_t *scim_service_provider_config_local_var = malloc(sizeof(scim_service_provider_config_t));
     if (!scim_service_provider_config_local_var) {
@@ -37,10 +37,10 @@ __attribute__((deprecated)) scim_service_provider_config_t *scim_service_provide
     scim_service_provider_config_bulk_t *bulk,
     scim_service_provider_config_change_password_t *change_password,
     char *documentation_uri,
-    scim_service_provider_config_change_password_t *etag,
+    scim_service_provider_config_etag_t *etag,
     scim_service_provider_config_filter_t *filter,
-    scim_service_provider_config_change_password_t *patch,
-    scim_service_provider_config_change_password_t *sort
+    scim_service_provider_config_patch_t *patch,
+    scim_service_provider_config_sort_t *sort
     ) {
     scim_service_provider_config_t *result = scim_service_provider_config_create_internal (
         authentication_schemes,
@@ -86,7 +86,7 @@ void scim_service_provider_config_free(scim_service_provider_config_t *scim_serv
         scim_service_provider_config->documentation_uri = NULL;
     }
     if (scim_service_provider_config->etag) {
-        scim_service_provider_config_change_password_free(scim_service_provider_config->etag);
+        scim_service_provider_config_etag_free(scim_service_provider_config->etag);
         scim_service_provider_config->etag = NULL;
     }
     if (scim_service_provider_config->filter) {
@@ -94,11 +94,11 @@ void scim_service_provider_config_free(scim_service_provider_config_t *scim_serv
         scim_service_provider_config->filter = NULL;
     }
     if (scim_service_provider_config->patch) {
-        scim_service_provider_config_change_password_free(scim_service_provider_config->patch);
+        scim_service_provider_config_patch_free(scim_service_provider_config->patch);
         scim_service_provider_config->patch = NULL;
     }
     if (scim_service_provider_config->sort) {
-        scim_service_provider_config_change_password_free(scim_service_provider_config->sort);
+        scim_service_provider_config_sort_free(scim_service_provider_config->sort);
         scim_service_provider_config->sort = NULL;
     }
     free(scim_service_provider_config);
@@ -169,7 +169,7 @@ cJSON *scim_service_provider_config_convertToJSON(scim_service_provider_config_t
     if (!scim_service_provider_config->etag) {
         goto fail;
     }
-    cJSON *etag_local_JSON = scim_service_provider_config_change_password_convertToJSON(scim_service_provider_config->etag);
+    cJSON *etag_local_JSON = scim_service_provider_config_etag_convertToJSON(scim_service_provider_config->etag);
     if(etag_local_JSON == NULL) {
     goto fail; //model
     }
@@ -197,7 +197,7 @@ cJSON *scim_service_provider_config_convertToJSON(scim_service_provider_config_t
     if (!scim_service_provider_config->patch) {
         goto fail;
     }
-    cJSON *patch_local_JSON = scim_service_provider_config_change_password_convertToJSON(scim_service_provider_config->patch);
+    cJSON *patch_local_JSON = scim_service_provider_config_patch_convertToJSON(scim_service_provider_config->patch);
     if(patch_local_JSON == NULL) {
     goto fail; //model
     }
@@ -211,7 +211,7 @@ cJSON *scim_service_provider_config_convertToJSON(scim_service_provider_config_t
     if (!scim_service_provider_config->sort) {
         goto fail;
     }
-    cJSON *sort_local_JSON = scim_service_provider_config_change_password_convertToJSON(scim_service_provider_config->sort);
+    cJSON *sort_local_JSON = scim_service_provider_config_sort_convertToJSON(scim_service_provider_config->sort);
     if(sort_local_JSON == NULL) {
     goto fail; //model
     }
@@ -244,16 +244,16 @@ scim_service_provider_config_t *scim_service_provider_config_parseFromJSON(cJSON
     char *documentation_uri_local_str = NULL;
 
     // define the local variable for scim_service_provider_config->etag
-    scim_service_provider_config_change_password_t *etag_local_nonprim = NULL;
+    scim_service_provider_config_etag_t *etag_local_nonprim = NULL;
 
     // define the local variable for scim_service_provider_config->filter
     scim_service_provider_config_filter_t *filter_local_nonprim = NULL;
 
     // define the local variable for scim_service_provider_config->patch
-    scim_service_provider_config_change_password_t *patch_local_nonprim = NULL;
+    scim_service_provider_config_patch_t *patch_local_nonprim = NULL;
 
     // define the local variable for scim_service_provider_config->sort
-    scim_service_provider_config_change_password_t *sort_local_nonprim = NULL;
+    scim_service_provider_config_sort_t *sort_local_nonprim = NULL;
 
     // scim_service_provider_config->authentication_schemes
     cJSON *authentication_schemes = cJSON_GetObjectItemCaseSensitive(scim_service_provider_configJSON, "authenticationSchemes");
@@ -331,7 +331,7 @@ scim_service_provider_config_t *scim_service_provider_config_parseFromJSON(cJSON
     }
 
     
-    etag_local_nonprim = scim_service_provider_config_change_password_parseFromJSON(etag); //nonprimitive
+    etag_local_nonprim = scim_service_provider_config_etag_parseFromJSON(etag); //nonprimitive
 
     // scim_service_provider_config->filter
     cJSON *filter = cJSON_GetObjectItemCaseSensitive(scim_service_provider_configJSON, "filter");
@@ -355,7 +355,7 @@ scim_service_provider_config_t *scim_service_provider_config_parseFromJSON(cJSON
     }
 
     
-    patch_local_nonprim = scim_service_provider_config_change_password_parseFromJSON(patch); //nonprimitive
+    patch_local_nonprim = scim_service_provider_config_patch_parseFromJSON(patch); //nonprimitive
 
     // scim_service_provider_config->sort
     cJSON *sort = cJSON_GetObjectItemCaseSensitive(scim_service_provider_configJSON, "sort");
@@ -367,7 +367,7 @@ scim_service_provider_config_t *scim_service_provider_config_parseFromJSON(cJSON
     }
 
     
-    sort_local_nonprim = scim_service_provider_config_change_password_parseFromJSON(sort); //nonprimitive
+    sort_local_nonprim = scim_service_provider_config_sort_parseFromJSON(sort); //nonprimitive
 
 
     if (documentation_uri && !cJSON_IsNull(documentation_uri)) documentation_uri_local_str = strdup(documentation_uri->valuestring);
@@ -411,7 +411,7 @@ end:
         documentation_uri_local_str = NULL;
     }
     if (etag_local_nonprim) {
-        scim_service_provider_config_change_password_free(etag_local_nonprim);
+        scim_service_provider_config_etag_free(etag_local_nonprim);
         etag_local_nonprim = NULL;
     }
     if (filter_local_nonprim) {
@@ -419,11 +419,11 @@ end:
         filter_local_nonprim = NULL;
     }
     if (patch_local_nonprim) {
-        scim_service_provider_config_change_password_free(patch_local_nonprim);
+        scim_service_provider_config_patch_free(patch_local_nonprim);
         patch_local_nonprim = NULL;
     }
     if (sort_local_nonprim) {
-        scim_service_provider_config_change_password_free(sort_local_nonprim);
+        scim_service_provider_config_sort_free(sort_local_nonprim);
         sort_local_nonprim = NULL;
     }
     return NULL;

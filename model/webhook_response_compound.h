@@ -20,6 +20,7 @@ typedef struct webhook_response_compound_t webhook_response_compound_t;
 #include "field_e_webhook_ezsignevent.h"
 #include "field_e_webhook_managementevent.h"
 #include "field_e_webhook_module.h"
+#include "field_e_webhook_realestateevent.h"
 #include "webhookheader_response_compound.h"
 
 
@@ -34,6 +35,7 @@ typedef struct webhook_response_compound_t {
     ezmax_api_definition__full_field_e_webhook_ezmaxpartnerevent__e e_webhook_ezmaxpartnerevent; //referenced enum
     ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent; //referenced enum
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent; //referenced enum
+    ezmax_api_definition__full_field_e_webhook_realestateevent__e e_webhook_realestateevent; //referenced enum
     char *s_webhook_url; // string
     char *s_webhook_emailfailed; // string
     char *s_webhook_apikey; // string
@@ -60,6 +62,7 @@ __attribute__((deprecated)) webhook_response_compound_t *webhook_response_compou
     ezmax_api_definition__full_field_e_webhook_ezmaxpartnerevent__e e_webhook_ezmaxpartnerevent,
     ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent,
     ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent,
+    ezmax_api_definition__full_field_e_webhook_realestateevent__e e_webhook_realestateevent,
     char *s_webhook_url,
     char *s_webhook_emailfailed,
     char *s_webhook_apikey,

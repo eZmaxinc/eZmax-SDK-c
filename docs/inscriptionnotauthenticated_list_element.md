@@ -6,10 +6,15 @@ Name | Type | Description | Notes
 **pki_inscription_id** | **int** | The unique ID of the Inscription. | 
 **pki_inscriptionnotauthenticated_id** | **int** | The unique ID of the Inscriptionnotauthenticated. | [optional] 
 **fki_inscriptiontype_id** | **int** | The unique ID of the Inscriptiontype | 
+**s_inscriptiontype_name_x** | **char \*** | The name of the Inscriptiontype in the language of the requester | 
+**fki_inscriptionbuildingtype_id** | **int** | The unique ID of the Inscriptionbuildingtype | 
+**s_inscriptionbuildingtype_name_x** | **char \*** | The name of the Inscriptionbuildingtype in the language of the requester | 
+**fki_inscriptioncategory_id** | **int** | The unique ID of the Inscriptioncategory | 
+**s_inscriptioncategory_name_x** | **char \*** | The name of the Inscriptioncategory in the language of the requester | 
 **fki_buyercontract_id** | **int** | The unique ID of the Buyercontract | [optional] 
 **s_buyercontract_contract** | **char \*** | The number of the Buyercontract | [optional] 
-**s_inscriptiontype_name_x** | **char \*** | The name of the Inscriptiontype in the language of the requester | 
 **e_inscription_step** | **field_e_inscription_step_t \*** |  | 
+**e_inscription_type** | **field_e_inscription_type_t \*** |  | 
 **s_inscription_civicend** | **char \*** | The civicend of the Inscription | 
 **s_inscription_mls** | **char \*** | The mls of the Inscription | [optional] 
 **s_inscription_contract** | **char \*** | The sale contract number | [optional] 
@@ -37,6 +42,7 @@ Name | Type | Description | Notes
 **fki_country_id** | **int** | The unique ID of the Country.  Here are some common values (Complete list must be retrieved from API):  |Value|Description| |-|-| |1|Canada| |2|United-States| | [optional] 
 **s_country_name_x** | **char \*** | The name of the Country in the language of the requester | [optional] 
 **s_inscriptionnotauthenticated_offertopurchasenumber** | **char \*** | The Offer to purchase number | 
+**i_inscription_unit** | **int** | The unit of the Inscription | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
