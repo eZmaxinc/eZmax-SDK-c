@@ -8,7 +8,8 @@
 static webhook_ezmaxpartnerproduct_unsubscribe_t *webhook_ezmaxpartnerproduct_unsubscribe_create_internal(
     custom_webhook_response_t *obj_webhook,
     list_t *a_obj_attempt,
-    custom_ezmaxpartnerproduct_subscribe_t *obj_ezmaxpartnerproduct
+    custom_ezmaxpartnerproduct_subscribe_t *obj_ezmaxpartnerproduct,
+    char *s_external_id
     ) {
     webhook_ezmaxpartnerproduct_unsubscribe_t *webhook_ezmaxpartnerproduct_unsubscribe_local_var = malloc(sizeof(webhook_ezmaxpartnerproduct_unsubscribe_t));
     if (!webhook_ezmaxpartnerproduct_unsubscribe_local_var) {
@@ -19,18 +20,21 @@ static webhook_ezmaxpartnerproduct_unsubscribe_t *webhook_ezmaxpartnerproduct_un
     webhook_ezmaxpartnerproduct_unsubscribe_local_var->obj_webhook = obj_webhook;
     webhook_ezmaxpartnerproduct_unsubscribe_local_var->a_obj_attempt = a_obj_attempt;
     webhook_ezmaxpartnerproduct_unsubscribe_local_var->obj_ezmaxpartnerproduct = obj_ezmaxpartnerproduct;
+    webhook_ezmaxpartnerproduct_unsubscribe_local_var->s_external_id = s_external_id;
     return webhook_ezmaxpartnerproduct_unsubscribe_local_var;
 }
 
 __attribute__((deprecated)) webhook_ezmaxpartnerproduct_unsubscribe_t *webhook_ezmaxpartnerproduct_unsubscribe_create(
     custom_webhook_response_t *obj_webhook,
     list_t *a_obj_attempt,
-    custom_ezmaxpartnerproduct_subscribe_t *obj_ezmaxpartnerproduct
+    custom_ezmaxpartnerproduct_subscribe_t *obj_ezmaxpartnerproduct,
+    char *s_external_id
     ) {
     webhook_ezmaxpartnerproduct_unsubscribe_t *result = webhook_ezmaxpartnerproduct_unsubscribe_create_internal (
         obj_webhook,
         a_obj_attempt,
-        obj_ezmaxpartnerproduct
+        obj_ezmaxpartnerproduct,
+        s_external_id
         );
     if (!result) {
     }
@@ -60,6 +64,10 @@ void webhook_ezmaxpartnerproduct_unsubscribe_free(webhook_ezmaxpartnerproduct_un
     if (webhook_ezmaxpartnerproduct_unsubscribe->obj_ezmaxpartnerproduct) {
         custom_ezmaxpartnerproduct_subscribe_free(webhook_ezmaxpartnerproduct_unsubscribe->obj_ezmaxpartnerproduct);
         webhook_ezmaxpartnerproduct_unsubscribe->obj_ezmaxpartnerproduct = NULL;
+    }
+    if (webhook_ezmaxpartnerproduct_unsubscribe->s_external_id) {
+        free(webhook_ezmaxpartnerproduct_unsubscribe->s_external_id);
+        webhook_ezmaxpartnerproduct_unsubscribe->s_external_id = NULL;
     }
     free(webhook_ezmaxpartnerproduct_unsubscribe);
 }
@@ -115,6 +123,14 @@ cJSON *webhook_ezmaxpartnerproduct_unsubscribe_convertToJSON(webhook_ezmaxpartne
     goto fail;
     }
 
+
+    // webhook_ezmaxpartnerproduct_unsubscribe->s_external_id
+    if(webhook_ezmaxpartnerproduct_unsubscribe->s_external_id) {
+    if(cJSON_AddStringToObject(item, "sExternalID", webhook_ezmaxpartnerproduct_unsubscribe->s_external_id) == NULL) {
+    goto fail; //String
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -135,6 +151,8 @@ webhook_ezmaxpartnerproduct_unsubscribe_t *webhook_ezmaxpartnerproduct_unsubscri
 
     // define the local variable for webhook_ezmaxpartnerproduct_unsubscribe->obj_ezmaxpartnerproduct
     custom_ezmaxpartnerproduct_subscribe_t *obj_ezmaxpartnerproduct_local_nonprim = NULL;
+
+    char *s_external_id_local_str = NULL;
 
     // webhook_ezmaxpartnerproduct_unsubscribe->obj_webhook
     cJSON *obj_webhook = cJSON_GetObjectItemCaseSensitive(webhook_ezmaxpartnerproduct_unsubscribeJSON, "objWebhook");
@@ -187,12 +205,26 @@ webhook_ezmaxpartnerproduct_unsubscribe_t *webhook_ezmaxpartnerproduct_unsubscri
     
     obj_ezmaxpartnerproduct_local_nonprim = custom_ezmaxpartnerproduct_subscribe_parseFromJSON(obj_ezmaxpartnerproduct); //nonprimitive
 
+    // webhook_ezmaxpartnerproduct_unsubscribe->s_external_id
+    cJSON *s_external_id = cJSON_GetObjectItemCaseSensitive(webhook_ezmaxpartnerproduct_unsubscribeJSON, "sExternalID");
+    if (cJSON_IsNull(s_external_id)) {
+        s_external_id = NULL;
+    }
+    if (s_external_id) { 
+    if(!cJSON_IsString(s_external_id) && !cJSON_IsNull(s_external_id))
+    {
+    goto end; //String
+    }
+    }
 
+
+    if (s_external_id && !cJSON_IsNull(s_external_id)) s_external_id_local_str = strdup(s_external_id->valuestring);
 
     webhook_ezmaxpartnerproduct_unsubscribe_local_var = webhook_ezmaxpartnerproduct_unsubscribe_create_internal (
         obj_webhook_local_nonprim,
         a_obj_attemptList,
-        obj_ezmaxpartnerproduct_local_nonprim
+        obj_ezmaxpartnerproduct_local_nonprim,
+        s_external_id_local_str
         );
 
     if (!webhook_ezmaxpartnerproduct_unsubscribe_local_var) {
@@ -217,6 +249,10 @@ end:
     if (obj_ezmaxpartnerproduct_local_nonprim) {
         custom_ezmaxpartnerproduct_subscribe_free(obj_ezmaxpartnerproduct_local_nonprim);
         obj_ezmaxpartnerproduct_local_nonprim = NULL;
+    }
+    if (s_external_id_local_str) {
+        free(s_external_id_local_str);
+        s_external_id_local_str = NULL;
     }
     return NULL;
 

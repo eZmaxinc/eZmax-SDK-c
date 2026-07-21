@@ -465,8 +465,6 @@ set(SRCS
     model/discussionmessage_request_patch.c
     model/discussionmessage_response.c
     model/discussionmessage_response_compound.c
-    model/documentation_subscribe_v1_request.c
-    model/documentation_subscribe_v1_response.c
     model/domain_autocomplete_element_response.c
     model/domain_create_object_v1_request.c
     model/domain_create_object_v1_response.c
@@ -586,6 +584,8 @@ set(SRCS
     model/ezmaxpartner_get_object_v2_response_m_payload.c
     model/ezmaxpartner_response.c
     model/ezmaxpartner_response_compound.c
+    model/ezmaxpartner_subscribe_v1_request.c
+    model/ezmaxpartner_subscribe_v1_response.c
     model/ezmaxproduct_autocomplete_element_response.c
     model/ezmaxproduct_get_autocomplete_v2_response.c
     model/ezmaxproduct_get_autocomplete_v2_response_m_payload.c
@@ -2662,8 +2662,6 @@ set(HDRS
     model/discussionmessage_request_patch.h
     model/discussionmessage_response.h
     model/discussionmessage_response_compound.h
-    model/documentation_subscribe_v1_request.h
-    model/documentation_subscribe_v1_response.h
     model/domain_autocomplete_element_response.h
     model/domain_create_object_v1_request.h
     model/domain_create_object_v1_response.h
@@ -2783,6 +2781,8 @@ set(HDRS
     model/ezmaxpartner_get_object_v2_response_m_payload.h
     model/ezmaxpartner_response.h
     model/ezmaxpartner_response_compound.h
+    model/ezmaxpartner_subscribe_v1_request.h
+    model/ezmaxpartner_subscribe_v1_response.h
     model/ezmaxproduct_autocomplete_element_response.h
     model/ezmaxproduct_get_autocomplete_v2_response.h
     model/ezmaxproduct_get_autocomplete_v2_response_m_payload.h

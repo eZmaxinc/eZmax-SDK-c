@@ -1,4 +1,4 @@
-# documentation_subscribe_v1_request_t
+# ezmaxpartner_subscribe_v1_request_t
 
 ## Properties
 Name | Type | Description | Notes

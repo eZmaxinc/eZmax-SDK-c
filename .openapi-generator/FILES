@@ -840,8 +840,6 @@ docs/discussionmessage_request_compound.md
 docs/discussionmessage_request_patch.md
 docs/discussionmessage_response.md
 docs/discussionmessage_response_compound.md
-docs/documentation_subscribe_v1_request.md
-docs/documentation_subscribe_v1_response.md
 docs/domain_autocomplete_element_response.md
 docs/domain_create_object_v1_request.md
 docs/domain_create_object_v1_response.md
@@ -961,6 +959,8 @@ docs/ezmaxpartner_get_object_v2_response.md
 docs/ezmaxpartner_get_object_v2_response_m_payload.md
 docs/ezmaxpartner_response.md
 docs/ezmaxpartner_response_compound.md
+docs/ezmaxpartner_subscribe_v1_request.md
+docs/ezmaxpartner_subscribe_v1_response.md
 docs/ezmaxproduct_autocomplete_element_response.md
 docs/ezmaxproduct_get_autocomplete_v2_response.md
 docs/ezmaxproduct_get_autocomplete_v2_response_m_payload.md
@@ -3312,10 +3312,6 @@ model/discussionmessage_response.c
 model/discussionmessage_response.h
 model/discussionmessage_response_compound.c
 model/discussionmessage_response_compound.h
-model/documentation_subscribe_v1_request.c
-model/documentation_subscribe_v1_request.h
-model/documentation_subscribe_v1_response.c
-model/documentation_subscribe_v1_response.h
 model/domain_autocomplete_element_response.c
 model/domain_autocomplete_element_response.h
 model/domain_create_object_v1_request.c
@@ -3554,6 +3550,10 @@ model/ezmaxpartner_response.c
 model/ezmaxpartner_response.h
 model/ezmaxpartner_response_compound.c
 model/ezmaxpartner_response_compound.h
+model/ezmaxpartner_subscribe_v1_request.c
+model/ezmaxpartner_subscribe_v1_request.h
+model/ezmaxpartner_subscribe_v1_response.c
+model/ezmaxpartner_subscribe_v1_response.h
 model/ezmaxproduct_autocomplete_element_response.c
 model/ezmaxproduct_autocomplete_element_response.h
 model/ezmaxproduct_get_autocomplete_v2_response.c

@@ -66,7 +66,7 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 
 Category | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ExternalEzmaxpartnerAPI* | [**ExternalEzmaxpartnerAPI_externalpartnerSubscribeV1**](docs/ExternalEzmaxpartnerAPI.md#ExternalEzmaxpartnerAPI_externalpartnerSubscribeV1) | **POST** /1/external/ezmaxpartner/subscribe | Subscribe to an Ezmaxparnerproductstage
+*ExternalEzmaxpartnerAPI* | [**ExternalEzmaxpartnerAPI_ezmaxpartnerSubscribeV1**](docs/ExternalEzmaxpartnerAPI.md#ExternalEzmaxpartnerAPI_ezmaxpartnerSubscribeV1) | **POST** /1/external/ezmaxpartner/subscribe | Subscribe to an Ezmaxparnerproductstage
 *GlobalCustomerAPI* | [**GlobalCustomerAPI_globalCustomerGetEndpointV1**](docs/GlobalCustomerAPI.md#GlobalCustomerAPI_globalCustomerGetEndpointV1) | **GET** /1/customer/{pksCustomerCode}/endpoint | Get customer endpoint
 *GlobalEzmaxclientAPI* | [**GlobalEzmaxclientAPI_globalEzmaxclientVersionV1**](docs/GlobalEzmaxclientAPI.md#GlobalEzmaxclientAPI_globalEzmaxclientVersionV1) | **GET** /1/ezmaxclient/{pksEzmaxclientOs}/version | Retrieve the latest version of the Ezmaxclient
 *GlobalEzmaxcustomerAPI* | [**GlobalEzmaxcustomerAPI_globalEzmaxcustomerGetConfigurationV1**](docs/GlobalEzmaxcustomerAPI.md#GlobalEzmaxcustomerAPI_globalEzmaxcustomerGetConfigurationV1) | **GET** /1/ezmaxcustomer/{pksEzmaxcustomerCode}/getConfiguration | Get ezmaxcustomer configuration
@@ -1057,8 +1057,6 @@ Category | Method | HTTP request | Description
  - [discussionmessage_request_patch_t](docs/discussionmessage_request_patch.md)
  - [discussionmessage_response_t](docs/discussionmessage_response.md)
  - [discussionmessage_response_compound_t](docs/discussionmessage_response_compound.md)
- - [documentation_subscribe_v1_request_t](docs/documentation_subscribe_v1_request.md)
- - [documentation_subscribe_v1_response_t](docs/documentation_subscribe_v1_response.md)
  - [domain_autocomplete_element_response_t](docs/domain_autocomplete_element_response.md)
  - [domain_create_object_v1_request_t](docs/domain_create_object_v1_request.md)
  - [domain_create_object_v1_response_t](docs/domain_create_object_v1_response.md)
@@ -1178,6 +1176,8 @@ Category | Method | HTTP request | Description
  - [ezmaxpartner_get_object_v2_response_m_payload_t](docs/ezmaxpartner_get_object_v2_response_m_payload.md)
  - [ezmaxpartner_response_t](docs/ezmaxpartner_response.md)
  - [ezmaxpartner_response_compound_t](docs/ezmaxpartner_response_compound.md)
+ - [ezmaxpartner_subscribe_v1_request_t](docs/ezmaxpartner_subscribe_v1_request.md)
+ - [ezmaxpartner_subscribe_v1_response_t](docs/ezmaxpartner_subscribe_v1_response.md)
  - [ezmaxproduct_autocomplete_element_response_t](docs/ezmaxproduct_autocomplete_element_response.md)
  - [ezmaxproduct_get_autocomplete_v2_response_t](docs/ezmaxproduct_get_autocomplete_v2_response.md)
  - [ezmaxproduct_get_autocomplete_v2_response_m_payload_t](docs/ezmaxproduct_get_autocomplete_v2_response_m_payload.md)

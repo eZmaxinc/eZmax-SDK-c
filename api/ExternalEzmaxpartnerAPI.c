@@ -13,8 +13,8 @@
 //
 // Subscribe to an Ezmaxparnerproductstage
 //
-documentation_subscribe_v1_response_t*
-ExternalEzmaxpartnerAPI_externalpartnerSubscribeV1(apiClient_t *apiClient, documentation_subscribe_v1_request_t *documentation_subscribe_v1_request)
+ezmaxpartner_subscribe_v1_response_t*
+ExternalEzmaxpartnerAPI_ezmaxpartnerSubscribeV1(apiClient_t *apiClient, ezmaxpartner_subscribe_v1_request_t *ezmaxpartner_subscribe_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -35,12 +35,12 @@ ExternalEzmaxpartnerAPI_externalpartnerSubscribeV1(apiClient_t *apiClient, docum
 
 
     // Body Param
-    cJSON *localVarSingleItemJSON_documentation_subscribe_v1_request = NULL;
-    if (documentation_subscribe_v1_request != NULL)
+    cJSON *localVarSingleItemJSON_ezmaxpartner_subscribe_v1_request = NULL;
+    if (ezmaxpartner_subscribe_v1_request != NULL)
     {
         //not string, not binary
-        localVarSingleItemJSON_documentation_subscribe_v1_request = documentation_subscribe_v1_request_convertToJSON(documentation_subscribe_v1_request);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_documentation_subscribe_v1_request);
+        localVarSingleItemJSON_ezmaxpartner_subscribe_v1_request = ezmaxpartner_subscribe_v1_request_convertToJSON(ezmaxpartner_subscribe_v1_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezmaxpartner_subscribe_v1_request);
         localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
@@ -61,10 +61,10 @@ ExternalEzmaxpartnerAPI_externalpartnerSubscribeV1(apiClient_t *apiClient, docum
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    documentation_subscribe_v1_response_t *elementToReturn = NULL;
+    ezmaxpartner_subscribe_v1_response_t *elementToReturn = NULL;
     if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
         cJSON *ExternalEzmaxpartnerAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-        elementToReturn = documentation_subscribe_v1_response_parseFromJSON(ExternalEzmaxpartnerAPIlocalVarJSON);
+        elementToReturn = ezmaxpartner_subscribe_v1_response_parseFromJSON(ExternalEzmaxpartnerAPIlocalVarJSON);
         cJSON_Delete(ExternalEzmaxpartnerAPIlocalVarJSON);
         if(elementToReturn == NULL) {
             // return 0;
@@ -83,9 +83,9 @@ ExternalEzmaxpartnerAPI_externalpartnerSubscribeV1(apiClient_t *apiClient, docum
     list_freeList(localVarHeaderType);
     list_freeList(localVarContentType);
     free(localVarPath);
-    if (localVarSingleItemJSON_documentation_subscribe_v1_request) {
-        cJSON_Delete(localVarSingleItemJSON_documentation_subscribe_v1_request);
-        localVarSingleItemJSON_documentation_subscribe_v1_request = NULL;
+    if (localVarSingleItemJSON_ezmaxpartner_subscribe_v1_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezmaxpartner_subscribe_v1_request);
+        localVarSingleItemJSON_ezmaxpartner_subscribe_v1_request = NULL;
     }
     free(localVarBodyParameters);
     return elementToReturn;

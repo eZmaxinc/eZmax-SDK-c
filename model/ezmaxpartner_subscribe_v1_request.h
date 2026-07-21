@@ -1,11 +1,11 @@
 /*
- * documentation_subscribe_v1_request.h
+ * ezmaxpartner_subscribe_v1_request.h
  *
  * Request for POST /1/webhookdocumentation/subscribe
  */
 
-#ifndef _documentation_subscribe_v1_request_H_
-#define _documentation_subscribe_v1_request_H_
+#ifndef _ezmaxpartner_subscribe_v1_request_H_
+#define _ezmaxpartner_subscribe_v1_request_H_
 
 #include <string.h>
 #include "../external/cJSON.h"
@@ -13,7 +13,7 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 
-typedef struct documentation_subscribe_v1_request_t documentation_subscribe_v1_request_t;
+typedef struct ezmaxpartner_subscribe_v1_request_t ezmaxpartner_subscribe_v1_request_t;
 
 #include "address_request_compound.h"
 #include "email_request_compound.h"
@@ -21,7 +21,7 @@ typedef struct documentation_subscribe_v1_request_t documentation_subscribe_v1_r
 
 
 
-typedef struct documentation_subscribe_v1_request_t {
+typedef struct ezmaxpartner_subscribe_v1_request_t {
     char *pks_ezmaxcustomer_code; // string
     char *s_infrastructureenvironmenttype_description; // string
     char *s_company_name1; // string
@@ -47,9 +47,9 @@ typedef struct documentation_subscribe_v1_request_t {
     struct email_request_compound_t *obj_email; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
-} documentation_subscribe_v1_request_t;
+} ezmaxpartner_subscribe_v1_request_t;
 
-__attribute__((deprecated)) documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_create(
+__attribute__((deprecated)) ezmaxpartner_subscribe_v1_request_t *ezmaxpartner_subscribe_v1_request_create(
     char *pks_ezmaxcustomer_code,
     char *s_infrastructureenvironmenttype_description,
     char *s_company_name1,
@@ -75,11 +75,11 @@ __attribute__((deprecated)) documentation_subscribe_v1_request_t *documentation_
     email_request_compound_t *obj_email
 );
 
-void documentation_subscribe_v1_request_free(documentation_subscribe_v1_request_t *documentation_subscribe_v1_request);
+void ezmaxpartner_subscribe_v1_request_free(ezmaxpartner_subscribe_v1_request_t *ezmaxpartner_subscribe_v1_request);
 
-documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFromJSON(cJSON *documentation_subscribe_v1_requestJSON);
+ezmaxpartner_subscribe_v1_request_t *ezmaxpartner_subscribe_v1_request_parseFromJSON(cJSON *ezmaxpartner_subscribe_v1_requestJSON);
 
-cJSON *documentation_subscribe_v1_request_convertToJSON(documentation_subscribe_v1_request_t *documentation_subscribe_v1_request);
+cJSON *ezmaxpartner_subscribe_v1_request_convertToJSON(ezmaxpartner_subscribe_v1_request_t *ezmaxpartner_subscribe_v1_request);
 
-#endif /* _documentation_subscribe_v1_request_H_ */
+#endif /* _ezmaxpartner_subscribe_v1_request_H_ */
 

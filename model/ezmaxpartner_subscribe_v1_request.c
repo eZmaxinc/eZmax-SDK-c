@@ -1,11 +1,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include "documentation_subscribe_v1_request.h"
+#include "ezmaxpartner_subscribe_v1_request.h"
 
 
 
-static documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_create_internal(
+static ezmaxpartner_subscribe_v1_request_t *ezmaxpartner_subscribe_v1_request_create_internal(
     char *pks_ezmaxcustomer_code,
     char *s_infrastructureenvironmenttype_description,
     char *s_company_name1,
@@ -30,39 +30,39 @@ static documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_
     phone_request_compound_v2_t *objphone,
     email_request_compound_t *obj_email
     ) {
-    documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_local_var = malloc(sizeof(documentation_subscribe_v1_request_t));
-    if (!documentation_subscribe_v1_request_local_var) {
+    ezmaxpartner_subscribe_v1_request_t *ezmaxpartner_subscribe_v1_request_local_var = malloc(sizeof(ezmaxpartner_subscribe_v1_request_t));
+    if (!ezmaxpartner_subscribe_v1_request_local_var) {
         return NULL;
     }
-    memset(documentation_subscribe_v1_request_local_var, 0, sizeof(documentation_subscribe_v1_request_t));
-    documentation_subscribe_v1_request_local_var->_library_owned = 1;
-    documentation_subscribe_v1_request_local_var->pks_ezmaxcustomer_code = pks_ezmaxcustomer_code;
-    documentation_subscribe_v1_request_local_var->s_infrastructureenvironmenttype_description = s_infrastructureenvironmenttype_description;
-    documentation_subscribe_v1_request_local_var->s_company_name1 = s_company_name1;
-    documentation_subscribe_v1_request_local_var->s_company_name2 = s_company_name2;
-    documentation_subscribe_v1_request_local_var->fki_systemconfigurationtype_id = fki_systemconfigurationtype_id;
-    documentation_subscribe_v1_request_local_var->s_systemconfigurationtype_description1 = s_systemconfigurationtype_description1;
-    documentation_subscribe_v1_request_local_var->s_systemconfigurationtype_description2 = s_systemconfigurationtype_description2;
-    documentation_subscribe_v1_request_local_var->fki_ezmaxpartner_id = fki_ezmaxpartner_id;
-    documentation_subscribe_v1_request_local_var->s_ezmaxpartner_name1 = s_ezmaxpartner_name1;
-    documentation_subscribe_v1_request_local_var->s_ezmaxpartner_name2 = s_ezmaxpartner_name2;
-    documentation_subscribe_v1_request_local_var->fki_ezmaxpartnerproduct_id = fki_ezmaxpartnerproduct_id;
-    documentation_subscribe_v1_request_local_var->s_ezmaxpartnerproduct_name1 = s_ezmaxpartnerproduct_name1;
-    documentation_subscribe_v1_request_local_var->s_ezmaxpartnerproduct_name2 = s_ezmaxpartnerproduct_name2;
-    documentation_subscribe_v1_request_local_var->fki_ezmaxpartnerproductstage_id = fki_ezmaxpartnerproductstage_id;
-    documentation_subscribe_v1_request_local_var->s_ezmaxpartnerproductstage_code = s_ezmaxpartnerproductstage_code;
-    documentation_subscribe_v1_request_local_var->s_user_login_name = s_user_login_name;
-    documentation_subscribe_v1_request_local_var->s_user_first_name = s_user_first_name;
-    documentation_subscribe_v1_request_local_var->s_user_last_name = s_user_last_name;
-    documentation_subscribe_v1_request_local_var->fki_user_id = fki_user_id;
-    documentation_subscribe_v1_request_local_var->fki_language_id = fki_language_id;
-    documentation_subscribe_v1_request_local_var->obj_address = obj_address;
-    documentation_subscribe_v1_request_local_var->objphone = objphone;
-    documentation_subscribe_v1_request_local_var->obj_email = obj_email;
-    return documentation_subscribe_v1_request_local_var;
+    memset(ezmaxpartner_subscribe_v1_request_local_var, 0, sizeof(ezmaxpartner_subscribe_v1_request_t));
+    ezmaxpartner_subscribe_v1_request_local_var->_library_owned = 1;
+    ezmaxpartner_subscribe_v1_request_local_var->pks_ezmaxcustomer_code = pks_ezmaxcustomer_code;
+    ezmaxpartner_subscribe_v1_request_local_var->s_infrastructureenvironmenttype_description = s_infrastructureenvironmenttype_description;
+    ezmaxpartner_subscribe_v1_request_local_var->s_company_name1 = s_company_name1;
+    ezmaxpartner_subscribe_v1_request_local_var->s_company_name2 = s_company_name2;
+    ezmaxpartner_subscribe_v1_request_local_var->fki_systemconfigurationtype_id = fki_systemconfigurationtype_id;
+    ezmaxpartner_subscribe_v1_request_local_var->s_systemconfigurationtype_description1 = s_systemconfigurationtype_description1;
+    ezmaxpartner_subscribe_v1_request_local_var->s_systemconfigurationtype_description2 = s_systemconfigurationtype_description2;
+    ezmaxpartner_subscribe_v1_request_local_var->fki_ezmaxpartner_id = fki_ezmaxpartner_id;
+    ezmaxpartner_subscribe_v1_request_local_var->s_ezmaxpartner_name1 = s_ezmaxpartner_name1;
+    ezmaxpartner_subscribe_v1_request_local_var->s_ezmaxpartner_name2 = s_ezmaxpartner_name2;
+    ezmaxpartner_subscribe_v1_request_local_var->fki_ezmaxpartnerproduct_id = fki_ezmaxpartnerproduct_id;
+    ezmaxpartner_subscribe_v1_request_local_var->s_ezmaxpartnerproduct_name1 = s_ezmaxpartnerproduct_name1;
+    ezmaxpartner_subscribe_v1_request_local_var->s_ezmaxpartnerproduct_name2 = s_ezmaxpartnerproduct_name2;
+    ezmaxpartner_subscribe_v1_request_local_var->fki_ezmaxpartnerproductstage_id = fki_ezmaxpartnerproductstage_id;
+    ezmaxpartner_subscribe_v1_request_local_var->s_ezmaxpartnerproductstage_code = s_ezmaxpartnerproductstage_code;
+    ezmaxpartner_subscribe_v1_request_local_var->s_user_login_name = s_user_login_name;
+    ezmaxpartner_subscribe_v1_request_local_var->s_user_first_name = s_user_first_name;
+    ezmaxpartner_subscribe_v1_request_local_var->s_user_last_name = s_user_last_name;
+    ezmaxpartner_subscribe_v1_request_local_var->fki_user_id = fki_user_id;
+    ezmaxpartner_subscribe_v1_request_local_var->fki_language_id = fki_language_id;
+    ezmaxpartner_subscribe_v1_request_local_var->obj_address = obj_address;
+    ezmaxpartner_subscribe_v1_request_local_var->objphone = objphone;
+    ezmaxpartner_subscribe_v1_request_local_var->obj_email = obj_email;
+    return ezmaxpartner_subscribe_v1_request_local_var;
 }
 
-__attribute__((deprecated)) documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_create(
+__attribute__((deprecated)) ezmaxpartner_subscribe_v1_request_t *ezmaxpartner_subscribe_v1_request_create(
     char *pks_ezmaxcustomer_code,
     char *s_infrastructureenvironmenttype_description,
     char *s_company_name1,
@@ -117,7 +117,7 @@ __attribute__((deprecated)) documentation_subscribe_v1_request_t *documentation_
         fki_language_id_copy = malloc(sizeof(int));
         if (fki_language_id_copy) *fki_language_id_copy = *fki_language_id;
     }
-    documentation_subscribe_v1_request_t *result = documentation_subscribe_v1_request_create_internal (
+    ezmaxpartner_subscribe_v1_request_t *result = ezmaxpartner_subscribe_v1_request_create_internal (
         pks_ezmaxcustomer_code,
         s_infrastructureenvironmenttype_description,
         s_company_name1,
@@ -153,276 +153,276 @@ __attribute__((deprecated)) documentation_subscribe_v1_request_t *documentation_
     return result;
 }
 
-void documentation_subscribe_v1_request_free(documentation_subscribe_v1_request_t *documentation_subscribe_v1_request) {
-    if(NULL == documentation_subscribe_v1_request){
+void ezmaxpartner_subscribe_v1_request_free(ezmaxpartner_subscribe_v1_request_t *ezmaxpartner_subscribe_v1_request) {
+    if(NULL == ezmaxpartner_subscribe_v1_request){
         return ;
     }
-    if(documentation_subscribe_v1_request->_library_owned != 1){
-        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "documentation_subscribe_v1_request_free");
+    if(ezmaxpartner_subscribe_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezmaxpartner_subscribe_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
-    if (documentation_subscribe_v1_request->pks_ezmaxcustomer_code) {
-        free(documentation_subscribe_v1_request->pks_ezmaxcustomer_code);
-        documentation_subscribe_v1_request->pks_ezmaxcustomer_code = NULL;
+    if (ezmaxpartner_subscribe_v1_request->pks_ezmaxcustomer_code) {
+        free(ezmaxpartner_subscribe_v1_request->pks_ezmaxcustomer_code);
+        ezmaxpartner_subscribe_v1_request->pks_ezmaxcustomer_code = NULL;
     }
-    if (documentation_subscribe_v1_request->s_infrastructureenvironmenttype_description) {
-        free(documentation_subscribe_v1_request->s_infrastructureenvironmenttype_description);
-        documentation_subscribe_v1_request->s_infrastructureenvironmenttype_description = NULL;
+    if (ezmaxpartner_subscribe_v1_request->s_infrastructureenvironmenttype_description) {
+        free(ezmaxpartner_subscribe_v1_request->s_infrastructureenvironmenttype_description);
+        ezmaxpartner_subscribe_v1_request->s_infrastructureenvironmenttype_description = NULL;
     }
-    if (documentation_subscribe_v1_request->s_company_name1) {
-        free(documentation_subscribe_v1_request->s_company_name1);
-        documentation_subscribe_v1_request->s_company_name1 = NULL;
+    if (ezmaxpartner_subscribe_v1_request->s_company_name1) {
+        free(ezmaxpartner_subscribe_v1_request->s_company_name1);
+        ezmaxpartner_subscribe_v1_request->s_company_name1 = NULL;
     }
-    if (documentation_subscribe_v1_request->s_company_name2) {
-        free(documentation_subscribe_v1_request->s_company_name2);
-        documentation_subscribe_v1_request->s_company_name2 = NULL;
+    if (ezmaxpartner_subscribe_v1_request->s_company_name2) {
+        free(ezmaxpartner_subscribe_v1_request->s_company_name2);
+        ezmaxpartner_subscribe_v1_request->s_company_name2 = NULL;
     }
-    if (documentation_subscribe_v1_request->fki_systemconfigurationtype_id) {
-        free(documentation_subscribe_v1_request->fki_systemconfigurationtype_id);
-        documentation_subscribe_v1_request->fki_systemconfigurationtype_id = NULL;
+    if (ezmaxpartner_subscribe_v1_request->fki_systemconfigurationtype_id) {
+        free(ezmaxpartner_subscribe_v1_request->fki_systemconfigurationtype_id);
+        ezmaxpartner_subscribe_v1_request->fki_systemconfigurationtype_id = NULL;
     }
-    if (documentation_subscribe_v1_request->s_systemconfigurationtype_description1) {
-        free(documentation_subscribe_v1_request->s_systemconfigurationtype_description1);
-        documentation_subscribe_v1_request->s_systemconfigurationtype_description1 = NULL;
+    if (ezmaxpartner_subscribe_v1_request->s_systemconfigurationtype_description1) {
+        free(ezmaxpartner_subscribe_v1_request->s_systemconfigurationtype_description1);
+        ezmaxpartner_subscribe_v1_request->s_systemconfigurationtype_description1 = NULL;
     }
-    if (documentation_subscribe_v1_request->s_systemconfigurationtype_description2) {
-        free(documentation_subscribe_v1_request->s_systemconfigurationtype_description2);
-        documentation_subscribe_v1_request->s_systemconfigurationtype_description2 = NULL;
+    if (ezmaxpartner_subscribe_v1_request->s_systemconfigurationtype_description2) {
+        free(ezmaxpartner_subscribe_v1_request->s_systemconfigurationtype_description2);
+        ezmaxpartner_subscribe_v1_request->s_systemconfigurationtype_description2 = NULL;
     }
-    if (documentation_subscribe_v1_request->fki_ezmaxpartner_id) {
-        free(documentation_subscribe_v1_request->fki_ezmaxpartner_id);
-        documentation_subscribe_v1_request->fki_ezmaxpartner_id = NULL;
+    if (ezmaxpartner_subscribe_v1_request->fki_ezmaxpartner_id) {
+        free(ezmaxpartner_subscribe_v1_request->fki_ezmaxpartner_id);
+        ezmaxpartner_subscribe_v1_request->fki_ezmaxpartner_id = NULL;
     }
-    if (documentation_subscribe_v1_request->s_ezmaxpartner_name1) {
-        free(documentation_subscribe_v1_request->s_ezmaxpartner_name1);
-        documentation_subscribe_v1_request->s_ezmaxpartner_name1 = NULL;
+    if (ezmaxpartner_subscribe_v1_request->s_ezmaxpartner_name1) {
+        free(ezmaxpartner_subscribe_v1_request->s_ezmaxpartner_name1);
+        ezmaxpartner_subscribe_v1_request->s_ezmaxpartner_name1 = NULL;
     }
-    if (documentation_subscribe_v1_request->s_ezmaxpartner_name2) {
-        free(documentation_subscribe_v1_request->s_ezmaxpartner_name2);
-        documentation_subscribe_v1_request->s_ezmaxpartner_name2 = NULL;
+    if (ezmaxpartner_subscribe_v1_request->s_ezmaxpartner_name2) {
+        free(ezmaxpartner_subscribe_v1_request->s_ezmaxpartner_name2);
+        ezmaxpartner_subscribe_v1_request->s_ezmaxpartner_name2 = NULL;
     }
-    if (documentation_subscribe_v1_request->fki_ezmaxpartnerproduct_id) {
-        free(documentation_subscribe_v1_request->fki_ezmaxpartnerproduct_id);
-        documentation_subscribe_v1_request->fki_ezmaxpartnerproduct_id = NULL;
+    if (ezmaxpartner_subscribe_v1_request->fki_ezmaxpartnerproduct_id) {
+        free(ezmaxpartner_subscribe_v1_request->fki_ezmaxpartnerproduct_id);
+        ezmaxpartner_subscribe_v1_request->fki_ezmaxpartnerproduct_id = NULL;
     }
-    if (documentation_subscribe_v1_request->s_ezmaxpartnerproduct_name1) {
-        free(documentation_subscribe_v1_request->s_ezmaxpartnerproduct_name1);
-        documentation_subscribe_v1_request->s_ezmaxpartnerproduct_name1 = NULL;
+    if (ezmaxpartner_subscribe_v1_request->s_ezmaxpartnerproduct_name1) {
+        free(ezmaxpartner_subscribe_v1_request->s_ezmaxpartnerproduct_name1);
+        ezmaxpartner_subscribe_v1_request->s_ezmaxpartnerproduct_name1 = NULL;
     }
-    if (documentation_subscribe_v1_request->s_ezmaxpartnerproduct_name2) {
-        free(documentation_subscribe_v1_request->s_ezmaxpartnerproduct_name2);
-        documentation_subscribe_v1_request->s_ezmaxpartnerproduct_name2 = NULL;
+    if (ezmaxpartner_subscribe_v1_request->s_ezmaxpartnerproduct_name2) {
+        free(ezmaxpartner_subscribe_v1_request->s_ezmaxpartnerproduct_name2);
+        ezmaxpartner_subscribe_v1_request->s_ezmaxpartnerproduct_name2 = NULL;
     }
-    if (documentation_subscribe_v1_request->fki_ezmaxpartnerproductstage_id) {
-        free(documentation_subscribe_v1_request->fki_ezmaxpartnerproductstage_id);
-        documentation_subscribe_v1_request->fki_ezmaxpartnerproductstage_id = NULL;
+    if (ezmaxpartner_subscribe_v1_request->fki_ezmaxpartnerproductstage_id) {
+        free(ezmaxpartner_subscribe_v1_request->fki_ezmaxpartnerproductstage_id);
+        ezmaxpartner_subscribe_v1_request->fki_ezmaxpartnerproductstage_id = NULL;
     }
-    if (documentation_subscribe_v1_request->s_ezmaxpartnerproductstage_code) {
-        free(documentation_subscribe_v1_request->s_ezmaxpartnerproductstage_code);
-        documentation_subscribe_v1_request->s_ezmaxpartnerproductstage_code = NULL;
+    if (ezmaxpartner_subscribe_v1_request->s_ezmaxpartnerproductstage_code) {
+        free(ezmaxpartner_subscribe_v1_request->s_ezmaxpartnerproductstage_code);
+        ezmaxpartner_subscribe_v1_request->s_ezmaxpartnerproductstage_code = NULL;
     }
-    if (documentation_subscribe_v1_request->s_user_login_name) {
-        free(documentation_subscribe_v1_request->s_user_login_name);
-        documentation_subscribe_v1_request->s_user_login_name = NULL;
+    if (ezmaxpartner_subscribe_v1_request->s_user_login_name) {
+        free(ezmaxpartner_subscribe_v1_request->s_user_login_name);
+        ezmaxpartner_subscribe_v1_request->s_user_login_name = NULL;
     }
-    if (documentation_subscribe_v1_request->s_user_first_name) {
-        free(documentation_subscribe_v1_request->s_user_first_name);
-        documentation_subscribe_v1_request->s_user_first_name = NULL;
+    if (ezmaxpartner_subscribe_v1_request->s_user_first_name) {
+        free(ezmaxpartner_subscribe_v1_request->s_user_first_name);
+        ezmaxpartner_subscribe_v1_request->s_user_first_name = NULL;
     }
-    if (documentation_subscribe_v1_request->s_user_last_name) {
-        free(documentation_subscribe_v1_request->s_user_last_name);
-        documentation_subscribe_v1_request->s_user_last_name = NULL;
+    if (ezmaxpartner_subscribe_v1_request->s_user_last_name) {
+        free(ezmaxpartner_subscribe_v1_request->s_user_last_name);
+        ezmaxpartner_subscribe_v1_request->s_user_last_name = NULL;
     }
-    if (documentation_subscribe_v1_request->fki_user_id) {
-        free(documentation_subscribe_v1_request->fki_user_id);
-        documentation_subscribe_v1_request->fki_user_id = NULL;
+    if (ezmaxpartner_subscribe_v1_request->fki_user_id) {
+        free(ezmaxpartner_subscribe_v1_request->fki_user_id);
+        ezmaxpartner_subscribe_v1_request->fki_user_id = NULL;
     }
-    if (documentation_subscribe_v1_request->fki_language_id) {
-        free(documentation_subscribe_v1_request->fki_language_id);
-        documentation_subscribe_v1_request->fki_language_id = NULL;
+    if (ezmaxpartner_subscribe_v1_request->fki_language_id) {
+        free(ezmaxpartner_subscribe_v1_request->fki_language_id);
+        ezmaxpartner_subscribe_v1_request->fki_language_id = NULL;
     }
-    if (documentation_subscribe_v1_request->obj_address) {
-        address_request_compound_free(documentation_subscribe_v1_request->obj_address);
-        documentation_subscribe_v1_request->obj_address = NULL;
+    if (ezmaxpartner_subscribe_v1_request->obj_address) {
+        address_request_compound_free(ezmaxpartner_subscribe_v1_request->obj_address);
+        ezmaxpartner_subscribe_v1_request->obj_address = NULL;
     }
-    if (documentation_subscribe_v1_request->objphone) {
-        phone_request_compound_v2_free(documentation_subscribe_v1_request->objphone);
-        documentation_subscribe_v1_request->objphone = NULL;
+    if (ezmaxpartner_subscribe_v1_request->objphone) {
+        phone_request_compound_v2_free(ezmaxpartner_subscribe_v1_request->objphone);
+        ezmaxpartner_subscribe_v1_request->objphone = NULL;
     }
-    if (documentation_subscribe_v1_request->obj_email) {
-        email_request_compound_free(documentation_subscribe_v1_request->obj_email);
-        documentation_subscribe_v1_request->obj_email = NULL;
+    if (ezmaxpartner_subscribe_v1_request->obj_email) {
+        email_request_compound_free(ezmaxpartner_subscribe_v1_request->obj_email);
+        ezmaxpartner_subscribe_v1_request->obj_email = NULL;
     }
-    free(documentation_subscribe_v1_request);
+    free(ezmaxpartner_subscribe_v1_request);
 }
 
-cJSON *documentation_subscribe_v1_request_convertToJSON(documentation_subscribe_v1_request_t *documentation_subscribe_v1_request) {
+cJSON *ezmaxpartner_subscribe_v1_request_convertToJSON(ezmaxpartner_subscribe_v1_request_t *ezmaxpartner_subscribe_v1_request) {
     cJSON *item = cJSON_CreateObject();
 
-    // documentation_subscribe_v1_request->pks_ezmaxcustomer_code
-    if(documentation_subscribe_v1_request->pks_ezmaxcustomer_code) {
-    if(cJSON_AddStringToObject(item, "pksEzmaxcustomerCode", documentation_subscribe_v1_request->pks_ezmaxcustomer_code) == NULL) {
+    // ezmaxpartner_subscribe_v1_request->pks_ezmaxcustomer_code
+    if(ezmaxpartner_subscribe_v1_request->pks_ezmaxcustomer_code) {
+    if(cJSON_AddStringToObject(item, "pksEzmaxcustomerCode", ezmaxpartner_subscribe_v1_request->pks_ezmaxcustomer_code) == NULL) {
     goto fail; //String
     }
     }
 
 
-    // documentation_subscribe_v1_request->s_infrastructureenvironmenttype_description
-    if(documentation_subscribe_v1_request->s_infrastructureenvironmenttype_description) {
-    if(cJSON_AddStringToObject(item, "sInfrastructureenvironmenttypeDescription", documentation_subscribe_v1_request->s_infrastructureenvironmenttype_description) == NULL) {
+    // ezmaxpartner_subscribe_v1_request->s_infrastructureenvironmenttype_description
+    if(ezmaxpartner_subscribe_v1_request->s_infrastructureenvironmenttype_description) {
+    if(cJSON_AddStringToObject(item, "sInfrastructureenvironmenttypeDescription", ezmaxpartner_subscribe_v1_request->s_infrastructureenvironmenttype_description) == NULL) {
     goto fail; //String
     }
     }
 
 
-    // documentation_subscribe_v1_request->s_company_name1
-    if(documentation_subscribe_v1_request->s_company_name1) {
-    if(cJSON_AddStringToObject(item, "sCompanyName1", documentation_subscribe_v1_request->s_company_name1) == NULL) {
+    // ezmaxpartner_subscribe_v1_request->s_company_name1
+    if(ezmaxpartner_subscribe_v1_request->s_company_name1) {
+    if(cJSON_AddStringToObject(item, "sCompanyName1", ezmaxpartner_subscribe_v1_request->s_company_name1) == NULL) {
     goto fail; //String
     }
     }
 
 
-    // documentation_subscribe_v1_request->s_company_name2
-    if(documentation_subscribe_v1_request->s_company_name2) {
-    if(cJSON_AddStringToObject(item, "sCompanyName2", documentation_subscribe_v1_request->s_company_name2) == NULL) {
+    // ezmaxpartner_subscribe_v1_request->s_company_name2
+    if(ezmaxpartner_subscribe_v1_request->s_company_name2) {
+    if(cJSON_AddStringToObject(item, "sCompanyName2", ezmaxpartner_subscribe_v1_request->s_company_name2) == NULL) {
     goto fail; //String
     }
     }
 
 
-    // documentation_subscribe_v1_request->fki_systemconfigurationtype_id
-    if(documentation_subscribe_v1_request->fki_systemconfigurationtype_id) {
-    if(cJSON_AddNumberToObject(item, "fkiSystemconfigurationtypeID", *documentation_subscribe_v1_request->fki_systemconfigurationtype_id) == NULL) {
+    // ezmaxpartner_subscribe_v1_request->fki_systemconfigurationtype_id
+    if(ezmaxpartner_subscribe_v1_request->fki_systemconfigurationtype_id) {
+    if(cJSON_AddNumberToObject(item, "fkiSystemconfigurationtypeID", *ezmaxpartner_subscribe_v1_request->fki_systemconfigurationtype_id) == NULL) {
     goto fail; //Numeric
     }
     }
 
 
-    // documentation_subscribe_v1_request->s_systemconfigurationtype_description1
-    if(documentation_subscribe_v1_request->s_systemconfigurationtype_description1) {
-    if(cJSON_AddStringToObject(item, "sSystemconfigurationtypeDescription1", documentation_subscribe_v1_request->s_systemconfigurationtype_description1) == NULL) {
+    // ezmaxpartner_subscribe_v1_request->s_systemconfigurationtype_description1
+    if(ezmaxpartner_subscribe_v1_request->s_systemconfigurationtype_description1) {
+    if(cJSON_AddStringToObject(item, "sSystemconfigurationtypeDescription1", ezmaxpartner_subscribe_v1_request->s_systemconfigurationtype_description1) == NULL) {
     goto fail; //String
     }
     }
 
 
-    // documentation_subscribe_v1_request->s_systemconfigurationtype_description2
-    if(documentation_subscribe_v1_request->s_systemconfigurationtype_description2) {
-    if(cJSON_AddStringToObject(item, "sSystemconfigurationtypeDescription2", documentation_subscribe_v1_request->s_systemconfigurationtype_description2) == NULL) {
+    // ezmaxpartner_subscribe_v1_request->s_systemconfigurationtype_description2
+    if(ezmaxpartner_subscribe_v1_request->s_systemconfigurationtype_description2) {
+    if(cJSON_AddStringToObject(item, "sSystemconfigurationtypeDescription2", ezmaxpartner_subscribe_v1_request->s_systemconfigurationtype_description2) == NULL) {
     goto fail; //String
     }
     }
 
 
-    // documentation_subscribe_v1_request->fki_ezmaxpartner_id
-    if(documentation_subscribe_v1_request->fki_ezmaxpartner_id) {
-    if(cJSON_AddNumberToObject(item, "fkiEzmaxpartnerID", *documentation_subscribe_v1_request->fki_ezmaxpartner_id) == NULL) {
+    // ezmaxpartner_subscribe_v1_request->fki_ezmaxpartner_id
+    if(ezmaxpartner_subscribe_v1_request->fki_ezmaxpartner_id) {
+    if(cJSON_AddNumberToObject(item, "fkiEzmaxpartnerID", *ezmaxpartner_subscribe_v1_request->fki_ezmaxpartner_id) == NULL) {
     goto fail; //Numeric
     }
     }
 
 
-    // documentation_subscribe_v1_request->s_ezmaxpartner_name1
-    if(documentation_subscribe_v1_request->s_ezmaxpartner_name1) {
-    if(cJSON_AddStringToObject(item, "sEzmaxpartnerName1", documentation_subscribe_v1_request->s_ezmaxpartner_name1) == NULL) {
+    // ezmaxpartner_subscribe_v1_request->s_ezmaxpartner_name1
+    if(ezmaxpartner_subscribe_v1_request->s_ezmaxpartner_name1) {
+    if(cJSON_AddStringToObject(item, "sEzmaxpartnerName1", ezmaxpartner_subscribe_v1_request->s_ezmaxpartner_name1) == NULL) {
     goto fail; //String
     }
     }
 
 
-    // documentation_subscribe_v1_request->s_ezmaxpartner_name2
-    if(documentation_subscribe_v1_request->s_ezmaxpartner_name2) {
-    if(cJSON_AddStringToObject(item, "sEzmaxpartnerName2", documentation_subscribe_v1_request->s_ezmaxpartner_name2) == NULL) {
+    // ezmaxpartner_subscribe_v1_request->s_ezmaxpartner_name2
+    if(ezmaxpartner_subscribe_v1_request->s_ezmaxpartner_name2) {
+    if(cJSON_AddStringToObject(item, "sEzmaxpartnerName2", ezmaxpartner_subscribe_v1_request->s_ezmaxpartner_name2) == NULL) {
     goto fail; //String
     }
     }
 
 
-    // documentation_subscribe_v1_request->fki_ezmaxpartnerproduct_id
-    if(documentation_subscribe_v1_request->fki_ezmaxpartnerproduct_id) {
-    if(cJSON_AddNumberToObject(item, "fkiEzmaxpartnerproductID", *documentation_subscribe_v1_request->fki_ezmaxpartnerproduct_id) == NULL) {
+    // ezmaxpartner_subscribe_v1_request->fki_ezmaxpartnerproduct_id
+    if(ezmaxpartner_subscribe_v1_request->fki_ezmaxpartnerproduct_id) {
+    if(cJSON_AddNumberToObject(item, "fkiEzmaxpartnerproductID", *ezmaxpartner_subscribe_v1_request->fki_ezmaxpartnerproduct_id) == NULL) {
     goto fail; //Numeric
     }
     }
 
 
-    // documentation_subscribe_v1_request->s_ezmaxpartnerproduct_name1
-    if(documentation_subscribe_v1_request->s_ezmaxpartnerproduct_name1) {
-    if(cJSON_AddStringToObject(item, "sEzmaxpartnerproductName1", documentation_subscribe_v1_request->s_ezmaxpartnerproduct_name1) == NULL) {
+    // ezmaxpartner_subscribe_v1_request->s_ezmaxpartnerproduct_name1
+    if(ezmaxpartner_subscribe_v1_request->s_ezmaxpartnerproduct_name1) {
+    if(cJSON_AddStringToObject(item, "sEzmaxpartnerproductName1", ezmaxpartner_subscribe_v1_request->s_ezmaxpartnerproduct_name1) == NULL) {
     goto fail; //String
     }
     }
 
 
-    // documentation_subscribe_v1_request->s_ezmaxpartnerproduct_name2
-    if(documentation_subscribe_v1_request->s_ezmaxpartnerproduct_name2) {
-    if(cJSON_AddStringToObject(item, "sEzmaxpartnerproductName2", documentation_subscribe_v1_request->s_ezmaxpartnerproduct_name2) == NULL) {
+    // ezmaxpartner_subscribe_v1_request->s_ezmaxpartnerproduct_name2
+    if(ezmaxpartner_subscribe_v1_request->s_ezmaxpartnerproduct_name2) {
+    if(cJSON_AddStringToObject(item, "sEzmaxpartnerproductName2", ezmaxpartner_subscribe_v1_request->s_ezmaxpartnerproduct_name2) == NULL) {
     goto fail; //String
     }
     }
 
 
-    // documentation_subscribe_v1_request->fki_ezmaxpartnerproductstage_id
-    if(documentation_subscribe_v1_request->fki_ezmaxpartnerproductstage_id) {
-    if(cJSON_AddNumberToObject(item, "fkiEzmaxpartnerproductstageID", *documentation_subscribe_v1_request->fki_ezmaxpartnerproductstage_id) == NULL) {
+    // ezmaxpartner_subscribe_v1_request->fki_ezmaxpartnerproductstage_id
+    if(ezmaxpartner_subscribe_v1_request->fki_ezmaxpartnerproductstage_id) {
+    if(cJSON_AddNumberToObject(item, "fkiEzmaxpartnerproductstageID", *ezmaxpartner_subscribe_v1_request->fki_ezmaxpartnerproductstage_id) == NULL) {
     goto fail; //Numeric
     }
     }
 
 
-    // documentation_subscribe_v1_request->s_ezmaxpartnerproductstage_code
-    if(documentation_subscribe_v1_request->s_ezmaxpartnerproductstage_code) {
-    if(cJSON_AddStringToObject(item, "sEzmaxpartnerproductstageCode", documentation_subscribe_v1_request->s_ezmaxpartnerproductstage_code) == NULL) {
+    // ezmaxpartner_subscribe_v1_request->s_ezmaxpartnerproductstage_code
+    if(ezmaxpartner_subscribe_v1_request->s_ezmaxpartnerproductstage_code) {
+    if(cJSON_AddStringToObject(item, "sEzmaxpartnerproductstageCode", ezmaxpartner_subscribe_v1_request->s_ezmaxpartnerproductstage_code) == NULL) {
     goto fail; //String
     }
     }
 
 
-    // documentation_subscribe_v1_request->s_user_login_name
-    if(documentation_subscribe_v1_request->s_user_login_name) {
-    if(cJSON_AddStringToObject(item, "sUserLoginName", documentation_subscribe_v1_request->s_user_login_name) == NULL) {
+    // ezmaxpartner_subscribe_v1_request->s_user_login_name
+    if(ezmaxpartner_subscribe_v1_request->s_user_login_name) {
+    if(cJSON_AddStringToObject(item, "sUserLoginName", ezmaxpartner_subscribe_v1_request->s_user_login_name) == NULL) {
     goto fail; //String
     }
     }
 
 
-    // documentation_subscribe_v1_request->s_user_first_name
-    if(documentation_subscribe_v1_request->s_user_first_name) {
-    if(cJSON_AddStringToObject(item, "sUserFirstName", documentation_subscribe_v1_request->s_user_first_name) == NULL) {
+    // ezmaxpartner_subscribe_v1_request->s_user_first_name
+    if(ezmaxpartner_subscribe_v1_request->s_user_first_name) {
+    if(cJSON_AddStringToObject(item, "sUserFirstName", ezmaxpartner_subscribe_v1_request->s_user_first_name) == NULL) {
     goto fail; //String
     }
     }
 
 
-    // documentation_subscribe_v1_request->s_user_last_name
-    if(documentation_subscribe_v1_request->s_user_last_name) {
-    if(cJSON_AddStringToObject(item, "sUserLastName", documentation_subscribe_v1_request->s_user_last_name) == NULL) {
+    // ezmaxpartner_subscribe_v1_request->s_user_last_name
+    if(ezmaxpartner_subscribe_v1_request->s_user_last_name) {
+    if(cJSON_AddStringToObject(item, "sUserLastName", ezmaxpartner_subscribe_v1_request->s_user_last_name) == NULL) {
     goto fail; //String
     }
     }
 
 
-    // documentation_subscribe_v1_request->fki_user_id
-    if(documentation_subscribe_v1_request->fki_user_id) {
-    if(cJSON_AddNumberToObject(item, "fkiUserID", *documentation_subscribe_v1_request->fki_user_id) == NULL) {
+    // ezmaxpartner_subscribe_v1_request->fki_user_id
+    if(ezmaxpartner_subscribe_v1_request->fki_user_id) {
+    if(cJSON_AddNumberToObject(item, "fkiUserID", *ezmaxpartner_subscribe_v1_request->fki_user_id) == NULL) {
     goto fail; //Numeric
     }
     }
 
 
-    // documentation_subscribe_v1_request->fki_language_id
-    if(documentation_subscribe_v1_request->fki_language_id) {
-    if(cJSON_AddNumberToObject(item, "fkiLanguageID", *documentation_subscribe_v1_request->fki_language_id) == NULL) {
+    // ezmaxpartner_subscribe_v1_request->fki_language_id
+    if(ezmaxpartner_subscribe_v1_request->fki_language_id) {
+    if(cJSON_AddNumberToObject(item, "fkiLanguageID", *ezmaxpartner_subscribe_v1_request->fki_language_id) == NULL) {
     goto fail; //Numeric
     }
     }
 
 
-    // documentation_subscribe_v1_request->obj_address
-    if(documentation_subscribe_v1_request->obj_address) {
-    cJSON *obj_address_local_JSON = address_request_compound_convertToJSON(documentation_subscribe_v1_request->obj_address);
+    // ezmaxpartner_subscribe_v1_request->obj_address
+    if(ezmaxpartner_subscribe_v1_request->obj_address) {
+    cJSON *obj_address_local_JSON = address_request_compound_convertToJSON(ezmaxpartner_subscribe_v1_request->obj_address);
     if(obj_address_local_JSON == NULL) {
     goto fail; //model
     }
@@ -433,9 +433,9 @@ cJSON *documentation_subscribe_v1_request_convertToJSON(documentation_subscribe_
     }
 
 
-    // documentation_subscribe_v1_request->objphone
-    if(documentation_subscribe_v1_request->objphone) {
-    cJSON *objphone_local_JSON = phone_request_compound_v2_convertToJSON(documentation_subscribe_v1_request->objphone);
+    // ezmaxpartner_subscribe_v1_request->objphone
+    if(ezmaxpartner_subscribe_v1_request->objphone) {
+    cJSON *objphone_local_JSON = phone_request_compound_v2_convertToJSON(ezmaxpartner_subscribe_v1_request->objphone);
     if(objphone_local_JSON == NULL) {
     goto fail; //model
     }
@@ -446,9 +446,9 @@ cJSON *documentation_subscribe_v1_request_convertToJSON(documentation_subscribe_
     }
 
 
-    // documentation_subscribe_v1_request->obj_email
-    if(documentation_subscribe_v1_request->obj_email) {
-    cJSON *obj_email_local_JSON = email_request_compound_convertToJSON(documentation_subscribe_v1_request->obj_email);
+    // ezmaxpartner_subscribe_v1_request->obj_email
+    if(ezmaxpartner_subscribe_v1_request->obj_email) {
+    cJSON *obj_email_local_JSON = email_request_compound_convertToJSON(ezmaxpartner_subscribe_v1_request->obj_email);
     if(obj_email_local_JSON == NULL) {
     goto fail; //model
     }
@@ -466,9 +466,9 @@ fail:
     return NULL;
 }
 
-documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFromJSON(cJSON *documentation_subscribe_v1_requestJSON){
+ezmaxpartner_subscribe_v1_request_t *ezmaxpartner_subscribe_v1_request_parseFromJSON(cJSON *ezmaxpartner_subscribe_v1_requestJSON){
 
-    documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_local_var = NULL;
+    ezmaxpartner_subscribe_v1_request_t *ezmaxpartner_subscribe_v1_request_local_var = NULL;
 
     char *pks_ezmaxcustomer_code_local_str = NULL;
 
@@ -478,28 +478,28 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
 
     char *s_company_name2_local_str = NULL;
 
-    // define the local variable for documentation_subscribe_v1_request->fki_systemconfigurationtype_id
+    // define the local variable for ezmaxpartner_subscribe_v1_request->fki_systemconfigurationtype_id
     int *fki_systemconfigurationtype_id_local_var = NULL;
 
     char *s_systemconfigurationtype_description1_local_str = NULL;
 
     char *s_systemconfigurationtype_description2_local_str = NULL;
 
-    // define the local variable for documentation_subscribe_v1_request->fki_ezmaxpartner_id
+    // define the local variable for ezmaxpartner_subscribe_v1_request->fki_ezmaxpartner_id
     int *fki_ezmaxpartner_id_local_var = NULL;
 
     char *s_ezmaxpartner_name1_local_str = NULL;
 
     char *s_ezmaxpartner_name2_local_str = NULL;
 
-    // define the local variable for documentation_subscribe_v1_request->fki_ezmaxpartnerproduct_id
+    // define the local variable for ezmaxpartner_subscribe_v1_request->fki_ezmaxpartnerproduct_id
     int *fki_ezmaxpartnerproduct_id_local_var = NULL;
 
     char *s_ezmaxpartnerproduct_name1_local_str = NULL;
 
     char *s_ezmaxpartnerproduct_name2_local_str = NULL;
 
-    // define the local variable for documentation_subscribe_v1_request->fki_ezmaxpartnerproductstage_id
+    // define the local variable for ezmaxpartner_subscribe_v1_request->fki_ezmaxpartnerproductstage_id
     int *fki_ezmaxpartnerproductstage_id_local_var = NULL;
 
     char *s_ezmaxpartnerproductstage_code_local_str = NULL;
@@ -510,23 +510,23 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
 
     char *s_user_last_name_local_str = NULL;
 
-    // define the local variable for documentation_subscribe_v1_request->fki_user_id
+    // define the local variable for ezmaxpartner_subscribe_v1_request->fki_user_id
     int *fki_user_id_local_var = NULL;
 
-    // define the local variable for documentation_subscribe_v1_request->fki_language_id
+    // define the local variable for ezmaxpartner_subscribe_v1_request->fki_language_id
     int *fki_language_id_local_var = NULL;
 
-    // define the local variable for documentation_subscribe_v1_request->obj_address
+    // define the local variable for ezmaxpartner_subscribe_v1_request->obj_address
     address_request_compound_t *obj_address_local_nonprim = NULL;
 
-    // define the local variable for documentation_subscribe_v1_request->objphone
+    // define the local variable for ezmaxpartner_subscribe_v1_request->objphone
     phone_request_compound_v2_t *objphone_local_nonprim = NULL;
 
-    // define the local variable for documentation_subscribe_v1_request->obj_email
+    // define the local variable for ezmaxpartner_subscribe_v1_request->obj_email
     email_request_compound_t *obj_email_local_nonprim = NULL;
 
-    // documentation_subscribe_v1_request->pks_ezmaxcustomer_code
-    cJSON *pks_ezmaxcustomer_code = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "pksEzmaxcustomerCode");
+    // ezmaxpartner_subscribe_v1_request->pks_ezmaxcustomer_code
+    cJSON *pks_ezmaxcustomer_code = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "pksEzmaxcustomerCode");
     if (cJSON_IsNull(pks_ezmaxcustomer_code)) {
         pks_ezmaxcustomer_code = NULL;
     }
@@ -537,8 +537,8 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     }
     }
 
-    // documentation_subscribe_v1_request->s_infrastructureenvironmenttype_description
-    cJSON *s_infrastructureenvironmenttype_description = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "sInfrastructureenvironmenttypeDescription");
+    // ezmaxpartner_subscribe_v1_request->s_infrastructureenvironmenttype_description
+    cJSON *s_infrastructureenvironmenttype_description = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "sInfrastructureenvironmenttypeDescription");
     if (cJSON_IsNull(s_infrastructureenvironmenttype_description)) {
         s_infrastructureenvironmenttype_description = NULL;
     }
@@ -549,8 +549,8 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     }
     }
 
-    // documentation_subscribe_v1_request->s_company_name1
-    cJSON *s_company_name1 = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "sCompanyName1");
+    // ezmaxpartner_subscribe_v1_request->s_company_name1
+    cJSON *s_company_name1 = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "sCompanyName1");
     if (cJSON_IsNull(s_company_name1)) {
         s_company_name1 = NULL;
     }
@@ -561,8 +561,8 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     }
     }
 
-    // documentation_subscribe_v1_request->s_company_name2
-    cJSON *s_company_name2 = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "sCompanyName2");
+    // ezmaxpartner_subscribe_v1_request->s_company_name2
+    cJSON *s_company_name2 = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "sCompanyName2");
     if (cJSON_IsNull(s_company_name2)) {
         s_company_name2 = NULL;
     }
@@ -573,8 +573,8 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     }
     }
 
-    // documentation_subscribe_v1_request->fki_systemconfigurationtype_id
-    cJSON *fki_systemconfigurationtype_id = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "fkiSystemconfigurationtypeID");
+    // ezmaxpartner_subscribe_v1_request->fki_systemconfigurationtype_id
+    cJSON *fki_systemconfigurationtype_id = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "fkiSystemconfigurationtypeID");
     if (cJSON_IsNull(fki_systemconfigurationtype_id)) {
         fki_systemconfigurationtype_id = NULL;
     }
@@ -591,8 +591,8 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     *fki_systemconfigurationtype_id_local_var = fki_systemconfigurationtype_id->valuedouble;
     }
 
-    // documentation_subscribe_v1_request->s_systemconfigurationtype_description1
-    cJSON *s_systemconfigurationtype_description1 = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "sSystemconfigurationtypeDescription1");
+    // ezmaxpartner_subscribe_v1_request->s_systemconfigurationtype_description1
+    cJSON *s_systemconfigurationtype_description1 = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "sSystemconfigurationtypeDescription1");
     if (cJSON_IsNull(s_systemconfigurationtype_description1)) {
         s_systemconfigurationtype_description1 = NULL;
     }
@@ -603,8 +603,8 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     }
     }
 
-    // documentation_subscribe_v1_request->s_systemconfigurationtype_description2
-    cJSON *s_systemconfigurationtype_description2 = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "sSystemconfigurationtypeDescription2");
+    // ezmaxpartner_subscribe_v1_request->s_systemconfigurationtype_description2
+    cJSON *s_systemconfigurationtype_description2 = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "sSystemconfigurationtypeDescription2");
     if (cJSON_IsNull(s_systemconfigurationtype_description2)) {
         s_systemconfigurationtype_description2 = NULL;
     }
@@ -615,8 +615,8 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     }
     }
 
-    // documentation_subscribe_v1_request->fki_ezmaxpartner_id
-    cJSON *fki_ezmaxpartner_id = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "fkiEzmaxpartnerID");
+    // ezmaxpartner_subscribe_v1_request->fki_ezmaxpartner_id
+    cJSON *fki_ezmaxpartner_id = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "fkiEzmaxpartnerID");
     if (cJSON_IsNull(fki_ezmaxpartner_id)) {
         fki_ezmaxpartner_id = NULL;
     }
@@ -633,8 +633,8 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     *fki_ezmaxpartner_id_local_var = fki_ezmaxpartner_id->valuedouble;
     }
 
-    // documentation_subscribe_v1_request->s_ezmaxpartner_name1
-    cJSON *s_ezmaxpartner_name1 = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "sEzmaxpartnerName1");
+    // ezmaxpartner_subscribe_v1_request->s_ezmaxpartner_name1
+    cJSON *s_ezmaxpartner_name1 = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "sEzmaxpartnerName1");
     if (cJSON_IsNull(s_ezmaxpartner_name1)) {
         s_ezmaxpartner_name1 = NULL;
     }
@@ -645,8 +645,8 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     }
     }
 
-    // documentation_subscribe_v1_request->s_ezmaxpartner_name2
-    cJSON *s_ezmaxpartner_name2 = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "sEzmaxpartnerName2");
+    // ezmaxpartner_subscribe_v1_request->s_ezmaxpartner_name2
+    cJSON *s_ezmaxpartner_name2 = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "sEzmaxpartnerName2");
     if (cJSON_IsNull(s_ezmaxpartner_name2)) {
         s_ezmaxpartner_name2 = NULL;
     }
@@ -657,8 +657,8 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     }
     }
 
-    // documentation_subscribe_v1_request->fki_ezmaxpartnerproduct_id
-    cJSON *fki_ezmaxpartnerproduct_id = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "fkiEzmaxpartnerproductID");
+    // ezmaxpartner_subscribe_v1_request->fki_ezmaxpartnerproduct_id
+    cJSON *fki_ezmaxpartnerproduct_id = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "fkiEzmaxpartnerproductID");
     if (cJSON_IsNull(fki_ezmaxpartnerproduct_id)) {
         fki_ezmaxpartnerproduct_id = NULL;
     }
@@ -675,8 +675,8 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     *fki_ezmaxpartnerproduct_id_local_var = fki_ezmaxpartnerproduct_id->valuedouble;
     }
 
-    // documentation_subscribe_v1_request->s_ezmaxpartnerproduct_name1
-    cJSON *s_ezmaxpartnerproduct_name1 = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "sEzmaxpartnerproductName1");
+    // ezmaxpartner_subscribe_v1_request->s_ezmaxpartnerproduct_name1
+    cJSON *s_ezmaxpartnerproduct_name1 = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "sEzmaxpartnerproductName1");
     if (cJSON_IsNull(s_ezmaxpartnerproduct_name1)) {
         s_ezmaxpartnerproduct_name1 = NULL;
     }
@@ -687,8 +687,8 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     }
     }
 
-    // documentation_subscribe_v1_request->s_ezmaxpartnerproduct_name2
-    cJSON *s_ezmaxpartnerproduct_name2 = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "sEzmaxpartnerproductName2");
+    // ezmaxpartner_subscribe_v1_request->s_ezmaxpartnerproduct_name2
+    cJSON *s_ezmaxpartnerproduct_name2 = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "sEzmaxpartnerproductName2");
     if (cJSON_IsNull(s_ezmaxpartnerproduct_name2)) {
         s_ezmaxpartnerproduct_name2 = NULL;
     }
@@ -699,8 +699,8 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     }
     }
 
-    // documentation_subscribe_v1_request->fki_ezmaxpartnerproductstage_id
-    cJSON *fki_ezmaxpartnerproductstage_id = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "fkiEzmaxpartnerproductstageID");
+    // ezmaxpartner_subscribe_v1_request->fki_ezmaxpartnerproductstage_id
+    cJSON *fki_ezmaxpartnerproductstage_id = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "fkiEzmaxpartnerproductstageID");
     if (cJSON_IsNull(fki_ezmaxpartnerproductstage_id)) {
         fki_ezmaxpartnerproductstage_id = NULL;
     }
@@ -717,8 +717,8 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     *fki_ezmaxpartnerproductstage_id_local_var = fki_ezmaxpartnerproductstage_id->valuedouble;
     }
 
-    // documentation_subscribe_v1_request->s_ezmaxpartnerproductstage_code
-    cJSON *s_ezmaxpartnerproductstage_code = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "sEzmaxpartnerproductstageCode");
+    // ezmaxpartner_subscribe_v1_request->s_ezmaxpartnerproductstage_code
+    cJSON *s_ezmaxpartnerproductstage_code = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "sEzmaxpartnerproductstageCode");
     if (cJSON_IsNull(s_ezmaxpartnerproductstage_code)) {
         s_ezmaxpartnerproductstage_code = NULL;
     }
@@ -729,8 +729,8 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     }
     }
 
-    // documentation_subscribe_v1_request->s_user_login_name
-    cJSON *s_user_login_name = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "sUserLoginName");
+    // ezmaxpartner_subscribe_v1_request->s_user_login_name
+    cJSON *s_user_login_name = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "sUserLoginName");
     if (cJSON_IsNull(s_user_login_name)) {
         s_user_login_name = NULL;
     }
@@ -741,8 +741,8 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     }
     }
 
-    // documentation_subscribe_v1_request->s_user_first_name
-    cJSON *s_user_first_name = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "sUserFirstName");
+    // ezmaxpartner_subscribe_v1_request->s_user_first_name
+    cJSON *s_user_first_name = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "sUserFirstName");
     if (cJSON_IsNull(s_user_first_name)) {
         s_user_first_name = NULL;
     }
@@ -753,8 +753,8 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     }
     }
 
-    // documentation_subscribe_v1_request->s_user_last_name
-    cJSON *s_user_last_name = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "sUserLastName");
+    // ezmaxpartner_subscribe_v1_request->s_user_last_name
+    cJSON *s_user_last_name = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "sUserLastName");
     if (cJSON_IsNull(s_user_last_name)) {
         s_user_last_name = NULL;
     }
@@ -765,8 +765,8 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     }
     }
 
-    // documentation_subscribe_v1_request->fki_user_id
-    cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "fkiUserID");
+    // ezmaxpartner_subscribe_v1_request->fki_user_id
+    cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "fkiUserID");
     if (cJSON_IsNull(fki_user_id)) {
         fki_user_id = NULL;
     }
@@ -783,8 +783,8 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     *fki_user_id_local_var = fki_user_id->valuedouble;
     }
 
-    // documentation_subscribe_v1_request->fki_language_id
-    cJSON *fki_language_id = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "fkiLanguageID");
+    // ezmaxpartner_subscribe_v1_request->fki_language_id
+    cJSON *fki_language_id = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "fkiLanguageID");
     if (cJSON_IsNull(fki_language_id)) {
         fki_language_id = NULL;
     }
@@ -801,8 +801,8 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     *fki_language_id_local_var = fki_language_id->valuedouble;
     }
 
-    // documentation_subscribe_v1_request->obj_address
-    cJSON *obj_address = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "objAddress");
+    // ezmaxpartner_subscribe_v1_request->obj_address
+    cJSON *obj_address = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "objAddress");
     if (cJSON_IsNull(obj_address)) {
         obj_address = NULL;
     }
@@ -810,8 +810,8 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     obj_address_local_nonprim = address_request_compound_parseFromJSON(obj_address); //nonprimitive
     }
 
-    // documentation_subscribe_v1_request->objphone
-    cJSON *objphone = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "objphone");
+    // ezmaxpartner_subscribe_v1_request->objphone
+    cJSON *objphone = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "objphone");
     if (cJSON_IsNull(objphone)) {
         objphone = NULL;
     }
@@ -819,8 +819,8 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     objphone_local_nonprim = phone_request_compound_v2_parseFromJSON(objphone); //nonprimitive
     }
 
-    // documentation_subscribe_v1_request->obj_email
-    cJSON *obj_email = cJSON_GetObjectItemCaseSensitive(documentation_subscribe_v1_requestJSON, "objEmail");
+    // ezmaxpartner_subscribe_v1_request->obj_email
+    cJSON *obj_email = cJSON_GetObjectItemCaseSensitive(ezmaxpartner_subscribe_v1_requestJSON, "objEmail");
     if (cJSON_IsNull(obj_email)) {
         obj_email = NULL;
     }
@@ -844,7 +844,7 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
     if (s_user_first_name && !cJSON_IsNull(s_user_first_name)) s_user_first_name_local_str = strdup(s_user_first_name->valuestring);
     if (s_user_last_name && !cJSON_IsNull(s_user_last_name)) s_user_last_name_local_str = strdup(s_user_last_name->valuestring);
 
-    documentation_subscribe_v1_request_local_var = documentation_subscribe_v1_request_create_internal (
+    ezmaxpartner_subscribe_v1_request_local_var = ezmaxpartner_subscribe_v1_request_create_internal (
         pks_ezmaxcustomer_code_local_str,
         s_infrastructureenvironmenttype_description_local_str,
         s_company_name1_local_str,
@@ -870,11 +870,11 @@ documentation_subscribe_v1_request_t *documentation_subscribe_v1_request_parseFr
         obj_email ? obj_email_local_nonprim : NULL
         );
 
-    if (!documentation_subscribe_v1_request_local_var) {
+    if (!ezmaxpartner_subscribe_v1_request_local_var) {
         goto end;
     }
 
-    return documentation_subscribe_v1_request_local_var;
+    return ezmaxpartner_subscribe_v1_request_local_var;
 end:
     if (pks_ezmaxcustomer_code_local_str) {
         free(pks_ezmaxcustomer_code_local_str);

@@ -4,27 +4,27 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ExternalEzmaxpartnerAPI_externalpartnerSubscribeV1**](ExternalEzmaxpartnerAPI.md#ExternalEzmaxpartnerAPI_externalpartnerSubscribeV1) | **POST** /1/external/ezmaxpartner/subscribe | Subscribe to an Ezmaxparnerproductstage
+[**ExternalEzmaxpartnerAPI_ezmaxpartnerSubscribeV1**](ExternalEzmaxpartnerAPI.md#ExternalEzmaxpartnerAPI_ezmaxpartnerSubscribeV1) | **POST** /1/external/ezmaxpartner/subscribe | Subscribe to an Ezmaxparnerproductstage
 
 
-# **ExternalEzmaxpartnerAPI_externalpartnerSubscribeV1**
+# **ExternalEzmaxpartnerAPI_ezmaxpartnerSubscribeV1**
 ```c
 // Subscribe to an Ezmaxparnerproductstage
 //
 // Subscribe to an Ezmaxparnerproductstage
 //
-documentation_subscribe_v1_response_t* ExternalEzmaxpartnerAPI_externalpartnerSubscribeV1(apiClient_t *apiClient, documentation_subscribe_v1_request_t *documentation_subscribe_v1_request);
+ezmaxpartner_subscribe_v1_response_t* ExternalEzmaxpartnerAPI_ezmaxpartnerSubscribeV1(apiClient_t *apiClient, ezmaxpartner_subscribe_v1_request_t *ezmaxpartner_subscribe_v1_request);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**documentation_subscribe_v1_request** | **[documentation_subscribe_v1_request_t](documentation_subscribe_v1_request.md) \*** |  | 
+**ezmaxpartner_subscribe_v1_request** | **[ezmaxpartner_subscribe_v1_request_t](ezmaxpartner_subscribe_v1_request.md) \*** |  | 
 
 ### Return type
 
-[documentation_subscribe_v1_response_t](documentation_subscribe_v1_response.md) *
+[ezmaxpartner_subscribe_v1_response_t](ezmaxpartner_subscribe_v1_response.md) *
 
 
 ### Authorization
