@@ -8,7 +8,7 @@
 static webhook_realestate_inscription_created_t *webhook_realestate_inscription_created_create_internal(
     custom_webhook_response_t *obj_webhook,
     list_t *a_obj_attempt,
-    inscription_response_t *obj_ezmaxpartnerproduct
+    inscription_response_t *obj_inscription
     ) {
     webhook_realestate_inscription_created_t *webhook_realestate_inscription_created_local_var = malloc(sizeof(webhook_realestate_inscription_created_t));
     if (!webhook_realestate_inscription_created_local_var) {
@@ -18,19 +18,19 @@ static webhook_realestate_inscription_created_t *webhook_realestate_inscription_
     webhook_realestate_inscription_created_local_var->_library_owned = 1;
     webhook_realestate_inscription_created_local_var->obj_webhook = obj_webhook;
     webhook_realestate_inscription_created_local_var->a_obj_attempt = a_obj_attempt;
-    webhook_realestate_inscription_created_local_var->obj_ezmaxpartnerproduct = obj_ezmaxpartnerproduct;
+    webhook_realestate_inscription_created_local_var->obj_inscription = obj_inscription;
     return webhook_realestate_inscription_created_local_var;
 }
 
 __attribute__((deprecated)) webhook_realestate_inscription_created_t *webhook_realestate_inscription_created_create(
     custom_webhook_response_t *obj_webhook,
     list_t *a_obj_attempt,
-    inscription_response_t *obj_ezmaxpartnerproduct
+    inscription_response_t *obj_inscription
     ) {
     webhook_realestate_inscription_created_t *result = webhook_realestate_inscription_created_create_internal (
         obj_webhook,
         a_obj_attempt,
-        obj_ezmaxpartnerproduct
+        obj_inscription
         );
     if (!result) {
     }
@@ -57,9 +57,9 @@ void webhook_realestate_inscription_created_free(webhook_realestate_inscription_
         list_freeList(webhook_realestate_inscription_created->a_obj_attempt);
         webhook_realestate_inscription_created->a_obj_attempt = NULL;
     }
-    if (webhook_realestate_inscription_created->obj_ezmaxpartnerproduct) {
-        inscription_response_free(webhook_realestate_inscription_created->obj_ezmaxpartnerproduct);
-        webhook_realestate_inscription_created->obj_ezmaxpartnerproduct = NULL;
+    if (webhook_realestate_inscription_created->obj_inscription) {
+        inscription_response_free(webhook_realestate_inscription_created->obj_inscription);
+        webhook_realestate_inscription_created->obj_inscription = NULL;
     }
     free(webhook_realestate_inscription_created);
 }
@@ -102,15 +102,15 @@ cJSON *webhook_realestate_inscription_created_convertToJSON(webhook_realestate_i
     }
 
 
-    // webhook_realestate_inscription_created->obj_ezmaxpartnerproduct
-    if (!webhook_realestate_inscription_created->obj_ezmaxpartnerproduct) {
+    // webhook_realestate_inscription_created->obj_inscription
+    if (!webhook_realestate_inscription_created->obj_inscription) {
         goto fail;
     }
-    cJSON *obj_ezmaxpartnerproduct_local_JSON = inscription_response_convertToJSON(webhook_realestate_inscription_created->obj_ezmaxpartnerproduct);
-    if(obj_ezmaxpartnerproduct_local_JSON == NULL) {
+    cJSON *obj_inscription_local_JSON = inscription_response_convertToJSON(webhook_realestate_inscription_created->obj_inscription);
+    if(obj_inscription_local_JSON == NULL) {
     goto fail; //model
     }
-    cJSON_AddItemToObject(item, "objEzmaxpartnerproduct", obj_ezmaxpartnerproduct_local_JSON);
+    cJSON_AddItemToObject(item, "objInscription", obj_inscription_local_JSON);
     if(item->child == NULL) {
     goto fail;
     }
@@ -133,8 +133,8 @@ webhook_realestate_inscription_created_t *webhook_realestate_inscription_created
     // define the local list for webhook_realestate_inscription_created->a_obj_attempt
     list_t *a_obj_attemptList = NULL;
 
-    // define the local variable for webhook_realestate_inscription_created->obj_ezmaxpartnerproduct
-    inscription_response_t *obj_ezmaxpartnerproduct_local_nonprim = NULL;
+    // define the local variable for webhook_realestate_inscription_created->obj_inscription
+    inscription_response_t *obj_inscription_local_nonprim = NULL;
 
     // webhook_realestate_inscription_created->obj_webhook
     cJSON *obj_webhook = cJSON_GetObjectItemCaseSensitive(webhook_realestate_inscription_createdJSON, "objWebhook");
@@ -175,24 +175,24 @@ webhook_realestate_inscription_created_t *webhook_realestate_inscription_created
         list_addElement(a_obj_attemptList, a_obj_attemptItem);
     }
 
-    // webhook_realestate_inscription_created->obj_ezmaxpartnerproduct
-    cJSON *obj_ezmaxpartnerproduct = cJSON_GetObjectItemCaseSensitive(webhook_realestate_inscription_createdJSON, "objEzmaxpartnerproduct");
-    if (cJSON_IsNull(obj_ezmaxpartnerproduct)) {
-        obj_ezmaxpartnerproduct = NULL;
+    // webhook_realestate_inscription_created->obj_inscription
+    cJSON *obj_inscription = cJSON_GetObjectItemCaseSensitive(webhook_realestate_inscription_createdJSON, "objInscription");
+    if (cJSON_IsNull(obj_inscription)) {
+        obj_inscription = NULL;
     }
-    if (!obj_ezmaxpartnerproduct) {
+    if (!obj_inscription) {
         goto end;
     }
 
     
-    obj_ezmaxpartnerproduct_local_nonprim = inscription_response_parseFromJSON(obj_ezmaxpartnerproduct); //nonprimitive
+    obj_inscription_local_nonprim = inscription_response_parseFromJSON(obj_inscription); //nonprimitive
 
 
 
     webhook_realestate_inscription_created_local_var = webhook_realestate_inscription_created_create_internal (
         obj_webhook_local_nonprim,
         a_obj_attemptList,
-        obj_ezmaxpartnerproduct_local_nonprim
+        obj_inscription_local_nonprim
         );
 
     if (!webhook_realestate_inscription_created_local_var) {
@@ -214,9 +214,9 @@ end:
         list_freeList(a_obj_attemptList);
         a_obj_attemptList = NULL;
     }
-    if (obj_ezmaxpartnerproduct_local_nonprim) {
-        inscription_response_free(obj_ezmaxpartnerproduct_local_nonprim);
-        obj_ezmaxpartnerproduct_local_nonprim = NULL;
+    if (obj_inscription_local_nonprim) {
+        inscription_response_free(obj_inscription_local_nonprim);
+        obj_inscription_local_nonprim = NULL;
     }
     return NULL;
 

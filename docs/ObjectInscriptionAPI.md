@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**ObjectInscriptionAPI_inscriptionGetCommunicationListV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionGetCommunicationListV1) | **GET** /1/object/inscription/{pkiInscriptionID}/getCommunicationList | Retrieve Communication list
 [**ObjectInscriptionAPI_inscriptionGetCommunicationrecipientsV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionGetCommunicationrecipientsV1) | **GET** /1/object/inscription/{pkiInscriptionID}/getCommunicationrecipients | Retrieve Inscription&#39;s Communicationrecipient
 [**ObjectInscriptionAPI_inscriptionGetCommunicationsendersV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionGetCommunicationsendersV1) | **GET** /1/object/inscription/{pkiInscriptionID}/getCommunicationsenders | Retrieve Inscription&#39;s Communicationsender
-[**ObjectInscriptionAPI_inscriptionGetInscriptionnotauthenticatedsV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionGetInscriptionnotauthenticatedsV1) | **GET** /1/object/inscription/{pkiInscriptionID}/getInscriptionnotauthenticateds | Retrieve Inscriptionnotauthenticated list
+[**ObjectInscriptionAPI_inscriptionGetInscriptionnotauthenticatedsV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionGetInscriptionnotauthenticatedsV1) | **GET** /1/object/inscription/{pkiInscriptionID}/getInscriptionnotauthenticateds | Retrieve Inscription&#39;s Inscriptionnotauthenticated
 [**ObjectInscriptionAPI_inscriptionGetListV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionGetListV1) | **GET** /1/object/inscription/getList | Retrieve Inscription list
 [**ObjectInscriptionAPI_inscriptionGetObjectV2**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionGetObjectV2) | **GET** /2/object/inscription/{pkiInscriptionID} | Retrieve an existing Inscription
 [**ObjectInscriptionAPI_inscriptionImportIntoEDMV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionImportIntoEDMV1) | **POST** /1/object/inscription/{pkiInscriptionID}/importIntoEDM | Import attachments into the Inscription
@@ -173,7 +173,7 @@ Name | Type | Description  | Notes
 
 # **ObjectInscriptionAPI_inscriptionGetInscriptionnotauthenticatedsV1**
 ```c
-// Retrieve Inscriptionnotauthenticated list
+// Retrieve Inscription's Inscriptionnotauthenticated
 //
 inscription_get_inscriptionnotauthenticateds_v1_response_t* ObjectInscriptionAPI_inscriptionGetInscriptionnotauthenticatedsV1(apiClient_t *apiClient, int *pkiInscriptionID);
 ```

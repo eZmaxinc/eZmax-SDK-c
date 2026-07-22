@@ -1,7 +1,7 @@
 /*
  * field_et_inscriptionnotauthenticated_mortgagetype.h
  *
- * The mortgagetype of the Inscriptionnotauthenticated
+ * The type of mortgage of the Inscriptionnotauthenticated
  */
 
 #ifndef _field_et_inscriptionnotauthenticated_mortgagetype_H_

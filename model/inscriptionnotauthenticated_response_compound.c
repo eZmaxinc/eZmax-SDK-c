@@ -7,8 +7,6 @@
 
 static inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_response_compound_create_internal(
     int *pki_inscriptionnotauthenticated_id,
-    int *fki_company_id,
-    char *s_company_name_x,
     int *fki_inscription_id,
     int *fki_department_id,
     char *s_department_name_x,
@@ -55,8 +53,6 @@ static inscriptionnotauthenticated_response_compound_t *inscriptionnotauthentica
     memset(inscriptionnotauthenticated_response_compound_local_var, 0, sizeof(inscriptionnotauthenticated_response_compound_t));
     inscriptionnotauthenticated_response_compound_local_var->_library_owned = 1;
     inscriptionnotauthenticated_response_compound_local_var->pki_inscriptionnotauthenticated_id = pki_inscriptionnotauthenticated_id;
-    inscriptionnotauthenticated_response_compound_local_var->fki_company_id = fki_company_id;
-    inscriptionnotauthenticated_response_compound_local_var->s_company_name_x = s_company_name_x;
     inscriptionnotauthenticated_response_compound_local_var->fki_inscription_id = fki_inscription_id;
     inscriptionnotauthenticated_response_compound_local_var->fki_department_id = fki_department_id;
     inscriptionnotauthenticated_response_compound_local_var->s_department_name_x = s_department_name_x;
@@ -100,8 +96,6 @@ static inscriptionnotauthenticated_response_compound_t *inscriptionnotauthentica
 
 __attribute__((deprecated)) inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_response_compound_create(
     int *pki_inscriptionnotauthenticated_id,
-    int *fki_company_id,
-    char *s_company_name_x,
     int *fki_inscription_id,
     int *fki_department_id,
     char *s_department_name_x,
@@ -145,11 +139,6 @@ __attribute__((deprecated)) inscriptionnotauthenticated_response_compound_t *ins
     if (pki_inscriptionnotauthenticated_id) {
         pki_inscriptionnotauthenticated_id_copy = malloc(sizeof(int));
         if (pki_inscriptionnotauthenticated_id_copy) *pki_inscriptionnotauthenticated_id_copy = *pki_inscriptionnotauthenticated_id;
-    }
-    int *fki_company_id_copy = NULL;
-    if (fki_company_id) {
-        fki_company_id_copy = malloc(sizeof(int));
-        if (fki_company_id_copy) *fki_company_id_copy = *fki_company_id;
     }
     int *fki_inscription_id_copy = NULL;
     if (fki_inscription_id) {
@@ -213,8 +202,6 @@ __attribute__((deprecated)) inscriptionnotauthenticated_response_compound_t *ins
     }
     inscriptionnotauthenticated_response_compound_t *result = inscriptionnotauthenticated_response_compound_create_internal (
         pki_inscriptionnotauthenticated_id_copy,
-        fki_company_id_copy,
-        s_company_name_x,
         fki_inscription_id_copy,
         fki_department_id_copy,
         s_department_name_x,
@@ -256,7 +243,6 @@ __attribute__((deprecated)) inscriptionnotauthenticated_response_compound_t *ins
         );
     if (!result) {
         free(pki_inscriptionnotauthenticated_id_copy);
-        free(fki_company_id_copy);
         free(fki_inscription_id_copy);
         free(fki_department_id_copy);
         free(fki_financialinstitution_id_copy);
@@ -285,14 +271,6 @@ void inscriptionnotauthenticated_response_compound_free(inscriptionnotauthentica
     if (inscriptionnotauthenticated_response_compound->pki_inscriptionnotauthenticated_id) {
         free(inscriptionnotauthenticated_response_compound->pki_inscriptionnotauthenticated_id);
         inscriptionnotauthenticated_response_compound->pki_inscriptionnotauthenticated_id = NULL;
-    }
-    if (inscriptionnotauthenticated_response_compound->fki_company_id) {
-        free(inscriptionnotauthenticated_response_compound->fki_company_id);
-        inscriptionnotauthenticated_response_compound->fki_company_id = NULL;
-    }
-    if (inscriptionnotauthenticated_response_compound->s_company_name_x) {
-        free(inscriptionnotauthenticated_response_compound->s_company_name_x);
-        inscriptionnotauthenticated_response_compound->s_company_name_x = NULL;
     }
     if (inscriptionnotauthenticated_response_compound->fki_inscription_id) {
         free(inscriptionnotauthenticated_response_compound->fki_inscription_id);
@@ -445,23 +423,6 @@ cJSON *inscriptionnotauthenticated_response_compound_convertToJSON(inscriptionno
     }
 
 
-    // inscriptionnotauthenticated_response_compound->fki_company_id
-    if (!inscriptionnotauthenticated_response_compound->fki_company_id) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "fkiCompanyID", *inscriptionnotauthenticated_response_compound->fki_company_id) == NULL) {
-    goto fail; //Numeric
-    }
-
-
-    // inscriptionnotauthenticated_response_compound->s_company_name_x
-    if(inscriptionnotauthenticated_response_compound->s_company_name_x) {
-    if(cJSON_AddStringToObject(item, "sCompanyNameX", inscriptionnotauthenticated_response_compound->s_company_name_x) == NULL) {
-    goto fail; //String
-    }
-    }
-
-
     // inscriptionnotauthenticated_response_compound->fki_inscription_id
     if (!inscriptionnotauthenticated_response_compound->fki_inscription_id) {
         goto fail;
@@ -472,11 +433,10 @@ cJSON *inscriptionnotauthenticated_response_compound_convertToJSON(inscriptionno
 
 
     // inscriptionnotauthenticated_response_compound->fki_department_id
-    if (!inscriptionnotauthenticated_response_compound->fki_department_id) {
-        goto fail;
-    }
+    if(inscriptionnotauthenticated_response_compound->fki_department_id) {
     if(cJSON_AddNumberToObject(item, "fkiDepartmentID", *inscriptionnotauthenticated_response_compound->fki_department_id) == NULL) {
     goto fail; //Numeric
+    }
     }
 
 
@@ -489,11 +449,10 @@ cJSON *inscriptionnotauthenticated_response_compound_convertToJSON(inscriptionno
 
 
     // inscriptionnotauthenticated_response_compound->fki_financialinstitution_id
-    if (!inscriptionnotauthenticated_response_compound->fki_financialinstitution_id) {
-        goto fail;
-    }
+    if(inscriptionnotauthenticated_response_compound->fki_financialinstitution_id) {
     if(cJSON_AddNumberToObject(item, "fkiFinancialinstitutionID", *inscriptionnotauthenticated_response_compound->fki_financialinstitution_id) == NULL) {
     goto fail; //Numeric
+    }
     }
 
 
@@ -506,11 +465,10 @@ cJSON *inscriptionnotauthenticated_response_compound_convertToJSON(inscriptionno
 
 
     // inscriptionnotauthenticated_response_compound->fki_buyercontract_id
-    if (!inscriptionnotauthenticated_response_compound->fki_buyercontract_id) {
-        goto fail;
-    }
+    if(inscriptionnotauthenticated_response_compound->fki_buyercontract_id) {
     if(cJSON_AddNumberToObject(item, "fkiBuyercontractID", *inscriptionnotauthenticated_response_compound->fki_buyercontract_id) == NULL) {
     goto fail; //Numeric
+    }
     }
 
 
@@ -523,11 +481,10 @@ cJSON *inscriptionnotauthenticated_response_compound_convertToJSON(inscriptionno
 
 
     // inscriptionnotauthenticated_response_compound->fki_mortgagesupplier_id
-    if (!inscriptionnotauthenticated_response_compound->fki_mortgagesupplier_id) {
-        goto fail;
-    }
+    if(inscriptionnotauthenticated_response_compound->fki_mortgagesupplier_id) {
     if(cJSON_AddNumberToObject(item, "fkiMortgagesupplierID", *inscriptionnotauthenticated_response_compound->fki_mortgagesupplier_id) == NULL) {
     goto fail; //Numeric
+    }
     }
 
 
@@ -557,29 +514,26 @@ cJSON *inscriptionnotauthenticated_response_compound_convertToJSON(inscriptionno
 
 
     // inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_transactiondate
-    if (!inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_transactiondate) {
-        goto fail;
-    }
+    if(inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_transactiondate) {
     if(cJSON_AddStringToObject(item, "dtInscriptionnotauthenticatedTransactiondate", inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_transactiondate) == NULL) {
     goto fail; //String
+    }
     }
 
 
     // inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_transactiondate_real
-    if (!inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_transactiondate_real) {
-        goto fail;
-    }
+    if(inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_transactiondate_real) {
     if(cJSON_AddStringToObject(item, "dtInscriptionnotauthenticatedTransactiondateReal", inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_transactiondate_real) == NULL) {
     goto fail; //String
+    }
     }
 
 
     // inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_depositdate
-    if (!inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_depositdate) {
-        goto fail;
-    }
+    if(inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_depositdate) {
     if(cJSON_AddStringToObject(item, "dtInscriptionnotauthenticatedDepositdate", inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_depositdate) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -671,20 +625,18 @@ cJSON *inscriptionnotauthenticated_response_compound_convertToJSON(inscriptionno
 
 
     // inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_cancellationdate
-    if (!inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_cancellationdate) {
-        goto fail;
-    }
+    if(inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_cancellationdate) {
     if(cJSON_AddStringToObject(item, "dtInscriptionnotauthenticatedCancellationdate", inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_cancellationdate) == NULL) {
     goto fail; //String
+    }
     }
 
 
     // inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_possessiondate
-    if (!inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_possessiondate) {
-        goto fail;
-    }
+    if(inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_possessiondate) {
     if(cJSON_AddStringToObject(item, "dtInscriptionnotauthenticatedPossessiondate", inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_possessiondate) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -698,20 +650,18 @@ cJSON *inscriptionnotauthenticated_response_compound_convertToJSON(inscriptionno
 
 
     // inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_notaryscheduledate
-    if (!inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_notaryscheduledate) {
-        goto fail;
-    }
+    if(inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_notaryscheduledate) {
     if(cJSON_AddStringToObject(item, "dtInscriptionnotauthenticatedNotaryscheduledate", inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_notaryscheduledate) == NULL) {
     goto fail; //String
+    }
     }
 
 
     // inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_financingscheduledate
-    if (!inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_financingscheduledate) {
-        goto fail;
-    }
+    if(inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_financingscheduledate) {
     if(cJSON_AddStringToObject(item, "dtInscriptionnotauthenticatedFinancingscheduledate", inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_financingscheduledate) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -752,11 +702,10 @@ cJSON *inscriptionnotauthenticated_response_compound_convertToJSON(inscriptionno
 
 
     // inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_conditiondeadlinedate
-    if (!inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_conditiondeadlinedate) {
-        goto fail;
-    }
+    if(inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_conditiondeadlinedate) {
     if(cJSON_AddStringToObject(item, "dtInscriptionnotauthenticatedConditiondeadlinedate", inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_conditiondeadlinedate) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -832,11 +781,6 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
 
     // define the local variable for inscriptionnotauthenticated_response_compound->pki_inscriptionnotauthenticated_id
     int *pki_inscriptionnotauthenticated_id_local_var = NULL;
-
-    // define the local variable for inscriptionnotauthenticated_response_compound->fki_company_id
-    int *fki_company_id_local_var = NULL;
-
-    char *s_company_name_x_local_str = NULL;
 
     // define the local variable for inscriptionnotauthenticated_response_compound->fki_inscription_id
     int *fki_inscription_id_local_var = NULL;
@@ -951,39 +895,6 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
     }
     *pki_inscriptionnotauthenticated_id_local_var = pki_inscriptionnotauthenticated_id->valuedouble;
 
-    // inscriptionnotauthenticated_response_compound->fki_company_id
-    cJSON *fki_company_id = cJSON_GetObjectItemCaseSensitive(inscriptionnotauthenticated_response_compoundJSON, "fkiCompanyID");
-    if (cJSON_IsNull(fki_company_id)) {
-        fki_company_id = NULL;
-    }
-    if (!fki_company_id) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsNumber(fki_company_id))
-    {
-    goto end; //Numeric
-    }
-    fki_company_id_local_var = malloc(sizeof(int));
-    if(!fki_company_id_local_var)
-    {
-        goto end;
-    }
-    *fki_company_id_local_var = fki_company_id->valuedouble;
-
-    // inscriptionnotauthenticated_response_compound->s_company_name_x
-    cJSON *s_company_name_x = cJSON_GetObjectItemCaseSensitive(inscriptionnotauthenticated_response_compoundJSON, "sCompanyNameX");
-    if (cJSON_IsNull(s_company_name_x)) {
-        s_company_name_x = NULL;
-    }
-    if (s_company_name_x) { 
-    if(!cJSON_IsString(s_company_name_x) && !cJSON_IsNull(s_company_name_x))
-    {
-    goto end; //String
-    }
-    }
-
     // inscriptionnotauthenticated_response_compound->fki_inscription_id
     cJSON *fki_inscription_id = cJSON_GetObjectItemCaseSensitive(inscriptionnotauthenticated_response_compoundJSON, "fkiInscriptionID");
     if (cJSON_IsNull(fki_inscription_id)) {
@@ -1010,11 +921,7 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
     if (cJSON_IsNull(fki_department_id)) {
         fki_department_id = NULL;
     }
-    if (!fki_department_id) {
-        goto end;
-    }
-
-    
+    if (fki_department_id) { 
     if(!cJSON_IsNumber(fki_department_id))
     {
     goto end; //Numeric
@@ -1025,6 +932,7 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
         goto end;
     }
     *fki_department_id_local_var = fki_department_id->valuedouble;
+    }
 
     // inscriptionnotauthenticated_response_compound->s_department_name_x
     cJSON *s_department_name_x = cJSON_GetObjectItemCaseSensitive(inscriptionnotauthenticated_response_compoundJSON, "sDepartmentNameX");
@@ -1043,11 +951,7 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
     if (cJSON_IsNull(fki_financialinstitution_id)) {
         fki_financialinstitution_id = NULL;
     }
-    if (!fki_financialinstitution_id) {
-        goto end;
-    }
-
-    
+    if (fki_financialinstitution_id) { 
     if(!cJSON_IsNumber(fki_financialinstitution_id))
     {
     goto end; //Numeric
@@ -1058,6 +962,7 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
         goto end;
     }
     *fki_financialinstitution_id_local_var = fki_financialinstitution_id->valuedouble;
+    }
 
     // inscriptionnotauthenticated_response_compound->s_financialinstitution_name_x
     cJSON *s_financialinstitution_name_x = cJSON_GetObjectItemCaseSensitive(inscriptionnotauthenticated_response_compoundJSON, "sFinancialinstitutionNameX");
@@ -1076,11 +981,7 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
     if (cJSON_IsNull(fki_buyercontract_id)) {
         fki_buyercontract_id = NULL;
     }
-    if (!fki_buyercontract_id) {
-        goto end;
-    }
-
-    
+    if (fki_buyercontract_id) { 
     if(!cJSON_IsNumber(fki_buyercontract_id))
     {
     goto end; //Numeric
@@ -1091,6 +992,7 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
         goto end;
     }
     *fki_buyercontract_id_local_var = fki_buyercontract_id->valuedouble;
+    }
 
     // inscriptionnotauthenticated_response_compound->s_buyercontract_contract
     cJSON *s_buyercontract_contract = cJSON_GetObjectItemCaseSensitive(inscriptionnotauthenticated_response_compoundJSON, "sBuyercontractContract");
@@ -1109,11 +1011,7 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
     if (cJSON_IsNull(fki_mortgagesupplier_id)) {
         fki_mortgagesupplier_id = NULL;
     }
-    if (!fki_mortgagesupplier_id) {
-        goto end;
-    }
-
-    
+    if (fki_mortgagesupplier_id) { 
     if(!cJSON_IsNumber(fki_mortgagesupplier_id))
     {
     goto end; //Numeric
@@ -1124,6 +1022,7 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
         goto end;
     }
     *fki_mortgagesupplier_id_local_var = fki_mortgagesupplier_id->valuedouble;
+    }
 
     // inscriptionnotauthenticated_response_compound->s_mortgagesupplier_name_x
     cJSON *s_mortgagesupplier_name_x = cJSON_GetObjectItemCaseSensitive(inscriptionnotauthenticated_response_compoundJSON, "sMortgagesupplierNameX");
@@ -1175,14 +1074,11 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
     if (cJSON_IsNull(dt_inscriptionnotauthenticated_transactiondate)) {
         dt_inscriptionnotauthenticated_transactiondate = NULL;
     }
-    if (!dt_inscriptionnotauthenticated_transactiondate) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(dt_inscriptionnotauthenticated_transactiondate))
+    if (dt_inscriptionnotauthenticated_transactiondate) { 
+    if(!cJSON_IsString(dt_inscriptionnotauthenticated_transactiondate) && !cJSON_IsNull(dt_inscriptionnotauthenticated_transactiondate))
     {
     goto end; //String
+    }
     }
 
     // inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_transactiondate_real
@@ -1190,14 +1086,11 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
     if (cJSON_IsNull(dt_inscriptionnotauthenticated_transactiondate_real)) {
         dt_inscriptionnotauthenticated_transactiondate_real = NULL;
     }
-    if (!dt_inscriptionnotauthenticated_transactiondate_real) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(dt_inscriptionnotauthenticated_transactiondate_real))
+    if (dt_inscriptionnotauthenticated_transactiondate_real) { 
+    if(!cJSON_IsString(dt_inscriptionnotauthenticated_transactiondate_real) && !cJSON_IsNull(dt_inscriptionnotauthenticated_transactiondate_real))
     {
     goto end; //String
+    }
     }
 
     // inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_depositdate
@@ -1205,14 +1098,11 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
     if (cJSON_IsNull(dt_inscriptionnotauthenticated_depositdate)) {
         dt_inscriptionnotauthenticated_depositdate = NULL;
     }
-    if (!dt_inscriptionnotauthenticated_depositdate) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(dt_inscriptionnotauthenticated_depositdate))
+    if (dt_inscriptionnotauthenticated_depositdate) { 
+    if(!cJSON_IsString(dt_inscriptionnotauthenticated_depositdate) && !cJSON_IsNull(dt_inscriptionnotauthenticated_depositdate))
     {
     goto end; //String
+    }
     }
 
     // inscriptionnotauthenticated_response_compound->e_inscriptionnotauthenticated_type
@@ -1331,14 +1221,11 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
     if (cJSON_IsNull(dt_inscriptionnotauthenticated_cancellationdate)) {
         dt_inscriptionnotauthenticated_cancellationdate = NULL;
     }
-    if (!dt_inscriptionnotauthenticated_cancellationdate) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(dt_inscriptionnotauthenticated_cancellationdate))
+    if (dt_inscriptionnotauthenticated_cancellationdate) { 
+    if(!cJSON_IsString(dt_inscriptionnotauthenticated_cancellationdate) && !cJSON_IsNull(dt_inscriptionnotauthenticated_cancellationdate))
     {
     goto end; //String
+    }
     }
 
     // inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_possessiondate
@@ -1346,14 +1233,11 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
     if (cJSON_IsNull(dt_inscriptionnotauthenticated_possessiondate)) {
         dt_inscriptionnotauthenticated_possessiondate = NULL;
     }
-    if (!dt_inscriptionnotauthenticated_possessiondate) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(dt_inscriptionnotauthenticated_possessiondate))
+    if (dt_inscriptionnotauthenticated_possessiondate) { 
+    if(!cJSON_IsString(dt_inscriptionnotauthenticated_possessiondate) && !cJSON_IsNull(dt_inscriptionnotauthenticated_possessiondate))
     {
     goto end; //String
+    }
     }
 
     // inscriptionnotauthenticated_response_compound->s_inscriptionnotauthenticated_offertopurchasenumber
@@ -1376,14 +1260,11 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
     if (cJSON_IsNull(dt_inscriptionnotauthenticated_notaryscheduledate)) {
         dt_inscriptionnotauthenticated_notaryscheduledate = NULL;
     }
-    if (!dt_inscriptionnotauthenticated_notaryscheduledate) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(dt_inscriptionnotauthenticated_notaryscheduledate))
+    if (dt_inscriptionnotauthenticated_notaryscheduledate) { 
+    if(!cJSON_IsString(dt_inscriptionnotauthenticated_notaryscheduledate) && !cJSON_IsNull(dt_inscriptionnotauthenticated_notaryscheduledate))
     {
     goto end; //String
+    }
     }
 
     // inscriptionnotauthenticated_response_compound->dt_inscriptionnotauthenticated_financingscheduledate
@@ -1391,14 +1272,11 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
     if (cJSON_IsNull(dt_inscriptionnotauthenticated_financingscheduledate)) {
         dt_inscriptionnotauthenticated_financingscheduledate = NULL;
     }
-    if (!dt_inscriptionnotauthenticated_financingscheduledate) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(dt_inscriptionnotauthenticated_financingscheduledate))
+    if (dt_inscriptionnotauthenticated_financingscheduledate) { 
+    if(!cJSON_IsString(dt_inscriptionnotauthenticated_financingscheduledate) && !cJSON_IsNull(dt_inscriptionnotauthenticated_financingscheduledate))
     {
     goto end; //String
+    }
     }
 
     // inscriptionnotauthenticated_response_compound->b_inscriptionnotauthenticated_conditional
@@ -1484,14 +1362,11 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
     if (cJSON_IsNull(dt_inscriptionnotauthenticated_conditiondeadlinedate)) {
         dt_inscriptionnotauthenticated_conditiondeadlinedate = NULL;
     }
-    if (!dt_inscriptionnotauthenticated_conditiondeadlinedate) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(dt_inscriptionnotauthenticated_conditiondeadlinedate))
+    if (dt_inscriptionnotauthenticated_conditiondeadlinedate) { 
+    if(!cJSON_IsString(dt_inscriptionnotauthenticated_conditiondeadlinedate) && !cJSON_IsNull(dt_inscriptionnotauthenticated_conditiondeadlinedate))
     {
     goto end; //String
+    }
     }
 
     // inscriptionnotauthenticated_response_compound->i_inscriptionnotauthenticated_order
@@ -1600,7 +1475,6 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
     *b_inscriptionnotauthenticated_draft_local_var = b_inscriptionnotauthenticated_draft->valueint;
 
 
-    if (s_company_name_x && !cJSON_IsNull(s_company_name_x)) s_company_name_x_local_str = strdup(s_company_name_x->valuestring);
     if (s_department_name_x && !cJSON_IsNull(s_department_name_x)) s_department_name_x_local_str = strdup(s_department_name_x->valuestring);
     if (s_financialinstitution_name_x && !cJSON_IsNull(s_financialinstitution_name_x)) s_financialinstitution_name_x_local_str = strdup(s_financialinstitution_name_x->valuestring);
     if (s_buyercontract_contract && !cJSON_IsNull(s_buyercontract_contract)) s_buyercontract_contract_local_str = strdup(s_buyercontract_contract->valuestring);
@@ -1626,8 +1500,6 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
 
     inscriptionnotauthenticated_response_compound_local_var = inscriptionnotauthenticated_response_compound_create_internal (
         pki_inscriptionnotauthenticated_id_local_var,
-        fki_company_id_local_var,
-        s_company_name_x_local_str,
         fki_inscription_id_local_var,
         fki_department_id_local_var,
         s_department_name_x_local_str,
@@ -1677,14 +1549,6 @@ end:
     if (pki_inscriptionnotauthenticated_id_local_var) {
         free(pki_inscriptionnotauthenticated_id_local_var);
         pki_inscriptionnotauthenticated_id_local_var = NULL;
-    }
-    if (fki_company_id_local_var) {
-        free(fki_company_id_local_var);
-        fki_company_id_local_var = NULL;
-    }
-    if (s_company_name_x_local_str) {
-        free(s_company_name_x_local_str);
-        s_company_name_x_local_str = NULL;
     }
     if (fki_inscription_id_local_var) {
         free(fki_inscription_id_local_var);

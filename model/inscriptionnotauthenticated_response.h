@@ -24,8 +24,6 @@ typedef struct inscriptionnotauthenticated_response_t inscriptionnotauthenticate
 
 typedef struct inscriptionnotauthenticated_response_t {
     int *pki_inscriptionnotauthenticated_id; //numeric
-    int *fki_company_id; //numeric
-    char *s_company_name_x; // string
     int *fki_inscription_id; //numeric
     int *fki_department_id; //numeric
     char *s_department_name_x; // string
@@ -70,8 +68,6 @@ typedef struct inscriptionnotauthenticated_response_t {
 
 __attribute__((deprecated)) inscriptionnotauthenticated_response_t *inscriptionnotauthenticated_response_create(
     int *pki_inscriptionnotauthenticated_id,
-    int *fki_company_id,
-    char *s_company_name_x,
     int *fki_inscription_id,
     int *fki_department_id,
     char *s_department_name_x,

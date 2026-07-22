@@ -15,6 +15,8 @@
 
 typedef struct inscription_response_compound_t inscription_response_compound_t;
 
+#include "address_response_compound.h"
+#include "common_audit.h"
 #include "field_e_inscription_remunerationinscriptorsellertype.h"
 #include "field_e_inscription_remunerationreferencetype.h"
 #include "field_e_inscription_remunerationtotaltype.h"
@@ -27,14 +29,12 @@ typedef struct inscription_response_compound_t inscription_response_compound_t;
 
 typedef struct inscription_response_compound_t {
     int *pki_inscription_id; //numeric
-    int *fki_company_id; //numeric
-    char *s_company_name_x; // string
     int *fki_department_id; //numeric
     char *s_department_name_x; // string
     int *fki_realestateboard_id; //numeric
     char *s_realestateboard_name_x; // string
     int *fki_address_id; //numeric
-    char *s_address; // string
+    struct address_response_compound_t *obj_address; //model
     int *fki_inscriptionbuildingtype_id; //numeric
     char *s_inscriptionbuildingtype_name_x; // string
     int *fki_inscriptiontype_id; //numeric
@@ -81,20 +81,19 @@ typedef struct inscription_response_compound_t {
     int *b_inscription_soldwithoutlegalwarranty; //boolean
     int *i_inscription_constructionyear; //numeric
     int *i_inscription_unit; //numeric
+    struct common_audit_t *obj_audit; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
 } inscription_response_compound_t;
 
 __attribute__((deprecated)) inscription_response_compound_t *inscription_response_compound_create(
     int *pki_inscription_id,
-    int *fki_company_id,
-    char *s_company_name_x,
     int *fki_department_id,
     char *s_department_name_x,
     int *fki_realestateboard_id,
     char *s_realestateboard_name_x,
     int *fki_address_id,
-    char *s_address,
+    address_response_compound_t *obj_address,
     int *fki_inscriptionbuildingtype_id,
     char *s_inscriptionbuildingtype_name_x,
     int *fki_inscriptiontype_id,
@@ -140,7 +139,8 @@ __attribute__((deprecated)) inscription_response_compound_t *inscription_respons
     int *b_inscription_salebyowner,
     int *b_inscription_soldwithoutlegalwarranty,
     int *i_inscription_constructionyear,
-    int *i_inscription_unit
+    int *i_inscription_unit,
+    common_audit_t *obj_audit
 );
 
 void inscription_response_compound_free(inscription_response_compound_t *inscription_response_compound);

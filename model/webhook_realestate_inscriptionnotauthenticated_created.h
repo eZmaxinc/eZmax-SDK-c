@@ -24,7 +24,7 @@ typedef struct webhook_realestate_inscriptionnotauthenticated_created_t webhook_
 typedef struct webhook_realestate_inscriptionnotauthenticated_created_t {
     struct custom_webhook_response_t *obj_webhook; //model
     list_t *a_obj_attempt; //nonprimitive container
-    struct inscriptionnotauthenticated_response_t *obj_ezmaxpartnerproduct; //model
+    struct inscriptionnotauthenticated_response_t *obj_inscriptionnotauthenticated; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
 } webhook_realestate_inscriptionnotauthenticated_created_t;
@@ -32,7 +32,7 @@ typedef struct webhook_realestate_inscriptionnotauthenticated_created_t {
 __attribute__((deprecated)) webhook_realestate_inscriptionnotauthenticated_created_t *webhook_realestate_inscriptionnotauthenticated_created_create(
     custom_webhook_response_t *obj_webhook,
     list_t *a_obj_attempt,
-    inscriptionnotauthenticated_response_t *obj_ezmaxpartnerproduct
+    inscriptionnotauthenticated_response_t *obj_inscriptionnotauthenticated
 );
 
 void webhook_realestate_inscriptionnotauthenticated_created_free(webhook_realestate_inscriptionnotauthenticated_created_t *webhook_realestate_inscriptionnotauthenticated_created);

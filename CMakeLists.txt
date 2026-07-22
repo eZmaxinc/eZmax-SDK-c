@@ -1537,6 +1537,7 @@ set(SRCS
     model/inscription_get_communicationsenders_v1_response.c
     model/inscription_get_communicationsenders_v1_response_m_payload.c
     model/inscription_get_inscriptionnotauthenticateds_v1_response.c
+    model/inscription_get_inscriptionnotauthenticateds_v1_response_m_payload.c
     model/inscription_get_list_v1_response.c
     model/inscription_get_list_v1_response_m_payload.c
     model/inscription_get_object_v2_response.c
@@ -3734,6 +3735,7 @@ set(HDRS
     model/inscription_get_communicationsenders_v1_response.h
     model/inscription_get_communicationsenders_v1_response_m_payload.h
     model/inscription_get_inscriptionnotauthenticateds_v1_response.h
+    model/inscription_get_inscriptionnotauthenticateds_v1_response_m_payload.h
     model/inscription_get_list_v1_response.h
     model/inscription_get_list_v1_response_m_payload.h
     model/inscription_get_object_v2_response.h

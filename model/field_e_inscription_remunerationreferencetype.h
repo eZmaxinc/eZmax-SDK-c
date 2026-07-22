@@ -1,7 +1,7 @@
 /*
  * field_e_inscription_remunerationreferencetype.h
  *
- * The remunerationreferencetype of the Inscription
+ * The type of remuneration for reference of the Inscription
  */
 
 #ifndef _field_e_inscription_remunerationreferencetype_H_

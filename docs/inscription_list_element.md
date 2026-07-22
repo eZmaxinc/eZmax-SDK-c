@@ -15,20 +15,20 @@ Name | Type | Description | Notes
 **s_buyercontract_contract** | **char \*** | The number of the Buyercontract | [optional] 
 **e_inscription_step** | **field_e_inscription_step_t \*** |  | 
 **e_inscription_type** | **field_e_inscription_type_t \*** |  | 
-**s_inscription_civicend** | **char \*** | The civicend of the Inscription | 
+**s_inscription_civicend** | **char \*** | The address civic end of the Inscription | 
 **s_inscription_mls** | **char \*** | The mls of the Inscription | [optional] 
 **s_inscription_contract** | **char \*** | The sale contract number | [optional] 
 **d_inscription_saleprice** | **char \*** | The saleprice of the Inscription | 
-**d_inscription_rentprice** | **char \*** | The rentprice of the Inscription | 
+**d_inscription_rentprice** | **char \*** | The rent price of the Inscription | 
 **dt_inscription_date** | **char \*** | The date of the Inscription | [optional] 
-**dt_inscription_expirationdate** | **char \*** | The expirationdate of the Inscription | [optional] 
-**dt_inscription_notarydate** | **char \*** | The notarydate of the Inscription | [optional] 
+**dt_inscription_expirationdate** | **char \*** | The expiration date of the Inscription | [optional] 
+**dt_inscription_notarydate** | **char \*** | The notary date of the Inscription | [optional] 
 **b_inscription_isactive** | **int** | Whether the inscription is active or not | 
 **b_inscription_archived** | **int** | Whether the inscription is archived or not | 
 **b_inscription_inspection** | **int** | Whether the inscription can be acces by an inspector | [optional] 
-**dt_inscriptionnotauthenticated_notaryscheduledate** | **char \*** | The notaryscheduledate of the Inscriptionnotauthenticated | [optional] 
-**dt_inscriptionnotauthenticated_transactiondate** | **char \*** | The transactiondate of the Inscriptionnotauthenticated | [optional] 
-**dt_inscriptionnotauthenticated_transactiondate_real** | **char \*** | The transactiondatereal of the Inscriptionnotauthenticated | [optional] 
+**dt_inscriptionnotauthenticated_notaryscheduledate** | **char \*** | The notary schedule date of the Inscriptionnotauthenticated | [optional] 
+**dt_inscriptionnotauthenticated_transactiondate** | **char \*** | The transaction date of the Inscriptionnotauthenticated | [optional] 
+**dt_inscriptionnotauthenticated_transactiondate_real** | **char \*** | The real transactiondate of the Inscriptionnotauthenticated | [optional] 
 **b_inscriptionnotauthenticated_conditional** | **int** | Whether the inscriptionnotauthenticated is conditional | [optional] 
 **b_inscriptionnotauthenticated_isactive** | **int** | Whether the inscriptionnotauthenticated is active or not | [optional] 
 **s_address_civic** | **char \*** | The Civic number. | [optional] 
@@ -41,7 +41,7 @@ Name | Type | Description | Notes
 **fki_country_id** | **int** | The unique ID of the Country.  Here are some common values (Complete list must be retrieved from API):  |Value|Description| |-|-| |1|Canada| |2|United-States| | [optional] 
 **s_country_name_x** | **char \*** | The name of the Country in the language of the requester | [optional] 
 **i_inscriptionnotauthenticated_canceled** | **int** | The numbre of inscriptionnotauthenticated was canceled in this Inscription | 
-**i_inscription_unit** | **int** | The unit of the Inscription | 
+**i_inscription_unit** | **int** | The number of unit for the Inscription | 
 **b_allowed_copyintoinscriptionedm** | **int** | Whether we are allowed to copy into the Inscription EDM | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

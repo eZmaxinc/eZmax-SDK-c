@@ -1,7 +1,7 @@
 /*
  * field_e_inscription_remunerationinscriptorsellertype.h
  *
- * The remunerationinscriptorsellertype of the Inscription
+ * The type of remuneration for inscriptor and seller of the Inscription
  */
 
 #ifndef _field_e_inscription_remunerationinscriptorsellertype_H_

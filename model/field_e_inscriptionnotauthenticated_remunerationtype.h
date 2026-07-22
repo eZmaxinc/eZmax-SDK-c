@@ -1,7 +1,7 @@
 /*
  * field_e_inscriptionnotauthenticated_remunerationtype.h
  *
- * The remunerationtype of the Inscriptionnotauthenticated
+ * The type of remuneration of the Inscriptionnotauthenticated
  */
 
 #ifndef _field_e_inscriptionnotauthenticated_remunerationtype_H_

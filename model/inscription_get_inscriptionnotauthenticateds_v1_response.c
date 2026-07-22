@@ -8,7 +8,7 @@
 static inscription_get_inscriptionnotauthenticateds_v1_response_t *inscription_get_inscriptionnotauthenticateds_v1_response_create_internal(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug,
-    object_t *m_payload
+    inscription_get_inscriptionnotauthenticateds_v1_response_m_payload_t *m_payload
     ) {
     inscription_get_inscriptionnotauthenticateds_v1_response_t *inscription_get_inscriptionnotauthenticateds_v1_response_local_var = malloc(sizeof(inscription_get_inscriptionnotauthenticateds_v1_response_t));
     if (!inscription_get_inscriptionnotauthenticateds_v1_response_local_var) {
@@ -25,7 +25,7 @@ static inscription_get_inscriptionnotauthenticateds_v1_response_t *inscription_g
 __attribute__((deprecated)) inscription_get_inscriptionnotauthenticateds_v1_response_t *inscription_get_inscriptionnotauthenticateds_v1_response_create(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug,
-    object_t *m_payload
+    inscription_get_inscriptionnotauthenticateds_v1_response_m_payload_t *m_payload
     ) {
     inscription_get_inscriptionnotauthenticateds_v1_response_t *result = inscription_get_inscriptionnotauthenticateds_v1_response_create_internal (
         obj_debug_payload,
@@ -55,7 +55,7 @@ void inscription_get_inscriptionnotauthenticateds_v1_response_free(inscription_g
         inscription_get_inscriptionnotauthenticateds_v1_response->obj_debug = NULL;
     }
     if (inscription_get_inscriptionnotauthenticateds_v1_response->m_payload) {
-        object_free(inscription_get_inscriptionnotauthenticateds_v1_response->m_payload);
+        inscription_get_inscriptionnotauthenticateds_v1_response_m_payload_free(inscription_get_inscriptionnotauthenticateds_v1_response->m_payload);
         inscription_get_inscriptionnotauthenticateds_v1_response->m_payload = NULL;
     }
     free(inscription_get_inscriptionnotauthenticateds_v1_response);
@@ -95,11 +95,11 @@ cJSON *inscription_get_inscriptionnotauthenticateds_v1_response_convertToJSON(in
     if (!inscription_get_inscriptionnotauthenticateds_v1_response->m_payload) {
         goto fail;
     }
-    cJSON *m_payload_object = object_convertToJSON(inscription_get_inscriptionnotauthenticateds_v1_response->m_payload);
-    if(m_payload_object == NULL) {
+    cJSON *m_payload_local_JSON = inscription_get_inscriptionnotauthenticateds_v1_response_m_payload_convertToJSON(inscription_get_inscriptionnotauthenticateds_v1_response->m_payload);
+    if(m_payload_local_JSON == NULL) {
     goto fail; //model
     }
-    cJSON_AddItemToObject(item, "mPayload", m_payload_object);
+    cJSON_AddItemToObject(item, "mPayload", m_payload_local_JSON);
     if(item->child == NULL) {
     goto fail;
     }
@@ -121,6 +121,9 @@ inscription_get_inscriptionnotauthenticateds_v1_response_t *inscription_get_insc
 
     // define the local variable for inscription_get_inscriptionnotauthenticateds_v1_response->obj_debug
     common_response_obj_debug_t *obj_debug_local_nonprim = NULL;
+
+    // define the local variable for inscription_get_inscriptionnotauthenticateds_v1_response->m_payload
+    inscription_get_inscriptionnotauthenticateds_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
 
     // inscription_get_inscriptionnotauthenticateds_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(inscription_get_inscriptionnotauthenticateds_v1_responseJSON, "objDebugPayload");
@@ -152,16 +155,15 @@ inscription_get_inscriptionnotauthenticateds_v1_response_t *inscription_get_insc
         goto end;
     }
 
-    object_t *m_payload_local_object = NULL;
     
-    m_payload_local_object = object_parseFromJSON(m_payload); //object
+    m_payload_local_nonprim = inscription_get_inscriptionnotauthenticateds_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
 
     inscription_get_inscriptionnotauthenticateds_v1_response_local_var = inscription_get_inscriptionnotauthenticateds_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
-        m_payload_local_object
+        m_payload_local_nonprim
         );
 
     if (!inscription_get_inscriptionnotauthenticateds_v1_response_local_var) {
@@ -177,6 +179,10 @@ end:
     if (obj_debug_local_nonprim) {
         common_response_obj_debug_free(obj_debug_local_nonprim);
         obj_debug_local_nonprim = NULL;
+    }
+    if (m_payload_local_nonprim) {
+        inscription_get_inscriptionnotauthenticateds_v1_response_m_payload_free(m_payload_local_nonprim);
+        m_payload_local_nonprim = NULL;
     }
     return NULL;
 

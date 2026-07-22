@@ -67,7 +67,7 @@ inscription_get_communicationsenders_v1_response_t*
 ObjectInscriptionAPI_inscriptionGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiInscriptionID);
 
 
-// Retrieve Inscriptionnotauthenticated list
+// Retrieve Inscription's Inscriptionnotauthenticated
 //
 inscription_get_inscriptionnotauthenticateds_v1_response_t*
 ObjectInscriptionAPI_inscriptionGetInscriptionnotauthenticatedsV1(apiClient_t *apiClient, int *pkiInscriptionID);

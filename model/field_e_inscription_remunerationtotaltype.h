@@ -1,7 +1,7 @@
 /*
  * field_e_inscription_remunerationtotaltype.h
  *
- * The remunerationtotaltype of the Inscription
+ * The type for the remuneration total of the Inscription
  */
 
 #ifndef _field_e_inscription_remunerationtotaltype_H_

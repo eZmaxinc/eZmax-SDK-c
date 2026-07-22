@@ -1,7 +1,7 @@
 /*
  * field_e_inscription_residence_type.h
  *
- * The residencetype of the Inscription
+ * The residence type of the Inscription
  */
 
 #ifndef _field_e_inscription_residence_type_H_

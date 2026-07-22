@@ -549,7 +549,7 @@ end:
 
 }
 
-// Retrieve Inscriptionnotauthenticated list
+// Retrieve Inscription's Inscriptionnotauthenticated
 //
 inscription_get_inscriptionnotauthenticateds_v1_response_t*
 ObjectInscriptionAPI_inscriptionGetInscriptionnotauthenticatedsV1(apiClient_t *apiClient, int *pkiInscriptionID)

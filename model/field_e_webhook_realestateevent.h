@@ -1,7 +1,7 @@
 /*
  * field_e_webhook_realestateevent.h
  *
- * The realestateevent of the Webhook
+ * The Realestateevent of the Webhook
  */
 
 #ifndef _field_e_webhook_realestateevent_H_
