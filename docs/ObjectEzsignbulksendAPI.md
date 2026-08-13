@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**ObjectEzsignbulksendAPI_ezsignbulksendGetListV1**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendGetListV1) | **GET** /1/object/ezsignbulksend/getList | Retrieve Ezsignbulksend list
 [**ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV2**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV2) | **GET** /2/object/ezsignbulksend/{pkiEzsignbulksendID} | Retrieve an existing Ezsignbulksend
 [**ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV3**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV3) | **GET** /3/object/ezsignbulksend/{pkiEzsignbulksendID} | Retrieve an existing Ezsignbulksend
+[**ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV4**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV4) | **GET** /4/object/ezsignbulksend/{pkiEzsignbulksendID} | Retrieve an existing Ezsignbulksend
 [**ObjectEzsignbulksendAPI_ezsignbulksendReorderV1**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendReorderV1) | **POST** /1/object/ezsignbulksend/{pkiEzsignbulksendID}/reorder | Reorder Ezsignbulksenddocumentmappings in the Ezsignbulksend
 
 
@@ -419,6 +420,37 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsignbulksend_get_object_v3_response_t](ezsignbulksend_get_object_v3_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV4**
+```c
+// Retrieve an existing Ezsignbulksend
+//
+// 
+//
+ezsignbulksend_get_object_v4_response_t* ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV4(apiClient_t *apiClient, int *pkiEzsignbulksendID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsignbulksendID** | **int \*** |  | 
+
+### Return type
+
+[ezsignbulksend_get_object_v4_response_t](ezsignbulksend_get_object_v4_response.md) *
 
 
 ### Authorization

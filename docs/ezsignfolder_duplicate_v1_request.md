@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **a_fki_ezsignfoldersignerassociation_id** | **list_t \*** |  | 
 **a_obj_ezsigndocument** | [**list_t**](custom_ezsigndocument_duplicate_request.md) \* |  | 
 **t_ezsignfolder_note** | **char \*** | Note about the Ezsignfolder | [optional] 
+**b_keepenteredvalues** | **int** | Whether we keep the entered values or not in the Ezsignform | [optional] [default to true]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

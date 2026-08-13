@@ -23,6 +23,7 @@ static ezsignformfieldgroup_response_compound_t *ezsignformfieldgroup_response_c
     char *s_ezsignformfieldgroup_textvalidationcustommessage,
     char *t_ezsignformfieldgroup_tooltip,
     ezmax_api_definition__full_field_e_ezsignformfieldgroup_tooltipposition__e e_ezsignformfieldgroup_tooltipposition,
+    char *dt_ezsignformfieldgroup_completed,
     list_t *a_obj_ezsignformfield,
     list_t *a_obj_dropdown_element,
     list_t *a_obj_ezsignformfieldgroupsigner
@@ -50,6 +51,7 @@ static ezsignformfieldgroup_response_compound_t *ezsignformfieldgroup_response_c
     ezsignformfieldgroup_response_compound_local_var->s_ezsignformfieldgroup_textvalidationcustommessage = s_ezsignformfieldgroup_textvalidationcustommessage;
     ezsignformfieldgroup_response_compound_local_var->t_ezsignformfieldgroup_tooltip = t_ezsignformfieldgroup_tooltip;
     ezsignformfieldgroup_response_compound_local_var->e_ezsignformfieldgroup_tooltipposition = e_ezsignformfieldgroup_tooltipposition;
+    ezsignformfieldgroup_response_compound_local_var->dt_ezsignformfieldgroup_completed = dt_ezsignformfieldgroup_completed;
     ezsignformfieldgroup_response_compound_local_var->a_obj_ezsignformfield = a_obj_ezsignformfield;
     ezsignformfieldgroup_response_compound_local_var->a_obj_dropdown_element = a_obj_dropdown_element;
     ezsignformfieldgroup_response_compound_local_var->a_obj_ezsignformfieldgroupsigner = a_obj_ezsignformfieldgroupsigner;
@@ -74,6 +76,7 @@ __attribute__((deprecated)) ezsignformfieldgroup_response_compound_t *ezsignform
     char *s_ezsignformfieldgroup_textvalidationcustommessage,
     char *t_ezsignformfieldgroup_tooltip,
     ezmax_api_definition__full_field_e_ezsignformfieldgroup_tooltipposition__e e_ezsignformfieldgroup_tooltipposition,
+    char *dt_ezsignformfieldgroup_completed,
     list_t *a_obj_ezsignformfield,
     list_t *a_obj_dropdown_element,
     list_t *a_obj_ezsignformfieldgroupsigner
@@ -136,6 +139,7 @@ __attribute__((deprecated)) ezsignformfieldgroup_response_compound_t *ezsignform
         s_ezsignformfieldgroup_textvalidationcustommessage,
         t_ezsignformfieldgroup_tooltip,
         e_ezsignformfieldgroup_tooltipposition,
+        dt_ezsignformfieldgroup_completed,
         a_obj_ezsignformfield,
         a_obj_dropdown_element,
         a_obj_ezsignformfieldgroupsigner
@@ -213,6 +217,10 @@ void ezsignformfieldgroup_response_compound_free(ezsignformfieldgroup_response_c
     if (ezsignformfieldgroup_response_compound->t_ezsignformfieldgroup_tooltip) {
         free(ezsignformfieldgroup_response_compound->t_ezsignformfieldgroup_tooltip);
         ezsignformfieldgroup_response_compound->t_ezsignformfieldgroup_tooltip = NULL;
+    }
+    if (ezsignformfieldgroup_response_compound->dt_ezsignformfieldgroup_completed) {
+        free(ezsignformfieldgroup_response_compound->dt_ezsignformfieldgroup_completed);
+        ezsignformfieldgroup_response_compound->dt_ezsignformfieldgroup_completed = NULL;
     }
     if (ezsignformfieldgroup_response_compound->a_obj_ezsignformfield) {
         list_ForEach(listEntry, ezsignformfieldgroup_response_compound->a_obj_ezsignformfield) {
@@ -405,6 +413,14 @@ cJSON *ezsignformfieldgroup_response_compound_convertToJSON(ezsignformfieldgroup
     }
 
 
+    // ezsignformfieldgroup_response_compound->dt_ezsignformfieldgroup_completed
+    if(ezsignformfieldgroup_response_compound->dt_ezsignformfieldgroup_completed) {
+    if(cJSON_AddStringToObject(item, "dtEzsignformfieldgroupCompleted", ezsignformfieldgroup_response_compound->dt_ezsignformfieldgroup_completed) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
     // ezsignformfieldgroup_response_compound->a_obj_ezsignformfield
     if (!ezsignformfieldgroup_response_compound->a_obj_ezsignformfield) {
         goto fail;
@@ -523,6 +539,8 @@ ezsignformfieldgroup_response_compound_t *ezsignformfieldgroup_response_compound
 
     // define the local variable for ezsignformfieldgroup_response_compound->e_ezsignformfieldgroup_tooltipposition
     ezmax_api_definition__full_field_e_ezsignformfieldgroup_tooltipposition__e e_ezsignformfieldgroup_tooltipposition_local_nonprim = 0;
+
+    char *dt_ezsignformfieldgroup_completed_local_str = NULL;
 
     // define the local list for ezsignformfieldgroup_response_compound->a_obj_ezsignformfield
     list_t *a_obj_ezsignformfieldList = NULL;
@@ -797,6 +815,18 @@ ezsignformfieldgroup_response_compound_t *ezsignformfieldgroup_response_compound
     e_ezsignformfieldgroup_tooltipposition_local_nonprim = field_e_ezsignformfieldgroup_tooltipposition_parseFromJSON(e_ezsignformfieldgroup_tooltipposition); //custom
     }
 
+    // ezsignformfieldgroup_response_compound->dt_ezsignformfieldgroup_completed
+    cJSON *dt_ezsignformfieldgroup_completed = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroup_response_compoundJSON, "dtEzsignformfieldgroupCompleted");
+    if (cJSON_IsNull(dt_ezsignformfieldgroup_completed)) {
+        dt_ezsignformfieldgroup_completed = NULL;
+    }
+    if (dt_ezsignformfieldgroup_completed) { 
+    if(!cJSON_IsString(dt_ezsignformfieldgroup_completed) && !cJSON_IsNull(dt_ezsignformfieldgroup_completed))
+    {
+    goto end; //String
+    }
+    }
+
     // ezsignformfieldgroup_response_compound->a_obj_ezsignformfield
     cJSON *a_obj_ezsignformfield = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroup_response_compoundJSON, "a_objEzsignformfield");
     if (cJSON_IsNull(a_obj_ezsignformfield)) {
@@ -881,6 +911,7 @@ ezsignformfieldgroup_response_compound_t *ezsignformfieldgroup_response_compound
     if (s_ezsignformfieldgroup_regexp && !cJSON_IsNull(s_ezsignformfieldgroup_regexp)) s_ezsignformfieldgroup_regexp_local_str = strdup(s_ezsignformfieldgroup_regexp->valuestring);
     if (s_ezsignformfieldgroup_textvalidationcustommessage && !cJSON_IsNull(s_ezsignformfieldgroup_textvalidationcustommessage)) s_ezsignformfieldgroup_textvalidationcustommessage_local_str = strdup(s_ezsignformfieldgroup_textvalidationcustommessage->valuestring);
     if (t_ezsignformfieldgroup_tooltip && !cJSON_IsNull(t_ezsignformfieldgroup_tooltip)) t_ezsignformfieldgroup_tooltip_local_str = strdup(t_ezsignformfieldgroup_tooltip->valuestring);
+    if (dt_ezsignformfieldgroup_completed && !cJSON_IsNull(dt_ezsignformfieldgroup_completed)) dt_ezsignformfieldgroup_completed_local_str = strdup(dt_ezsignformfieldgroup_completed->valuestring);
 
     ezsignformfieldgroup_response_compound_local_var = ezsignformfieldgroup_response_compound_create_internal (
         pki_ezsignformfieldgroup_id_local_var,
@@ -900,6 +931,7 @@ ezsignformfieldgroup_response_compound_t *ezsignformfieldgroup_response_compound
         s_ezsignformfieldgroup_textvalidationcustommessage_local_str,
         t_ezsignformfieldgroup_tooltip_local_str,
         e_ezsignformfieldgroup_tooltipposition ? e_ezsignformfieldgroup_tooltipposition_local_nonprim : 0,
+        dt_ezsignformfieldgroup_completed_local_str,
         a_obj_ezsignformfieldList,
         a_obj_dropdown_element ? a_obj_dropdown_elementList : NULL,
         a_obj_ezsignformfieldgroupsignerList
@@ -974,6 +1006,10 @@ end:
     }
     if (e_ezsignformfieldgroup_tooltipposition_local_nonprim) {
         e_ezsignformfieldgroup_tooltipposition_local_nonprim = 0;
+    }
+    if (dt_ezsignformfieldgroup_completed_local_str) {
+        free(dt_ezsignformfieldgroup_completed_local_str);
+        dt_ezsignformfieldgroup_completed_local_str = NULL;
     }
     if (a_obj_ezsignformfieldList) {
         listEntry_t *listEntry = NULL;

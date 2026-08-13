@@ -277,3 +277,92 @@ end:
 
 }
 
+// Retrieve an existing Ezsigntemplatepackagemembership
+//
+// 
+//
+ezsigntemplatepackagemembership_get_object_v3_response_t*
+ObjectEzsigntemplatepackagemembershipAPI_ezsigntemplatepackagemembershipGetObjectV3(apiClient_t *apiClient, int *pkiEzsigntemplatepackagemembershipID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/3/object/ezsigntemplatepackagemembership/{pkiEzsigntemplatepackagemembershipID}");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsigntemplatepackagemembershipID =  + sizeof("{ pkiEzsigntemplatepackagemembershipID }") - 1;
+    if(pkiEzsigntemplatepackagemembershipID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsigntemplatepackagemembershipID = malloc(sizeOfPathParams_pkiEzsigntemplatepackagemembershipID);
+    snprintf(localVarToReplace_pkiEzsigntemplatepackagemembershipID, sizeOfPathParams_pkiEzsigntemplatepackagemembershipID, "{%s}", "pkiEzsigntemplatepackagemembershipID");
+
+    char localVarBuff_pkiEzsigntemplatepackagemembershipID[256];
+    snprintf(localVarBuff_pkiEzsigntemplatepackagemembershipID, sizeof localVarBuff_pkiEzsigntemplatepackagemembershipID, "%ld", (long)*pkiEzsigntemplatepackagemembershipID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatepackagemembershipID, localVarBuff_pkiEzsigntemplatepackagemembershipID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    ezsigntemplatepackagemembership_get_object_v3_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsigntemplatepackagemembershipAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsigntemplatepackagemembership_get_object_v3_response_parseFromJSON(ObjectEzsigntemplatepackagemembershipAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsigntemplatepackagemembershipAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsigntemplatepackagemembershipID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+

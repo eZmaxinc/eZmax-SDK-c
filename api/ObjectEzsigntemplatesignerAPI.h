@@ -8,10 +8,15 @@
 #include "../model/common_response_error.h"
 #include "../model/ezsigntemplatesigner_create_object_v1_request.h"
 #include "../model/ezsigntemplatesigner_create_object_v1_response.h"
+#include "../model/ezsigntemplatesigner_create_object_v2_request.h"
+#include "../model/ezsigntemplatesigner_create_object_v2_response.h"
 #include "../model/ezsigntemplatesigner_delete_object_v1_response.h"
 #include "../model/ezsigntemplatesigner_edit_object_v1_request.h"
 #include "../model/ezsigntemplatesigner_edit_object_v1_response.h"
+#include "../model/ezsigntemplatesigner_edit_object_v2_request.h"
+#include "../model/ezsigntemplatesigner_edit_object_v2_response.h"
 #include "../model/ezsigntemplatesigner_get_object_v2_response.h"
+#include "../model/ezsigntemplatesigner_get_object_v3_response.h"
 
 
 // Create a new Ezsigntemplatesigner
@@ -20,6 +25,14 @@
 //
 ezsigntemplatesigner_create_object_v1_response_t*
 ObjectEzsigntemplatesignerAPI_ezsigntemplatesignerCreateObjectV1(apiClient_t *apiClient, ezsigntemplatesigner_create_object_v1_request_t *ezsigntemplatesigner_create_object_v1_request);
+
+
+// Create a new Ezsigntemplatesigner
+//
+// The endpoint allows to create one or many elements at once.
+//
+ezsigntemplatesigner_create_object_v2_response_t*
+ObjectEzsigntemplatesignerAPI_ezsigntemplatesignerCreateObjectV2(apiClient_t *apiClient, ezsigntemplatesigner_create_object_v2_request_t *ezsigntemplatesigner_create_object_v2_request);
 
 
 // Delete an existing Ezsigntemplatesigner
@@ -38,11 +51,27 @@ ezsigntemplatesigner_edit_object_v1_response_t*
 ObjectEzsigntemplatesignerAPI_ezsigntemplatesignerEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatesignerID, ezsigntemplatesigner_edit_object_v1_request_t *ezsigntemplatesigner_edit_object_v1_request);
 
 
+// Edit an existing Ezsigntemplatesigner
+//
+// 
+//
+ezsigntemplatesigner_edit_object_v2_response_t*
+ObjectEzsigntemplatesignerAPI_ezsigntemplatesignerEditObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplatesignerID, ezsigntemplatesigner_edit_object_v2_request_t *ezsigntemplatesigner_edit_object_v2_request);
+
+
 // Retrieve an existing Ezsigntemplatesigner
 //
 // 
 //
 ezsigntemplatesigner_get_object_v2_response_t*
 ObjectEzsigntemplatesignerAPI_ezsigntemplatesignerGetObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplatesignerID);
+
+
+// Retrieve an existing Ezsigntemplatesigner
+//
+// 
+//
+ezsigntemplatesigner_get_object_v3_response_t*
+ObjectEzsigntemplatesignerAPI_ezsigntemplatesignerGetObjectV3(apiClient_t *apiClient, int *pkiEzsigntemplatesignerID);
 
 

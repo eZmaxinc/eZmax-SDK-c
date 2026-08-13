@@ -15,16 +15,19 @@
 
 typedef struct ezsignfoldersignerassociation_request_patch_t ezsignfoldersignerassociation_request_patch_t;
 
+#include "field_e_ezsignfoldersignerassociation_role.h"
 
 
 
 typedef struct ezsignfoldersignerassociation_request_patch_t {
+    ezmax_api_definition__full_field_e_ezsignfoldersignerassociation_role__e e_ezsignfoldersignerassociation_role; //referenced enum
     char *t_ezsignfoldersignerassociation_message; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfoldersignerassociation_request_patch_t;
 
 __attribute__((deprecated)) ezsignfoldersignerassociation_request_patch_t *ezsignfoldersignerassociation_request_patch_create(
+    ezmax_api_definition__full_field_e_ezsignfoldersignerassociation_role__e e_ezsignfoldersignerassociation_role,
     char *t_ezsignfoldersignerassociation_message
 );
 

@@ -1,0 +1,66 @@
+/*
+ * ezsigntemplatepackage_response_compound_v3.h
+ *
+ * A Ezsigntemplatepackage Object
+ */
+
+#ifndef _ezsigntemplatepackage_response_compound_v3_H_
+#define _ezsigntemplatepackage_response_compound_v3_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezsigntemplatepackage_response_compound_v3_t ezsigntemplatepackage_response_compound_v3_t;
+
+#include "ezsigntemplatepackagemembership_response_compound_v3.h"
+#include "ezsigntemplatepackagesigner_response_compound_v3.h"
+
+
+
+typedef struct ezsigntemplatepackage_response_compound_v3_t {
+    int *pki_ezsigntemplatepackage_id; //numeric
+    int *fki_ezsignfoldertype_id; //numeric
+    int *fki_ezdoctemplatedocument_id; //numeric
+    int *fki_language_id; //numeric
+    char *s_ezdoctemplatedocument_name_x; // string
+    char *s_language_name_x; // string
+    char *s_ezsigntemplatepackage_description; // string
+    int *b_ezsigntemplatepackage_adminonly; //boolean
+    int *b_ezsigntemplatepackage_needvalidation; //boolean
+    int *b_ezsigntemplatepackage_isactive; //boolean
+    char *s_ezsignfoldertype_name_x; // string
+    int *b_ezsigntemplatepackage_editallowed; //boolean
+    list_t *a_obj_ezsigntemplatepackagesigner; //nonprimitive container
+    list_t *a_obj_ezsigntemplatepackagemembership; //nonprimitive container
+
+    int _library_owned; // Is the library responsible for freeing this object?
+} ezsigntemplatepackage_response_compound_v3_t;
+
+__attribute__((deprecated)) ezsigntemplatepackage_response_compound_v3_t *ezsigntemplatepackage_response_compound_v3_create(
+    int *pki_ezsigntemplatepackage_id,
+    int *fki_ezsignfoldertype_id,
+    int *fki_ezdoctemplatedocument_id,
+    int *fki_language_id,
+    char *s_ezdoctemplatedocument_name_x,
+    char *s_language_name_x,
+    char *s_ezsigntemplatepackage_description,
+    int *b_ezsigntemplatepackage_adminonly,
+    int *b_ezsigntemplatepackage_needvalidation,
+    int *b_ezsigntemplatepackage_isactive,
+    char *s_ezsignfoldertype_name_x,
+    int *b_ezsigntemplatepackage_editallowed,
+    list_t *a_obj_ezsigntemplatepackagesigner,
+    list_t *a_obj_ezsigntemplatepackagemembership
+);
+
+void ezsigntemplatepackage_response_compound_v3_free(ezsigntemplatepackage_response_compound_v3_t *ezsigntemplatepackage_response_compound_v3);
+
+ezsigntemplatepackage_response_compound_v3_t *ezsigntemplatepackage_response_compound_v3_parseFromJSON(cJSON *ezsigntemplatepackage_response_compound_v3JSON);
+
+cJSON *ezsigntemplatepackage_response_compound_v3_convertToJSON(ezsigntemplatepackage_response_compound_v3_t *ezsigntemplatepackage_response_compound_v3);
+
+#endif /* _ezsigntemplatepackage_response_compound_v3_H_ */
+

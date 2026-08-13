@@ -21,6 +21,7 @@
 #include "../model/ezsignbulksend_get_list_v1_response.h"
 #include "../model/ezsignbulksend_get_object_v2_response.h"
 #include "../model/ezsignbulksend_get_object_v3_response.h"
+#include "../model/ezsignbulksend_get_object_v4_response.h"
 #include "../model/ezsignbulksend_reorder_v1_request.h"
 #include "../model/ezsignbulksend_reorder_v1_response.h"
 #include "../model/header_accept_language.h"
@@ -133,6 +134,14 @@ ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV2(apiClient_t *apiClient, int *p
 //
 ezsignbulksend_get_object_v3_response_t*
 ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV3(apiClient_t *apiClient, int *pkiEzsignbulksendID);
+
+
+// Retrieve an existing Ezsignbulksend
+//
+// 
+//
+ezsignbulksend_get_object_v4_response_t*
+ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV4(apiClient_t *apiClient, int *pkiEzsignbulksendID);
 
 
 // Reorder Ezsignbulksenddocumentmappings in the Ezsignbulksend

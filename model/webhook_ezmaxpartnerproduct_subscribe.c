@@ -149,18 +149,20 @@ cJSON *webhook_ezmaxpartnerproduct_subscribe_convertToJSON(webhook_ezmaxpartnerp
 
 
     // webhook_ezmaxpartnerproduct_subscribe->s_apikey_apikey
-    if(webhook_ezmaxpartnerproduct_subscribe->s_apikey_apikey) {
+    if (!webhook_ezmaxpartnerproduct_subscribe->s_apikey_apikey) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "sApikeyApikey", webhook_ezmaxpartnerproduct_subscribe->s_apikey_apikey) == NULL) {
     goto fail; //String
-    }
     }
 
 
     // webhook_ezmaxpartnerproduct_subscribe->s_apikey_secret
-    if(webhook_ezmaxpartnerproduct_subscribe->s_apikey_secret) {
+    if (!webhook_ezmaxpartnerproduct_subscribe->s_apikey_secret) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "sApikeySecret", webhook_ezmaxpartnerproduct_subscribe->s_apikey_secret) == NULL) {
     goto fail; //String
-    }
     }
 
     return item;
@@ -258,11 +260,14 @@ webhook_ezmaxpartnerproduct_subscribe_t *webhook_ezmaxpartnerproduct_subscribe_p
     if (cJSON_IsNull(s_apikey_apikey)) {
         s_apikey_apikey = NULL;
     }
-    if (s_apikey_apikey) { 
-    if(!cJSON_IsString(s_apikey_apikey) && !cJSON_IsNull(s_apikey_apikey))
+    if (!s_apikey_apikey) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_apikey_apikey))
     {
     goto end; //String
-    }
     }
 
     // webhook_ezmaxpartnerproduct_subscribe->s_apikey_secret
@@ -270,11 +275,14 @@ webhook_ezmaxpartnerproduct_subscribe_t *webhook_ezmaxpartnerproduct_subscribe_p
     if (cJSON_IsNull(s_apikey_secret)) {
         s_apikey_secret = NULL;
     }
-    if (s_apikey_secret) { 
-    if(!cJSON_IsString(s_apikey_secret) && !cJSON_IsNull(s_apikey_secret))
+    if (!s_apikey_secret) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_apikey_secret))
     {
     goto end; //String
-    }
     }
 
 

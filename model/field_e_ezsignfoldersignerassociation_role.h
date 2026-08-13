@@ -1,7 +1,7 @@
 /*
  * field_e_ezsignfoldersignerassociation_role.h
  *
- * The type of the EzsignfoldersignerassociationRole.  1. **CC** receive a copy of all documents. 2. **Signer** sign document. 3. **SignerAndCC** sign document and receive a copy of all documents.
+ * The role of the Ezsignfoldersignerassociation.  1. **CC** receive a copy of all documents. 2. **Signer** sign document. 3. **SignerAndCC** sign document and receive a copy of all documents.
  */
 
 #ifndef _field_e_ezsignfoldersignerassociation_role_H_

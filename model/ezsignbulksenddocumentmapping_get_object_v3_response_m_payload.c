@@ -1,0 +1,109 @@
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include "ezsignbulksenddocumentmapping_get_object_v3_response_m_payload.h"
+
+
+
+static ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_t *ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_create_internal(
+    ezsignbulksenddocumentmapping_response_compound_v3_t *obj_ezsignbulksenddocumentmapping
+    ) {
+    ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_t *ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_local_var = malloc(sizeof(ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_t));
+    if (!ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_local_var) {
+        return NULL;
+    }
+    memset(ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_local_var, 0, sizeof(ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_t));
+    ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_local_var->_library_owned = 1;
+    ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_local_var->obj_ezsignbulksenddocumentmapping = obj_ezsignbulksenddocumentmapping;
+    return ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_local_var;
+}
+
+__attribute__((deprecated)) ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_t *ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_create(
+    ezsignbulksenddocumentmapping_response_compound_v3_t *obj_ezsignbulksenddocumentmapping
+    ) {
+    ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_t *result = ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_create_internal (
+        obj_ezsignbulksenddocumentmapping
+        );
+    if (!result) {
+    }
+    return result;
+}
+
+void ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_free(ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_t *ezsignbulksenddocumentmapping_get_object_v3_response_m_payload) {
+    if(NULL == ezsignbulksenddocumentmapping_get_object_v3_response_m_payload){
+        return ;
+    }
+    if(ezsignbulksenddocumentmapping_get_object_v3_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_free");
+        return ;
+    }
+    listEntry_t *listEntry;
+    if (ezsignbulksenddocumentmapping_get_object_v3_response_m_payload->obj_ezsignbulksenddocumentmapping) {
+        ezsignbulksenddocumentmapping_response_compound_v3_free(ezsignbulksenddocumentmapping_get_object_v3_response_m_payload->obj_ezsignbulksenddocumentmapping);
+        ezsignbulksenddocumentmapping_get_object_v3_response_m_payload->obj_ezsignbulksenddocumentmapping = NULL;
+    }
+    free(ezsignbulksenddocumentmapping_get_object_v3_response_m_payload);
+}
+
+cJSON *ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_convertToJSON(ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_t *ezsignbulksenddocumentmapping_get_object_v3_response_m_payload) {
+    cJSON *item = cJSON_CreateObject();
+
+    // ezsignbulksenddocumentmapping_get_object_v3_response_m_payload->obj_ezsignbulksenddocumentmapping
+    if (!ezsignbulksenddocumentmapping_get_object_v3_response_m_payload->obj_ezsignbulksenddocumentmapping) {
+        goto fail;
+    }
+    cJSON *obj_ezsignbulksenddocumentmapping_local_JSON = ezsignbulksenddocumentmapping_response_compound_v3_convertToJSON(ezsignbulksenddocumentmapping_get_object_v3_response_m_payload->obj_ezsignbulksenddocumentmapping);
+    if(obj_ezsignbulksenddocumentmapping_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objEzsignbulksenddocumentmapping", obj_ezsignbulksenddocumentmapping_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
+    return item;
+fail:
+    if (item) {
+        cJSON_Delete(item);
+    }
+    return NULL;
+}
+
+ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_t *ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_parseFromJSON(cJSON *ezsignbulksenddocumentmapping_get_object_v3_response_m_payloadJSON){
+
+    ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_t *ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_local_var = NULL;
+
+    // define the local variable for ezsignbulksenddocumentmapping_get_object_v3_response_m_payload->obj_ezsignbulksenddocumentmapping
+    ezsignbulksenddocumentmapping_response_compound_v3_t *obj_ezsignbulksenddocumentmapping_local_nonprim = NULL;
+
+    // ezsignbulksenddocumentmapping_get_object_v3_response_m_payload->obj_ezsignbulksenddocumentmapping
+    cJSON *obj_ezsignbulksenddocumentmapping = cJSON_GetObjectItemCaseSensitive(ezsignbulksenddocumentmapping_get_object_v3_response_m_payloadJSON, "objEzsignbulksenddocumentmapping");
+    if (cJSON_IsNull(obj_ezsignbulksenddocumentmapping)) {
+        obj_ezsignbulksenddocumentmapping = NULL;
+    }
+    if (!obj_ezsignbulksenddocumentmapping) {
+        goto end;
+    }
+
+    
+    obj_ezsignbulksenddocumentmapping_local_nonprim = ezsignbulksenddocumentmapping_response_compound_v3_parseFromJSON(obj_ezsignbulksenddocumentmapping); //nonprimitive
+
+
+
+    ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_local_var = ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_create_internal (
+        obj_ezsignbulksenddocumentmapping_local_nonprim
+        );
+
+    if (!ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_local_var) {
+        goto end;
+    }
+
+    return ezsignbulksenddocumentmapping_get_object_v3_response_m_payload_local_var;
+end:
+    if (obj_ezsignbulksenddocumentmapping_local_nonprim) {
+        ezsignbulksenddocumentmapping_response_compound_v3_free(obj_ezsignbulksenddocumentmapping_local_nonprim);
+        obj_ezsignbulksenddocumentmapping_local_nonprim = NULL;
+    }
+    return NULL;
+
+}

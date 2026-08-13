@@ -1579,6 +1579,95 @@ end:
 
 }
 
+// Retrieve an existing Ezsignbulksend
+//
+// 
+//
+ezsignbulksend_get_object_v4_response_t*
+ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV4(apiClient_t *apiClient, int *pkiEzsignbulksendID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/4/object/ezsignbulksend/{pkiEzsignbulksendID}");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsignbulksendID =  + sizeof("{ pkiEzsignbulksendID }") - 1;
+    if(pkiEzsignbulksendID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsignbulksendID = malloc(sizeOfPathParams_pkiEzsignbulksendID);
+    snprintf(localVarToReplace_pkiEzsignbulksendID, sizeOfPathParams_pkiEzsignbulksendID, "{%s}", "pkiEzsignbulksendID");
+
+    char localVarBuff_pkiEzsignbulksendID[256];
+    snprintf(localVarBuff_pkiEzsignbulksendID, sizeof localVarBuff_pkiEzsignbulksendID, "%ld", (long)*pkiEzsignbulksendID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendID, localVarBuff_pkiEzsignbulksendID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    ezsignbulksend_get_object_v4_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignbulksendAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignbulksend_get_object_v4_response_parseFromJSON(ObjectEzsignbulksendAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignbulksendAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsignbulksendID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Reorder Ezsignbulksenddocumentmappings in the Ezsignbulksend
 //
 ezsignbulksend_reorder_v1_response_t*

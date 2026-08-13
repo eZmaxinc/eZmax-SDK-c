@@ -43,6 +43,7 @@ typedef struct ezsignformfieldgroup_response_compound_t {
     char *s_ezsignformfieldgroup_textvalidationcustommessage; // string
     char *t_ezsignformfieldgroup_tooltip; // string
     ezmax_api_definition__full_field_e_ezsignformfieldgroup_tooltipposition__e e_ezsignformfieldgroup_tooltipposition; //referenced enum
+    char *dt_ezsignformfieldgroup_completed; // string
     list_t *a_obj_ezsignformfield; //nonprimitive container
     list_t *a_obj_dropdown_element; //nonprimitive container
     list_t *a_obj_ezsignformfieldgroupsigner; //nonprimitive container
@@ -68,6 +69,7 @@ __attribute__((deprecated)) ezsignformfieldgroup_response_compound_t *ezsignform
     char *s_ezsignformfieldgroup_textvalidationcustommessage,
     char *t_ezsignformfieldgroup_tooltip,
     ezmax_api_definition__full_field_e_ezsignformfieldgroup_tooltipposition__e e_ezsignformfieldgroup_tooltipposition,
+    char *dt_ezsignformfieldgroup_completed,
     list_t *a_obj_ezsignformfield,
     list_t *a_obj_dropdown_element,
     list_t *a_obj_ezsignformfieldgroupsigner

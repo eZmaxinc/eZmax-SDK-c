@@ -5,13 +5,13 @@
 
 
 char* field_e_ezsigntemplatesignature_consultationtrigger_field_e_ezsigntemplatesignature_consultationtrigger_ToString(ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__e field_e_ezsigntemplatesignature_consultationtrigger) {
-    char *field_e_ezsigntemplatesignature_consultationtriggerArray[] =  { "NULL", "Automatic", "Manual" };
+    char *field_e_ezsigntemplatesignature_consultationtriggerArray[] =  { "NULL", "Automatic", "Manual", "Optional" };
     return field_e_ezsigntemplatesignature_consultationtriggerArray[field_e_ezsigntemplatesignature_consultationtrigger];
 }
 
 ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__e field_e_ezsigntemplatesignature_consultationtrigger_field_e_ezsigntemplatesignature_consultationtrigger_FromString(char* field_e_ezsigntemplatesignature_consultationtrigger) {
     int stringToReturn = 0;
-    char *field_e_ezsigntemplatesignature_consultationtriggerArray[] =  { "NULL", "Automatic", "Manual" };
+    char *field_e_ezsigntemplatesignature_consultationtriggerArray[] =  { "NULL", "Automatic", "Manual", "Optional" };
     size_t sizeofArray = sizeof(field_e_ezsigntemplatesignature_consultationtriggerArray) / sizeof(field_e_ezsigntemplatesignature_consultationtriggerArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(field_e_ezsigntemplatesignature_consultationtrigger, field_e_ezsigntemplatesignature_consultationtriggerArray[stringToReturn]) == 0) {

@@ -49,11 +49,10 @@ cJSON *ezmaxpartner_subscribe_v1_response_convertToJSON(ezmaxpartner_subscribe_v
     cJSON *item = cJSON_CreateObject();
 
     // ezmaxpartner_subscribe_v1_response->s_external_id
-    if (!ezmaxpartner_subscribe_v1_response->s_external_id) {
-        goto fail;
-    }
+    if(ezmaxpartner_subscribe_v1_response->s_external_id) {
     if(cJSON_AddStringToObject(item, "sExternalID", ezmaxpartner_subscribe_v1_response->s_external_id) == NULL) {
     goto fail; //String
+    }
     }
 
     return item;
@@ -75,14 +74,11 @@ ezmaxpartner_subscribe_v1_response_t *ezmaxpartner_subscribe_v1_response_parseFr
     if (cJSON_IsNull(s_external_id)) {
         s_external_id = NULL;
     }
-    if (!s_external_id) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_external_id))
+    if (s_external_id) { 
+    if(!cJSON_IsString(s_external_id) && !cJSON_IsNull(s_external_id))
     {
     goto end; //String
+    }
     }
 
 

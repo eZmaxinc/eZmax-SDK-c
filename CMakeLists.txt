@@ -625,6 +625,8 @@ set(SRCS
     model/ezsignbulksend_get_object_v2_response_m_payload.c
     model/ezsignbulksend_get_object_v3_response.c
     model/ezsignbulksend_get_object_v3_response_m_payload.c
+    model/ezsignbulksend_get_object_v4_response.c
+    model/ezsignbulksend_get_object_v4_response_m_payload.c
     model/ezsignbulksend_list_element.c
     model/ezsignbulksend_reorder_v1_request.c
     model/ezsignbulksend_reorder_v1_response.c
@@ -635,27 +637,42 @@ set(SRCS
     model/ezsignbulksend_response.c
     model/ezsignbulksend_response_compound.c
     model/ezsignbulksend_response_compound_v3.c
+    model/ezsignbulksend_response_compound_v4.c
     model/ezsignbulksend_response_v3.c
+    model/ezsignbulksend_response_v4.c
     model/ezsignbulksenddocumentmapping_create_object_v1_request.c
     model/ezsignbulksenddocumentmapping_create_object_v1_response.c
     model/ezsignbulksenddocumentmapping_create_object_v1_response_m_payload.c
     model/ezsignbulksenddocumentmapping_delete_object_v1_response.c
     model/ezsignbulksenddocumentmapping_get_object_v2_response.c
     model/ezsignbulksenddocumentmapping_get_object_v2_response_m_payload.c
+    model/ezsignbulksenddocumentmapping_get_object_v3_response.c
+    model/ezsignbulksenddocumentmapping_get_object_v3_response_m_payload.c
     model/ezsignbulksenddocumentmapping_request.c
     model/ezsignbulksenddocumentmapping_request_compound.c
     model/ezsignbulksenddocumentmapping_response.c
     model/ezsignbulksenddocumentmapping_response_compound.c
+    model/ezsignbulksenddocumentmapping_response_compound_v3.c
+    model/ezsignbulksenddocumentmapping_response_v3.c
     model/ezsignbulksendsignermapping_create_object_v1_request.c
     model/ezsignbulksendsignermapping_create_object_v1_response.c
     model/ezsignbulksendsignermapping_create_object_v1_response_m_payload.c
+    model/ezsignbulksendsignermapping_create_object_v2_request.c
+    model/ezsignbulksendsignermapping_create_object_v2_response.c
+    model/ezsignbulksendsignermapping_create_object_v2_response_m_payload.c
     model/ezsignbulksendsignermapping_delete_object_v1_response.c
     model/ezsignbulksendsignermapping_get_object_v2_response.c
     model/ezsignbulksendsignermapping_get_object_v2_response_m_payload.c
+    model/ezsignbulksendsignermapping_get_object_v3_response.c
+    model/ezsignbulksendsignermapping_get_object_v3_response_m_payload.c
     model/ezsignbulksendsignermapping_request.c
     model/ezsignbulksendsignermapping_request_compound.c
+    model/ezsignbulksendsignermapping_request_compound_v2.c
+    model/ezsignbulksendsignermapping_request_v2.c
     model/ezsignbulksendsignermapping_response.c
     model/ezsignbulksendsignermapping_response_compound.c
+    model/ezsignbulksendsignermapping_response_compound_v3.c
+    model/ezsignbulksendsignermapping_response_v3.c
     model/ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response.c
     model/ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_m_payload.c
     model/ezsignbulksendtransmission_get_forms_data_v1_response.c
@@ -1097,13 +1114,17 @@ set(SRCS
     model/ezsigntemplate_get_list_v1_response_m_payload.c
     model/ezsigntemplate_get_object_v3_response.c
     model/ezsigntemplate_get_object_v3_response_m_payload.c
+    model/ezsigntemplate_get_object_v4_response.c
+    model/ezsigntemplate_get_object_v4_response_m_payload.c
     model/ezsigntemplate_list_element.c
     model/ezsigntemplate_request_compound_v3.c
     model/ezsigntemplate_request_v3.c
     model/ezsigntemplate_response.c
     model/ezsigntemplate_response_compound.c
     model/ezsigntemplate_response_compound_v3.c
+    model/ezsigntemplate_response_compound_v4.c
     model/ezsigntemplate_response_v3.c
+    model/ezsigntemplate_response_v4.c
     model/ezsigntemplateannotation_create_object_v1_request.c
     model/ezsigntemplateannotation_create_object_v1_response.c
     model/ezsigntemplateannotation_create_object_v1_response_m_payload.c
@@ -1221,6 +1242,9 @@ set(SRCS
     model/ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_request.c
     model/ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response.c
     model/ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload.c
+    model/ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v2_request.c
+    model/ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v2_response.c
+    model/ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v2_response_m_payload.c
     model/ezsigntemplatepackage_edit_object_v1_request.c
     model/ezsigntemplatepackage_edit_object_v1_response.c
     model/ezsigntemplatepackage_get_autocomplete_v2_response.c
@@ -1229,34 +1253,51 @@ set(SRCS
     model/ezsigntemplatepackage_get_list_v1_response_m_payload.c
     model/ezsigntemplatepackage_get_object_v2_response.c
     model/ezsigntemplatepackage_get_object_v2_response_m_payload.c
+    model/ezsigntemplatepackage_get_object_v3_response.c
+    model/ezsigntemplatepackage_get_object_v3_response_m_payload.c
     model/ezsigntemplatepackage_list_element.c
     model/ezsigntemplatepackage_request.c
     model/ezsigntemplatepackage_request_compound.c
     model/ezsigntemplatepackage_response.c
     model/ezsigntemplatepackage_response_compound.c
+    model/ezsigntemplatepackage_response_compound_v3.c
     model/ezsigntemplatepackagemembership_create_object_v1_request.c
     model/ezsigntemplatepackagemembership_create_object_v1_response.c
     model/ezsigntemplatepackagemembership_create_object_v1_response_m_payload.c
     model/ezsigntemplatepackagemembership_delete_object_v1_response.c
     model/ezsigntemplatepackagemembership_get_object_v2_response.c
     model/ezsigntemplatepackagemembership_get_object_v2_response_m_payload.c
+    model/ezsigntemplatepackagemembership_get_object_v3_response.c
+    model/ezsigntemplatepackagemembership_get_object_v3_response_m_payload.c
     model/ezsigntemplatepackagemembership_request.c
     model/ezsigntemplatepackagemembership_request_compound.c
     model/ezsigntemplatepackagemembership_response.c
     model/ezsigntemplatepackagemembership_response_compound.c
+    model/ezsigntemplatepackagemembership_response_compound_v3.c
     model/ezsigntemplatepackagesigner_create_object_v1_request.c
     model/ezsigntemplatepackagesigner_create_object_v1_response.c
     model/ezsigntemplatepackagesigner_create_object_v1_response_m_payload.c
+    model/ezsigntemplatepackagesigner_create_object_v2_request.c
+    model/ezsigntemplatepackagesigner_create_object_v2_response.c
+    model/ezsigntemplatepackagesigner_create_object_v2_response_m_payload.c
     model/ezsigntemplatepackagesigner_delete_object_v1_response.c
     model/ezsigntemplatepackagesigner_delete_object_v1_response_m_payload.c
     model/ezsigntemplatepackagesigner_edit_object_v1_request.c
     model/ezsigntemplatepackagesigner_edit_object_v1_response.c
+    model/ezsigntemplatepackagesigner_edit_object_v2_request.c
+    model/ezsigntemplatepackagesigner_edit_object_v2_response.c
     model/ezsigntemplatepackagesigner_get_object_v2_response.c
     model/ezsigntemplatepackagesigner_get_object_v2_response_m_payload.c
+    model/ezsigntemplatepackagesigner_get_object_v3_response.c
+    model/ezsigntemplatepackagesigner_get_object_v3_response_m_payload.c
     model/ezsigntemplatepackagesigner_request.c
     model/ezsigntemplatepackagesigner_request_compound.c
+    model/ezsigntemplatepackagesigner_request_compound_v2.c
+    model/ezsigntemplatepackagesigner_request_v2.c
     model/ezsigntemplatepackagesigner_response.c
     model/ezsigntemplatepackagesigner_response_compound.c
+    model/ezsigntemplatepackagesigner_response_compound_v3.c
+    model/ezsigntemplatepackagesigner_response_v3.c
     model/ezsigntemplatepackagesignermembership_create_object_v1_request.c
     model/ezsigntemplatepackagesignermembership_create_object_v1_response.c
     model/ezsigntemplatepackagesignermembership_create_object_v1_response_m_payload.c
@@ -1327,15 +1368,26 @@ set(SRCS
     model/ezsigntemplatesigner_create_object_v1_request.c
     model/ezsigntemplatesigner_create_object_v1_response.c
     model/ezsigntemplatesigner_create_object_v1_response_m_payload.c
+    model/ezsigntemplatesigner_create_object_v2_request.c
+    model/ezsigntemplatesigner_create_object_v2_response.c
+    model/ezsigntemplatesigner_create_object_v2_response_m_payload.c
     model/ezsigntemplatesigner_delete_object_v1_response.c
     model/ezsigntemplatesigner_edit_object_v1_request.c
     model/ezsigntemplatesigner_edit_object_v1_response.c
+    model/ezsigntemplatesigner_edit_object_v2_request.c
+    model/ezsigntemplatesigner_edit_object_v2_response.c
     model/ezsigntemplatesigner_get_object_v2_response.c
     model/ezsigntemplatesigner_get_object_v2_response_m_payload.c
+    model/ezsigntemplatesigner_get_object_v3_response.c
+    model/ezsigntemplatesigner_get_object_v3_response_m_payload.c
     model/ezsigntemplatesigner_request.c
     model/ezsigntemplatesigner_request_compound.c
+    model/ezsigntemplatesigner_request_compound_v2.c
+    model/ezsigntemplatesigner_request_v2.c
     model/ezsigntemplatesigner_response.c
     model/ezsigntemplatesigner_response_compound.c
+    model/ezsigntemplatesigner_response_compound_v3.c
+    model/ezsigntemplatesigner_response_v3.c
     model/ezsigntsarequirement_autocomplete_element_response.c
     model/ezsigntsarequirement_get_autocomplete_v2_response.c
     model/ezsigntsarequirement_get_autocomplete_v2_response_m_payload.c
@@ -1390,6 +1442,7 @@ set(SRCS
     model/field_e_ezmaxpartner_customdevelopment.c
     model/field_e_ezsignannotation_type.c
     model/field_e_ezsignbulksend_ezsignformfieldorder.c
+    model/field_e_ezsignbulksendsignermapping_role.c
     model/field_e_ezsigndocument_step.c
     model/field_e_ezsigndocumentlog_type.c
     model/field_e_ezsignelementdependency_operator.c
@@ -1446,6 +1499,7 @@ set(SRCS
     model/field_e_ezsigntemplateglobalannotation_verticalalignment.c
     model/field_e_ezsigntemplateglobaldocument_acceptationtype.c
     model/field_e_ezsigntemplatepackagesigner_mapping.c
+    model/field_e_ezsigntemplatepackagesigner_role.c
     model/field_e_ezsigntemplatepublic_limittype.c
     model/field_e_ezsigntemplatesignature_attachmentnamesource.c
     model/field_e_ezsigntemplatesignature_consultationtrigger.c
@@ -1459,6 +1513,7 @@ set(SRCS
     model/field_e_ezsigntemplatesignature_type.c
     model/field_e_ezsigntemplatesignaturepaymentdetail_taxable.c
     model/field_e_ezsigntemplatesigner_mapping.c
+    model/field_e_ezsigntemplatesigner_role.c
     model/field_e_inscription_remunerationinscriptorsellertype.c
     model/field_e_inscription_remunerationreferencetype.c
     model/field_e_inscription_remunerationtotaltype.c
@@ -2823,6 +2878,8 @@ set(HDRS
     model/ezsignbulksend_get_object_v2_response_m_payload.h
     model/ezsignbulksend_get_object_v3_response.h
     model/ezsignbulksend_get_object_v3_response_m_payload.h
+    model/ezsignbulksend_get_object_v4_response.h
+    model/ezsignbulksend_get_object_v4_response_m_payload.h
     model/ezsignbulksend_list_element.h
     model/ezsignbulksend_reorder_v1_request.h
     model/ezsignbulksend_reorder_v1_response.h
@@ -2833,27 +2890,42 @@ set(HDRS
     model/ezsignbulksend_response.h
     model/ezsignbulksend_response_compound.h
     model/ezsignbulksend_response_compound_v3.h
+    model/ezsignbulksend_response_compound_v4.h
     model/ezsignbulksend_response_v3.h
+    model/ezsignbulksend_response_v4.h
     model/ezsignbulksenddocumentmapping_create_object_v1_request.h
     model/ezsignbulksenddocumentmapping_create_object_v1_response.h
     model/ezsignbulksenddocumentmapping_create_object_v1_response_m_payload.h
     model/ezsignbulksenddocumentmapping_delete_object_v1_response.h
     model/ezsignbulksenddocumentmapping_get_object_v2_response.h
     model/ezsignbulksenddocumentmapping_get_object_v2_response_m_payload.h
+    model/ezsignbulksenddocumentmapping_get_object_v3_response.h
+    model/ezsignbulksenddocumentmapping_get_object_v3_response_m_payload.h
     model/ezsignbulksenddocumentmapping_request.h
     model/ezsignbulksenddocumentmapping_request_compound.h
     model/ezsignbulksenddocumentmapping_response.h
     model/ezsignbulksenddocumentmapping_response_compound.h
+    model/ezsignbulksenddocumentmapping_response_compound_v3.h
+    model/ezsignbulksenddocumentmapping_response_v3.h
     model/ezsignbulksendsignermapping_create_object_v1_request.h
     model/ezsignbulksendsignermapping_create_object_v1_response.h
     model/ezsignbulksendsignermapping_create_object_v1_response_m_payload.h
+    model/ezsignbulksendsignermapping_create_object_v2_request.h
+    model/ezsignbulksendsignermapping_create_object_v2_response.h
+    model/ezsignbulksendsignermapping_create_object_v2_response_m_payload.h
     model/ezsignbulksendsignermapping_delete_object_v1_response.h
     model/ezsignbulksendsignermapping_get_object_v2_response.h
     model/ezsignbulksendsignermapping_get_object_v2_response_m_payload.h
+    model/ezsignbulksendsignermapping_get_object_v3_response.h
+    model/ezsignbulksendsignermapping_get_object_v3_response_m_payload.h
     model/ezsignbulksendsignermapping_request.h
     model/ezsignbulksendsignermapping_request_compound.h
+    model/ezsignbulksendsignermapping_request_compound_v2.h
+    model/ezsignbulksendsignermapping_request_v2.h
     model/ezsignbulksendsignermapping_response.h
     model/ezsignbulksendsignermapping_response_compound.h
+    model/ezsignbulksendsignermapping_response_compound_v3.h
+    model/ezsignbulksendsignermapping_response_v3.h
     model/ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response.h
     model/ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_m_payload.h
     model/ezsignbulksendtransmission_get_forms_data_v1_response.h
@@ -3295,13 +3367,17 @@ set(HDRS
     model/ezsigntemplate_get_list_v1_response_m_payload.h
     model/ezsigntemplate_get_object_v3_response.h
     model/ezsigntemplate_get_object_v3_response_m_payload.h
+    model/ezsigntemplate_get_object_v4_response.h
+    model/ezsigntemplate_get_object_v4_response_m_payload.h
     model/ezsigntemplate_list_element.h
     model/ezsigntemplate_request_compound_v3.h
     model/ezsigntemplate_request_v3.h
     model/ezsigntemplate_response.h
     model/ezsigntemplate_response_compound.h
     model/ezsigntemplate_response_compound_v3.h
+    model/ezsigntemplate_response_compound_v4.h
     model/ezsigntemplate_response_v3.h
+    model/ezsigntemplate_response_v4.h
     model/ezsigntemplateannotation_create_object_v1_request.h
     model/ezsigntemplateannotation_create_object_v1_response.h
     model/ezsigntemplateannotation_create_object_v1_response_m_payload.h
@@ -3419,6 +3495,9 @@ set(HDRS
     model/ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_request.h
     model/ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response.h
     model/ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload.h
+    model/ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v2_request.h
+    model/ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v2_response.h
+    model/ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v2_response_m_payload.h
     model/ezsigntemplatepackage_edit_object_v1_request.h
     model/ezsigntemplatepackage_edit_object_v1_response.h
     model/ezsigntemplatepackage_get_autocomplete_v2_response.h
@@ -3427,34 +3506,51 @@ set(HDRS
     model/ezsigntemplatepackage_get_list_v1_response_m_payload.h
     model/ezsigntemplatepackage_get_object_v2_response.h
     model/ezsigntemplatepackage_get_object_v2_response_m_payload.h
+    model/ezsigntemplatepackage_get_object_v3_response.h
+    model/ezsigntemplatepackage_get_object_v3_response_m_payload.h
     model/ezsigntemplatepackage_list_element.h
     model/ezsigntemplatepackage_request.h
     model/ezsigntemplatepackage_request_compound.h
     model/ezsigntemplatepackage_response.h
     model/ezsigntemplatepackage_response_compound.h
+    model/ezsigntemplatepackage_response_compound_v3.h
     model/ezsigntemplatepackagemembership_create_object_v1_request.h
     model/ezsigntemplatepackagemembership_create_object_v1_response.h
     model/ezsigntemplatepackagemembership_create_object_v1_response_m_payload.h
     model/ezsigntemplatepackagemembership_delete_object_v1_response.h
     model/ezsigntemplatepackagemembership_get_object_v2_response.h
     model/ezsigntemplatepackagemembership_get_object_v2_response_m_payload.h
+    model/ezsigntemplatepackagemembership_get_object_v3_response.h
+    model/ezsigntemplatepackagemembership_get_object_v3_response_m_payload.h
     model/ezsigntemplatepackagemembership_request.h
     model/ezsigntemplatepackagemembership_request_compound.h
     model/ezsigntemplatepackagemembership_response.h
     model/ezsigntemplatepackagemembership_response_compound.h
+    model/ezsigntemplatepackagemembership_response_compound_v3.h
     model/ezsigntemplatepackagesigner_create_object_v1_request.h
     model/ezsigntemplatepackagesigner_create_object_v1_response.h
     model/ezsigntemplatepackagesigner_create_object_v1_response_m_payload.h
+    model/ezsigntemplatepackagesigner_create_object_v2_request.h
+    model/ezsigntemplatepackagesigner_create_object_v2_response.h
+    model/ezsigntemplatepackagesigner_create_object_v2_response_m_payload.h
     model/ezsigntemplatepackagesigner_delete_object_v1_response.h
     model/ezsigntemplatepackagesigner_delete_object_v1_response_m_payload.h
     model/ezsigntemplatepackagesigner_edit_object_v1_request.h
     model/ezsigntemplatepackagesigner_edit_object_v1_response.h
+    model/ezsigntemplatepackagesigner_edit_object_v2_request.h
+    model/ezsigntemplatepackagesigner_edit_object_v2_response.h
     model/ezsigntemplatepackagesigner_get_object_v2_response.h
     model/ezsigntemplatepackagesigner_get_object_v2_response_m_payload.h
+    model/ezsigntemplatepackagesigner_get_object_v3_response.h
+    model/ezsigntemplatepackagesigner_get_object_v3_response_m_payload.h
     model/ezsigntemplatepackagesigner_request.h
     model/ezsigntemplatepackagesigner_request_compound.h
+    model/ezsigntemplatepackagesigner_request_compound_v2.h
+    model/ezsigntemplatepackagesigner_request_v2.h
     model/ezsigntemplatepackagesigner_response.h
     model/ezsigntemplatepackagesigner_response_compound.h
+    model/ezsigntemplatepackagesigner_response_compound_v3.h
+    model/ezsigntemplatepackagesigner_response_v3.h
     model/ezsigntemplatepackagesignermembership_create_object_v1_request.h
     model/ezsigntemplatepackagesignermembership_create_object_v1_response.h
     model/ezsigntemplatepackagesignermembership_create_object_v1_response_m_payload.h
@@ -3525,15 +3621,26 @@ set(HDRS
     model/ezsigntemplatesigner_create_object_v1_request.h
     model/ezsigntemplatesigner_create_object_v1_response.h
     model/ezsigntemplatesigner_create_object_v1_response_m_payload.h
+    model/ezsigntemplatesigner_create_object_v2_request.h
+    model/ezsigntemplatesigner_create_object_v2_response.h
+    model/ezsigntemplatesigner_create_object_v2_response_m_payload.h
     model/ezsigntemplatesigner_delete_object_v1_response.h
     model/ezsigntemplatesigner_edit_object_v1_request.h
     model/ezsigntemplatesigner_edit_object_v1_response.h
+    model/ezsigntemplatesigner_edit_object_v2_request.h
+    model/ezsigntemplatesigner_edit_object_v2_response.h
     model/ezsigntemplatesigner_get_object_v2_response.h
     model/ezsigntemplatesigner_get_object_v2_response_m_payload.h
+    model/ezsigntemplatesigner_get_object_v3_response.h
+    model/ezsigntemplatesigner_get_object_v3_response_m_payload.h
     model/ezsigntemplatesigner_request.h
     model/ezsigntemplatesigner_request_compound.h
+    model/ezsigntemplatesigner_request_compound_v2.h
+    model/ezsigntemplatesigner_request_v2.h
     model/ezsigntemplatesigner_response.h
     model/ezsigntemplatesigner_response_compound.h
+    model/ezsigntemplatesigner_response_compound_v3.h
+    model/ezsigntemplatesigner_response_v3.h
     model/ezsigntsarequirement_autocomplete_element_response.h
     model/ezsigntsarequirement_get_autocomplete_v2_response.h
     model/ezsigntsarequirement_get_autocomplete_v2_response_m_payload.h
@@ -3588,6 +3695,7 @@ set(HDRS
     model/field_e_ezmaxpartner_customdevelopment.h
     model/field_e_ezsignannotation_type.h
     model/field_e_ezsignbulksend_ezsignformfieldorder.h
+    model/field_e_ezsignbulksendsignermapping_role.h
     model/field_e_ezsigndocument_step.h
     model/field_e_ezsigndocumentlog_type.h
     model/field_e_ezsignelementdependency_operator.h
@@ -3644,6 +3752,7 @@ set(HDRS
     model/field_e_ezsigntemplateglobalannotation_verticalalignment.h
     model/field_e_ezsigntemplateglobaldocument_acceptationtype.h
     model/field_e_ezsigntemplatepackagesigner_mapping.h
+    model/field_e_ezsigntemplatepackagesigner_role.h
     model/field_e_ezsigntemplatepublic_limittype.h
     model/field_e_ezsigntemplatesignature_attachmentnamesource.h
     model/field_e_ezsigntemplatesignature_consultationtrigger.h
@@ -3657,6 +3766,7 @@ set(HDRS
     model/field_e_ezsigntemplatesignature_type.h
     model/field_e_ezsigntemplatesignaturepaymentdetail_taxable.h
     model/field_e_ezsigntemplatesigner_mapping.h
+    model/field_e_ezsigntemplatesigner_role.h
     model/field_e_inscription_remunerationinscriptorsellertype.h
     model/field_e_inscription_remunerationreferencetype.h
     model/field_e_inscription_remunerationtotaltype.h

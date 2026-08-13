@@ -7,10 +7,12 @@ Method | HTTP request | Description
 [**ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageCreateObjectV1**](ObjectEzsigntemplatepackageAPI.md#ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageCreateObjectV1) | **POST** /1/object/ezsigntemplatepackage | Create a new Ezsigntemplatepackage
 [**ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageDeleteObjectV1**](ObjectEzsigntemplatepackageAPI.md#ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageDeleteObjectV1) | **DELETE** /1/object/ezsigntemplatepackage/{pkiEzsigntemplatepackageID} | Delete an existing Ezsigntemplatepackage
 [**ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditEzsigntemplatepackagesignersV1**](ObjectEzsigntemplatepackageAPI.md#ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditEzsigntemplatepackagesignersV1) | **PUT** /1/object/ezsigntemplatepackage/{pkiEzsigntemplatepackageID}/editEzsigntemplatepackagesigners | Edit multiple Ezsigntemplatepackagesigners
+[**ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditEzsigntemplatepackagesignersV2**](ObjectEzsigntemplatepackageAPI.md#ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditEzsigntemplatepackagesignersV2) | **PUT** /2/object/ezsigntemplatepackage/{pkiEzsigntemplatepackageID}/editEzsigntemplatepackagesigners | Edit multiple Ezsigntemplatepackagesigners
 [**ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditObjectV1**](ObjectEzsigntemplatepackageAPI.md#ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditObjectV1) | **PUT** /1/object/ezsigntemplatepackage/{pkiEzsigntemplatepackageID} | Edit an existing Ezsigntemplatepackage
 [**ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV2**](ObjectEzsigntemplatepackageAPI.md#ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV2) | **GET** /2/object/ezsigntemplatepackage/getAutocomplete/{sSelector} | Retrieve Ezsigntemplatepackages and IDs
 [**ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetListV1**](ObjectEzsigntemplatepackageAPI.md#ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetListV1) | **GET** /1/object/ezsigntemplatepackage/getList | Retrieve Ezsigntemplatepackage list
 [**ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetObjectV2**](ObjectEzsigntemplatepackageAPI.md#ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetObjectV2) | **GET** /2/object/ezsigntemplatepackage/{pkiEzsigntemplatepackageID} | Retrieve an existing Ezsigntemplatepackage
+[**ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetObjectV3**](ObjectEzsigntemplatepackageAPI.md#ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetObjectV3) | **GET** /3/object/ezsigntemplatepackage/{pkiEzsigntemplatepackageID} | Retrieve an existing Ezsigntemplatepackage
 
 
 # **ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageCreateObjectV1**
@@ -94,6 +96,38 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_t](ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditEzsigntemplatepackagesignersV2**
+```c
+// Edit multiple Ezsigntemplatepackagesigners
+//
+// Using this endpoint, you can edit multiple Ezsigntemplatepackagesigners at the same time.
+//
+ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v2_response_t* ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditEzsigntemplatepackagesignersV2(apiClient_t *apiClient, int *pkiEzsigntemplatepackageID, ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v2_request_t *ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v2_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsigntemplatepackageID** | **int \*** |  | 
+**ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v2_request** | **[ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v2_request_t](ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v2_request.md) \*** |  | 
+
+### Return type
+
+[ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v2_response_t](ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v2_response.md) *
 
 
 ### Authorization
@@ -227,6 +261,37 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsigntemplatepackage_get_object_v2_response_t](ezsigntemplatepackage_get_object_v2_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetObjectV3**
+```c
+// Retrieve an existing Ezsigntemplatepackage
+//
+// 
+//
+ezsigntemplatepackage_get_object_v3_response_t* ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetObjectV3(apiClient_t *apiClient, int *pkiEzsigntemplatepackageID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsigntemplatepackageID** | **int \*** |  | 
+
+### Return type
+
+[ezsigntemplatepackage_get_object_v3_response_t](ezsigntemplatepackage_get_object_v3_response.md) *
 
 
 ### Authorization

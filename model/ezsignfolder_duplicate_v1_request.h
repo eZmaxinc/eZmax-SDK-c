@@ -24,6 +24,7 @@ typedef struct ezsignfolder_duplicate_v1_request_t {
     list_t *a_fki_ezsignfoldersignerassociation_id; //primitive container
     list_t *a_obj_ezsigndocument; //nonprimitive container
     char *t_ezsignfolder_note; // string
+    int *b_keepenteredvalues; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfolder_duplicate_v1_request_t;
@@ -32,7 +33,8 @@ __attribute__((deprecated)) ezsignfolder_duplicate_v1_request_t *ezsignfolder_du
     char *s_ezsignfolder_description,
     list_t *a_fki_ezsignfoldersignerassociation_id,
     list_t *a_obj_ezsigndocument,
-    char *t_ezsignfolder_note
+    char *t_ezsignfolder_note,
+    int *b_keepenteredvalues
 );
 
 void ezsignfolder_duplicate_v1_request_free(ezsignfolder_duplicate_v1_request_t *ezsignfolder_duplicate_v1_request);

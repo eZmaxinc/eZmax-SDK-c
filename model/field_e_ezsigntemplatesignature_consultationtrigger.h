@@ -1,7 +1,7 @@
 /*
  * field_e_ezsigntemplatesignature_consultationtrigger.h
  *
- * Indicates when the “consultation” type signature must be signed.  1. **Automatic** When the document is displayed . 2. **Manual** The user must indicate that he has viewed the document.
+ * Indicates when the “consultation” type signature must be signed.  1. **Automatic** When the document is displayed . 2. **Manual** The user must indicate that he has viewed the document. 3. **Optional** The user can view the document, but they are not required to do so. Same as **Automatic** when user view the document.
  */
 
 #ifndef _field_e_ezsigntemplatesignature_consultationtrigger_H_
@@ -18,7 +18,7 @@ typedef struct field_e_ezsigntemplatesignature_consultationtrigger_t field_e_ezs
 
 // Enum  for field_e_ezsigntemplatesignature_consultationtrigger
 
-typedef enum { ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__NULL = 0, ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__Automatic, ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__Manual } ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__e;
+typedef enum { ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__NULL = 0, ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__Automatic, ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__Manual, ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__Optional } ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__e;
 
 char* field_e_ezsigntemplatesignature_consultationtrigger_field_e_ezsigntemplatesignature_consultationtrigger_ToString(ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__e field_e_ezsigntemplatesignature_consultationtrigger);
 

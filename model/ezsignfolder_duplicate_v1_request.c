@@ -9,7 +9,8 @@ static ezsignfolder_duplicate_v1_request_t *ezsignfolder_duplicate_v1_request_cr
     char *s_ezsignfolder_description,
     list_t *a_fki_ezsignfoldersignerassociation_id,
     list_t *a_obj_ezsigndocument,
-    char *t_ezsignfolder_note
+    char *t_ezsignfolder_note,
+    int *b_keepenteredvalues
     ) {
     ezsignfolder_duplicate_v1_request_t *ezsignfolder_duplicate_v1_request_local_var = malloc(sizeof(ezsignfolder_duplicate_v1_request_t));
     if (!ezsignfolder_duplicate_v1_request_local_var) {
@@ -21,6 +22,7 @@ static ezsignfolder_duplicate_v1_request_t *ezsignfolder_duplicate_v1_request_cr
     ezsignfolder_duplicate_v1_request_local_var->a_fki_ezsignfoldersignerassociation_id = a_fki_ezsignfoldersignerassociation_id;
     ezsignfolder_duplicate_v1_request_local_var->a_obj_ezsigndocument = a_obj_ezsigndocument;
     ezsignfolder_duplicate_v1_request_local_var->t_ezsignfolder_note = t_ezsignfolder_note;
+    ezsignfolder_duplicate_v1_request_local_var->b_keepenteredvalues = b_keepenteredvalues;
     return ezsignfolder_duplicate_v1_request_local_var;
 }
 
@@ -28,15 +30,23 @@ __attribute__((deprecated)) ezsignfolder_duplicate_v1_request_t *ezsignfolder_du
     char *s_ezsignfolder_description,
     list_t *a_fki_ezsignfoldersignerassociation_id,
     list_t *a_obj_ezsigndocument,
-    char *t_ezsignfolder_note
+    char *t_ezsignfolder_note,
+    int *b_keepenteredvalues
     ) {
+    int *b_keepenteredvalues_copy = NULL;
+    if (b_keepenteredvalues) {
+        b_keepenteredvalues_copy = malloc(sizeof(int));
+        if (b_keepenteredvalues_copy) *b_keepenteredvalues_copy = *b_keepenteredvalues;
+    }
     ezsignfolder_duplicate_v1_request_t *result = ezsignfolder_duplicate_v1_request_create_internal (
         s_ezsignfolder_description,
         a_fki_ezsignfoldersignerassociation_id,
         a_obj_ezsigndocument,
-        t_ezsignfolder_note
+        t_ezsignfolder_note,
+        b_keepenteredvalues_copy
         );
     if (!result) {
+        free(b_keepenteredvalues_copy);
     }
     return result;
 }
@@ -71,6 +81,10 @@ void ezsignfolder_duplicate_v1_request_free(ezsignfolder_duplicate_v1_request_t 
     if (ezsignfolder_duplicate_v1_request->t_ezsignfolder_note) {
         free(ezsignfolder_duplicate_v1_request->t_ezsignfolder_note);
         ezsignfolder_duplicate_v1_request->t_ezsignfolder_note = NULL;
+    }
+    if (ezsignfolder_duplicate_v1_request->b_keepenteredvalues) {
+        free(ezsignfolder_duplicate_v1_request->b_keepenteredvalues);
+        ezsignfolder_duplicate_v1_request->b_keepenteredvalues = NULL;
     }
     free(ezsignfolder_duplicate_v1_request);
 }
@@ -133,6 +147,14 @@ cJSON *ezsignfolder_duplicate_v1_request_convertToJSON(ezsignfolder_duplicate_v1
     }
     }
 
+
+    // ezsignfolder_duplicate_v1_request->b_keepenteredvalues
+    if(ezsignfolder_duplicate_v1_request->b_keepenteredvalues) {
+    if(cJSON_AddBoolToObject(item, "bKeepenteredvalues", *ezsignfolder_duplicate_v1_request->b_keepenteredvalues) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -154,6 +176,9 @@ ezsignfolder_duplicate_v1_request_t *ezsignfolder_duplicate_v1_request_parseFrom
     list_t *a_obj_ezsigndocumentList = NULL;
 
     char *t_ezsignfolder_note_local_str = NULL;
+
+    // define the local variable for ezsignfolder_duplicate_v1_request->b_keepenteredvalues
+    int *b_keepenteredvalues_local_var = NULL;
 
     // ezsignfolder_duplicate_v1_request->s_ezsignfolder_description
     cJSON *s_ezsignfolder_description = cJSON_GetObjectItemCaseSensitive(ezsignfolder_duplicate_v1_requestJSON, "sEzsignfolderDescription");
@@ -240,6 +265,24 @@ ezsignfolder_duplicate_v1_request_t *ezsignfolder_duplicate_v1_request_parseFrom
     }
     }
 
+    // ezsignfolder_duplicate_v1_request->b_keepenteredvalues
+    cJSON *b_keepenteredvalues = cJSON_GetObjectItemCaseSensitive(ezsignfolder_duplicate_v1_requestJSON, "bKeepenteredvalues");
+    if (cJSON_IsNull(b_keepenteredvalues)) {
+        b_keepenteredvalues = NULL;
+    }
+    if (b_keepenteredvalues) { 
+    if(!cJSON_IsBool(b_keepenteredvalues))
+    {
+    goto end; //Bool
+    }
+    b_keepenteredvalues_local_var = malloc(sizeof(int));
+    if(!b_keepenteredvalues_local_var)
+    {
+        goto end;
+    }
+    *b_keepenteredvalues_local_var = b_keepenteredvalues->valueint;
+    }
+
 
     if (s_ezsignfolder_description && !cJSON_IsNull(s_ezsignfolder_description)) s_ezsignfolder_description_local_str = strdup(s_ezsignfolder_description->valuestring);
     if (t_ezsignfolder_note && !cJSON_IsNull(t_ezsignfolder_note)) t_ezsignfolder_note_local_str = strdup(t_ezsignfolder_note->valuestring);
@@ -248,7 +291,8 @@ ezsignfolder_duplicate_v1_request_t *ezsignfolder_duplicate_v1_request_parseFrom
         s_ezsignfolder_description_local_str,
         a_fki_ezsignfoldersignerassociation_idList,
         a_obj_ezsigndocumentList,
-        t_ezsignfolder_note_local_str
+        t_ezsignfolder_note_local_str,
+        b_keepenteredvalues_local_var
         );
 
     if (!ezsignfolder_duplicate_v1_request_local_var) {
@@ -282,6 +326,10 @@ end:
     if (t_ezsignfolder_note_local_str) {
         free(t_ezsignfolder_note_local_str);
         t_ezsignfolder_note_local_str = NULL;
+    }
+    if (b_keepenteredvalues_local_var) {
+        free(b_keepenteredvalues_local_var);
+        b_keepenteredvalues_local_var = NULL;
     }
     return NULL;
 

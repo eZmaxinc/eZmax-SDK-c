@@ -40,6 +40,7 @@ typedef struct ezsignformfieldgroup_response_t {
     char *s_ezsignformfieldgroup_textvalidationcustommessage; // string
     char *t_ezsignformfieldgroup_tooltip; // string
     ezmax_api_definition__full_field_e_ezsignformfieldgroup_tooltipposition__e e_ezsignformfieldgroup_tooltipposition; //referenced enum
+    char *dt_ezsignformfieldgroup_completed; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignformfieldgroup_response_t;
@@ -61,7 +62,8 @@ __attribute__((deprecated)) ezsignformfieldgroup_response_t *ezsignformfieldgrou
     char *s_ezsignformfieldgroup_regexp,
     char *s_ezsignformfieldgroup_textvalidationcustommessage,
     char *t_ezsignformfieldgroup_tooltip,
-    ezmax_api_definition__full_field_e_ezsignformfieldgroup_tooltipposition__e e_ezsignformfieldgroup_tooltipposition
+    ezmax_api_definition__full_field_e_ezsignformfieldgroup_tooltipposition__e e_ezsignformfieldgroup_tooltipposition,
+    char *dt_ezsignformfieldgroup_completed
 );
 
 void ezsignformfieldgroup_response_free(ezsignformfieldgroup_response_t *ezsignformfieldgroup_response);

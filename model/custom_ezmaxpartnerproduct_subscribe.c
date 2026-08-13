@@ -261,162 +261,182 @@ cJSON *custom_ezmaxpartnerproduct_subscribe_convertToJSON(custom_ezmaxpartnerpro
     cJSON *item = cJSON_CreateObject();
 
     // custom_ezmaxpartnerproduct_subscribe->pks_ezmaxcustomer_code
-    if(custom_ezmaxpartnerproduct_subscribe->pks_ezmaxcustomer_code) {
+    if (!custom_ezmaxpartnerproduct_subscribe->pks_ezmaxcustomer_code) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "pksEzmaxcustomerCode", custom_ezmaxpartnerproduct_subscribe->pks_ezmaxcustomer_code) == NULL) {
     goto fail; //String
-    }
     }
 
 
     // custom_ezmaxpartnerproduct_subscribe->s_infrastructureenvironmenttype_description
-    if(custom_ezmaxpartnerproduct_subscribe->s_infrastructureenvironmenttype_description) {
+    if (!custom_ezmaxpartnerproduct_subscribe->s_infrastructureenvironmenttype_description) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "sInfrastructureenvironmenttypeDescription", custom_ezmaxpartnerproduct_subscribe->s_infrastructureenvironmenttype_description) == NULL) {
     goto fail; //String
-    }
     }
 
 
     // custom_ezmaxpartnerproduct_subscribe->s_company_name1
-    if(custom_ezmaxpartnerproduct_subscribe->s_company_name1) {
+    if (!custom_ezmaxpartnerproduct_subscribe->s_company_name1) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "sCompanyName1", custom_ezmaxpartnerproduct_subscribe->s_company_name1) == NULL) {
     goto fail; //String
-    }
     }
 
 
     // custom_ezmaxpartnerproduct_subscribe->s_company_name2
-    if(custom_ezmaxpartnerproduct_subscribe->s_company_name2) {
+    if (!custom_ezmaxpartnerproduct_subscribe->s_company_name2) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "sCompanyName2", custom_ezmaxpartnerproduct_subscribe->s_company_name2) == NULL) {
     goto fail; //String
-    }
     }
 
 
     // custom_ezmaxpartnerproduct_subscribe->fki_systemconfigurationtype_id
-    if(custom_ezmaxpartnerproduct_subscribe->fki_systemconfigurationtype_id) {
+    if (!custom_ezmaxpartnerproduct_subscribe->fki_systemconfigurationtype_id) {
+        goto fail;
+    }
     if(cJSON_AddNumberToObject(item, "fkiSystemconfigurationtypeID", *custom_ezmaxpartnerproduct_subscribe->fki_systemconfigurationtype_id) == NULL) {
     goto fail; //Numeric
-    }
     }
 
 
     // custom_ezmaxpartnerproduct_subscribe->s_systemconfigurationtype_description1
-    if(custom_ezmaxpartnerproduct_subscribe->s_systemconfigurationtype_description1) {
+    if (!custom_ezmaxpartnerproduct_subscribe->s_systemconfigurationtype_description1) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "sSystemconfigurationtypeDescription1", custom_ezmaxpartnerproduct_subscribe->s_systemconfigurationtype_description1) == NULL) {
     goto fail; //String
-    }
     }
 
 
     // custom_ezmaxpartnerproduct_subscribe->s_systemconfigurationtype_description2
-    if(custom_ezmaxpartnerproduct_subscribe->s_systemconfigurationtype_description2) {
+    if (!custom_ezmaxpartnerproduct_subscribe->s_systemconfigurationtype_description2) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "sSystemconfigurationtypeDescription2", custom_ezmaxpartnerproduct_subscribe->s_systemconfigurationtype_description2) == NULL) {
     goto fail; //String
-    }
     }
 
 
     // custom_ezmaxpartnerproduct_subscribe->fki_ezmaxpartner_id
-    if(custom_ezmaxpartnerproduct_subscribe->fki_ezmaxpartner_id) {
+    if (!custom_ezmaxpartnerproduct_subscribe->fki_ezmaxpartner_id) {
+        goto fail;
+    }
     if(cJSON_AddNumberToObject(item, "fkiEzmaxpartnerID", *custom_ezmaxpartnerproduct_subscribe->fki_ezmaxpartner_id) == NULL) {
     goto fail; //Numeric
-    }
     }
 
 
     // custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartner_name1
-    if(custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartner_name1) {
+    if (!custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartner_name1) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "sEzmaxpartnerName1", custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartner_name1) == NULL) {
     goto fail; //String
-    }
     }
 
 
     // custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartner_name2
-    if(custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartner_name2) {
+    if (!custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartner_name2) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "sEzmaxpartnerName2", custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartner_name2) == NULL) {
     goto fail; //String
-    }
     }
 
 
     // custom_ezmaxpartnerproduct_subscribe->fki_ezmaxpartnerproduct_id
-    if(custom_ezmaxpartnerproduct_subscribe->fki_ezmaxpartnerproduct_id) {
+    if (!custom_ezmaxpartnerproduct_subscribe->fki_ezmaxpartnerproduct_id) {
+        goto fail;
+    }
     if(cJSON_AddNumberToObject(item, "fkiEzmaxpartnerproductID", *custom_ezmaxpartnerproduct_subscribe->fki_ezmaxpartnerproduct_id) == NULL) {
     goto fail; //Numeric
-    }
     }
 
 
     // custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartnerproduct_name1
-    if(custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartnerproduct_name1) {
+    if (!custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartnerproduct_name1) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "sEzmaxpartnerproductName1", custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartnerproduct_name1) == NULL) {
     goto fail; //String
-    }
     }
 
 
     // custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartnerproduct_name2
-    if(custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartnerproduct_name2) {
+    if (!custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartnerproduct_name2) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "sEzmaxpartnerproductName2", custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartnerproduct_name2) == NULL) {
     goto fail; //String
-    }
     }
 
 
     // custom_ezmaxpartnerproduct_subscribe->fki_ezmaxpartnerproductstage_id
-    if(custom_ezmaxpartnerproduct_subscribe->fki_ezmaxpartnerproductstage_id) {
+    if (!custom_ezmaxpartnerproduct_subscribe->fki_ezmaxpartnerproductstage_id) {
+        goto fail;
+    }
     if(cJSON_AddNumberToObject(item, "fkiEzmaxpartnerproductstageID", *custom_ezmaxpartnerproduct_subscribe->fki_ezmaxpartnerproductstage_id) == NULL) {
     goto fail; //Numeric
-    }
     }
 
 
     // custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartnerproductstage_code
-    if(custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartnerproductstage_code) {
+    if (!custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartnerproductstage_code) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "sEzmaxpartnerproductstageCode", custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartnerproductstage_code) == NULL) {
     goto fail; //String
-    }
     }
 
 
     // custom_ezmaxpartnerproduct_subscribe->s_user_login_name
-    if(custom_ezmaxpartnerproduct_subscribe->s_user_login_name) {
+    if (!custom_ezmaxpartnerproduct_subscribe->s_user_login_name) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "sUserLoginName", custom_ezmaxpartnerproduct_subscribe->s_user_login_name) == NULL) {
     goto fail; //String
-    }
     }
 
 
     // custom_ezmaxpartnerproduct_subscribe->s_user_first_name
-    if(custom_ezmaxpartnerproduct_subscribe->s_user_first_name) {
+    if (!custom_ezmaxpartnerproduct_subscribe->s_user_first_name) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "sUserFirstName", custom_ezmaxpartnerproduct_subscribe->s_user_first_name) == NULL) {
     goto fail; //String
-    }
     }
 
 
     // custom_ezmaxpartnerproduct_subscribe->s_user_last_name
-    if(custom_ezmaxpartnerproduct_subscribe->s_user_last_name) {
+    if (!custom_ezmaxpartnerproduct_subscribe->s_user_last_name) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "sUserLastName", custom_ezmaxpartnerproduct_subscribe->s_user_last_name) == NULL) {
     goto fail; //String
-    }
     }
 
 
     // custom_ezmaxpartnerproduct_subscribe->fki_user_id
-    if(custom_ezmaxpartnerproduct_subscribe->fki_user_id) {
+    if (!custom_ezmaxpartnerproduct_subscribe->fki_user_id) {
+        goto fail;
+    }
     if(cJSON_AddNumberToObject(item, "fkiUserID", *custom_ezmaxpartnerproduct_subscribe->fki_user_id) == NULL) {
     goto fail; //Numeric
-    }
     }
 
 
     // custom_ezmaxpartnerproduct_subscribe->fki_language_id
-    if(custom_ezmaxpartnerproduct_subscribe->fki_language_id) {
+    if (!custom_ezmaxpartnerproduct_subscribe->fki_language_id) {
+        goto fail;
+    }
     if(cJSON_AddNumberToObject(item, "fkiLanguageID", *custom_ezmaxpartnerproduct_subscribe->fki_language_id) == NULL) {
     goto fail; //Numeric
-    }
     }
 
 
@@ -530,11 +550,14 @@ custom_ezmaxpartnerproduct_subscribe_t *custom_ezmaxpartnerproduct_subscribe_par
     if (cJSON_IsNull(pks_ezmaxcustomer_code)) {
         pks_ezmaxcustomer_code = NULL;
     }
-    if (pks_ezmaxcustomer_code) { 
-    if(!cJSON_IsString(pks_ezmaxcustomer_code) && !cJSON_IsNull(pks_ezmaxcustomer_code))
+    if (!pks_ezmaxcustomer_code) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(pks_ezmaxcustomer_code))
     {
     goto end; //String
-    }
     }
 
     // custom_ezmaxpartnerproduct_subscribe->s_infrastructureenvironmenttype_description
@@ -542,11 +565,14 @@ custom_ezmaxpartnerproduct_subscribe_t *custom_ezmaxpartnerproduct_subscribe_par
     if (cJSON_IsNull(s_infrastructureenvironmenttype_description)) {
         s_infrastructureenvironmenttype_description = NULL;
     }
-    if (s_infrastructureenvironmenttype_description) { 
-    if(!cJSON_IsString(s_infrastructureenvironmenttype_description) && !cJSON_IsNull(s_infrastructureenvironmenttype_description))
+    if (!s_infrastructureenvironmenttype_description) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_infrastructureenvironmenttype_description))
     {
     goto end; //String
-    }
     }
 
     // custom_ezmaxpartnerproduct_subscribe->s_company_name1
@@ -554,11 +580,14 @@ custom_ezmaxpartnerproduct_subscribe_t *custom_ezmaxpartnerproduct_subscribe_par
     if (cJSON_IsNull(s_company_name1)) {
         s_company_name1 = NULL;
     }
-    if (s_company_name1) { 
-    if(!cJSON_IsString(s_company_name1) && !cJSON_IsNull(s_company_name1))
+    if (!s_company_name1) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_company_name1))
     {
     goto end; //String
-    }
     }
 
     // custom_ezmaxpartnerproduct_subscribe->s_company_name2
@@ -566,11 +595,14 @@ custom_ezmaxpartnerproduct_subscribe_t *custom_ezmaxpartnerproduct_subscribe_par
     if (cJSON_IsNull(s_company_name2)) {
         s_company_name2 = NULL;
     }
-    if (s_company_name2) { 
-    if(!cJSON_IsString(s_company_name2) && !cJSON_IsNull(s_company_name2))
+    if (!s_company_name2) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_company_name2))
     {
     goto end; //String
-    }
     }
 
     // custom_ezmaxpartnerproduct_subscribe->fki_systemconfigurationtype_id
@@ -578,7 +610,11 @@ custom_ezmaxpartnerproduct_subscribe_t *custom_ezmaxpartnerproduct_subscribe_par
     if (cJSON_IsNull(fki_systemconfigurationtype_id)) {
         fki_systemconfigurationtype_id = NULL;
     }
-    if (fki_systemconfigurationtype_id) { 
+    if (!fki_systemconfigurationtype_id) {
+        goto end;
+    }
+
+    
     if(!cJSON_IsNumber(fki_systemconfigurationtype_id))
     {
     goto end; //Numeric
@@ -589,18 +625,20 @@ custom_ezmaxpartnerproduct_subscribe_t *custom_ezmaxpartnerproduct_subscribe_par
         goto end;
     }
     *fki_systemconfigurationtype_id_local_var = fki_systemconfigurationtype_id->valuedouble;
-    }
 
     // custom_ezmaxpartnerproduct_subscribe->s_systemconfigurationtype_description1
     cJSON *s_systemconfigurationtype_description1 = cJSON_GetObjectItemCaseSensitive(custom_ezmaxpartnerproduct_subscribeJSON, "sSystemconfigurationtypeDescription1");
     if (cJSON_IsNull(s_systemconfigurationtype_description1)) {
         s_systemconfigurationtype_description1 = NULL;
     }
-    if (s_systemconfigurationtype_description1) { 
-    if(!cJSON_IsString(s_systemconfigurationtype_description1) && !cJSON_IsNull(s_systemconfigurationtype_description1))
+    if (!s_systemconfigurationtype_description1) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_systemconfigurationtype_description1))
     {
     goto end; //String
-    }
     }
 
     // custom_ezmaxpartnerproduct_subscribe->s_systemconfigurationtype_description2
@@ -608,11 +646,14 @@ custom_ezmaxpartnerproduct_subscribe_t *custom_ezmaxpartnerproduct_subscribe_par
     if (cJSON_IsNull(s_systemconfigurationtype_description2)) {
         s_systemconfigurationtype_description2 = NULL;
     }
-    if (s_systemconfigurationtype_description2) { 
-    if(!cJSON_IsString(s_systemconfigurationtype_description2) && !cJSON_IsNull(s_systemconfigurationtype_description2))
+    if (!s_systemconfigurationtype_description2) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_systemconfigurationtype_description2))
     {
     goto end; //String
-    }
     }
 
     // custom_ezmaxpartnerproduct_subscribe->fki_ezmaxpartner_id
@@ -620,7 +661,11 @@ custom_ezmaxpartnerproduct_subscribe_t *custom_ezmaxpartnerproduct_subscribe_par
     if (cJSON_IsNull(fki_ezmaxpartner_id)) {
         fki_ezmaxpartner_id = NULL;
     }
-    if (fki_ezmaxpartner_id) { 
+    if (!fki_ezmaxpartner_id) {
+        goto end;
+    }
+
+    
     if(!cJSON_IsNumber(fki_ezmaxpartner_id))
     {
     goto end; //Numeric
@@ -631,18 +676,20 @@ custom_ezmaxpartnerproduct_subscribe_t *custom_ezmaxpartnerproduct_subscribe_par
         goto end;
     }
     *fki_ezmaxpartner_id_local_var = fki_ezmaxpartner_id->valuedouble;
-    }
 
     // custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartner_name1
     cJSON *s_ezmaxpartner_name1 = cJSON_GetObjectItemCaseSensitive(custom_ezmaxpartnerproduct_subscribeJSON, "sEzmaxpartnerName1");
     if (cJSON_IsNull(s_ezmaxpartner_name1)) {
         s_ezmaxpartner_name1 = NULL;
     }
-    if (s_ezmaxpartner_name1) { 
-    if(!cJSON_IsString(s_ezmaxpartner_name1) && !cJSON_IsNull(s_ezmaxpartner_name1))
+    if (!s_ezmaxpartner_name1) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_ezmaxpartner_name1))
     {
     goto end; //String
-    }
     }
 
     // custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartner_name2
@@ -650,11 +697,14 @@ custom_ezmaxpartnerproduct_subscribe_t *custom_ezmaxpartnerproduct_subscribe_par
     if (cJSON_IsNull(s_ezmaxpartner_name2)) {
         s_ezmaxpartner_name2 = NULL;
     }
-    if (s_ezmaxpartner_name2) { 
-    if(!cJSON_IsString(s_ezmaxpartner_name2) && !cJSON_IsNull(s_ezmaxpartner_name2))
+    if (!s_ezmaxpartner_name2) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_ezmaxpartner_name2))
     {
     goto end; //String
-    }
     }
 
     // custom_ezmaxpartnerproduct_subscribe->fki_ezmaxpartnerproduct_id
@@ -662,7 +712,11 @@ custom_ezmaxpartnerproduct_subscribe_t *custom_ezmaxpartnerproduct_subscribe_par
     if (cJSON_IsNull(fki_ezmaxpartnerproduct_id)) {
         fki_ezmaxpartnerproduct_id = NULL;
     }
-    if (fki_ezmaxpartnerproduct_id) { 
+    if (!fki_ezmaxpartnerproduct_id) {
+        goto end;
+    }
+
+    
     if(!cJSON_IsNumber(fki_ezmaxpartnerproduct_id))
     {
     goto end; //Numeric
@@ -673,18 +727,20 @@ custom_ezmaxpartnerproduct_subscribe_t *custom_ezmaxpartnerproduct_subscribe_par
         goto end;
     }
     *fki_ezmaxpartnerproduct_id_local_var = fki_ezmaxpartnerproduct_id->valuedouble;
-    }
 
     // custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartnerproduct_name1
     cJSON *s_ezmaxpartnerproduct_name1 = cJSON_GetObjectItemCaseSensitive(custom_ezmaxpartnerproduct_subscribeJSON, "sEzmaxpartnerproductName1");
     if (cJSON_IsNull(s_ezmaxpartnerproduct_name1)) {
         s_ezmaxpartnerproduct_name1 = NULL;
     }
-    if (s_ezmaxpartnerproduct_name1) { 
-    if(!cJSON_IsString(s_ezmaxpartnerproduct_name1) && !cJSON_IsNull(s_ezmaxpartnerproduct_name1))
+    if (!s_ezmaxpartnerproduct_name1) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_ezmaxpartnerproduct_name1))
     {
     goto end; //String
-    }
     }
 
     // custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartnerproduct_name2
@@ -692,11 +748,14 @@ custom_ezmaxpartnerproduct_subscribe_t *custom_ezmaxpartnerproduct_subscribe_par
     if (cJSON_IsNull(s_ezmaxpartnerproduct_name2)) {
         s_ezmaxpartnerproduct_name2 = NULL;
     }
-    if (s_ezmaxpartnerproduct_name2) { 
-    if(!cJSON_IsString(s_ezmaxpartnerproduct_name2) && !cJSON_IsNull(s_ezmaxpartnerproduct_name2))
+    if (!s_ezmaxpartnerproduct_name2) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_ezmaxpartnerproduct_name2))
     {
     goto end; //String
-    }
     }
 
     // custom_ezmaxpartnerproduct_subscribe->fki_ezmaxpartnerproductstage_id
@@ -704,7 +763,11 @@ custom_ezmaxpartnerproduct_subscribe_t *custom_ezmaxpartnerproduct_subscribe_par
     if (cJSON_IsNull(fki_ezmaxpartnerproductstage_id)) {
         fki_ezmaxpartnerproductstage_id = NULL;
     }
-    if (fki_ezmaxpartnerproductstage_id) { 
+    if (!fki_ezmaxpartnerproductstage_id) {
+        goto end;
+    }
+
+    
     if(!cJSON_IsNumber(fki_ezmaxpartnerproductstage_id))
     {
     goto end; //Numeric
@@ -715,18 +778,20 @@ custom_ezmaxpartnerproduct_subscribe_t *custom_ezmaxpartnerproduct_subscribe_par
         goto end;
     }
     *fki_ezmaxpartnerproductstage_id_local_var = fki_ezmaxpartnerproductstage_id->valuedouble;
-    }
 
     // custom_ezmaxpartnerproduct_subscribe->s_ezmaxpartnerproductstage_code
     cJSON *s_ezmaxpartnerproductstage_code = cJSON_GetObjectItemCaseSensitive(custom_ezmaxpartnerproduct_subscribeJSON, "sEzmaxpartnerproductstageCode");
     if (cJSON_IsNull(s_ezmaxpartnerproductstage_code)) {
         s_ezmaxpartnerproductstage_code = NULL;
     }
-    if (s_ezmaxpartnerproductstage_code) { 
-    if(!cJSON_IsString(s_ezmaxpartnerproductstage_code) && !cJSON_IsNull(s_ezmaxpartnerproductstage_code))
+    if (!s_ezmaxpartnerproductstage_code) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_ezmaxpartnerproductstage_code))
     {
     goto end; //String
-    }
     }
 
     // custom_ezmaxpartnerproduct_subscribe->s_user_login_name
@@ -734,11 +799,14 @@ custom_ezmaxpartnerproduct_subscribe_t *custom_ezmaxpartnerproduct_subscribe_par
     if (cJSON_IsNull(s_user_login_name)) {
         s_user_login_name = NULL;
     }
-    if (s_user_login_name) { 
-    if(!cJSON_IsString(s_user_login_name) && !cJSON_IsNull(s_user_login_name))
+    if (!s_user_login_name) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_user_login_name))
     {
     goto end; //String
-    }
     }
 
     // custom_ezmaxpartnerproduct_subscribe->s_user_first_name
@@ -746,11 +814,14 @@ custom_ezmaxpartnerproduct_subscribe_t *custom_ezmaxpartnerproduct_subscribe_par
     if (cJSON_IsNull(s_user_first_name)) {
         s_user_first_name = NULL;
     }
-    if (s_user_first_name) { 
-    if(!cJSON_IsString(s_user_first_name) && !cJSON_IsNull(s_user_first_name))
+    if (!s_user_first_name) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_user_first_name))
     {
     goto end; //String
-    }
     }
 
     // custom_ezmaxpartnerproduct_subscribe->s_user_last_name
@@ -758,11 +829,14 @@ custom_ezmaxpartnerproduct_subscribe_t *custom_ezmaxpartnerproduct_subscribe_par
     if (cJSON_IsNull(s_user_last_name)) {
         s_user_last_name = NULL;
     }
-    if (s_user_last_name) { 
-    if(!cJSON_IsString(s_user_last_name) && !cJSON_IsNull(s_user_last_name))
+    if (!s_user_last_name) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_user_last_name))
     {
     goto end; //String
-    }
     }
 
     // custom_ezmaxpartnerproduct_subscribe->fki_user_id
@@ -770,7 +844,11 @@ custom_ezmaxpartnerproduct_subscribe_t *custom_ezmaxpartnerproduct_subscribe_par
     if (cJSON_IsNull(fki_user_id)) {
         fki_user_id = NULL;
     }
-    if (fki_user_id) { 
+    if (!fki_user_id) {
+        goto end;
+    }
+
+    
     if(!cJSON_IsNumber(fki_user_id))
     {
     goto end; //Numeric
@@ -781,14 +859,17 @@ custom_ezmaxpartnerproduct_subscribe_t *custom_ezmaxpartnerproduct_subscribe_par
         goto end;
     }
     *fki_user_id_local_var = fki_user_id->valuedouble;
-    }
 
     // custom_ezmaxpartnerproduct_subscribe->fki_language_id
     cJSON *fki_language_id = cJSON_GetObjectItemCaseSensitive(custom_ezmaxpartnerproduct_subscribeJSON, "fkiLanguageID");
     if (cJSON_IsNull(fki_language_id)) {
         fki_language_id = NULL;
     }
-    if (fki_language_id) { 
+    if (!fki_language_id) {
+        goto end;
+    }
+
+    
     if(!cJSON_IsNumber(fki_language_id))
     {
     goto end; //Numeric
@@ -799,7 +880,6 @@ custom_ezmaxpartnerproduct_subscribe_t *custom_ezmaxpartnerproduct_subscribe_par
         goto end;
     }
     *fki_language_id_local_var = fki_language_id->valuedouble;
-    }
 
     // custom_ezmaxpartnerproduct_subscribe->obj_address
     cJSON *obj_address = cJSON_GetObjectItemCaseSensitive(custom_ezmaxpartnerproduct_subscribeJSON, "objAddress");
