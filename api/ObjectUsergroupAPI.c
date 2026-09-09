@@ -404,11 +404,11 @@ ObjectUsergroupAPI_usergroupEditObjectV1(apiClient_t *apiClient, int *pkiUsergro
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     usergroup_edit_object_v1_response_t *elementToReturn = NULL;
@@ -513,11 +513,11 @@ ObjectUsergroupAPI_usergroupEditPermissionsV1(apiClient_t *apiClient, int *pkiUs
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     usergroup_edit_permissions_v1_response_t *elementToReturn = NULL;
@@ -622,11 +622,11 @@ ObjectUsergroupAPI_usergroupEditUsergroupdelegationsV1(apiClient_t *apiClient, i
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     usergroup_edit_usergroupdelegations_v1_response_t *elementToReturn = NULL;
@@ -731,11 +731,11 @@ ObjectUsergroupAPI_usergroupEditUsergroupmembershipsV1(apiClient_t *apiClient, i
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     usergroup_edit_usergroupmemberships_v1_response_t *elementToReturn = NULL;
@@ -1161,7 +1161,7 @@ ObjectUsergroupAPI_usergroupGetObjectV2(apiClient_t *apiClient, int *pkiUsergrou
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     usergroup_get_object_v2_response_t *elementToReturn = NULL;
@@ -1248,7 +1248,7 @@ ObjectUsergroupAPI_usergroupGetPermissionsV1(apiClient_t *apiClient, int *pkiUse
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     usergroup_get_permissions_v1_response_t *elementToReturn = NULL;
@@ -1335,7 +1335,7 @@ ObjectUsergroupAPI_usergroupGetUsergroupdelegationsV1(apiClient_t *apiClient, in
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     usergroup_get_usergroupdelegations_v1_response_t *elementToReturn = NULL;
@@ -1422,7 +1422,7 @@ ObjectUsergroupAPI_usergroupGetUsergroupmembershipsV1(apiClient_t *apiClient, in
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     usergroup_get_usergroupmemberships_v1_response_t *elementToReturn = NULL;

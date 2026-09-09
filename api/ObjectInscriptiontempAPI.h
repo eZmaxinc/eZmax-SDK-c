@@ -7,6 +7,8 @@
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
 #include "../model/header_accept_language.h"
+#include "../model/inscriptiontemp_batch_download_v1_request.h"
+#include "../model/inscriptiontemp_get_attachments_v1_response.h"
 #include "../model/inscriptiontemp_get_communication_count_v1_response.h"
 #include "../model/inscriptiontemp_get_communication_list_v1_response.h"
 #include "../model/inscriptiontemp_get_communicationrecipients_v1_response.h"
@@ -20,6 +22,18 @@ typedef enum  { ezmax_api_definition__full_inscriptiontempGetListV1_EORDERBY_NUL
 
 // Enum  for ObjectInscriptiontempAPI_inscriptiontempGetListV1
 typedef enum  { ezmax_api_definition__full_inscriptiontempGetListV1__NULL = 0, ezmax_api_definition__full_inscriptiontempGetListV1__*, ezmax_api_definition__full_inscriptiontempGetListV1__en, ezmax_api_definition__full_inscriptiontempGetListV1__fr } ezmax_api_definition__full_inscriptiontempGetListV1_Accept-Language_e;
+
+
+// Download multiples attachments from a Inscriptiontemp
+//
+binary_t*
+ObjectInscriptiontempAPI_inscriptiontempBatchDownloadV1(apiClient_t *apiClient, int *pkiInscriptiontempID, inscriptiontemp_batch_download_v1_request_t *inscriptiontemp_batch_download_v1_request);
+
+
+// Retrieve Inscriptiontemp's attachments
+//
+inscriptiontemp_get_attachments_v1_response_t*
+ObjectInscriptiontempAPI_inscriptiontempGetAttachmentsV1(apiClient_t *apiClient, int *pkiInscriptiontempID);
 
 
 // Retrieve Communication count

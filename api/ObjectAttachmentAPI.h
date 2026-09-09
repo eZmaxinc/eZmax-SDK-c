@@ -6,6 +6,8 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/attachment_get_attachmentlogs_v1_response.h"
+#include "../model/attachment_rename_v1_request.h"
+#include "../model/attachment_rename_v1_response.h"
 #include "../model/common_response_error.h"
 
 
@@ -23,5 +25,13 @@ ObjectAttachmentAPI_attachmentDownloadV1(apiClient_t *apiClient, int *pkiAttachm
 //
 attachment_get_attachmentlogs_v1_response_t*
 ObjectAttachmentAPI_attachmentGetAttachmentlogsV1(apiClient_t *apiClient, int *pkiAttachmentID);
+
+
+// Rename an Attachment
+//
+// The endpoint allows to change the attachment's file name and category.
+//
+attachment_rename_v1_response_t*
+ObjectAttachmentAPI_attachmentRenameV1(apiClient_t *apiClient, int *pkiAttachmentID, attachment_rename_v1_request_t *attachment_rename_v1_request);
 
 

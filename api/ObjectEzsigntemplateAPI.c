@@ -158,13 +158,13 @@ end:
 // Functions for enum EORDERBY for ObjectEzsigntemplateAPI_ezsigntemplateGetListV1
 
 static char* ezsigntemplateGetListV1_EORDERBY_ToString(ezmax_api_definition__full_ezsigntemplateGetListV1_eOrderBy_e EORDERBY){
-    char *EORDERBYArray[] =  { "NULL", "pkiEzsigntemplateID_ASC", "pkiEzsigntemplateID_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "fkiUserIDOwner_ASC", "fkiUserIDOwner_DESC", "fkiLanguageID_ASC", "fkiLanguageID_DESC", "eEzsigntemplateType_ASC", "eEzsigntemplateType_DESC", "sEzsigntemplateDescription_ASC", "sEzsigntemplateDescription_DESC", "iEzsigntemplatedocumentPagetotal_ASC", "iEzsigntemplatedocumentPagetotal_DESC", "iEzsigntemplateSignaturetotal_ASC", "iEzsigntemplateSignaturetotal_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC", "eEzsigntemplateType_ASC", "eEzsigntemplateType_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiEzsigntemplateID_ASC", "pkiEzsigntemplateID_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "fkiUserIDOwner_ASC", "fkiUserIDOwner_DESC", "fkiLanguageID_ASC", "fkiLanguageID_DESC", "eEzsigntemplateType_ASC", "eEzsigntemplateType_DESC", "sEzsigntemplateDescription_ASC", "sEzsigntemplateDescription_DESC", "iEzsigntemplatedocumentPagetotal_ASC", "iEzsigntemplatedocumentPagetotal_DESC", "iEzsigntemplateSignaturetotal_ASC", "iEzsigntemplateSignaturetotal_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC" };
     return EORDERBYArray[EORDERBY];
 }
 
 static ezmax_api_definition__full_ezsigntemplateGetListV1_eOrderBy_e ezsigntemplateGetListV1_EORDERBY_FromString(char* EORDERBY){
     int stringToReturn = 0;
-    char *EORDERBYArray[] =  { "NULL", "pkiEzsigntemplateID_ASC", "pkiEzsigntemplateID_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "fkiUserIDOwner_ASC", "fkiUserIDOwner_DESC", "fkiLanguageID_ASC", "fkiLanguageID_DESC", "eEzsigntemplateType_ASC", "eEzsigntemplateType_DESC", "sEzsigntemplateDescription_ASC", "sEzsigntemplateDescription_DESC", "iEzsigntemplatedocumentPagetotal_ASC", "iEzsigntemplatedocumentPagetotal_DESC", "iEzsigntemplateSignaturetotal_ASC", "iEzsigntemplateSignaturetotal_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC", "eEzsigntemplateType_ASC", "eEzsigntemplateType_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiEzsigntemplateID_ASC", "pkiEzsigntemplateID_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "fkiUserIDOwner_ASC", "fkiUserIDOwner_DESC", "fkiLanguageID_ASC", "fkiLanguageID_DESC", "eEzsigntemplateType_ASC", "eEzsigntemplateType_DESC", "sEzsigntemplateDescription_ASC", "sEzsigntemplateDescription_DESC", "iEzsigntemplatedocumentPagetotal_ASC", "iEzsigntemplatedocumentPagetotal_DESC", "iEzsigntemplateSignaturetotal_ASC", "iEzsigntemplateSignaturetotal_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC" };
     size_t sizeofArray = sizeof(EORDERBYArray) / sizeof(EORDERBYArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(EORDERBY, EORDERBYArray[stringToReturn]) == 0) {
@@ -318,7 +318,7 @@ ObjectEzsigntemplateAPI_ezsigntemplateCopyV1(apiClient_t *apiClient, int *pkiEzs
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     ezsigntemplate_copy_v1_response_t *elementToReturn = NULL;
@@ -498,7 +498,7 @@ ObjectEzsigntemplateAPI_ezsigntemplateDeleteObjectV1(apiClient_t *apiClient, int
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     ezsigntemplate_delete_object_v1_response_t *elementToReturn = NULL;
@@ -598,11 +598,11 @@ ObjectEzsigntemplateAPI_ezsigntemplateEditObjectV3(apiClient_t *apiClient, int *
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     ezsigntemplate_edit_object_v3_response_t *elementToReturn = NULL;
@@ -1053,7 +1053,7 @@ ObjectEzsigntemplateAPI_ezsigntemplateGetObjectV3(apiClient_t *apiClient, int *p
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     ezsigntemplate_get_object_v3_response_t *elementToReturn = NULL;
@@ -1142,7 +1142,7 @@ ObjectEzsigntemplateAPI_ezsigntemplateGetObjectV4(apiClient_t *apiClient, int *p
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     ezsigntemplate_get_object_v4_response_t *elementToReturn = NULL;

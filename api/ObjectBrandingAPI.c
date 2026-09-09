@@ -404,7 +404,7 @@ ObjectBrandingAPI_brandingEditObjectV2(apiClient_t *apiClient, int *pkiBrandingI
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     branding_edit_object_v2_response_t *elementToReturn = NULL;
@@ -830,7 +830,7 @@ ObjectBrandingAPI_brandingGetObjectV3(apiClient_t *apiClient, int *pkiBrandingID
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     branding_get_object_v3_response_t *elementToReturn = NULL;

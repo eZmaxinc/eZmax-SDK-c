@@ -5,13 +5,13 @@
 
 
 char* field_e_ezsignfoldersignerassociation_role_field_e_ezsignfoldersignerassociation_role_ToString(ezmax_api_definition__full_field_e_ezsignfoldersignerassociation_role__e field_e_ezsignfoldersignerassociation_role) {
-    char *field_e_ezsignfoldersignerassociation_roleArray[] =  { "NULL", "CC", "Signer", "SignerAndCC" };
+    char *field_e_ezsignfoldersignerassociation_roleArray[] =  { "NULL", "CC", "CCDeleted", "Signer", "SignerAndCC" };
     return field_e_ezsignfoldersignerassociation_roleArray[field_e_ezsignfoldersignerassociation_role];
 }
 
 ezmax_api_definition__full_field_e_ezsignfoldersignerassociation_role__e field_e_ezsignfoldersignerassociation_role_field_e_ezsignfoldersignerassociation_role_FromString(char* field_e_ezsignfoldersignerassociation_role) {
     int stringToReturn = 0;
-    char *field_e_ezsignfoldersignerassociation_roleArray[] =  { "NULL", "CC", "Signer", "SignerAndCC" };
+    char *field_e_ezsignfoldersignerassociation_roleArray[] =  { "NULL", "CC", "CCDeleted", "Signer", "SignerAndCC" };
     size_t sizeofArray = sizeof(field_e_ezsignfoldersignerassociation_roleArray) / sizeof(field_e_ezsignfoldersignerassociation_roleArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(field_e_ezsignfoldersignerassociation_role, field_e_ezsignfoldersignerassociation_roleArray[stringToReturn]) == 0) {

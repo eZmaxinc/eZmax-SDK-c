@@ -237,7 +237,7 @@ ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingDeleteObjectV1(a
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     ezsignbulksendsignermapping_delete_object_v1_response_t *elementToReturn = NULL;
@@ -326,7 +326,7 @@ ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingGetObjectV2(apiC
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     ezsignbulksendsignermapping_get_object_v2_response_t *elementToReturn = NULL;
@@ -415,7 +415,7 @@ ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingGetObjectV3(apiC
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     ezsignbulksendsignermapping_get_object_v3_response_t *elementToReturn = NULL;

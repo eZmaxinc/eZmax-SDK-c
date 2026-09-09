@@ -158,13 +158,13 @@ end:
 // Functions for enum EORDERBY for ObjectAgentAPI_agentGetListV1
 
 static char* agentGetListV1_EORDERBY_ToString(ezmax_api_definition__full_agentGetListV1_eOrderBy_e EORDERBY){
-    char *EORDERBYArray[] =  { "NULL", "pkiAgentID_ASC", "pkiAgentID_DESC", "fkiAgenttypeID_ASC", "fkiAgenttypeID_DESC", "sAgenttypeNameX_ASC", "sAgenttypeNameX_DESC", "fkiAgentincorporationID_ASC", "fkiAgentincorporationID_DESC", "sAgentincorporationName_ASC", "sAgentincorporationName_DESC", "fkiDepartmentID_ASC", "fkiDepartmentID_DESC", "sDepartmentNameX_ASC", "sDepartmentNameX_DESC", "fkiLanguageID_ASC", "fkiLanguageID_DESC", "sLanguageNameX_ASC", "sLanguageNameX_DESC", "sRealestateboardnumberNumber_ASC", "sRealestateboardnumberNumber_DESC", "sAgentCode_ASC", "sAgentCode_DESC", "iAgentPhotocopiercode_ASC", "iAgentPhotocopiercode_DESC", "iAgentLongdistancecode_ASC", "iAgentLongdistancecode_DESC", "iAgentBannernumber_ASC", "iAgentBannernumber_DESC", "sAgentRealestateassociationlicense_ASC", "sAgentRealestateassociationlicense_DESC", "dtAgentHiredate_ASC", "dtAgentHiredate_DESC", "dtAgentLeavedate_ASC", "dtAgentLeavedate_DESC", "bAgentTranquillit_ASC", "bAgentTranquillit_DESC", "bAgentResidentiallicense_ASC", "bAgentResidentiallicense_DESC", "bAgentCommerciallicense_ASC", "bAgentCommerciallicense_DESC", "bAgentMortgagelicense_ASC", "bAgentMortgagelicense_DESC", "bAgentPaidbyofficetranquillit_ASC", "bAgentPaidbyofficetranquillit_DESC", "dtAgentFintraccertification_ASC", "dtAgentFintraccertification_DESC", "sContactFirstname_ASC", "sContactFirstname_DESC", "sContactLastname_ASC", "sContactLastname_DESC", "dtContactBirthdate_ASC", "dtContactBirthdate_DESC", "sEmailAddress_ASC", "sEmailAddress_DESC", "sPhoneE164_ASC", "sPhoneE164_DESC", "sAddressCivic_ASC", "sAddressCivic_DESC", "sAddressStreet_ASC", "sAddressStreet_DESC", "sAddressSuite_ASC", "sAddressSuite_DESC", "sAddressCity_ASC", "sAddressCity_DESC", "sAddressZip_ASC", "sAddressZip_DESC", "sProvinceNameX_ASC", "sProvinceNameX_DESC", "sCountryNameX_ASC", "sCountryNameX_DESC", "bAgentIsactive_ASC", "bAgentIsactive_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiAgentID_ASC", "pkiAgentID_DESC", "fkiAgenttypeID_ASC", "fkiAgenttypeID_DESC", "sAgenttypeNameX_ASC", "sAgenttypeNameX_DESC", "fkiAgentincorporationID_ASC", "fkiAgentincorporationID_DESC", "sAgentincorporationName_ASC", "sAgentincorporationName_DESC", "fkiDepartmentID_ASC", "fkiDepartmentID_DESC", "sDepartmentNameX_ASC", "sDepartmentNameX_DESC", "fkiLanguageID_ASC", "fkiLanguageID_DESC", "sLanguageNameX_ASC", "sLanguageNameX_DESC", "sRealestateboardnumberNumber_ASC", "sRealestateboardnumberNumber_DESC", "sAgentCode_ASC", "sAgentCode_DESC", "iAgentPhotocopiercode_ASC", "iAgentPhotocopiercode_DESC", "iAgentLongdistancecode_ASC", "iAgentLongdistancecode_DESC", "iAgentBannernumber_ASC", "iAgentBannernumber_DESC", "sAgentRealestateassociationlicense_ASC", "sAgentRealestateassociationlicense_DESC", "dtAgentPermitexpiration_ASC", "dtAgentPermitexpiration_DESC", "dtAgentHiredate_ASC", "dtAgentHiredate_DESC", "dtAgentLeavedate_ASC", "dtAgentLeavedate_DESC", "bAgentTranquillit_ASC", "bAgentTranquillit_DESC", "bAgentResidentiallicense_ASC", "bAgentResidentiallicense_DESC", "bAgentCommerciallicense_ASC", "bAgentCommerciallicense_DESC", "bAgentMortgagelicense_ASC", "bAgentMortgagelicense_DESC", "bAgentPaidbyofficetranquillit_ASC", "bAgentPaidbyofficetranquillit_DESC", "dtAgentFintraccertification_ASC", "dtAgentFintraccertification_DESC", "sContactFirstname_ASC", "sContactFirstname_DESC", "sContactLastname_ASC", "sContactLastname_DESC", "dtContactBirthdate_ASC", "dtContactBirthdate_DESC", "sEmailAddress_ASC", "sEmailAddress_DESC", "sPhoneE164_ASC", "sPhoneE164_DESC", "sAddressCivic_ASC", "sAddressCivic_DESC", "sAddressStreet_ASC", "sAddressStreet_DESC", "sAddressSuite_ASC", "sAddressSuite_DESC", "sAddressCity_ASC", "sAddressCity_DESC", "sAddressZip_ASC", "sAddressZip_DESC", "sProvinceNameX_ASC", "sProvinceNameX_DESC", "sCountryNameX_ASC", "sCountryNameX_DESC", "bAgentIsactive_ASC", "bAgentIsactive_DESC" };
     return EORDERBYArray[EORDERBY];
 }
 
 static ezmax_api_definition__full_agentGetListV1_eOrderBy_e agentGetListV1_EORDERBY_FromString(char* EORDERBY){
     int stringToReturn = 0;
-    char *EORDERBYArray[] =  { "NULL", "pkiAgentID_ASC", "pkiAgentID_DESC", "fkiAgenttypeID_ASC", "fkiAgenttypeID_DESC", "sAgenttypeNameX_ASC", "sAgenttypeNameX_DESC", "fkiAgentincorporationID_ASC", "fkiAgentincorporationID_DESC", "sAgentincorporationName_ASC", "sAgentincorporationName_DESC", "fkiDepartmentID_ASC", "fkiDepartmentID_DESC", "sDepartmentNameX_ASC", "sDepartmentNameX_DESC", "fkiLanguageID_ASC", "fkiLanguageID_DESC", "sLanguageNameX_ASC", "sLanguageNameX_DESC", "sRealestateboardnumberNumber_ASC", "sRealestateboardnumberNumber_DESC", "sAgentCode_ASC", "sAgentCode_DESC", "iAgentPhotocopiercode_ASC", "iAgentPhotocopiercode_DESC", "iAgentLongdistancecode_ASC", "iAgentLongdistancecode_DESC", "iAgentBannernumber_ASC", "iAgentBannernumber_DESC", "sAgentRealestateassociationlicense_ASC", "sAgentRealestateassociationlicense_DESC", "dtAgentHiredate_ASC", "dtAgentHiredate_DESC", "dtAgentLeavedate_ASC", "dtAgentLeavedate_DESC", "bAgentTranquillit_ASC", "bAgentTranquillit_DESC", "bAgentResidentiallicense_ASC", "bAgentResidentiallicense_DESC", "bAgentCommerciallicense_ASC", "bAgentCommerciallicense_DESC", "bAgentMortgagelicense_ASC", "bAgentMortgagelicense_DESC", "bAgentPaidbyofficetranquillit_ASC", "bAgentPaidbyofficetranquillit_DESC", "dtAgentFintraccertification_ASC", "dtAgentFintraccertification_DESC", "sContactFirstname_ASC", "sContactFirstname_DESC", "sContactLastname_ASC", "sContactLastname_DESC", "dtContactBirthdate_ASC", "dtContactBirthdate_DESC", "sEmailAddress_ASC", "sEmailAddress_DESC", "sPhoneE164_ASC", "sPhoneE164_DESC", "sAddressCivic_ASC", "sAddressCivic_DESC", "sAddressStreet_ASC", "sAddressStreet_DESC", "sAddressSuite_ASC", "sAddressSuite_DESC", "sAddressCity_ASC", "sAddressCity_DESC", "sAddressZip_ASC", "sAddressZip_DESC", "sProvinceNameX_ASC", "sProvinceNameX_DESC", "sCountryNameX_ASC", "sCountryNameX_DESC", "bAgentIsactive_ASC", "bAgentIsactive_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiAgentID_ASC", "pkiAgentID_DESC", "fkiAgenttypeID_ASC", "fkiAgenttypeID_DESC", "sAgenttypeNameX_ASC", "sAgenttypeNameX_DESC", "fkiAgentincorporationID_ASC", "fkiAgentincorporationID_DESC", "sAgentincorporationName_ASC", "sAgentincorporationName_DESC", "fkiDepartmentID_ASC", "fkiDepartmentID_DESC", "sDepartmentNameX_ASC", "sDepartmentNameX_DESC", "fkiLanguageID_ASC", "fkiLanguageID_DESC", "sLanguageNameX_ASC", "sLanguageNameX_DESC", "sRealestateboardnumberNumber_ASC", "sRealestateboardnumberNumber_DESC", "sAgentCode_ASC", "sAgentCode_DESC", "iAgentPhotocopiercode_ASC", "iAgentPhotocopiercode_DESC", "iAgentLongdistancecode_ASC", "iAgentLongdistancecode_DESC", "iAgentBannernumber_ASC", "iAgentBannernumber_DESC", "sAgentRealestateassociationlicense_ASC", "sAgentRealestateassociationlicense_DESC", "dtAgentPermitexpiration_ASC", "dtAgentPermitexpiration_DESC", "dtAgentHiredate_ASC", "dtAgentHiredate_DESC", "dtAgentLeavedate_ASC", "dtAgentLeavedate_DESC", "bAgentTranquillit_ASC", "bAgentTranquillit_DESC", "bAgentResidentiallicense_ASC", "bAgentResidentiallicense_DESC", "bAgentCommerciallicense_ASC", "bAgentCommerciallicense_DESC", "bAgentMortgagelicense_ASC", "bAgentMortgagelicense_DESC", "bAgentPaidbyofficetranquillit_ASC", "bAgentPaidbyofficetranquillit_DESC", "dtAgentFintraccertification_ASC", "dtAgentFintraccertification_DESC", "sContactFirstname_ASC", "sContactFirstname_DESC", "sContactLastname_ASC", "sContactLastname_DESC", "dtContactBirthdate_ASC", "dtContactBirthdate_DESC", "sEmailAddress_ASC", "sEmailAddress_DESC", "sPhoneE164_ASC", "sPhoneE164_DESC", "sAddressCivic_ASC", "sAddressCivic_DESC", "sAddressStreet_ASC", "sAddressStreet_DESC", "sAddressSuite_ASC", "sAddressSuite_DESC", "sAddressCity_ASC", "sAddressCity_DESC", "sAddressZip_ASC", "sAddressZip_DESC", "sProvinceNameX_ASC", "sProvinceNameX_DESC", "sCountryNameX_ASC", "sCountryNameX_DESC", "bAgentIsactive_ASC", "bAgentIsactive_DESC" };
     size_t sizeofArray = sizeof(EORDERBYArray) / sizeof(EORDERBYArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(EORDERBY, EORDERBYArray[stringToReturn]) == 0) {
@@ -250,6 +250,191 @@ end:
 }
 */
 
+
+// Download multiples attachments from a Agent
+//
+binary_t*
+ObjectAgentAPI_agentBatchDownloadV1(apiClient_t *apiClient, int *pkiAgentID, agent_batch_download_v1_request_t *agent_batch_download_v1_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/agent/{pkiAgentID}/batchDownload");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiAgentID =  + sizeof("{ pkiAgentID }") - 1;
+    if(pkiAgentID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiAgentID = malloc(sizeOfPathParams_pkiAgentID);
+    snprintf(localVarToReplace_pkiAgentID, sizeOfPathParams_pkiAgentID, "{%s}", "pkiAgentID");
+
+    char localVarBuff_pkiAgentID[256];
+    snprintf(localVarBuff_pkiAgentID, sizeof localVarBuff_pkiAgentID, "%ld", (long)*pkiAgentID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiAgentID, localVarBuff_pkiAgentID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_agent_batch_download_v1_request = NULL;
+    if (agent_batch_download_v1_request != NULL)
+    {
+        //not string, not binary
+        localVarSingleItemJSON_agent_batch_download_v1_request = agent_batch_download_v1_request_convertToJSON(agent_batch_download_v1_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_agent_batch_download_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
+    }
+    list_addElement(localVarHeaderType,"application/zip"); //produces
+    list_addElement(localVarHeaderType,"text/xml"); //produces
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //primitive return type simple binary
+    binary_t* elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300)
+        elementToReturn = instantiate_binary_t(apiClient->dataReceived, apiClient->dataReceivedLen);
+
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiAgentID);
+    if (localVarSingleItemJSON_agent_batch_download_v1_request) {
+        cJSON_Delete(localVarSingleItemJSON_agent_batch_download_v1_request);
+        localVarSingleItemJSON_agent_batch_download_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Agent's attachments
+//
+agent_get_attachments_v1_response_t*
+ObjectAgentAPI_agentGetAttachmentsV1(apiClient_t *apiClient, int *pkiAgentID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/agent/{pkiAgentID}/getAttachments");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiAgentID =  + sizeof("{ pkiAgentID }") - 1;
+    if(pkiAgentID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiAgentID = malloc(sizeOfPathParams_pkiAgentID);
+    snprintf(localVarToReplace_pkiAgentID, sizeOfPathParams_pkiAgentID, "{%s}", "pkiAgentID");
+
+    char localVarBuff_pkiAgentID[256];
+    snprintf(localVarBuff_pkiAgentID, sizeof localVarBuff_pkiAgentID, "%ld", (long)*pkiAgentID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiAgentID, localVarBuff_pkiAgentID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    agent_get_attachments_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectAgentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = agent_get_attachments_v1_response_parseFromJSON(ObjectAgentAPIlocalVarJSON);
+        cJSON_Delete(ObjectAgentAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiAgentID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
 
 // Retrieve Agents and IDs
 //
@@ -650,7 +835,7 @@ ObjectAgentAPI_agentImportIntoEDMV1(apiClient_t *apiClient, int *pkiAgentID, age
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     agent_import_into_edm_v1_response_t *elementToReturn = NULL;

@@ -5,6 +5,8 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
+#include "../model/buyercontract_batch_download_v1_request.h"
+#include "../model/buyercontract_get_attachments_v1_response.h"
 #include "../model/buyercontract_get_communication_count_v1_response.h"
 #include "../model/buyercontract_get_communication_list_v1_response.h"
 #include "../model/buyercontract_get_communicationrecipients_v1_response.h"
@@ -20,6 +22,18 @@ typedef enum  { ezmax_api_definition__full_buyercontractGetListV1_EORDERBY_NULL 
 
 // Enum  for ObjectBuyercontractAPI_buyercontractGetListV1
 typedef enum  { ezmax_api_definition__full_buyercontractGetListV1__NULL = 0, ezmax_api_definition__full_buyercontractGetListV1__*, ezmax_api_definition__full_buyercontractGetListV1__en, ezmax_api_definition__full_buyercontractGetListV1__fr } ezmax_api_definition__full_buyercontractGetListV1_Accept-Language_e;
+
+
+// Download multiples attachments from a Buyercontract
+//
+binary_t*
+ObjectBuyercontractAPI_buyercontractBatchDownloadV1(apiClient_t *apiClient, int *pkiBuyercontractID, buyercontract_batch_download_v1_request_t *buyercontract_batch_download_v1_request);
+
+
+// Retrieve Buyercontract's attachments
+//
+buyercontract_get_attachments_v1_response_t*
+ObjectBuyercontractAPI_buyercontractGetAttachmentsV1(apiClient_t *apiClient, int *pkiBuyercontractID);
 
 
 // Retrieve Communication count

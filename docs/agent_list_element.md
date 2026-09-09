@@ -18,8 +18,9 @@ Name | Type | Description | Notes
 **i_agent_longdistancecode** | **int** | The longdistancecode of the Agent | 
 **i_agent_bannernumber** | **int** | The bannernumber of the Agent | 
 **s_agent_realestateassociationlicense** | **char \*** | The realestateassociationlicense of the Agent | 
-**dt_agent_hiredate** | **char \*** | The hiredate of the Agent | [optional] 
-**dt_agent_leavedate** | **char \*** | The leavedate of the Agent | [optional] 
+**dt_agent_permitexpiration** | **char \*** | The expiration date of permit of the Agent | [optional] 
+**dt_agent_hiredate** | **char \*** | The hire date of the Agent | [optional] 
+**dt_agent_leavedate** | **char \*** | The leave date of the Agent | [optional] 
 **dt_agent_contractdate** | **char \*** | The contract date of the Agent | [optional] 
 **dt_agent_transferdate** | **char \*** | The transfer date of the Agent | [optional] 
 **dt_agent_senioritydate** | **char \*** | The seniority date of the Agent | [optional] 

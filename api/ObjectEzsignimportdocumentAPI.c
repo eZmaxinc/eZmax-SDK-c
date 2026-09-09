@@ -63,7 +63,7 @@ ObjectEzsignimportdocumentAPI_ezsignimportdocumentDownloadV1(apiClient_t *apiCli
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     ezsignimportdocument_download_v1_response_t *elementToReturn = NULL;

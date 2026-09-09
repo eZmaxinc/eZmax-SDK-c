@@ -65,7 +65,7 @@ ObjectTranqcontractAPI_tranqcontractGetCommunicationCountV1(apiClient_t *apiClie
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     tranqcontract_get_communication_count_v1_response_t *elementToReturn = NULL;
@@ -154,7 +154,7 @@ ObjectTranqcontractAPI_tranqcontractGetCommunicationListV1(apiClient_t *apiClien
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     tranqcontract_get_communication_list_v1_response_t *elementToReturn = NULL;
@@ -243,7 +243,7 @@ ObjectTranqcontractAPI_tranqcontractGetCommunicationrecipientsV1(apiClient_t *ap
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     tranqcontract_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
@@ -332,7 +332,7 @@ ObjectTranqcontractAPI_tranqcontractGetCommunicationsendersV1(apiClient_t *apiCl
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     tranqcontract_get_communicationsenders_v1_response_t *elementToReturn = NULL;
@@ -432,7 +432,7 @@ ObjectTranqcontractAPI_tranqcontractImportIntoEDMV1(apiClient_t *apiClient, int 
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     tranqcontract_import_into_edm_v1_response_t *elementToReturn = NULL;

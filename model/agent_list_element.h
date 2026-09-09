@@ -35,6 +35,7 @@ typedef struct agent_list_element_t {
     int *i_agent_longdistancecode; //numeric
     int *i_agent_bannernumber; //numeric
     char *s_agent_realestateassociationlicense; // string
+    char *dt_agent_permitexpiration; // string
     char *dt_agent_hiredate; // string
     char *dt_agent_leavedate; // string
     char *dt_agent_contractdate; // string
@@ -84,6 +85,7 @@ __attribute__((deprecated)) agent_list_element_t *agent_list_element_create(
     int *i_agent_longdistancecode,
     int *i_agent_bannernumber,
     char *s_agent_realestateassociationlicense,
+    char *dt_agent_permitexpiration,
     char *dt_agent_hiredate,
     char *dt_agent_leavedate,
     char *dt_agent_contractdate,

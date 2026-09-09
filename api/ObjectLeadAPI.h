@@ -7,6 +7,8 @@
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
 #include "../model/header_accept_language.h"
+#include "../model/lead_batch_download_v1_request.h"
+#include "../model/lead_get_attachments_v1_response.h"
 #include "../model/lead_get_list_v1_response.h"
 #include "../model/lead_import_into_edm_v1_request.h"
 #include "../model/lead_import_into_edm_v1_response.h"
@@ -16,6 +18,18 @@ typedef enum  { ezmax_api_definition__full_leadGetListV1_EORDERBY_NULL = 0, ezma
 
 // Enum  for ObjectLeadAPI_leadGetListV1
 typedef enum  { ezmax_api_definition__full_leadGetListV1__NULL = 0, ezmax_api_definition__full_leadGetListV1__*, ezmax_api_definition__full_leadGetListV1__en, ezmax_api_definition__full_leadGetListV1__fr } ezmax_api_definition__full_leadGetListV1_Accept-Language_e;
+
+
+// Download multiples attachments from a Lead
+//
+binary_t*
+ObjectLeadAPI_leadBatchDownloadV1(apiClient_t *apiClient, int *pkiLeadID, lead_batch_download_v1_request_t *lead_batch_download_v1_request);
+
+
+// Retrieve Lead's attachments
+//
+lead_get_attachments_v1_response_t*
+ObjectLeadAPI_leadGetAttachmentsV1(apiClient_t *apiClient, int *pkiLeadID);
 
 
 // Retrieve Lead list

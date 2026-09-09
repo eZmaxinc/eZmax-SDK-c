@@ -9,6 +9,199 @@
 #define MAX_NUMBER_LENGTH_LONG 21
 
 
+// Download multiples attachments from an Electronicfundstransfer
+//
+binary_t*
+ObjectElectronicfundstransferAPI_electronicfundstransferBatchDownloadV1(apiClient_t *apiClient, int *pkiElectronicfundstransferID, electronicfundstransfer_batch_download_v1_request_t *electronicfundstransfer_batch_download_v1_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/electronicfundstransfer/{pkiElectronicfundstransferID}/batchDownload");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiElectronicfundstransferID =  + sizeof("{ pkiElectronicfundstransferID }") - 1;
+    if(pkiElectronicfundstransferID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiElectronicfundstransferID = malloc(sizeOfPathParams_pkiElectronicfundstransferID);
+    snprintf(localVarToReplace_pkiElectronicfundstransferID, sizeOfPathParams_pkiElectronicfundstransferID, "{%s}", "pkiElectronicfundstransferID");
+
+    char localVarBuff_pkiElectronicfundstransferID[256];
+    snprintf(localVarBuff_pkiElectronicfundstransferID, sizeof localVarBuff_pkiElectronicfundstransferID, "%ld", (long)*pkiElectronicfundstransferID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiElectronicfundstransferID, localVarBuff_pkiElectronicfundstransferID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_electronicfundstransfer_batch_download_v1_request = NULL;
+    if (electronicfundstransfer_batch_download_v1_request != NULL)
+    {
+        //not string, not binary
+        localVarSingleItemJSON_electronicfundstransfer_batch_download_v1_request = electronicfundstransfer_batch_download_v1_request_convertToJSON(electronicfundstransfer_batch_download_v1_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_electronicfundstransfer_batch_download_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
+    }
+    list_addElement(localVarHeaderType,"application/zip"); //produces
+    list_addElement(localVarHeaderType,"text/xml"); //produces
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 406) {
+    //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body.");
+    //}
+    //primitive return type simple binary
+    binary_t* elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300)
+        elementToReturn = instantiate_binary_t(apiClient->dataReceived, apiClient->dataReceivedLen);
+
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiElectronicfundstransferID);
+    if (localVarSingleItemJSON_electronicfundstransfer_batch_download_v1_request) {
+        cJSON_Delete(localVarSingleItemJSON_electronicfundstransfer_batch_download_v1_request);
+        localVarSingleItemJSON_electronicfundstransfer_batch_download_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Electronicfundstransfer's attachments
+//
+electronicfundstransfer_get_attachments_v1_response_t*
+ObjectElectronicfundstransferAPI_electronicfundstransferGetAttachmentsV1(apiClient_t *apiClient, int *pkiElectronicfundstransferID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/electronicfundstransfer/{pkiElectronicfundstransferID}/getAttachments");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiElectronicfundstransferID =  + sizeof("{ pkiElectronicfundstransferID }") - 1;
+    if(pkiElectronicfundstransferID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiElectronicfundstransferID = malloc(sizeOfPathParams_pkiElectronicfundstransferID);
+    snprintf(localVarToReplace_pkiElectronicfundstransferID, sizeOfPathParams_pkiElectronicfundstransferID, "{%s}", "pkiElectronicfundstransferID");
+
+    char localVarBuff_pkiElectronicfundstransferID[256];
+    snprintf(localVarBuff_pkiElectronicfundstransferID, sizeof localVarBuff_pkiElectronicfundstransferID, "%ld", (long)*pkiElectronicfundstransferID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiElectronicfundstransferID, localVarBuff_pkiElectronicfundstransferID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    electronicfundstransfer_get_attachments_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectElectronicfundstransferAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = electronicfundstransfer_get_attachments_v1_response_parseFromJSON(ObjectElectronicfundstransferAPIlocalVarJSON);
+        cJSON_Delete(ObjectElectronicfundstransferAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiElectronicfundstransferID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Retrieve Communication count
 //
 // 
@@ -65,7 +258,7 @@ ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationCountV1(
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     electronicfundstransfer_get_communication_count_v1_response_t *elementToReturn = NULL;
@@ -154,7 +347,7 @@ ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationListV1(a
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     electronicfundstransfer_get_communication_list_v1_response_t *elementToReturn = NULL;
@@ -243,7 +436,7 @@ ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationrecipien
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     electronicfundstransfer_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
@@ -332,7 +525,7 @@ ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationsendersV
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     electronicfundstransfer_get_communicationsenders_v1_response_t *elementToReturn = NULL;
@@ -432,7 +625,7 @@ ObjectElectronicfundstransferAPI_electronicfundstransferImportIntoEDMV1(apiClien
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     electronicfundstransfer_import_into_edm_v1_response_t *elementToReturn = NULL;

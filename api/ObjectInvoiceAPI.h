@@ -6,6 +6,7 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
+#include "../model/invoice_batch_download_v1_request.h"
 #include "../model/invoice_get_attachments_v1_response.h"
 #include "../model/invoice_get_communication_count_v1_response.h"
 #include "../model/invoice_get_communication_list_v1_response.h"
@@ -13,6 +14,12 @@
 #include "../model/invoice_get_communicationsenders_v1_response.h"
 #include "../model/invoice_import_into_edm_v1_request.h"
 #include "../model/invoice_import_into_edm_v1_response.h"
+
+
+// Download multiples attachments from an Invoice
+//
+binary_t*
+ObjectInvoiceAPI_invoiceBatchDownloadV1(apiClient_t *apiClient, int *pkiInvoiceID, invoice_batch_download_v1_request_t *invoice_batch_download_v1_request);
 
 
 // Retrieve Invoice's Attachments

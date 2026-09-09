@@ -104,6 +104,191 @@ end:
 */
 
 
+// Download multiples attachments from a Supplier
+//
+binary_t*
+ObjectSupplierAPI_supplierBatchDownloadV1(apiClient_t *apiClient, int *pkiSupplierID, supplier_batch_download_v1_request_t *supplier_batch_download_v1_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/supplier/{pkiSupplierID}/batchDownload");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiSupplierID =  + sizeof("{ pkiSupplierID }") - 1;
+    if(pkiSupplierID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiSupplierID = malloc(sizeOfPathParams_pkiSupplierID);
+    snprintf(localVarToReplace_pkiSupplierID, sizeOfPathParams_pkiSupplierID, "{%s}", "pkiSupplierID");
+
+    char localVarBuff_pkiSupplierID[256];
+    snprintf(localVarBuff_pkiSupplierID, sizeof localVarBuff_pkiSupplierID, "%ld", (long)*pkiSupplierID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiSupplierID, localVarBuff_pkiSupplierID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_supplier_batch_download_v1_request = NULL;
+    if (supplier_batch_download_v1_request != NULL)
+    {
+        //not string, not binary
+        localVarSingleItemJSON_supplier_batch_download_v1_request = supplier_batch_download_v1_request_convertToJSON(supplier_batch_download_v1_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_supplier_batch_download_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
+    }
+    list_addElement(localVarHeaderType,"application/zip"); //produces
+    list_addElement(localVarHeaderType,"text/xml"); //produces
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //primitive return type simple binary
+    binary_t* elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300)
+        elementToReturn = instantiate_binary_t(apiClient->dataReceived, apiClient->dataReceivedLen);
+
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiSupplierID);
+    if (localVarSingleItemJSON_supplier_batch_download_v1_request) {
+        cJSON_Delete(localVarSingleItemJSON_supplier_batch_download_v1_request);
+        localVarSingleItemJSON_supplier_batch_download_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Supplier's attachments
+//
+supplier_get_attachments_v1_response_t*
+ObjectSupplierAPI_supplierGetAttachmentsV1(apiClient_t *apiClient, int *pkiSupplierID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/supplier/{pkiSupplierID}/getAttachments");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiSupplierID =  + sizeof("{ pkiSupplierID }") - 1;
+    if(pkiSupplierID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiSupplierID = malloc(sizeOfPathParams_pkiSupplierID);
+    snprintf(localVarToReplace_pkiSupplierID, sizeOfPathParams_pkiSupplierID, "{%s}", "pkiSupplierID");
+
+    char localVarBuff_pkiSupplierID[256];
+    snprintf(localVarBuff_pkiSupplierID, sizeof localVarBuff_pkiSupplierID, "%ld", (long)*pkiSupplierID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiSupplierID, localVarBuff_pkiSupplierID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    supplier_get_attachments_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectSupplierAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = supplier_get_attachments_v1_response_parseFromJSON(ObjectSupplierAPIlocalVarJSON);
+        cJSON_Delete(ObjectSupplierAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiSupplierID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Retrieve Supplier list
 //
 // 
@@ -358,7 +543,7 @@ ObjectSupplierAPI_supplierImportIntoEDMV1(apiClient_t *apiClient, int *pkiSuppli
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     supplier_import_into_edm_v1_response_t *elementToReturn = NULL;

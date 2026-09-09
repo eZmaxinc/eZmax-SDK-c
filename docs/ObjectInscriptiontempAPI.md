@@ -4,6 +4,8 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**ObjectInscriptiontempAPI_inscriptiontempBatchDownloadV1**](ObjectInscriptiontempAPI.md#ObjectInscriptiontempAPI_inscriptiontempBatchDownloadV1) | **POST** /1/object/inscriptiontemp/{pkiInscriptiontempID}/batchDownload | Download multiples attachments from a Inscriptiontemp
+[**ObjectInscriptiontempAPI_inscriptiontempGetAttachmentsV1**](ObjectInscriptiontempAPI.md#ObjectInscriptiontempAPI_inscriptiontempGetAttachmentsV1) | **GET** /1/object/inscriptiontemp/{pkiInscriptiontempID}/getAttachments | Retrieve Inscriptiontemp&#39;s attachments
 [**ObjectInscriptiontempAPI_inscriptiontempGetCommunicationCountV1**](ObjectInscriptiontempAPI.md#ObjectInscriptiontempAPI_inscriptiontempGetCommunicationCountV1) | **GET** /1/object/inscriptiontemp/{pkiInscriptiontempID}/getCommunicationCount | Retrieve Communication count
 [**ObjectInscriptiontempAPI_inscriptiontempGetCommunicationListV1**](ObjectInscriptiontempAPI.md#ObjectInscriptiontempAPI_inscriptiontempGetCommunicationListV1) | **GET** /1/object/inscriptiontemp/{pkiInscriptiontempID}/getCommunicationList | Retrieve Communication list
 [**ObjectInscriptiontempAPI_inscriptiontempGetCommunicationrecipientsV1**](ObjectInscriptiontempAPI.md#ObjectInscriptiontempAPI_inscriptiontempGetCommunicationrecipientsV1) | **GET** /1/object/inscriptiontemp/{pkiInscriptiontempID}/getCommunicationrecipients | Retrieve Inscriptiontemp&#39;s Communicationrecipient
@@ -11,6 +13,66 @@ Method | HTTP request | Description
 [**ObjectInscriptiontempAPI_inscriptiontempGetListV1**](ObjectInscriptiontempAPI.md#ObjectInscriptiontempAPI_inscriptiontempGetListV1) | **GET** /1/object/inscriptiontemp/getList | Retrieve Inscriptiontemp list
 [**ObjectInscriptiontempAPI_inscriptiontempImportIntoEDMV1**](ObjectInscriptiontempAPI.md#ObjectInscriptiontempAPI_inscriptiontempImportIntoEDMV1) | **POST** /1/object/inscriptiontemp/{pkiInscriptiontempID}/importIntoEDM | Import attachments into the Inscriptiontemp
 
+
+# **ObjectInscriptiontempAPI_inscriptiontempBatchDownloadV1**
+```c
+// Download multiples attachments from a Inscriptiontemp
+//
+binary_t** ObjectInscriptiontempAPI_inscriptiontempBatchDownloadV1(apiClient_t *apiClient, int *pkiInscriptiontempID, inscriptiontemp_batch_download_v1_request_t *inscriptiontemp_batch_download_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiInscriptiontempID** | **int \*** |  | 
+**inscriptiontemp_batch_download_v1_request** | **[inscriptiontemp_batch_download_v1_request_t](inscriptiontemp_batch_download_v1_request.md) \*** |  | 
+
+### Return type
+
+binary_t**
+
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/zip, text/xml, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectInscriptiontempAPI_inscriptiontempGetAttachmentsV1**
+```c
+// Retrieve Inscriptiontemp's attachments
+//
+inscriptiontemp_get_attachments_v1_response_t* ObjectInscriptiontempAPI_inscriptiontempGetAttachmentsV1(apiClient_t *apiClient, int *pkiInscriptiontempID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiInscriptiontempID** | **int \*** |  | 
+
+### Return type
+
+[inscriptiontemp_get_attachments_v1_response_t](inscriptiontemp_get_attachments_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ObjectInscriptiontempAPI_inscriptiontempGetCommunicationCountV1**
 ```c

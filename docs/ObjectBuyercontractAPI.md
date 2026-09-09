@@ -4,6 +4,8 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**ObjectBuyercontractAPI_buyercontractBatchDownloadV1**](ObjectBuyercontractAPI.md#ObjectBuyercontractAPI_buyercontractBatchDownloadV1) | **POST** /1/object/buyercontract/{pkiBuyercontractID}/batchDownload | Download multiples attachments from a Buyercontract
+[**ObjectBuyercontractAPI_buyercontractGetAttachmentsV1**](ObjectBuyercontractAPI.md#ObjectBuyercontractAPI_buyercontractGetAttachmentsV1) | **GET** /1/object/buyercontract/{pkiBuyercontractID}/getAttachments | Retrieve Buyercontract&#39;s attachments
 [**ObjectBuyercontractAPI_buyercontractGetCommunicationCountV1**](ObjectBuyercontractAPI.md#ObjectBuyercontractAPI_buyercontractGetCommunicationCountV1) | **GET** /1/object/buyercontract/{pkiBuyercontractID}/getCommunicationCount | Retrieve Communication count
 [**ObjectBuyercontractAPI_buyercontractGetCommunicationListV1**](ObjectBuyercontractAPI.md#ObjectBuyercontractAPI_buyercontractGetCommunicationListV1) | **GET** /1/object/buyercontract/{pkiBuyercontractID}/getCommunicationList | Retrieve Communication list
 [**ObjectBuyercontractAPI_buyercontractGetCommunicationrecipientsV1**](ObjectBuyercontractAPI.md#ObjectBuyercontractAPI_buyercontractGetCommunicationrecipientsV1) | **GET** /1/object/buyercontract/{pkiBuyercontractID}/getCommunicationrecipients | Retrieve Buyercontract&#39;s Communicationrecipient
@@ -11,6 +13,66 @@ Method | HTTP request | Description
 [**ObjectBuyercontractAPI_buyercontractGetListV1**](ObjectBuyercontractAPI.md#ObjectBuyercontractAPI_buyercontractGetListV1) | **GET** /1/object/buyercontract/getList | Retrieve Buyercontract list
 [**ObjectBuyercontractAPI_buyercontractImportIntoEDMV1**](ObjectBuyercontractAPI.md#ObjectBuyercontractAPI_buyercontractImportIntoEDMV1) | **POST** /1/object/buyercontract/{pkiBuyercontractID}/importIntoEDM | Import attachments into the Buyercontract
 
+
+# **ObjectBuyercontractAPI_buyercontractBatchDownloadV1**
+```c
+// Download multiples attachments from a Buyercontract
+//
+binary_t** ObjectBuyercontractAPI_buyercontractBatchDownloadV1(apiClient_t *apiClient, int *pkiBuyercontractID, buyercontract_batch_download_v1_request_t *buyercontract_batch_download_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiBuyercontractID** | **int \*** |  | 
+**buyercontract_batch_download_v1_request** | **[buyercontract_batch_download_v1_request_t](buyercontract_batch_download_v1_request.md) \*** |  | 
+
+### Return type
+
+binary_t**
+
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/zip, text/xml, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectBuyercontractAPI_buyercontractGetAttachmentsV1**
+```c
+// Retrieve Buyercontract's attachments
+//
+buyercontract_get_attachments_v1_response_t* ObjectBuyercontractAPI_buyercontractGetAttachmentsV1(apiClient_t *apiClient, int *pkiBuyercontractID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiBuyercontractID** | **int \*** |  | 
+
+### Return type
+
+[buyercontract_get_attachments_v1_response_t](buyercontract_get_attachments_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ObjectBuyercontractAPI_buyercontractGetCommunicationCountV1**
 ```c

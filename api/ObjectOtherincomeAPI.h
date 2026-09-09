@@ -7,6 +7,8 @@
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
 #include "../model/header_accept_language.h"
+#include "../model/otherincome_batch_download_v1_request.h"
+#include "../model/otherincome_get_attachments_v1_response.h"
 #include "../model/otherincome_get_communication_count_v1_response.h"
 #include "../model/otherincome_get_communication_list_v1_response.h"
 #include "../model/otherincome_get_communicationrecipients_v1_response.h"
@@ -20,6 +22,18 @@ typedef enum  { ezmax_api_definition__full_otherincomeGetListV1_EORDERBY_NULL = 
 
 // Enum  for ObjectOtherincomeAPI_otherincomeGetListV1
 typedef enum  { ezmax_api_definition__full_otherincomeGetListV1__NULL = 0, ezmax_api_definition__full_otherincomeGetListV1__*, ezmax_api_definition__full_otherincomeGetListV1__en, ezmax_api_definition__full_otherincomeGetListV1__fr } ezmax_api_definition__full_otherincomeGetListV1_Accept-Language_e;
+
+
+// Download multiples attachments from a Otherincome
+//
+binary_t*
+ObjectOtherincomeAPI_otherincomeBatchDownloadV1(apiClient_t *apiClient, int *pkiOtherincomeID, otherincome_batch_download_v1_request_t *otherincome_batch_download_v1_request);
+
+
+// Retrieve Otherincome's attachments
+//
+otherincome_get_attachments_v1_response_t*
+ObjectOtherincomeAPI_otherincomeGetAttachmentsV1(apiClient_t *apiClient, int *pkiOtherincomeID);
 
 
 // Retrieve Communication count

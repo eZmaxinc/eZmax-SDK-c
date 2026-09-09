@@ -6,6 +6,8 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
+#include "../model/customer_batch_download_v1_request.h"
+#include "../model/customer_get_attachments_v1_response.h"
 #include "../model/customer_get_autocomplete_v2_response.h"
 #include "../model/customer_get_object_v2_response.h"
 #include "../model/customer_import_into_edm_v1_request.h"
@@ -20,6 +22,18 @@ typedef enum  { ezmax_api_definition__full_customerGetAutocompleteV2_EFILTERACTI
 
 // Enum  for ObjectCustomerAPI_customerGetAutocompleteV2
 typedef enum  { ezmax_api_definition__full_customerGetAutocompleteV2__NULL = 0, ezmax_api_definition__full_customerGetAutocompleteV2__*, ezmax_api_definition__full_customerGetAutocompleteV2__en, ezmax_api_definition__full_customerGetAutocompleteV2__fr } ezmax_api_definition__full_customerGetAutocompleteV2_Accept-Language_e;
+
+
+// Download multiples attachments from a Customer
+//
+binary_t*
+ObjectCustomerAPI_customerBatchDownloadV1(apiClient_t *apiClient, int *pkiCustomerID, customer_batch_download_v1_request_t *customer_batch_download_v1_request);
+
+
+// Retrieve Customer's attachments
+//
+customer_get_attachments_v1_response_t*
+ObjectCustomerAPI_customerGetAttachmentsV1(apiClient_t *apiClient, int *pkiCustomerID);
 
 
 // Retrieve Customers and IDs

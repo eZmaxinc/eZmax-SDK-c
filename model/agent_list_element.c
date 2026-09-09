@@ -21,6 +21,7 @@ static agent_list_element_t *agent_list_element_create_internal(
     int *i_agent_longdistancecode,
     int *i_agent_bannernumber,
     char *s_agent_realestateassociationlicense,
+    char *dt_agent_permitexpiration,
     char *dt_agent_hiredate,
     char *dt_agent_leavedate,
     char *dt_agent_contractdate,
@@ -72,6 +73,7 @@ static agent_list_element_t *agent_list_element_create_internal(
     agent_list_element_local_var->i_agent_longdistancecode = i_agent_longdistancecode;
     agent_list_element_local_var->i_agent_bannernumber = i_agent_bannernumber;
     agent_list_element_local_var->s_agent_realestateassociationlicense = s_agent_realestateassociationlicense;
+    agent_list_element_local_var->dt_agent_permitexpiration = dt_agent_permitexpiration;
     agent_list_element_local_var->dt_agent_hiredate = dt_agent_hiredate;
     agent_list_element_local_var->dt_agent_leavedate = dt_agent_leavedate;
     agent_list_element_local_var->dt_agent_contractdate = dt_agent_contractdate;
@@ -120,6 +122,7 @@ __attribute__((deprecated)) agent_list_element_t *agent_list_element_create(
     int *i_agent_longdistancecode,
     int *i_agent_bannernumber,
     char *s_agent_realestateassociationlicense,
+    char *dt_agent_permitexpiration,
     char *dt_agent_hiredate,
     char *dt_agent_leavedate,
     char *dt_agent_contractdate,
@@ -246,6 +249,7 @@ __attribute__((deprecated)) agent_list_element_t *agent_list_element_create(
         i_agent_longdistancecode_copy,
         i_agent_bannernumber_copy,
         s_agent_realestateassociationlicense,
+        dt_agent_permitexpiration,
         dt_agent_hiredate,
         dt_agent_leavedate,
         dt_agent_contractdate,
@@ -365,6 +369,10 @@ void agent_list_element_free(agent_list_element_t *agent_list_element) {
     if (agent_list_element->s_agent_realestateassociationlicense) {
         free(agent_list_element->s_agent_realestateassociationlicense);
         agent_list_element->s_agent_realestateassociationlicense = NULL;
+    }
+    if (agent_list_element->dt_agent_permitexpiration) {
+        free(agent_list_element->dt_agent_permitexpiration);
+        agent_list_element->dt_agent_permitexpiration = NULL;
     }
     if (agent_list_element->dt_agent_hiredate) {
         free(agent_list_element->dt_agent_hiredate);
@@ -613,6 +621,14 @@ cJSON *agent_list_element_convertToJSON(agent_list_element_t *agent_list_element
     }
     if(cJSON_AddStringToObject(item, "sAgentRealestateassociationlicense", agent_list_element->s_agent_realestateassociationlicense) == NULL) {
     goto fail; //String
+    }
+
+
+    // agent_list_element->dt_agent_permitexpiration
+    if(agent_list_element->dt_agent_permitexpiration) {
+    if(cJSON_AddStringToObject(item, "dtAgentPermitexpiration", agent_list_element->dt_agent_permitexpiration) == NULL) {
+    goto fail; //String
+    }
     }
 
 
@@ -910,6 +926,8 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     int *i_agent_bannernumber_local_var = NULL;
 
     char *s_agent_realestateassociationlicense_local_str = NULL;
+
+    char *dt_agent_permitexpiration_local_str = NULL;
 
     char *dt_agent_hiredate_local_str = NULL;
 
@@ -1240,6 +1258,18 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     if(!cJSON_IsString(s_agent_realestateassociationlicense))
     {
     goto end; //String
+    }
+
+    // agent_list_element->dt_agent_permitexpiration
+    cJSON *dt_agent_permitexpiration = cJSON_GetObjectItemCaseSensitive(agent_list_elementJSON, "dtAgentPermitexpiration");
+    if (cJSON_IsNull(dt_agent_permitexpiration)) {
+        dt_agent_permitexpiration = NULL;
+    }
+    if (dt_agent_permitexpiration) { 
+    if(!cJSON_IsString(dt_agent_permitexpiration) && !cJSON_IsNull(dt_agent_permitexpiration))
+    {
+    goto end; //String
+    }
     }
 
     // agent_list_element->dt_agent_hiredate
@@ -1670,6 +1700,7 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
     if (s_realestateboardnumber_number && !cJSON_IsNull(s_realestateboardnumber_number)) s_realestateboardnumber_number_local_str = strdup(s_realestateboardnumber_number->valuestring);
     if (s_agent_code && !cJSON_IsNull(s_agent_code)) s_agent_code_local_str = strdup(s_agent_code->valuestring);
     if (s_agent_realestateassociationlicense && !cJSON_IsNull(s_agent_realestateassociationlicense)) s_agent_realestateassociationlicense_local_str = strdup(s_agent_realestateassociationlicense->valuestring);
+    if (dt_agent_permitexpiration && !cJSON_IsNull(dt_agent_permitexpiration)) dt_agent_permitexpiration_local_str = strdup(dt_agent_permitexpiration->valuestring);
     if (dt_agent_hiredate && !cJSON_IsNull(dt_agent_hiredate)) dt_agent_hiredate_local_str = strdup(dt_agent_hiredate->valuestring);
     if (dt_agent_leavedate && !cJSON_IsNull(dt_agent_leavedate)) dt_agent_leavedate_local_str = strdup(dt_agent_leavedate->valuestring);
     if (dt_agent_contractdate && !cJSON_IsNull(dt_agent_contractdate)) dt_agent_contractdate_local_str = strdup(dt_agent_contractdate->valuestring);
@@ -1707,6 +1738,7 @@ agent_list_element_t *agent_list_element_parseFromJSON(cJSON *agent_list_element
         i_agent_longdistancecode_local_var,
         i_agent_bannernumber_local_var,
         s_agent_realestateassociationlicense_local_str,
+        dt_agent_permitexpiration_local_str,
         dt_agent_hiredate_local_str,
         dt_agent_leavedate_local_str,
         dt_agent_contractdate_local_str,
@@ -1803,6 +1835,10 @@ end:
     if (s_agent_realestateassociationlicense_local_str) {
         free(s_agent_realestateassociationlicense_local_str);
         s_agent_realestateassociationlicense_local_str = NULL;
+    }
+    if (dt_agent_permitexpiration_local_str) {
+        free(dt_agent_permitexpiration_local_str);
+        dt_agent_permitexpiration_local_str = NULL;
     }
     if (dt_agent_hiredate_local_str) {
         free(dt_agent_hiredate_local_str);

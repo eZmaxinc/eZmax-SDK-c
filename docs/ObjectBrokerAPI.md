@@ -4,10 +4,72 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**ObjectBrokerAPI_brokerBatchDownloadV1**](ObjectBrokerAPI.md#ObjectBrokerAPI_brokerBatchDownloadV1) | **POST** /1/object/broker/{pkiBrokerID}/batchDownload | Download multiples attachments from a Broker
+[**ObjectBrokerAPI_brokerGetAttachmentsV1**](ObjectBrokerAPI.md#ObjectBrokerAPI_brokerGetAttachmentsV1) | **GET** /1/object/broker/{pkiBrokerID}/getAttachments | Retrieve Broker&#39;s attachments
 [**ObjectBrokerAPI_brokerGetAutocompleteV2**](ObjectBrokerAPI.md#ObjectBrokerAPI_brokerGetAutocompleteV2) | **GET** /2/object/broker/getAutocomplete/{sSelector} | Retrieve Brokers and IDs
 [**ObjectBrokerAPI_brokerGetListV1**](ObjectBrokerAPI.md#ObjectBrokerAPI_brokerGetListV1) | **GET** /1/object/broker/getList | Retrieve Broker list
 [**ObjectBrokerAPI_brokerImportIntoEDMV1**](ObjectBrokerAPI.md#ObjectBrokerAPI_brokerImportIntoEDMV1) | **POST** /1/object/broker/{pkiBrokerID}/importIntoEDM | Import attachments into the Broker
 
+
+# **ObjectBrokerAPI_brokerBatchDownloadV1**
+```c
+// Download multiples attachments from a Broker
+//
+binary_t** ObjectBrokerAPI_brokerBatchDownloadV1(apiClient_t *apiClient, int *pkiBrokerID, broker_batch_download_v1_request_t *broker_batch_download_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiBrokerID** | **int \*** |  | 
+**broker_batch_download_v1_request** | **[broker_batch_download_v1_request_t](broker_batch_download_v1_request.md) \*** |  | 
+
+### Return type
+
+binary_t**
+
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/zip, text/xml, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectBrokerAPI_brokerGetAttachmentsV1**
+```c
+// Retrieve Broker's attachments
+//
+broker_get_attachments_v1_response_t* ObjectBrokerAPI_brokerGetAttachmentsV1(apiClient_t *apiClient, int *pkiBrokerID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiBrokerID** | **int \*** |  | 
+
+### Return type
+
+[broker_get_attachments_v1_response_t](broker_get_attachments_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ObjectBrokerAPI_brokerGetAutocompleteV2**
 ```c

@@ -23,6 +23,8 @@ typedef struct user_list_element_t user_list_element_t;
 
 typedef struct user_list_element_t {
     int *pki_user_id; //numeric
+    int *fki_agent_id; //numeric
+    int *fki_broker_id; //numeric
     char *s_user_firstname; // string
     char *s_user_lastname; // string
     char *s_user_loginname; // string
@@ -40,6 +42,8 @@ typedef struct user_list_element_t {
 
 __attribute__((deprecated)) user_list_element_t *user_list_element_create(
     int *pki_user_id,
+    int *fki_agent_id,
+    int *fki_broker_id,
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_user_loginname,

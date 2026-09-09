@@ -7,6 +7,8 @@
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
 #include "../model/header_accept_language.h"
+#include "../model/supplier_batch_download_v1_request.h"
+#include "../model/supplier_get_attachments_v1_response.h"
 #include "../model/supplier_get_list_v1_response.h"
 #include "../model/supplier_import_into_edm_v1_request.h"
 #include "../model/supplier_import_into_edm_v1_response.h"
@@ -16,6 +18,18 @@ typedef enum  { ezmax_api_definition__full_supplierGetListV1_EORDERBY_NULL = 0, 
 
 // Enum  for ObjectSupplierAPI_supplierGetListV1
 typedef enum  { ezmax_api_definition__full_supplierGetListV1__NULL = 0, ezmax_api_definition__full_supplierGetListV1__*, ezmax_api_definition__full_supplierGetListV1__en, ezmax_api_definition__full_supplierGetListV1__fr } ezmax_api_definition__full_supplierGetListV1_Accept-Language_e;
+
+
+// Download multiples attachments from a Supplier
+//
+binary_t*
+ObjectSupplierAPI_supplierBatchDownloadV1(apiClient_t *apiClient, int *pkiSupplierID, supplier_batch_download_v1_request_t *supplier_batch_download_v1_request);
+
+
+// Retrieve Supplier's attachments
+//
+supplier_get_attachments_v1_response_t*
+ObjectSupplierAPI_supplierGetAttachmentsV1(apiClient_t *apiClient, int *pkiSupplierID);
 
 
 // Retrieve Supplier list

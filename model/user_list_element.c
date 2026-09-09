@@ -7,6 +7,8 @@
 
 static user_list_element_t *user_list_element_create_internal(
     int *pki_user_id,
+    int *fki_agent_id,
+    int *fki_broker_id,
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_user_loginname,
@@ -26,6 +28,8 @@ static user_list_element_t *user_list_element_create_internal(
     memset(user_list_element_local_var, 0, sizeof(user_list_element_t));
     user_list_element_local_var->_library_owned = 1;
     user_list_element_local_var->pki_user_id = pki_user_id;
+    user_list_element_local_var->fki_agent_id = fki_agent_id;
+    user_list_element_local_var->fki_broker_id = fki_broker_id;
     user_list_element_local_var->s_user_firstname = s_user_firstname;
     user_list_element_local_var->s_user_lastname = s_user_lastname;
     user_list_element_local_var->s_user_loginname = s_user_loginname;
@@ -42,6 +46,8 @@ static user_list_element_t *user_list_element_create_internal(
 
 __attribute__((deprecated)) user_list_element_t *user_list_element_create(
     int *pki_user_id,
+    int *fki_agent_id,
+    int *fki_broker_id,
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_user_loginname,
@@ -59,6 +65,16 @@ __attribute__((deprecated)) user_list_element_t *user_list_element_create(
         pki_user_id_copy = malloc(sizeof(int));
         if (pki_user_id_copy) *pki_user_id_copy = *pki_user_id;
     }
+    int *fki_agent_id_copy = NULL;
+    if (fki_agent_id) {
+        fki_agent_id_copy = malloc(sizeof(int));
+        if (fki_agent_id_copy) *fki_agent_id_copy = *fki_agent_id;
+    }
+    int *fki_broker_id_copy = NULL;
+    if (fki_broker_id) {
+        fki_broker_id_copy = malloc(sizeof(int));
+        if (fki_broker_id_copy) *fki_broker_id_copy = *fki_broker_id;
+    }
     int *b_user_isactive_copy = NULL;
     if (b_user_isactive) {
         b_user_isactive_copy = malloc(sizeof(int));
@@ -71,6 +87,8 @@ __attribute__((deprecated)) user_list_element_t *user_list_element_create(
     }
     user_list_element_t *result = user_list_element_create_internal (
         pki_user_id_copy,
+        fki_agent_id_copy,
+        fki_broker_id_copy,
         s_user_firstname,
         s_user_lastname,
         s_user_loginname,
@@ -85,6 +103,8 @@ __attribute__((deprecated)) user_list_element_t *user_list_element_create(
         );
     if (!result) {
         free(pki_user_id_copy);
+        free(fki_agent_id_copy);
+        free(fki_broker_id_copy);
         free(b_user_isactive_copy);
         free(b_user_suspended_copy);
     }
@@ -103,6 +123,14 @@ void user_list_element_free(user_list_element_t *user_list_element) {
     if (user_list_element->pki_user_id) {
         free(user_list_element->pki_user_id);
         user_list_element->pki_user_id = NULL;
+    }
+    if (user_list_element->fki_agent_id) {
+        free(user_list_element->fki_agent_id);
+        user_list_element->fki_agent_id = NULL;
+    }
+    if (user_list_element->fki_broker_id) {
+        free(user_list_element->fki_broker_id);
+        user_list_element->fki_broker_id = NULL;
     }
     if (user_list_element->s_user_firstname) {
         free(user_list_element->s_user_firstname);
@@ -148,6 +176,22 @@ cJSON *user_list_element_convertToJSON(user_list_element_t *user_list_element) {
     }
     if(cJSON_AddNumberToObject(item, "pkiUserID", *user_list_element->pki_user_id) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // user_list_element->fki_agent_id
+    if(user_list_element->fki_agent_id) {
+    if(cJSON_AddNumberToObject(item, "fkiAgentID", *user_list_element->fki_agent_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // user_list_element->fki_broker_id
+    if(user_list_element->fki_broker_id) {
+    if(cJSON_AddNumberToObject(item, "fkiBrokerID", *user_list_element->fki_broker_id) == NULL) {
+    goto fail; //Numeric
+    }
     }
 
 
@@ -276,6 +320,12 @@ user_list_element_t *user_list_element_parseFromJSON(cJSON *user_list_elementJSO
     // define the local variable for user_list_element->pki_user_id
     int *pki_user_id_local_var = NULL;
 
+    // define the local variable for user_list_element->fki_agent_id
+    int *fki_agent_id_local_var = NULL;
+
+    // define the local variable for user_list_element->fki_broker_id
+    int *fki_broker_id_local_var = NULL;
+
     char *s_user_firstname_local_str = NULL;
 
     char *s_user_lastname_local_str = NULL;
@@ -323,6 +373,42 @@ user_list_element_t *user_list_element_parseFromJSON(cJSON *user_list_elementJSO
         goto end;
     }
     *pki_user_id_local_var = pki_user_id->valuedouble;
+
+    // user_list_element->fki_agent_id
+    cJSON *fki_agent_id = cJSON_GetObjectItemCaseSensitive(user_list_elementJSON, "fkiAgentID");
+    if (cJSON_IsNull(fki_agent_id)) {
+        fki_agent_id = NULL;
+    }
+    if (fki_agent_id) { 
+    if(!cJSON_IsNumber(fki_agent_id))
+    {
+    goto end; //Numeric
+    }
+    fki_agent_id_local_var = malloc(sizeof(int));
+    if(!fki_agent_id_local_var)
+    {
+        goto end;
+    }
+    *fki_agent_id_local_var = fki_agent_id->valuedouble;
+    }
+
+    // user_list_element->fki_broker_id
+    cJSON *fki_broker_id = cJSON_GetObjectItemCaseSensitive(user_list_elementJSON, "fkiBrokerID");
+    if (cJSON_IsNull(fki_broker_id)) {
+        fki_broker_id = NULL;
+    }
+    if (fki_broker_id) { 
+    if(!cJSON_IsNumber(fki_broker_id))
+    {
+    goto end; //Numeric
+    }
+    fki_broker_id_local_var = malloc(sizeof(int));
+    if(!fki_broker_id_local_var)
+    {
+        goto end;
+    }
+    *fki_broker_id_local_var = fki_broker_id->valuedouble;
+    }
 
     // user_list_element->s_user_firstname
     cJSON *s_user_firstname = cJSON_GetObjectItemCaseSensitive(user_list_elementJSON, "sUserFirstname");
@@ -493,6 +579,8 @@ user_list_element_t *user_list_element_parseFromJSON(cJSON *user_list_elementJSO
 
     user_list_element_local_var = user_list_element_create_internal (
         pki_user_id_local_var,
+        fki_agent_id_local_var,
+        fki_broker_id_local_var,
         s_user_firstname_local_str,
         s_user_lastname_local_str,
         s_user_loginname_local_str,
@@ -515,6 +603,14 @@ end:
     if (pki_user_id_local_var) {
         free(pki_user_id_local_var);
         pki_user_id_local_var = NULL;
+    }
+    if (fki_agent_id_local_var) {
+        free(fki_agent_id_local_var);
+        fki_agent_id_local_var = NULL;
+    }
+    if (fki_broker_id_local_var) {
+        free(fki_broker_id_local_var);
+        fki_broker_id_local_var = NULL;
     }
     if (s_user_firstname_local_str) {
         free(s_user_firstname_local_str);

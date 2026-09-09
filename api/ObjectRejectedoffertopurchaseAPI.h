@@ -7,6 +7,8 @@
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
 #include "../model/header_accept_language.h"
+#include "../model/rejectedoffertopurchase_batch_download_v1_request.h"
+#include "../model/rejectedoffertopurchase_get_attachments_v1_response.h"
 #include "../model/rejectedoffertopurchase_get_communication_count_v1_response.h"
 #include "../model/rejectedoffertopurchase_get_communication_list_v1_response.h"
 #include "../model/rejectedoffertopurchase_get_communicationrecipients_v1_response.h"
@@ -20,6 +22,18 @@ typedef enum  { ezmax_api_definition__full_rejectedoffertopurchaseGetListV1_EORD
 
 // Enum  for ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseGetListV1
 typedef enum  { ezmax_api_definition__full_rejectedoffertopurchaseGetListV1__NULL = 0, ezmax_api_definition__full_rejectedoffertopurchaseGetListV1__*, ezmax_api_definition__full_rejectedoffertopurchaseGetListV1__en, ezmax_api_definition__full_rejectedoffertopurchaseGetListV1__fr } ezmax_api_definition__full_rejectedoffertopurchaseGetListV1_Accept-Language_e;
+
+
+// Download multiples attachments from a Rejectedoffertopurchase
+//
+binary_t*
+ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseBatchDownloadV1(apiClient_t *apiClient, int *pkiRejectedoffertopurchaseID, rejectedoffertopurchase_batch_download_v1_request_t *rejectedoffertopurchase_batch_download_v1_request);
+
+
+// Retrieve Rejectedoffertopurchase's attachments
+//
+rejectedoffertopurchase_get_attachments_v1_response_t*
+ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseGetAttachmentsV1(apiClient_t *apiClient, int *pkiRejectedoffertopurchaseID);
 
 
 // Retrieve Communication count

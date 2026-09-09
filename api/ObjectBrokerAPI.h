@@ -5,6 +5,8 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
+#include "../model/broker_batch_download_v1_request.h"
+#include "../model/broker_get_attachments_v1_response.h"
 #include "../model/broker_get_autocomplete_v2_response.h"
 #include "../model/broker_get_list_v1_response.h"
 #include "../model/broker_import_into_edm_v1_request.h"
@@ -26,6 +28,18 @@ typedef enum  { ezmax_api_definition__full_brokerGetListV1_EORDERBY_NULL = 0, ez
 
 // Enum  for ObjectBrokerAPI_brokerGetListV1
 typedef enum  { ezmax_api_definition__full_brokerGetListV1__NULL = 0, ezmax_api_definition__full_brokerGetListV1__*, ezmax_api_definition__full_brokerGetListV1__en, ezmax_api_definition__full_brokerGetListV1__fr } ezmax_api_definition__full_brokerGetListV1_Accept-Language_e;
+
+
+// Download multiples attachments from a Broker
+//
+binary_t*
+ObjectBrokerAPI_brokerBatchDownloadV1(apiClient_t *apiClient, int *pkiBrokerID, broker_batch_download_v1_request_t *broker_batch_download_v1_request);
+
+
+// Retrieve Broker's attachments
+//
+broker_get_attachments_v1_response_t*
+ObjectBrokerAPI_brokerGetAttachmentsV1(apiClient_t *apiClient, int *pkiBrokerID);
 
 
 // Retrieve Brokers and IDs

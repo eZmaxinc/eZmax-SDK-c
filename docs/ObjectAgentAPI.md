@@ -4,10 +4,72 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**ObjectAgentAPI_agentBatchDownloadV1**](ObjectAgentAPI.md#ObjectAgentAPI_agentBatchDownloadV1) | **POST** /1/object/agent/{pkiAgentID}/batchDownload | Download multiples attachments from a Agent
+[**ObjectAgentAPI_agentGetAttachmentsV1**](ObjectAgentAPI.md#ObjectAgentAPI_agentGetAttachmentsV1) | **GET** /1/object/agent/{pkiAgentID}/getAttachments | Retrieve Agent&#39;s attachments
 [**ObjectAgentAPI_agentGetAutocompleteV2**](ObjectAgentAPI.md#ObjectAgentAPI_agentGetAutocompleteV2) | **GET** /2/object/agent/getAutocomplete/{sSelector} | Retrieve Agents and IDs
 [**ObjectAgentAPI_agentGetListV1**](ObjectAgentAPI.md#ObjectAgentAPI_agentGetListV1) | **GET** /1/object/agent/getList | Retrieve Agent list
 [**ObjectAgentAPI_agentImportIntoEDMV1**](ObjectAgentAPI.md#ObjectAgentAPI_agentImportIntoEDMV1) | **POST** /1/object/agent/{pkiAgentID}/importIntoEDM | Import attachments into the Agent
 
+
+# **ObjectAgentAPI_agentBatchDownloadV1**
+```c
+// Download multiples attachments from a Agent
+//
+binary_t** ObjectAgentAPI_agentBatchDownloadV1(apiClient_t *apiClient, int *pkiAgentID, agent_batch_download_v1_request_t *agent_batch_download_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiAgentID** | **int \*** |  | 
+**agent_batch_download_v1_request** | **[agent_batch_download_v1_request_t](agent_batch_download_v1_request.md) \*** |  | 
+
+### Return type
+
+binary_t**
+
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/zip, text/xml, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectAgentAPI_agentGetAttachmentsV1**
+```c
+// Retrieve Agent's attachments
+//
+agent_get_attachments_v1_response_t* ObjectAgentAPI_agentGetAttachmentsV1(apiClient_t *apiClient, int *pkiAgentID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiAgentID** | **int \*** |  | 
+
+### Return type
+
+[agent_get_attachments_v1_response_t](agent_get_attachments_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ObjectAgentAPI_agentGetAutocompleteV2**
 ```c

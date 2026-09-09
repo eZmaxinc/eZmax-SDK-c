@@ -4,6 +4,8 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseBatchDownloadV1**](ObjectRejectedoffertopurchaseAPI.md#ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseBatchDownloadV1) | **POST** /1/object/rejectedoffertopurchase/{pkiRejectedoffertopurchaseID}/batchDownload | Download multiples attachments from a Rejectedoffertopurchase
+[**ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseGetAttachmentsV1**](ObjectRejectedoffertopurchaseAPI.md#ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseGetAttachmentsV1) | **GET** /1/object/rejectedoffertopurchase/{pkiRejectedoffertopurchaseID}/getAttachments | Retrieve Rejectedoffertopurchase&#39;s attachments
 [**ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseGetCommunicationCountV1**](ObjectRejectedoffertopurchaseAPI.md#ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseGetCommunicationCountV1) | **GET** /1/object/rejectedoffertopurchase/{pkiRejectedoffertopurchaseID}/getCommunicationCount | Retrieve Communication count
 [**ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseGetCommunicationListV1**](ObjectRejectedoffertopurchaseAPI.md#ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseGetCommunicationListV1) | **GET** /1/object/rejectedoffertopurchase/{pkiRejectedoffertopurchaseID}/getCommunicationList | Retrieve Communication list
 [**ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseGetCommunicationrecipientsV1**](ObjectRejectedoffertopurchaseAPI.md#ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseGetCommunicationrecipientsV1) | **GET** /1/object/rejectedoffertopurchase/{pkiRejectedoffertopurchaseID}/getCommunicationrecipients | Retrieve Rejectedoffertopurchase&#39;s Communicationrecipient
@@ -11,6 +13,66 @@ Method | HTTP request | Description
 [**ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseGetListV1**](ObjectRejectedoffertopurchaseAPI.md#ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseGetListV1) | **GET** /1/object/rejectedoffertopurchase/getList | Retrieve Rejectedoffertopurchase list
 [**ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseImportIntoEDMV1**](ObjectRejectedoffertopurchaseAPI.md#ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseImportIntoEDMV1) | **POST** /1/object/rejectedoffertopurchase/{pkiRejectedoffertopurchaseID}/importIntoEDM | Import attachments into the Rejectedoffertopurchase
 
+
+# **ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseBatchDownloadV1**
+```c
+// Download multiples attachments from a Rejectedoffertopurchase
+//
+binary_t** ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseBatchDownloadV1(apiClient_t *apiClient, int *pkiRejectedoffertopurchaseID, rejectedoffertopurchase_batch_download_v1_request_t *rejectedoffertopurchase_batch_download_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiRejectedoffertopurchaseID** | **int \*** |  | 
+**rejectedoffertopurchase_batch_download_v1_request** | **[rejectedoffertopurchase_batch_download_v1_request_t](rejectedoffertopurchase_batch_download_v1_request.md) \*** |  | 
+
+### Return type
+
+binary_t**
+
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/zip, text/xml, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseGetAttachmentsV1**
+```c
+// Retrieve Rejectedoffertopurchase's attachments
+//
+rejectedoffertopurchase_get_attachments_v1_response_t* ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseGetAttachmentsV1(apiClient_t *apiClient, int *pkiRejectedoffertopurchaseID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiRejectedoffertopurchaseID** | **int \*** |  | 
+
+### Return type
+
+[rejectedoffertopurchase_get_attachments_v1_response_t](rejectedoffertopurchase_get_attachments_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseGetCommunicationCountV1**
 ```c

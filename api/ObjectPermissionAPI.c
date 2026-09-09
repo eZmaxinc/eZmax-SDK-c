@@ -62,7 +62,7 @@ ObjectPermissionAPI_permissionCreateObjectV1(apiClient_t *apiClient, permission_
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     permission_create_object_v1_response_t *elementToReturn = NULL;
@@ -155,7 +155,7 @@ ObjectPermissionAPI_permissionDeleteObjectV1(apiClient_t *apiClient, int *pkiPer
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     permission_delete_object_v1_response_t *elementToReturn = NULL;
@@ -255,11 +255,11 @@ ObjectPermissionAPI_permissionEditObjectV1(apiClient_t *apiClient, int *pkiPermi
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     permission_edit_object_v1_response_t *elementToReturn = NULL;
@@ -353,7 +353,7 @@ ObjectPermissionAPI_permissionGetObjectV2(apiClient_t *apiClient, int *pkiPermis
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     permission_get_object_v2_response_t *elementToReturn = NULL;

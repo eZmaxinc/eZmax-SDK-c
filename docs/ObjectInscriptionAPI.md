@@ -4,6 +4,7 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**ObjectInscriptionAPI_inscriptionBatchDownloadV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionBatchDownloadV1) | **POST** /1/object/inscription/{pkiInscriptionID}/batchDownload | Download multiples attachments from an Inscription
 [**ObjectInscriptionAPI_inscriptionGetAttachmentsV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionGetAttachmentsV1) | **GET** /1/object/inscription/{pkiInscriptionID}/getAttachments | Retrieve Inscription&#39;s Attachments
 [**ObjectInscriptionAPI_inscriptionGetCommunicationCountV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionGetCommunicationCountV1) | **GET** /1/object/inscription/{pkiInscriptionID}/getCommunicationCount | Retrieve Communication count
 [**ObjectInscriptionAPI_inscriptionGetCommunicationListV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionGetCommunicationListV1) | **GET** /1/object/inscription/{pkiInscriptionID}/getCommunicationList | Retrieve Communication list
@@ -15,6 +16,37 @@ Method | HTTP request | Description
 [**ObjectInscriptionAPI_inscriptionImportIntoEDMV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionImportIntoEDMV1) | **POST** /1/object/inscription/{pkiInscriptionID}/importIntoEDM | Import attachments into the Inscription
 [**ObjectInscriptionAPI_inscriptionPrepareFilesTransferV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionPrepareFilesTransferV1) | **POST** /1/object/inscription/{pkiInscriptionID}/prepareFilesTransfer | Prepares file transfer into EDM
 
+
+# **ObjectInscriptionAPI_inscriptionBatchDownloadV1**
+```c
+// Download multiples attachments from an Inscription
+//
+binary_t** ObjectInscriptionAPI_inscriptionBatchDownloadV1(apiClient_t *apiClient, int *pkiInscriptionID, inscription_batch_download_v1_request_t *inscription_batch_download_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiInscriptionID** | **int \*** |  | 
+**inscription_batch_download_v1_request** | **[inscription_batch_download_v1_request_t](inscription_batch_download_v1_request.md) \*** |  | 
+
+### Return type
+
+binary_t**
+
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/zip, text/xml, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ObjectInscriptionAPI_inscriptionGetAttachmentsV1**
 ```c

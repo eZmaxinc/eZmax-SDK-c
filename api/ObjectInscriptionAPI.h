@@ -7,6 +7,7 @@
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
 #include "../model/header_accept_language.h"
+#include "../model/inscription_batch_download_v1_request.h"
 #include "../model/inscription_get_attachments_v1_response.h"
 #include "../model/inscription_get_communication_count_v1_response.h"
 #include "../model/inscription_get_communication_list_v1_response.h"
@@ -25,6 +26,12 @@ typedef enum  { ezmax_api_definition__full_inscriptionGetListV1_EORDERBY_NULL = 
 
 // Enum  for ObjectInscriptionAPI_inscriptionGetListV1
 typedef enum  { ezmax_api_definition__full_inscriptionGetListV1__NULL = 0, ezmax_api_definition__full_inscriptionGetListV1__*, ezmax_api_definition__full_inscriptionGetListV1__en, ezmax_api_definition__full_inscriptionGetListV1__fr } ezmax_api_definition__full_inscriptionGetListV1_Accept-Language_e;
+
+
+// Download multiples attachments from an Inscription
+//
+binary_t*
+ObjectInscriptionAPI_inscriptionBatchDownloadV1(apiClient_t *apiClient, int *pkiInscriptionID, inscription_batch_download_v1_request_t *inscription_batch_download_v1_request);
 
 
 // Retrieve Inscription's Attachments

@@ -5,13 +5,13 @@
 
 
 char* field_e_webhook_realestateevent_field_e_webhook_realestateevent_ToString(ezmax_api_definition__full_field_e_webhook_realestateevent__e field_e_webhook_realestateevent) {
-    char *field_e_webhook_realestateeventArray[] =  { "NULL", "InscriptionCreated", "InscriptionModified", "InscriptionnotauthenticatedCreated", "InscriptionnotauthenticatedModified" };
+    char *field_e_webhook_realestateeventArray[] =  { "NULL", "BuyercontractCreated", "BuyercontractModified", "InscriptionCreated", "InscriptionModified", "InscriptionnotauthenticatedCreated", "InscriptionnotauthenticatedModified" };
     return field_e_webhook_realestateeventArray[field_e_webhook_realestateevent];
 }
 
 ezmax_api_definition__full_field_e_webhook_realestateevent__e field_e_webhook_realestateevent_field_e_webhook_realestateevent_FromString(char* field_e_webhook_realestateevent) {
     int stringToReturn = 0;
-    char *field_e_webhook_realestateeventArray[] =  { "NULL", "InscriptionCreated", "InscriptionModified", "InscriptionnotauthenticatedCreated", "InscriptionnotauthenticatedModified" };
+    char *field_e_webhook_realestateeventArray[] =  { "NULL", "BuyercontractCreated", "BuyercontractModified", "InscriptionCreated", "InscriptionModified", "InscriptionnotauthenticatedCreated", "InscriptionnotauthenticatedModified" };
     size_t sizeofArray = sizeof(field_e_webhook_realestateeventArray) / sizeof(field_e_webhook_realestateeventArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(field_e_webhook_realestateevent, field_e_webhook_realestateeventArray[stringToReturn]) == 0) {

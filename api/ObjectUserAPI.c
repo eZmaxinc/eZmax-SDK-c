@@ -158,13 +158,13 @@ end:
 // Functions for enum EORDERBY for ObjectUserAPI_userGetListV1
 
 static char* userGetListV1_EORDERBY_ToString(ezmax_api_definition__full_userGetListV1_eOrderBy_e EORDERBY){
-    char *EORDERBYArray[] =  { "NULL", "pkiUserID_ASC", "pkiUserID_DESC", "sUserFirstname_ASC", "sUserFirstname_DESC", "sUserLastname_ASC", "sUserLastname_DESC", "sUserLoginname_ASC", "sUserLoginname_DESC", "bUserIsactive_ASC", "bUserIsactive_DESC", "eUserType_ASC", "eUserType_DESC", "eUserOrigin_ASC", "eUserOrigin_DESC", "eUserEzsignaccess_ASC", "eUserEzsignaccess_DESC", "dtUserEzsignprepaidexpiration_ASC", "dtUserEzsignprepaidexpiration_DESC", "sEmailAddress_ASC", "sEmailAddress_DESC", "bUserSuspended_ASC", "bUserSuspended_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiUserID_ASC", "pkiUserID_DESC", "fkiAgentID_ASC", "fkiAgentID_DESC", "fkiBrokerID_ASC", "fkiBrokerID_DESC", "sUserFirstname_ASC", "sUserFirstname_DESC", "sUserLastname_ASC", "sUserLastname_DESC", "sUserLoginname_ASC", "sUserLoginname_DESC", "bUserIsactive_ASC", "bUserIsactive_DESC", "eUserType_ASC", "eUserType_DESC", "eUserOrigin_ASC", "eUserOrigin_DESC", "eUserEzsignaccess_ASC", "eUserEzsignaccess_DESC", "dtUserEzsignprepaidexpiration_ASC", "dtUserEzsignprepaidexpiration_DESC", "sEmailAddress_ASC", "sEmailAddress_DESC", "bUserSuspended_ASC", "bUserSuspended_DESC" };
     return EORDERBYArray[EORDERBY];
 }
 
 static ezmax_api_definition__full_userGetListV1_eOrderBy_e userGetListV1_EORDERBY_FromString(char* EORDERBY){
     int stringToReturn = 0;
-    char *EORDERBYArray[] =  { "NULL", "pkiUserID_ASC", "pkiUserID_DESC", "sUserFirstname_ASC", "sUserFirstname_DESC", "sUserLastname_ASC", "sUserLastname_DESC", "sUserLoginname_ASC", "sUserLoginname_DESC", "bUserIsactive_ASC", "bUserIsactive_DESC", "eUserType_ASC", "eUserType_DESC", "eUserOrigin_ASC", "eUserOrigin_DESC", "eUserEzsignaccess_ASC", "eUserEzsignaccess_DESC", "dtUserEzsignprepaidexpiration_ASC", "dtUserEzsignprepaidexpiration_DESC", "sEmailAddress_ASC", "sEmailAddress_DESC", "bUserSuspended_ASC", "bUserSuspended_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiUserID_ASC", "pkiUserID_DESC", "fkiAgentID_ASC", "fkiAgentID_DESC", "fkiBrokerID_ASC", "fkiBrokerID_DESC", "sUserFirstname_ASC", "sUserFirstname_DESC", "sUserLastname_ASC", "sUserLastname_DESC", "sUserLoginname_ASC", "sUserLoginname_DESC", "bUserIsactive_ASC", "bUserIsactive_DESC", "eUserType_ASC", "eUserType_DESC", "eUserOrigin_ASC", "eUserOrigin_DESC", "eUserEzsignaccess_ASC", "eUserEzsignaccess_DESC", "dtUserEzsignprepaidexpiration_ASC", "dtUserEzsignprepaidexpiration_DESC", "sEmailAddress_ASC", "sEmailAddress_DESC", "bUserSuspended_ASC", "bUserSuspended_DESC" };
     size_t sizeofArray = sizeof(EORDERBYArray) / sizeof(EORDERBYArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(EORDERBY, EORDERBYArray[stringToReturn]) == 0) {
@@ -490,11 +490,11 @@ ObjectUserAPI_userEditColleaguesV2(apiClient_t *apiClient, int *pkiUserID, user_
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     user_edit_colleagues_v2_response_t *elementToReturn = NULL;
@@ -599,11 +599,11 @@ ObjectUserAPI_userEditObjectV1(apiClient_t *apiClient, int *pkiUserID, user_edit
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     user_edit_object_v1_response_t *elementToReturn = NULL;
@@ -708,11 +708,11 @@ ObjectUserAPI_userEditPermissionsV1(apiClient_t *apiClient, int *pkiUserID, user
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     user_edit_permissions_v1_response_t *elementToReturn = NULL;
@@ -804,7 +804,7 @@ ObjectUserAPI_userGetApikeysV1(apiClient_t *apiClient, int *pkiUserID)
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     user_get_apikeys_v1_response_t *elementToReturn = NULL;
@@ -1036,7 +1036,7 @@ ObjectUserAPI_userGetColleaguesV2(apiClient_t *apiClient, int *pkiUserID)
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     user_get_colleagues_v2_response_t *elementToReturn = NULL;
@@ -1125,7 +1125,7 @@ ObjectUserAPI_userGetEffectivePermissionsV1(apiClient_t *apiClient, int *pkiUser
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     user_get_effective_permissions_v1_response_t *elementToReturn = NULL;
@@ -1214,11 +1214,11 @@ ObjectUserAPI_userGetEzmaxcustomeruserV1(apiClient_t *apiClient, int *pkiUserID)
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     user_get_ezmaxcustomeruser_v1_response_t *elementToReturn = NULL;
@@ -1494,7 +1494,7 @@ ObjectUserAPI_userGetObjectV2(apiClient_t *apiClient, int *pkiUserID)
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     user_get_object_v2_response_t *elementToReturn = NULL;
@@ -1581,7 +1581,7 @@ ObjectUserAPI_userGetPermissionsV1(apiClient_t *apiClient, int *pkiUserID)
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     user_get_permissions_v1_response_t *elementToReturn = NULL;
@@ -1668,7 +1668,7 @@ ObjectUserAPI_userGetSubnetsV1(apiClient_t *apiClient, int *pkiUserID)
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     user_get_subnets_v1_response_t *elementToReturn = NULL;
@@ -1755,7 +1755,7 @@ ObjectUserAPI_userGetUsergroupexternalsV1(apiClient_t *apiClient, int *pkiUserID
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     user_get_usergroupexternals_v1_response_t *elementToReturn = NULL;
@@ -1842,7 +1842,7 @@ ObjectUserAPI_userGetUsergroupsV1(apiClient_t *apiClient, int *pkiUserID)
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     user_get_usergroups_v1_response_t *elementToReturn = NULL;
@@ -1942,11 +1942,11 @@ ObjectUserAPI_userImpersonateV1(apiClient_t *apiClient, int *pkiUserID, user_imp
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     user_impersonate_v1_response_t *elementToReturn = NULL;
@@ -2051,11 +2051,11 @@ ObjectUserAPI_userSendPasswordResetV1(apiClient_t *apiClient, int *pkiUserID, ob
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     user_send_password_reset_v1_response_t *elementToReturn = NULL;

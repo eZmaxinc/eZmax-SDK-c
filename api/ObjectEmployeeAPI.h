@@ -6,6 +6,8 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
+#include "../model/employee_batch_download_v1_request.h"
+#include "../model/employee_get_attachments_v1_response.h"
 #include "../model/employee_get_list_v1_response.h"
 #include "../model/employee_import_into_edm_v1_request.h"
 #include "../model/employee_import_into_edm_v1_response.h"
@@ -16,6 +18,18 @@ typedef enum  { ezmax_api_definition__full_employeeGetListV1_EORDERBY_NULL = 0, 
 
 // Enum  for ObjectEmployeeAPI_employeeGetListV1
 typedef enum  { ezmax_api_definition__full_employeeGetListV1__NULL = 0, ezmax_api_definition__full_employeeGetListV1__*, ezmax_api_definition__full_employeeGetListV1__en, ezmax_api_definition__full_employeeGetListV1__fr } ezmax_api_definition__full_employeeGetListV1_Accept-Language_e;
+
+
+// Download multiples attachments from a Employee
+//
+binary_t*
+ObjectEmployeeAPI_employeeBatchDownloadV1(apiClient_t *apiClient, int *pkiEmployeeID, employee_batch_download_v1_request_t *employee_batch_download_v1_request);
+
+
+// Retrieve Employee's attachments
+//
+employee_get_attachments_v1_response_t*
+ObjectEmployeeAPI_employeeGetAttachmentsV1(apiClient_t *apiClient, int *pkiEmployeeID);
 
 
 // Retrieve Employee list
