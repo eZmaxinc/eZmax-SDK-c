@@ -8,6 +8,10 @@
 #include "../model/agent_batch_download_v1_request.h"
 #include "../model/agent_get_attachments_v1_response.h"
 #include "../model/agent_get_autocomplete_v2_response.h"
+#include "../model/agent_get_communication_count_v1_response.h"
+#include "../model/agent_get_communication_list_v1_response.h"
+#include "../model/agent_get_communicationrecipients_v1_response.h"
+#include "../model/agent_get_communicationsenders_v1_response.h"
 #include "../model/agent_get_list_v1_response.h"
 #include "../model/agent_import_into_edm_v1_request.h"
 #include "../model/agent_import_into_edm_v1_response.h"
@@ -48,6 +52,30 @@ ObjectAgentAPI_agentGetAttachmentsV1(apiClient_t *apiClient, int *pkiAgentID);
 //
 agent_get_autocomplete_v2_response_t*
 ObjectAgentAPI_agentGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_agentGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_agentGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
+
+
+// Retrieve Communication count
+//
+agent_get_communication_count_v1_response_t*
+ObjectAgentAPI_agentGetCommunicationCountV1(apiClient_t *apiClient, int *pkiAgentID);
+
+
+// Retrieve Communication list
+//
+agent_get_communication_list_v1_response_t*
+ObjectAgentAPI_agentGetCommunicationListV1(apiClient_t *apiClient, int *pkiAgentID);
+
+
+// Retrieve Communication recipients
+//
+agent_get_communicationrecipients_v1_response_t*
+ObjectAgentAPI_agentGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiAgentID);
+
+
+// Retrieve Communication senders
+//
+agent_get_communicationsenders_v1_response_t*
+ObjectAgentAPI_agentGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiAgentID);
 
 
 // Retrieve Agent list

@@ -6,6 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectExternalbrokerAPI_externalbrokerBatchDownloadV1**](ObjectExternalbrokerAPI.md#ObjectExternalbrokerAPI_externalbrokerBatchDownloadV1) | **POST** /1/object/externalbroker/{pkiExternalbrokerID}/batchDownload | Download multiples attachments from an Externalbroker
 [**ObjectExternalbrokerAPI_externalbrokerGetAttachmentsV1**](ObjectExternalbrokerAPI.md#ObjectExternalbrokerAPI_externalbrokerGetAttachmentsV1) | **GET** /1/object/externalbroker/{pkiExternalbrokerID}/getAttachments | Retrieve Externalbroker&#39;s attachments
+[**ObjectExternalbrokerAPI_externalbrokerGetCommunicationCountV1**](ObjectExternalbrokerAPI.md#ObjectExternalbrokerAPI_externalbrokerGetCommunicationCountV1) | **GET** /1/object/externalbroker/{pkiExternalbrokerID}/getCommunicationCount | Retrieve Communication count
+[**ObjectExternalbrokerAPI_externalbrokerGetCommunicationListV1**](ObjectExternalbrokerAPI.md#ObjectExternalbrokerAPI_externalbrokerGetCommunicationListV1) | **GET** /1/object/externalbroker/{pkiExternalbrokerID}/getCommunicationList | Retrieve Communication list
+[**ObjectExternalbrokerAPI_externalbrokerGetCommunicationrecipientsV1**](ObjectExternalbrokerAPI.md#ObjectExternalbrokerAPI_externalbrokerGetCommunicationrecipientsV1) | **GET** /1/object/externalbroker/{pkiExternalbrokerID}/getCommunicationrecipients | Retrieve Communication recipients
+[**ObjectExternalbrokerAPI_externalbrokerGetCommunicationsendersV1**](ObjectExternalbrokerAPI.md#ObjectExternalbrokerAPI_externalbrokerGetCommunicationsendersV1) | **GET** /1/object/externalbroker/{pkiExternalbrokerID}/getCommunicationsenders | Retrieve Communication senders
 [**ObjectExternalbrokerAPI_externalbrokerImportIntoEDMV1**](ObjectExternalbrokerAPI.md#ObjectExternalbrokerAPI_externalbrokerImportIntoEDMV1) | **POST** /1/object/externalbroker/{pkiExternalbrokerID}/importIntoEDM | Import attachments into the Externalbroker
 
 
@@ -56,6 +60,122 @@ Name | Type | Description  | Notes
 ### Return type
 
 [externalbroker_get_attachments_v1_response_t](externalbroker_get_attachments_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectExternalbrokerAPI_externalbrokerGetCommunicationCountV1**
+```c
+// Retrieve Communication count
+//
+externalbroker_get_communication_count_v1_response_t* ObjectExternalbrokerAPI_externalbrokerGetCommunicationCountV1(apiClient_t *apiClient, int *pkiExternalbrokerID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiExternalbrokerID** | **int \*** |  | 
+
+### Return type
+
+[externalbroker_get_communication_count_v1_response_t](externalbroker_get_communication_count_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectExternalbrokerAPI_externalbrokerGetCommunicationListV1**
+```c
+// Retrieve Communication list
+//
+externalbroker_get_communication_list_v1_response_t* ObjectExternalbrokerAPI_externalbrokerGetCommunicationListV1(apiClient_t *apiClient, int *pkiExternalbrokerID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiExternalbrokerID** | **int \*** |  | 
+
+### Return type
+
+[externalbroker_get_communication_list_v1_response_t](externalbroker_get_communication_list_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectExternalbrokerAPI_externalbrokerGetCommunicationrecipientsV1**
+```c
+// Retrieve Communication recipients
+//
+externalbroker_get_communicationrecipients_v1_response_t* ObjectExternalbrokerAPI_externalbrokerGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiExternalbrokerID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiExternalbrokerID** | **int \*** |  | 
+
+### Return type
+
+[externalbroker_get_communicationrecipients_v1_response_t](externalbroker_get_communicationrecipients_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectExternalbrokerAPI_externalbrokerGetCommunicationsendersV1**
+```c
+// Retrieve Communication senders
+//
+externalbroker_get_communicationsenders_v1_response_t* ObjectExternalbrokerAPI_externalbrokerGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiExternalbrokerID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiExternalbrokerID** | **int \*** |  | 
+
+### Return type
+
+[externalbroker_get_communicationsenders_v1_response_t](externalbroker_get_communicationsenders_v1_response.md) *
 
 
 ### Authorization

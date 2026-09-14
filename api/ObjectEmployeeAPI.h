@@ -8,6 +8,10 @@
 #include "../model/common_response_error.h"
 #include "../model/employee_batch_download_v1_request.h"
 #include "../model/employee_get_attachments_v1_response.h"
+#include "../model/employee_get_communication_count_v1_response.h"
+#include "../model/employee_get_communication_list_v1_response.h"
+#include "../model/employee_get_communicationrecipients_v1_response.h"
+#include "../model/employee_get_communicationsenders_v1_response.h"
 #include "../model/employee_get_list_v1_response.h"
 #include "../model/employee_import_into_edm_v1_request.h"
 #include "../model/employee_import_into_edm_v1_response.h"
@@ -30,6 +34,30 @@ ObjectEmployeeAPI_employeeBatchDownloadV1(apiClient_t *apiClient, int *pkiEmploy
 //
 employee_get_attachments_v1_response_t*
 ObjectEmployeeAPI_employeeGetAttachmentsV1(apiClient_t *apiClient, int *pkiEmployeeID);
+
+
+// Retrieve Communication count
+//
+employee_get_communication_count_v1_response_t*
+ObjectEmployeeAPI_employeeGetCommunicationCountV1(apiClient_t *apiClient, int *pkiEmployeeID);
+
+
+// Retrieve Communication list
+//
+employee_get_communication_list_v1_response_t*
+ObjectEmployeeAPI_employeeGetCommunicationListV1(apiClient_t *apiClient, int *pkiEmployeeID);
+
+
+// Retrieve Communication recipients
+//
+employee_get_communicationrecipients_v1_response_t*
+ObjectEmployeeAPI_employeeGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiEmployeeID);
+
+
+// Retrieve Communication senders
+//
+employee_get_communicationsenders_v1_response_t*
+ObjectEmployeeAPI_employeeGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiEmployeeID);
 
 
 // Retrieve Employee list

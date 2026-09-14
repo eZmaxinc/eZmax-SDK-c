@@ -581,6 +581,354 @@ end:
 
 }
 
+// Retrieve Communication count
+//
+broker_get_communication_count_v1_response_t*
+ObjectBrokerAPI_brokerGetCommunicationCountV1(apiClient_t *apiClient, int *pkiBrokerID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/broker/{pkiBrokerID}/getCommunicationCount");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiBrokerID =  + sizeof("{ pkiBrokerID }") - 1;
+    if(pkiBrokerID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiBrokerID = malloc(sizeOfPathParams_pkiBrokerID);
+    snprintf(localVarToReplace_pkiBrokerID, sizeOfPathParams_pkiBrokerID, "{%s}", "pkiBrokerID");
+
+    char localVarBuff_pkiBrokerID[256];
+    snprintf(localVarBuff_pkiBrokerID, sizeof localVarBuff_pkiBrokerID, "%ld", (long)*pkiBrokerID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiBrokerID, localVarBuff_pkiBrokerID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    broker_get_communication_count_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectBrokerAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = broker_get_communication_count_v1_response_parseFromJSON(ObjectBrokerAPIlocalVarJSON);
+        cJSON_Delete(ObjectBrokerAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiBrokerID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication list
+//
+broker_get_communication_list_v1_response_t*
+ObjectBrokerAPI_brokerGetCommunicationListV1(apiClient_t *apiClient, int *pkiBrokerID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/broker/{pkiBrokerID}/getCommunicationList");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiBrokerID =  + sizeof("{ pkiBrokerID }") - 1;
+    if(pkiBrokerID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiBrokerID = malloc(sizeOfPathParams_pkiBrokerID);
+    snprintf(localVarToReplace_pkiBrokerID, sizeOfPathParams_pkiBrokerID, "{%s}", "pkiBrokerID");
+
+    char localVarBuff_pkiBrokerID[256];
+    snprintf(localVarBuff_pkiBrokerID, sizeof localVarBuff_pkiBrokerID, "%ld", (long)*pkiBrokerID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiBrokerID, localVarBuff_pkiBrokerID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    broker_get_communication_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectBrokerAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = broker_get_communication_list_v1_response_parseFromJSON(ObjectBrokerAPIlocalVarJSON);
+        cJSON_Delete(ObjectBrokerAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiBrokerID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication recipients
+//
+broker_get_communicationrecipients_v1_response_t*
+ObjectBrokerAPI_brokerGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiBrokerID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/broker/{pkiBrokerID}/getCommunicationrecipients");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiBrokerID =  + sizeof("{ pkiBrokerID }") - 1;
+    if(pkiBrokerID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiBrokerID = malloc(sizeOfPathParams_pkiBrokerID);
+    snprintf(localVarToReplace_pkiBrokerID, sizeOfPathParams_pkiBrokerID, "{%s}", "pkiBrokerID");
+
+    char localVarBuff_pkiBrokerID[256];
+    snprintf(localVarBuff_pkiBrokerID, sizeof localVarBuff_pkiBrokerID, "%ld", (long)*pkiBrokerID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiBrokerID, localVarBuff_pkiBrokerID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    broker_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectBrokerAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = broker_get_communicationrecipients_v1_response_parseFromJSON(ObjectBrokerAPIlocalVarJSON);
+        cJSON_Delete(ObjectBrokerAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiBrokerID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication senders
+//
+broker_get_communicationsenders_v1_response_t*
+ObjectBrokerAPI_brokerGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiBrokerID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/broker/{pkiBrokerID}/getCommunicationsenders");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiBrokerID =  + sizeof("{ pkiBrokerID }") - 1;
+    if(pkiBrokerID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiBrokerID = malloc(sizeOfPathParams_pkiBrokerID);
+    snprintf(localVarToReplace_pkiBrokerID, sizeOfPathParams_pkiBrokerID, "{%s}", "pkiBrokerID");
+
+    char localVarBuff_pkiBrokerID[256];
+    snprintf(localVarBuff_pkiBrokerID, sizeof localVarBuff_pkiBrokerID, "%ld", (long)*pkiBrokerID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiBrokerID, localVarBuff_pkiBrokerID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    broker_get_communicationsenders_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectBrokerAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = broker_get_communicationsenders_v1_response_parseFromJSON(ObjectBrokerAPIlocalVarJSON);
+        cJSON_Delete(ObjectBrokerAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiBrokerID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Retrieve Broker list
 //
 // 

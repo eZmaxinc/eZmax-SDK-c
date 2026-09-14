@@ -9,6 +9,10 @@
 #include "../model/customer_batch_download_v1_request.h"
 #include "../model/customer_get_attachments_v1_response.h"
 #include "../model/customer_get_autocomplete_v2_response.h"
+#include "../model/customer_get_communication_count_v1_response.h"
+#include "../model/customer_get_communication_list_v1_response.h"
+#include "../model/customer_get_communicationrecipients_v1_response.h"
+#include "../model/customer_get_communicationsenders_v1_response.h"
 #include "../model/customer_get_object_v2_response.h"
 #include "../model/customer_import_into_edm_v1_request.h"
 #include "../model/customer_import_into_edm_v1_response.h"
@@ -42,6 +46,30 @@ ObjectCustomerAPI_customerGetAttachmentsV1(apiClient_t *apiClient, int *pkiCusto
 //
 customer_get_autocomplete_v2_response_t*
 ObjectCustomerAPI_customerGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_customerGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_customerGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
+
+
+// Retrieve Communication count
+//
+customer_get_communication_count_v1_response_t*
+ObjectCustomerAPI_customerGetCommunicationCountV1(apiClient_t *apiClient, int *pkiCustomerID);
+
+
+// Retrieve Communication list
+//
+customer_get_communication_list_v1_response_t*
+ObjectCustomerAPI_customerGetCommunicationListV1(apiClient_t *apiClient, int *pkiCustomerID);
+
+
+// Retrieve Communication recipients
+//
+customer_get_communicationrecipients_v1_response_t*
+ObjectCustomerAPI_customerGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiCustomerID);
+
+
+// Retrieve Communication senders
+//
+customer_get_communicationsenders_v1_response_t*
+ObjectCustomerAPI_customerGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiCustomerID);
 
 
 // Retrieve an existing Customer

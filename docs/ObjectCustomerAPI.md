@@ -7,6 +7,10 @@ Method | HTTP request | Description
 [**ObjectCustomerAPI_customerBatchDownloadV1**](ObjectCustomerAPI.md#ObjectCustomerAPI_customerBatchDownloadV1) | **POST** /1/object/customer/{pkiCustomerID}/batchDownload | Download multiples attachments from a Customer
 [**ObjectCustomerAPI_customerGetAttachmentsV1**](ObjectCustomerAPI.md#ObjectCustomerAPI_customerGetAttachmentsV1) | **GET** /1/object/customer/{pkiCustomerID}/getAttachments | Retrieve Customer&#39;s attachments
 [**ObjectCustomerAPI_customerGetAutocompleteV2**](ObjectCustomerAPI.md#ObjectCustomerAPI_customerGetAutocompleteV2) | **GET** /2/object/customer/getAutocomplete/{sSelector} | Retrieve Customers and IDs
+[**ObjectCustomerAPI_customerGetCommunicationCountV1**](ObjectCustomerAPI.md#ObjectCustomerAPI_customerGetCommunicationCountV1) | **GET** /1/object/customer/{pkiCustomerID}/getCommunicationCount | Retrieve Communication count
+[**ObjectCustomerAPI_customerGetCommunicationListV1**](ObjectCustomerAPI.md#ObjectCustomerAPI_customerGetCommunicationListV1) | **GET** /1/object/customer/{pkiCustomerID}/getCommunicationList | Retrieve Communication list
+[**ObjectCustomerAPI_customerGetCommunicationrecipientsV1**](ObjectCustomerAPI.md#ObjectCustomerAPI_customerGetCommunicationrecipientsV1) | **GET** /1/object/customer/{pkiCustomerID}/getCommunicationrecipients | Retrieve Communication recipients
+[**ObjectCustomerAPI_customerGetCommunicationsendersV1**](ObjectCustomerAPI.md#ObjectCustomerAPI_customerGetCommunicationsendersV1) | **GET** /1/object/customer/{pkiCustomerID}/getCommunicationsenders | Retrieve Communication senders
 [**ObjectCustomerAPI_customerGetObjectV2**](ObjectCustomerAPI.md#ObjectCustomerAPI_customerGetObjectV2) | **GET** /2/object/customer/{pkiCustomerID} | Retrieve an existing Customer
 [**ObjectCustomerAPI_customerImportIntoEDMV1**](ObjectCustomerAPI.md#ObjectCustomerAPI_customerImportIntoEDMV1) | **POST** /1/object/customer/{pkiCustomerID}/importIntoEDM | Import attachments into the Customer
 
@@ -92,6 +96,122 @@ Name | Type | Description  | Notes
 ### Return type
 
 [customer_get_autocomplete_v2_response_t](customer_get_autocomplete_v2_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectCustomerAPI_customerGetCommunicationCountV1**
+```c
+// Retrieve Communication count
+//
+customer_get_communication_count_v1_response_t* ObjectCustomerAPI_customerGetCommunicationCountV1(apiClient_t *apiClient, int *pkiCustomerID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiCustomerID** | **int \*** |  | 
+
+### Return type
+
+[customer_get_communication_count_v1_response_t](customer_get_communication_count_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectCustomerAPI_customerGetCommunicationListV1**
+```c
+// Retrieve Communication list
+//
+customer_get_communication_list_v1_response_t* ObjectCustomerAPI_customerGetCommunicationListV1(apiClient_t *apiClient, int *pkiCustomerID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiCustomerID** | **int \*** |  | 
+
+### Return type
+
+[customer_get_communication_list_v1_response_t](customer_get_communication_list_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectCustomerAPI_customerGetCommunicationrecipientsV1**
+```c
+// Retrieve Communication recipients
+//
+customer_get_communicationrecipients_v1_response_t* ObjectCustomerAPI_customerGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiCustomerID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiCustomerID** | **int \*** |  | 
+
+### Return type
+
+[customer_get_communicationrecipients_v1_response_t](customer_get_communicationrecipients_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectCustomerAPI_customerGetCommunicationsendersV1**
+```c
+// Retrieve Communication senders
+//
+customer_get_communicationsenders_v1_response_t* ObjectCustomerAPI_customerGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiCustomerID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiCustomerID** | **int \*** |  | 
+
+### Return type
+
+[customer_get_communicationsenders_v1_response_t](customer_get_communicationsenders_v1_response.md) *
 
 
 ### Authorization

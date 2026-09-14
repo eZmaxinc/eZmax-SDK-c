@@ -289,6 +289,354 @@ end:
 
 }
 
+// Retrieve Communication count
+//
+employee_get_communication_count_v1_response_t*
+ObjectEmployeeAPI_employeeGetCommunicationCountV1(apiClient_t *apiClient, int *pkiEmployeeID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/employee/{pkiEmployeeID}/getCommunicationCount");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEmployeeID =  + sizeof("{ pkiEmployeeID }") - 1;
+    if(pkiEmployeeID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEmployeeID = malloc(sizeOfPathParams_pkiEmployeeID);
+    snprintf(localVarToReplace_pkiEmployeeID, sizeOfPathParams_pkiEmployeeID, "{%s}", "pkiEmployeeID");
+
+    char localVarBuff_pkiEmployeeID[256];
+    snprintf(localVarBuff_pkiEmployeeID, sizeof localVarBuff_pkiEmployeeID, "%ld", (long)*pkiEmployeeID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEmployeeID, localVarBuff_pkiEmployeeID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    employee_get_communication_count_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEmployeeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = employee_get_communication_count_v1_response_parseFromJSON(ObjectEmployeeAPIlocalVarJSON);
+        cJSON_Delete(ObjectEmployeeAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEmployeeID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication list
+//
+employee_get_communication_list_v1_response_t*
+ObjectEmployeeAPI_employeeGetCommunicationListV1(apiClient_t *apiClient, int *pkiEmployeeID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/employee/{pkiEmployeeID}/getCommunicationList");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEmployeeID =  + sizeof("{ pkiEmployeeID }") - 1;
+    if(pkiEmployeeID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEmployeeID = malloc(sizeOfPathParams_pkiEmployeeID);
+    snprintf(localVarToReplace_pkiEmployeeID, sizeOfPathParams_pkiEmployeeID, "{%s}", "pkiEmployeeID");
+
+    char localVarBuff_pkiEmployeeID[256];
+    snprintf(localVarBuff_pkiEmployeeID, sizeof localVarBuff_pkiEmployeeID, "%ld", (long)*pkiEmployeeID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEmployeeID, localVarBuff_pkiEmployeeID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    employee_get_communication_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEmployeeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = employee_get_communication_list_v1_response_parseFromJSON(ObjectEmployeeAPIlocalVarJSON);
+        cJSON_Delete(ObjectEmployeeAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEmployeeID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication recipients
+//
+employee_get_communicationrecipients_v1_response_t*
+ObjectEmployeeAPI_employeeGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiEmployeeID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/employee/{pkiEmployeeID}/getCommunicationrecipients");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEmployeeID =  + sizeof("{ pkiEmployeeID }") - 1;
+    if(pkiEmployeeID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEmployeeID = malloc(sizeOfPathParams_pkiEmployeeID);
+    snprintf(localVarToReplace_pkiEmployeeID, sizeOfPathParams_pkiEmployeeID, "{%s}", "pkiEmployeeID");
+
+    char localVarBuff_pkiEmployeeID[256];
+    snprintf(localVarBuff_pkiEmployeeID, sizeof localVarBuff_pkiEmployeeID, "%ld", (long)*pkiEmployeeID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEmployeeID, localVarBuff_pkiEmployeeID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    employee_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEmployeeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = employee_get_communicationrecipients_v1_response_parseFromJSON(ObjectEmployeeAPIlocalVarJSON);
+        cJSON_Delete(ObjectEmployeeAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEmployeeID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication senders
+//
+employee_get_communicationsenders_v1_response_t*
+ObjectEmployeeAPI_employeeGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiEmployeeID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/employee/{pkiEmployeeID}/getCommunicationsenders");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEmployeeID =  + sizeof("{ pkiEmployeeID }") - 1;
+    if(pkiEmployeeID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEmployeeID = malloc(sizeOfPathParams_pkiEmployeeID);
+    snprintf(localVarToReplace_pkiEmployeeID, sizeOfPathParams_pkiEmployeeID, "{%s}", "pkiEmployeeID");
+
+    char localVarBuff_pkiEmployeeID[256];
+    snprintf(localVarBuff_pkiEmployeeID, sizeof localVarBuff_pkiEmployeeID, "%ld", (long)*pkiEmployeeID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEmployeeID, localVarBuff_pkiEmployeeID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    employee_get_communicationsenders_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEmployeeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = employee_get_communicationsenders_v1_response_parseFromJSON(ObjectEmployeeAPIlocalVarJSON);
+        cJSON_Delete(ObjectEmployeeAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEmployeeID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Retrieve Employee list
 //
 // 

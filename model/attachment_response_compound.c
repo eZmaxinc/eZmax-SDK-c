@@ -55,6 +55,7 @@ static attachment_response_compound_t *attachment_response_compound_create_inter
     int *fki_ezsigndocument_id_reference,
     ezmax_api_definition__full_field_e_attachment_documenttype__e e_attachment_documenttype,
     char *s_attachment_name,
+    char *s_attachment_category,
     ezmax_api_definition__full_field_e_attachment_privacy__e e_attachment_privacy,
     int *fki_user_id_specific,
     ezmax_api_definition__full_field_e_attachment_type__e e_attachment_type,
@@ -123,6 +124,7 @@ static attachment_response_compound_t *attachment_response_compound_create_inter
     attachment_response_compound_local_var->fki_ezsigndocument_id_reference = fki_ezsigndocument_id_reference;
     attachment_response_compound_local_var->e_attachment_documenttype = e_attachment_documenttype;
     attachment_response_compound_local_var->s_attachment_name = s_attachment_name;
+    attachment_response_compound_local_var->s_attachment_category = s_attachment_category;
     attachment_response_compound_local_var->e_attachment_privacy = e_attachment_privacy;
     attachment_response_compound_local_var->fki_user_id_specific = fki_user_id_specific;
     attachment_response_compound_local_var->e_attachment_type = e_attachment_type;
@@ -188,6 +190,7 @@ __attribute__((deprecated)) attachment_response_compound_t *attachment_response_
     int *fki_ezsigndocument_id_reference,
     ezmax_api_definition__full_field_e_attachment_documenttype__e e_attachment_documenttype,
     char *s_attachment_name,
+    char *s_attachment_category,
     ezmax_api_definition__full_field_e_attachment_privacy__e e_attachment_privacy,
     int *fki_user_id_specific,
     ezmax_api_definition__full_field_e_attachment_type__e e_attachment_type,
@@ -516,6 +519,7 @@ __attribute__((deprecated)) attachment_response_compound_t *attachment_response_
         fki_ezsigndocument_id_reference_copy,
         e_attachment_documenttype,
         s_attachment_name,
+        s_attachment_category,
         e_attachment_privacy,
         fki_user_id_specific_copy,
         e_attachment_type,
@@ -787,6 +791,10 @@ void attachment_response_compound_free(attachment_response_compound_t *attachmen
     if (attachment_response_compound->s_attachment_name) {
         free(attachment_response_compound->s_attachment_name);
         attachment_response_compound->s_attachment_name = NULL;
+    }
+    if (attachment_response_compound->s_attachment_category) {
+        free(attachment_response_compound->s_attachment_category);
+        attachment_response_compound->s_attachment_category = NULL;
     }
     if (attachment_response_compound->fki_user_id_specific) {
         free(attachment_response_compound->fki_user_id_specific);
@@ -1230,6 +1238,15 @@ cJSON *attachment_response_compound_convertToJSON(attachment_response_compound_t
     }
 
 
+    // attachment_response_compound->s_attachment_category
+    if (!attachment_response_compound->s_attachment_category) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "sAttachmentCategory", attachment_response_compound->s_attachment_category) == NULL) {
+    goto fail; //String
+    }
+
+
     // attachment_response_compound->e_attachment_privacy
     if (ezmax_api_definition__full_field_e_attachment_privacy__NULL == attachment_response_compound->e_attachment_privacy) {
         goto fail;
@@ -1509,6 +1526,8 @@ attachment_response_compound_t *attachment_response_compound_parseFromJSON(cJSON
     ezmax_api_definition__full_field_e_attachment_documenttype__e e_attachment_documenttype_local_nonprim = 0;
 
     char *s_attachment_name_local_str = NULL;
+
+    char *s_attachment_category_local_str = NULL;
 
     // define the local variable for attachment_response_compound->e_attachment_privacy
     ezmax_api_definition__full_field_e_attachment_privacy__e e_attachment_privacy_local_nonprim = 0;
@@ -2420,6 +2439,21 @@ attachment_response_compound_t *attachment_response_compound_parseFromJSON(cJSON
     goto end; //String
     }
 
+    // attachment_response_compound->s_attachment_category
+    cJSON *s_attachment_category = cJSON_GetObjectItemCaseSensitive(attachment_response_compoundJSON, "sAttachmentCategory");
+    if (cJSON_IsNull(s_attachment_category)) {
+        s_attachment_category = NULL;
+    }
+    if (!s_attachment_category) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_attachment_category))
+    {
+    goto end; //String
+    }
+
     // attachment_response_compound->e_attachment_privacy
     cJSON *e_attachment_privacy = cJSON_GetObjectItemCaseSensitive(attachment_response_compoundJSON, "eAttachmentPrivacy");
     if (cJSON_IsNull(e_attachment_privacy)) {
@@ -2611,6 +2645,7 @@ attachment_response_compound_t *attachment_response_compound_parseFromJSON(cJSON
 
 
     if (s_attachment_name && !cJSON_IsNull(s_attachment_name)) s_attachment_name_local_str = strdup(s_attachment_name->valuestring);
+    if (s_attachment_category && !cJSON_IsNull(s_attachment_category)) s_attachment_category_local_str = strdup(s_attachment_category->valuestring);
     if (s_attachment_md5 && !cJSON_IsNull(s_attachment_md5)) s_attachment_md5_local_str = strdup(s_attachment_md5->valuestring);
     if (t_attachment_rejectioncomment && !cJSON_IsNull(t_attachment_rejectioncomment)) t_attachment_rejectioncomment_local_str = strdup(t_attachment_rejectioncomment->valuestring);
 
@@ -2664,6 +2699,7 @@ attachment_response_compound_t *attachment_response_compound_parseFromJSON(cJSON
         fki_ezsigndocument_id_reference_local_var,
         e_attachment_documenttype_local_nonprim,
         s_attachment_name_local_str,
+        s_attachment_category_local_str,
         e_attachment_privacy_local_nonprim,
         fki_user_id_specific_local_var,
         e_attachment_type_local_nonprim,
@@ -2878,6 +2914,10 @@ end:
     if (s_attachment_name_local_str) {
         free(s_attachment_name_local_str);
         s_attachment_name_local_str = NULL;
+    }
+    if (s_attachment_category_local_str) {
+        free(s_attachment_category_local_str);
+        s_attachment_category_local_str = NULL;
     }
     if (e_attachment_privacy_local_nonprim) {
         e_attachment_privacy_local_nonprim = 0;

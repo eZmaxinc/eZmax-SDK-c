@@ -7,6 +7,10 @@ Method | HTTP request | Description
 [**ObjectBrokerAPI_brokerBatchDownloadV1**](ObjectBrokerAPI.md#ObjectBrokerAPI_brokerBatchDownloadV1) | **POST** /1/object/broker/{pkiBrokerID}/batchDownload | Download multiples attachments from a Broker
 [**ObjectBrokerAPI_brokerGetAttachmentsV1**](ObjectBrokerAPI.md#ObjectBrokerAPI_brokerGetAttachmentsV1) | **GET** /1/object/broker/{pkiBrokerID}/getAttachments | Retrieve Broker&#39;s attachments
 [**ObjectBrokerAPI_brokerGetAutocompleteV2**](ObjectBrokerAPI.md#ObjectBrokerAPI_brokerGetAutocompleteV2) | **GET** /2/object/broker/getAutocomplete/{sSelector} | Retrieve Brokers and IDs
+[**ObjectBrokerAPI_brokerGetCommunicationCountV1**](ObjectBrokerAPI.md#ObjectBrokerAPI_brokerGetCommunicationCountV1) | **GET** /1/object/broker/{pkiBrokerID}/getCommunicationCount | Retrieve Communication count
+[**ObjectBrokerAPI_brokerGetCommunicationListV1**](ObjectBrokerAPI.md#ObjectBrokerAPI_brokerGetCommunicationListV1) | **GET** /1/object/broker/{pkiBrokerID}/getCommunicationList | Retrieve Communication list
+[**ObjectBrokerAPI_brokerGetCommunicationrecipientsV1**](ObjectBrokerAPI.md#ObjectBrokerAPI_brokerGetCommunicationrecipientsV1) | **GET** /1/object/broker/{pkiBrokerID}/getCommunicationrecipients | Retrieve Communication recipients
+[**ObjectBrokerAPI_brokerGetCommunicationsendersV1**](ObjectBrokerAPI.md#ObjectBrokerAPI_brokerGetCommunicationsendersV1) | **GET** /1/object/broker/{pkiBrokerID}/getCommunicationsenders | Retrieve Communication senders
 [**ObjectBrokerAPI_brokerGetListV1**](ObjectBrokerAPI.md#ObjectBrokerAPI_brokerGetListV1) | **GET** /1/object/broker/getList | Retrieve Broker list
 [**ObjectBrokerAPI_brokerImportIntoEDMV1**](ObjectBrokerAPI.md#ObjectBrokerAPI_brokerImportIntoEDMV1) | **POST** /1/object/broker/{pkiBrokerID}/importIntoEDM | Import attachments into the Broker
 
@@ -92,6 +96,122 @@ Name | Type | Description  | Notes
 ### Return type
 
 [broker_get_autocomplete_v2_response_t](broker_get_autocomplete_v2_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectBrokerAPI_brokerGetCommunicationCountV1**
+```c
+// Retrieve Communication count
+//
+broker_get_communication_count_v1_response_t* ObjectBrokerAPI_brokerGetCommunicationCountV1(apiClient_t *apiClient, int *pkiBrokerID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiBrokerID** | **int \*** |  | 
+
+### Return type
+
+[broker_get_communication_count_v1_response_t](broker_get_communication_count_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectBrokerAPI_brokerGetCommunicationListV1**
+```c
+// Retrieve Communication list
+//
+broker_get_communication_list_v1_response_t* ObjectBrokerAPI_brokerGetCommunicationListV1(apiClient_t *apiClient, int *pkiBrokerID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiBrokerID** | **int \*** |  | 
+
+### Return type
+
+[broker_get_communication_list_v1_response_t](broker_get_communication_list_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectBrokerAPI_brokerGetCommunicationrecipientsV1**
+```c
+// Retrieve Communication recipients
+//
+broker_get_communicationrecipients_v1_response_t* ObjectBrokerAPI_brokerGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiBrokerID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiBrokerID** | **int \*** |  | 
+
+### Return type
+
+[broker_get_communicationrecipients_v1_response_t](broker_get_communicationrecipients_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectBrokerAPI_brokerGetCommunicationsendersV1**
+```c
+// Retrieve Communication senders
+//
+broker_get_communicationsenders_v1_response_t* ObjectBrokerAPI_brokerGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiBrokerID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiBrokerID** | **int \*** |  | 
+
+### Return type
+
+[broker_get_communicationsenders_v1_response_t](broker_get_communicationsenders_v1_response.md) *
 
 
 ### Authorization

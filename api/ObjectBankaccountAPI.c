@@ -494,6 +494,354 @@ end:
 
 }
 
+// Retrieve Communication count
+//
+bankaccount_get_communication_count_v1_response_t*
+ObjectBankaccountAPI_bankaccountGetCommunicationCountV1(apiClient_t *apiClient, int *pkiBankaccountID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/bankaccount/{pkiBankaccountID}/getCommunicationCount");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiBankaccountID =  + sizeof("{ pkiBankaccountID }") - 1;
+    if(pkiBankaccountID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiBankaccountID = malloc(sizeOfPathParams_pkiBankaccountID);
+    snprintf(localVarToReplace_pkiBankaccountID, sizeOfPathParams_pkiBankaccountID, "{%s}", "pkiBankaccountID");
+
+    char localVarBuff_pkiBankaccountID[256];
+    snprintf(localVarBuff_pkiBankaccountID, sizeof localVarBuff_pkiBankaccountID, "%ld", (long)*pkiBankaccountID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiBankaccountID, localVarBuff_pkiBankaccountID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    bankaccount_get_communication_count_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectBankaccountAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = bankaccount_get_communication_count_v1_response_parseFromJSON(ObjectBankaccountAPIlocalVarJSON);
+        cJSON_Delete(ObjectBankaccountAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiBankaccountID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication list
+//
+bankaccount_get_communication_list_v1_response_t*
+ObjectBankaccountAPI_bankaccountGetCommunicationListV1(apiClient_t *apiClient, int *pkiBankaccountID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/bankaccount/{pkiBankaccountID}/getCommunicationList");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiBankaccountID =  + sizeof("{ pkiBankaccountID }") - 1;
+    if(pkiBankaccountID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiBankaccountID = malloc(sizeOfPathParams_pkiBankaccountID);
+    snprintf(localVarToReplace_pkiBankaccountID, sizeOfPathParams_pkiBankaccountID, "{%s}", "pkiBankaccountID");
+
+    char localVarBuff_pkiBankaccountID[256];
+    snprintf(localVarBuff_pkiBankaccountID, sizeof localVarBuff_pkiBankaccountID, "%ld", (long)*pkiBankaccountID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiBankaccountID, localVarBuff_pkiBankaccountID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    bankaccount_get_communication_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectBankaccountAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = bankaccount_get_communication_list_v1_response_parseFromJSON(ObjectBankaccountAPIlocalVarJSON);
+        cJSON_Delete(ObjectBankaccountAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiBankaccountID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication recipients
+//
+bankaccount_get_communicationrecipients_v1_response_t*
+ObjectBankaccountAPI_bankaccountGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiBankaccountID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/bankaccount/{pkiBankaccountID}/getCommunicationrecipients");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiBankaccountID =  + sizeof("{ pkiBankaccountID }") - 1;
+    if(pkiBankaccountID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiBankaccountID = malloc(sizeOfPathParams_pkiBankaccountID);
+    snprintf(localVarToReplace_pkiBankaccountID, sizeOfPathParams_pkiBankaccountID, "{%s}", "pkiBankaccountID");
+
+    char localVarBuff_pkiBankaccountID[256];
+    snprintf(localVarBuff_pkiBankaccountID, sizeof localVarBuff_pkiBankaccountID, "%ld", (long)*pkiBankaccountID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiBankaccountID, localVarBuff_pkiBankaccountID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    bankaccount_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectBankaccountAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = bankaccount_get_communicationrecipients_v1_response_parseFromJSON(ObjectBankaccountAPIlocalVarJSON);
+        cJSON_Delete(ObjectBankaccountAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiBankaccountID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication senders
+//
+bankaccount_get_communicationsenders_v1_response_t*
+ObjectBankaccountAPI_bankaccountGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiBankaccountID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/bankaccount/{pkiBankaccountID}/getCommunicationsenders");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiBankaccountID =  + sizeof("{ pkiBankaccountID }") - 1;
+    if(pkiBankaccountID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiBankaccountID = malloc(sizeOfPathParams_pkiBankaccountID);
+    snprintf(localVarToReplace_pkiBankaccountID, sizeOfPathParams_pkiBankaccountID, "{%s}", "pkiBankaccountID");
+
+    char localVarBuff_pkiBankaccountID[256];
+    snprintf(localVarBuff_pkiBankaccountID, sizeof localVarBuff_pkiBankaccountID, "%ld", (long)*pkiBankaccountID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiBankaccountID, localVarBuff_pkiBankaccountID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    bankaccount_get_communicationsenders_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectBankaccountAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = bankaccount_get_communicationsenders_v1_response_parseFromJSON(ObjectBankaccountAPIlocalVarJSON);
+        cJSON_Delete(ObjectBankaccountAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiBankaccountID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Import attachments into the Bankaccount
 //
 bankaccount_import_into_edm_v1_response_t*

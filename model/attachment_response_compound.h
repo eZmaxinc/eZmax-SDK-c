@@ -73,6 +73,7 @@ typedef struct attachment_response_compound_t {
     int *fki_ezsigndocument_id_reference; //numeric
     ezmax_api_definition__full_field_e_attachment_documenttype__e e_attachment_documenttype; //referenced enum
     char *s_attachment_name; // string
+    char *s_attachment_category; // string
     ezmax_api_definition__full_field_e_attachment_privacy__e e_attachment_privacy; //referenced enum
     int *fki_user_id_specific; //numeric
     ezmax_api_definition__full_field_e_attachment_type__e e_attachment_type; //referenced enum
@@ -139,6 +140,7 @@ __attribute__((deprecated)) attachment_response_compound_t *attachment_response_
     int *fki_ezsigndocument_id_reference,
     ezmax_api_definition__full_field_e_attachment_documenttype__e e_attachment_documenttype,
     char *s_attachment_name,
+    char *s_attachment_category,
     ezmax_api_definition__full_field_e_attachment_privacy__e e_attachment_privacy,
     int *fki_user_id_specific,
     ezmax_api_definition__full_field_e_attachment_type__e e_attachment_type,

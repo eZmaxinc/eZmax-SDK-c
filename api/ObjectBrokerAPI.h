@@ -8,6 +8,10 @@
 #include "../model/broker_batch_download_v1_request.h"
 #include "../model/broker_get_attachments_v1_response.h"
 #include "../model/broker_get_autocomplete_v2_response.h"
+#include "../model/broker_get_communication_count_v1_response.h"
+#include "../model/broker_get_communication_list_v1_response.h"
+#include "../model/broker_get_communicationrecipients_v1_response.h"
+#include "../model/broker_get_communicationsenders_v1_response.h"
 #include "../model/broker_get_list_v1_response.h"
 #include "../model/broker_import_into_edm_v1_request.h"
 #include "../model/broker_import_into_edm_v1_response.h"
@@ -48,6 +52,30 @@ ObjectBrokerAPI_brokerGetAttachmentsV1(apiClient_t *apiClient, int *pkiBrokerID)
 //
 broker_get_autocomplete_v2_response_t*
 ObjectBrokerAPI_brokerGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_brokerGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_brokerGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
+
+
+// Retrieve Communication count
+//
+broker_get_communication_count_v1_response_t*
+ObjectBrokerAPI_brokerGetCommunicationCountV1(apiClient_t *apiClient, int *pkiBrokerID);
+
+
+// Retrieve Communication list
+//
+broker_get_communication_list_v1_response_t*
+ObjectBrokerAPI_brokerGetCommunicationListV1(apiClient_t *apiClient, int *pkiBrokerID);
+
+
+// Retrieve Communication recipients
+//
+broker_get_communicationrecipients_v1_response_t*
+ObjectBrokerAPI_brokerGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiBrokerID);
+
+
+// Retrieve Communication senders
+//
+broker_get_communicationsenders_v1_response_t*
+ObjectBrokerAPI_brokerGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiBrokerID);
 
 
 // Retrieve Broker list

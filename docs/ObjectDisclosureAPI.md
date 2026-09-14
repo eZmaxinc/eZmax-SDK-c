@@ -6,6 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectDisclosureAPI_disclosureBatchDownloadV1**](ObjectDisclosureAPI.md#ObjectDisclosureAPI_disclosureBatchDownloadV1) | **POST** /1/object/disclosure/{pkiDisclosureID}/batchDownload | Download multiples attachments from a Disclosure
 [**ObjectDisclosureAPI_disclosureGetAttachmentsV1**](ObjectDisclosureAPI.md#ObjectDisclosureAPI_disclosureGetAttachmentsV1) | **GET** /1/object/disclosure/{pkiDisclosureID}/getAttachments | Retrieve Disclosure&#39;s attachments
+[**ObjectDisclosureAPI_disclosureGetCommunicationCountV1**](ObjectDisclosureAPI.md#ObjectDisclosureAPI_disclosureGetCommunicationCountV1) | **GET** /1/object/disclosure/{pkiDisclosureID}/getCommunicationCount | Retrieve Communication count
+[**ObjectDisclosureAPI_disclosureGetCommunicationListV1**](ObjectDisclosureAPI.md#ObjectDisclosureAPI_disclosureGetCommunicationListV1) | **GET** /1/object/disclosure/{pkiDisclosureID}/getCommunicationList | Retrieve Communication list
+[**ObjectDisclosureAPI_disclosureGetCommunicationrecipientsV1**](ObjectDisclosureAPI.md#ObjectDisclosureAPI_disclosureGetCommunicationrecipientsV1) | **GET** /1/object/disclosure/{pkiDisclosureID}/getCommunicationrecipients | Retrieve Communication recipients
+[**ObjectDisclosureAPI_disclosureGetCommunicationsendersV1**](ObjectDisclosureAPI.md#ObjectDisclosureAPI_disclosureGetCommunicationsendersV1) | **GET** /1/object/disclosure/{pkiDisclosureID}/getCommunicationsenders | Retrieve Communication senders
 [**ObjectDisclosureAPI_disclosureImportIntoEDMV1**](ObjectDisclosureAPI.md#ObjectDisclosureAPI_disclosureImportIntoEDMV1) | **POST** /1/object/disclosure/{pkiDisclosureID}/importIntoEDM | Import attachments into the Disclosure
 
 
@@ -56,6 +60,122 @@ Name | Type | Description  | Notes
 ### Return type
 
 [disclosure_get_attachments_v1_response_t](disclosure_get_attachments_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectDisclosureAPI_disclosureGetCommunicationCountV1**
+```c
+// Retrieve Communication count
+//
+disclosure_get_communication_count_v1_response_t* ObjectDisclosureAPI_disclosureGetCommunicationCountV1(apiClient_t *apiClient, int *pkiDisclosureID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiDisclosureID** | **int \*** |  | 
+
+### Return type
+
+[disclosure_get_communication_count_v1_response_t](disclosure_get_communication_count_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectDisclosureAPI_disclosureGetCommunicationListV1**
+```c
+// Retrieve Communication list
+//
+disclosure_get_communication_list_v1_response_t* ObjectDisclosureAPI_disclosureGetCommunicationListV1(apiClient_t *apiClient, int *pkiDisclosureID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiDisclosureID** | **int \*** |  | 
+
+### Return type
+
+[disclosure_get_communication_list_v1_response_t](disclosure_get_communication_list_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectDisclosureAPI_disclosureGetCommunicationrecipientsV1**
+```c
+// Retrieve Communication recipients
+//
+disclosure_get_communicationrecipients_v1_response_t* ObjectDisclosureAPI_disclosureGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiDisclosureID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiDisclosureID** | **int \*** |  | 
+
+### Return type
+
+[disclosure_get_communicationrecipients_v1_response_t](disclosure_get_communicationrecipients_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectDisclosureAPI_disclosureGetCommunicationsendersV1**
+```c
+// Retrieve Communication senders
+//
+disclosure_get_communicationsenders_v1_response_t* ObjectDisclosureAPI_disclosureGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiDisclosureID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiDisclosureID** | **int \*** |  | 
+
+### Return type
+
+[disclosure_get_communicationsenders_v1_response_t](disclosure_get_communicationsenders_v1_response.md) *
 
 
 ### Authorization

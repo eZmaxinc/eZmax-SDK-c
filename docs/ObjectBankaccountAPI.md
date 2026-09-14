@@ -7,6 +7,10 @@ Method | HTTP request | Description
 [**ObjectBankaccountAPI_bankaccountBatchDownloadV1**](ObjectBankaccountAPI.md#ObjectBankaccountAPI_bankaccountBatchDownloadV1) | **POST** /1/object/bankaccount/{pkiBankaccountID}/batchDownload | Download multiples attachments from a Bankaccount
 [**ObjectBankaccountAPI_bankaccountGetAttachmentsV1**](ObjectBankaccountAPI.md#ObjectBankaccountAPI_bankaccountGetAttachmentsV1) | **GET** /1/object/bankaccount/{pkiBankaccountID}/getAttachments | Retrieve Bankaccount&#39;s attachments
 [**ObjectBankaccountAPI_bankaccountGetAutocompleteV2**](ObjectBankaccountAPI.md#ObjectBankaccountAPI_bankaccountGetAutocompleteV2) | **GET** /2/object/bankaccount/getAutocomplete/{sSelector} | Retrieve Bankaccounts and IDs
+[**ObjectBankaccountAPI_bankaccountGetCommunicationCountV1**](ObjectBankaccountAPI.md#ObjectBankaccountAPI_bankaccountGetCommunicationCountV1) | **GET** /1/object/bankaccount/{pkiBankaccountID}/getCommunicationCount | Retrieve Communication count
+[**ObjectBankaccountAPI_bankaccountGetCommunicationListV1**](ObjectBankaccountAPI.md#ObjectBankaccountAPI_bankaccountGetCommunicationListV1) | **GET** /1/object/bankaccount/{pkiBankaccountID}/getCommunicationList | Retrieve Communication list
+[**ObjectBankaccountAPI_bankaccountGetCommunicationrecipientsV1**](ObjectBankaccountAPI.md#ObjectBankaccountAPI_bankaccountGetCommunicationrecipientsV1) | **GET** /1/object/bankaccount/{pkiBankaccountID}/getCommunicationrecipients | Retrieve Communication recipients
+[**ObjectBankaccountAPI_bankaccountGetCommunicationsendersV1**](ObjectBankaccountAPI.md#ObjectBankaccountAPI_bankaccountGetCommunicationsendersV1) | **GET** /1/object/bankaccount/{pkiBankaccountID}/getCommunicationsenders | Retrieve Communication senders
 [**ObjectBankaccountAPI_bankaccountImportIntoEDMV1**](ObjectBankaccountAPI.md#ObjectBankaccountAPI_bankaccountImportIntoEDMV1) | **POST** /1/object/bankaccount/{pkiBankaccountID}/importIntoEDM | Import attachments into the Bankaccount
 
 
@@ -91,6 +95,122 @@ Name | Type | Description  | Notes
 ### Return type
 
 [bankaccount_get_autocomplete_v2_response_t](bankaccount_get_autocomplete_v2_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectBankaccountAPI_bankaccountGetCommunicationCountV1**
+```c
+// Retrieve Communication count
+//
+bankaccount_get_communication_count_v1_response_t* ObjectBankaccountAPI_bankaccountGetCommunicationCountV1(apiClient_t *apiClient, int *pkiBankaccountID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiBankaccountID** | **int \*** |  | 
+
+### Return type
+
+[bankaccount_get_communication_count_v1_response_t](bankaccount_get_communication_count_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectBankaccountAPI_bankaccountGetCommunicationListV1**
+```c
+// Retrieve Communication list
+//
+bankaccount_get_communication_list_v1_response_t* ObjectBankaccountAPI_bankaccountGetCommunicationListV1(apiClient_t *apiClient, int *pkiBankaccountID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiBankaccountID** | **int \*** |  | 
+
+### Return type
+
+[bankaccount_get_communication_list_v1_response_t](bankaccount_get_communication_list_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectBankaccountAPI_bankaccountGetCommunicationrecipientsV1**
+```c
+// Retrieve Communication recipients
+//
+bankaccount_get_communicationrecipients_v1_response_t* ObjectBankaccountAPI_bankaccountGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiBankaccountID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiBankaccountID** | **int \*** |  | 
+
+### Return type
+
+[bankaccount_get_communicationrecipients_v1_response_t](bankaccount_get_communicationrecipients_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectBankaccountAPI_bankaccountGetCommunicationsendersV1**
+```c
+// Retrieve Communication senders
+//
+bankaccount_get_communicationsenders_v1_response_t* ObjectBankaccountAPI_bankaccountGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiBankaccountID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiBankaccountID** | **int \*** |  | 
+
+### Return type
+
+[bankaccount_get_communicationsenders_v1_response_t](bankaccount_get_communicationsenders_v1_response.md) *
 
 
 ### Authorization

@@ -7,6 +7,10 @@ Method | HTTP request | Description
 [**ObjectAgentAPI_agentBatchDownloadV1**](ObjectAgentAPI.md#ObjectAgentAPI_agentBatchDownloadV1) | **POST** /1/object/agent/{pkiAgentID}/batchDownload | Download multiples attachments from a Agent
 [**ObjectAgentAPI_agentGetAttachmentsV1**](ObjectAgentAPI.md#ObjectAgentAPI_agentGetAttachmentsV1) | **GET** /1/object/agent/{pkiAgentID}/getAttachments | Retrieve Agent&#39;s attachments
 [**ObjectAgentAPI_agentGetAutocompleteV2**](ObjectAgentAPI.md#ObjectAgentAPI_agentGetAutocompleteV2) | **GET** /2/object/agent/getAutocomplete/{sSelector} | Retrieve Agents and IDs
+[**ObjectAgentAPI_agentGetCommunicationCountV1**](ObjectAgentAPI.md#ObjectAgentAPI_agentGetCommunicationCountV1) | **GET** /1/object/agent/{pkiAgentID}/getCommunicationCount | Retrieve Communication count
+[**ObjectAgentAPI_agentGetCommunicationListV1**](ObjectAgentAPI.md#ObjectAgentAPI_agentGetCommunicationListV1) | **GET** /1/object/agent/{pkiAgentID}/getCommunicationList | Retrieve Communication list
+[**ObjectAgentAPI_agentGetCommunicationrecipientsV1**](ObjectAgentAPI.md#ObjectAgentAPI_agentGetCommunicationrecipientsV1) | **GET** /1/object/agent/{pkiAgentID}/getCommunicationrecipients | Retrieve Communication recipients
+[**ObjectAgentAPI_agentGetCommunicationsendersV1**](ObjectAgentAPI.md#ObjectAgentAPI_agentGetCommunicationsendersV1) | **GET** /1/object/agent/{pkiAgentID}/getCommunicationsenders | Retrieve Communication senders
 [**ObjectAgentAPI_agentGetListV1**](ObjectAgentAPI.md#ObjectAgentAPI_agentGetListV1) | **GET** /1/object/agent/getList | Retrieve Agent list
 [**ObjectAgentAPI_agentImportIntoEDMV1**](ObjectAgentAPI.md#ObjectAgentAPI_agentImportIntoEDMV1) | **POST** /1/object/agent/{pkiAgentID}/importIntoEDM | Import attachments into the Agent
 
@@ -92,6 +96,122 @@ Name | Type | Description  | Notes
 ### Return type
 
 [agent_get_autocomplete_v2_response_t](agent_get_autocomplete_v2_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectAgentAPI_agentGetCommunicationCountV1**
+```c
+// Retrieve Communication count
+//
+agent_get_communication_count_v1_response_t* ObjectAgentAPI_agentGetCommunicationCountV1(apiClient_t *apiClient, int *pkiAgentID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiAgentID** | **int \*** |  | 
+
+### Return type
+
+[agent_get_communication_count_v1_response_t](agent_get_communication_count_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectAgentAPI_agentGetCommunicationListV1**
+```c
+// Retrieve Communication list
+//
+agent_get_communication_list_v1_response_t* ObjectAgentAPI_agentGetCommunicationListV1(apiClient_t *apiClient, int *pkiAgentID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiAgentID** | **int \*** |  | 
+
+### Return type
+
+[agent_get_communication_list_v1_response_t](agent_get_communication_list_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectAgentAPI_agentGetCommunicationrecipientsV1**
+```c
+// Retrieve Communication recipients
+//
+agent_get_communicationrecipients_v1_response_t* ObjectAgentAPI_agentGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiAgentID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiAgentID** | **int \*** |  | 
+
+### Return type
+
+[agent_get_communicationrecipients_v1_response_t](agent_get_communicationrecipients_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectAgentAPI_agentGetCommunicationsendersV1**
+```c
+// Retrieve Communication senders
+//
+agent_get_communicationsenders_v1_response_t* ObjectAgentAPI_agentGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiAgentID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiAgentID** | **int \*** |  | 
+
+### Return type
+
+[agent_get_communicationsenders_v1_response_t](agent_get_communicationsenders_v1_response.md) *
 
 
 ### Authorization

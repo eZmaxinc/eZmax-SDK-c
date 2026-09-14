@@ -7,6 +7,10 @@
 #include "../include/binary.h"
 #include "../model/commissionadvance_batch_download_v1_request.h"
 #include "../model/commissionadvance_get_attachments_v1_response.h"
+#include "../model/commissionadvance_get_communication_count_v1_response.h"
+#include "../model/commissionadvance_get_communication_list_v1_response.h"
+#include "../model/commissionadvance_get_communicationrecipients_v1_response.h"
+#include "../model/commissionadvance_get_communicationsenders_v1_response.h"
 #include "../model/commissionadvance_import_into_edm_v1_request.h"
 #include "../model/commissionadvance_import_into_edm_v1_response.h"
 #include "../model/common_response_error.h"
@@ -22,6 +26,30 @@ ObjectCommissionadvanceAPI_commissionadvanceBatchDownloadV1(apiClient_t *apiClie
 //
 commissionadvance_get_attachments_v1_response_t*
 ObjectCommissionadvanceAPI_commissionadvanceGetAttachmentsV1(apiClient_t *apiClient, int *pkiCommissionadvanceID);
+
+
+// Retrieve Communication count
+//
+commissionadvance_get_communication_count_v1_response_t*
+ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationCountV1(apiClient_t *apiClient, int *pkiCommissionadvanceID);
+
+
+// Retrieve Communication list
+//
+commissionadvance_get_communication_list_v1_response_t*
+ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationListV1(apiClient_t *apiClient, int *pkiCommissionadvanceID);
+
+
+// Retrieve Communication recipients
+//
+commissionadvance_get_communicationrecipients_v1_response_t*
+ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiCommissionadvanceID);
+
+
+// Retrieve Communication senders
+//
+commissionadvance_get_communicationsenders_v1_response_t*
+ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiCommissionadvanceID);
 
 
 // Import attachments into the Commissionadvance

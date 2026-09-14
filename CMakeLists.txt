@@ -86,6 +86,14 @@ set(SRCS
     model/agent_get_attachments_v1_response_m_payload.c
     model/agent_get_autocomplete_v2_response.c
     model/agent_get_autocomplete_v2_response_m_payload.c
+    model/agent_get_communication_count_v1_response.c
+    model/agent_get_communication_count_v1_response_m_payload.c
+    model/agent_get_communication_list_v1_response.c
+    model/agent_get_communication_list_v1_response_m_payload.c
+    model/agent_get_communicationrecipients_v1_response.c
+    model/agent_get_communicationrecipients_v1_response_m_payload.c
+    model/agent_get_communicationsenders_v1_response.c
+    model/agent_get_communicationsenders_v1_response_m_payload.c
     model/agent_get_list_v1_response.c
     model/agent_get_list_v1_response_m_payload.c
     model/agent_import_into_edm_v1_request.c
@@ -124,6 +132,8 @@ set(SRCS
     model/apikey_request_compound.c
     model/apikey_response.c
     model/apikey_response_compound.c
+    model/attachment_delete_v1_response.c
+    model/attachment_delete_v1_response_m_payload.c
     model/attachment_get_attachmentlogs_v1_response.c
     model/attachment_get_attachmentlogs_v1_response_m_payload.c
     model/attachment_rename_v1_request.c
@@ -131,6 +141,12 @@ set(SRCS
     model/attachment_rename_v1_response_m_payload.c
     model/attachment_response.c
     model/attachment_response_compound.c
+    model/attachment_restore_v1_request.c
+    model/attachment_restore_v1_response.c
+    model/attachment_restore_v1_response_m_payload.c
+    model/attachment_validate_v1_request.c
+    model/attachment_validate_v1_response.c
+    model/attachment_validate_v1_response_m_payload.c
     model/attachmentlog_response.c
     model/attachmentlog_response_compound.c
     model/attempt_response.c
@@ -160,6 +176,14 @@ set(SRCS
     model/bankaccount_get_attachments_v1_response_m_payload.c
     model/bankaccount_get_autocomplete_v2_response.c
     model/bankaccount_get_autocomplete_v2_response_m_payload.c
+    model/bankaccount_get_communication_count_v1_response.c
+    model/bankaccount_get_communication_count_v1_response_m_payload.c
+    model/bankaccount_get_communication_list_v1_response.c
+    model/bankaccount_get_communication_list_v1_response_m_payload.c
+    model/bankaccount_get_communicationrecipients_v1_response.c
+    model/bankaccount_get_communicationrecipients_v1_response_m_payload.c
+    model/bankaccount_get_communicationsenders_v1_response.c
+    model/bankaccount_get_communicationsenders_v1_response_m_payload.c
     model/bankaccount_import_into_edm_v1_request.c
     model/bankaccount_import_into_edm_v1_response.c
     model/bankaccount_import_into_edm_v1_response_m_payload.c
@@ -213,6 +237,14 @@ set(SRCS
     model/broker_get_attachments_v1_response_m_payload.c
     model/broker_get_autocomplete_v2_response.c
     model/broker_get_autocomplete_v2_response_m_payload.c
+    model/broker_get_communication_count_v1_response.c
+    model/broker_get_communication_count_v1_response_m_payload.c
+    model/broker_get_communication_list_v1_response.c
+    model/broker_get_communication_list_v1_response_m_payload.c
+    model/broker_get_communicationrecipients_v1_response.c
+    model/broker_get_communicationrecipients_v1_response_m_payload.c
+    model/broker_get_communicationsenders_v1_response.c
+    model/broker_get_communicationsenders_v1_response_m_payload.c
     model/broker_get_list_v1_response.c
     model/broker_get_list_v1_response_m_payload.c
     model/broker_import_into_edm_v1_request.c
@@ -250,6 +282,14 @@ set(SRCS
     model/commissionadvance_batch_download_v1_request.c
     model/commissionadvance_get_attachments_v1_response.c
     model/commissionadvance_get_attachments_v1_response_m_payload.c
+    model/commissionadvance_get_communication_count_v1_response.c
+    model/commissionadvance_get_communication_count_v1_response_m_payload.c
+    model/commissionadvance_get_communication_list_v1_response.c
+    model/commissionadvance_get_communication_list_v1_response_m_payload.c
+    model/commissionadvance_get_communicationrecipients_v1_response.c
+    model/commissionadvance_get_communicationrecipients_v1_response_m_payload.c
+    model/commissionadvance_get_communicationsenders_v1_response.c
+    model/commissionadvance_get_communicationsenders_v1_response_m_payload.c
     model/commissionadvance_import_into_edm_v1_request.c
     model/commissionadvance_import_into_edm_v1_response.c
     model/commissionadvance_import_into_edm_v1_response_m_payload.c
@@ -461,6 +501,14 @@ set(SRCS
     model/customer_get_attachments_v1_response_m_payload.c
     model/customer_get_autocomplete_v2_response.c
     model/customer_get_autocomplete_v2_response_m_payload.c
+    model/customer_get_communication_count_v1_response.c
+    model/customer_get_communication_count_v1_response_m_payload.c
+    model/customer_get_communication_list_v1_response.c
+    model/customer_get_communication_list_v1_response_m_payload.c
+    model/customer_get_communicationrecipients_v1_response.c
+    model/customer_get_communicationrecipients_v1_response_m_payload.c
+    model/customer_get_communicationsenders_v1_response.c
+    model/customer_get_communicationsenders_v1_response_m_payload.c
     model/customer_get_object_v2_response.c
     model/customer_get_object_v2_response_m_payload.c
     model/customer_import_into_edm_v1_request.c
@@ -474,18 +522,42 @@ set(SRCS
     model/deposit_batch_download_v1_request.c
     model/deposit_get_attachments_v1_response.c
     model/deposit_get_attachments_v1_response_m_payload.c
+    model/deposit_get_communication_count_v1_response.c
+    model/deposit_get_communication_count_v1_response_m_payload.c
+    model/deposit_get_communication_list_v1_response.c
+    model/deposit_get_communication_list_v1_response_m_payload.c
+    model/deposit_get_communicationrecipients_v1_response.c
+    model/deposit_get_communicationrecipients_v1_response_m_payload.c
+    model/deposit_get_communicationsenders_v1_response.c
+    model/deposit_get_communicationsenders_v1_response_m_payload.c
     model/deposit_import_into_edm_v1_request.c
     model/deposit_import_into_edm_v1_response.c
     model/deposit_import_into_edm_v1_response_m_payload.c
     model/deposittransitcheque_batch_download_v1_request.c
     model/deposittransitcheque_get_attachments_v1_response.c
     model/deposittransitcheque_get_attachments_v1_response_m_payload.c
+    model/deposittransitcheque_get_communication_count_v1_response.c
+    model/deposittransitcheque_get_communication_count_v1_response_m_payload.c
+    model/deposittransitcheque_get_communication_list_v1_response.c
+    model/deposittransitcheque_get_communication_list_v1_response_m_payload.c
+    model/deposittransitcheque_get_communicationrecipients_v1_response.c
+    model/deposittransitcheque_get_communicationrecipients_v1_response_m_payload.c
+    model/deposittransitcheque_get_communicationsenders_v1_response.c
+    model/deposittransitcheque_get_communicationsenders_v1_response_m_payload.c
     model/deposittransitcheque_import_into_edm_v1_request.c
     model/deposittransitcheque_import_into_edm_v1_response.c
     model/deposittransitcheque_import_into_edm_v1_response_m_payload.c
     model/disclosure_batch_download_v1_request.c
     model/disclosure_get_attachments_v1_response.c
     model/disclosure_get_attachments_v1_response_m_payload.c
+    model/disclosure_get_communication_count_v1_response.c
+    model/disclosure_get_communication_count_v1_response_m_payload.c
+    model/disclosure_get_communication_list_v1_response.c
+    model/disclosure_get_communication_list_v1_response_m_payload.c
+    model/disclosure_get_communicationrecipients_v1_response.c
+    model/disclosure_get_communicationrecipients_v1_response_m_payload.c
+    model/disclosure_get_communicationsenders_v1_response.c
+    model/disclosure_get_communicationsenders_v1_response_m_payload.c
     model/disclosure_import_into_edm_v1_request.c
     model/disclosure_import_into_edm_v1_response.c
     model/disclosure_import_into_edm_v1_response_m_payload.c
@@ -565,6 +637,14 @@ set(SRCS
     model/employee_batch_download_v1_request.c
     model/employee_get_attachments_v1_response.c
     model/employee_get_attachments_v1_response_m_payload.c
+    model/employee_get_communication_count_v1_response.c
+    model/employee_get_communication_count_v1_response_m_payload.c
+    model/employee_get_communication_list_v1_response.c
+    model/employee_get_communication_list_v1_response_m_payload.c
+    model/employee_get_communicationrecipients_v1_response.c
+    model/employee_get_communicationrecipients_v1_response_m_payload.c
+    model/employee_get_communicationsenders_v1_response.c
+    model/employee_get_communicationsenders_v1_response_m_payload.c
     model/employee_get_list_v1_response.c
     model/employee_get_list_v1_response_m_payload.c
     model/employee_import_into_edm_v1_request.c
@@ -580,6 +660,14 @@ set(SRCS
     model/externalbroker_batch_download_v1_request.c
     model/externalbroker_get_attachments_v1_response.c
     model/externalbroker_get_attachments_v1_response_m_payload.c
+    model/externalbroker_get_communication_count_v1_response.c
+    model/externalbroker_get_communication_count_v1_response_m_payload.c
+    model/externalbroker_get_communication_list_v1_response.c
+    model/externalbroker_get_communication_list_v1_response_m_payload.c
+    model/externalbroker_get_communicationrecipients_v1_response.c
+    model/externalbroker_get_communicationrecipients_v1_response_m_payload.c
+    model/externalbroker_get_communicationsenders_v1_response.c
+    model/externalbroker_get_communicationsenders_v1_response_m_payload.c
     model/externalbroker_import_into_edm_v1_request.c
     model/externalbroker_import_into_edm_v1_response.c
     model/externalbroker_import_into_edm_v1_response_m_payload.c
@@ -2485,6 +2573,14 @@ set(HDRS
     model/agent_get_attachments_v1_response_m_payload.h
     model/agent_get_autocomplete_v2_response.h
     model/agent_get_autocomplete_v2_response_m_payload.h
+    model/agent_get_communication_count_v1_response.h
+    model/agent_get_communication_count_v1_response_m_payload.h
+    model/agent_get_communication_list_v1_response.h
+    model/agent_get_communication_list_v1_response_m_payload.h
+    model/agent_get_communicationrecipients_v1_response.h
+    model/agent_get_communicationrecipients_v1_response_m_payload.h
+    model/agent_get_communicationsenders_v1_response.h
+    model/agent_get_communicationsenders_v1_response_m_payload.h
     model/agent_get_list_v1_response.h
     model/agent_get_list_v1_response_m_payload.h
     model/agent_import_into_edm_v1_request.h
@@ -2523,6 +2619,8 @@ set(HDRS
     model/apikey_request_compound.h
     model/apikey_response.h
     model/apikey_response_compound.h
+    model/attachment_delete_v1_response.h
+    model/attachment_delete_v1_response_m_payload.h
     model/attachment_get_attachmentlogs_v1_response.h
     model/attachment_get_attachmentlogs_v1_response_m_payload.h
     model/attachment_rename_v1_request.h
@@ -2530,6 +2628,12 @@ set(HDRS
     model/attachment_rename_v1_response_m_payload.h
     model/attachment_response.h
     model/attachment_response_compound.h
+    model/attachment_restore_v1_request.h
+    model/attachment_restore_v1_response.h
+    model/attachment_restore_v1_response_m_payload.h
+    model/attachment_validate_v1_request.h
+    model/attachment_validate_v1_response.h
+    model/attachment_validate_v1_response_m_payload.h
     model/attachmentlog_response.h
     model/attachmentlog_response_compound.h
     model/attempt_response.h
@@ -2559,6 +2663,14 @@ set(HDRS
     model/bankaccount_get_attachments_v1_response_m_payload.h
     model/bankaccount_get_autocomplete_v2_response.h
     model/bankaccount_get_autocomplete_v2_response_m_payload.h
+    model/bankaccount_get_communication_count_v1_response.h
+    model/bankaccount_get_communication_count_v1_response_m_payload.h
+    model/bankaccount_get_communication_list_v1_response.h
+    model/bankaccount_get_communication_list_v1_response_m_payload.h
+    model/bankaccount_get_communicationrecipients_v1_response.h
+    model/bankaccount_get_communicationrecipients_v1_response_m_payload.h
+    model/bankaccount_get_communicationsenders_v1_response.h
+    model/bankaccount_get_communicationsenders_v1_response_m_payload.h
     model/bankaccount_import_into_edm_v1_request.h
     model/bankaccount_import_into_edm_v1_response.h
     model/bankaccount_import_into_edm_v1_response_m_payload.h
@@ -2612,6 +2724,14 @@ set(HDRS
     model/broker_get_attachments_v1_response_m_payload.h
     model/broker_get_autocomplete_v2_response.h
     model/broker_get_autocomplete_v2_response_m_payload.h
+    model/broker_get_communication_count_v1_response.h
+    model/broker_get_communication_count_v1_response_m_payload.h
+    model/broker_get_communication_list_v1_response.h
+    model/broker_get_communication_list_v1_response_m_payload.h
+    model/broker_get_communicationrecipients_v1_response.h
+    model/broker_get_communicationrecipients_v1_response_m_payload.h
+    model/broker_get_communicationsenders_v1_response.h
+    model/broker_get_communicationsenders_v1_response_m_payload.h
     model/broker_get_list_v1_response.h
     model/broker_get_list_v1_response_m_payload.h
     model/broker_import_into_edm_v1_request.h
@@ -2649,6 +2769,14 @@ set(HDRS
     model/commissionadvance_batch_download_v1_request.h
     model/commissionadvance_get_attachments_v1_response.h
     model/commissionadvance_get_attachments_v1_response_m_payload.h
+    model/commissionadvance_get_communication_count_v1_response.h
+    model/commissionadvance_get_communication_count_v1_response_m_payload.h
+    model/commissionadvance_get_communication_list_v1_response.h
+    model/commissionadvance_get_communication_list_v1_response_m_payload.h
+    model/commissionadvance_get_communicationrecipients_v1_response.h
+    model/commissionadvance_get_communicationrecipients_v1_response_m_payload.h
+    model/commissionadvance_get_communicationsenders_v1_response.h
+    model/commissionadvance_get_communicationsenders_v1_response_m_payload.h
     model/commissionadvance_import_into_edm_v1_request.h
     model/commissionadvance_import_into_edm_v1_response.h
     model/commissionadvance_import_into_edm_v1_response_m_payload.h
@@ -2860,6 +2988,14 @@ set(HDRS
     model/customer_get_attachments_v1_response_m_payload.h
     model/customer_get_autocomplete_v2_response.h
     model/customer_get_autocomplete_v2_response_m_payload.h
+    model/customer_get_communication_count_v1_response.h
+    model/customer_get_communication_count_v1_response_m_payload.h
+    model/customer_get_communication_list_v1_response.h
+    model/customer_get_communication_list_v1_response_m_payload.h
+    model/customer_get_communicationrecipients_v1_response.h
+    model/customer_get_communicationrecipients_v1_response_m_payload.h
+    model/customer_get_communicationsenders_v1_response.h
+    model/customer_get_communicationsenders_v1_response_m_payload.h
     model/customer_get_object_v2_response.h
     model/customer_get_object_v2_response_m_payload.h
     model/customer_import_into_edm_v1_request.h
@@ -2873,18 +3009,42 @@ set(HDRS
     model/deposit_batch_download_v1_request.h
     model/deposit_get_attachments_v1_response.h
     model/deposit_get_attachments_v1_response_m_payload.h
+    model/deposit_get_communication_count_v1_response.h
+    model/deposit_get_communication_count_v1_response_m_payload.h
+    model/deposit_get_communication_list_v1_response.h
+    model/deposit_get_communication_list_v1_response_m_payload.h
+    model/deposit_get_communicationrecipients_v1_response.h
+    model/deposit_get_communicationrecipients_v1_response_m_payload.h
+    model/deposit_get_communicationsenders_v1_response.h
+    model/deposit_get_communicationsenders_v1_response_m_payload.h
     model/deposit_import_into_edm_v1_request.h
     model/deposit_import_into_edm_v1_response.h
     model/deposit_import_into_edm_v1_response_m_payload.h
     model/deposittransitcheque_batch_download_v1_request.h
     model/deposittransitcheque_get_attachments_v1_response.h
     model/deposittransitcheque_get_attachments_v1_response_m_payload.h
+    model/deposittransitcheque_get_communication_count_v1_response.h
+    model/deposittransitcheque_get_communication_count_v1_response_m_payload.h
+    model/deposittransitcheque_get_communication_list_v1_response.h
+    model/deposittransitcheque_get_communication_list_v1_response_m_payload.h
+    model/deposittransitcheque_get_communicationrecipients_v1_response.h
+    model/deposittransitcheque_get_communicationrecipients_v1_response_m_payload.h
+    model/deposittransitcheque_get_communicationsenders_v1_response.h
+    model/deposittransitcheque_get_communicationsenders_v1_response_m_payload.h
     model/deposittransitcheque_import_into_edm_v1_request.h
     model/deposittransitcheque_import_into_edm_v1_response.h
     model/deposittransitcheque_import_into_edm_v1_response_m_payload.h
     model/disclosure_batch_download_v1_request.h
     model/disclosure_get_attachments_v1_response.h
     model/disclosure_get_attachments_v1_response_m_payload.h
+    model/disclosure_get_communication_count_v1_response.h
+    model/disclosure_get_communication_count_v1_response_m_payload.h
+    model/disclosure_get_communication_list_v1_response.h
+    model/disclosure_get_communication_list_v1_response_m_payload.h
+    model/disclosure_get_communicationrecipients_v1_response.h
+    model/disclosure_get_communicationrecipients_v1_response_m_payload.h
+    model/disclosure_get_communicationsenders_v1_response.h
+    model/disclosure_get_communicationsenders_v1_response_m_payload.h
     model/disclosure_import_into_edm_v1_request.h
     model/disclosure_import_into_edm_v1_response.h
     model/disclosure_import_into_edm_v1_response_m_payload.h
@@ -2964,6 +3124,14 @@ set(HDRS
     model/employee_batch_download_v1_request.h
     model/employee_get_attachments_v1_response.h
     model/employee_get_attachments_v1_response_m_payload.h
+    model/employee_get_communication_count_v1_response.h
+    model/employee_get_communication_count_v1_response_m_payload.h
+    model/employee_get_communication_list_v1_response.h
+    model/employee_get_communication_list_v1_response_m_payload.h
+    model/employee_get_communicationrecipients_v1_response.h
+    model/employee_get_communicationrecipients_v1_response_m_payload.h
+    model/employee_get_communicationsenders_v1_response.h
+    model/employee_get_communicationsenders_v1_response_m_payload.h
     model/employee_get_list_v1_response.h
     model/employee_get_list_v1_response_m_payload.h
     model/employee_import_into_edm_v1_request.h
@@ -2979,6 +3147,14 @@ set(HDRS
     model/externalbroker_batch_download_v1_request.h
     model/externalbroker_get_attachments_v1_response.h
     model/externalbroker_get_attachments_v1_response_m_payload.h
+    model/externalbroker_get_communication_count_v1_response.h
+    model/externalbroker_get_communication_count_v1_response_m_payload.h
+    model/externalbroker_get_communication_list_v1_response.h
+    model/externalbroker_get_communication_list_v1_response_m_payload.h
+    model/externalbroker_get_communicationrecipients_v1_response.h
+    model/externalbroker_get_communicationrecipients_v1_response_m_payload.h
+    model/externalbroker_get_communicationsenders_v1_response.h
+    model/externalbroker_get_communicationsenders_v1_response_m_payload.h
     model/externalbroker_import_into_edm_v1_request.h
     model/externalbroker_import_into_edm_v1_response.h
     model/externalbroker_import_into_edm_v1_response_m_payload.h

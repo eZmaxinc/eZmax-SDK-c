@@ -581,6 +581,354 @@ end:
 
 }
 
+// Retrieve Communication count
+//
+agent_get_communication_count_v1_response_t*
+ObjectAgentAPI_agentGetCommunicationCountV1(apiClient_t *apiClient, int *pkiAgentID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/agent/{pkiAgentID}/getCommunicationCount");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiAgentID =  + sizeof("{ pkiAgentID }") - 1;
+    if(pkiAgentID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiAgentID = malloc(sizeOfPathParams_pkiAgentID);
+    snprintf(localVarToReplace_pkiAgentID, sizeOfPathParams_pkiAgentID, "{%s}", "pkiAgentID");
+
+    char localVarBuff_pkiAgentID[256];
+    snprintf(localVarBuff_pkiAgentID, sizeof localVarBuff_pkiAgentID, "%ld", (long)*pkiAgentID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiAgentID, localVarBuff_pkiAgentID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    agent_get_communication_count_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectAgentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = agent_get_communication_count_v1_response_parseFromJSON(ObjectAgentAPIlocalVarJSON);
+        cJSON_Delete(ObjectAgentAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiAgentID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication list
+//
+agent_get_communication_list_v1_response_t*
+ObjectAgentAPI_agentGetCommunicationListV1(apiClient_t *apiClient, int *pkiAgentID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/agent/{pkiAgentID}/getCommunicationList");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiAgentID =  + sizeof("{ pkiAgentID }") - 1;
+    if(pkiAgentID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiAgentID = malloc(sizeOfPathParams_pkiAgentID);
+    snprintf(localVarToReplace_pkiAgentID, sizeOfPathParams_pkiAgentID, "{%s}", "pkiAgentID");
+
+    char localVarBuff_pkiAgentID[256];
+    snprintf(localVarBuff_pkiAgentID, sizeof localVarBuff_pkiAgentID, "%ld", (long)*pkiAgentID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiAgentID, localVarBuff_pkiAgentID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    agent_get_communication_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectAgentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = agent_get_communication_list_v1_response_parseFromJSON(ObjectAgentAPIlocalVarJSON);
+        cJSON_Delete(ObjectAgentAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiAgentID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication recipients
+//
+agent_get_communicationrecipients_v1_response_t*
+ObjectAgentAPI_agentGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiAgentID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/agent/{pkiAgentID}/getCommunicationrecipients");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiAgentID =  + sizeof("{ pkiAgentID }") - 1;
+    if(pkiAgentID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiAgentID = malloc(sizeOfPathParams_pkiAgentID);
+    snprintf(localVarToReplace_pkiAgentID, sizeOfPathParams_pkiAgentID, "{%s}", "pkiAgentID");
+
+    char localVarBuff_pkiAgentID[256];
+    snprintf(localVarBuff_pkiAgentID, sizeof localVarBuff_pkiAgentID, "%ld", (long)*pkiAgentID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiAgentID, localVarBuff_pkiAgentID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    agent_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectAgentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = agent_get_communicationrecipients_v1_response_parseFromJSON(ObjectAgentAPIlocalVarJSON);
+        cJSON_Delete(ObjectAgentAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiAgentID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication senders
+//
+agent_get_communicationsenders_v1_response_t*
+ObjectAgentAPI_agentGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiAgentID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/agent/{pkiAgentID}/getCommunicationsenders");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiAgentID =  + sizeof("{ pkiAgentID }") - 1;
+    if(pkiAgentID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiAgentID = malloc(sizeOfPathParams_pkiAgentID);
+    snprintf(localVarToReplace_pkiAgentID, sizeOfPathParams_pkiAgentID, "{%s}", "pkiAgentID");
+
+    char localVarBuff_pkiAgentID[256];
+    snprintf(localVarBuff_pkiAgentID, sizeof localVarBuff_pkiAgentID, "%ld", (long)*pkiAgentID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiAgentID, localVarBuff_pkiAgentID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    agent_get_communicationsenders_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectAgentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = agent_get_communicationsenders_v1_response_parseFromJSON(ObjectAgentAPIlocalVarJSON);
+        cJSON_Delete(ObjectAgentAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiAgentID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Retrieve Agent list
 //
 // 

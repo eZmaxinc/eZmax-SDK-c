@@ -202,6 +202,354 @@ end:
 
 }
 
+// Retrieve Communication count
+//
+deposit_get_communication_count_v1_response_t*
+ObjectDepositAPI_depositGetCommunicationCountV1(apiClient_t *apiClient, int *pkiDepositID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/deposit/{pkiDepositID}/getCommunicationCount");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiDepositID =  + sizeof("{ pkiDepositID }") - 1;
+    if(pkiDepositID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiDepositID = malloc(sizeOfPathParams_pkiDepositID);
+    snprintf(localVarToReplace_pkiDepositID, sizeOfPathParams_pkiDepositID, "{%s}", "pkiDepositID");
+
+    char localVarBuff_pkiDepositID[256];
+    snprintf(localVarBuff_pkiDepositID, sizeof localVarBuff_pkiDepositID, "%ld", (long)*pkiDepositID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiDepositID, localVarBuff_pkiDepositID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    deposit_get_communication_count_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectDepositAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = deposit_get_communication_count_v1_response_parseFromJSON(ObjectDepositAPIlocalVarJSON);
+        cJSON_Delete(ObjectDepositAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiDepositID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication list
+//
+deposit_get_communication_list_v1_response_t*
+ObjectDepositAPI_depositGetCommunicationListV1(apiClient_t *apiClient, int *pkiDepositID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/deposit/{pkiDepositID}/getCommunicationList");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiDepositID =  + sizeof("{ pkiDepositID }") - 1;
+    if(pkiDepositID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiDepositID = malloc(sizeOfPathParams_pkiDepositID);
+    snprintf(localVarToReplace_pkiDepositID, sizeOfPathParams_pkiDepositID, "{%s}", "pkiDepositID");
+
+    char localVarBuff_pkiDepositID[256];
+    snprintf(localVarBuff_pkiDepositID, sizeof localVarBuff_pkiDepositID, "%ld", (long)*pkiDepositID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiDepositID, localVarBuff_pkiDepositID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    deposit_get_communication_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectDepositAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = deposit_get_communication_list_v1_response_parseFromJSON(ObjectDepositAPIlocalVarJSON);
+        cJSON_Delete(ObjectDepositAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiDepositID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication recipients
+//
+deposit_get_communicationrecipients_v1_response_t*
+ObjectDepositAPI_depositGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiDepositID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/deposit/{pkiDepositID}/getCommunicationrecipients");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiDepositID =  + sizeof("{ pkiDepositID }") - 1;
+    if(pkiDepositID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiDepositID = malloc(sizeOfPathParams_pkiDepositID);
+    snprintf(localVarToReplace_pkiDepositID, sizeOfPathParams_pkiDepositID, "{%s}", "pkiDepositID");
+
+    char localVarBuff_pkiDepositID[256];
+    snprintf(localVarBuff_pkiDepositID, sizeof localVarBuff_pkiDepositID, "%ld", (long)*pkiDepositID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiDepositID, localVarBuff_pkiDepositID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    deposit_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectDepositAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = deposit_get_communicationrecipients_v1_response_parseFromJSON(ObjectDepositAPIlocalVarJSON);
+        cJSON_Delete(ObjectDepositAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiDepositID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication senders
+//
+deposit_get_communicationsenders_v1_response_t*
+ObjectDepositAPI_depositGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiDepositID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/deposit/{pkiDepositID}/getCommunicationsenders");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiDepositID =  + sizeof("{ pkiDepositID }") - 1;
+    if(pkiDepositID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiDepositID = malloc(sizeOfPathParams_pkiDepositID);
+    snprintf(localVarToReplace_pkiDepositID, sizeOfPathParams_pkiDepositID, "{%s}", "pkiDepositID");
+
+    char localVarBuff_pkiDepositID[256];
+    snprintf(localVarBuff_pkiDepositID, sizeof localVarBuff_pkiDepositID, "%ld", (long)*pkiDepositID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiDepositID, localVarBuff_pkiDepositID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    deposit_get_communicationsenders_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectDepositAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = deposit_get_communicationsenders_v1_response_parseFromJSON(ObjectDepositAPIlocalVarJSON);
+        cJSON_Delete(ObjectDepositAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiDepositID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Import attachments into the Deposit
 //
 deposit_import_into_edm_v1_response_t*

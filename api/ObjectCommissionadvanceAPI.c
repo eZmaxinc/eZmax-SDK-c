@@ -202,6 +202,354 @@ end:
 
 }
 
+// Retrieve Communication count
+//
+commissionadvance_get_communication_count_v1_response_t*
+ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationCountV1(apiClient_t *apiClient, int *pkiCommissionadvanceID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/commissionadvance/{pkiCommissionadvanceID}/getCommunicationCount");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiCommissionadvanceID =  + sizeof("{ pkiCommissionadvanceID }") - 1;
+    if(pkiCommissionadvanceID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiCommissionadvanceID = malloc(sizeOfPathParams_pkiCommissionadvanceID);
+    snprintf(localVarToReplace_pkiCommissionadvanceID, sizeOfPathParams_pkiCommissionadvanceID, "{%s}", "pkiCommissionadvanceID");
+
+    char localVarBuff_pkiCommissionadvanceID[256];
+    snprintf(localVarBuff_pkiCommissionadvanceID, sizeof localVarBuff_pkiCommissionadvanceID, "%ld", (long)*pkiCommissionadvanceID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiCommissionadvanceID, localVarBuff_pkiCommissionadvanceID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    commissionadvance_get_communication_count_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectCommissionadvanceAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = commissionadvance_get_communication_count_v1_response_parseFromJSON(ObjectCommissionadvanceAPIlocalVarJSON);
+        cJSON_Delete(ObjectCommissionadvanceAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiCommissionadvanceID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication list
+//
+commissionadvance_get_communication_list_v1_response_t*
+ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationListV1(apiClient_t *apiClient, int *pkiCommissionadvanceID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/commissionadvance/{pkiCommissionadvanceID}/getCommunicationList");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiCommissionadvanceID =  + sizeof("{ pkiCommissionadvanceID }") - 1;
+    if(pkiCommissionadvanceID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiCommissionadvanceID = malloc(sizeOfPathParams_pkiCommissionadvanceID);
+    snprintf(localVarToReplace_pkiCommissionadvanceID, sizeOfPathParams_pkiCommissionadvanceID, "{%s}", "pkiCommissionadvanceID");
+
+    char localVarBuff_pkiCommissionadvanceID[256];
+    snprintf(localVarBuff_pkiCommissionadvanceID, sizeof localVarBuff_pkiCommissionadvanceID, "%ld", (long)*pkiCommissionadvanceID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiCommissionadvanceID, localVarBuff_pkiCommissionadvanceID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    commissionadvance_get_communication_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectCommissionadvanceAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = commissionadvance_get_communication_list_v1_response_parseFromJSON(ObjectCommissionadvanceAPIlocalVarJSON);
+        cJSON_Delete(ObjectCommissionadvanceAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiCommissionadvanceID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication recipients
+//
+commissionadvance_get_communicationrecipients_v1_response_t*
+ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiCommissionadvanceID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/commissionadvance/{pkiCommissionadvanceID}/getCommunicationrecipients");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiCommissionadvanceID =  + sizeof("{ pkiCommissionadvanceID }") - 1;
+    if(pkiCommissionadvanceID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiCommissionadvanceID = malloc(sizeOfPathParams_pkiCommissionadvanceID);
+    snprintf(localVarToReplace_pkiCommissionadvanceID, sizeOfPathParams_pkiCommissionadvanceID, "{%s}", "pkiCommissionadvanceID");
+
+    char localVarBuff_pkiCommissionadvanceID[256];
+    snprintf(localVarBuff_pkiCommissionadvanceID, sizeof localVarBuff_pkiCommissionadvanceID, "%ld", (long)*pkiCommissionadvanceID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiCommissionadvanceID, localVarBuff_pkiCommissionadvanceID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    commissionadvance_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectCommissionadvanceAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = commissionadvance_get_communicationrecipients_v1_response_parseFromJSON(ObjectCommissionadvanceAPIlocalVarJSON);
+        cJSON_Delete(ObjectCommissionadvanceAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiCommissionadvanceID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication senders
+//
+commissionadvance_get_communicationsenders_v1_response_t*
+ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiCommissionadvanceID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/commissionadvance/{pkiCommissionadvanceID}/getCommunicationsenders");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiCommissionadvanceID =  + sizeof("{ pkiCommissionadvanceID }") - 1;
+    if(pkiCommissionadvanceID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiCommissionadvanceID = malloc(sizeOfPathParams_pkiCommissionadvanceID);
+    snprintf(localVarToReplace_pkiCommissionadvanceID, sizeOfPathParams_pkiCommissionadvanceID, "{%s}", "pkiCommissionadvanceID");
+
+    char localVarBuff_pkiCommissionadvanceID[256];
+    snprintf(localVarBuff_pkiCommissionadvanceID, sizeof localVarBuff_pkiCommissionadvanceID, "%ld", (long)*pkiCommissionadvanceID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiCommissionadvanceID, localVarBuff_pkiCommissionadvanceID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    commissionadvance_get_communicationsenders_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectCommissionadvanceAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = commissionadvance_get_communicationsenders_v1_response_parseFromJSON(ObjectCommissionadvanceAPIlocalVarJSON);
+        cJSON_Delete(ObjectCommissionadvanceAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiCommissionadvanceID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Import attachments into the Commissionadvance
 //
 commissionadvance_import_into_edm_v1_response_t*

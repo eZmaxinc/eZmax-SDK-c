@@ -6,6 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectCommissionadvanceAPI_commissionadvanceBatchDownloadV1**](ObjectCommissionadvanceAPI.md#ObjectCommissionadvanceAPI_commissionadvanceBatchDownloadV1) | **POST** /1/object/commissionadvance/{pkiCommissionadvanceID}/batchDownload | Download multiples attachments from a Commission advance
 [**ObjectCommissionadvanceAPI_commissionadvanceGetAttachmentsV1**](ObjectCommissionadvanceAPI.md#ObjectCommissionadvanceAPI_commissionadvanceGetAttachmentsV1) | **GET** /1/object/commissionadvance/{pkiCommissionadvanceID}/getAttachments | Retrieve Commissionadvance&#39;s attachments
+[**ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationCountV1**](ObjectCommissionadvanceAPI.md#ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationCountV1) | **GET** /1/object/commissionadvance/{pkiCommissionadvanceID}/getCommunicationCount | Retrieve Communication count
+[**ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationListV1**](ObjectCommissionadvanceAPI.md#ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationListV1) | **GET** /1/object/commissionadvance/{pkiCommissionadvanceID}/getCommunicationList | Retrieve Communication list
+[**ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationrecipientsV1**](ObjectCommissionadvanceAPI.md#ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationrecipientsV1) | **GET** /1/object/commissionadvance/{pkiCommissionadvanceID}/getCommunicationrecipients | Retrieve Communication recipients
+[**ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationsendersV1**](ObjectCommissionadvanceAPI.md#ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationsendersV1) | **GET** /1/object/commissionadvance/{pkiCommissionadvanceID}/getCommunicationsenders | Retrieve Communication senders
 [**ObjectCommissionadvanceAPI_commissionadvanceImportIntoEDMV1**](ObjectCommissionadvanceAPI.md#ObjectCommissionadvanceAPI_commissionadvanceImportIntoEDMV1) | **POST** /1/object/commissionadvance/{pkiCommissionadvanceID}/importIntoEDM | Import attachments into the Commissionadvance
 
 
@@ -56,6 +60,122 @@ Name | Type | Description  | Notes
 ### Return type
 
 [commissionadvance_get_attachments_v1_response_t](commissionadvance_get_attachments_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationCountV1**
+```c
+// Retrieve Communication count
+//
+commissionadvance_get_communication_count_v1_response_t* ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationCountV1(apiClient_t *apiClient, int *pkiCommissionadvanceID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiCommissionadvanceID** | **int \*** |  | 
+
+### Return type
+
+[commissionadvance_get_communication_count_v1_response_t](commissionadvance_get_communication_count_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationListV1**
+```c
+// Retrieve Communication list
+//
+commissionadvance_get_communication_list_v1_response_t* ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationListV1(apiClient_t *apiClient, int *pkiCommissionadvanceID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiCommissionadvanceID** | **int \*** |  | 
+
+### Return type
+
+[commissionadvance_get_communication_list_v1_response_t](commissionadvance_get_communication_list_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationrecipientsV1**
+```c
+// Retrieve Communication recipients
+//
+commissionadvance_get_communicationrecipients_v1_response_t* ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiCommissionadvanceID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiCommissionadvanceID** | **int \*** |  | 
+
+### Return type
+
+[commissionadvance_get_communicationrecipients_v1_response_t](commissionadvance_get_communicationrecipients_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationsendersV1**
+```c
+// Retrieve Communication senders
+//
+commissionadvance_get_communicationsenders_v1_response_t* ObjectCommissionadvanceAPI_commissionadvanceGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiCommissionadvanceID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiCommissionadvanceID** | **int \*** |  | 
+
+### Return type
+
+[commissionadvance_get_communicationsenders_v1_response_t](commissionadvance_get_communicationsenders_v1_response.md) *
 
 
 ### Authorization

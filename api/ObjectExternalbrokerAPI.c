@@ -202,6 +202,354 @@ end:
 
 }
 
+// Retrieve Communication count
+//
+externalbroker_get_communication_count_v1_response_t*
+ObjectExternalbrokerAPI_externalbrokerGetCommunicationCountV1(apiClient_t *apiClient, int *pkiExternalbrokerID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/externalbroker/{pkiExternalbrokerID}/getCommunicationCount");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiExternalbrokerID =  + sizeof("{ pkiExternalbrokerID }") - 1;
+    if(pkiExternalbrokerID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiExternalbrokerID = malloc(sizeOfPathParams_pkiExternalbrokerID);
+    snprintf(localVarToReplace_pkiExternalbrokerID, sizeOfPathParams_pkiExternalbrokerID, "{%s}", "pkiExternalbrokerID");
+
+    char localVarBuff_pkiExternalbrokerID[256];
+    snprintf(localVarBuff_pkiExternalbrokerID, sizeof localVarBuff_pkiExternalbrokerID, "%ld", (long)*pkiExternalbrokerID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiExternalbrokerID, localVarBuff_pkiExternalbrokerID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    externalbroker_get_communication_count_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectExternalbrokerAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = externalbroker_get_communication_count_v1_response_parseFromJSON(ObjectExternalbrokerAPIlocalVarJSON);
+        cJSON_Delete(ObjectExternalbrokerAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiExternalbrokerID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication list
+//
+externalbroker_get_communication_list_v1_response_t*
+ObjectExternalbrokerAPI_externalbrokerGetCommunicationListV1(apiClient_t *apiClient, int *pkiExternalbrokerID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/externalbroker/{pkiExternalbrokerID}/getCommunicationList");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiExternalbrokerID =  + sizeof("{ pkiExternalbrokerID }") - 1;
+    if(pkiExternalbrokerID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiExternalbrokerID = malloc(sizeOfPathParams_pkiExternalbrokerID);
+    snprintf(localVarToReplace_pkiExternalbrokerID, sizeOfPathParams_pkiExternalbrokerID, "{%s}", "pkiExternalbrokerID");
+
+    char localVarBuff_pkiExternalbrokerID[256];
+    snprintf(localVarBuff_pkiExternalbrokerID, sizeof localVarBuff_pkiExternalbrokerID, "%ld", (long)*pkiExternalbrokerID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiExternalbrokerID, localVarBuff_pkiExternalbrokerID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    externalbroker_get_communication_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectExternalbrokerAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = externalbroker_get_communication_list_v1_response_parseFromJSON(ObjectExternalbrokerAPIlocalVarJSON);
+        cJSON_Delete(ObjectExternalbrokerAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiExternalbrokerID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication recipients
+//
+externalbroker_get_communicationrecipients_v1_response_t*
+ObjectExternalbrokerAPI_externalbrokerGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiExternalbrokerID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/externalbroker/{pkiExternalbrokerID}/getCommunicationrecipients");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiExternalbrokerID =  + sizeof("{ pkiExternalbrokerID }") - 1;
+    if(pkiExternalbrokerID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiExternalbrokerID = malloc(sizeOfPathParams_pkiExternalbrokerID);
+    snprintf(localVarToReplace_pkiExternalbrokerID, sizeOfPathParams_pkiExternalbrokerID, "{%s}", "pkiExternalbrokerID");
+
+    char localVarBuff_pkiExternalbrokerID[256];
+    snprintf(localVarBuff_pkiExternalbrokerID, sizeof localVarBuff_pkiExternalbrokerID, "%ld", (long)*pkiExternalbrokerID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiExternalbrokerID, localVarBuff_pkiExternalbrokerID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    externalbroker_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectExternalbrokerAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = externalbroker_get_communicationrecipients_v1_response_parseFromJSON(ObjectExternalbrokerAPIlocalVarJSON);
+        cJSON_Delete(ObjectExternalbrokerAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiExternalbrokerID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication senders
+//
+externalbroker_get_communicationsenders_v1_response_t*
+ObjectExternalbrokerAPI_externalbrokerGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiExternalbrokerID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/externalbroker/{pkiExternalbrokerID}/getCommunicationsenders");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiExternalbrokerID =  + sizeof("{ pkiExternalbrokerID }") - 1;
+    if(pkiExternalbrokerID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiExternalbrokerID = malloc(sizeOfPathParams_pkiExternalbrokerID);
+    snprintf(localVarToReplace_pkiExternalbrokerID, sizeOfPathParams_pkiExternalbrokerID, "{%s}", "pkiExternalbrokerID");
+
+    char localVarBuff_pkiExternalbrokerID[256];
+    snprintf(localVarBuff_pkiExternalbrokerID, sizeof localVarBuff_pkiExternalbrokerID, "%ld", (long)*pkiExternalbrokerID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiExternalbrokerID, localVarBuff_pkiExternalbrokerID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    externalbroker_get_communicationsenders_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectExternalbrokerAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = externalbroker_get_communicationsenders_v1_response_parseFromJSON(ObjectExternalbrokerAPIlocalVarJSON);
+        cJSON_Delete(ObjectExternalbrokerAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiExternalbrokerID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Import attachments into the Externalbroker
 //
 // 

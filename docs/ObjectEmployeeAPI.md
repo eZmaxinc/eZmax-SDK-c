@@ -6,6 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectEmployeeAPI_employeeBatchDownloadV1**](ObjectEmployeeAPI.md#ObjectEmployeeAPI_employeeBatchDownloadV1) | **POST** /1/object/employee/{pkiEmployeeID}/batchDownload | Download multiples attachments from a Employee
 [**ObjectEmployeeAPI_employeeGetAttachmentsV1**](ObjectEmployeeAPI.md#ObjectEmployeeAPI_employeeGetAttachmentsV1) | **GET** /1/object/employee/{pkiEmployeeID}/getAttachments | Retrieve Employee&#39;s attachments
+[**ObjectEmployeeAPI_employeeGetCommunicationCountV1**](ObjectEmployeeAPI.md#ObjectEmployeeAPI_employeeGetCommunicationCountV1) | **GET** /1/object/employee/{pkiEmployeeID}/getCommunicationCount | Retrieve Communication count
+[**ObjectEmployeeAPI_employeeGetCommunicationListV1**](ObjectEmployeeAPI.md#ObjectEmployeeAPI_employeeGetCommunicationListV1) | **GET** /1/object/employee/{pkiEmployeeID}/getCommunicationList | Retrieve Communication list
+[**ObjectEmployeeAPI_employeeGetCommunicationrecipientsV1**](ObjectEmployeeAPI.md#ObjectEmployeeAPI_employeeGetCommunicationrecipientsV1) | **GET** /1/object/employee/{pkiEmployeeID}/getCommunicationrecipients | Retrieve Communication recipients
+[**ObjectEmployeeAPI_employeeGetCommunicationsendersV1**](ObjectEmployeeAPI.md#ObjectEmployeeAPI_employeeGetCommunicationsendersV1) | **GET** /1/object/employee/{pkiEmployeeID}/getCommunicationsenders | Retrieve Communication senders
 [**ObjectEmployeeAPI_employeeGetListV1**](ObjectEmployeeAPI.md#ObjectEmployeeAPI_employeeGetListV1) | **GET** /1/object/employee/getList | Retrieve Employee list
 [**ObjectEmployeeAPI_employeeImportIntoEDMV1**](ObjectEmployeeAPI.md#ObjectEmployeeAPI_employeeImportIntoEDMV1) | **POST** /1/object/employee/{pkiEmployeeID}/importIntoEDM | Import attachments into the Employee
 
@@ -57,6 +61,122 @@ Name | Type | Description  | Notes
 ### Return type
 
 [employee_get_attachments_v1_response_t](employee_get_attachments_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEmployeeAPI_employeeGetCommunicationCountV1**
+```c
+// Retrieve Communication count
+//
+employee_get_communication_count_v1_response_t* ObjectEmployeeAPI_employeeGetCommunicationCountV1(apiClient_t *apiClient, int *pkiEmployeeID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEmployeeID** | **int \*** |  | 
+
+### Return type
+
+[employee_get_communication_count_v1_response_t](employee_get_communication_count_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEmployeeAPI_employeeGetCommunicationListV1**
+```c
+// Retrieve Communication list
+//
+employee_get_communication_list_v1_response_t* ObjectEmployeeAPI_employeeGetCommunicationListV1(apiClient_t *apiClient, int *pkiEmployeeID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEmployeeID** | **int \*** |  | 
+
+### Return type
+
+[employee_get_communication_list_v1_response_t](employee_get_communication_list_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEmployeeAPI_employeeGetCommunicationrecipientsV1**
+```c
+// Retrieve Communication recipients
+//
+employee_get_communicationrecipients_v1_response_t* ObjectEmployeeAPI_employeeGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiEmployeeID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEmployeeID** | **int \*** |  | 
+
+### Return type
+
+[employee_get_communicationrecipients_v1_response_t](employee_get_communicationrecipients_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEmployeeAPI_employeeGetCommunicationsendersV1**
+```c
+// Retrieve Communication senders
+//
+employee_get_communicationsenders_v1_response_t* ObjectEmployeeAPI_employeeGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiEmployeeID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEmployeeID** | **int \*** |  | 
+
+### Return type
+
+[employee_get_communicationsenders_v1_response_t](employee_get_communicationsenders_v1_response.md) *
 
 
 ### Authorization

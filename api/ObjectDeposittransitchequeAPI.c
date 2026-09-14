@@ -202,6 +202,354 @@ end:
 
 }
 
+// Retrieve Communication count
+//
+deposittransitcheque_get_communication_count_v1_response_t*
+ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationCountV1(apiClient_t *apiClient, int *pkiDeposittransitchequeID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/deposittransitcheque/{pkiDeposittransitchequeID}/getCommunicationCount");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiDeposittransitchequeID =  + sizeof("{ pkiDeposittransitchequeID }") - 1;
+    if(pkiDeposittransitchequeID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiDeposittransitchequeID = malloc(sizeOfPathParams_pkiDeposittransitchequeID);
+    snprintf(localVarToReplace_pkiDeposittransitchequeID, sizeOfPathParams_pkiDeposittransitchequeID, "{%s}", "pkiDeposittransitchequeID");
+
+    char localVarBuff_pkiDeposittransitchequeID[256];
+    snprintf(localVarBuff_pkiDeposittransitchequeID, sizeof localVarBuff_pkiDeposittransitchequeID, "%ld", (long)*pkiDeposittransitchequeID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiDeposittransitchequeID, localVarBuff_pkiDeposittransitchequeID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    deposittransitcheque_get_communication_count_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectDeposittransitchequeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = deposittransitcheque_get_communication_count_v1_response_parseFromJSON(ObjectDeposittransitchequeAPIlocalVarJSON);
+        cJSON_Delete(ObjectDeposittransitchequeAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiDeposittransitchequeID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication list
+//
+deposittransitcheque_get_communication_list_v1_response_t*
+ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationListV1(apiClient_t *apiClient, int *pkiDeposittransitchequeID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/deposittransitcheque/{pkiDeposittransitchequeID}/getCommunicationList");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiDeposittransitchequeID =  + sizeof("{ pkiDeposittransitchequeID }") - 1;
+    if(pkiDeposittransitchequeID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiDeposittransitchequeID = malloc(sizeOfPathParams_pkiDeposittransitchequeID);
+    snprintf(localVarToReplace_pkiDeposittransitchequeID, sizeOfPathParams_pkiDeposittransitchequeID, "{%s}", "pkiDeposittransitchequeID");
+
+    char localVarBuff_pkiDeposittransitchequeID[256];
+    snprintf(localVarBuff_pkiDeposittransitchequeID, sizeof localVarBuff_pkiDeposittransitchequeID, "%ld", (long)*pkiDeposittransitchequeID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiDeposittransitchequeID, localVarBuff_pkiDeposittransitchequeID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    deposittransitcheque_get_communication_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectDeposittransitchequeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = deposittransitcheque_get_communication_list_v1_response_parseFromJSON(ObjectDeposittransitchequeAPIlocalVarJSON);
+        cJSON_Delete(ObjectDeposittransitchequeAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiDeposittransitchequeID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication recipients
+//
+deposittransitcheque_get_communicationrecipients_v1_response_t*
+ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiDeposittransitchequeID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/deposittransitcheque/{pkiDeposittransitchequeID}/getCommunicationrecipients");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiDeposittransitchequeID =  + sizeof("{ pkiDeposittransitchequeID }") - 1;
+    if(pkiDeposittransitchequeID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiDeposittransitchequeID = malloc(sizeOfPathParams_pkiDeposittransitchequeID);
+    snprintf(localVarToReplace_pkiDeposittransitchequeID, sizeOfPathParams_pkiDeposittransitchequeID, "{%s}", "pkiDeposittransitchequeID");
+
+    char localVarBuff_pkiDeposittransitchequeID[256];
+    snprintf(localVarBuff_pkiDeposittransitchequeID, sizeof localVarBuff_pkiDeposittransitchequeID, "%ld", (long)*pkiDeposittransitchequeID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiDeposittransitchequeID, localVarBuff_pkiDeposittransitchequeID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    deposittransitcheque_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectDeposittransitchequeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = deposittransitcheque_get_communicationrecipients_v1_response_parseFromJSON(ObjectDeposittransitchequeAPIlocalVarJSON);
+        cJSON_Delete(ObjectDeposittransitchequeAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiDeposittransitchequeID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication senders
+//
+deposittransitcheque_get_communicationsenders_v1_response_t*
+ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiDeposittransitchequeID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/deposittransitcheque/{pkiDeposittransitchequeID}/getCommunicationsenders");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiDeposittransitchequeID =  + sizeof("{ pkiDeposittransitchequeID }") - 1;
+    if(pkiDeposittransitchequeID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiDeposittransitchequeID = malloc(sizeOfPathParams_pkiDeposittransitchequeID);
+    snprintf(localVarToReplace_pkiDeposittransitchequeID, sizeOfPathParams_pkiDeposittransitchequeID, "{%s}", "pkiDeposittransitchequeID");
+
+    char localVarBuff_pkiDeposittransitchequeID[256];
+    snprintf(localVarBuff_pkiDeposittransitchequeID, sizeof localVarBuff_pkiDeposittransitchequeID, "%ld", (long)*pkiDeposittransitchequeID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiDeposittransitchequeID, localVarBuff_pkiDeposittransitchequeID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    deposittransitcheque_get_communicationsenders_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectDeposittransitchequeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = deposittransitcheque_get_communicationsenders_v1_response_parseFromJSON(ObjectDeposittransitchequeAPIlocalVarJSON);
+        cJSON_Delete(ObjectDeposittransitchequeAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiDeposittransitchequeID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Import attachments into the Deposittransitcheque
 //
 deposittransitcheque_import_into_edm_v1_response_t*

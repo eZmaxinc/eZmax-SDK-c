@@ -6,6 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectDeposittransitchequeAPI_deposittransitchequeBatchDownloadV1**](ObjectDeposittransitchequeAPI.md#ObjectDeposittransitchequeAPI_deposittransitchequeBatchDownloadV1) | **POST** /1/object/deposittransitcheque/{pkiDeposittransitchequeID}/batchDownload | Download multiples attachments from a Deposittransitcheque
 [**ObjectDeposittransitchequeAPI_deposittransitchequeGetAttachmentsV1**](ObjectDeposittransitchequeAPI.md#ObjectDeposittransitchequeAPI_deposittransitchequeGetAttachmentsV1) | **GET** /1/object/deposittransitcheque/{pkiDeposittransitchequeID}/getAttachments | Retrieve Deposittransitcheque&#39;s attachments
+[**ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationCountV1**](ObjectDeposittransitchequeAPI.md#ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationCountV1) | **GET** /1/object/deposittransitcheque/{pkiDeposittransitchequeID}/getCommunicationCount | Retrieve Communication count
+[**ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationListV1**](ObjectDeposittransitchequeAPI.md#ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationListV1) | **GET** /1/object/deposittransitcheque/{pkiDeposittransitchequeID}/getCommunicationList | Retrieve Communication list
+[**ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationrecipientsV1**](ObjectDeposittransitchequeAPI.md#ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationrecipientsV1) | **GET** /1/object/deposittransitcheque/{pkiDeposittransitchequeID}/getCommunicationrecipients | Retrieve Communication recipients
+[**ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationsendersV1**](ObjectDeposittransitchequeAPI.md#ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationsendersV1) | **GET** /1/object/deposittransitcheque/{pkiDeposittransitchequeID}/getCommunicationsenders | Retrieve Communication senders
 [**ObjectDeposittransitchequeAPI_deposittransitchequeImportIntoEDMV1**](ObjectDeposittransitchequeAPI.md#ObjectDeposittransitchequeAPI_deposittransitchequeImportIntoEDMV1) | **POST** /1/object/deposittransitcheque/{pkiDeposittransitchequeID}/importIntoEDM | Import attachments into the Deposittransitcheque
 
 
@@ -56,6 +60,122 @@ Name | Type | Description  | Notes
 ### Return type
 
 [deposittransitcheque_get_attachments_v1_response_t](deposittransitcheque_get_attachments_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationCountV1**
+```c
+// Retrieve Communication count
+//
+deposittransitcheque_get_communication_count_v1_response_t* ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationCountV1(apiClient_t *apiClient, int *pkiDeposittransitchequeID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiDeposittransitchequeID** | **int \*** |  | 
+
+### Return type
+
+[deposittransitcheque_get_communication_count_v1_response_t](deposittransitcheque_get_communication_count_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationListV1**
+```c
+// Retrieve Communication list
+//
+deposittransitcheque_get_communication_list_v1_response_t* ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationListV1(apiClient_t *apiClient, int *pkiDeposittransitchequeID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiDeposittransitchequeID** | **int \*** |  | 
+
+### Return type
+
+[deposittransitcheque_get_communication_list_v1_response_t](deposittransitcheque_get_communication_list_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationrecipientsV1**
+```c
+// Retrieve Communication recipients
+//
+deposittransitcheque_get_communicationrecipients_v1_response_t* ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiDeposittransitchequeID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiDeposittransitchequeID** | **int \*** |  | 
+
+### Return type
+
+[deposittransitcheque_get_communicationrecipients_v1_response_t](deposittransitcheque_get_communicationrecipients_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationsendersV1**
+```c
+// Retrieve Communication senders
+//
+deposittransitcheque_get_communicationsenders_v1_response_t* ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiDeposittransitchequeID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiDeposittransitchequeID** | **int \*** |  | 
+
+### Return type
+
+[deposittransitcheque_get_communicationsenders_v1_response_t](deposittransitcheque_get_communicationsenders_v1_response.md) *
 
 
 ### Authorization

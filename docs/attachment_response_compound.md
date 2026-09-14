@@ -52,6 +52,7 @@ Name | Type | Description | Notes
 **fki_ezsigndocument_id_reference** | **int** | The unique ID of the Ezsigndocument | [optional] 
 **e_attachment_documenttype** | **field_e_attachment_documenttype_t \*** |  | 
 **s_attachment_name** | **char \*** | The name of the Attachment | 
+**s_attachment_category** | **char \*** | The attachment category | 
 **e_attachment_privacy** | **field_e_attachment_privacy_t \*** |  | 
 **fki_user_id_specific** | **int** | The unique ID of the User | [optional] 
 **e_attachment_type** | **field_e_attachment_type_t \*** |  | 

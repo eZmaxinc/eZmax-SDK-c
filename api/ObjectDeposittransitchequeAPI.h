@@ -8,6 +8,10 @@
 #include "../model/common_response_error.h"
 #include "../model/deposittransitcheque_batch_download_v1_request.h"
 #include "../model/deposittransitcheque_get_attachments_v1_response.h"
+#include "../model/deposittransitcheque_get_communication_count_v1_response.h"
+#include "../model/deposittransitcheque_get_communication_list_v1_response.h"
+#include "../model/deposittransitcheque_get_communicationrecipients_v1_response.h"
+#include "../model/deposittransitcheque_get_communicationsenders_v1_response.h"
 #include "../model/deposittransitcheque_import_into_edm_v1_request.h"
 #include "../model/deposittransitcheque_import_into_edm_v1_response.h"
 
@@ -22,6 +26,30 @@ ObjectDeposittransitchequeAPI_deposittransitchequeBatchDownloadV1(apiClient_t *a
 //
 deposittransitcheque_get_attachments_v1_response_t*
 ObjectDeposittransitchequeAPI_deposittransitchequeGetAttachmentsV1(apiClient_t *apiClient, int *pkiDeposittransitchequeID);
+
+
+// Retrieve Communication count
+//
+deposittransitcheque_get_communication_count_v1_response_t*
+ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationCountV1(apiClient_t *apiClient, int *pkiDeposittransitchequeID);
+
+
+// Retrieve Communication list
+//
+deposittransitcheque_get_communication_list_v1_response_t*
+ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationListV1(apiClient_t *apiClient, int *pkiDeposittransitchequeID);
+
+
+// Retrieve Communication recipients
+//
+deposittransitcheque_get_communicationrecipients_v1_response_t*
+ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiDeposittransitchequeID);
+
+
+// Retrieve Communication senders
+//
+deposittransitcheque_get_communicationsenders_v1_response_t*
+ObjectDeposittransitchequeAPI_deposittransitchequeGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiDeposittransitchequeID);
 
 
 // Import attachments into the Deposittransitcheque

@@ -8,6 +8,10 @@
 #include "../model/bankaccount_batch_download_v1_request.h"
 #include "../model/bankaccount_get_attachments_v1_response.h"
 #include "../model/bankaccount_get_autocomplete_v2_response.h"
+#include "../model/bankaccount_get_communication_count_v1_response.h"
+#include "../model/bankaccount_get_communication_list_v1_response.h"
+#include "../model/bankaccount_get_communicationrecipients_v1_response.h"
+#include "../model/bankaccount_get_communicationsenders_v1_response.h"
 #include "../model/bankaccount_import_into_edm_v1_request.h"
 #include "../model/bankaccount_import_into_edm_v1_response.h"
 #include "../model/common_response_error.h"
@@ -41,6 +45,30 @@ ObjectBankaccountAPI_bankaccountGetAttachmentsV1(apiClient_t *apiClient, int *pk
 //
 bankaccount_get_autocomplete_v2_response_t*
 ObjectBankaccountAPI_bankaccountGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_bankaccountGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_bankaccountGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
+
+
+// Retrieve Communication count
+//
+bankaccount_get_communication_count_v1_response_t*
+ObjectBankaccountAPI_bankaccountGetCommunicationCountV1(apiClient_t *apiClient, int *pkiBankaccountID);
+
+
+// Retrieve Communication list
+//
+bankaccount_get_communication_list_v1_response_t*
+ObjectBankaccountAPI_bankaccountGetCommunicationListV1(apiClient_t *apiClient, int *pkiBankaccountID);
+
+
+// Retrieve Communication recipients
+//
+bankaccount_get_communicationrecipients_v1_response_t*
+ObjectBankaccountAPI_bankaccountGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiBankaccountID);
+
+
+// Retrieve Communication senders
+//
+bankaccount_get_communicationsenders_v1_response_t*
+ObjectBankaccountAPI_bankaccountGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiBankaccountID);
 
 
 // Import attachments into the Bankaccount
