@@ -9,6 +9,7 @@ static custom_user_name_response_t *custom_user_name_response_create_internal(
     char *s_contacttitle_name_x,
     char *s_user_lastname,
     char *s_user_firstname,
+    char *s_user_loginname,
     char *s_user_jobtitle
     ) {
     custom_user_name_response_t *custom_user_name_response_local_var = malloc(sizeof(custom_user_name_response_t));
@@ -20,6 +21,7 @@ static custom_user_name_response_t *custom_user_name_response_create_internal(
     custom_user_name_response_local_var->s_contacttitle_name_x = s_contacttitle_name_x;
     custom_user_name_response_local_var->s_user_lastname = s_user_lastname;
     custom_user_name_response_local_var->s_user_firstname = s_user_firstname;
+    custom_user_name_response_local_var->s_user_loginname = s_user_loginname;
     custom_user_name_response_local_var->s_user_jobtitle = s_user_jobtitle;
     return custom_user_name_response_local_var;
 }
@@ -28,12 +30,14 @@ __attribute__((deprecated)) custom_user_name_response_t *custom_user_name_respon
     char *s_contacttitle_name_x,
     char *s_user_lastname,
     char *s_user_firstname,
+    char *s_user_loginname,
     char *s_user_jobtitle
     ) {
     custom_user_name_response_t *result = custom_user_name_response_create_internal (
         s_contacttitle_name_x,
         s_user_lastname,
         s_user_firstname,
+        s_user_loginname,
         s_user_jobtitle
         );
     if (!result) {
@@ -61,6 +65,10 @@ void custom_user_name_response_free(custom_user_name_response_t *custom_user_nam
     if (custom_user_name_response->s_user_firstname) {
         free(custom_user_name_response->s_user_firstname);
         custom_user_name_response->s_user_firstname = NULL;
+    }
+    if (custom_user_name_response->s_user_loginname) {
+        free(custom_user_name_response->s_user_loginname);
+        custom_user_name_response->s_user_loginname = NULL;
     }
     if (custom_user_name_response->s_user_jobtitle) {
         free(custom_user_name_response->s_user_jobtitle);
@@ -98,6 +106,14 @@ cJSON *custom_user_name_response_convertToJSON(custom_user_name_response_t *cust
     }
 
 
+    // custom_user_name_response->s_user_loginname
+    if(custom_user_name_response->s_user_loginname) {
+    if(cJSON_AddStringToObject(item, "sUserLoginname", custom_user_name_response->s_user_loginname) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
     // custom_user_name_response->s_user_jobtitle
     if(custom_user_name_response->s_user_jobtitle) {
     if(cJSON_AddStringToObject(item, "sUserJobtitle", custom_user_name_response->s_user_jobtitle) == NULL) {
@@ -122,6 +138,8 @@ custom_user_name_response_t *custom_user_name_response_parseFromJSON(cJSON *cust
     char *s_user_lastname_local_str = NULL;
 
     char *s_user_firstname_local_str = NULL;
+
+    char *s_user_loginname_local_str = NULL;
 
     char *s_user_jobtitle_local_str = NULL;
 
@@ -167,6 +185,18 @@ custom_user_name_response_t *custom_user_name_response_parseFromJSON(cJSON *cust
     goto end; //String
     }
 
+    // custom_user_name_response->s_user_loginname
+    cJSON *s_user_loginname = cJSON_GetObjectItemCaseSensitive(custom_user_name_responseJSON, "sUserLoginname");
+    if (cJSON_IsNull(s_user_loginname)) {
+        s_user_loginname = NULL;
+    }
+    if (s_user_loginname) { 
+    if(!cJSON_IsString(s_user_loginname) && !cJSON_IsNull(s_user_loginname))
+    {
+    goto end; //String
+    }
+    }
+
     // custom_user_name_response->s_user_jobtitle
     cJSON *s_user_jobtitle = cJSON_GetObjectItemCaseSensitive(custom_user_name_responseJSON, "sUserJobtitle");
     if (cJSON_IsNull(s_user_jobtitle)) {
@@ -183,12 +213,14 @@ custom_user_name_response_t *custom_user_name_response_parseFromJSON(cJSON *cust
     if (s_contacttitle_name_x && !cJSON_IsNull(s_contacttitle_name_x)) s_contacttitle_name_x_local_str = strdup(s_contacttitle_name_x->valuestring);
     if (s_user_lastname && !cJSON_IsNull(s_user_lastname)) s_user_lastname_local_str = strdup(s_user_lastname->valuestring);
     if (s_user_firstname && !cJSON_IsNull(s_user_firstname)) s_user_firstname_local_str = strdup(s_user_firstname->valuestring);
+    if (s_user_loginname && !cJSON_IsNull(s_user_loginname)) s_user_loginname_local_str = strdup(s_user_loginname->valuestring);
     if (s_user_jobtitle && !cJSON_IsNull(s_user_jobtitle)) s_user_jobtitle_local_str = strdup(s_user_jobtitle->valuestring);
 
     custom_user_name_response_local_var = custom_user_name_response_create_internal (
         s_contacttitle_name_x_local_str,
         s_user_lastname_local_str,
         s_user_firstname_local_str,
+        s_user_loginname_local_str,
         s_user_jobtitle_local_str
         );
 
@@ -209,6 +241,10 @@ end:
     if (s_user_firstname_local_str) {
         free(s_user_firstname_local_str);
         s_user_firstname_local_str = NULL;
+    }
+    if (s_user_loginname_local_str) {
+        free(s_user_loginname_local_str);
+        s_user_loginname_local_str = NULL;
     }
     if (s_user_jobtitle_local_str) {
         free(s_user_jobtitle_local_str);

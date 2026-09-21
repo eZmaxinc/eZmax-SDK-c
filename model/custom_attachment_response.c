@@ -47,7 +47,8 @@ static custom_attachment_response_t *custom_attachment_response_create_internal(
     int *fki_supplier_id,
     int *fki_tranqcontract_id,
     int *fki_template_id,
-    int *fki_inscriptionchecklist_id,
+    int *fki_documenttypechecklist_id,
+    char *s_documenttype_name_x,
     int *fki_folder_id,
     int *fki_rejectedoffertopurchase_id,
     int *fki_disclosure_id,
@@ -120,7 +121,8 @@ static custom_attachment_response_t *custom_attachment_response_create_internal(
     custom_attachment_response_local_var->fki_supplier_id = fki_supplier_id;
     custom_attachment_response_local_var->fki_tranqcontract_id = fki_tranqcontract_id;
     custom_attachment_response_local_var->fki_template_id = fki_template_id;
-    custom_attachment_response_local_var->fki_inscriptionchecklist_id = fki_inscriptionchecklist_id;
+    custom_attachment_response_local_var->fki_documenttypechecklist_id = fki_documenttypechecklist_id;
+    custom_attachment_response_local_var->s_documenttype_name_x = s_documenttype_name_x;
     custom_attachment_response_local_var->fki_folder_id = fki_folder_id;
     custom_attachment_response_local_var->fki_rejectedoffertopurchase_id = fki_rejectedoffertopurchase_id;
     custom_attachment_response_local_var->fki_disclosure_id = fki_disclosure_id;
@@ -190,7 +192,8 @@ __attribute__((deprecated)) custom_attachment_response_t *custom_attachment_resp
     int *fki_supplier_id,
     int *fki_tranqcontract_id,
     int *fki_template_id,
-    int *fki_inscriptionchecklist_id,
+    int *fki_documenttypechecklist_id,
+    char *s_documenttype_name_x,
     int *fki_folder_id,
     int *fki_rejectedoffertopurchase_id,
     int *fki_disclosure_id,
@@ -421,10 +424,10 @@ __attribute__((deprecated)) custom_attachment_response_t *custom_attachment_resp
         fki_template_id_copy = malloc(sizeof(int));
         if (fki_template_id_copy) *fki_template_id_copy = *fki_template_id;
     }
-    int *fki_inscriptionchecklist_id_copy = NULL;
-    if (fki_inscriptionchecklist_id) {
-        fki_inscriptionchecklist_id_copy = malloc(sizeof(int));
-        if (fki_inscriptionchecklist_id_copy) *fki_inscriptionchecklist_id_copy = *fki_inscriptionchecklist_id;
+    int *fki_documenttypechecklist_id_copy = NULL;
+    if (fki_documenttypechecklist_id) {
+        fki_documenttypechecklist_id_copy = malloc(sizeof(int));
+        if (fki_documenttypechecklist_id_copy) *fki_documenttypechecklist_id_copy = *fki_documenttypechecklist_id;
     }
     int *fki_folder_id_copy = NULL;
     if (fki_folder_id) {
@@ -523,7 +526,8 @@ __attribute__((deprecated)) custom_attachment_response_t *custom_attachment_resp
         fki_supplier_id_copy,
         fki_tranqcontract_id_copy,
         fki_template_id_copy,
-        fki_inscriptionchecklist_id_copy,
+        fki_documenttypechecklist_id_copy,
+        s_documenttype_name_x,
         fki_folder_id_copy,
         fki_rejectedoffertopurchase_id_copy,
         fki_disclosure_id_copy,
@@ -591,7 +595,7 @@ __attribute__((deprecated)) custom_attachment_response_t *custom_attachment_resp
         free(fki_supplier_id_copy);
         free(fki_tranqcontract_id_copy);
         free(fki_template_id_copy);
-        free(fki_inscriptionchecklist_id_copy);
+        free(fki_documenttypechecklist_id_copy);
         free(fki_folder_id_copy);
         free(fki_rejectedoffertopurchase_id_copy);
         free(fki_disclosure_id_copy);
@@ -780,9 +784,13 @@ void custom_attachment_response_free(custom_attachment_response_t *custom_attach
         free(custom_attachment_response->fki_template_id);
         custom_attachment_response->fki_template_id = NULL;
     }
-    if (custom_attachment_response->fki_inscriptionchecklist_id) {
-        free(custom_attachment_response->fki_inscriptionchecklist_id);
-        custom_attachment_response->fki_inscriptionchecklist_id = NULL;
+    if (custom_attachment_response->fki_documenttypechecklist_id) {
+        free(custom_attachment_response->fki_documenttypechecklist_id);
+        custom_attachment_response->fki_documenttypechecklist_id = NULL;
+    }
+    if (custom_attachment_response->s_documenttype_name_x) {
+        free(custom_attachment_response->s_documenttype_name_x);
+        custom_attachment_response->s_documenttype_name_x = NULL;
     }
     if (custom_attachment_response->fki_folder_id) {
         free(custom_attachment_response->fki_folder_id);
@@ -1205,10 +1213,18 @@ cJSON *custom_attachment_response_convertToJSON(custom_attachment_response_t *cu
     }
 
 
-    // custom_attachment_response->fki_inscriptionchecklist_id
-    if(custom_attachment_response->fki_inscriptionchecklist_id) {
-    if(cJSON_AddNumberToObject(item, "fkiInscriptionchecklistID", *custom_attachment_response->fki_inscriptionchecklist_id) == NULL) {
+    // custom_attachment_response->fki_documenttypechecklist_id
+    if(custom_attachment_response->fki_documenttypechecklist_id) {
+    if(cJSON_AddNumberToObject(item, "fkiDocumenttypechecklistID", *custom_attachment_response->fki_documenttypechecklist_id) == NULL) {
     goto fail; //Numeric
+    }
+    }
+
+
+    // custom_attachment_response->s_documenttype_name_x
+    if(custom_attachment_response->s_documenttype_name_x) {
+    if(cJSON_AddStringToObject(item, "sDocumenttypeNameX", custom_attachment_response->s_documenttype_name_x) == NULL) {
+    goto fail; //String
     }
     }
 
@@ -1608,8 +1624,10 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
     // define the local variable for custom_attachment_response->fki_template_id
     int *fki_template_id_local_var = NULL;
 
-    // define the local variable for custom_attachment_response->fki_inscriptionchecklist_id
-    int *fki_inscriptionchecklist_id_local_var = NULL;
+    // define the local variable for custom_attachment_response->fki_documenttypechecklist_id
+    int *fki_documenttypechecklist_id_local_var = NULL;
+
+    char *s_documenttype_name_x_local_str = NULL;
 
     // define the local variable for custom_attachment_response->fki_folder_id
     int *fki_folder_id_local_var = NULL;
@@ -2420,22 +2438,34 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
     *fki_template_id_local_var = fki_template_id->valuedouble;
     }
 
-    // custom_attachment_response->fki_inscriptionchecklist_id
-    cJSON *fki_inscriptionchecklist_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiInscriptionchecklistID");
-    if (cJSON_IsNull(fki_inscriptionchecklist_id)) {
-        fki_inscriptionchecklist_id = NULL;
+    // custom_attachment_response->fki_documenttypechecklist_id
+    cJSON *fki_documenttypechecklist_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiDocumenttypechecklistID");
+    if (cJSON_IsNull(fki_documenttypechecklist_id)) {
+        fki_documenttypechecklist_id = NULL;
     }
-    if (fki_inscriptionchecklist_id) { 
-    if(!cJSON_IsNumber(fki_inscriptionchecklist_id))
+    if (fki_documenttypechecklist_id) { 
+    if(!cJSON_IsNumber(fki_documenttypechecklist_id))
     {
     goto end; //Numeric
     }
-    fki_inscriptionchecklist_id_local_var = malloc(sizeof(int));
-    if(!fki_inscriptionchecklist_id_local_var)
+    fki_documenttypechecklist_id_local_var = malloc(sizeof(int));
+    if(!fki_documenttypechecklist_id_local_var)
     {
         goto end;
     }
-    *fki_inscriptionchecklist_id_local_var = fki_inscriptionchecklist_id->valuedouble;
+    *fki_documenttypechecklist_id_local_var = fki_documenttypechecklist_id->valuedouble;
+    }
+
+    // custom_attachment_response->s_documenttype_name_x
+    cJSON *s_documenttype_name_x = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "sDocumenttypeNameX");
+    if (cJSON_IsNull(s_documenttype_name_x)) {
+        s_documenttype_name_x = NULL;
+    }
+    if (s_documenttype_name_x) { 
+    if(!cJSON_IsString(s_documenttype_name_x) && !cJSON_IsNull(s_documenttype_name_x))
+    {
+    goto end; //String
+    }
     }
 
     // custom_attachment_response->fki_folder_id
@@ -2826,6 +2856,7 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
     }
 
 
+    if (s_documenttype_name_x && !cJSON_IsNull(s_documenttype_name_x)) s_documenttype_name_x_local_str = strdup(s_documenttype_name_x->valuestring);
     if (s_attachment_name && !cJSON_IsNull(s_attachment_name)) s_attachment_name_local_str = strdup(s_attachment_name->valuestring);
     if (s_attachment_category && !cJSON_IsNull(s_attachment_category)) s_attachment_category_local_str = strdup(s_attachment_category->valuestring);
     if (s_attachment_md5 && !cJSON_IsNull(s_attachment_md5)) s_attachment_md5_local_str = strdup(s_attachment_md5->valuestring);
@@ -2873,7 +2904,8 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
         fki_supplier_id_local_var,
         fki_tranqcontract_id_local_var,
         fki_template_id_local_var,
-        fki_inscriptionchecklist_id_local_var,
+        fki_documenttypechecklist_id_local_var,
+        s_documenttype_name_x_local_str,
         fki_folder_id_local_var,
         fki_rejectedoffertopurchase_id_local_var,
         fki_disclosure_id_local_var,
@@ -3070,9 +3102,13 @@ end:
         free(fki_template_id_local_var);
         fki_template_id_local_var = NULL;
     }
-    if (fki_inscriptionchecklist_id_local_var) {
-        free(fki_inscriptionchecklist_id_local_var);
-        fki_inscriptionchecklist_id_local_var = NULL;
+    if (fki_documenttypechecklist_id_local_var) {
+        free(fki_documenttypechecklist_id_local_var);
+        fki_documenttypechecklist_id_local_var = NULL;
+    }
+    if (s_documenttype_name_x_local_str) {
+        free(s_documenttype_name_x_local_str);
+        s_documenttype_name_x_local_str = NULL;
     }
     if (fki_folder_id_local_var) {
         free(fki_folder_id_local_var);

@@ -8,6 +8,10 @@
 #include "../model/common_response_error.h"
 #include "../model/folder_batch_download_v1_request.h"
 #include "../model/folder_get_attachments_v1_response.h"
+#include "../model/folder_get_communication_count_v1_response.h"
+#include "../model/folder_get_communication_list_v1_response.h"
+#include "../model/folder_get_communicationrecipients_v1_response.h"
+#include "../model/folder_get_communicationsenders_v1_response.h"
 #include "../model/folder_import_into_edm_v1_request.h"
 #include "../model/folder_import_into_edm_v1_response.h"
 
@@ -22,6 +26,30 @@ ObjectFolderAPI_folderBatchDownloadV1(apiClient_t *apiClient, int *pkiFolderID, 
 //
 folder_get_attachments_v1_response_t*
 ObjectFolderAPI_folderGetAttachmentsV1(apiClient_t *apiClient, int *pkiFolderID);
+
+
+// Retrieve Communication count
+//
+folder_get_communication_count_v1_response_t*
+ObjectFolderAPI_folderGetCommunicationCountV1(apiClient_t *apiClient, int *pkiFolderID);
+
+
+// Retrieve Communication list
+//
+folder_get_communication_list_v1_response_t*
+ObjectFolderAPI_folderGetCommunicationListV1(apiClient_t *apiClient, int *pkiFolderID);
+
+
+// Retrieve Communication recipients
+//
+folder_get_communicationrecipients_v1_response_t*
+ObjectFolderAPI_folderGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiFolderID);
+
+
+// Retrieve Communication senders
+//
+folder_get_communicationsenders_v1_response_t*
+ObjectFolderAPI_folderGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiFolderID);
 
 
 // Import attachments into the Folder

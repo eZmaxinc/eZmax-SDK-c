@@ -6,10 +6,22 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
+#include "../model/header_accept_language.h"
 #include "../model/notary_batch_download_v1_request.h"
 #include "../model/notary_get_attachments_v1_response.h"
+#include "../model/notary_get_communication_count_v1_response.h"
+#include "../model/notary_get_communication_list_v1_response.h"
+#include "../model/notary_get_communicationrecipients_v1_response.h"
+#include "../model/notary_get_communicationsenders_v1_response.h"
+#include "../model/notary_get_list_v1_response.h"
 #include "../model/notary_import_into_edm_v1_request.h"
 #include "../model/notary_import_into_edm_v1_response.h"
+
+// Enum EORDERBY for ObjectNotaryAPI_notaryGetListV1
+typedef enum  { ezmax_api_definition__full_notaryGetListV1_EORDERBY_NULL = 0, ezmax_api_definition__full_notaryGetListV1_EORDERBY_pkiNotaryID_ASC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_pkiNotaryID_DESC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_fkiPaymentmethodID_ASC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_fkiPaymentmethodID_DESC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_fkiProvinceID_ASC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_fkiProvinceID_DESC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_fkiCountryID_ASC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_fkiCountryID_DESC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_sContactLastname_ASC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_sContactLastname_DESC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_sContactFirstname_ASC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_sContactFirstname_DESC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_sContactCompany_ASC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_sContactCompany_DESC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_sAddressCivic_ASC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_sAddressCivic_DESC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_sAddressStreet_ASC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_sAddressStreet_DESC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_sAddressSuite_ASC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_sAddressSuite_DESC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_sAddressCity_ASC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_sAddressCity_DESC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_sPhoneE164_ASC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_sPhoneE164_DESC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_sPaymentmethodDescriptionX_ASC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_sPaymentmethodDescriptionX_DESC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_sProvinceNameX_ASC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_sProvinceNameX_DESC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_sCountryNameX_ASC, ezmax_api_definition__full_notaryGetListV1_EORDERBY_sCountryNameX_DESC } ezmax_api_definition__full_notaryGetListV1_eOrderBy_e;
+
+// Enum  for ObjectNotaryAPI_notaryGetListV1
+typedef enum  { ezmax_api_definition__full_notaryGetListV1__NULL = 0, ezmax_api_definition__full_notaryGetListV1__*, ezmax_api_definition__full_notaryGetListV1__en, ezmax_api_definition__full_notaryGetListV1__fr } ezmax_api_definition__full_notaryGetListV1_Accept-Language_e;
 
 
 // Download multiples attachments from a Notary
@@ -22,6 +34,38 @@ ObjectNotaryAPI_notaryBatchDownloadV1(apiClient_t *apiClient, int *pkiNotaryID, 
 //
 notary_get_attachments_v1_response_t*
 ObjectNotaryAPI_notaryGetAttachmentsV1(apiClient_t *apiClient, int *pkiNotaryID);
+
+
+// Retrieve Communication count
+//
+notary_get_communication_count_v1_response_t*
+ObjectNotaryAPI_notaryGetCommunicationCountV1(apiClient_t *apiClient, int *pkiNotaryID);
+
+
+// Retrieve Communication list
+//
+notary_get_communication_list_v1_response_t*
+ObjectNotaryAPI_notaryGetCommunicationListV1(apiClient_t *apiClient, int *pkiNotaryID);
+
+
+// Retrieve Communication recipients
+//
+notary_get_communicationrecipients_v1_response_t*
+ObjectNotaryAPI_notaryGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiNotaryID);
+
+
+// Retrieve Communication senders
+//
+notary_get_communicationsenders_v1_response_t*
+ObjectNotaryAPI_notaryGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiNotaryID);
+
+
+// Retrieve Notary list
+//
+// 
+//
+notary_get_list_v1_response_t*
+ObjectNotaryAPI_notaryGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_notaryGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 
 
 // Import attachments into the Notary

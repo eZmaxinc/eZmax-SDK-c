@@ -66,7 +66,8 @@ typedef struct custom_attachment_response_t {
     int *fki_supplier_id; //numeric
     int *fki_tranqcontract_id; //numeric
     int *fki_template_id; //numeric
-    int *fki_inscriptionchecklist_id; //numeric
+    int *fki_documenttypechecklist_id; //numeric
+    char *s_documenttype_name_x; // string
     int *fki_folder_id; //numeric
     int *fki_rejectedoffertopurchase_id; //numeric
     int *fki_disclosure_id; //numeric
@@ -137,7 +138,8 @@ __attribute__((deprecated)) custom_attachment_response_t *custom_attachment_resp
     int *fki_supplier_id,
     int *fki_tranqcontract_id,
     int *fki_template_id,
-    int *fki_inscriptionchecklist_id,
+    int *fki_documenttypechecklist_id,
+    char *s_documenttype_name_x,
     int *fki_folder_id,
     int *fki_rejectedoffertopurchase_id,
     int *fki_disclosure_id,

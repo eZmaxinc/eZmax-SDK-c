@@ -1,7 +1,7 @@
 /*
  * attachment_validate_v1_request.h
  *
- * Request for PATCH /1/object/attachment/{pkiAttachmentID}/validate
+ * Request for POST /1/object/attachment/{pkiAttachmentID}/validate
  */
 
 #ifndef _attachment_validate_v1_request_H_
@@ -20,13 +20,23 @@ typedef struct attachment_validate_v1_request_t attachment_validate_v1_request_t
 
 
 typedef struct attachment_validate_v1_request_t {
+    int *fki_attachmentrejectreason_id; //numeric
     ezmax_api_definition__full_field_e_attachment_verified__e e_attachment_verified; //referenced enum
+    char *t_attachment_rejectioncomment; // string
+    list_t *a_s_notification_email_address; //primitive container
+    char *t_notification_message; // string
+    int *b_notification_include_attachment; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } attachment_validate_v1_request_t;
 
 __attribute__((deprecated)) attachment_validate_v1_request_t *attachment_validate_v1_request_create(
-    ezmax_api_definition__full_field_e_attachment_verified__e e_attachment_verified
+    int *fki_attachmentrejectreason_id,
+    ezmax_api_definition__full_field_e_attachment_verified__e e_attachment_verified,
+    char *t_attachment_rejectioncomment,
+    list_t *a_s_notification_email_address,
+    char *t_notification_message,
+    int *b_notification_include_attachment
 );
 
 void attachment_validate_v1_request_free(attachment_validate_v1_request_t *attachment_validate_v1_request);

@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectPurchaseAPI_purchaseBatchDownloadV1**](ObjectPurchaseAPI.md#ObjectPurchaseAPI_purchaseBatchDownloadV1) | **POST** /1/object/purchase/{pkiPurchaseID}/batchDownload | Download multiples attachments from a Purchase
 [**ObjectPurchaseAPI_purchaseGetAttachmentsV1**](ObjectPurchaseAPI.md#ObjectPurchaseAPI_purchaseGetAttachmentsV1) | **GET** /1/object/purchase/{pkiPurchaseID}/getAttachments | Retrieve Purchase&#39;s attachments
+[**ObjectPurchaseAPI_purchaseGetListV1**](ObjectPurchaseAPI.md#ObjectPurchaseAPI_purchaseGetListV1) | **GET** /1/object/purchase/getList | Retrieve Purchase list
 [**ObjectPurchaseAPI_purchaseImportIntoEDMV1**](ObjectPurchaseAPI.md#ObjectPurchaseAPI_purchaseImportIntoEDMV1) | **POST** /1/object/purchase/{pkiPurchaseID}/importIntoEDM | Import attachments into the Purchase
 
 
@@ -66,6 +67,41 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectPurchaseAPI_purchaseGetListV1**
+```c
+// Retrieve Purchase list
+//
+// 
+//
+purchase_get_list_v1_response_t* ObjectPurchaseAPI_purchaseGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_purchaseGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**eOrderBy** | **ezmax_api_definition__full_purchaseGetListV1_eOrderBy_e** | Specify how you want the results to be sorted | [optional] 
+**iRowMax** | **int \*** |  | [optional] 
+**iRowOffset** | **int \*** |  | [optional] [default to 0]
+**Accept_Language** | **header_accept_language_e** |  | [optional] 
+**sFilter** | **char \*** |  | [optional] 
+
+### Return type
+
+[purchase_get_list_v1_response_t](purchase_get_list_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

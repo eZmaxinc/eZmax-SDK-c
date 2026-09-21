@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**ObjectBankaccountAPI_bankaccountGetCommunicationListV1**](ObjectBankaccountAPI.md#ObjectBankaccountAPI_bankaccountGetCommunicationListV1) | **GET** /1/object/bankaccount/{pkiBankaccountID}/getCommunicationList | Retrieve Communication list
 [**ObjectBankaccountAPI_bankaccountGetCommunicationrecipientsV1**](ObjectBankaccountAPI.md#ObjectBankaccountAPI_bankaccountGetCommunicationrecipientsV1) | **GET** /1/object/bankaccount/{pkiBankaccountID}/getCommunicationrecipients | Retrieve Communication recipients
 [**ObjectBankaccountAPI_bankaccountGetCommunicationsendersV1**](ObjectBankaccountAPI.md#ObjectBankaccountAPI_bankaccountGetCommunicationsendersV1) | **GET** /1/object/bankaccount/{pkiBankaccountID}/getCommunicationsenders | Retrieve Communication senders
+[**ObjectBankaccountAPI_bankaccountGetListV1**](ObjectBankaccountAPI.md#ObjectBankaccountAPI_bankaccountGetListV1) | **GET** /1/object/bankaccount/getList | Retrieve Bankaccount list
 [**ObjectBankaccountAPI_bankaccountImportIntoEDMV1**](ObjectBankaccountAPI.md#ObjectBankaccountAPI_bankaccountImportIntoEDMV1) | **POST** /1/object/bankaccount/{pkiBankaccountID}/importIntoEDM | Import attachments into the Bankaccount
 
 
@@ -221,6 +222,41 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectBankaccountAPI_bankaccountGetListV1**
+```c
+// Retrieve Bankaccount list
+//
+// Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eBankaccountType | Chequing<br>Trust |
+//
+bankaccount_get_list_v1_response_t* ObjectBankaccountAPI_bankaccountGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_bankaccountGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**eOrderBy** | **ezmax_api_definition__full_bankaccountGetListV1_eOrderBy_e** | Specify how you want the results to be sorted | [optional] 
+**iRowMax** | **int \*** |  | [optional] 
+**iRowOffset** | **int \*** |  | [optional] [default to 0]
+**Accept_Language** | **header_accept_language_e** |  | [optional] 
+**sFilter** | **char \*** |  | [optional] 
+
+### Return type
+
+[bankaccount_get_list_v1_response_t](bankaccount_get_list_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

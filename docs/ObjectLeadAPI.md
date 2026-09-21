@@ -6,6 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectLeadAPI_leadBatchDownloadV1**](ObjectLeadAPI.md#ObjectLeadAPI_leadBatchDownloadV1) | **POST** /1/object/lead/{pkiLeadID}/batchDownload | Download multiples attachments from a Lead
 [**ObjectLeadAPI_leadGetAttachmentsV1**](ObjectLeadAPI.md#ObjectLeadAPI_leadGetAttachmentsV1) | **GET** /1/object/lead/{pkiLeadID}/getAttachments | Retrieve Lead&#39;s attachments
+[**ObjectLeadAPI_leadGetCommunicationCountV1**](ObjectLeadAPI.md#ObjectLeadAPI_leadGetCommunicationCountV1) | **GET** /1/object/lead/{pkiLeadID}/getCommunicationCount | Retrieve Communication count
+[**ObjectLeadAPI_leadGetCommunicationListV1**](ObjectLeadAPI.md#ObjectLeadAPI_leadGetCommunicationListV1) | **GET** /1/object/lead/{pkiLeadID}/getCommunicationList | Retrieve Communication list
+[**ObjectLeadAPI_leadGetCommunicationrecipientsV1**](ObjectLeadAPI.md#ObjectLeadAPI_leadGetCommunicationrecipientsV1) | **GET** /1/object/lead/{pkiLeadID}/getCommunicationrecipients | Retrieve Communication recipients
+[**ObjectLeadAPI_leadGetCommunicationsendersV1**](ObjectLeadAPI.md#ObjectLeadAPI_leadGetCommunicationsendersV1) | **GET** /1/object/lead/{pkiLeadID}/getCommunicationsenders | Retrieve Communication senders
 [**ObjectLeadAPI_leadGetListV1**](ObjectLeadAPI.md#ObjectLeadAPI_leadGetListV1) | **GET** /1/object/lead/getList | Retrieve Lead list
 [**ObjectLeadAPI_leadImportIntoEDMV1**](ObjectLeadAPI.md#ObjectLeadAPI_leadImportIntoEDMV1) | **POST** /1/object/lead/{pkiLeadID}/importIntoEDM | Import attachments into the Lead
 
@@ -57,6 +61,122 @@ Name | Type | Description  | Notes
 ### Return type
 
 [lead_get_attachments_v1_response_t](lead_get_attachments_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectLeadAPI_leadGetCommunicationCountV1**
+```c
+// Retrieve Communication count
+//
+lead_get_communication_count_v1_response_t* ObjectLeadAPI_leadGetCommunicationCountV1(apiClient_t *apiClient, int *pkiLeadID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiLeadID** | **int \*** |  | 
+
+### Return type
+
+[lead_get_communication_count_v1_response_t](lead_get_communication_count_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectLeadAPI_leadGetCommunicationListV1**
+```c
+// Retrieve Communication list
+//
+lead_get_communication_list_v1_response_t* ObjectLeadAPI_leadGetCommunicationListV1(apiClient_t *apiClient, int *pkiLeadID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiLeadID** | **int \*** |  | 
+
+### Return type
+
+[lead_get_communication_list_v1_response_t](lead_get_communication_list_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectLeadAPI_leadGetCommunicationrecipientsV1**
+```c
+// Retrieve Communication recipients
+//
+lead_get_communicationrecipients_v1_response_t* ObjectLeadAPI_leadGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiLeadID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiLeadID** | **int \*** |  | 
+
+### Return type
+
+[lead_get_communicationrecipients_v1_response_t](lead_get_communicationrecipients_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectLeadAPI_leadGetCommunicationsendersV1**
+```c
+// Retrieve Communication senders
+//
+lead_get_communicationsenders_v1_response_t* ObjectLeadAPI_leadGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiLeadID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiLeadID** | **int \*** |  | 
+
+### Return type
+
+[lead_get_communicationsenders_v1_response_t](lead_get_communicationsenders_v1_response.md) *
 
 
 ### Authorization

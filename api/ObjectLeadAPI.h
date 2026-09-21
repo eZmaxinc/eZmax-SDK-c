@@ -9,6 +9,10 @@
 #include "../model/header_accept_language.h"
 #include "../model/lead_batch_download_v1_request.h"
 #include "../model/lead_get_attachments_v1_response.h"
+#include "../model/lead_get_communication_count_v1_response.h"
+#include "../model/lead_get_communication_list_v1_response.h"
+#include "../model/lead_get_communicationrecipients_v1_response.h"
+#include "../model/lead_get_communicationsenders_v1_response.h"
 #include "../model/lead_get_list_v1_response.h"
 #include "../model/lead_import_into_edm_v1_request.h"
 #include "../model/lead_import_into_edm_v1_response.h"
@@ -30,6 +34,30 @@ ObjectLeadAPI_leadBatchDownloadV1(apiClient_t *apiClient, int *pkiLeadID, lead_b
 //
 lead_get_attachments_v1_response_t*
 ObjectLeadAPI_leadGetAttachmentsV1(apiClient_t *apiClient, int *pkiLeadID);
+
+
+// Retrieve Communication count
+//
+lead_get_communication_count_v1_response_t*
+ObjectLeadAPI_leadGetCommunicationCountV1(apiClient_t *apiClient, int *pkiLeadID);
+
+
+// Retrieve Communication list
+//
+lead_get_communication_list_v1_response_t*
+ObjectLeadAPI_leadGetCommunicationListV1(apiClient_t *apiClient, int *pkiLeadID);
+
+
+// Retrieve Communication recipients
+//
+lead_get_communicationrecipients_v1_response_t*
+ObjectLeadAPI_leadGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiLeadID);
+
+
+// Retrieve Communication senders
+//
+lead_get_communicationsenders_v1_response_t*
+ObjectLeadAPI_leadGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiLeadID);
 
 
 // Retrieve Lead list

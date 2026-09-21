@@ -8,6 +8,7 @@
 static attachmentlog_response_compound_t *attachmentlog_response_compound_create_internal(
     int *fki_attachment_id,
     int *fki_user_id,
+    custom_user_name_response_t *obj_user,
     char *dt_attachmentlog_datetime,
     ezmax_api_definition__full_field_e_attachmentlog_type__e e_attachmentlog_type,
     char *s_attachmentlog_detail
@@ -20,6 +21,7 @@ static attachmentlog_response_compound_t *attachmentlog_response_compound_create
     attachmentlog_response_compound_local_var->_library_owned = 1;
     attachmentlog_response_compound_local_var->fki_attachment_id = fki_attachment_id;
     attachmentlog_response_compound_local_var->fki_user_id = fki_user_id;
+    attachmentlog_response_compound_local_var->obj_user = obj_user;
     attachmentlog_response_compound_local_var->dt_attachmentlog_datetime = dt_attachmentlog_datetime;
     attachmentlog_response_compound_local_var->e_attachmentlog_type = e_attachmentlog_type;
     attachmentlog_response_compound_local_var->s_attachmentlog_detail = s_attachmentlog_detail;
@@ -29,6 +31,7 @@ static attachmentlog_response_compound_t *attachmentlog_response_compound_create
 __attribute__((deprecated)) attachmentlog_response_compound_t *attachmentlog_response_compound_create(
     int *fki_attachment_id,
     int *fki_user_id,
+    custom_user_name_response_t *obj_user,
     char *dt_attachmentlog_datetime,
     ezmax_api_definition__full_field_e_attachmentlog_type__e e_attachmentlog_type,
     char *s_attachmentlog_detail
@@ -46,6 +49,7 @@ __attribute__((deprecated)) attachmentlog_response_compound_t *attachmentlog_res
     attachmentlog_response_compound_t *result = attachmentlog_response_compound_create_internal (
         fki_attachment_id_copy,
         fki_user_id_copy,
+        obj_user,
         dt_attachmentlog_datetime,
         e_attachmentlog_type,
         s_attachmentlog_detail
@@ -73,6 +77,10 @@ void attachmentlog_response_compound_free(attachmentlog_response_compound_t *att
     if (attachmentlog_response_compound->fki_user_id) {
         free(attachmentlog_response_compound->fki_user_id);
         attachmentlog_response_compound->fki_user_id = NULL;
+    }
+    if (attachmentlog_response_compound->obj_user) {
+        custom_user_name_response_free(attachmentlog_response_compound->obj_user);
+        attachmentlog_response_compound->obj_user = NULL;
     }
     if (attachmentlog_response_compound->dt_attachmentlog_datetime) {
         free(attachmentlog_response_compound->dt_attachmentlog_datetime);
@@ -103,6 +111,20 @@ cJSON *attachmentlog_response_compound_convertToJSON(attachmentlog_response_comp
     }
     if(cJSON_AddNumberToObject(item, "fkiUserID", *attachmentlog_response_compound->fki_user_id) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // attachmentlog_response_compound->obj_user
+    if (!attachmentlog_response_compound->obj_user) {
+        goto fail;
+    }
+    cJSON *obj_user_local_JSON = custom_user_name_response_convertToJSON(attachmentlog_response_compound->obj_user);
+    if(obj_user_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objUser", obj_user_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
     }
 
 
@@ -154,6 +176,9 @@ attachmentlog_response_compound_t *attachmentlog_response_compound_parseFromJSON
     // define the local variable for attachmentlog_response_compound->fki_user_id
     int *fki_user_id_local_var = NULL;
 
+    // define the local variable for attachmentlog_response_compound->obj_user
+    custom_user_name_response_t *obj_user_local_nonprim = NULL;
+
     char *dt_attachmentlog_datetime_local_str = NULL;
 
     // define the local variable for attachmentlog_response_compound->e_attachmentlog_type
@@ -203,6 +228,18 @@ attachmentlog_response_compound_t *attachmentlog_response_compound_parseFromJSON
     }
     *fki_user_id_local_var = fki_user_id->valuedouble;
 
+    // attachmentlog_response_compound->obj_user
+    cJSON *obj_user = cJSON_GetObjectItemCaseSensitive(attachmentlog_response_compoundJSON, "objUser");
+    if (cJSON_IsNull(obj_user)) {
+        obj_user = NULL;
+    }
+    if (!obj_user) {
+        goto end;
+    }
+
+    
+    obj_user_local_nonprim = custom_user_name_response_parseFromJSON(obj_user); //nonprimitive
+
     // attachmentlog_response_compound->dt_attachmentlog_datetime
     cJSON *dt_attachmentlog_datetime = cJSON_GetObjectItemCaseSensitive(attachmentlog_response_compoundJSON, "dtAttachmentlogDatetime");
     if (cJSON_IsNull(dt_attachmentlog_datetime)) {
@@ -249,6 +286,7 @@ attachmentlog_response_compound_t *attachmentlog_response_compound_parseFromJSON
     attachmentlog_response_compound_local_var = attachmentlog_response_compound_create_internal (
         fki_attachment_id_local_var,
         fki_user_id_local_var,
+        obj_user_local_nonprim,
         dt_attachmentlog_datetime_local_str,
         e_attachmentlog_type_local_nonprim,
         s_attachmentlog_detail_local_str
@@ -267,6 +305,10 @@ end:
     if (fki_user_id_local_var) {
         free(fki_user_id_local_var);
         fki_user_id_local_var = NULL;
+    }
+    if (obj_user_local_nonprim) {
+        custom_user_name_response_free(obj_user_local_nonprim);
+        obj_user_local_nonprim = NULL;
     }
     if (dt_attachmentlog_datetime_local_str) {
         free(dt_attachmentlog_datetime_local_str);

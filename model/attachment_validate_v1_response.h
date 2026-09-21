@@ -1,7 +1,7 @@
 /*
  * attachment_validate_v1_response.h
  *
- * Response for PATCH /1/object/attachment/{pkiAttachmentID}/validate
+ * Response for POST /1/object/attachment/{pkiAttachmentID}/validate
  */
 
 #ifndef _attachment_validate_v1_response_H_

@@ -22,6 +22,7 @@ typedef struct custom_user_name_response_t {
     char *s_contacttitle_name_x; // string
     char *s_user_lastname; // string
     char *s_user_firstname; // string
+    char *s_user_loginname; // string
     char *s_user_jobtitle; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -31,6 +32,7 @@ __attribute__((deprecated)) custom_user_name_response_t *custom_user_name_respon
     char *s_contacttitle_name_x,
     char *s_user_lastname,
     char *s_user_firstname,
+    char *s_user_loginname,
     char *s_user_jobtitle
 );
 

@@ -5,13 +5,13 @@
 
 
 char* field_e_attachment_verified_field_e_attachment_verified_ToString(ezmax_api_definition__full_field_e_attachment_verified__e field_e_attachment_verified) {
-    char *field_e_attachment_verifiedArray[] =  { "NULL", "No", "Yes", "Rejected" };
+    char *field_e_attachment_verifiedArray[] =  { "NULL", "No", "Yes", "Rejected", "Pending" };
     return field_e_attachment_verifiedArray[field_e_attachment_verified];
 }
 
 ezmax_api_definition__full_field_e_attachment_verified__e field_e_attachment_verified_field_e_attachment_verified_FromString(char* field_e_attachment_verified) {
     int stringToReturn = 0;
-    char *field_e_attachment_verifiedArray[] =  { "NULL", "No", "Yes", "Rejected" };
+    char *field_e_attachment_verifiedArray[] =  { "NULL", "No", "Yes", "Rejected", "Pending" };
     size_t sizeofArray = sizeof(field_e_attachment_verifiedArray) / sizeof(field_e_attachment_verifiedArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(field_e_attachment_verified, field_e_attachment_verifiedArray[stringToReturn]) == 0) {

@@ -122,6 +122,119 @@ end:
 
 }
 
+// Change attachment document type
+//
+// The endpoint allows to change the checklist document type for an attachment.
+//
+attachment_document_type_v1_response_t*
+ObjectAttachmentAPI_attachmentDocumentTypeV1(apiClient_t *apiClient, int *pkiAttachmentID, attachment_document_type_v1_request_t *attachment_document_type_v1_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/attachment/{pkiAttachmentID}/documentType");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiAttachmentID =  + sizeof("{ pkiAttachmentID }") - 1;
+    if(pkiAttachmentID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiAttachmentID = malloc(sizeOfPathParams_pkiAttachmentID);
+    snprintf(localVarToReplace_pkiAttachmentID, sizeOfPathParams_pkiAttachmentID, "{%s}", "pkiAttachmentID");
+
+    char localVarBuff_pkiAttachmentID[256];
+    snprintf(localVarBuff_pkiAttachmentID, sizeof localVarBuff_pkiAttachmentID, "%ld", (long)*pkiAttachmentID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiAttachmentID, localVarBuff_pkiAttachmentID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_attachment_document_type_v1_request = NULL;
+    if (attachment_document_type_v1_request != NULL)
+    {
+        //not string, not binary
+        localVarSingleItemJSON_attachment_document_type_v1_request = attachment_document_type_v1_request_convertToJSON(attachment_document_type_v1_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_attachment_document_type_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","The request is not allowed to be executed. Look for detail about the error in the body.");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    attachment_document_type_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectAttachmentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = attachment_document_type_v1_response_parseFromJSON(ObjectAttachmentAPIlocalVarJSON);
+        cJSON_Delete(ObjectAttachmentAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiAttachmentID);
+    if (localVarSingleItemJSON_attachment_document_type_v1_request) {
+        cJSON_Delete(localVarSingleItemJSON_attachment_document_type_v1_request);
+        localVarSingleItemJSON_attachment_document_type_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Retrieve the content
 //
 // Using this endpoint, you can retrieve the content of an attachment.
@@ -279,6 +392,119 @@ ObjectAttachmentAPI_attachmentGetAttachmentlogsV1(apiClient_t *apiClient, int *p
     
     free(localVarPath);
     free(localVarToReplace_pkiAttachmentID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Change the attachment privacy
+//
+// The endpoint allows to change an attachment's access privacy.
+//
+attachment_privacy_v1_response_t*
+ObjectAttachmentAPI_attachmentPrivacyV1(apiClient_t *apiClient, int *pkiAttachmentID, attachment_privacy_v1_request_t *attachment_privacy_v1_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/attachment/{pkiAttachmentID}/privacy");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiAttachmentID =  + sizeof("{ pkiAttachmentID }") - 1;
+    if(pkiAttachmentID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiAttachmentID = malloc(sizeOfPathParams_pkiAttachmentID);
+    snprintf(localVarToReplace_pkiAttachmentID, sizeOfPathParams_pkiAttachmentID, "{%s}", "pkiAttachmentID");
+
+    char localVarBuff_pkiAttachmentID[256];
+    snprintf(localVarBuff_pkiAttachmentID, sizeof localVarBuff_pkiAttachmentID, "%ld", (long)*pkiAttachmentID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiAttachmentID, localVarBuff_pkiAttachmentID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_attachment_privacy_v1_request = NULL;
+    if (attachment_privacy_v1_request != NULL)
+    {
+        //not string, not binary
+        localVarSingleItemJSON_attachment_privacy_v1_request = attachment_privacy_v1_request_convertToJSON(attachment_privacy_v1_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_attachment_privacy_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","The request is not allowed to be executed. Look for detail about the error in the body.");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    attachment_privacy_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectAttachmentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = attachment_privacy_v1_response_parseFromJSON(ObjectAttachmentAPIlocalVarJSON);
+        cJSON_Delete(ObjectAttachmentAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiAttachmentID);
+    if (localVarSingleItemJSON_attachment_privacy_v1_request) {
+        cJSON_Delete(localVarSingleItemJSON_attachment_privacy_v1_request);
+        localVarSingleItemJSON_attachment_privacy_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
     return elementToReturn;
 end:
     free(localVarPath);
@@ -579,7 +805,7 @@ ObjectAttachmentAPI_attachmentValidateV1(apiClient_t *apiClient, int *pkiAttachm
                     localVarContentType,
                     localVarBodyParameters,
                     localVarBodyLength,
-                    "PATCH");
+                    "POST");
 
     // uncomment below to debug the error response
     //if (apiClient->response_code == 200) {

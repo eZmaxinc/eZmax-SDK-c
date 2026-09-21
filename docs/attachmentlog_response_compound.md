@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **fki_attachment_id** | **int** | The unique ID of the Attachment. | 
 **fki_user_id** | **int** | The unique ID of the User | 
+**obj_user** | [**custom_user_name_response_t**](custom_user_name_response.md) \* |  | 
 **dt_attachmentlog_datetime** | **char \*** | The created date | 
 **e_attachmentlog_type** | **field_e_attachmentlog_type_t \*** |  | 
 **s_attachmentlog_detail** | **char \*** | The additionnal detail | [optional] 

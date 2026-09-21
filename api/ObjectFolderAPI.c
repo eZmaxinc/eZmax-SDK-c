@@ -202,6 +202,354 @@ end:
 
 }
 
+// Retrieve Communication count
+//
+folder_get_communication_count_v1_response_t*
+ObjectFolderAPI_folderGetCommunicationCountV1(apiClient_t *apiClient, int *pkiFolderID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/folder/{pkiFolderID}/getCommunicationCount");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiFolderID =  + sizeof("{ pkiFolderID }") - 1;
+    if(pkiFolderID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiFolderID = malloc(sizeOfPathParams_pkiFolderID);
+    snprintf(localVarToReplace_pkiFolderID, sizeOfPathParams_pkiFolderID, "{%s}", "pkiFolderID");
+
+    char localVarBuff_pkiFolderID[256];
+    snprintf(localVarBuff_pkiFolderID, sizeof localVarBuff_pkiFolderID, "%ld", (long)*pkiFolderID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiFolderID, localVarBuff_pkiFolderID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    folder_get_communication_count_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectFolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = folder_get_communication_count_v1_response_parseFromJSON(ObjectFolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectFolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiFolderID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication list
+//
+folder_get_communication_list_v1_response_t*
+ObjectFolderAPI_folderGetCommunicationListV1(apiClient_t *apiClient, int *pkiFolderID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/folder/{pkiFolderID}/getCommunicationList");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiFolderID =  + sizeof("{ pkiFolderID }") - 1;
+    if(pkiFolderID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiFolderID = malloc(sizeOfPathParams_pkiFolderID);
+    snprintf(localVarToReplace_pkiFolderID, sizeOfPathParams_pkiFolderID, "{%s}", "pkiFolderID");
+
+    char localVarBuff_pkiFolderID[256];
+    snprintf(localVarBuff_pkiFolderID, sizeof localVarBuff_pkiFolderID, "%ld", (long)*pkiFolderID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiFolderID, localVarBuff_pkiFolderID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    folder_get_communication_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectFolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = folder_get_communication_list_v1_response_parseFromJSON(ObjectFolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectFolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiFolderID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication recipients
+//
+folder_get_communicationrecipients_v1_response_t*
+ObjectFolderAPI_folderGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiFolderID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/folder/{pkiFolderID}/getCommunicationrecipients");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiFolderID =  + sizeof("{ pkiFolderID }") - 1;
+    if(pkiFolderID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiFolderID = malloc(sizeOfPathParams_pkiFolderID);
+    snprintf(localVarToReplace_pkiFolderID, sizeOfPathParams_pkiFolderID, "{%s}", "pkiFolderID");
+
+    char localVarBuff_pkiFolderID[256];
+    snprintf(localVarBuff_pkiFolderID, sizeof localVarBuff_pkiFolderID, "%ld", (long)*pkiFolderID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiFolderID, localVarBuff_pkiFolderID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    folder_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectFolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = folder_get_communicationrecipients_v1_response_parseFromJSON(ObjectFolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectFolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiFolderID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication senders
+//
+folder_get_communicationsenders_v1_response_t*
+ObjectFolderAPI_folderGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiFolderID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/folder/{pkiFolderID}/getCommunicationsenders");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiFolderID =  + sizeof("{ pkiFolderID }") - 1;
+    if(pkiFolderID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiFolderID = malloc(sizeOfPathParams_pkiFolderID);
+    snprintf(localVarToReplace_pkiFolderID, sizeOfPathParams_pkiFolderID, "{%s}", "pkiFolderID");
+
+    char localVarBuff_pkiFolderID[256];
+    snprintf(localVarBuff_pkiFolderID, sizeof localVarBuff_pkiFolderID, "%ld", (long)*pkiFolderID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiFolderID, localVarBuff_pkiFolderID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    folder_get_communicationsenders_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectFolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = folder_get_communicationsenders_v1_response_parseFromJSON(ObjectFolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectFolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiFolderID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Import attachments into the Folder
 //
 folder_import_into_edm_v1_response_t*

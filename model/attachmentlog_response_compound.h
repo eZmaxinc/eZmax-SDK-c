@@ -15,6 +15,7 @@
 
 typedef struct attachmentlog_response_compound_t attachmentlog_response_compound_t;
 
+#include "custom_user_name_response.h"
 #include "field_e_attachmentlog_type.h"
 
 
@@ -22,6 +23,7 @@ typedef struct attachmentlog_response_compound_t attachmentlog_response_compound
 typedef struct attachmentlog_response_compound_t {
     int *fki_attachment_id; //numeric
     int *fki_user_id; //numeric
+    struct custom_user_name_response_t *obj_user; //model
     char *dt_attachmentlog_datetime; // string
     ezmax_api_definition__full_field_e_attachmentlog_type__e e_attachmentlog_type; //referenced enum
     char *s_attachmentlog_detail; // string
@@ -32,6 +34,7 @@ typedef struct attachmentlog_response_compound_t {
 __attribute__((deprecated)) attachmentlog_response_compound_t *attachmentlog_response_compound_create(
     int *fki_attachment_id,
     int *fki_user_id,
+    custom_user_name_response_t *obj_user,
     char *dt_attachmentlog_datetime,
     ezmax_api_definition__full_field_e_attachmentlog_type__e e_attachmentlog_type,
     char *s_attachmentlog_detail

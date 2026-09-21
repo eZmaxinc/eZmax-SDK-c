@@ -289,6 +289,354 @@ end:
 
 }
 
+// Retrieve Communication count
+//
+lead_get_communication_count_v1_response_t*
+ObjectLeadAPI_leadGetCommunicationCountV1(apiClient_t *apiClient, int *pkiLeadID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/lead/{pkiLeadID}/getCommunicationCount");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiLeadID =  + sizeof("{ pkiLeadID }") - 1;
+    if(pkiLeadID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiLeadID = malloc(sizeOfPathParams_pkiLeadID);
+    snprintf(localVarToReplace_pkiLeadID, sizeOfPathParams_pkiLeadID, "{%s}", "pkiLeadID");
+
+    char localVarBuff_pkiLeadID[256];
+    snprintf(localVarBuff_pkiLeadID, sizeof localVarBuff_pkiLeadID, "%ld", (long)*pkiLeadID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiLeadID, localVarBuff_pkiLeadID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    lead_get_communication_count_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectLeadAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = lead_get_communication_count_v1_response_parseFromJSON(ObjectLeadAPIlocalVarJSON);
+        cJSON_Delete(ObjectLeadAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiLeadID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication list
+//
+lead_get_communication_list_v1_response_t*
+ObjectLeadAPI_leadGetCommunicationListV1(apiClient_t *apiClient, int *pkiLeadID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/lead/{pkiLeadID}/getCommunicationList");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiLeadID =  + sizeof("{ pkiLeadID }") - 1;
+    if(pkiLeadID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiLeadID = malloc(sizeOfPathParams_pkiLeadID);
+    snprintf(localVarToReplace_pkiLeadID, sizeOfPathParams_pkiLeadID, "{%s}", "pkiLeadID");
+
+    char localVarBuff_pkiLeadID[256];
+    snprintf(localVarBuff_pkiLeadID, sizeof localVarBuff_pkiLeadID, "%ld", (long)*pkiLeadID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiLeadID, localVarBuff_pkiLeadID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    lead_get_communication_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectLeadAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = lead_get_communication_list_v1_response_parseFromJSON(ObjectLeadAPIlocalVarJSON);
+        cJSON_Delete(ObjectLeadAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiLeadID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication recipients
+//
+lead_get_communicationrecipients_v1_response_t*
+ObjectLeadAPI_leadGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiLeadID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/lead/{pkiLeadID}/getCommunicationrecipients");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiLeadID =  + sizeof("{ pkiLeadID }") - 1;
+    if(pkiLeadID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiLeadID = malloc(sizeOfPathParams_pkiLeadID);
+    snprintf(localVarToReplace_pkiLeadID, sizeOfPathParams_pkiLeadID, "{%s}", "pkiLeadID");
+
+    char localVarBuff_pkiLeadID[256];
+    snprintf(localVarBuff_pkiLeadID, sizeof localVarBuff_pkiLeadID, "%ld", (long)*pkiLeadID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiLeadID, localVarBuff_pkiLeadID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    lead_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectLeadAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = lead_get_communicationrecipients_v1_response_parseFromJSON(ObjectLeadAPIlocalVarJSON);
+        cJSON_Delete(ObjectLeadAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiLeadID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication senders
+//
+lead_get_communicationsenders_v1_response_t*
+ObjectLeadAPI_leadGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiLeadID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/lead/{pkiLeadID}/getCommunicationsenders");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiLeadID =  + sizeof("{ pkiLeadID }") - 1;
+    if(pkiLeadID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiLeadID = malloc(sizeOfPathParams_pkiLeadID);
+    snprintf(localVarToReplace_pkiLeadID, sizeOfPathParams_pkiLeadID, "{%s}", "pkiLeadID");
+
+    char localVarBuff_pkiLeadID[256];
+    snprintf(localVarBuff_pkiLeadID, sizeof localVarBuff_pkiLeadID, "%ld", (long)*pkiLeadID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiLeadID, localVarBuff_pkiLeadID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    lead_get_communicationsenders_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectLeadAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = lead_get_communicationsenders_v1_response_parseFromJSON(ObjectLeadAPIlocalVarJSON);
+        cJSON_Delete(ObjectLeadAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiLeadID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Retrieve Lead list
 //
 // Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eLeadStatus | New<br>Dispatching<br>Assigned<br>Lost<br>Won |
