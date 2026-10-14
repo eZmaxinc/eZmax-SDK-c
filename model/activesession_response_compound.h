@@ -35,7 +35,9 @@ typedef struct activesession_response_compound_t {
     ezmax_api_definition__full_field_e_activesession_origin__e e_activesession_origin; //referenced enum
     ezmax_api_definition__full_field_e_activesession_weekdaystart__e e_activesession_weekdaystart; //referenced enum
     int *fki_language_id; //numeric
+    int *fki_company_id; //numeric
     char *s_company_name_x; // string
+    int *fki_department_id; //numeric
     char *s_department_name_x; // string
     int *b_activesession_debug; //boolean
     int *b_activesession_issuperadmin; //boolean
@@ -74,7 +76,9 @@ __attribute__((deprecated)) activesession_response_compound_t *activesession_res
     ezmax_api_definition__full_field_e_activesession_origin__e e_activesession_origin,
     ezmax_api_definition__full_field_e_activesession_weekdaystart__e e_activesession_weekdaystart,
     int *fki_language_id,
+    int *fki_company_id,
     char *s_company_name_x,
+    int *fki_department_id,
     char *s_department_name_x,
     int *b_activesession_debug,
     int *b_activesession_issuperadmin,

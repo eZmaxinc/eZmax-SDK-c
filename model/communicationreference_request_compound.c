@@ -10,6 +10,7 @@ static communicationreference_request_compound_t *communicationreference_request
     int *fki_buyercontract_id,
     int *fki_ezsignfolder_id,
     int *fki_inscription_id,
+    int *fki_inscriptionnotauthenticated_id,
     int *fki_inscriptiontemp_id,
     int *fki_invoice_id,
     int *fki_otherincome_id,
@@ -26,6 +27,7 @@ static communicationreference_request_compound_t *communicationreference_request
     communicationreference_request_compound_local_var->fki_buyercontract_id = fki_buyercontract_id;
     communicationreference_request_compound_local_var->fki_ezsignfolder_id = fki_ezsignfolder_id;
     communicationreference_request_compound_local_var->fki_inscription_id = fki_inscription_id;
+    communicationreference_request_compound_local_var->fki_inscriptionnotauthenticated_id = fki_inscriptionnotauthenticated_id;
     communicationreference_request_compound_local_var->fki_inscriptiontemp_id = fki_inscriptiontemp_id;
     communicationreference_request_compound_local_var->fki_invoice_id = fki_invoice_id;
     communicationreference_request_compound_local_var->fki_otherincome_id = fki_otherincome_id;
@@ -39,6 +41,7 @@ __attribute__((deprecated)) communicationreference_request_compound_t *communica
     int *fki_buyercontract_id,
     int *fki_ezsignfolder_id,
     int *fki_inscription_id,
+    int *fki_inscriptionnotauthenticated_id,
     int *fki_inscriptiontemp_id,
     int *fki_invoice_id,
     int *fki_otherincome_id,
@@ -64,6 +67,11 @@ __attribute__((deprecated)) communicationreference_request_compound_t *communica
     if (fki_inscription_id) {
         fki_inscription_id_copy = malloc(sizeof(int));
         if (fki_inscription_id_copy) *fki_inscription_id_copy = *fki_inscription_id;
+    }
+    int *fki_inscriptionnotauthenticated_id_copy = NULL;
+    if (fki_inscriptionnotauthenticated_id) {
+        fki_inscriptionnotauthenticated_id_copy = malloc(sizeof(int));
+        if (fki_inscriptionnotauthenticated_id_copy) *fki_inscriptionnotauthenticated_id_copy = *fki_inscriptionnotauthenticated_id;
     }
     int *fki_inscriptiontemp_id_copy = NULL;
     if (fki_inscriptiontemp_id) {
@@ -95,6 +103,7 @@ __attribute__((deprecated)) communicationreference_request_compound_t *communica
         fki_buyercontract_id_copy,
         fki_ezsignfolder_id_copy,
         fki_inscription_id_copy,
+        fki_inscriptionnotauthenticated_id_copy,
         fki_inscriptiontemp_id_copy,
         fki_invoice_id_copy,
         fki_otherincome_id_copy,
@@ -106,6 +115,7 @@ __attribute__((deprecated)) communicationreference_request_compound_t *communica
         free(fki_buyercontract_id_copy);
         free(fki_ezsignfolder_id_copy);
         free(fki_inscription_id_copy);
+        free(fki_inscriptionnotauthenticated_id_copy);
         free(fki_inscriptiontemp_id_copy);
         free(fki_invoice_id_copy);
         free(fki_otherincome_id_copy);
@@ -139,6 +149,10 @@ void communicationreference_request_compound_free(communicationreference_request
     if (communicationreference_request_compound->fki_inscription_id) {
         free(communicationreference_request_compound->fki_inscription_id);
         communicationreference_request_compound->fki_inscription_id = NULL;
+    }
+    if (communicationreference_request_compound->fki_inscriptionnotauthenticated_id) {
+        free(communicationreference_request_compound->fki_inscriptionnotauthenticated_id);
+        communicationreference_request_compound->fki_inscriptionnotauthenticated_id = NULL;
     }
     if (communicationreference_request_compound->fki_inscriptiontemp_id) {
         free(communicationreference_request_compound->fki_inscriptiontemp_id);
@@ -193,6 +207,14 @@ cJSON *communicationreference_request_compound_convertToJSON(communicationrefere
     // communicationreference_request_compound->fki_inscription_id
     if(communicationreference_request_compound->fki_inscription_id) {
     if(cJSON_AddNumberToObject(item, "fkiInscriptionID", *communicationreference_request_compound->fki_inscription_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // communicationreference_request_compound->fki_inscriptionnotauthenticated_id
+    if(communicationreference_request_compound->fki_inscriptionnotauthenticated_id) {
+    if(cJSON_AddNumberToObject(item, "fkiInscriptionnotauthenticatedID", *communicationreference_request_compound->fki_inscriptionnotauthenticated_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -260,6 +282,9 @@ communicationreference_request_compound_t *communicationreference_request_compou
 
     // define the local variable for communicationreference_request_compound->fki_inscription_id
     int *fki_inscription_id_local_var = NULL;
+
+    // define the local variable for communicationreference_request_compound->fki_inscriptionnotauthenticated_id
+    int *fki_inscriptionnotauthenticated_id_local_var = NULL;
 
     // define the local variable for communicationreference_request_compound->fki_inscriptiontemp_id
     int *fki_inscriptiontemp_id_local_var = NULL;
@@ -346,6 +371,24 @@ communicationreference_request_compound_t *communicationreference_request_compou
         goto end;
     }
     *fki_inscription_id_local_var = fki_inscription_id->valuedouble;
+    }
+
+    // communicationreference_request_compound->fki_inscriptionnotauthenticated_id
+    cJSON *fki_inscriptionnotauthenticated_id = cJSON_GetObjectItemCaseSensitive(communicationreference_request_compoundJSON, "fkiInscriptionnotauthenticatedID");
+    if (cJSON_IsNull(fki_inscriptionnotauthenticated_id)) {
+        fki_inscriptionnotauthenticated_id = NULL;
+    }
+    if (fki_inscriptionnotauthenticated_id) { 
+    if(!cJSON_IsNumber(fki_inscriptionnotauthenticated_id))
+    {
+    goto end; //Numeric
+    }
+    fki_inscriptionnotauthenticated_id_local_var = malloc(sizeof(int));
+    if(!fki_inscriptionnotauthenticated_id_local_var)
+    {
+        goto end;
+    }
+    *fki_inscriptionnotauthenticated_id_local_var = fki_inscriptionnotauthenticated_id->valuedouble;
     }
 
     // communicationreference_request_compound->fki_inscriptiontemp_id
@@ -445,6 +488,7 @@ communicationreference_request_compound_t *communicationreference_request_compou
         fki_buyercontract_id_local_var,
         fki_ezsignfolder_id_local_var,
         fki_inscription_id_local_var,
+        fki_inscriptionnotauthenticated_id_local_var,
         fki_inscriptiontemp_id_local_var,
         fki_invoice_id_local_var,
         fki_otherincome_id_local_var,
@@ -473,6 +517,10 @@ end:
     if (fki_inscription_id_local_var) {
         free(fki_inscription_id_local_var);
         fki_inscription_id_local_var = NULL;
+    }
+    if (fki_inscriptionnotauthenticated_id_local_var) {
+        free(fki_inscriptionnotauthenticated_id_local_var);
+        fki_inscriptionnotauthenticated_id_local_var = NULL;
     }
     if (fki_inscriptiontemp_id_local_var) {
         free(fki_inscriptiontemp_id_local_var);

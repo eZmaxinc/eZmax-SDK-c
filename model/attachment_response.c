@@ -59,6 +59,7 @@ static attachment_response_t *attachment_response_create_internal(
     char *s_attachment_category,
     ezmax_api_definition__full_field_e_attachment_privacy__e e_attachment_privacy,
     int *fki_user_id_specific,
+    custom_user_name_response_t *obj_user_specific,
     ezmax_api_definition__full_field_e_attachment_type__e e_attachment_type,
     int *i_attachment_size,
     int *i_attachment_ed_mmoduleflag,
@@ -129,6 +130,7 @@ static attachment_response_t *attachment_response_create_internal(
     attachment_response_local_var->s_attachment_category = s_attachment_category;
     attachment_response_local_var->e_attachment_privacy = e_attachment_privacy;
     attachment_response_local_var->fki_user_id_specific = fki_user_id_specific;
+    attachment_response_local_var->obj_user_specific = obj_user_specific;
     attachment_response_local_var->e_attachment_type = e_attachment_type;
     attachment_response_local_var->i_attachment_size = i_attachment_size;
     attachment_response_local_var->i_attachment_ed_mmoduleflag = i_attachment_ed_mmoduleflag;
@@ -196,6 +198,7 @@ __attribute__((deprecated)) attachment_response_t *attachment_response_create(
     char *s_attachment_category,
     ezmax_api_definition__full_field_e_attachment_privacy__e e_attachment_privacy,
     int *fki_user_id_specific,
+    custom_user_name_response_t *obj_user_specific,
     ezmax_api_definition__full_field_e_attachment_type__e e_attachment_type,
     int *i_attachment_size,
     int *i_attachment_ed_mmoduleflag,
@@ -526,6 +529,7 @@ __attribute__((deprecated)) attachment_response_t *attachment_response_create(
         s_attachment_category,
         e_attachment_privacy,
         fki_user_id_specific_copy,
+        obj_user_specific,
         e_attachment_type,
         i_attachment_size_copy,
         i_attachment_ed_mmoduleflag_copy,
@@ -807,6 +811,10 @@ void attachment_response_free(attachment_response_t *attachment_response) {
     if (attachment_response->fki_user_id_specific) {
         free(attachment_response->fki_user_id_specific);
         attachment_response->fki_user_id_specific = NULL;
+    }
+    if (attachment_response->obj_user_specific) {
+        custom_user_name_response_free(attachment_response->obj_user_specific);
+        attachment_response->obj_user_specific = NULL;
     }
     if (attachment_response->i_attachment_size) {
         free(attachment_response->i_attachment_size);
@@ -1285,6 +1293,19 @@ cJSON *attachment_response_convertToJSON(attachment_response_t *attachment_respo
     }
 
 
+    // attachment_response->obj_user_specific
+    if(attachment_response->obj_user_specific) {
+    cJSON *obj_user_specific_local_JSON = custom_user_name_response_convertToJSON(attachment_response->obj_user_specific);
+    if(obj_user_specific_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objUserSpecific", obj_user_specific_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+    }
+
+
     // attachment_response->e_attachment_type
     if (ezmax_api_definition__full_field_e_attachment_type__NULL == attachment_response->e_attachment_type) {
         goto fail;
@@ -1552,6 +1573,9 @@ attachment_response_t *attachment_response_parseFromJSON(cJSON *attachment_respo
 
     // define the local variable for attachment_response->fki_user_id_specific
     int *fki_user_id_specific_local_var = NULL;
+
+    // define the local variable for attachment_response->obj_user_specific
+    custom_user_name_response_t *obj_user_specific_local_nonprim = NULL;
 
     // define the local variable for attachment_response->e_attachment_type
     ezmax_api_definition__full_field_e_attachment_type__e e_attachment_type_local_nonprim = 0;
@@ -2514,6 +2538,15 @@ attachment_response_t *attachment_response_parseFromJSON(cJSON *attachment_respo
     *fki_user_id_specific_local_var = fki_user_id_specific->valuedouble;
     }
 
+    // attachment_response->obj_user_specific
+    cJSON *obj_user_specific = cJSON_GetObjectItemCaseSensitive(attachment_responseJSON, "objUserSpecific");
+    if (cJSON_IsNull(obj_user_specific)) {
+        obj_user_specific = NULL;
+    }
+    if (obj_user_specific) { 
+    obj_user_specific_local_nonprim = custom_user_name_response_parseFromJSON(obj_user_specific); //nonprimitive
+    }
+
     // attachment_response->e_attachment_type
     cJSON *e_attachment_type = cJSON_GetObjectItemCaseSensitive(attachment_responseJSON, "eAttachmentType");
     if (cJSON_IsNull(e_attachment_type)) {
@@ -2734,6 +2767,7 @@ attachment_response_t *attachment_response_parseFromJSON(cJSON *attachment_respo
         s_attachment_category_local_str,
         e_attachment_privacy_local_nonprim,
         fki_user_id_specific_local_var,
+        obj_user_specific ? obj_user_specific_local_nonprim : NULL,
         e_attachment_type_local_nonprim,
         i_attachment_size_local_var,
         i_attachment_ed_mmoduleflag_local_var,
@@ -2961,6 +2995,10 @@ end:
     if (fki_user_id_specific_local_var) {
         free(fki_user_id_specific_local_var);
         fki_user_id_specific_local_var = NULL;
+    }
+    if (obj_user_specific_local_nonprim) {
+        custom_user_name_response_free(obj_user_specific_local_nonprim);
+        obj_user_specific_local_nonprim = NULL;
     }
     if (e_attachment_type_local_nonprim) {
         e_attachment_type_local_nonprim = 0;

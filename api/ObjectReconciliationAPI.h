@@ -8,6 +8,10 @@
 #include "../model/common_response_error.h"
 #include "../model/reconciliation_batch_download_v1_request.h"
 #include "../model/reconciliation_get_attachments_v1_response.h"
+#include "../model/reconciliation_get_communication_count_v1_response.h"
+#include "../model/reconciliation_get_communication_list_v1_response.h"
+#include "../model/reconciliation_get_communicationrecipients_v1_response.h"
+#include "../model/reconciliation_get_communicationsenders_v1_response.h"
 #include "../model/reconciliation_import_into_edm_v1_request.h"
 #include "../model/reconciliation_import_into_edm_v1_response.h"
 
@@ -22,6 +26,30 @@ ObjectReconciliationAPI_reconciliationBatchDownloadV1(apiClient_t *apiClient, in
 //
 reconciliation_get_attachments_v1_response_t*
 ObjectReconciliationAPI_reconciliationGetAttachmentsV1(apiClient_t *apiClient, int *pkiReconciliationID);
+
+
+// Retrieve Communication count
+//
+reconciliation_get_communication_count_v1_response_t*
+ObjectReconciliationAPI_reconciliationGetCommunicationCountV1(apiClient_t *apiClient, int *pkiReconciliationID);
+
+
+// Retrieve Communication list
+//
+reconciliation_get_communication_list_v1_response_t*
+ObjectReconciliationAPI_reconciliationGetCommunicationListV1(apiClient_t *apiClient, int *pkiReconciliationID);
+
+
+// Retrieve Communication recipients
+//
+reconciliation_get_communicationrecipients_v1_response_t*
+ObjectReconciliationAPI_reconciliationGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiReconciliationID);
+
+
+// Retrieve Communication senders
+//
+reconciliation_get_communicationsenders_v1_response_t*
+ObjectReconciliationAPI_reconciliationGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiReconciliationID);
 
 
 // Import attachments into the Reconciliation

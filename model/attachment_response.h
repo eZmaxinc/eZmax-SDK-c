@@ -16,6 +16,7 @@
 typedef struct attachment_response_t attachment_response_t;
 
 #include "common_audit.h"
+#include "custom_user_name_response.h"
 #include "field_e_attachment_documenttype.h"
 #include "field_e_attachment_privacy.h"
 #include "field_e_attachment_type.h"
@@ -77,6 +78,7 @@ typedef struct attachment_response_t {
     char *s_attachment_category; // string
     ezmax_api_definition__full_field_e_attachment_privacy__e e_attachment_privacy; //referenced enum
     int *fki_user_id_specific; //numeric
+    struct custom_user_name_response_t *obj_user_specific; //model
     ezmax_api_definition__full_field_e_attachment_type__e e_attachment_type; //referenced enum
     int *i_attachment_size; //numeric
     int *i_attachment_ed_mmoduleflag; //numeric
@@ -145,6 +147,7 @@ __attribute__((deprecated)) attachment_response_t *attachment_response_create(
     char *s_attachment_category,
     ezmax_api_definition__full_field_e_attachment_privacy__e e_attachment_privacy,
     int *fki_user_id_specific,
+    custom_user_name_response_t *obj_user_specific,
     ezmax_api_definition__full_field_e_attachment_type__e e_attachment_type,
     int *i_attachment_size,
     int *i_attachment_ed_mmoduleflag,

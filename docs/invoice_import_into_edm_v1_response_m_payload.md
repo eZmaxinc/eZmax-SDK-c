@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**a_pki_attachment_id** | **list_t \*** |  | 
+**a_obj_attachment** | [**list_t**](custom_attachment_import_into_edm_response.md) \* |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -9,6 +9,10 @@
 #include "../model/header_accept_language.h"
 #include "../model/supplier_batch_download_v1_request.h"
 #include "../model/supplier_get_attachments_v1_response.h"
+#include "../model/supplier_get_communication_count_v1_response.h"
+#include "../model/supplier_get_communication_list_v1_response.h"
+#include "../model/supplier_get_communicationrecipients_v1_response.h"
+#include "../model/supplier_get_communicationsenders_v1_response.h"
 #include "../model/supplier_get_list_v1_response.h"
 #include "../model/supplier_import_into_edm_v1_request.h"
 #include "../model/supplier_import_into_edm_v1_response.h"
@@ -30,6 +34,30 @@ ObjectSupplierAPI_supplierBatchDownloadV1(apiClient_t *apiClient, int *pkiSuppli
 //
 supplier_get_attachments_v1_response_t*
 ObjectSupplierAPI_supplierGetAttachmentsV1(apiClient_t *apiClient, int *pkiSupplierID);
+
+
+// Retrieve Communication count
+//
+supplier_get_communication_count_v1_response_t*
+ObjectSupplierAPI_supplierGetCommunicationCountV1(apiClient_t *apiClient, int *pkiSupplierID);
+
+
+// Retrieve Communication list
+//
+supplier_get_communication_list_v1_response_t*
+ObjectSupplierAPI_supplierGetCommunicationListV1(apiClient_t *apiClient, int *pkiSupplierID);
+
+
+// Retrieve Communication recipients
+//
+supplier_get_communicationrecipients_v1_response_t*
+ObjectSupplierAPI_supplierGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiSupplierID);
+
+
+// Retrieve Communication senders
+//
+supplier_get_communicationsenders_v1_response_t*
+ObjectSupplierAPI_supplierGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiSupplierID);
 
 
 // Retrieve Supplier list

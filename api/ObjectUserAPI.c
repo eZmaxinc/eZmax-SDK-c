@@ -11,13 +11,13 @@
 // Functions for enum SSELECTOR for ObjectUserAPI_userGetAutocompleteV2
 
 static char* userGetAutocompleteV2_SSELECTOR_ToString(ezmax_api_definition__full_userGetAutocompleteV2_sSelector_e SSELECTOR){
-    char *SSELECTORArray[] =  { "NULL", "AgentBrokerAssistant", "AgentBrokerEmployeeEzsignUserNormalWithoutEzmaxpartner", "AgentBrokerEmployeeEzsignUserNormal", "AgentBrokerEmployeeNormalBuiltIn", "AgentBrokerEzsignuserNormal", "ClonableUsers", "EzsignuserBuiltIn", "Ezsignuser", "Normal", "UsergroupDelegated" };
+    char *SSELECTORArray[] =  { "NULL", "AgentBrokerAssistant", "AgentBrokerEmployeeEzsignUserNormalWithoutEzmaxpartner", "AgentBrokerEmployeeEzsignUserNormal", "AgentBrokerEmployeeNormalBuiltIn", "AgentBrokerEzsignuserNormal", "AttachmentSpecificUser", "ClonableUsers", "EzsignuserBuiltIn", "Ezsignuser", "Normal", "UsergroupDelegated" };
     return SSELECTORArray[SSELECTOR];
 }
 
 static ezmax_api_definition__full_userGetAutocompleteV2_sSelector_e userGetAutocompleteV2_SSELECTOR_FromString(char* SSELECTOR){
     int stringToReturn = 0;
-    char *SSELECTORArray[] =  { "NULL", "AgentBrokerAssistant", "AgentBrokerEmployeeEzsignUserNormalWithoutEzmaxpartner", "AgentBrokerEmployeeEzsignUserNormal", "AgentBrokerEmployeeNormalBuiltIn", "AgentBrokerEzsignuserNormal", "ClonableUsers", "EzsignuserBuiltIn", "Ezsignuser", "Normal", "UsergroupDelegated" };
+    char *SSELECTORArray[] =  { "NULL", "AgentBrokerAssistant", "AgentBrokerEmployeeEzsignUserNormalWithoutEzmaxpartner", "AgentBrokerEmployeeEzsignUserNormal", "AgentBrokerEmployeeNormalBuiltIn", "AgentBrokerEzsignuserNormal", "AttachmentSpecificUser", "ClonableUsers", "EzsignuserBuiltIn", "Ezsignuser", "Normal", "UsergroupDelegated" };
     size_t sizeofArray = sizeof(SSELECTORArray) / sizeof(SSELECTORArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(SSELECTOR, SSELECTORArray[stringToReturn]) == 0) {
@@ -842,7 +842,7 @@ end:
 // Get the list of User to be used in a dropdown or autocomplete control.
 //
 user_get_autocomplete_v2_response_t*
-ObjectUserAPI_userGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_userGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_userGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language)
+ObjectUserAPI_userGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_userGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_userGetAutocompleteV2_eFilterActive_e eFilterActive, char *fkiAttachmentID, char *sQuery, header_accept_language_e Accept_Language)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -897,6 +897,18 @@ ObjectUserAPI_userGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition
         keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, strdup(userGetAutocompleteV2_EFILTERACTIVE_ToString(
         valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
+    }
+
+    // query parameters
+    char *keyQuery_fkiAttachmentID = NULL;
+    char * valueQuery_fkiAttachmentID = NULL;
+    keyValuePair_t *keyPairQuery_fkiAttachmentID = 0;
+    if (fkiAttachmentID)
+    {
+        keyQuery_fkiAttachmentID = strdup("fkiAttachmentID");
+        valueQuery_fkiAttachmentID = strdup((fkiAttachmentID));
+        keyPairQuery_fkiAttachmentID = keyValuePair_create(keyQuery_fkiAttachmentID, valueQuery_fkiAttachmentID);
+        list_addElement(localVarQueryParameters,keyPairQuery_fkiAttachmentID);
     }
 
     // query parameters
@@ -962,6 +974,18 @@ ObjectUserAPI_userGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition
     if(keyPairQuery_eFilterActive){
         keyValuePair_free(keyPairQuery_eFilterActive);
         keyPairQuery_eFilterActive = NULL;
+    }
+    if(keyQuery_fkiAttachmentID){
+        free(keyQuery_fkiAttachmentID);
+        keyQuery_fkiAttachmentID = NULL;
+    }
+    if(valueQuery_fkiAttachmentID){
+        free(valueQuery_fkiAttachmentID);
+        valueQuery_fkiAttachmentID = NULL;
+    }
+    if(keyPairQuery_fkiAttachmentID){
+        keyValuePair_free(keyPairQuery_fkiAttachmentID);
+        keyPairQuery_fkiAttachmentID = NULL;
     }
     if(keyQuery_sQuery){
         free(keyQuery_sQuery);

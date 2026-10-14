@@ -202,6 +202,354 @@ end:
 
 }
 
+// Retrieve Communication count
+//
+paymentpreparation_get_communication_count_v1_response_t*
+ObjectPaymentpreparationAPI_paymentpreparationGetCommunicationCountV1(apiClient_t *apiClient, int *pkiPaymentpreparationID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/paymentpreparation/{pkiPaymentpreparationID}/getCommunicationCount");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiPaymentpreparationID =  + sizeof("{ pkiPaymentpreparationID }") - 1;
+    if(pkiPaymentpreparationID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiPaymentpreparationID = malloc(sizeOfPathParams_pkiPaymentpreparationID);
+    snprintf(localVarToReplace_pkiPaymentpreparationID, sizeOfPathParams_pkiPaymentpreparationID, "{%s}", "pkiPaymentpreparationID");
+
+    char localVarBuff_pkiPaymentpreparationID[256];
+    snprintf(localVarBuff_pkiPaymentpreparationID, sizeof localVarBuff_pkiPaymentpreparationID, "%ld", (long)*pkiPaymentpreparationID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiPaymentpreparationID, localVarBuff_pkiPaymentpreparationID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    paymentpreparation_get_communication_count_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectPaymentpreparationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = paymentpreparation_get_communication_count_v1_response_parseFromJSON(ObjectPaymentpreparationAPIlocalVarJSON);
+        cJSON_Delete(ObjectPaymentpreparationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiPaymentpreparationID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication list
+//
+paymentpreparation_get_communication_list_v1_response_t*
+ObjectPaymentpreparationAPI_paymentpreparationGetCommunicationListV1(apiClient_t *apiClient, int *pkiPaymentpreparationID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/paymentpreparation/{pkiPaymentpreparationID}/getCommunicationList");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiPaymentpreparationID =  + sizeof("{ pkiPaymentpreparationID }") - 1;
+    if(pkiPaymentpreparationID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiPaymentpreparationID = malloc(sizeOfPathParams_pkiPaymentpreparationID);
+    snprintf(localVarToReplace_pkiPaymentpreparationID, sizeOfPathParams_pkiPaymentpreparationID, "{%s}", "pkiPaymentpreparationID");
+
+    char localVarBuff_pkiPaymentpreparationID[256];
+    snprintf(localVarBuff_pkiPaymentpreparationID, sizeof localVarBuff_pkiPaymentpreparationID, "%ld", (long)*pkiPaymentpreparationID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiPaymentpreparationID, localVarBuff_pkiPaymentpreparationID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    paymentpreparation_get_communication_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectPaymentpreparationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = paymentpreparation_get_communication_list_v1_response_parseFromJSON(ObjectPaymentpreparationAPIlocalVarJSON);
+        cJSON_Delete(ObjectPaymentpreparationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiPaymentpreparationID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication recipients
+//
+paymentpreparation_get_communicationrecipients_v1_response_t*
+ObjectPaymentpreparationAPI_paymentpreparationGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiPaymentpreparationID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/paymentpreparation/{pkiPaymentpreparationID}/getCommunicationrecipients");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiPaymentpreparationID =  + sizeof("{ pkiPaymentpreparationID }") - 1;
+    if(pkiPaymentpreparationID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiPaymentpreparationID = malloc(sizeOfPathParams_pkiPaymentpreparationID);
+    snprintf(localVarToReplace_pkiPaymentpreparationID, sizeOfPathParams_pkiPaymentpreparationID, "{%s}", "pkiPaymentpreparationID");
+
+    char localVarBuff_pkiPaymentpreparationID[256];
+    snprintf(localVarBuff_pkiPaymentpreparationID, sizeof localVarBuff_pkiPaymentpreparationID, "%ld", (long)*pkiPaymentpreparationID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiPaymentpreparationID, localVarBuff_pkiPaymentpreparationID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    paymentpreparation_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectPaymentpreparationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = paymentpreparation_get_communicationrecipients_v1_response_parseFromJSON(ObjectPaymentpreparationAPIlocalVarJSON);
+        cJSON_Delete(ObjectPaymentpreparationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiPaymentpreparationID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication senders
+//
+paymentpreparation_get_communicationsenders_v1_response_t*
+ObjectPaymentpreparationAPI_paymentpreparationGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiPaymentpreparationID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/paymentpreparation/{pkiPaymentpreparationID}/getCommunicationsenders");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiPaymentpreparationID =  + sizeof("{ pkiPaymentpreparationID }") - 1;
+    if(pkiPaymentpreparationID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiPaymentpreparationID = malloc(sizeOfPathParams_pkiPaymentpreparationID);
+    snprintf(localVarToReplace_pkiPaymentpreparationID, sizeOfPathParams_pkiPaymentpreparationID, "{%s}", "pkiPaymentpreparationID");
+
+    char localVarBuff_pkiPaymentpreparationID[256];
+    snprintf(localVarBuff_pkiPaymentpreparationID, sizeof localVarBuff_pkiPaymentpreparationID, "%ld", (long)*pkiPaymentpreparationID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiPaymentpreparationID, localVarBuff_pkiPaymentpreparationID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    paymentpreparation_get_communicationsenders_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectPaymentpreparationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = paymentpreparation_get_communicationsenders_v1_response_parseFromJSON(ObjectPaymentpreparationAPIlocalVarJSON);
+        cJSON_Delete(ObjectPaymentpreparationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiPaymentpreparationID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Import attachments into the Paymentpreparation
 //
 paymentpreparation_import_into_edm_v1_response_t*

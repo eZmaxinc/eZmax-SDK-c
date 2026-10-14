@@ -15,17 +15,18 @@
 
 typedef struct invoice_import_into_edm_v1_response_m_payload_t invoice_import_into_edm_v1_response_m_payload_t;
 
+#include "custom_attachment_import_into_edm_response.h"
 
 
 
 typedef struct invoice_import_into_edm_v1_response_m_payload_t {
-    list_t *a_pki_attachment_id; //primitive container
+    list_t *a_obj_attachment; //nonprimitive container
 
     int _library_owned; // Is the library responsible for freeing this object?
 } invoice_import_into_edm_v1_response_m_payload_t;
 
 __attribute__((deprecated)) invoice_import_into_edm_v1_response_m_payload_t *invoice_import_into_edm_v1_response_m_payload_create(
-    list_t *a_pki_attachment_id
+    list_t *a_obj_attachment
 );
 
 void invoice_import_into_edm_v1_response_m_payload_free(invoice_import_into_edm_v1_response_m_payload_t *invoice_import_into_edm_v1_response_m_payload);

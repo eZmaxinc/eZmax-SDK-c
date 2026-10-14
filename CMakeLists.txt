@@ -77,9 +77,15 @@ set(SRCS
     model/adjustment_get_communicationrecipients_v1_response_m_payload.c
     model/adjustment_get_communicationsenders_v1_response.c
     model/adjustment_get_communicationsenders_v1_response_m_payload.c
+    model/adjustment_get_list_v1_response.c
+    model/adjustment_get_list_v1_response_m_payload.c
     model/adjustment_import_into_edm_v1_request.c
     model/adjustment_import_into_edm_v1_response.c
     model/adjustment_import_into_edm_v1_response_m_payload.c
+    model/adjustment_list_element.c
+    model/adjustmentreminder_get_list_v1_response.c
+    model/adjustmentreminder_get_list_v1_response_m_payload.c
+    model/adjustmentreminder_list_element.c
     model/agent_autocomplete_element_response.c
     model/agent_batch_download_v1_request.c
     model/agent_get_attachments_v1_response.c
@@ -645,9 +651,15 @@ set(SRCS
     model/electronicfundstransfer_get_communicationrecipients_v1_response_m_payload.c
     model/electronicfundstransfer_get_communicationsenders_v1_response.c
     model/electronicfundstransfer_get_communicationsenders_v1_response_m_payload.c
+    model/electronicfundstransfer_get_list_v1_response.c
+    model/electronicfundstransfer_get_list_v1_response_m_payload.c
     model/electronicfundstransfer_import_into_edm_v1_request.c
     model/electronicfundstransfer_import_into_edm_v1_response.c
     model/electronicfundstransfer_import_into_edm_v1_response_m_payload.c
+    model/electronicfundstransfer_list_element.c
+    model/electronicfundstransfertransaction_get_list_v1_response.c
+    model/electronicfundstransfertransaction_get_list_v1_response_m_payload.c
+    model/electronicfundstransfertransaction_list_element.c
     model/email_request.c
     model/email_request_compound.c
     model/email_response.c
@@ -1584,6 +1596,7 @@ set(SRCS
     model/field_e_activesession_realestateinprogress.c
     model/field_e_activesession_usertype.c
     model/field_e_activesession_weekdaystart.c
+    model/field_e_adjustmentreminder_type.c
     model/field_e_agent_schedule.c
     model/field_e_attachment_documenttype.c
     model/field_e_attachment_privacy.c
@@ -2016,6 +2029,14 @@ set(SRCS
     model/paymentpreparation_batch_download_v1_request.c
     model/paymentpreparation_get_attachments_v1_response.c
     model/paymentpreparation_get_attachments_v1_response_m_payload.c
+    model/paymentpreparation_get_communication_count_v1_response.c
+    model/paymentpreparation_get_communication_count_v1_response_m_payload.c
+    model/paymentpreparation_get_communication_list_v1_response.c
+    model/paymentpreparation_get_communication_list_v1_response_m_payload.c
+    model/paymentpreparation_get_communicationrecipients_v1_response.c
+    model/paymentpreparation_get_communicationrecipients_v1_response_m_payload.c
+    model/paymentpreparation_get_communicationsenders_v1_response.c
+    model/paymentpreparation_get_communicationsenders_v1_response_m_payload.c
     model/paymentpreparation_import_into_edm_v1_request.c
     model/paymentpreparation_import_into_edm_v1_response.c
     model/paymentpreparation_import_into_edm_v1_response_m_payload.c
@@ -2069,6 +2090,14 @@ set(SRCS
     model/purchase_batch_download_v1_request.c
     model/purchase_get_attachments_v1_response.c
     model/purchase_get_attachments_v1_response_m_payload.c
+    model/purchase_get_communication_count_v1_response.c
+    model/purchase_get_communication_count_v1_response_m_payload.c
+    model/purchase_get_communication_list_v1_response.c
+    model/purchase_get_communication_list_v1_response_m_payload.c
+    model/purchase_get_communicationrecipients_v1_response.c
+    model/purchase_get_communicationrecipients_v1_response_m_payload.c
+    model/purchase_get_communicationsenders_v1_response.c
+    model/purchase_get_communicationsenders_v1_response_m_payload.c
     model/purchase_get_list_v1_response.c
     model/purchase_get_list_v1_response_m_payload.c
     model/purchase_import_into_edm_v1_request.c
@@ -2084,6 +2113,14 @@ set(SRCS
     model/reconciliation_batch_download_v1_request.c
     model/reconciliation_get_attachments_v1_response.c
     model/reconciliation_get_attachments_v1_response_m_payload.c
+    model/reconciliation_get_communication_count_v1_response.c
+    model/reconciliation_get_communication_count_v1_response_m_payload.c
+    model/reconciliation_get_communication_list_v1_response.c
+    model/reconciliation_get_communication_list_v1_response_m_payload.c
+    model/reconciliation_get_communicationrecipients_v1_response.c
+    model/reconciliation_get_communicationrecipients_v1_response_m_payload.c
+    model/reconciliation_get_communicationsenders_v1_response.c
+    model/reconciliation_get_communicationsenders_v1_response_m_payload.c
     model/reconciliation_import_into_edm_v1_request.c
     model/reconciliation_import_into_edm_v1_response.c
     model/reconciliation_import_into_edm_v1_response_m_payload.c
@@ -2107,6 +2144,14 @@ set(SRCS
     model/salary_batch_download_v1_request.c
     model/salary_get_attachments_v1_response.c
     model/salary_get_attachments_v1_response_m_payload.c
+    model/salary_get_communication_count_v1_response.c
+    model/salary_get_communication_count_v1_response_m_payload.c
+    model/salary_get_communication_list_v1_response.c
+    model/salary_get_communication_list_v1_response_m_payload.c
+    model/salary_get_communicationrecipients_v1_response.c
+    model/salary_get_communicationrecipients_v1_response_m_payload.c
+    model/salary_get_communicationsenders_v1_response.c
+    model/salary_get_communicationsenders_v1_response_m_payload.c
     model/salary_get_list_v1_response.c
     model/salary_get_list_v1_response_m_payload.c
     model/salary_import_into_edm_v1_request.c
@@ -2161,6 +2206,14 @@ set(SRCS
     model/supplier_batch_download_v1_request.c
     model/supplier_get_attachments_v1_response.c
     model/supplier_get_attachments_v1_response_m_payload.c
+    model/supplier_get_communication_count_v1_response.c
+    model/supplier_get_communication_count_v1_response_m_payload.c
+    model/supplier_get_communication_list_v1_response.c
+    model/supplier_get_communication_list_v1_response_m_payload.c
+    model/supplier_get_communicationrecipients_v1_response.c
+    model/supplier_get_communicationrecipients_v1_response_m_payload.c
+    model/supplier_get_communicationsenders_v1_response.c
+    model/supplier_get_communicationsenders_v1_response_m_payload.c
     model/supplier_get_list_v1_response.c
     model/supplier_get_list_v1_response_m_payload.c
     model/supplier_import_into_edm_v1_request.c
@@ -2452,6 +2505,7 @@ set(SRCS
     api/ModuleUserAPI.c
     api/ObjectActivesessionAPI.c
     api/ObjectAdjustmentAPI.c
+    api/ObjectAdjustmentreminderAPI.c
     api/ObjectAgentAPI.c
     api/ObjectAgenttypeAPI.c
     api/ObjectApikeyAPI.c
@@ -2486,6 +2540,7 @@ set(SRCS
     api/ObjectDiscussionmessageAPI.c
     api/ObjectDomainAPI.c
     api/ObjectElectronicfundstransferAPI.c
+    api/ObjectElectronicfundstransfertransactionAPI.c
     api/ObjectEmailtypeAPI.c
     api/ObjectEmployeeAPI.c
     api/ObjectExternalbrokerAPI.c
@@ -2636,9 +2691,15 @@ set(HDRS
     model/adjustment_get_communicationrecipients_v1_response_m_payload.h
     model/adjustment_get_communicationsenders_v1_response.h
     model/adjustment_get_communicationsenders_v1_response_m_payload.h
+    model/adjustment_get_list_v1_response.h
+    model/adjustment_get_list_v1_response_m_payload.h
     model/adjustment_import_into_edm_v1_request.h
     model/adjustment_import_into_edm_v1_response.h
     model/adjustment_import_into_edm_v1_response_m_payload.h
+    model/adjustment_list_element.h
+    model/adjustmentreminder_get_list_v1_response.h
+    model/adjustmentreminder_get_list_v1_response_m_payload.h
+    model/adjustmentreminder_list_element.h
     model/agent_autocomplete_element_response.h
     model/agent_batch_download_v1_request.h
     model/agent_get_attachments_v1_response.h
@@ -3204,9 +3265,15 @@ set(HDRS
     model/electronicfundstransfer_get_communicationrecipients_v1_response_m_payload.h
     model/electronicfundstransfer_get_communicationsenders_v1_response.h
     model/electronicfundstransfer_get_communicationsenders_v1_response_m_payload.h
+    model/electronicfundstransfer_get_list_v1_response.h
+    model/electronicfundstransfer_get_list_v1_response_m_payload.h
     model/electronicfundstransfer_import_into_edm_v1_request.h
     model/electronicfundstransfer_import_into_edm_v1_response.h
     model/electronicfundstransfer_import_into_edm_v1_response_m_payload.h
+    model/electronicfundstransfer_list_element.h
+    model/electronicfundstransfertransaction_get_list_v1_response.h
+    model/electronicfundstransfertransaction_get_list_v1_response_m_payload.h
+    model/electronicfundstransfertransaction_list_element.h
     model/email_request.h
     model/email_request_compound.h
     model/email_response.h
@@ -4143,6 +4210,7 @@ set(HDRS
     model/field_e_activesession_realestateinprogress.h
     model/field_e_activesession_usertype.h
     model/field_e_activesession_weekdaystart.h
+    model/field_e_adjustmentreminder_type.h
     model/field_e_agent_schedule.h
     model/field_e_attachment_documenttype.h
     model/field_e_attachment_privacy.h
@@ -4575,6 +4643,14 @@ set(HDRS
     model/paymentpreparation_batch_download_v1_request.h
     model/paymentpreparation_get_attachments_v1_response.h
     model/paymentpreparation_get_attachments_v1_response_m_payload.h
+    model/paymentpreparation_get_communication_count_v1_response.h
+    model/paymentpreparation_get_communication_count_v1_response_m_payload.h
+    model/paymentpreparation_get_communication_list_v1_response.h
+    model/paymentpreparation_get_communication_list_v1_response_m_payload.h
+    model/paymentpreparation_get_communicationrecipients_v1_response.h
+    model/paymentpreparation_get_communicationrecipients_v1_response_m_payload.h
+    model/paymentpreparation_get_communicationsenders_v1_response.h
+    model/paymentpreparation_get_communicationsenders_v1_response_m_payload.h
     model/paymentpreparation_import_into_edm_v1_request.h
     model/paymentpreparation_import_into_edm_v1_response.h
     model/paymentpreparation_import_into_edm_v1_response_m_payload.h
@@ -4628,6 +4704,14 @@ set(HDRS
     model/purchase_batch_download_v1_request.h
     model/purchase_get_attachments_v1_response.h
     model/purchase_get_attachments_v1_response_m_payload.h
+    model/purchase_get_communication_count_v1_response.h
+    model/purchase_get_communication_count_v1_response_m_payload.h
+    model/purchase_get_communication_list_v1_response.h
+    model/purchase_get_communication_list_v1_response_m_payload.h
+    model/purchase_get_communicationrecipients_v1_response.h
+    model/purchase_get_communicationrecipients_v1_response_m_payload.h
+    model/purchase_get_communicationsenders_v1_response.h
+    model/purchase_get_communicationsenders_v1_response_m_payload.h
     model/purchase_get_list_v1_response.h
     model/purchase_get_list_v1_response_m_payload.h
     model/purchase_import_into_edm_v1_request.h
@@ -4643,6 +4727,14 @@ set(HDRS
     model/reconciliation_batch_download_v1_request.h
     model/reconciliation_get_attachments_v1_response.h
     model/reconciliation_get_attachments_v1_response_m_payload.h
+    model/reconciliation_get_communication_count_v1_response.h
+    model/reconciliation_get_communication_count_v1_response_m_payload.h
+    model/reconciliation_get_communication_list_v1_response.h
+    model/reconciliation_get_communication_list_v1_response_m_payload.h
+    model/reconciliation_get_communicationrecipients_v1_response.h
+    model/reconciliation_get_communicationrecipients_v1_response_m_payload.h
+    model/reconciliation_get_communicationsenders_v1_response.h
+    model/reconciliation_get_communicationsenders_v1_response_m_payload.h
     model/reconciliation_import_into_edm_v1_request.h
     model/reconciliation_import_into_edm_v1_response.h
     model/reconciliation_import_into_edm_v1_response_m_payload.h
@@ -4666,6 +4758,14 @@ set(HDRS
     model/salary_batch_download_v1_request.h
     model/salary_get_attachments_v1_response.h
     model/salary_get_attachments_v1_response_m_payload.h
+    model/salary_get_communication_count_v1_response.h
+    model/salary_get_communication_count_v1_response_m_payload.h
+    model/salary_get_communication_list_v1_response.h
+    model/salary_get_communication_list_v1_response_m_payload.h
+    model/salary_get_communicationrecipients_v1_response.h
+    model/salary_get_communicationrecipients_v1_response_m_payload.h
+    model/salary_get_communicationsenders_v1_response.h
+    model/salary_get_communicationsenders_v1_response_m_payload.h
     model/salary_get_list_v1_response.h
     model/salary_get_list_v1_response_m_payload.h
     model/salary_import_into_edm_v1_request.h
@@ -4720,6 +4820,14 @@ set(HDRS
     model/supplier_batch_download_v1_request.h
     model/supplier_get_attachments_v1_response.h
     model/supplier_get_attachments_v1_response_m_payload.h
+    model/supplier_get_communication_count_v1_response.h
+    model/supplier_get_communication_count_v1_response_m_payload.h
+    model/supplier_get_communication_list_v1_response.h
+    model/supplier_get_communication_list_v1_response_m_payload.h
+    model/supplier_get_communicationrecipients_v1_response.h
+    model/supplier_get_communicationrecipients_v1_response_m_payload.h
+    model/supplier_get_communicationsenders_v1_response.h
+    model/supplier_get_communicationsenders_v1_response_m_payload.h
     model/supplier_get_list_v1_response.h
     model/supplier_get_list_v1_response_m_payload.h
     model/supplier_import_into_edm_v1_request.h
@@ -5011,6 +5119,7 @@ set(HDRS
     api/ModuleUserAPI.h
     api/ObjectActivesessionAPI.h
     api/ObjectAdjustmentAPI.h
+    api/ObjectAdjustmentreminderAPI.h
     api/ObjectAgentAPI.h
     api/ObjectAgenttypeAPI.h
     api/ObjectApikeyAPI.h
@@ -5045,6 +5154,7 @@ set(HDRS
     api/ObjectDiscussionmessageAPI.h
     api/ObjectDomainAPI.h
     api/ObjectElectronicfundstransferAPI.h
+    api/ObjectElectronicfundstransfertransactionAPI.h
     api/ObjectEmailtypeAPI.h
     api/ObjectEmployeeAPI.h
     api/ObjectExternalbrokerAPI.h
@@ -5249,6 +5359,7 @@ set(HDRS "")
 #    unit-tests/manual-ModuleUserAPI.c
 #    unit-tests/manual-ObjectActivesessionAPI.c
 #    unit-tests/manual-ObjectAdjustmentAPI.c
+#    unit-tests/manual-ObjectAdjustmentreminderAPI.c
 #    unit-tests/manual-ObjectAgentAPI.c
 #    unit-tests/manual-ObjectAgenttypeAPI.c
 #    unit-tests/manual-ObjectApikeyAPI.c
@@ -5283,6 +5394,7 @@ set(HDRS "")
 #    unit-tests/manual-ObjectDiscussionmessageAPI.c
 #    unit-tests/manual-ObjectDomainAPI.c
 #    unit-tests/manual-ObjectElectronicfundstransferAPI.c
+#    unit-tests/manual-ObjectElectronicfundstransfertransactionAPI.c
 #    unit-tests/manual-ObjectEmailtypeAPI.c
 #    unit-tests/manual-ObjectEmployeeAPI.c
 #    unit-tests/manual-ObjectExternalbrokerAPI.c

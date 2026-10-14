@@ -6,7 +6,7 @@
 
 
 static invoice_import_into_edm_v1_response_m_payload_t *invoice_import_into_edm_v1_response_m_payload_create_internal(
-    list_t *a_pki_attachment_id
+    list_t *a_obj_attachment
     ) {
     invoice_import_into_edm_v1_response_m_payload_t *invoice_import_into_edm_v1_response_m_payload_local_var = malloc(sizeof(invoice_import_into_edm_v1_response_m_payload_t));
     if (!invoice_import_into_edm_v1_response_m_payload_local_var) {
@@ -14,15 +14,15 @@ static invoice_import_into_edm_v1_response_m_payload_t *invoice_import_into_edm_
     }
     memset(invoice_import_into_edm_v1_response_m_payload_local_var, 0, sizeof(invoice_import_into_edm_v1_response_m_payload_t));
     invoice_import_into_edm_v1_response_m_payload_local_var->_library_owned = 1;
-    invoice_import_into_edm_v1_response_m_payload_local_var->a_pki_attachment_id = a_pki_attachment_id;
+    invoice_import_into_edm_v1_response_m_payload_local_var->a_obj_attachment = a_obj_attachment;
     return invoice_import_into_edm_v1_response_m_payload_local_var;
 }
 
 __attribute__((deprecated)) invoice_import_into_edm_v1_response_m_payload_t *invoice_import_into_edm_v1_response_m_payload_create(
-    list_t *a_pki_attachment_id
+    list_t *a_obj_attachment
     ) {
     invoice_import_into_edm_v1_response_m_payload_t *result = invoice_import_into_edm_v1_response_m_payload_create_internal (
-        a_pki_attachment_id
+        a_obj_attachment
         );
     if (!result) {
     }
@@ -38,12 +38,12 @@ void invoice_import_into_edm_v1_response_m_payload_free(invoice_import_into_edm_
         return ;
     }
     listEntry_t *listEntry;
-    if (invoice_import_into_edm_v1_response_m_payload->a_pki_attachment_id) {
-        list_ForEach(listEntry, invoice_import_into_edm_v1_response_m_payload->a_pki_attachment_id) {
-            free(listEntry->data);
+    if (invoice_import_into_edm_v1_response_m_payload->a_obj_attachment) {
+        list_ForEach(listEntry, invoice_import_into_edm_v1_response_m_payload->a_obj_attachment) {
+            custom_attachment_import_into_edm_response_free(listEntry->data);
         }
-        list_freeList(invoice_import_into_edm_v1_response_m_payload->a_pki_attachment_id);
-        invoice_import_into_edm_v1_response_m_payload->a_pki_attachment_id = NULL;
+        list_freeList(invoice_import_into_edm_v1_response_m_payload->a_obj_attachment);
+        invoice_import_into_edm_v1_response_m_payload->a_obj_attachment = NULL;
     }
     free(invoice_import_into_edm_v1_response_m_payload);
 }
@@ -51,20 +51,23 @@ void invoice_import_into_edm_v1_response_m_payload_free(invoice_import_into_edm_
 cJSON *invoice_import_into_edm_v1_response_m_payload_convertToJSON(invoice_import_into_edm_v1_response_m_payload_t *invoice_import_into_edm_v1_response_m_payload) {
     cJSON *item = cJSON_CreateObject();
 
-    // invoice_import_into_edm_v1_response_m_payload->a_pki_attachment_id
-    if (!invoice_import_into_edm_v1_response_m_payload->a_pki_attachment_id) {
+    // invoice_import_into_edm_v1_response_m_payload->a_obj_attachment
+    if (!invoice_import_into_edm_v1_response_m_payload->a_obj_attachment) {
         goto fail;
     }
-    cJSON *a_pki_attachment_id = cJSON_AddArrayToObject(item, "a_pkiAttachmentID");
-    if(a_pki_attachment_id == NULL) {
-        goto fail; //primitive container
+    cJSON *a_obj_attachment = cJSON_AddArrayToObject(item, "a_objAttachment");
+    if(a_obj_attachment == NULL) {
+    goto fail; //nonprimitive container
     }
 
-    listEntry_t *a_pki_attachment_idListEntry;
-    list_ForEach(a_pki_attachment_idListEntry, invoice_import_into_edm_v1_response_m_payload->a_pki_attachment_id) {
-    if(cJSON_AddNumberToObject(a_pki_attachment_id, "", *(double *)a_pki_attachment_idListEntry->data) == NULL)
-    {
-        goto fail;
+    listEntry_t *a_obj_attachmentListEntry;
+    if (invoice_import_into_edm_v1_response_m_payload->a_obj_attachment) {
+    list_ForEach(a_obj_attachmentListEntry, invoice_import_into_edm_v1_response_m_payload->a_obj_attachment) {
+    cJSON *itemLocal = custom_attachment_import_into_edm_response_convertToJSON(a_obj_attachmentListEntry->data);
+    if(itemLocal == NULL) {
+    goto fail;
+    }
+    cJSON_AddItemToArray(a_obj_attachment, itemLocal);
     }
     }
 
@@ -80,44 +83,40 @@ invoice_import_into_edm_v1_response_m_payload_t *invoice_import_into_edm_v1_resp
 
     invoice_import_into_edm_v1_response_m_payload_t *invoice_import_into_edm_v1_response_m_payload_local_var = NULL;
 
-    // define the local list for invoice_import_into_edm_v1_response_m_payload->a_pki_attachment_id
-    list_t *a_pki_attachment_idList = NULL;
+    // define the local list for invoice_import_into_edm_v1_response_m_payload->a_obj_attachment
+    list_t *a_obj_attachmentList = NULL;
 
-    // invoice_import_into_edm_v1_response_m_payload->a_pki_attachment_id
-    cJSON *a_pki_attachment_id = cJSON_GetObjectItemCaseSensitive(invoice_import_into_edm_v1_response_m_payloadJSON, "a_pkiAttachmentID");
-    if (cJSON_IsNull(a_pki_attachment_id)) {
-        a_pki_attachment_id = NULL;
+    // invoice_import_into_edm_v1_response_m_payload->a_obj_attachment
+    cJSON *a_obj_attachment = cJSON_GetObjectItemCaseSensitive(invoice_import_into_edm_v1_response_m_payloadJSON, "a_objAttachment");
+    if (cJSON_IsNull(a_obj_attachment)) {
+        a_obj_attachment = NULL;
     }
-    if (!a_pki_attachment_id) {
+    if (!a_obj_attachment) {
         goto end;
     }
 
     
-    cJSON *a_pki_attachment_id_local = NULL;
-    if(!cJSON_IsArray(a_pki_attachment_id)) {
-        goto end;//primitive container
+    cJSON *a_obj_attachment_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(a_obj_attachment)){
+        goto end; //nonprimitive container
     }
-    a_pki_attachment_idList = list_createList();
 
-    cJSON_ArrayForEach(a_pki_attachment_id_local, a_pki_attachment_id)
+    a_obj_attachmentList = list_createList();
+
+    cJSON_ArrayForEach(a_obj_attachment_local_nonprimitive,a_obj_attachment )
     {
-        if(!cJSON_IsNumber(a_pki_attachment_id_local))
-        {
+        if(!cJSON_IsObject(a_obj_attachment_local_nonprimitive)){
             goto end;
         }
-        double *a_pki_attachment_id_local_value = calloc(1, sizeof(double));
-        if(!a_pki_attachment_id_local_value)
-        {
-            goto end;
-        }
-        *a_pki_attachment_id_local_value = a_pki_attachment_id_local->valuedouble;
-        list_addElement(a_pki_attachment_idList , a_pki_attachment_id_local_value);
+        custom_attachment_import_into_edm_response_t *a_obj_attachmentItem = custom_attachment_import_into_edm_response_parseFromJSON(a_obj_attachment_local_nonprimitive);
+
+        list_addElement(a_obj_attachmentList, a_obj_attachmentItem);
     }
 
 
 
     invoice_import_into_edm_v1_response_m_payload_local_var = invoice_import_into_edm_v1_response_m_payload_create_internal (
-        a_pki_attachment_idList
+        a_obj_attachmentList
         );
 
     if (!invoice_import_into_edm_v1_response_m_payload_local_var) {
@@ -126,14 +125,14 @@ invoice_import_into_edm_v1_response_m_payload_t *invoice_import_into_edm_v1_resp
 
     return invoice_import_into_edm_v1_response_m_payload_local_var;
 end:
-    if (a_pki_attachment_idList) {
+    if (a_obj_attachmentList) {
         listEntry_t *listEntry = NULL;
-        list_ForEach(listEntry, a_pki_attachment_idList) {
-            free(listEntry->data);
+        list_ForEach(listEntry, a_obj_attachmentList) {
+            custom_attachment_import_into_edm_response_free(listEntry->data);
             listEntry->data = NULL;
         }
-        list_freeList(a_pki_attachment_idList);
-        a_pki_attachment_idList = NULL;
+        list_freeList(a_obj_attachmentList);
+        a_obj_attachmentList = NULL;
     }
     return NULL;
 

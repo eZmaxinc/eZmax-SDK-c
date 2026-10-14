@@ -23,6 +23,7 @@ typedef struct communicationreference_request_compound_t {
     int *fki_buyercontract_id; //numeric
     int *fki_ezsignfolder_id; //numeric
     int *fki_inscription_id; //numeric
+    int *fki_inscriptionnotauthenticated_id; //numeric
     int *fki_inscriptiontemp_id; //numeric
     int *fki_invoice_id; //numeric
     int *fki_otherincome_id; //numeric
@@ -37,6 +38,7 @@ __attribute__((deprecated)) communicationreference_request_compound_t *communica
     int *fki_buyercontract_id,
     int *fki_ezsignfolder_id,
     int *fki_inscription_id,
+    int *fki_inscriptionnotauthenticated_id,
     int *fki_inscriptiontemp_id,
     int *fki_invoice_id,
     int *fki_otherincome_id,

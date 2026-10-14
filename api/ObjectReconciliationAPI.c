@@ -202,6 +202,354 @@ end:
 
 }
 
+// Retrieve Communication count
+//
+reconciliation_get_communication_count_v1_response_t*
+ObjectReconciliationAPI_reconciliationGetCommunicationCountV1(apiClient_t *apiClient, int *pkiReconciliationID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/reconciliation/{pkiReconciliationID}/getCommunicationCount");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiReconciliationID =  + sizeof("{ pkiReconciliationID }") - 1;
+    if(pkiReconciliationID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiReconciliationID = malloc(sizeOfPathParams_pkiReconciliationID);
+    snprintf(localVarToReplace_pkiReconciliationID, sizeOfPathParams_pkiReconciliationID, "{%s}", "pkiReconciliationID");
+
+    char localVarBuff_pkiReconciliationID[256];
+    snprintf(localVarBuff_pkiReconciliationID, sizeof localVarBuff_pkiReconciliationID, "%ld", (long)*pkiReconciliationID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiReconciliationID, localVarBuff_pkiReconciliationID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    reconciliation_get_communication_count_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectReconciliationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = reconciliation_get_communication_count_v1_response_parseFromJSON(ObjectReconciliationAPIlocalVarJSON);
+        cJSON_Delete(ObjectReconciliationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiReconciliationID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication list
+//
+reconciliation_get_communication_list_v1_response_t*
+ObjectReconciliationAPI_reconciliationGetCommunicationListV1(apiClient_t *apiClient, int *pkiReconciliationID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/reconciliation/{pkiReconciliationID}/getCommunicationList");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiReconciliationID =  + sizeof("{ pkiReconciliationID }") - 1;
+    if(pkiReconciliationID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiReconciliationID = malloc(sizeOfPathParams_pkiReconciliationID);
+    snprintf(localVarToReplace_pkiReconciliationID, sizeOfPathParams_pkiReconciliationID, "{%s}", "pkiReconciliationID");
+
+    char localVarBuff_pkiReconciliationID[256];
+    snprintf(localVarBuff_pkiReconciliationID, sizeof localVarBuff_pkiReconciliationID, "%ld", (long)*pkiReconciliationID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiReconciliationID, localVarBuff_pkiReconciliationID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    reconciliation_get_communication_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectReconciliationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = reconciliation_get_communication_list_v1_response_parseFromJSON(ObjectReconciliationAPIlocalVarJSON);
+        cJSON_Delete(ObjectReconciliationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiReconciliationID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication recipients
+//
+reconciliation_get_communicationrecipients_v1_response_t*
+ObjectReconciliationAPI_reconciliationGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiReconciliationID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/reconciliation/{pkiReconciliationID}/getCommunicationrecipients");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiReconciliationID =  + sizeof("{ pkiReconciliationID }") - 1;
+    if(pkiReconciliationID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiReconciliationID = malloc(sizeOfPathParams_pkiReconciliationID);
+    snprintf(localVarToReplace_pkiReconciliationID, sizeOfPathParams_pkiReconciliationID, "{%s}", "pkiReconciliationID");
+
+    char localVarBuff_pkiReconciliationID[256];
+    snprintf(localVarBuff_pkiReconciliationID, sizeof localVarBuff_pkiReconciliationID, "%ld", (long)*pkiReconciliationID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiReconciliationID, localVarBuff_pkiReconciliationID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    reconciliation_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectReconciliationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = reconciliation_get_communicationrecipients_v1_response_parseFromJSON(ObjectReconciliationAPIlocalVarJSON);
+        cJSON_Delete(ObjectReconciliationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiReconciliationID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication senders
+//
+reconciliation_get_communicationsenders_v1_response_t*
+ObjectReconciliationAPI_reconciliationGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiReconciliationID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/reconciliation/{pkiReconciliationID}/getCommunicationsenders");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiReconciliationID =  + sizeof("{ pkiReconciliationID }") - 1;
+    if(pkiReconciliationID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiReconciliationID = malloc(sizeOfPathParams_pkiReconciliationID);
+    snprintf(localVarToReplace_pkiReconciliationID, sizeOfPathParams_pkiReconciliationID, "{%s}", "pkiReconciliationID");
+
+    char localVarBuff_pkiReconciliationID[256];
+    snprintf(localVarBuff_pkiReconciliationID, sizeof localVarBuff_pkiReconciliationID, "%ld", (long)*pkiReconciliationID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiReconciliationID, localVarBuff_pkiReconciliationID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    reconciliation_get_communicationsenders_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectReconciliationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = reconciliation_get_communicationsenders_v1_response_parseFromJSON(ObjectReconciliationAPIlocalVarJSON);
+        cJSON_Delete(ObjectReconciliationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiReconciliationID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Import attachments into the Reconciliation
 //
 reconciliation_import_into_edm_v1_response_t*

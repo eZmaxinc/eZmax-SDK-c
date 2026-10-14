@@ -6,6 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectPurchaseAPI_purchaseBatchDownloadV1**](ObjectPurchaseAPI.md#ObjectPurchaseAPI_purchaseBatchDownloadV1) | **POST** /1/object/purchase/{pkiPurchaseID}/batchDownload | Download multiples attachments from a Purchase
 [**ObjectPurchaseAPI_purchaseGetAttachmentsV1**](ObjectPurchaseAPI.md#ObjectPurchaseAPI_purchaseGetAttachmentsV1) | **GET** /1/object/purchase/{pkiPurchaseID}/getAttachments | Retrieve Purchase&#39;s attachments
+[**ObjectPurchaseAPI_purchaseGetCommunicationCountV1**](ObjectPurchaseAPI.md#ObjectPurchaseAPI_purchaseGetCommunicationCountV1) | **GET** /1/object/purchase/{pkiPurchaseID}/getCommunicationCount | Retrieve Communication count
+[**ObjectPurchaseAPI_purchaseGetCommunicationListV1**](ObjectPurchaseAPI.md#ObjectPurchaseAPI_purchaseGetCommunicationListV1) | **GET** /1/object/purchase/{pkiPurchaseID}/getCommunicationList | Retrieve Communication list
+[**ObjectPurchaseAPI_purchaseGetCommunicationrecipientsV1**](ObjectPurchaseAPI.md#ObjectPurchaseAPI_purchaseGetCommunicationrecipientsV1) | **GET** /1/object/purchase/{pkiPurchaseID}/getCommunicationrecipients | Retrieve Communication recipients
+[**ObjectPurchaseAPI_purchaseGetCommunicationsendersV1**](ObjectPurchaseAPI.md#ObjectPurchaseAPI_purchaseGetCommunicationsendersV1) | **GET** /1/object/purchase/{pkiPurchaseID}/getCommunicationsenders | Retrieve Communication senders
 [**ObjectPurchaseAPI_purchaseGetListV1**](ObjectPurchaseAPI.md#ObjectPurchaseAPI_purchaseGetListV1) | **GET** /1/object/purchase/getList | Retrieve Purchase list
 [**ObjectPurchaseAPI_purchaseImportIntoEDMV1**](ObjectPurchaseAPI.md#ObjectPurchaseAPI_purchaseImportIntoEDMV1) | **POST** /1/object/purchase/{pkiPurchaseID}/importIntoEDM | Import attachments into the Purchase
 
@@ -57,6 +61,122 @@ Name | Type | Description  | Notes
 ### Return type
 
 [purchase_get_attachments_v1_response_t](purchase_get_attachments_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectPurchaseAPI_purchaseGetCommunicationCountV1**
+```c
+// Retrieve Communication count
+//
+purchase_get_communication_count_v1_response_t* ObjectPurchaseAPI_purchaseGetCommunicationCountV1(apiClient_t *apiClient, int *pkiPurchaseID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiPurchaseID** | **int \*** |  | 
+
+### Return type
+
+[purchase_get_communication_count_v1_response_t](purchase_get_communication_count_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectPurchaseAPI_purchaseGetCommunicationListV1**
+```c
+// Retrieve Communication list
+//
+purchase_get_communication_list_v1_response_t* ObjectPurchaseAPI_purchaseGetCommunicationListV1(apiClient_t *apiClient, int *pkiPurchaseID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiPurchaseID** | **int \*** |  | 
+
+### Return type
+
+[purchase_get_communication_list_v1_response_t](purchase_get_communication_list_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectPurchaseAPI_purchaseGetCommunicationrecipientsV1**
+```c
+// Retrieve Communication recipients
+//
+purchase_get_communicationrecipients_v1_response_t* ObjectPurchaseAPI_purchaseGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiPurchaseID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiPurchaseID** | **int \*** |  | 
+
+### Return type
+
+[purchase_get_communicationrecipients_v1_response_t](purchase_get_communicationrecipients_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectPurchaseAPI_purchaseGetCommunicationsendersV1**
+```c
+// Retrieve Communication senders
+//
+purchase_get_communicationsenders_v1_response_t* ObjectPurchaseAPI_purchaseGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiPurchaseID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiPurchaseID** | **int \*** |  | 
+
+### Return type
+
+[purchase_get_communicationsenders_v1_response_t](purchase_get_communicationsenders_v1_response.md) *
 
 
 ### Authorization

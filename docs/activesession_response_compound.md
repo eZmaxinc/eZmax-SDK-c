@@ -7,7 +7,9 @@ Name | Type | Description | Notes
 **e_activesession_origin** | **field_e_activesession_origin_t \*** |  | 
 **e_activesession_weekdaystart** | **field_e_activesession_weekdaystart_t \*** |  | 
 **fki_language_id** | **int** | The unique ID of the Language.  Valid values:  |Value|Description| |-|-| |1|French| |2|English| | 
+**fki_company_id** | **int** | The unique ID of the Company | 
 **s_company_name_x** | **char \*** | The Name of the Company in the language of the requester | 
+**fki_department_id** | **int** | The unique ID of the Department | 
 **s_department_name_x** | **char \*** | The Name of the Department in the language of the requester | 
 **b_activesession_debug** | **int** | Whether the active session is in debug or not | 
 **b_activesession_issuperadmin** | **int** | Whether the active session is superadmin or not | 

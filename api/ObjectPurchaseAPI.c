@@ -297,6 +297,354 @@ end:
 
 }
 
+// Retrieve Communication count
+//
+purchase_get_communication_count_v1_response_t*
+ObjectPurchaseAPI_purchaseGetCommunicationCountV1(apiClient_t *apiClient, int *pkiPurchaseID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/purchase/{pkiPurchaseID}/getCommunicationCount");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiPurchaseID =  + sizeof("{ pkiPurchaseID }") - 1;
+    if(pkiPurchaseID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiPurchaseID = malloc(sizeOfPathParams_pkiPurchaseID);
+    snprintf(localVarToReplace_pkiPurchaseID, sizeOfPathParams_pkiPurchaseID, "{%s}", "pkiPurchaseID");
+
+    char localVarBuff_pkiPurchaseID[256];
+    snprintf(localVarBuff_pkiPurchaseID, sizeof localVarBuff_pkiPurchaseID, "%ld", (long)*pkiPurchaseID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiPurchaseID, localVarBuff_pkiPurchaseID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    purchase_get_communication_count_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectPurchaseAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = purchase_get_communication_count_v1_response_parseFromJSON(ObjectPurchaseAPIlocalVarJSON);
+        cJSON_Delete(ObjectPurchaseAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiPurchaseID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication list
+//
+purchase_get_communication_list_v1_response_t*
+ObjectPurchaseAPI_purchaseGetCommunicationListV1(apiClient_t *apiClient, int *pkiPurchaseID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/purchase/{pkiPurchaseID}/getCommunicationList");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiPurchaseID =  + sizeof("{ pkiPurchaseID }") - 1;
+    if(pkiPurchaseID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiPurchaseID = malloc(sizeOfPathParams_pkiPurchaseID);
+    snprintf(localVarToReplace_pkiPurchaseID, sizeOfPathParams_pkiPurchaseID, "{%s}", "pkiPurchaseID");
+
+    char localVarBuff_pkiPurchaseID[256];
+    snprintf(localVarBuff_pkiPurchaseID, sizeof localVarBuff_pkiPurchaseID, "%ld", (long)*pkiPurchaseID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiPurchaseID, localVarBuff_pkiPurchaseID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    purchase_get_communication_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectPurchaseAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = purchase_get_communication_list_v1_response_parseFromJSON(ObjectPurchaseAPIlocalVarJSON);
+        cJSON_Delete(ObjectPurchaseAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiPurchaseID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication recipients
+//
+purchase_get_communicationrecipients_v1_response_t*
+ObjectPurchaseAPI_purchaseGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiPurchaseID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/purchase/{pkiPurchaseID}/getCommunicationrecipients");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiPurchaseID =  + sizeof("{ pkiPurchaseID }") - 1;
+    if(pkiPurchaseID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiPurchaseID = malloc(sizeOfPathParams_pkiPurchaseID);
+    snprintf(localVarToReplace_pkiPurchaseID, sizeOfPathParams_pkiPurchaseID, "{%s}", "pkiPurchaseID");
+
+    char localVarBuff_pkiPurchaseID[256];
+    snprintf(localVarBuff_pkiPurchaseID, sizeof localVarBuff_pkiPurchaseID, "%ld", (long)*pkiPurchaseID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiPurchaseID, localVarBuff_pkiPurchaseID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    purchase_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectPurchaseAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = purchase_get_communicationrecipients_v1_response_parseFromJSON(ObjectPurchaseAPIlocalVarJSON);
+        cJSON_Delete(ObjectPurchaseAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiPurchaseID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Communication senders
+//
+purchase_get_communicationsenders_v1_response_t*
+ObjectPurchaseAPI_purchaseGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiPurchaseID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/purchase/{pkiPurchaseID}/getCommunicationsenders");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiPurchaseID =  + sizeof("{ pkiPurchaseID }") - 1;
+    if(pkiPurchaseID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiPurchaseID = malloc(sizeOfPathParams_pkiPurchaseID);
+    snprintf(localVarToReplace_pkiPurchaseID, sizeOfPathParams_pkiPurchaseID, "{%s}", "pkiPurchaseID");
+
+    char localVarBuff_pkiPurchaseID[256];
+    snprintf(localVarBuff_pkiPurchaseID, sizeof localVarBuff_pkiPurchaseID, "%ld", (long)*pkiPurchaseID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiPurchaseID, localVarBuff_pkiPurchaseID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    purchase_get_communicationsenders_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectPurchaseAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = purchase_get_communicationsenders_v1_response_parseFromJSON(ObjectPurchaseAPIlocalVarJSON);
+        cJSON_Delete(ObjectPurchaseAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiPurchaseID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Retrieve Purchase list
 //
 // 

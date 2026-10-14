@@ -10,7 +10,9 @@ static activesession_response_compound_t *activesession_response_compound_create
     ezmax_api_definition__full_field_e_activesession_origin__e e_activesession_origin,
     ezmax_api_definition__full_field_e_activesession_weekdaystart__e e_activesession_weekdaystart,
     int *fki_language_id,
+    int *fki_company_id,
     char *s_company_name_x,
+    int *fki_department_id,
     char *s_department_name_x,
     int *b_activesession_debug,
     int *b_activesession_issuperadmin,
@@ -51,7 +53,9 @@ static activesession_response_compound_t *activesession_response_compound_create
     activesession_response_compound_local_var->e_activesession_origin = e_activesession_origin;
     activesession_response_compound_local_var->e_activesession_weekdaystart = e_activesession_weekdaystart;
     activesession_response_compound_local_var->fki_language_id = fki_language_id;
+    activesession_response_compound_local_var->fki_company_id = fki_company_id;
     activesession_response_compound_local_var->s_company_name_x = s_company_name_x;
+    activesession_response_compound_local_var->fki_department_id = fki_department_id;
     activesession_response_compound_local_var->s_department_name_x = s_department_name_x;
     activesession_response_compound_local_var->b_activesession_debug = b_activesession_debug;
     activesession_response_compound_local_var->b_activesession_issuperadmin = b_activesession_issuperadmin;
@@ -89,7 +93,9 @@ __attribute__((deprecated)) activesession_response_compound_t *activesession_res
     ezmax_api_definition__full_field_e_activesession_origin__e e_activesession_origin,
     ezmax_api_definition__full_field_e_activesession_weekdaystart__e e_activesession_weekdaystart,
     int *fki_language_id,
+    int *fki_company_id,
     char *s_company_name_x,
+    int *fki_department_id,
     char *s_department_name_x,
     int *b_activesession_debug,
     int *b_activesession_issuperadmin,
@@ -124,6 +130,16 @@ __attribute__((deprecated)) activesession_response_compound_t *activesession_res
     if (fki_language_id) {
         fki_language_id_copy = malloc(sizeof(int));
         if (fki_language_id_copy) *fki_language_id_copy = *fki_language_id;
+    }
+    int *fki_company_id_copy = NULL;
+    if (fki_company_id) {
+        fki_company_id_copy = malloc(sizeof(int));
+        if (fki_company_id_copy) *fki_company_id_copy = *fki_company_id;
+    }
+    int *fki_department_id_copy = NULL;
+    if (fki_department_id) {
+        fki_department_id_copy = malloc(sizeof(int));
+        if (fki_department_id_copy) *fki_department_id_copy = *fki_department_id;
     }
     int *b_activesession_debug_copy = NULL;
     if (b_activesession_debug) {
@@ -195,7 +211,9 @@ __attribute__((deprecated)) activesession_response_compound_t *activesession_res
         e_activesession_origin,
         e_activesession_weekdaystart,
         fki_language_id_copy,
+        fki_company_id_copy,
         s_company_name_x,
+        fki_department_id_copy,
         s_department_name_x,
         b_activesession_debug_copy,
         b_activesession_issuperadmin_copy,
@@ -228,6 +246,8 @@ __attribute__((deprecated)) activesession_response_compound_t *activesession_res
         );
     if (!result) {
         free(fki_language_id_copy);
+        free(fki_company_id_copy);
+        free(fki_department_id_copy);
         free(b_activesession_debug_copy);
         free(b_activesession_issuperadmin_copy);
         free(b_activesession_attachment_copy);
@@ -258,9 +278,17 @@ void activesession_response_compound_free(activesession_response_compound_t *act
         free(activesession_response_compound->fki_language_id);
         activesession_response_compound->fki_language_id = NULL;
     }
+    if (activesession_response_compound->fki_company_id) {
+        free(activesession_response_compound->fki_company_id);
+        activesession_response_compound->fki_company_id = NULL;
+    }
     if (activesession_response_compound->s_company_name_x) {
         free(activesession_response_compound->s_company_name_x);
         activesession_response_compound->s_company_name_x = NULL;
+    }
+    if (activesession_response_compound->fki_department_id) {
+        free(activesession_response_compound->fki_department_id);
+        activesession_response_compound->fki_department_id = NULL;
     }
     if (activesession_response_compound->s_department_name_x) {
         free(activesession_response_compound->s_department_name_x);
@@ -413,12 +441,30 @@ cJSON *activesession_response_compound_convertToJSON(activesession_response_comp
     }
 
 
+    // activesession_response_compound->fki_company_id
+    if (!activesession_response_compound->fki_company_id) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "fkiCompanyID", *activesession_response_compound->fki_company_id) == NULL) {
+    goto fail; //Numeric
+    }
+
+
     // activesession_response_compound->s_company_name_x
     if (!activesession_response_compound->s_company_name_x) {
         goto fail;
     }
     if(cJSON_AddStringToObject(item, "sCompanyNameX", activesession_response_compound->s_company_name_x) == NULL) {
     goto fail; //String
+    }
+
+
+    // activesession_response_compound->fki_department_id
+    if (!activesession_response_compound->fki_department_id) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "fkiDepartmentID", *activesession_response_compound->fki_department_id) == NULL) {
+    goto fail; //Numeric
     }
 
 
@@ -755,7 +801,13 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
     // define the local variable for activesession_response_compound->fki_language_id
     int *fki_language_id_local_var = NULL;
 
+    // define the local variable for activesession_response_compound->fki_company_id
+    int *fki_company_id_local_var = NULL;
+
     char *s_company_name_x_local_str = NULL;
+
+    // define the local variable for activesession_response_compound->fki_department_id
+    int *fki_department_id_local_var = NULL;
 
     char *s_department_name_x_local_str = NULL;
 
@@ -897,6 +949,27 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
     }
     *fki_language_id_local_var = fki_language_id->valuedouble;
 
+    // activesession_response_compound->fki_company_id
+    cJSON *fki_company_id = cJSON_GetObjectItemCaseSensitive(activesession_response_compoundJSON, "fkiCompanyID");
+    if (cJSON_IsNull(fki_company_id)) {
+        fki_company_id = NULL;
+    }
+    if (!fki_company_id) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(fki_company_id))
+    {
+    goto end; //Numeric
+    }
+    fki_company_id_local_var = malloc(sizeof(int));
+    if(!fki_company_id_local_var)
+    {
+        goto end;
+    }
+    *fki_company_id_local_var = fki_company_id->valuedouble;
+
     // activesession_response_compound->s_company_name_x
     cJSON *s_company_name_x = cJSON_GetObjectItemCaseSensitive(activesession_response_compoundJSON, "sCompanyNameX");
     if (cJSON_IsNull(s_company_name_x)) {
@@ -911,6 +984,27 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
     {
     goto end; //String
     }
+
+    // activesession_response_compound->fki_department_id
+    cJSON *fki_department_id = cJSON_GetObjectItemCaseSensitive(activesession_response_compoundJSON, "fkiDepartmentID");
+    if (cJSON_IsNull(fki_department_id)) {
+        fki_department_id = NULL;
+    }
+    if (!fki_department_id) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(fki_department_id))
+    {
+    goto end; //Numeric
+    }
+    fki_department_id_local_var = malloc(sizeof(int));
+    if(!fki_department_id_local_var)
+    {
+        goto end;
+    }
+    *fki_department_id_local_var = fki_department_id->valuedouble;
 
     // activesession_response_compound->s_department_name_x
     cJSON *s_department_name_x = cJSON_GetObjectItemCaseSensitive(activesession_response_compoundJSON, "sDepartmentNameX");
@@ -1376,7 +1470,9 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
         e_activesession_origin_local_nonprim,
         e_activesession_weekdaystart_local_nonprim,
         fki_language_id_local_var,
+        fki_company_id_local_var,
         s_company_name_x_local_str,
+        fki_department_id_local_var,
         s_department_name_x_local_str,
         b_activesession_debug_local_var,
         b_activesession_issuperadmin_local_var,
@@ -1427,9 +1523,17 @@ end:
         free(fki_language_id_local_var);
         fki_language_id_local_var = NULL;
     }
+    if (fki_company_id_local_var) {
+        free(fki_company_id_local_var);
+        fki_company_id_local_var = NULL;
+    }
     if (s_company_name_x_local_str) {
         free(s_company_name_x_local_str);
         s_company_name_x_local_str = NULL;
+    }
+    if (fki_department_id_local_var) {
+        free(fki_department_id_local_var);
+        fki_department_id_local_var = NULL;
     }
     if (s_department_name_x_local_str) {
         free(s_department_name_x_local_str);

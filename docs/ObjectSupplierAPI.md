@@ -6,6 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectSupplierAPI_supplierBatchDownloadV1**](ObjectSupplierAPI.md#ObjectSupplierAPI_supplierBatchDownloadV1) | **POST** /1/object/supplier/{pkiSupplierID}/batchDownload | Download multiples attachments from a Supplier
 [**ObjectSupplierAPI_supplierGetAttachmentsV1**](ObjectSupplierAPI.md#ObjectSupplierAPI_supplierGetAttachmentsV1) | **GET** /1/object/supplier/{pkiSupplierID}/getAttachments | Retrieve Supplier&#39;s attachments
+[**ObjectSupplierAPI_supplierGetCommunicationCountV1**](ObjectSupplierAPI.md#ObjectSupplierAPI_supplierGetCommunicationCountV1) | **GET** /1/object/supplier/{pkiSupplierID}/getCommunicationCount | Retrieve Communication count
+[**ObjectSupplierAPI_supplierGetCommunicationListV1**](ObjectSupplierAPI.md#ObjectSupplierAPI_supplierGetCommunicationListV1) | **GET** /1/object/supplier/{pkiSupplierID}/getCommunicationList | Retrieve Communication list
+[**ObjectSupplierAPI_supplierGetCommunicationrecipientsV1**](ObjectSupplierAPI.md#ObjectSupplierAPI_supplierGetCommunicationrecipientsV1) | **GET** /1/object/supplier/{pkiSupplierID}/getCommunicationrecipients | Retrieve Communication recipients
+[**ObjectSupplierAPI_supplierGetCommunicationsendersV1**](ObjectSupplierAPI.md#ObjectSupplierAPI_supplierGetCommunicationsendersV1) | **GET** /1/object/supplier/{pkiSupplierID}/getCommunicationsenders | Retrieve Communication senders
 [**ObjectSupplierAPI_supplierGetListV1**](ObjectSupplierAPI.md#ObjectSupplierAPI_supplierGetListV1) | **GET** /1/object/supplier/getList | Retrieve Supplier list
 [**ObjectSupplierAPI_supplierImportIntoEDMV1**](ObjectSupplierAPI.md#ObjectSupplierAPI_supplierImportIntoEDMV1) | **POST** /1/object/supplier/{pkiSupplierID}/importIntoEDM | Import attachments into the Supplier
 
@@ -57,6 +61,122 @@ Name | Type | Description  | Notes
 ### Return type
 
 [supplier_get_attachments_v1_response_t](supplier_get_attachments_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectSupplierAPI_supplierGetCommunicationCountV1**
+```c
+// Retrieve Communication count
+//
+supplier_get_communication_count_v1_response_t* ObjectSupplierAPI_supplierGetCommunicationCountV1(apiClient_t *apiClient, int *pkiSupplierID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiSupplierID** | **int \*** |  | 
+
+### Return type
+
+[supplier_get_communication_count_v1_response_t](supplier_get_communication_count_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectSupplierAPI_supplierGetCommunicationListV1**
+```c
+// Retrieve Communication list
+//
+supplier_get_communication_list_v1_response_t* ObjectSupplierAPI_supplierGetCommunicationListV1(apiClient_t *apiClient, int *pkiSupplierID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiSupplierID** | **int \*** |  | 
+
+### Return type
+
+[supplier_get_communication_list_v1_response_t](supplier_get_communication_list_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectSupplierAPI_supplierGetCommunicationrecipientsV1**
+```c
+// Retrieve Communication recipients
+//
+supplier_get_communicationrecipients_v1_response_t* ObjectSupplierAPI_supplierGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiSupplierID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiSupplierID** | **int \*** |  | 
+
+### Return type
+
+[supplier_get_communicationrecipients_v1_response_t](supplier_get_communicationrecipients_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectSupplierAPI_supplierGetCommunicationsendersV1**
+```c
+// Retrieve Communication senders
+//
+supplier_get_communicationsenders_v1_response_t* ObjectSupplierAPI_supplierGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiSupplierID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiSupplierID** | **int \*** |  | 
+
+### Return type
+
+[supplier_get_communicationsenders_v1_response_t](supplier_get_communicationsenders_v1_response.md) *
 
 
 ### Authorization

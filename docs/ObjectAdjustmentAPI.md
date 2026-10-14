@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**ObjectAdjustmentAPI_adjustmentGetCommunicationListV1**](ObjectAdjustmentAPI.md#ObjectAdjustmentAPI_adjustmentGetCommunicationListV1) | **GET** /1/object/adjustment/{pkiAdjustmentID}/getCommunicationList | Retrieve Communication list
 [**ObjectAdjustmentAPI_adjustmentGetCommunicationrecipientsV1**](ObjectAdjustmentAPI.md#ObjectAdjustmentAPI_adjustmentGetCommunicationrecipientsV1) | **GET** /1/object/adjustment/{pkiAdjustmentID}/getCommunicationrecipients | Retrieve Communication recipients
 [**ObjectAdjustmentAPI_adjustmentGetCommunicationsendersV1**](ObjectAdjustmentAPI.md#ObjectAdjustmentAPI_adjustmentGetCommunicationsendersV1) | **GET** /1/object/adjustment/{pkiAdjustmentID}/getCommunicationsenders | Retrieve Communication senders
+[**ObjectAdjustmentAPI_adjustmentGetListV1**](ObjectAdjustmentAPI.md#ObjectAdjustmentAPI_adjustmentGetListV1) | **GET** /1/object/adjustment/getList | Retrieve Adjustment list
 [**ObjectAdjustmentAPI_adjustmentImportIntoEDMV1**](ObjectAdjustmentAPI.md#ObjectAdjustmentAPI_adjustmentImportIntoEDMV1) | **POST** /1/object/adjustment/{pkiAdjustmentID}/importIntoEDM | Import attachments into the Adjustment
 
 
@@ -186,6 +187,41 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectAdjustmentAPI_adjustmentGetListV1**
+```c
+// Retrieve Adjustment list
+//
+// 
+//
+adjustment_get_list_v1_response_t* ObjectAdjustmentAPI_adjustmentGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_adjustmentGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**eOrderBy** | **ezmax_api_definition__full_adjustmentGetListV1_eOrderBy_e** | Specify how you want the results to be sorted | [optional] 
+**iRowMax** | **int \*** |  | [optional] 
+**iRowOffset** | **int \*** |  | [optional] [default to 0]
+**Accept_Language** | **header_accept_language_e** |  | [optional] 
+**sFilter** | **char \*** |  | [optional] 
+
+### Return type
+
+[adjustment_get_list_v1_response_t](adjustment_get_list_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

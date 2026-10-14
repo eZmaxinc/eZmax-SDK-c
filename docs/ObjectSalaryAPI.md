@@ -6,6 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectSalaryAPI_salaryBatchDownloadV1**](ObjectSalaryAPI.md#ObjectSalaryAPI_salaryBatchDownloadV1) | **POST** /1/object/salary/{pkiSalaryID}/batchDownload | Download multiples attachments from a Reconciliation
 [**ObjectSalaryAPI_salaryGetAttachmentsV1**](ObjectSalaryAPI.md#ObjectSalaryAPI_salaryGetAttachmentsV1) | **GET** /1/object/salary/{pkiSalaryID}/getAttachments | Retrieve Salary&#39;s attachments
+[**ObjectSalaryAPI_salaryGetCommunicationCountV1**](ObjectSalaryAPI.md#ObjectSalaryAPI_salaryGetCommunicationCountV1) | **GET** /1/object/salary/{pkiSalaryID}/getCommunicationCount | Retrieve Communication count
+[**ObjectSalaryAPI_salaryGetCommunicationListV1**](ObjectSalaryAPI.md#ObjectSalaryAPI_salaryGetCommunicationListV1) | **GET** /1/object/salary/{pkiSalaryID}/getCommunicationList | Retrieve Communication list
+[**ObjectSalaryAPI_salaryGetCommunicationrecipientsV1**](ObjectSalaryAPI.md#ObjectSalaryAPI_salaryGetCommunicationrecipientsV1) | **GET** /1/object/salary/{pkiSalaryID}/getCommunicationrecipients | Retrieve Communication recipients
+[**ObjectSalaryAPI_salaryGetCommunicationsendersV1**](ObjectSalaryAPI.md#ObjectSalaryAPI_salaryGetCommunicationsendersV1) | **GET** /1/object/salary/{pkiSalaryID}/getCommunicationsenders | Retrieve Communication senders
 [**ObjectSalaryAPI_salaryGetListV1**](ObjectSalaryAPI.md#ObjectSalaryAPI_salaryGetListV1) | **GET** /1/object/salary/getList | Retrieve Salary list
 [**ObjectSalaryAPI_salaryImportIntoEDMV1**](ObjectSalaryAPI.md#ObjectSalaryAPI_salaryImportIntoEDMV1) | **POST** /1/object/salary/{pkiSalaryID}/importIntoEDM | Import attachments into the Salary
 
@@ -57,6 +61,122 @@ Name | Type | Description  | Notes
 ### Return type
 
 [salary_get_attachments_v1_response_t](salary_get_attachments_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectSalaryAPI_salaryGetCommunicationCountV1**
+```c
+// Retrieve Communication count
+//
+salary_get_communication_count_v1_response_t* ObjectSalaryAPI_salaryGetCommunicationCountV1(apiClient_t *apiClient, int *pkiSalaryID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiSalaryID** | **int \*** |  | 
+
+### Return type
+
+[salary_get_communication_count_v1_response_t](salary_get_communication_count_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectSalaryAPI_salaryGetCommunicationListV1**
+```c
+// Retrieve Communication list
+//
+salary_get_communication_list_v1_response_t* ObjectSalaryAPI_salaryGetCommunicationListV1(apiClient_t *apiClient, int *pkiSalaryID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiSalaryID** | **int \*** |  | 
+
+### Return type
+
+[salary_get_communication_list_v1_response_t](salary_get_communication_list_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectSalaryAPI_salaryGetCommunicationrecipientsV1**
+```c
+// Retrieve Communication recipients
+//
+salary_get_communicationrecipients_v1_response_t* ObjectSalaryAPI_salaryGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiSalaryID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiSalaryID** | **int \*** |  | 
+
+### Return type
+
+[salary_get_communicationrecipients_v1_response_t](salary_get_communicationrecipients_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectSalaryAPI_salaryGetCommunicationsendersV1**
+```c
+// Retrieve Communication senders
+//
+salary_get_communicationsenders_v1_response_t* ObjectSalaryAPI_salaryGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiSalaryID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiSalaryID** | **int \*** |  | 
+
+### Return type
+
+[salary_get_communicationsenders_v1_response_t](salary_get_communicationsenders_v1_response.md) *
 
 
 ### Authorization
