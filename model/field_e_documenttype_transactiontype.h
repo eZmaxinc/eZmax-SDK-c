@@ -1,0 +1,32 @@
+/*
+ * field_e_documenttype_transactiontype.h
+ *
+ * The transactiontype of the Documenttype
+ */
+
+#ifndef _field_e_documenttype_transactiontype_H_
+#define _field_e_documenttype_transactiontype_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_documenttype_transactiontype_t field_e_documenttype_transactiontype_t;
+
+
+// Enum  for field_e_documenttype_transactiontype
+
+typedef enum { ezmax_api_definition__full_field_e_documenttype_transactiontype__NULL = 0, ezmax_api_definition__full_field_e_documenttype_transactiontype__All, ezmax_api_definition__full_field_e_documenttype_transactiontype__Inscriptor, ezmax_api_definition__full_field_e_documenttype_transactiontype__InscriptorOnly, ezmax_api_definition__full_field_e_documenttype_transactiontype__Seller, ezmax_api_definition__full_field_e_documenttype_transactiontype__SellerOnly, ezmax_api_definition__full_field_e_documenttype_transactiontype__InscriptorSeller } ezmax_api_definition__full_field_e_documenttype_transactiontype__e;
+
+char* field_e_documenttype_transactiontype_field_e_documenttype_transactiontype_ToString(ezmax_api_definition__full_field_e_documenttype_transactiontype__e field_e_documenttype_transactiontype);
+
+ezmax_api_definition__full_field_e_documenttype_transactiontype__e field_e_documenttype_transactiontype_field_e_documenttype_transactiontype_FromString(char* field_e_documenttype_transactiontype);
+
+cJSON *field_e_documenttype_transactiontype_convertToJSON(ezmax_api_definition__full_field_e_documenttype_transactiontype__e field_e_documenttype_transactiontype);
+
+ezmax_api_definition__full_field_e_documenttype_transactiontype__e field_e_documenttype_transactiontype_parseFromJSON(cJSON *field_e_documenttype_transactiontypeJSON);
+
+#endif /* _field_e_documenttype_transactiontype_H_ */
+

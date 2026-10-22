@@ -624,6 +624,39 @@ set(SRCS
     model/discussionmessage_request_patch.c
     model/discussionmessage_response.c
     model/discussionmessage_response_compound.c
+    model/documenttype_autocomplete_element_response.c
+    model/documenttype_create_object_v1_request.c
+    model/documenttype_create_object_v1_response.c
+    model/documenttype_create_object_v1_response_m_payload.c
+    model/documenttype_delete_object_v1_response.c
+    model/documenttype_edit_object_v1_request.c
+    model/documenttype_edit_object_v1_response.c
+    model/documenttype_get_autocomplete_v2_response.c
+    model/documenttype_get_autocomplete_v2_response_m_payload.c
+    model/documenttype_get_list_v1_response.c
+    model/documenttype_get_list_v1_response_m_payload.c
+    model/documenttype_get_object_v2_response.c
+    model/documenttype_get_object_v2_response_m_payload.c
+    model/documenttype_list_element.c
+    model/documenttype_request.c
+    model/documenttype_request_compound.c
+    model/documenttype_response.c
+    model/documenttype_response_compound.c
+    model/documenttypechecklist_create_object_v1_request.c
+    model/documenttypechecklist_create_object_v1_response.c
+    model/documenttypechecklist_create_object_v1_response_m_payload.c
+    model/documenttypechecklist_delete_object_v1_response.c
+    model/documenttypechecklist_edit_object_v1_request.c
+    model/documenttypechecklist_edit_object_v1_response.c
+    model/documenttypechecklist_get_list_v1_response.c
+    model/documenttypechecklist_get_list_v1_response_m_payload.c
+    model/documenttypechecklist_get_object_v2_response.c
+    model/documenttypechecklist_get_object_v2_response_m_payload.c
+    model/documenttypechecklist_list_element.c
+    model/documenttypechecklist_request.c
+    model/documenttypechecklist_request_compound.c
+    model/documenttypechecklist_response.c
+    model/documenttypechecklist_response_compound.c
     model/domain_autocomplete_element_response.c
     model/domain_create_object_v1_request.c
     model/domain_create_object_v1_response.c
@@ -1626,6 +1659,14 @@ set(SRCS
     model/field_e_disclosure_interesttype.c
     model/field_e_discussion_robot.c
     model/field_e_discussionmessage_status.c
+    model/field_e_documenttype_ezcom.c
+    model/field_e_documenttype_privacydefault.c
+    model/field_e_documenttype_repossession.c
+    model/field_e_documenttype_salebyowner.c
+    model/field_e_documenttype_saledisplaybyrole.c
+    model/field_e_documenttype_statusdefault.c
+    model/field_e_documenttype_transactiontype.c
+    model/field_e_documenttypechecklist_status.c
     model/field_e_error_code.c
     model/field_e_ezdoctemplatedocument_privacylevel.c
     model/field_e_ezmaxinvoicing_paymenttype.c
@@ -1920,6 +1961,7 @@ set(SRCS
     model/multilingual_apikey_description.c
     model/multilingual_billingentityinternal_description.c
     model/multilingual_branding_description.c
+    model/multilingual_documenttype_name.c
     model/multilingual_ezdoctemplatedocument_name.c
     model/multilingual_ezmaxcustomer_company.c
     model/multilingual_ezmaxcustomer_note.c
@@ -2538,6 +2580,8 @@ set(SRCS
     api/ObjectDiscussionAPI.c
     api/ObjectDiscussionmembershipAPI.c
     api/ObjectDiscussionmessageAPI.c
+    api/ObjectDocumenttypeAPI.c
+    api/ObjectDocumenttypechecklistAPI.c
     api/ObjectDomainAPI.c
     api/ObjectElectronicfundstransferAPI.c
     api/ObjectElectronicfundstransfertransactionAPI.c
@@ -3238,6 +3282,39 @@ set(HDRS
     model/discussionmessage_request_patch.h
     model/discussionmessage_response.h
     model/discussionmessage_response_compound.h
+    model/documenttype_autocomplete_element_response.h
+    model/documenttype_create_object_v1_request.h
+    model/documenttype_create_object_v1_response.h
+    model/documenttype_create_object_v1_response_m_payload.h
+    model/documenttype_delete_object_v1_response.h
+    model/documenttype_edit_object_v1_request.h
+    model/documenttype_edit_object_v1_response.h
+    model/documenttype_get_autocomplete_v2_response.h
+    model/documenttype_get_autocomplete_v2_response_m_payload.h
+    model/documenttype_get_list_v1_response.h
+    model/documenttype_get_list_v1_response_m_payload.h
+    model/documenttype_get_object_v2_response.h
+    model/documenttype_get_object_v2_response_m_payload.h
+    model/documenttype_list_element.h
+    model/documenttype_request.h
+    model/documenttype_request_compound.h
+    model/documenttype_response.h
+    model/documenttype_response_compound.h
+    model/documenttypechecklist_create_object_v1_request.h
+    model/documenttypechecklist_create_object_v1_response.h
+    model/documenttypechecklist_create_object_v1_response_m_payload.h
+    model/documenttypechecklist_delete_object_v1_response.h
+    model/documenttypechecklist_edit_object_v1_request.h
+    model/documenttypechecklist_edit_object_v1_response.h
+    model/documenttypechecklist_get_list_v1_response.h
+    model/documenttypechecklist_get_list_v1_response_m_payload.h
+    model/documenttypechecklist_get_object_v2_response.h
+    model/documenttypechecklist_get_object_v2_response_m_payload.h
+    model/documenttypechecklist_list_element.h
+    model/documenttypechecklist_request.h
+    model/documenttypechecklist_request_compound.h
+    model/documenttypechecklist_response.h
+    model/documenttypechecklist_response_compound.h
     model/domain_autocomplete_element_response.h
     model/domain_create_object_v1_request.h
     model/domain_create_object_v1_response.h
@@ -4240,6 +4317,14 @@ set(HDRS
     model/field_e_disclosure_interesttype.h
     model/field_e_discussion_robot.h
     model/field_e_discussionmessage_status.h
+    model/field_e_documenttype_ezcom.h
+    model/field_e_documenttype_privacydefault.h
+    model/field_e_documenttype_repossession.h
+    model/field_e_documenttype_salebyowner.h
+    model/field_e_documenttype_saledisplaybyrole.h
+    model/field_e_documenttype_statusdefault.h
+    model/field_e_documenttype_transactiontype.h
+    model/field_e_documenttypechecklist_status.h
     model/field_e_error_code.h
     model/field_e_ezdoctemplatedocument_privacylevel.h
     model/field_e_ezmaxinvoicing_paymenttype.h
@@ -4534,6 +4619,7 @@ set(HDRS
     model/multilingual_apikey_description.h
     model/multilingual_billingentityinternal_description.h
     model/multilingual_branding_description.h
+    model/multilingual_documenttype_name.h
     model/multilingual_ezdoctemplatedocument_name.h
     model/multilingual_ezmaxcustomer_company.h
     model/multilingual_ezmaxcustomer_note.h
@@ -5152,6 +5238,8 @@ set(HDRS
     api/ObjectDiscussionAPI.h
     api/ObjectDiscussionmembershipAPI.h
     api/ObjectDiscussionmessageAPI.h
+    api/ObjectDocumenttypeAPI.h
+    api/ObjectDocumenttypechecklistAPI.h
     api/ObjectDomainAPI.h
     api/ObjectElectronicfundstransferAPI.h
     api/ObjectElectronicfundstransfertransactionAPI.h
@@ -5392,6 +5480,8 @@ set(HDRS "")
 #    unit-tests/manual-ObjectDiscussionAPI.c
 #    unit-tests/manual-ObjectDiscussionmembershipAPI.c
 #    unit-tests/manual-ObjectDiscussionmessageAPI.c
+#    unit-tests/manual-ObjectDocumenttypeAPI.c
+#    unit-tests/manual-ObjectDocumenttypechecklistAPI.c
 #    unit-tests/manual-ObjectDomainAPI.c
 #    unit-tests/manual-ObjectElectronicfundstransferAPI.c
 #    unit-tests/manual-ObjectElectronicfundstransfertransactionAPI.c

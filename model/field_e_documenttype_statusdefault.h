@@ -1,0 +1,32 @@
+/*
+ * field_e_documenttype_statusdefault.h
+ *
+ * The statusdefault of the Documenttype
+ */
+
+#ifndef _field_e_documenttype_statusdefault_H_
+#define _field_e_documenttype_statusdefault_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_documenttype_statusdefault_t field_e_documenttype_statusdefault_t;
+
+
+// Enum  for field_e_documenttype_statusdefault
+
+typedef enum { ezmax_api_definition__full_field_e_documenttype_statusdefault__NULL = 0, ezmax_api_definition__full_field_e_documenttype_statusdefault__Not required, ezmax_api_definition__full_field_e_documenttype_statusdefault__Required } ezmax_api_definition__full_field_e_documenttype_statusdefault__e;
+
+char* field_e_documenttype_statusdefault_field_e_documenttype_statusdefault_ToString(ezmax_api_definition__full_field_e_documenttype_statusdefault__e field_e_documenttype_statusdefault);
+
+ezmax_api_definition__full_field_e_documenttype_statusdefault__e field_e_documenttype_statusdefault_field_e_documenttype_statusdefault_FromString(char* field_e_documenttype_statusdefault);
+
+cJSON *field_e_documenttype_statusdefault_convertToJSON(ezmax_api_definition__full_field_e_documenttype_statusdefault__e field_e_documenttype_statusdefault);
+
+ezmax_api_definition__full_field_e_documenttype_statusdefault__e field_e_documenttype_statusdefault_parseFromJSON(cJSON *field_e_documenttype_statusdefaultJSON);
+
+#endif /* _field_e_documenttype_statusdefault_H_ */
+

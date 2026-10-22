@@ -1,0 +1,32 @@
+/*
+ * field_e_documenttype_ezcom.h
+ *
+ * The ezcom of the Documenttype
+ */
+
+#ifndef _field_e_documenttype_ezcom_H_
+#define _field_e_documenttype_ezcom_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_documenttype_ezcom_t field_e_documenttype_ezcom_t;
+
+
+// Enum  for field_e_documenttype_ezcom
+
+typedef enum { ezmax_api_definition__full_field_e_documenttype_ezcom__NULL = 0, ezmax_api_definition__full_field_e_documenttype_ezcom__PromiseToPurchase, ezmax_api_definition__full_field_e_documenttype_ezcom__Annex, ezmax_api_definition__full_field_e_documenttype_ezcom__Modification, ezmax_api_definition__full_field_e_documenttype_ezcom__CounterOffer, ezmax_api_definition__full_field_e_documenttype_ezcom__Conditions, ezmax_api_definition__full_field_e_documenttype_ezcom__BankApproval, ezmax_api_definition__full_field_e_documenttype_ezcom__Other } ezmax_api_definition__full_field_e_documenttype_ezcom__e;
+
+char* field_e_documenttype_ezcom_field_e_documenttype_ezcom_ToString(ezmax_api_definition__full_field_e_documenttype_ezcom__e field_e_documenttype_ezcom);
+
+ezmax_api_definition__full_field_e_documenttype_ezcom__e field_e_documenttype_ezcom_field_e_documenttype_ezcom_FromString(char* field_e_documenttype_ezcom);
+
+cJSON *field_e_documenttype_ezcom_convertToJSON(ezmax_api_definition__full_field_e_documenttype_ezcom__e field_e_documenttype_ezcom);
+
+ezmax_api_definition__full_field_e_documenttype_ezcom__e field_e_documenttype_ezcom_parseFromJSON(cJSON *field_e_documenttype_ezcomJSON);
+
+#endif /* _field_e_documenttype_ezcom_H_ */
+

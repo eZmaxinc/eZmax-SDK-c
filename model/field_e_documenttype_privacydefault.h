@@ -1,0 +1,32 @@
+/*
+ * field_e_documenttype_privacydefault.h
+ *
+ * The privacydefault of the Documenttype
+ */
+
+#ifndef _field_e_documenttype_privacydefault_H_
+#define _field_e_documenttype_privacydefault_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_documenttype_privacydefault_t field_e_documenttype_privacydefault_t;
+
+
+// Enum  for field_e_documenttype_privacydefault
+
+typedef enum { ezmax_api_definition__full_field_e_documenttype_privacydefault__NULL = 0, ezmax_api_definition__full_field_e_documenttype_privacydefault__Administration, ezmax_api_definition__full_field_e_documenttype_privacydefault__Administrator, ezmax_api_definition__full_field_e_documenttype_privacydefault__All, ezmax_api_definition__full_field_e_documenttype_privacydefault__Creator, ezmax_api_definition__full_field_e_documenttype_privacydefault__Inscriptor, ezmax_api_definition__full_field_e_documenttype_privacydefault__Myself, ezmax_api_definition__full_field_e_documenttype_privacydefault__Seller } ezmax_api_definition__full_field_e_documenttype_privacydefault__e;
+
+char* field_e_documenttype_privacydefault_field_e_documenttype_privacydefault_ToString(ezmax_api_definition__full_field_e_documenttype_privacydefault__e field_e_documenttype_privacydefault);
+
+ezmax_api_definition__full_field_e_documenttype_privacydefault__e field_e_documenttype_privacydefault_field_e_documenttype_privacydefault_FromString(char* field_e_documenttype_privacydefault);
+
+cJSON *field_e_documenttype_privacydefault_convertToJSON(ezmax_api_definition__full_field_e_documenttype_privacydefault__e field_e_documenttype_privacydefault);
+
+ezmax_api_definition__full_field_e_documenttype_privacydefault__e field_e_documenttype_privacydefault_parseFromJSON(cJSON *field_e_documenttype_privacydefaultJSON);
+
+#endif /* _field_e_documenttype_privacydefault_H_ */
+

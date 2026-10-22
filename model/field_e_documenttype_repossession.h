@@ -1,0 +1,32 @@
+/*
+ * field_e_documenttype_repossession.h
+ *
+ * The repossession of the Documenttype
+ */
+
+#ifndef _field_e_documenttype_repossession_H_
+#define _field_e_documenttype_repossession_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_documenttype_repossession_t field_e_documenttype_repossession_t;
+
+
+// Enum  for field_e_documenttype_repossession
+
+typedef enum { ezmax_api_definition__full_field_e_documenttype_repossession__NULL = 0, ezmax_api_definition__full_field_e_documenttype_repossession__All, ezmax_api_definition__full_field_e_documenttype_repossession__No, ezmax_api_definition__full_field_e_documenttype_repossession__Yes } ezmax_api_definition__full_field_e_documenttype_repossession__e;
+
+char* field_e_documenttype_repossession_field_e_documenttype_repossession_ToString(ezmax_api_definition__full_field_e_documenttype_repossession__e field_e_documenttype_repossession);
+
+ezmax_api_definition__full_field_e_documenttype_repossession__e field_e_documenttype_repossession_field_e_documenttype_repossession_FromString(char* field_e_documenttype_repossession);
+
+cJSON *field_e_documenttype_repossession_convertToJSON(ezmax_api_definition__full_field_e_documenttype_repossession__e field_e_documenttype_repossession);
+
+ezmax_api_definition__full_field_e_documenttype_repossession__e field_e_documenttype_repossession_parseFromJSON(cJSON *field_e_documenttype_repossessionJSON);
+
+#endif /* _field_e_documenttype_repossession_H_ */
+

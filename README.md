@@ -235,6 +235,17 @@ Category | Method | HTTP request | Description
 *ObjectDiscussionmessageAPI* | [**ObjectDiscussionmessageAPI_discussionmessageCreateObjectV1**](docs/ObjectDiscussionmessageAPI.md#ObjectDiscussionmessageAPI_discussionmessageCreateObjectV1) | **POST** /1/object/discussionmessage | Create a new Discussionmessage
 *ObjectDiscussionmessageAPI* | [**ObjectDiscussionmessageAPI_discussionmessageDeleteObjectV1**](docs/ObjectDiscussionmessageAPI.md#ObjectDiscussionmessageAPI_discussionmessageDeleteObjectV1) | **DELETE** /1/object/discussionmessage/{pkiDiscussionmessageID} | Delete an existing Discussionmessage
 *ObjectDiscussionmessageAPI* | [**ObjectDiscussionmessageAPI_discussionmessagePatchObjectV1**](docs/ObjectDiscussionmessageAPI.md#ObjectDiscussionmessageAPI_discussionmessagePatchObjectV1) | **PATCH** /1/object/discussionmessage/{pkiDiscussionmessageID} | Patch an existing Discussionmessage
+*ObjectDocumenttypeAPI* | [**ObjectDocumenttypeAPI_documenttypeCreateObjectV1**](docs/ObjectDocumenttypeAPI.md#ObjectDocumenttypeAPI_documenttypeCreateObjectV1) | **POST** /1/object/documenttype | Create a new Documenttype
+*ObjectDocumenttypeAPI* | [**ObjectDocumenttypeAPI_documenttypeDeleteObjectV1**](docs/ObjectDocumenttypeAPI.md#ObjectDocumenttypeAPI_documenttypeDeleteObjectV1) | **DELETE** /1/object/documenttype/{pkiDocumenttypeID} | Delete an existing Documenttype
+*ObjectDocumenttypeAPI* | [**ObjectDocumenttypeAPI_documenttypeEditObjectV1**](docs/ObjectDocumenttypeAPI.md#ObjectDocumenttypeAPI_documenttypeEditObjectV1) | **PUT** /1/object/documenttype/{pkiDocumenttypeID} | Edit an existing Documenttype
+*ObjectDocumenttypeAPI* | [**ObjectDocumenttypeAPI_documenttypeGetAutocompleteV2**](docs/ObjectDocumenttypeAPI.md#ObjectDocumenttypeAPI_documenttypeGetAutocompleteV2) | **GET** /2/object/documenttype/getAutocomplete/{sSelector} | Retrieve Documenttypes and IDs
+*ObjectDocumenttypeAPI* | [**ObjectDocumenttypeAPI_documenttypeGetListV1**](docs/ObjectDocumenttypeAPI.md#ObjectDocumenttypeAPI_documenttypeGetListV1) | **GET** /1/object/documenttype/getList | Retrieve Documenttype list
+*ObjectDocumenttypeAPI* | [**ObjectDocumenttypeAPI_documenttypeGetObjectV2**](docs/ObjectDocumenttypeAPI.md#ObjectDocumenttypeAPI_documenttypeGetObjectV2) | **GET** /2/object/documenttype/{pkiDocumenttypeID} | Retrieve an existing Documenttype
+*ObjectDocumenttypechecklistAPI* | [**ObjectDocumenttypechecklistAPI_documenttypechecklistCreateObjectV1**](docs/ObjectDocumenttypechecklistAPI.md#ObjectDocumenttypechecklistAPI_documenttypechecklistCreateObjectV1) | **POST** /1/object/documenttypechecklist | Create a new Documenttypechecklist
+*ObjectDocumenttypechecklistAPI* | [**ObjectDocumenttypechecklistAPI_documenttypechecklistDeleteObjectV1**](docs/ObjectDocumenttypechecklistAPI.md#ObjectDocumenttypechecklistAPI_documenttypechecklistDeleteObjectV1) | **DELETE** /1/object/documenttypechecklist/{pkiDocumenttypechecklistID} | Delete an existing Documenttypechecklist
+*ObjectDocumenttypechecklistAPI* | [**ObjectDocumenttypechecklistAPI_documenttypechecklistEditObjectV1**](docs/ObjectDocumenttypechecklistAPI.md#ObjectDocumenttypechecklistAPI_documenttypechecklistEditObjectV1) | **PUT** /1/object/documenttypechecklist/{pkiDocumenttypechecklistID} | Edit an existing Documenttypechecklist
+*ObjectDocumenttypechecklistAPI* | [**ObjectDocumenttypechecklistAPI_documenttypechecklistGetListV1**](docs/ObjectDocumenttypechecklistAPI.md#ObjectDocumenttypechecklistAPI_documenttypechecklistGetListV1) | **GET** /1/object/documenttypechecklist/getList | Retrieve Documenttypechecklist list
+*ObjectDocumenttypechecklistAPI* | [**ObjectDocumenttypechecklistAPI_documenttypechecklistGetObjectV2**](docs/ObjectDocumenttypechecklistAPI.md#ObjectDocumenttypechecklistAPI_documenttypechecklistGetObjectV2) | **GET** /2/object/documenttypechecklist/{pkiDocumenttypechecklistID} | Retrieve an existing Documenttypechecklist
 *ObjectDomainAPI* | [**ObjectDomainAPI_domainCreateObjectV1**](docs/ObjectDomainAPI.md#ObjectDomainAPI_domainCreateObjectV1) | **POST** /1/object/domain | Create a new Domain
 *ObjectDomainAPI* | [**ObjectDomainAPI_domainDeleteObjectV1**](docs/ObjectDomainAPI.md#ObjectDomainAPI_domainDeleteObjectV1) | **DELETE** /1/object/domain/{pkiDomainID} | Delete an existing Domain
 *ObjectDomainAPI* | [**ObjectDomainAPI_domainGetAutocompleteV2**](docs/ObjectDomainAPI.md#ObjectDomainAPI_domainGetAutocompleteV2) | **GET** /2/object/domain/getAutocomplete/{sSelector} | Retrieve Domain and IDs
@@ -1397,6 +1408,39 @@ Category | Method | HTTP request | Description
  - [discussionmessage_request_patch_t](docs/discussionmessage_request_patch.md)
  - [discussionmessage_response_t](docs/discussionmessage_response.md)
  - [discussionmessage_response_compound_t](docs/discussionmessage_response_compound.md)
+ - [documenttype_autocomplete_element_response_t](docs/documenttype_autocomplete_element_response.md)
+ - [documenttype_create_object_v1_request_t](docs/documenttype_create_object_v1_request.md)
+ - [documenttype_create_object_v1_response_t](docs/documenttype_create_object_v1_response.md)
+ - [documenttype_create_object_v1_response_m_payload_t](docs/documenttype_create_object_v1_response_m_payload.md)
+ - [documenttype_delete_object_v1_response_t](docs/documenttype_delete_object_v1_response.md)
+ - [documenttype_edit_object_v1_request_t](docs/documenttype_edit_object_v1_request.md)
+ - [documenttype_edit_object_v1_response_t](docs/documenttype_edit_object_v1_response.md)
+ - [documenttype_get_autocomplete_v2_response_t](docs/documenttype_get_autocomplete_v2_response.md)
+ - [documenttype_get_autocomplete_v2_response_m_payload_t](docs/documenttype_get_autocomplete_v2_response_m_payload.md)
+ - [documenttype_get_list_v1_response_t](docs/documenttype_get_list_v1_response.md)
+ - [documenttype_get_list_v1_response_m_payload_t](docs/documenttype_get_list_v1_response_m_payload.md)
+ - [documenttype_get_object_v2_response_t](docs/documenttype_get_object_v2_response.md)
+ - [documenttype_get_object_v2_response_m_payload_t](docs/documenttype_get_object_v2_response_m_payload.md)
+ - [documenttype_list_element_t](docs/documenttype_list_element.md)
+ - [documenttype_request_t](docs/documenttype_request.md)
+ - [documenttype_request_compound_t](docs/documenttype_request_compound.md)
+ - [documenttype_response_t](docs/documenttype_response.md)
+ - [documenttype_response_compound_t](docs/documenttype_response_compound.md)
+ - [documenttypechecklist_create_object_v1_request_t](docs/documenttypechecklist_create_object_v1_request.md)
+ - [documenttypechecklist_create_object_v1_response_t](docs/documenttypechecklist_create_object_v1_response.md)
+ - [documenttypechecklist_create_object_v1_response_m_payload_t](docs/documenttypechecklist_create_object_v1_response_m_payload.md)
+ - [documenttypechecklist_delete_object_v1_response_t](docs/documenttypechecklist_delete_object_v1_response.md)
+ - [documenttypechecklist_edit_object_v1_request_t](docs/documenttypechecklist_edit_object_v1_request.md)
+ - [documenttypechecklist_edit_object_v1_response_t](docs/documenttypechecklist_edit_object_v1_response.md)
+ - [documenttypechecklist_get_list_v1_response_t](docs/documenttypechecklist_get_list_v1_response.md)
+ - [documenttypechecklist_get_list_v1_response_m_payload_t](docs/documenttypechecklist_get_list_v1_response_m_payload.md)
+ - [documenttypechecklist_get_object_v2_response_t](docs/documenttypechecklist_get_object_v2_response.md)
+ - [documenttypechecklist_get_object_v2_response_m_payload_t](docs/documenttypechecklist_get_object_v2_response_m_payload.md)
+ - [documenttypechecklist_list_element_t](docs/documenttypechecklist_list_element.md)
+ - [documenttypechecklist_request_t](docs/documenttypechecklist_request.md)
+ - [documenttypechecklist_request_compound_t](docs/documenttypechecklist_request_compound.md)
+ - [documenttypechecklist_response_t](docs/documenttypechecklist_response.md)
+ - [documenttypechecklist_response_compound_t](docs/documenttypechecklist_response_compound.md)
  - [domain_autocomplete_element_response_t](docs/domain_autocomplete_element_response.md)
  - [domain_create_object_v1_request_t](docs/domain_create_object_v1_request.md)
  - [domain_create_object_v1_response_t](docs/domain_create_object_v1_response.md)
@@ -2399,6 +2443,14 @@ Category | Method | HTTP request | Description
  - [field_e_disclosure_interesttype_t](docs/field_e_disclosure_interesttype.md)
  - [field_e_discussion_robot_t](docs/field_e_discussion_robot.md)
  - [field_e_discussionmessage_status_t](docs/field_e_discussionmessage_status.md)
+ - [field_e_documenttype_ezcom_t](docs/field_e_documenttype_ezcom.md)
+ - [field_e_documenttype_privacydefault_t](docs/field_e_documenttype_privacydefault.md)
+ - [field_e_documenttype_repossession_t](docs/field_e_documenttype_repossession.md)
+ - [field_e_documenttype_salebyowner_t](docs/field_e_documenttype_salebyowner.md)
+ - [field_e_documenttype_saledisplaybyrole_t](docs/field_e_documenttype_saledisplaybyrole.md)
+ - [field_e_documenttype_statusdefault_t](docs/field_e_documenttype_statusdefault.md)
+ - [field_e_documenttype_transactiontype_t](docs/field_e_documenttype_transactiontype.md)
+ - [field_e_documenttypechecklist_status_t](docs/field_e_documenttypechecklist_status.md)
  - [field_e_error_code_t](docs/field_e_error_code.md)
  - [field_e_ezdoctemplatedocument_privacylevel_t](docs/field_e_ezdoctemplatedocument_privacylevel.md)
  - [field_e_ezmaxinvoicing_paymenttype_t](docs/field_e_ezmaxinvoicing_paymenttype.md)
@@ -2693,6 +2745,7 @@ Category | Method | HTTP request | Description
  - [multilingual_apikey_description_t](docs/multilingual_apikey_description.md)
  - [multilingual_billingentityinternal_description_t](docs/multilingual_billingentityinternal_description.md)
  - [multilingual_branding_description_t](docs/multilingual_branding_description.md)
+ - [multilingual_documenttype_name_t](docs/multilingual_documenttype_name.md)
  - [multilingual_ezdoctemplatedocument_name_t](docs/multilingual_ezdoctemplatedocument_name.md)
  - [multilingual_ezmaxcustomer_company_t](docs/multilingual_ezmaxcustomer_company.md)
  - [multilingual_ezmaxcustomer_note_t](docs/multilingual_ezmaxcustomer_note.md)

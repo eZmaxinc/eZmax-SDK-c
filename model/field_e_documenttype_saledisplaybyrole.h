@@ -1,0 +1,32 @@
+/*
+ * field_e_documenttype_saledisplaybyrole.h
+ *
+ * The saledisplaybyrole of the Documenttype
+ */
+
+#ifndef _field_e_documenttype_saledisplaybyrole_H_
+#define _field_e_documenttype_saledisplaybyrole_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_documenttype_saledisplaybyrole_t field_e_documenttype_saledisplaybyrole_t;
+
+
+// Enum  for field_e_documenttype_saledisplaybyrole
+
+typedef enum { ezmax_api_definition__full_field_e_documenttype_saledisplaybyrole__NULL = 0, ezmax_api_definition__full_field_e_documenttype_saledisplaybyrole__InscriptorSeller, ezmax_api_definition__full_field_e_documenttype_saledisplaybyrole__Inscriptor, ezmax_api_definition__full_field_e_documenttype_saledisplaybyrole__Seller } ezmax_api_definition__full_field_e_documenttype_saledisplaybyrole__e;
+
+char* field_e_documenttype_saledisplaybyrole_field_e_documenttype_saledisplaybyrole_ToString(ezmax_api_definition__full_field_e_documenttype_saledisplaybyrole__e field_e_documenttype_saledisplaybyrole);
+
+ezmax_api_definition__full_field_e_documenttype_saledisplaybyrole__e field_e_documenttype_saledisplaybyrole_field_e_documenttype_saledisplaybyrole_FromString(char* field_e_documenttype_saledisplaybyrole);
+
+cJSON *field_e_documenttype_saledisplaybyrole_convertToJSON(ezmax_api_definition__full_field_e_documenttype_saledisplaybyrole__e field_e_documenttype_saledisplaybyrole);
+
+ezmax_api_definition__full_field_e_documenttype_saledisplaybyrole__e field_e_documenttype_saledisplaybyrole_parseFromJSON(cJSON *field_e_documenttype_saledisplaybyroleJSON);
+
+#endif /* _field_e_documenttype_saledisplaybyrole_H_ */
+
