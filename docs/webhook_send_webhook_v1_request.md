@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **e_webhook_module** | **field_e_webhook_module_t \*** |  | 
 **e_webhook_ezsignevent** | **custom_e_webhook_ezsignevent_t \*** |  | [optional] 
+**e_webhook_ezmaxpartnerevent** | **field_e_webhook_ezmaxpartnerevent_t \*** |  | [optional] 
 **e_webhook_managementevent** | **field_e_webhook_managementevent_t \*** |  | [optional] 
 **e_webhook_realestateevent** | **field_e_webhook_realestateevent_t \*** |  | [optional] 
 **fki_ezsignfolder_id** | **int** | The unique ID of the Ezsignfolder | [optional] 

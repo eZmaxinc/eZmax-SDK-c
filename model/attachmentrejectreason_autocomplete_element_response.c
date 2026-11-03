@@ -7,7 +7,7 @@
 
 static attachmentrejectreason_autocomplete_element_response_t *attachmentrejectreason_autocomplete_element_response_create_internal(
     int *pki_attachmentrejectreason_id,
-    char *s_attachmentrejectreasonname_x,
+    char *s_attachmentrejectreason_name_x,
     int *b_attachmentrejectreason_isactive
     ) {
     attachmentrejectreason_autocomplete_element_response_t *attachmentrejectreason_autocomplete_element_response_local_var = malloc(sizeof(attachmentrejectreason_autocomplete_element_response_t));
@@ -17,14 +17,14 @@ static attachmentrejectreason_autocomplete_element_response_t *attachmentrejectr
     memset(attachmentrejectreason_autocomplete_element_response_local_var, 0, sizeof(attachmentrejectreason_autocomplete_element_response_t));
     attachmentrejectreason_autocomplete_element_response_local_var->_library_owned = 1;
     attachmentrejectreason_autocomplete_element_response_local_var->pki_attachmentrejectreason_id = pki_attachmentrejectreason_id;
-    attachmentrejectreason_autocomplete_element_response_local_var->s_attachmentrejectreasonname_x = s_attachmentrejectreasonname_x;
+    attachmentrejectreason_autocomplete_element_response_local_var->s_attachmentrejectreason_name_x = s_attachmentrejectreason_name_x;
     attachmentrejectreason_autocomplete_element_response_local_var->b_attachmentrejectreason_isactive = b_attachmentrejectreason_isactive;
     return attachmentrejectreason_autocomplete_element_response_local_var;
 }
 
 __attribute__((deprecated)) attachmentrejectreason_autocomplete_element_response_t *attachmentrejectreason_autocomplete_element_response_create(
     int *pki_attachmentrejectreason_id,
-    char *s_attachmentrejectreasonname_x,
+    char *s_attachmentrejectreason_name_x,
     int *b_attachmentrejectreason_isactive
     ) {
     int *pki_attachmentrejectreason_id_copy = NULL;
@@ -39,7 +39,7 @@ __attribute__((deprecated)) attachmentrejectreason_autocomplete_element_response
     }
     attachmentrejectreason_autocomplete_element_response_t *result = attachmentrejectreason_autocomplete_element_response_create_internal (
         pki_attachmentrejectreason_id_copy,
-        s_attachmentrejectreasonname_x,
+        s_attachmentrejectreason_name_x,
         b_attachmentrejectreason_isactive_copy
         );
     if (!result) {
@@ -62,9 +62,9 @@ void attachmentrejectreason_autocomplete_element_response_free(attachmentrejectr
         free(attachmentrejectreason_autocomplete_element_response->pki_attachmentrejectreason_id);
         attachmentrejectreason_autocomplete_element_response->pki_attachmentrejectreason_id = NULL;
     }
-    if (attachmentrejectreason_autocomplete_element_response->s_attachmentrejectreasonname_x) {
-        free(attachmentrejectreason_autocomplete_element_response->s_attachmentrejectreasonname_x);
-        attachmentrejectreason_autocomplete_element_response->s_attachmentrejectreasonname_x = NULL;
+    if (attachmentrejectreason_autocomplete_element_response->s_attachmentrejectreason_name_x) {
+        free(attachmentrejectreason_autocomplete_element_response->s_attachmentrejectreason_name_x);
+        attachmentrejectreason_autocomplete_element_response->s_attachmentrejectreason_name_x = NULL;
     }
     if (attachmentrejectreason_autocomplete_element_response->b_attachmentrejectreason_isactive) {
         free(attachmentrejectreason_autocomplete_element_response->b_attachmentrejectreason_isactive);
@@ -85,11 +85,11 @@ cJSON *attachmentrejectreason_autocomplete_element_response_convertToJSON(attach
     }
 
 
-    // attachmentrejectreason_autocomplete_element_response->s_attachmentrejectreasonname_x
-    if (!attachmentrejectreason_autocomplete_element_response->s_attachmentrejectreasonname_x) {
+    // attachmentrejectreason_autocomplete_element_response->s_attachmentrejectreason_name_x
+    if (!attachmentrejectreason_autocomplete_element_response->s_attachmentrejectreason_name_x) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "sAttachmentrejectreasonnameX", attachmentrejectreason_autocomplete_element_response->s_attachmentrejectreasonname_x) == NULL) {
+    if(cJSON_AddStringToObject(item, "sAttachmentrejectreasonNameX", attachmentrejectreason_autocomplete_element_response->s_attachmentrejectreason_name_x) == NULL) {
     goto fail; //String
     }
 
@@ -117,7 +117,7 @@ attachmentrejectreason_autocomplete_element_response_t *attachmentrejectreason_a
     // define the local variable for attachmentrejectreason_autocomplete_element_response->pki_attachmentrejectreason_id
     int *pki_attachmentrejectreason_id_local_var = NULL;
 
-    char *s_attachmentrejectreasonname_x_local_str = NULL;
+    char *s_attachmentrejectreason_name_x_local_str = NULL;
 
     // define the local variable for attachmentrejectreason_autocomplete_element_response->b_attachmentrejectreason_isactive
     int *b_attachmentrejectreason_isactive_local_var = NULL;
@@ -143,17 +143,17 @@ attachmentrejectreason_autocomplete_element_response_t *attachmentrejectreason_a
     }
     *pki_attachmentrejectreason_id_local_var = pki_attachmentrejectreason_id->valuedouble;
 
-    // attachmentrejectreason_autocomplete_element_response->s_attachmentrejectreasonname_x
-    cJSON *s_attachmentrejectreasonname_x = cJSON_GetObjectItemCaseSensitive(attachmentrejectreason_autocomplete_element_responseJSON, "sAttachmentrejectreasonnameX");
-    if (cJSON_IsNull(s_attachmentrejectreasonname_x)) {
-        s_attachmentrejectreasonname_x = NULL;
+    // attachmentrejectreason_autocomplete_element_response->s_attachmentrejectreason_name_x
+    cJSON *s_attachmentrejectreason_name_x = cJSON_GetObjectItemCaseSensitive(attachmentrejectreason_autocomplete_element_responseJSON, "sAttachmentrejectreasonNameX");
+    if (cJSON_IsNull(s_attachmentrejectreason_name_x)) {
+        s_attachmentrejectreason_name_x = NULL;
     }
-    if (!s_attachmentrejectreasonname_x) {
+    if (!s_attachmentrejectreason_name_x) {
         goto end;
     }
 
     
-    if(!cJSON_IsString(s_attachmentrejectreasonname_x))
+    if(!cJSON_IsString(s_attachmentrejectreason_name_x))
     {
     goto end; //String
     }
@@ -180,11 +180,11 @@ attachmentrejectreason_autocomplete_element_response_t *attachmentrejectreason_a
     *b_attachmentrejectreason_isactive_local_var = b_attachmentrejectreason_isactive->valueint;
 
 
-    if (s_attachmentrejectreasonname_x && !cJSON_IsNull(s_attachmentrejectreasonname_x)) s_attachmentrejectreasonname_x_local_str = strdup(s_attachmentrejectreasonname_x->valuestring);
+    if (s_attachmentrejectreason_name_x && !cJSON_IsNull(s_attachmentrejectreason_name_x)) s_attachmentrejectreason_name_x_local_str = strdup(s_attachmentrejectreason_name_x->valuestring);
 
     attachmentrejectreason_autocomplete_element_response_local_var = attachmentrejectreason_autocomplete_element_response_create_internal (
         pki_attachmentrejectreason_id_local_var,
-        s_attachmentrejectreasonname_x_local_str,
+        s_attachmentrejectreason_name_x_local_str,
         b_attachmentrejectreason_isactive_local_var
         );
 
@@ -198,9 +198,9 @@ end:
         free(pki_attachmentrejectreason_id_local_var);
         pki_attachmentrejectreason_id_local_var = NULL;
     }
-    if (s_attachmentrejectreasonname_x_local_str) {
-        free(s_attachmentrejectreasonname_x_local_str);
-        s_attachmentrejectreasonname_x_local_str = NULL;
+    if (s_attachmentrejectreason_name_x_local_str) {
+        free(s_attachmentrejectreason_name_x_local_str);
+        s_attachmentrejectreason_name_x_local_str = NULL;
     }
     if (b_attachmentrejectreason_isactive_local_var) {
         free(b_attachmentrejectreason_isactive_local_var);

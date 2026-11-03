@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pki_documenttype_id** | **int** | The unique ID of the Documenttype | 
 **obj_documenttype_name** | [**multilingual_documenttype_name_t**](multilingual_documenttype_name.md) \* |  | 
+**e_documenttype_step** | **computed_e_documenttype_step_t \*** |  | 
 **s_documenttype_defaultfilename** | **char \*** | The defaultfilename of the Documenttype | 
 **b_documenttype_showagent** | **int** | Whether if it&#39;s an showagent | 
 **b_documenttype_isactive** | **int** | Whether the documenttype is active or not | 
@@ -26,6 +27,7 @@ Name | Type | Description | Notes
 **e_documenttype_saledisplaybyrole** | **field_e_documenttype_saledisplaybyrole_t \*** |  | [optional] 
 **e_documenttype_transactiontype** | **field_e_documenttype_transactiontype_t \*** |  | [optional] 
 **e_documenttype_repossession** | **field_e_documenttype_repossession_t \*** |  | [optional] 
+**a_fki_inscriptiontype_id** | **list_t \*** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

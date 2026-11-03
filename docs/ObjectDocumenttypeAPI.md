@@ -5,7 +5,6 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectDocumenttypeAPI_documenttypeCreateObjectV1**](ObjectDocumenttypeAPI.md#ObjectDocumenttypeAPI_documenttypeCreateObjectV1) | **POST** /1/object/documenttype | Create a new Documenttype
-[**ObjectDocumenttypeAPI_documenttypeDeleteObjectV1**](ObjectDocumenttypeAPI.md#ObjectDocumenttypeAPI_documenttypeDeleteObjectV1) | **DELETE** /1/object/documenttype/{pkiDocumenttypeID} | Delete an existing Documenttype
 [**ObjectDocumenttypeAPI_documenttypeEditObjectV1**](ObjectDocumenttypeAPI.md#ObjectDocumenttypeAPI_documenttypeEditObjectV1) | **PUT** /1/object/documenttype/{pkiDocumenttypeID} | Edit an existing Documenttype
 [**ObjectDocumenttypeAPI_documenttypeGetAutocompleteV2**](ObjectDocumenttypeAPI.md#ObjectDocumenttypeAPI_documenttypeGetAutocompleteV2) | **GET** /2/object/documenttype/getAutocomplete/{sSelector} | Retrieve Documenttypes and IDs
 [**ObjectDocumenttypeAPI_documenttypeGetListV1**](ObjectDocumenttypeAPI.md#ObjectDocumenttypeAPI_documenttypeGetListV1) | **GET** /1/object/documenttype/getList | Retrieve Documenttype list
@@ -39,37 +38,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **ObjectDocumenttypeAPI_documenttypeDeleteObjectV1**
-```c
-// Delete an existing Documenttype
-//
-// 
-//
-documenttype_delete_object_v1_response_t* ObjectDocumenttypeAPI_documenttypeDeleteObjectV1(apiClient_t *apiClient, int *pkiDocumenttypeID);
-```
-
-### Parameters
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiDocumenttypeID** | **int \*** | The unique ID of the Documenttype | 
-
-### Return type
-
-[documenttype_delete_object_v1_response_t](documenttype_delete_object_v1_response.md) *
-
-
-### Authorization
-
-[Authorization](../README.md#Authorization)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

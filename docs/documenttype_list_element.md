@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **b_documenttype_foreclosedsale** | **int** | Whether if it&#39;s an foreclosedsale | 
 **b_documenttype_commercialfunding** | **int** | Whether if it&#39;s an commercialfunding | 
 **b_documenttype_canafe** | **int** | Whether if it&#39;s an canafe | 
-**e_documenttype_ezcom** | **field_e_documenttype_ezcom_t \*** |  | 
+**e_documenttype_ezcom** | **field_e_documenttype_ezcom_t \*** |  | [optional] 
 **e_documenttype_privacydefault** | **field_e_documenttype_privacydefault_t \*** |  | 
 **e_documenttype_statusdefault** | **field_e_documenttype_statusdefault_t \*** |  | 
 **e_documenttype_salebyowner** | **field_e_documenttype_salebyowner_t \*** |  | 

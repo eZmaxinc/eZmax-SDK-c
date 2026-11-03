@@ -1228,3 +1228,108 @@ end:
 
 }
 
+// Synchronization of the Documenttype in the Inscription
+//
+// 
+//
+inscription_synchronization_documenttype_v1_response_t*
+ObjectInscriptionAPI_inscriptionSynchronizationDocumenttypeV1(apiClient_t *apiClient, int *pkiInscriptionID, object_t *body)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/inscription/{pkiInscriptionID}/synchronizationDocumenttype");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiInscriptionID =  + sizeof("{ pkiInscriptionID }") - 1;
+    if(pkiInscriptionID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiInscriptionID = malloc(sizeOfPathParams_pkiInscriptionID);
+    snprintf(localVarToReplace_pkiInscriptionID, sizeOfPathParams_pkiInscriptionID, "{%s}", "pkiInscriptionID");
+
+    char localVarBuff_pkiInscriptionID[256];
+    snprintf(localVarBuff_pkiInscriptionID, sizeof localVarBuff_pkiInscriptionID, "%ld", (long)*pkiInscriptionID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiInscriptionID, localVarBuff_pkiInscriptionID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_body = NULL;
+    if (body != NULL)
+    {
+        //not string, not binary
+        localVarSingleItemJSON_body = object_convertToJSON(body);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_body);
+        localVarBodyLength = strlen(localVarBodyParameters);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body.");
+    //}
+    //nonprimitive not container
+    inscription_synchronization_documenttype_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectInscriptionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = inscription_synchronization_documenttype_v1_response_parseFromJSON(ObjectInscriptionAPIlocalVarJSON);
+        cJSON_Delete(ObjectInscriptionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiInscriptionID);
+    if (localVarSingleItemJSON_body) {
+        cJSON_Delete(localVarSingleItemJSON_body);
+        localVarSingleItemJSON_body = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+

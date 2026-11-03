@@ -15,6 +15,7 @@
 
 typedef struct documenttype_response_compound_t documenttype_response_compound_t;
 
+#include "computed_e_documenttype_step.h"
 #include "field_e_documenttype_ezcom.h"
 #include "field_e_documenttype_privacydefault.h"
 #include "field_e_documenttype_repossession.h"
@@ -29,6 +30,7 @@ typedef struct documenttype_response_compound_t documenttype_response_compound_t
 typedef struct documenttype_response_compound_t {
     int *pki_documenttype_id; //numeric
     struct multilingual_documenttype_name_t *obj_documenttype_name; //model
+    ezmax_api_definition__full_computed_e_documenttype_step__e e_documenttype_step; //referenced enum
     char *s_documenttype_defaultfilename; // string
     int *b_documenttype_showagent; //boolean
     int *b_documenttype_isactive; //boolean
@@ -50,6 +52,7 @@ typedef struct documenttype_response_compound_t {
     ezmax_api_definition__full_field_e_documenttype_saledisplaybyrole__e e_documenttype_saledisplaybyrole; //referenced enum
     ezmax_api_definition__full_field_e_documenttype_transactiontype__e e_documenttype_transactiontype; //referenced enum
     ezmax_api_definition__full_field_e_documenttype_repossession__e e_documenttype_repossession; //referenced enum
+    list_t *a_fki_inscriptiontype_id; //primitive container
 
     int _library_owned; // Is the library responsible for freeing this object?
 } documenttype_response_compound_t;
@@ -57,6 +60,7 @@ typedef struct documenttype_response_compound_t {
 __attribute__((deprecated)) documenttype_response_compound_t *documenttype_response_compound_create(
     int *pki_documenttype_id,
     multilingual_documenttype_name_t *obj_documenttype_name,
+    ezmax_api_definition__full_computed_e_documenttype_step__e e_documenttype_step,
     char *s_documenttype_defaultfilename,
     int *b_documenttype_showagent,
     int *b_documenttype_isactive,
@@ -77,7 +81,8 @@ __attribute__((deprecated)) documenttype_response_compound_t *documenttype_respo
     ezmax_api_definition__full_field_e_documenttype_salebyowner__e e_documenttype_salebyowner,
     ezmax_api_definition__full_field_e_documenttype_saledisplaybyrole__e e_documenttype_saledisplaybyrole,
     ezmax_api_definition__full_field_e_documenttype_transactiontype__e e_documenttype_transactiontype,
-    ezmax_api_definition__full_field_e_documenttype_repossession__e e_documenttype_repossession
+    ezmax_api_definition__full_field_e_documenttype_repossession__e e_documenttype_repossession,
+    list_t *a_fki_inscriptiontype_id
 );
 
 void documenttype_response_compound_free(documenttype_response_compound_t *documenttype_response_compound);

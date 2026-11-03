@@ -8,7 +8,6 @@
 #include "../model/common_response_error.h"
 #include "../model/documenttype_create_object_v1_request.h"
 #include "../model/documenttype_create_object_v1_response.h"
-#include "../model/documenttype_delete_object_v1_response.h"
 #include "../model/documenttype_edit_object_v1_request.h"
 #include "../model/documenttype_edit_object_v1_response.h"
 #include "../model/documenttype_get_autocomplete_v2_response.h"
@@ -38,14 +37,6 @@ typedef enum  { ezmax_api_definition__full_documenttypeGetListV1__NULL = 0, ezma
 //
 documenttype_create_object_v1_response_t*
 ObjectDocumenttypeAPI_documenttypeCreateObjectV1(apiClient_t *apiClient, documenttype_create_object_v1_request_t *documenttype_create_object_v1_request);
-
-
-// Delete an existing Documenttype
-//
-// 
-//
-documenttype_delete_object_v1_response_t*
-ObjectDocumenttypeAPI_documenttypeDeleteObjectV1(apiClient_t *apiClient, int *pkiDocumenttypeID);
 
 
 // Edit an existing Documenttype

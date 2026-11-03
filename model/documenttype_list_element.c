@@ -425,9 +425,7 @@ cJSON *documenttype_list_element_convertToJSON(documenttype_list_element_t *docu
 
 
     // documenttype_list_element->e_documenttype_ezcom
-    if (ezmax_api_definition__full_field_e_documenttype_ezcom__NULL == documenttype_list_element->e_documenttype_ezcom) {
-        goto fail;
-    }
+    if(documenttype_list_element->e_documenttype_ezcom != ezmax_api_definition__full_field_e_documenttype_ezcom__NULL) {
     cJSON *e_documenttype_ezcom_local_JSON = field_e_documenttype_ezcom_convertToJSON(documenttype_list_element->e_documenttype_ezcom);
     if(e_documenttype_ezcom_local_JSON == NULL) {
         goto fail; // custom
@@ -435,6 +433,7 @@ cJSON *documenttype_list_element_convertToJSON(documenttype_list_element_t *docu
     cJSON_AddItemToObject(item, "eDocumenttypeEzcom", e_documenttype_ezcom_local_JSON);
     if(item->child == NULL) {
         goto fail;
+    }
     }
 
 
@@ -929,12 +928,9 @@ documenttype_list_element_t *documenttype_list_element_parseFromJSON(cJSON *docu
     if (cJSON_IsNull(e_documenttype_ezcom)) {
         e_documenttype_ezcom = NULL;
     }
-    if (!e_documenttype_ezcom) {
-        goto end;
-    }
-
-    
+    if (e_documenttype_ezcom) { 
     e_documenttype_ezcom_local_nonprim = field_e_documenttype_ezcom_parseFromJSON(e_documenttype_ezcom); //custom
+    }
 
     // documenttype_list_element->e_documenttype_privacydefault
     cJSON *e_documenttype_privacydefault = cJSON_GetObjectItemCaseSensitive(documenttype_list_elementJSON, "eDocumenttypePrivacydefault");
@@ -1029,7 +1025,7 @@ documenttype_list_element_t *documenttype_list_element_parseFromJSON(cJSON *docu
         b_documenttype_foreclosedsale_local_var,
         b_documenttype_commercialfunding_local_var,
         b_documenttype_canafe_local_var,
-        e_documenttype_ezcom_local_nonprim,
+        e_documenttype_ezcom ? e_documenttype_ezcom_local_nonprim : 0,
         e_documenttype_privacydefault_local_nonprim,
         e_documenttype_statusdefault_local_nonprim,
         e_documenttype_salebyowner_local_nonprim,

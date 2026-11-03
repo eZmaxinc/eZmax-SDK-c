@@ -8,6 +8,7 @@
 static documenttype_request_t *documenttype_request_create_internal(
     int *pki_documenttype_id,
     multilingual_documenttype_name_t *obj_documenttype_name,
+    ezmax_api_definition__full_computed_e_documenttype_step__e e_documenttype_step,
     char *s_documenttype_defaultfilename,
     int *b_documenttype_showagent,
     int *b_documenttype_isactive,
@@ -28,7 +29,8 @@ static documenttype_request_t *documenttype_request_create_internal(
     ezmax_api_definition__full_field_e_documenttype_salebyowner__e e_documenttype_salebyowner,
     ezmax_api_definition__full_field_e_documenttype_saledisplaybyrole__e e_documenttype_saledisplaybyrole,
     ezmax_api_definition__full_field_e_documenttype_transactiontype__e e_documenttype_transactiontype,
-    ezmax_api_definition__full_field_e_documenttype_repossession__e e_documenttype_repossession
+    ezmax_api_definition__full_field_e_documenttype_repossession__e e_documenttype_repossession,
+    list_t *a_fki_inscriptiontype_id
     ) {
     documenttype_request_t *documenttype_request_local_var = malloc(sizeof(documenttype_request_t));
     if (!documenttype_request_local_var) {
@@ -38,6 +40,7 @@ static documenttype_request_t *documenttype_request_create_internal(
     documenttype_request_local_var->_library_owned = 1;
     documenttype_request_local_var->pki_documenttype_id = pki_documenttype_id;
     documenttype_request_local_var->obj_documenttype_name = obj_documenttype_name;
+    documenttype_request_local_var->e_documenttype_step = e_documenttype_step;
     documenttype_request_local_var->s_documenttype_defaultfilename = s_documenttype_defaultfilename;
     documenttype_request_local_var->b_documenttype_showagent = b_documenttype_showagent;
     documenttype_request_local_var->b_documenttype_isactive = b_documenttype_isactive;
@@ -59,12 +62,14 @@ static documenttype_request_t *documenttype_request_create_internal(
     documenttype_request_local_var->e_documenttype_saledisplaybyrole = e_documenttype_saledisplaybyrole;
     documenttype_request_local_var->e_documenttype_transactiontype = e_documenttype_transactiontype;
     documenttype_request_local_var->e_documenttype_repossession = e_documenttype_repossession;
+    documenttype_request_local_var->a_fki_inscriptiontype_id = a_fki_inscriptiontype_id;
     return documenttype_request_local_var;
 }
 
 __attribute__((deprecated)) documenttype_request_t *documenttype_request_create(
     int *pki_documenttype_id,
     multilingual_documenttype_name_t *obj_documenttype_name,
+    ezmax_api_definition__full_computed_e_documenttype_step__e e_documenttype_step,
     char *s_documenttype_defaultfilename,
     int *b_documenttype_showagent,
     int *b_documenttype_isactive,
@@ -85,7 +90,8 @@ __attribute__((deprecated)) documenttype_request_t *documenttype_request_create(
     ezmax_api_definition__full_field_e_documenttype_salebyowner__e e_documenttype_salebyowner,
     ezmax_api_definition__full_field_e_documenttype_saledisplaybyrole__e e_documenttype_saledisplaybyrole,
     ezmax_api_definition__full_field_e_documenttype_transactiontype__e e_documenttype_transactiontype,
-    ezmax_api_definition__full_field_e_documenttype_repossession__e e_documenttype_repossession
+    ezmax_api_definition__full_field_e_documenttype_repossession__e e_documenttype_repossession,
+    list_t *a_fki_inscriptiontype_id
     ) {
     int *pki_documenttype_id_copy = NULL;
     if (pki_documenttype_id) {
@@ -160,6 +166,7 @@ __attribute__((deprecated)) documenttype_request_t *documenttype_request_create(
     documenttype_request_t *result = documenttype_request_create_internal (
         pki_documenttype_id_copy,
         obj_documenttype_name,
+        e_documenttype_step,
         s_documenttype_defaultfilename,
         b_documenttype_showagent_copy,
         b_documenttype_isactive_copy,
@@ -180,7 +187,8 @@ __attribute__((deprecated)) documenttype_request_t *documenttype_request_create(
         e_documenttype_salebyowner,
         e_documenttype_saledisplaybyrole,
         e_documenttype_transactiontype,
-        e_documenttype_repossession
+        e_documenttype_repossession,
+        a_fki_inscriptiontype_id
         );
     if (!result) {
         free(pki_documenttype_id_copy);
@@ -274,6 +282,13 @@ void documenttype_request_free(documenttype_request_t *documenttype_request) {
         free(documenttype_request->b_documenttype_canafe);
         documenttype_request->b_documenttype_canafe = NULL;
     }
+    if (documenttype_request->a_fki_inscriptiontype_id) {
+        list_ForEach(listEntry, documenttype_request->a_fki_inscriptiontype_id) {
+            free(listEntry->data);
+        }
+        list_freeList(documenttype_request->a_fki_inscriptiontype_id);
+        documenttype_request->a_fki_inscriptiontype_id = NULL;
+    }
     free(documenttype_request);
 }
 
@@ -299,6 +314,20 @@ cJSON *documenttype_request_convertToJSON(documenttype_request_t *documenttype_r
     cJSON_AddItemToObject(item, "objDocumenttypeName", obj_documenttype_name_local_JSON);
     if(item->child == NULL) {
     goto fail;
+    }
+
+
+    // documenttype_request->e_documenttype_step
+    if (ezmax_api_definition__full_computed_e_documenttype_step__NULL == documenttype_request->e_documenttype_step) {
+        goto fail;
+    }
+    cJSON *e_documenttype_step_local_JSON = computed_e_documenttype_step_convertToJSON(documenttype_request->e_documenttype_step);
+    if(e_documenttype_step_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eDocumenttypeStep", e_documenttype_step_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
     }
 
 
@@ -429,9 +458,7 @@ cJSON *documenttype_request_convertToJSON(documenttype_request_t *documenttype_r
 
 
     // documenttype_request->e_documenttype_ezcom
-    if (ezmax_api_definition__full_field_e_documenttype_ezcom__NULL == documenttype_request->e_documenttype_ezcom) {
-        goto fail;
-    }
+    if(documenttype_request->e_documenttype_ezcom != ezmax_api_definition__full_field_e_documenttype_ezcom__NULL) {
     cJSON *e_documenttype_ezcom_local_JSON = field_e_documenttype_ezcom_convertToJSON(documenttype_request->e_documenttype_ezcom);
     if(e_documenttype_ezcom_local_JSON == NULL) {
         goto fail; // custom
@@ -439,6 +466,7 @@ cJSON *documenttype_request_convertToJSON(documenttype_request_t *documenttype_r
     cJSON_AddItemToObject(item, "eDocumenttypeEzcom", e_documenttype_ezcom_local_JSON);
     if(item->child == NULL) {
         goto fail;
+    }
     }
 
 
@@ -525,6 +553,24 @@ cJSON *documenttype_request_convertToJSON(documenttype_request_t *documenttype_r
         goto fail;
     }
 
+
+    // documenttype_request->a_fki_inscriptiontype_id
+    if (!documenttype_request->a_fki_inscriptiontype_id) {
+        goto fail;
+    }
+    cJSON *a_fki_inscriptiontype_id = cJSON_AddArrayToObject(item, "a_fkiInscriptiontypeID");
+    if(a_fki_inscriptiontype_id == NULL) {
+        goto fail; //primitive container
+    }
+
+    listEntry_t *a_fki_inscriptiontype_idListEntry;
+    list_ForEach(a_fki_inscriptiontype_idListEntry, documenttype_request->a_fki_inscriptiontype_id) {
+    if(cJSON_AddNumberToObject(a_fki_inscriptiontype_id, "", *(double *)a_fki_inscriptiontype_idListEntry->data) == NULL)
+    {
+        goto fail;
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -542,6 +588,9 @@ documenttype_request_t *documenttype_request_parseFromJSON(cJSON *documenttype_r
 
     // define the local variable for documenttype_request->obj_documenttype_name
     multilingual_documenttype_name_t *obj_documenttype_name_local_nonprim = NULL;
+
+    // define the local variable for documenttype_request->e_documenttype_step
+    ezmax_api_definition__full_computed_e_documenttype_step__e e_documenttype_step_local_nonprim = 0;
 
     char *s_documenttype_defaultfilename_local_str = NULL;
 
@@ -605,6 +654,9 @@ documenttype_request_t *documenttype_request_parseFromJSON(cJSON *documenttype_r
     // define the local variable for documenttype_request->e_documenttype_repossession
     ezmax_api_definition__full_field_e_documenttype_repossession__e e_documenttype_repossession_local_nonprim = 0;
 
+    // define the local list for documenttype_request->a_fki_inscriptiontype_id
+    list_t *a_fki_inscriptiontype_idList = NULL;
+
     // documenttype_request->pki_documenttype_id
     cJSON *pki_documenttype_id = cJSON_GetObjectItemCaseSensitive(documenttype_requestJSON, "pkiDocumenttypeID");
     if (cJSON_IsNull(pki_documenttype_id)) {
@@ -634,6 +686,18 @@ documenttype_request_t *documenttype_request_parseFromJSON(cJSON *documenttype_r
 
     
     obj_documenttype_name_local_nonprim = multilingual_documenttype_name_parseFromJSON(obj_documenttype_name); //nonprimitive
+
+    // documenttype_request->e_documenttype_step
+    cJSON *e_documenttype_step = cJSON_GetObjectItemCaseSensitive(documenttype_requestJSON, "eDocumenttypeStep");
+    if (cJSON_IsNull(e_documenttype_step)) {
+        e_documenttype_step = NULL;
+    }
+    if (!e_documenttype_step) {
+        goto end;
+    }
+
+    
+    e_documenttype_step_local_nonprim = computed_e_documenttype_step_parseFromJSON(e_documenttype_step); //custom
 
     // documenttype_request->s_documenttype_defaultfilename
     cJSON *s_documenttype_defaultfilename = cJSON_GetObjectItemCaseSensitive(documenttype_requestJSON, "sDocumenttypeDefaultfilename");
@@ -928,12 +992,9 @@ documenttype_request_t *documenttype_request_parseFromJSON(cJSON *documenttype_r
     if (cJSON_IsNull(e_documenttype_ezcom)) {
         e_documenttype_ezcom = NULL;
     }
-    if (!e_documenttype_ezcom) {
-        goto end;
-    }
-
-    
+    if (e_documenttype_ezcom) { 
     e_documenttype_ezcom_local_nonprim = field_e_documenttype_ezcom_parseFromJSON(e_documenttype_ezcom); //custom
+    }
 
     // documenttype_request->e_documenttype_privacydefault
     cJSON *e_documenttype_privacydefault = cJSON_GetObjectItemCaseSensitive(documenttype_requestJSON, "eDocumenttypePrivacydefault");
@@ -1007,12 +1068,44 @@ documenttype_request_t *documenttype_request_parseFromJSON(cJSON *documenttype_r
     
     e_documenttype_repossession_local_nonprim = field_e_documenttype_repossession_parseFromJSON(e_documenttype_repossession); //custom
 
+    // documenttype_request->a_fki_inscriptiontype_id
+    cJSON *a_fki_inscriptiontype_id = cJSON_GetObjectItemCaseSensitive(documenttype_requestJSON, "a_fkiInscriptiontypeID");
+    if (cJSON_IsNull(a_fki_inscriptiontype_id)) {
+        a_fki_inscriptiontype_id = NULL;
+    }
+    if (!a_fki_inscriptiontype_id) {
+        goto end;
+    }
+
+    
+    cJSON *a_fki_inscriptiontype_id_local = NULL;
+    if(!cJSON_IsArray(a_fki_inscriptiontype_id)) {
+        goto end;//primitive container
+    }
+    a_fki_inscriptiontype_idList = list_createList();
+
+    cJSON_ArrayForEach(a_fki_inscriptiontype_id_local, a_fki_inscriptiontype_id)
+    {
+        if(!cJSON_IsNumber(a_fki_inscriptiontype_id_local))
+        {
+            goto end;
+        }
+        double *a_fki_inscriptiontype_id_local_value = calloc(1, sizeof(double));
+        if(!a_fki_inscriptiontype_id_local_value)
+        {
+            goto end;
+        }
+        *a_fki_inscriptiontype_id_local_value = a_fki_inscriptiontype_id_local->valuedouble;
+        list_addElement(a_fki_inscriptiontype_idList , a_fki_inscriptiontype_id_local_value);
+    }
+
 
     if (s_documenttype_defaultfilename && !cJSON_IsNull(s_documenttype_defaultfilename)) s_documenttype_defaultfilename_local_str = strdup(s_documenttype_defaultfilename->valuestring);
 
     documenttype_request_local_var = documenttype_request_create_internal (
         pki_documenttype_id_local_var,
         obj_documenttype_name_local_nonprim,
+        e_documenttype_step_local_nonprim,
         s_documenttype_defaultfilename_local_str,
         b_documenttype_showagent_local_var,
         b_documenttype_isactive_local_var,
@@ -1027,13 +1120,14 @@ documenttype_request_t *documenttype_request_parseFromJSON(cJSON *documenttype_r
         b_documenttype_foreclosedsale_local_var,
         b_documenttype_commercialfunding_local_var,
         b_documenttype_canafe_local_var,
-        e_documenttype_ezcom_local_nonprim,
+        e_documenttype_ezcom ? e_documenttype_ezcom_local_nonprim : 0,
         e_documenttype_privacydefault_local_nonprim,
         e_documenttype_statusdefault_local_nonprim,
         e_documenttype_salebyowner_local_nonprim,
         e_documenttype_saledisplaybyrole_local_nonprim,
         e_documenttype_transactiontype_local_nonprim,
-        e_documenttype_repossession_local_nonprim
+        e_documenttype_repossession_local_nonprim,
+        a_fki_inscriptiontype_idList
         );
 
     if (!documenttype_request_local_var) {
@@ -1049,6 +1143,9 @@ end:
     if (obj_documenttype_name_local_nonprim) {
         multilingual_documenttype_name_free(obj_documenttype_name_local_nonprim);
         obj_documenttype_name_local_nonprim = NULL;
+    }
+    if (e_documenttype_step_local_nonprim) {
+        e_documenttype_step_local_nonprim = 0;
     }
     if (s_documenttype_defaultfilename_local_str) {
         free(s_documenttype_defaultfilename_local_str);
@@ -1126,6 +1223,15 @@ end:
     }
     if (e_documenttype_repossession_local_nonprim) {
         e_documenttype_repossession_local_nonprim = 0;
+    }
+    if (a_fki_inscriptiontype_idList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_fki_inscriptiontype_idList) {
+            free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_fki_inscriptiontype_idList);
+        a_fki_inscriptiontype_idList = NULL;
     }
     return NULL;
 

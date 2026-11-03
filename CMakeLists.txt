@@ -140,14 +140,8 @@ set(SRCS
     model/apikey_response_compound.c
     model/attachment_delete_v1_response.c
     model/attachment_delete_v1_response_m_payload.c
-    model/attachment_document_type_v1_request.c
-    model/attachment_document_type_v1_response.c
-    model/attachment_document_type_v1_response_m_payload.c
     model/attachment_get_attachmentlogs_v1_response.c
     model/attachment_get_attachmentlogs_v1_response_m_payload.c
-    model/attachment_privacy_v1_request.c
-    model/attachment_privacy_v1_response.c
-    model/attachment_privacy_v1_response_m_payload.c
     model/attachment_rename_v1_request.c
     model/attachment_rename_v1_response.c
     model/attachment_rename_v1_response_m_payload.c
@@ -156,6 +150,12 @@ set(SRCS
     model/attachment_restore_v1_request.c
     model/attachment_restore_v1_response.c
     model/attachment_restore_v1_response_m_payload.c
+    model/attachment_set_document_type_v1_request.c
+    model/attachment_set_document_type_v1_response.c
+    model/attachment_set_document_type_v1_response_m_payload.c
+    model/attachment_set_privacy_v1_request.c
+    model/attachment_set_privacy_v1_response.c
+    model/attachment_set_privacy_v1_response_m_payload.c
     model/attachment_validate_v1_request.c
     model/attachment_validate_v1_response.c
     model/attachment_validate_v1_response_m_payload.c
@@ -361,6 +361,7 @@ set(SRCS
     model/company_get_autocomplete_v2_response.c
     model/company_get_autocomplete_v2_response_m_payload.c
     model/computed_e_communication_direction.c
+    model/computed_e_documenttype_step.c
     model/computed_e_ezsigndocument_steptype.c
     model/computed_e_ezsignfolder_access.c
     model/computed_e_ezsignimportfolder_status.c
@@ -502,6 +503,7 @@ set(SRCS
     model/custom_form_data_signer_response.c
     model/custom_forms_data_folder_response.c
     model/custom_import_ezsigntemplatepackage_relation_request.c
+    model/custom_inscription.c
     model/custom_inscriptionnotauthenticatedcondition_request.c
     model/custom_notificationsubsectiongetnotificationtests_response.c
     model/custom_notificationtestgetelements_response.c
@@ -628,7 +630,6 @@ set(SRCS
     model/documenttype_create_object_v1_request.c
     model/documenttype_create_object_v1_response.c
     model/documenttype_create_object_v1_response_m_payload.c
-    model/documenttype_delete_object_v1_response.c
     model/documenttype_edit_object_v1_request.c
     model/documenttype_edit_object_v1_response.c
     model/documenttype_get_autocomplete_v2_response.c
@@ -642,21 +643,10 @@ set(SRCS
     model/documenttype_request_compound.c
     model/documenttype_response.c
     model/documenttype_response_compound.c
-    model/documenttypechecklist_create_object_v1_request.c
-    model/documenttypechecklist_create_object_v1_response.c
-    model/documenttypechecklist_create_object_v1_response_m_payload.c
     model/documenttypechecklist_delete_object_v1_response.c
-    model/documenttypechecklist_edit_object_v1_request.c
-    model/documenttypechecklist_edit_object_v1_response.c
-    model/documenttypechecklist_get_list_v1_response.c
-    model/documenttypechecklist_get_list_v1_response_m_payload.c
-    model/documenttypechecklist_get_object_v2_response.c
-    model/documenttypechecklist_get_object_v2_response_m_payload.c
-    model/documenttypechecklist_list_element.c
-    model/documenttypechecklist_request.c
-    model/documenttypechecklist_request_compound.c
-    model/documenttypechecklist_response.c
-    model/documenttypechecklist_response_compound.c
+    model/documenttypechecklist_patch_object_v1_request.c
+    model/documenttypechecklist_patch_object_v1_response.c
+    model/documenttypechecklist_request_patch.c
     model/domain_autocomplete_element_response.c
     model/domain_create_object_v1_request.c
     model/domain_create_object_v1_response.c
@@ -1857,6 +1847,7 @@ set(SRCS
     model/inscription_prepare_files_transfer_v1_response_m_payload.c
     model/inscription_response.c
     model/inscription_response_compound.c
+    model/inscription_synchronization_documenttype_v1_response.c
     model/inscriptionchecklist_autocomplete_element_response.c
     model/inscriptionchecklist_get_autocomplete_v3_response.c
     model/inscriptionchecklist_get_autocomplete_v3_response_m_payload.c
@@ -2798,14 +2789,8 @@ set(HDRS
     model/apikey_response_compound.h
     model/attachment_delete_v1_response.h
     model/attachment_delete_v1_response_m_payload.h
-    model/attachment_document_type_v1_request.h
-    model/attachment_document_type_v1_response.h
-    model/attachment_document_type_v1_response_m_payload.h
     model/attachment_get_attachmentlogs_v1_response.h
     model/attachment_get_attachmentlogs_v1_response_m_payload.h
-    model/attachment_privacy_v1_request.h
-    model/attachment_privacy_v1_response.h
-    model/attachment_privacy_v1_response_m_payload.h
     model/attachment_rename_v1_request.h
     model/attachment_rename_v1_response.h
     model/attachment_rename_v1_response_m_payload.h
@@ -2814,6 +2799,12 @@ set(HDRS
     model/attachment_restore_v1_request.h
     model/attachment_restore_v1_response.h
     model/attachment_restore_v1_response_m_payload.h
+    model/attachment_set_document_type_v1_request.h
+    model/attachment_set_document_type_v1_response.h
+    model/attachment_set_document_type_v1_response_m_payload.h
+    model/attachment_set_privacy_v1_request.h
+    model/attachment_set_privacy_v1_response.h
+    model/attachment_set_privacy_v1_response_m_payload.h
     model/attachment_validate_v1_request.h
     model/attachment_validate_v1_response.h
     model/attachment_validate_v1_response_m_payload.h
@@ -3019,6 +3010,7 @@ set(HDRS
     model/company_get_autocomplete_v2_response.h
     model/company_get_autocomplete_v2_response_m_payload.h
     model/computed_e_communication_direction.h
+    model/computed_e_documenttype_step.h
     model/computed_e_ezsigndocument_steptype.h
     model/computed_e_ezsignfolder_access.h
     model/computed_e_ezsignimportfolder_status.h
@@ -3160,6 +3152,7 @@ set(HDRS
     model/custom_form_data_signer_response.h
     model/custom_forms_data_folder_response.h
     model/custom_import_ezsigntemplatepackage_relation_request.h
+    model/custom_inscription.h
     model/custom_inscriptionnotauthenticatedcondition_request.h
     model/custom_notificationsubsectiongetnotificationtests_response.h
     model/custom_notificationtestgetelements_response.h
@@ -3286,7 +3279,6 @@ set(HDRS
     model/documenttype_create_object_v1_request.h
     model/documenttype_create_object_v1_response.h
     model/documenttype_create_object_v1_response_m_payload.h
-    model/documenttype_delete_object_v1_response.h
     model/documenttype_edit_object_v1_request.h
     model/documenttype_edit_object_v1_response.h
     model/documenttype_get_autocomplete_v2_response.h
@@ -3300,21 +3292,10 @@ set(HDRS
     model/documenttype_request_compound.h
     model/documenttype_response.h
     model/documenttype_response_compound.h
-    model/documenttypechecklist_create_object_v1_request.h
-    model/documenttypechecklist_create_object_v1_response.h
-    model/documenttypechecklist_create_object_v1_response_m_payload.h
     model/documenttypechecklist_delete_object_v1_response.h
-    model/documenttypechecklist_edit_object_v1_request.h
-    model/documenttypechecklist_edit_object_v1_response.h
-    model/documenttypechecklist_get_list_v1_response.h
-    model/documenttypechecklist_get_list_v1_response_m_payload.h
-    model/documenttypechecklist_get_object_v2_response.h
-    model/documenttypechecklist_get_object_v2_response_m_payload.h
-    model/documenttypechecklist_list_element.h
-    model/documenttypechecklist_request.h
-    model/documenttypechecklist_request_compound.h
-    model/documenttypechecklist_response.h
-    model/documenttypechecklist_response_compound.h
+    model/documenttypechecklist_patch_object_v1_request.h
+    model/documenttypechecklist_patch_object_v1_response.h
+    model/documenttypechecklist_request_patch.h
     model/domain_autocomplete_element_response.h
     model/domain_create_object_v1_request.h
     model/domain_create_object_v1_response.h
@@ -4515,6 +4496,7 @@ set(HDRS
     model/inscription_prepare_files_transfer_v1_response_m_payload.h
     model/inscription_response.h
     model/inscription_response_compound.h
+    model/inscription_synchronization_documenttype_v1_response.h
     model/inscriptionchecklist_autocomplete_element_response.h
     model/inscriptionchecklist_get_autocomplete_v3_response.h
     model/inscriptionchecklist_get_autocomplete_v3_response_m_payload.h

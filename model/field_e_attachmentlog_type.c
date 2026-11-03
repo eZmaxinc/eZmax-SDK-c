@@ -5,13 +5,13 @@
 
 
 char* field_e_attachmentlog_type_field_e_attachmentlog_type_ToString(ezmax_api_definition__full_field_e_attachmentlog_type__e field_e_attachmentlog_type) {
-    char *field_e_attachmentlog_typeArray[] =  { "NULL", "AutoValidation", "CopyFrom", "CopyTo", "CopyToEzsign", "CreateByEzsign", "Download", "Deleted", "Destroyed", "Email", "EmailCC", "EmailCCI", "Fax", "ImportedFromExternalSystem", "ImportedFromEZA", "ImportedFromFaltour", "ImportedFromLonewolf", "ImportedFromProspects", "Move", "OpenFromEmail", "Purged", "Reject", "Rename", "Restore", "Scanned", "SendToGED", "UnvalidatedBy", "Upload", "ValidatedBy", "VetinfoUpload" };
+    char *field_e_attachmentlog_typeArray[] =  { "NULL", "AutoValidation", "CopyFrom", "CopyTo", "CopyToEzsign", "CreateByEzsign", "Download", "Deleted", "Destroyed", "Email", "EmailCC", "EmailCCI", "Fax", "ImportedFromExternalSystem", "ImportedFromEZA", "ImportedFromFaltour", "ImportedFromLonewolf", "ImportedFromProspects", "Move", "OpenFromEmail", "Pending", "Purged", "Reject", "Rename", "Restore", "Scanned", "SendToGED", "UnvalidatedBy", "Upload", "ValidatedBy", "VetinfoUpload" };
     return field_e_attachmentlog_typeArray[field_e_attachmentlog_type];
 }
 
 ezmax_api_definition__full_field_e_attachmentlog_type__e field_e_attachmentlog_type_field_e_attachmentlog_type_FromString(char* field_e_attachmentlog_type) {
     int stringToReturn = 0;
-    char *field_e_attachmentlog_typeArray[] =  { "NULL", "AutoValidation", "CopyFrom", "CopyTo", "CopyToEzsign", "CreateByEzsign", "Download", "Deleted", "Destroyed", "Email", "EmailCC", "EmailCCI", "Fax", "ImportedFromExternalSystem", "ImportedFromEZA", "ImportedFromFaltour", "ImportedFromLonewolf", "ImportedFromProspects", "Move", "OpenFromEmail", "Purged", "Reject", "Rename", "Restore", "Scanned", "SendToGED", "UnvalidatedBy", "Upload", "ValidatedBy", "VetinfoUpload" };
+    char *field_e_attachmentlog_typeArray[] =  { "NULL", "AutoValidation", "CopyFrom", "CopyTo", "CopyToEzsign", "CreateByEzsign", "Download", "Deleted", "Destroyed", "Email", "EmailCC", "EmailCCI", "Fax", "ImportedFromExternalSystem", "ImportedFromEZA", "ImportedFromFaltour", "ImportedFromLonewolf", "ImportedFromProspects", "Move", "OpenFromEmail", "Pending", "Purged", "Reject", "Rename", "Restore", "Scanned", "SendToGED", "UnvalidatedBy", "Upload", "ValidatedBy", "VetinfoUpload" };
     size_t sizeofArray = sizeof(field_e_attachmentlog_typeArray) / sizeof(field_e_attachmentlog_typeArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(field_e_attachmentlog_type, field_e_attachmentlog_typeArray[stringToReturn]) == 0) {

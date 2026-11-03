@@ -8,6 +8,7 @@
 static inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_response_compound_create_internal(
     int *pki_inscriptionnotauthenticated_id,
     int *fki_inscription_id,
+    custom_inscription_t *obj_inscription,
     int *fki_department_id,
     char *s_department_name_x,
     int *fki_financialinstitution_id,
@@ -54,6 +55,7 @@ static inscriptionnotauthenticated_response_compound_t *inscriptionnotauthentica
     inscriptionnotauthenticated_response_compound_local_var->_library_owned = 1;
     inscriptionnotauthenticated_response_compound_local_var->pki_inscriptionnotauthenticated_id = pki_inscriptionnotauthenticated_id;
     inscriptionnotauthenticated_response_compound_local_var->fki_inscription_id = fki_inscription_id;
+    inscriptionnotauthenticated_response_compound_local_var->obj_inscription = obj_inscription;
     inscriptionnotauthenticated_response_compound_local_var->fki_department_id = fki_department_id;
     inscriptionnotauthenticated_response_compound_local_var->s_department_name_x = s_department_name_x;
     inscriptionnotauthenticated_response_compound_local_var->fki_financialinstitution_id = fki_financialinstitution_id;
@@ -97,6 +99,7 @@ static inscriptionnotauthenticated_response_compound_t *inscriptionnotauthentica
 __attribute__((deprecated)) inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_response_compound_create(
     int *pki_inscriptionnotauthenticated_id,
     int *fki_inscription_id,
+    custom_inscription_t *obj_inscription,
     int *fki_department_id,
     char *s_department_name_x,
     int *fki_financialinstitution_id,
@@ -203,6 +206,7 @@ __attribute__((deprecated)) inscriptionnotauthenticated_response_compound_t *ins
     inscriptionnotauthenticated_response_compound_t *result = inscriptionnotauthenticated_response_compound_create_internal (
         pki_inscriptionnotauthenticated_id_copy,
         fki_inscription_id_copy,
+        obj_inscription,
         fki_department_id_copy,
         s_department_name_x,
         fki_financialinstitution_id_copy,
@@ -275,6 +279,10 @@ void inscriptionnotauthenticated_response_compound_free(inscriptionnotauthentica
     if (inscriptionnotauthenticated_response_compound->fki_inscription_id) {
         free(inscriptionnotauthenticated_response_compound->fki_inscription_id);
         inscriptionnotauthenticated_response_compound->fki_inscription_id = NULL;
+    }
+    if (inscriptionnotauthenticated_response_compound->obj_inscription) {
+        custom_inscription_free(inscriptionnotauthenticated_response_compound->obj_inscription);
+        inscriptionnotauthenticated_response_compound->obj_inscription = NULL;
     }
     if (inscriptionnotauthenticated_response_compound->fki_department_id) {
         free(inscriptionnotauthenticated_response_compound->fki_department_id);
@@ -429,6 +437,20 @@ cJSON *inscriptionnotauthenticated_response_compound_convertToJSON(inscriptionno
     }
     if(cJSON_AddNumberToObject(item, "fkiInscriptionID", *inscriptionnotauthenticated_response_compound->fki_inscription_id) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // inscriptionnotauthenticated_response_compound->obj_inscription
+    if (!inscriptionnotauthenticated_response_compound->obj_inscription) {
+        goto fail;
+    }
+    cJSON *obj_inscription_local_JSON = custom_inscription_convertToJSON(inscriptionnotauthenticated_response_compound->obj_inscription);
+    if(obj_inscription_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objInscription", obj_inscription_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
     }
 
 
@@ -785,6 +807,9 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
     // define the local variable for inscriptionnotauthenticated_response_compound->fki_inscription_id
     int *fki_inscription_id_local_var = NULL;
 
+    // define the local variable for inscriptionnotauthenticated_response_compound->obj_inscription
+    custom_inscription_t *obj_inscription_local_nonprim = NULL;
+
     // define the local variable for inscriptionnotauthenticated_response_compound->fki_department_id
     int *fki_department_id_local_var = NULL;
 
@@ -915,6 +940,18 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
         goto end;
     }
     *fki_inscription_id_local_var = fki_inscription_id->valuedouble;
+
+    // inscriptionnotauthenticated_response_compound->obj_inscription
+    cJSON *obj_inscription = cJSON_GetObjectItemCaseSensitive(inscriptionnotauthenticated_response_compoundJSON, "objInscription");
+    if (cJSON_IsNull(obj_inscription)) {
+        obj_inscription = NULL;
+    }
+    if (!obj_inscription) {
+        goto end;
+    }
+
+    
+    obj_inscription_local_nonprim = custom_inscription_parseFromJSON(obj_inscription); //nonprimitive
 
     // inscriptionnotauthenticated_response_compound->fki_department_id
     cJSON *fki_department_id = cJSON_GetObjectItemCaseSensitive(inscriptionnotauthenticated_response_compoundJSON, "fkiDepartmentID");
@@ -1501,6 +1538,7 @@ inscriptionnotauthenticated_response_compound_t *inscriptionnotauthenticated_res
     inscriptionnotauthenticated_response_compound_local_var = inscriptionnotauthenticated_response_compound_create_internal (
         pki_inscriptionnotauthenticated_id_local_var,
         fki_inscription_id_local_var,
+        obj_inscription_local_nonprim,
         fki_department_id_local_var,
         s_department_name_x_local_str,
         fki_financialinstitution_id_local_var,
@@ -1553,6 +1591,10 @@ end:
     if (fki_inscription_id_local_var) {
         free(fki_inscription_id_local_var);
         fki_inscription_id_local_var = NULL;
+    }
+    if (obj_inscription_local_nonprim) {
+        custom_inscription_free(obj_inscription_local_nonprim);
+        obj_inscription_local_nonprim = NULL;
     }
     if (fki_department_id_local_var) {
         free(fki_department_id_local_var);

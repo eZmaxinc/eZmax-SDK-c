@@ -1,0 +1,32 @@
+/*
+ * computed_e_documenttype_step.h
+ *
+ * The step of the Documenttype
+ */
+
+#ifndef _computed_e_documenttype_step_H_
+#define _computed_e_documenttype_step_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct computed_e_documenttype_step_t computed_e_documenttype_step_t;
+
+
+// Enum  for computed_e_documenttype_step
+
+typedef enum { ezmax_api_definition__full_computed_e_documenttype_step__NULL = 0, ezmax_api_definition__full_computed_e_documenttype_step__Agentbroker, ezmax_api_definition__full_computed_e_documenttype_step__Buyercontract, ezmax_api_definition__full_computed_e_documenttype_step__Inscription, ezmax_api_definition__full_computed_e_documenttype_step__NotAuthenticated, ezmax_api_definition__full_computed_e_documenttype_step__Otherincome, ezmax_api_definition__full_computed_e_documenttype_step__RejectedOfferToPurchase } ezmax_api_definition__full_computed_e_documenttype_step__e;
+
+char* computed_e_documenttype_step_computed_e_documenttype_step_ToString(ezmax_api_definition__full_computed_e_documenttype_step__e computed_e_documenttype_step);
+
+ezmax_api_definition__full_computed_e_documenttype_step__e computed_e_documenttype_step_computed_e_documenttype_step_FromString(char* computed_e_documenttype_step);
+
+cJSON *computed_e_documenttype_step_convertToJSON(ezmax_api_definition__full_computed_e_documenttype_step__e computed_e_documenttype_step);
+
+ezmax_api_definition__full_computed_e_documenttype_step__e computed_e_documenttype_step_parseFromJSON(cJSON *computed_e_documenttype_stepJSON);
+
+#endif /* _computed_e_documenttype_step_H_ */
+

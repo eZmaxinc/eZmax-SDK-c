@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pki_documenttype_id** | **int** | The unique ID of the Documenttype | [optional] 
 **obj_documenttype_name** | [**multilingual_documenttype_name_t**](multilingual_documenttype_name.md) \* |  | 
+**e_documenttype_step** | **computed_e_documenttype_step_t \*** |  | 
 **s_documenttype_defaultfilename** | **char \*** | The defaultfilename of the Documenttype | 
 **b_documenttype_showagent** | **int** | Whether if it&#39;s an showagent | 
 **b_documenttype_isactive** | **int** | Whether the documenttype is active or not | 
@@ -19,13 +20,14 @@ Name | Type | Description | Notes
 **b_documenttype_foreclosedsale** | **int** | Whether if it&#39;s an foreclosedsale | 
 **b_documenttype_commercialfunding** | **int** | Whether if it&#39;s an commercialfunding | 
 **b_documenttype_canafe** | **int** | Whether if it&#39;s an canafe | 
-**e_documenttype_ezcom** | **field_e_documenttype_ezcom_t \*** |  | 
+**e_documenttype_ezcom** | **field_e_documenttype_ezcom_t \*** |  | [optional] 
 **e_documenttype_privacydefault** | **field_e_documenttype_privacydefault_t \*** |  | 
 **e_documenttype_statusdefault** | **field_e_documenttype_statusdefault_t \*** |  | 
 **e_documenttype_salebyowner** | **field_e_documenttype_salebyowner_t \*** |  | 
 **e_documenttype_saledisplaybyrole** | **field_e_documenttype_saledisplaybyrole_t \*** |  | 
 **e_documenttype_transactiontype** | **field_e_documenttype_transactiontype_t \*** |  | 
 **e_documenttype_repossession** | **field_e_documenttype_repossession_t \*** |  | 
+**a_fki_inscriptiontype_id** | **list_t \*** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

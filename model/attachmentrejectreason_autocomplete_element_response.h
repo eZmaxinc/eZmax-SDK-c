@@ -20,7 +20,7 @@ typedef struct attachmentrejectreason_autocomplete_element_response_t attachment
 
 typedef struct attachmentrejectreason_autocomplete_element_response_t {
     int *pki_attachmentrejectreason_id; //numeric
-    char *s_attachmentrejectreasonname_x; // string
+    char *s_attachmentrejectreason_name_x; // string
     int *b_attachmentrejectreason_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -28,7 +28,7 @@ typedef struct attachmentrejectreason_autocomplete_element_response_t {
 
 __attribute__((deprecated)) attachmentrejectreason_autocomplete_element_response_t *attachmentrejectreason_autocomplete_element_response_create(
     int *pki_attachmentrejectreason_id,
-    char *s_attachmentrejectreasonname_x,
+    char *s_attachmentrejectreason_name_x,
     int *b_attachmentrejectreason_isactive
 );
 

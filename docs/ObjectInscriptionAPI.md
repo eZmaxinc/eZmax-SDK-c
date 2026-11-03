@@ -15,6 +15,7 @@ Method | HTTP request | Description
 [**ObjectInscriptionAPI_inscriptionGetObjectV2**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionGetObjectV2) | **GET** /2/object/inscription/{pkiInscriptionID} | Retrieve an existing Inscription
 [**ObjectInscriptionAPI_inscriptionImportIntoEDMV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionImportIntoEDMV1) | **POST** /1/object/inscription/{pkiInscriptionID}/importIntoEDM | Import attachments into the Inscription
 [**ObjectInscriptionAPI_inscriptionPrepareFilesTransferV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionPrepareFilesTransferV1) | **POST** /1/object/inscription/{pkiInscriptionID}/prepareFilesTransfer | Prepares file transfer into EDM
+[**ObjectInscriptionAPI_inscriptionSynchronizationDocumenttypeV1**](ObjectInscriptionAPI.md#ObjectInscriptionAPI_inscriptionSynchronizationDocumenttypeV1) | **POST** /1/object/inscription/{pkiInscriptionID}/synchronizationDocumenttype | Synchronization of the Documenttype in the Inscription
 
 
 # **ObjectInscriptionAPI_inscriptionBatchDownloadV1**
@@ -349,6 +350,38 @@ Name | Type | Description  | Notes
 ### Return type
 
 [inscription_prepare_files_transfer_v1_response_t](inscription_prepare_files_transfer_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectInscriptionAPI_inscriptionSynchronizationDocumenttypeV1**
+```c
+// Synchronization of the Documenttype in the Inscription
+//
+// 
+//
+inscription_synchronization_documenttype_v1_response_t* ObjectInscriptionAPI_inscriptionSynchronizationDocumenttypeV1(apiClient_t *apiClient, int *pkiInscriptionID, object_t *body);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiInscriptionID** | **int \*** |  | 
+**body** | **[object_t](object.md) \*** |  | 
+
+### Return type
+
+[inscription_synchronization_documenttype_v1_response_t](inscription_synchronization_documenttype_v1_response.md) *
 
 
 ### Authorization

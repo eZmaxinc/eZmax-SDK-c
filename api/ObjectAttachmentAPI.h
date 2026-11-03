@@ -6,15 +6,15 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/attachment_delete_v1_response.h"
-#include "../model/attachment_document_type_v1_request.h"
-#include "../model/attachment_document_type_v1_response.h"
 #include "../model/attachment_get_attachmentlogs_v1_response.h"
-#include "../model/attachment_privacy_v1_request.h"
-#include "../model/attachment_privacy_v1_response.h"
 #include "../model/attachment_rename_v1_request.h"
 #include "../model/attachment_rename_v1_response.h"
 #include "../model/attachment_restore_v1_request.h"
 #include "../model/attachment_restore_v1_response.h"
+#include "../model/attachment_set_document_type_v1_request.h"
+#include "../model/attachment_set_document_type_v1_response.h"
+#include "../model/attachment_set_privacy_v1_request.h"
+#include "../model/attachment_set_privacy_v1_response.h"
 #include "../model/attachment_validate_v1_request.h"
 #include "../model/attachment_validate_v1_response.h"
 #include "../model/common_response_error.h"
@@ -27,14 +27,6 @@
 //
 attachment_delete_v1_response_t*
 ObjectAttachmentAPI_attachmentDeleteV1(apiClient_t *apiClient, int *pkiAttachmentID, object_t *body);
-
-
-// Change attachment document type
-//
-// The endpoint allows to change the checklist document type for an attachment.
-//
-attachment_document_type_v1_response_t*
-ObjectAttachmentAPI_attachmentDocumentTypeV1(apiClient_t *apiClient, int *pkiAttachmentID, attachment_document_type_v1_request_t *attachment_document_type_v1_request);
 
 
 // Retrieve the content
@@ -53,14 +45,6 @@ attachment_get_attachmentlogs_v1_response_t*
 ObjectAttachmentAPI_attachmentGetAttachmentlogsV1(apiClient_t *apiClient, int *pkiAttachmentID);
 
 
-// Change the attachment privacy
-//
-// The endpoint allows to change an attachment's access privacy.
-//
-attachment_privacy_v1_response_t*
-ObjectAttachmentAPI_attachmentPrivacyV1(apiClient_t *apiClient, int *pkiAttachmentID, attachment_privacy_v1_request_t *attachment_privacy_v1_request);
-
-
 // Rename an attachment
 //
 // The endpoint allows to change the attachment's file name and category.
@@ -75,6 +59,22 @@ ObjectAttachmentAPI_attachmentRenameV1(apiClient_t *apiClient, int *pkiAttachmen
 //
 attachment_restore_v1_response_t*
 ObjectAttachmentAPI_attachmentRestoreV1(apiClient_t *apiClient, int *pkiAttachmentID, attachment_restore_v1_request_t *attachment_restore_v1_request);
+
+
+// Change attachment document type
+//
+// The endpoint allows to change the checklist document type for an attachment.
+//
+attachment_set_document_type_v1_response_t*
+ObjectAttachmentAPI_attachmentSetDocumentTypeV1(apiClient_t *apiClient, int *pkiAttachmentID, attachment_set_document_type_v1_request_t *attachment_set_document_type_v1_request);
+
+
+// Change the attachment privacy
+//
+// The endpoint allows to change an attachment's access privacy.
+//
+attachment_set_privacy_v1_response_t*
+ObjectAttachmentAPI_attachmentSetPrivacyV1(apiClient_t *apiClient, int *pkiAttachmentID, attachment_set_privacy_v1_request_t *attachment_set_privacy_v1_request);
 
 
 // Validate an existing attachment

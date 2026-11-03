@@ -15,6 +15,7 @@
 
 typedef struct inscriptionnotauthenticated_response_t inscriptionnotauthenticated_response_t;
 
+#include "custom_inscription.h"
 #include "field_e_inscriptionnotauthenticated_remunerationtype.h"
 #include "field_e_inscriptionnotauthenticated_residence_type.h"
 #include "field_e_inscriptionnotauthenticated_type.h"
@@ -25,6 +26,7 @@ typedef struct inscriptionnotauthenticated_response_t inscriptionnotauthenticate
 typedef struct inscriptionnotauthenticated_response_t {
     int *pki_inscriptionnotauthenticated_id; //numeric
     int *fki_inscription_id; //numeric
+    struct custom_inscription_t *obj_inscription; //model
     int *fki_department_id; //numeric
     char *s_department_name_x; // string
     int *fki_financialinstitution_id; //numeric
@@ -69,6 +71,7 @@ typedef struct inscriptionnotauthenticated_response_t {
 __attribute__((deprecated)) inscriptionnotauthenticated_response_t *inscriptionnotauthenticated_response_create(
     int *pki_inscriptionnotauthenticated_id,
     int *fki_inscription_id,
+    custom_inscription_t *obj_inscription,
     int *fki_department_id,
     char *s_department_name_x,
     int *fki_financialinstitution_id,
