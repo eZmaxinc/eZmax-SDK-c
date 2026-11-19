@@ -1236,6 +1236,7 @@ Category | Method | HTTP request | Description
  - [custom_contact_name_response_t](docs/custom_contact_name_response.md)
  - [custom_create_ezsignelements_positioned_by_word_request_t](docs/custom_create_ezsignelements_positioned_by_word_request.md)
  - [custom_creditcard_request_t](docs/custom_creditcard_request.md)
+ - [custom_creditcardmerchant_response_t](docs/custom_creditcardmerchant_response.md)
  - [custom_creditcardtransaction_response_t](docs/custom_creditcardtransaction_response.md)
  - [custom_creditcardtransactionresponse_response_t](docs/custom_creditcardtransactionresponse_response.md)
  - [custom_discussionconfiguration_response_t](docs/custom_discussionconfiguration_response.md)

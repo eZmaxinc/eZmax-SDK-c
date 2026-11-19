@@ -881,6 +881,7 @@ docs/custom_communicationsender_response.md
 docs/custom_contact_name_response.md
 docs/custom_create_ezsignelements_positioned_by_word_request.md
 docs/custom_creditcard_request.md
+docs/custom_creditcardmerchant_response.md
 docs/custom_creditcardtransaction_response.md
 docs/custom_creditcardtransactionresponse_response.md
 docs/custom_discussionconfiguration_response.md
@@ -3778,6 +3779,8 @@ model/custom_create_ezsignelements_positioned_by_word_request.c
 model/custom_create_ezsignelements_positioned_by_word_request.h
 model/custom_creditcard_request.c
 model/custom_creditcard_request.h
+model/custom_creditcardmerchant_response.c
+model/custom_creditcardmerchant_response.h
 model/custom_creditcardtransaction_response.c
 model/custom_creditcardtransaction_response.h
 model/custom_creditcardtransactionresponse_response.c

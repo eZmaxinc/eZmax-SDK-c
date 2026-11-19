@@ -11,13 +11,13 @@
 // Functions for enum SSELECTOR for ObjectInscriptionchecklistAPI_inscriptionchecklistGetAutocompleteV3
 
 static char* inscriptionchecklistGetAutocompleteV3_SSELECTOR_ToString(ezmax_api_definition__full_inscriptionchecklistGetAutocompleteV3_sSelector_e SSELECTOR){
-    char *SSELECTORArray[] =  { "NULL", "All" };
+    char *SSELECTORArray[] =  { "NULL", "All", "Required" };
     return SSELECTORArray[SSELECTOR];
 }
 
 static ezmax_api_definition__full_inscriptionchecklistGetAutocompleteV3_sSelector_e inscriptionchecklistGetAutocompleteV3_SSELECTOR_FromString(char* SSELECTOR){
     int stringToReturn = 0;
-    char *SSELECTORArray[] =  { "NULL", "All" };
+    char *SSELECTORArray[] =  { "NULL", "All", "Required" };
     size_t sizeofArray = sizeof(SSELECTORArray) / sizeof(SSELECTORArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(SSELECTOR, SSELECTORArray[stringToReturn]) == 0) {

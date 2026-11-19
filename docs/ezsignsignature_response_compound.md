@@ -55,6 +55,7 @@ Name | Type | Description | Notes
 **a_obj_ezsignelementdependency** | [**list_t**](ezsignelementdependency_response_compound.md) \* |  | [optional] 
 **obj_timezone** | [**custom_timezone_with_code_response_t**](custom_timezone_with_code_response.md) \* |  | [optional] 
 **a_obj_ezsignsignaturepaymentdetail** | [**list_t**](ezsignsignaturepaymentdetail_response_compound.md) \* |  | [optional] 
+**obj_creditcardmerchant** | [**custom_creditcardmerchant_response_t**](custom_creditcardmerchant_response.md) \* |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

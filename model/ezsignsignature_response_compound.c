@@ -57,7 +57,8 @@ static ezsignsignature_response_compound_t *ezsignsignature_response_compound_cr
     custom_creditcardtransaction_response_t *obj_creditcardtransaction,
     list_t *a_obj_ezsignelementdependency,
     custom_timezone_with_code_response_t *obj_timezone,
-    list_t *a_obj_ezsignsignaturepaymentdetail
+    list_t *a_obj_ezsignsignaturepaymentdetail,
+    custom_creditcardmerchant_response_t *obj_creditcardmerchant
     ) {
     ezsignsignature_response_compound_t *ezsignsignature_response_compound_local_var = malloc(sizeof(ezsignsignature_response_compound_t));
     if (!ezsignsignature_response_compound_local_var) {
@@ -117,6 +118,7 @@ static ezsignsignature_response_compound_t *ezsignsignature_response_compound_cr
     ezsignsignature_response_compound_local_var->a_obj_ezsignelementdependency = a_obj_ezsignelementdependency;
     ezsignsignature_response_compound_local_var->obj_timezone = obj_timezone;
     ezsignsignature_response_compound_local_var->a_obj_ezsignsignaturepaymentdetail = a_obj_ezsignsignaturepaymentdetail;
+    ezsignsignature_response_compound_local_var->obj_creditcardmerchant = obj_creditcardmerchant;
     return ezsignsignature_response_compound_local_var;
 }
 
@@ -172,7 +174,8 @@ __attribute__((deprecated)) ezsignsignature_response_compound_t *ezsignsignature
     custom_creditcardtransaction_response_t *obj_creditcardtransaction,
     list_t *a_obj_ezsignelementdependency,
     custom_timezone_with_code_response_t *obj_timezone,
-    list_t *a_obj_ezsignsignaturepaymentdetail
+    list_t *a_obj_ezsignsignaturepaymentdetail,
+    custom_creditcardmerchant_response_t *obj_creditcardmerchant
     ) {
     int *pki_ezsignsignature_id_copy = NULL;
     if (pki_ezsignsignature_id) {
@@ -336,7 +339,8 @@ __attribute__((deprecated)) ezsignsignature_response_compound_t *ezsignsignature
         obj_creditcardtransaction,
         a_obj_ezsignelementdependency,
         obj_timezone,
-        a_obj_ezsignsignaturepaymentdetail
+        a_obj_ezsignsignaturepaymentdetail,
+        obj_creditcardmerchant
         );
     if (!result) {
         free(pki_ezsignsignature_id_copy);
@@ -554,6 +558,10 @@ void ezsignsignature_response_compound_free(ezsignsignature_response_compound_t 
         }
         list_freeList(ezsignsignature_response_compound->a_obj_ezsignsignaturepaymentdetail);
         ezsignsignature_response_compound->a_obj_ezsignsignaturepaymentdetail = NULL;
+    }
+    if (ezsignsignature_response_compound->obj_creditcardmerchant) {
+        custom_creditcardmerchant_response_free(ezsignsignature_response_compound->obj_creditcardmerchant);
+        ezsignsignature_response_compound->obj_creditcardmerchant = NULL;
     }
     free(ezsignsignature_response_compound);
 }
@@ -1091,6 +1099,19 @@ cJSON *ezsignsignature_response_compound_convertToJSON(ezsignsignature_response_
     }
     }
 
+
+    // ezsignsignature_response_compound->obj_creditcardmerchant
+    if(ezsignsignature_response_compound->obj_creditcardmerchant) {
+    cJSON *obj_creditcardmerchant_local_JSON = custom_creditcardmerchant_response_convertToJSON(ezsignsignature_response_compound->obj_creditcardmerchant);
+    if(obj_creditcardmerchant_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objCreditcardmerchant", obj_creditcardmerchant_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -1245,6 +1266,9 @@ ezsignsignature_response_compound_t *ezsignsignature_response_compound_parseFrom
 
     // define the local list for ezsignsignature_response_compound->a_obj_ezsignsignaturepaymentdetail
     list_t *a_obj_ezsignsignaturepaymentdetailList = NULL;
+
+    // define the local variable for ezsignsignature_response_compound->obj_creditcardmerchant
+    custom_creditcardmerchant_response_t *obj_creditcardmerchant_local_nonprim = NULL;
 
     // ezsignsignature_response_compound->pki_ezsignsignature_id
     cJSON *pki_ezsignsignature_id = cJSON_GetObjectItemCaseSensitive(ezsignsignature_response_compoundJSON, "pkiEzsignsignatureID");
@@ -2023,6 +2047,15 @@ ezsignsignature_response_compound_t *ezsignsignature_response_compound_parseFrom
     }
     }
 
+    // ezsignsignature_response_compound->obj_creditcardmerchant
+    cJSON *obj_creditcardmerchant = cJSON_GetObjectItemCaseSensitive(ezsignsignature_response_compoundJSON, "objCreditcardmerchant");
+    if (cJSON_IsNull(obj_creditcardmerchant)) {
+        obj_creditcardmerchant = NULL;
+    }
+    if (obj_creditcardmerchant) { 
+    obj_creditcardmerchant_local_nonprim = custom_creditcardmerchant_response_parseFromJSON(obj_creditcardmerchant); //nonprimitive
+    }
+
 
     if (s_currency_description_x && !cJSON_IsNull(s_currency_description_x)) s_currency_description_x_local_str = strdup(s_currency_description_x->valuestring);
     if (d_ezsignsignature_creditcardamount && !cJSON_IsNull(d_ezsignsignature_creditcardamount)) d_ezsignsignature_creditcardamount_local_str = strdup(d_ezsignsignature_creditcardamount->valuestring);
@@ -2090,7 +2123,8 @@ ezsignsignature_response_compound_t *ezsignsignature_response_compound_parseFrom
         obj_creditcardtransaction ? obj_creditcardtransaction_local_nonprim : NULL,
         a_obj_ezsignelementdependency ? a_obj_ezsignelementdependencyList : NULL,
         obj_timezone ? obj_timezone_local_nonprim : NULL,
-        a_obj_ezsignsignaturepaymentdetail ? a_obj_ezsignsignaturepaymentdetailList : NULL
+        a_obj_ezsignsignaturepaymentdetail ? a_obj_ezsignsignaturepaymentdetailList : NULL,
+        obj_creditcardmerchant ? obj_creditcardmerchant_local_nonprim : NULL
         );
 
     if (!ezsignsignature_response_compound_local_var) {
@@ -2312,6 +2346,10 @@ end:
         }
         list_freeList(a_obj_ezsignsignaturepaymentdetailList);
         a_obj_ezsignsignaturepaymentdetailList = NULL;
+    }
+    if (obj_creditcardmerchant_local_nonprim) {
+        custom_creditcardmerchant_response_free(obj_creditcardmerchant_local_nonprim);
+        obj_creditcardmerchant_local_nonprim = NULL;
     }
     return NULL;
 

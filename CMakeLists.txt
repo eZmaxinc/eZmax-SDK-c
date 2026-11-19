@@ -455,6 +455,7 @@ set(SRCS
     model/custom_contact_name_response.c
     model/custom_create_ezsignelements_positioned_by_word_request.c
     model/custom_creditcard_request.c
+    model/custom_creditcardmerchant_response.c
     model/custom_creditcardtransaction_response.c
     model/custom_creditcardtransactionresponse_response.c
     model/custom_discussionconfiguration_response.c
@@ -3104,6 +3105,7 @@ set(HDRS
     model/custom_contact_name_response.h
     model/custom_create_ezsignelements_positioned_by_word_request.h
     model/custom_creditcard_request.h
+    model/custom_creditcardmerchant_response.h
     model/custom_creditcardtransaction_response.h
     model/custom_creditcardtransactionresponse_response.h
     model/custom_discussionconfiguration_response.h

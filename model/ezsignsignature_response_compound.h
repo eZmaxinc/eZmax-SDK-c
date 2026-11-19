@@ -16,6 +16,7 @@
 typedef struct ezsignsignature_response_compound_t ezsignsignature_response_compound_t;
 
 #include "custom_contact_name_response.h"
+#include "custom_creditcardmerchant_response.h"
 #include "custom_creditcardtransaction_response.h"
 #include "custom_timezone_with_code_response.h"
 #include "enum_textvalidation.h"
@@ -87,6 +88,7 @@ typedef struct ezsignsignature_response_compound_t {
     list_t *a_obj_ezsignelementdependency; //nonprimitive container
     struct custom_timezone_with_code_response_t *obj_timezone; //model
     list_t *a_obj_ezsignsignaturepaymentdetail; //nonprimitive container
+    struct custom_creditcardmerchant_response_t *obj_creditcardmerchant; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsignature_response_compound_t;
@@ -143,7 +145,8 @@ __attribute__((deprecated)) ezsignsignature_response_compound_t *ezsignsignature
     custom_creditcardtransaction_response_t *obj_creditcardtransaction,
     list_t *a_obj_ezsignelementdependency,
     custom_timezone_with_code_response_t *obj_timezone,
-    list_t *a_obj_ezsignsignaturepaymentdetail
+    list_t *a_obj_ezsignsignaturepaymentdetail,
+    custom_creditcardmerchant_response_t *obj_creditcardmerchant
 );
 
 void ezsignsignature_response_compound_free(ezsignsignature_response_compound_t *ezsignsignature_response_compound);
